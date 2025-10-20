@@ -1,0 +1,125 @@
+{
+  "posts": [
+    {
+      "slug": "hair-fall-control-kaise-kare-baal-girne-se-kaise-roken",
+      "filePath": "/content/blog/hair-fall-control-kaise-kare.md",
+      "metadata": {
+        "title": "Hair Fall Control Kaise Kare - Baal Girne Se Kaise Roken: 15 Natural Gharelu Upay",
+        "excerpt": "Baal girna rokne ke liye best natural tips aur gharelu nuskhe. Janiye hair fall ke karan, treatment, aur proven remedies jo scientifically approved hain.",
+        "date": "2025-10-08",
+        "coverImage": "/assets/blog/hair-fall-control-treatment.webp",
+        "category": "health",
+        "author": "drRajesh",
+        "tags": [
+          "hair fall control",
+          "baal girna kaise roken",
+          "hair fall treatment",
+          "gharelu nuskhe",
+          "natural remedies",
+          "hair care tips",
+          "alopecia treatment",
+          "hair regrowth"
+        ],
+        "featured": true,
+        "readTime": 12,
+        "keywords": [
+          "hair fall kaise roken",
+          "baal girne ka ilaj",
+          "hair fall treatment at home",
+          "natural hair fall solution",
+          "hair regrowth tips in hindi"
+        ],
+        "canonicalUrl": "https://yourwebsite.com/blog/hair-fall-control-kaise-kare-baal-girne-se-kaise-roken",
+        "schema": {
+          "@context": "https://schema.org",
+          "@type": "Article",
+          "headline": "Hair Fall Control Kaise Kare - Baal Girne Se Kaise Roken: 15 Natural Gharelu Upay",
+          "description": "Complete guide on hair fall control with natural remedies, causes, and scientifically proven treatments",
+          "image": "https://yourwebsite.com/assets/blog/hair-fall-control-treatment.webp",
+          "author": {
+            "@type": "Person",
+            "name": "Dr. Rajesh Kumar"
+          },
+          "publisher": {
+            "@type": "Organization",
+            "name": "Your Health Hub",
+            "logo": {
+              "@type": "ImageObject",
+              "url": "https://yourwebsite.com/logo.png"
+            }
+          },
+          "datePublished": "2025-10-08",
+          "dateModified": "2025-10-08"
+        },
+        "internalLinks": [
+          {
+            "text": "Hair Treatment Services",
+            "url": "/services/hair-treatment",
+            "anchor": "professional hair fall treatment packages"
+          },
+          {
+            "text": "Health Consultation",
+            "url": "/services/consultation",
+            "anchor": "expert hair care consultation"
+          },
+          {
+            "text": "Nutrition Guide",
+            "url": "/services/nutrition-planning",
+            "anchor": "personalized hair nutrition plan"
+          }
+        ],
+        "faq": [
+          {
+            "question": "Baal girne ka sabse bada karan kya hai?",
+            "answer": "Hair fall ke main karano mein stress, nutritional deficiency (vitamin D, iron, protein kikami), hormonal imbalance, genetics, aur scalp infections shamil hain."
+          },
+          {
+            "question": "Kya hair fall ko permanently rok sakte hain?",
+            "answer": "Haan, agar root cause ko identify karke sahi treatment aur lifestyle changes apnaye jayen to hair fall ko control aur reduce kiya ja sakta hai."
+          },
+          {
+            "question": "Hair fall rokne ke liye sabse best oil kaun sa hai?",
+            "answer": "Coconut oil, castor oil, aur almond oil hair fall control ke liye best hain. Regular massage se blood circulation badhta hai."
+          },
+          {
+            "question": "Kitne din mein hair fall control ho jata hai?",
+            "answer": "Natural remedies se 4-6 weeks mein improvement dikhna shuru hota hai. Complete results ke liye 3-6 months ka consistent treatment zaroori hai."
+          }
+        ]
+      }
+    }
+  ],
+  "authors": {
+    "parvatikumari": {
+      "name": "Parvati kumari",
+      "avatar": "/assets/authors/parvati_kumari.jpg",
+      "bio": "Lkme Delhi Trained Cosmotologist, BSc Chemistry with 5+ years experience in hair care and trichology",
+      "expertise": ["Hair Fall Treatment", "Dermatology", "Trichology"],
+      "socialLinks": {
+        "twitter": "https://twitter.com/salonic",
+        "linkedin": "https://linkedin.com/in/salonic"
+      }
+    }
+  },
+  "categories": [
+    {
+      "id": "health",
+      "name": "Health & Wellness",
+      "description": "Health tips, wellness guides, and medical advice",
+      "icon": "🏥"
+    }
+  ],
+  "seoConfig": {
+    "metaTitle": "Hair Fall Control Kaise Kare - Baal Girne Se Kaise Roken | 15 Natural Upay",
+    "metaDescription": "Baal girna permanently rokne ke liye 15 scientific aur natural gharelu upay. Hair fall ke karan, treatment, aur regrowth tips. Expert-approved guide 2025.",
+    "ogImage": "/assets/blog/hair-fall-control-og.webp",
+    "twitterCard": "summary_large_image",
+    "focusKeyphrase": "hair fall control kaise kare",
+    "keyphraseVariations": [
+      "baal girne se kaise roken",
+      "hair fall kaise roken in hindi",
+      "baal girne ka ilaj",
+      "hair fall treatment gharelu nuskhe"
+    ]
+  }
+}

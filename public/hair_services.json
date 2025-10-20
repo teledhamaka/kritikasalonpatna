@@ -1,0 +1,675 @@
+[
+  {
+    "id": "hair_21",
+    "title": "Hair Spa",
+    "category": "Hair Treatment",
+    "image": "./images/hair/hair_spa.webp",
+    "description": "Holistic treatment with hot oil massage + infrared steam. Customized mask (moisture/protein/scalp). Includes acupressure scalp stimulation.",
+    "price": 900,
+    "originalPrice": 1500,
+    "isTrending": true,
+    "deal": "380+ bookings this month",
+    "duration": 90,
+    "keyIngredients": ["CBD-Infused Oil", "Collagen Mask", "Cryo-Roller"],
+    "benefits": [
+      "Increases blood circulation",
+      "Reduces shedding by 40%",
+      "Detoxifies scalp"
+    ],
+    "precautions": "Notify about oil sensitivities. Avoid tight hairstyles post-service.",
+    "aftercare": "No washing 48hrs. Scalp massage daily.",
+    "faqs": [
+      {"question": "Frequency?", "answer": "Monthly for maintenance, biweekly for repair"},
+      {"question": "Add hair analysis?", "answer": "+$150 for microscopic assessment"}
+    ]
+  },
+  {
+    "id": "hair_17",
+    "title": "Highlights",
+    "category": "Hair Color",
+    "image": "./images/hair/highlights.webp",
+    "description": "Babylight technique with micro-foiling. Customized placement for face brightening. Includes toner customization for desired undertone.",
+    "price": 1500,
+    "originalPrice": 2100,
+    "isTrending": true,
+    "deal": "270+ bookings this month",
+    "duration": 120,
+    "keyIngredients": ["Bleach Cream", "Microfoils", "Designer Toner"],
+    "benefits": [
+      "Low-contrast regrowth",
+      "Multi-dimensional effect",
+      "Scalp comfort system"
+    ],
+    "precautions": "Requires integrity test. Avoid heat tools 1 week prior.",
+    "aftercare": "Use purple shampoo weekly. Deep condition 2x/week.",
+    "faqs": [
+      {"question": "cost per streak?", "answer": "Rs. 200/- per streaks"},
+      {"question": "Pain level?", "answer": "Pain-free with our buffer technology"},
+      {"question": "Partial vs full?", "answer": "Partial starts at Rs. 1000 (crown only)"}
+    ]
+  },
+  {
+    "id": "hair_20",
+    "title": "Keratin Treatment",
+    "category": "Hair Treatment",
+    "image": "./images/hair/keratin.webp",
+    "description": "Botanical keratin infusion with cocoa extract. Maintains natural texture while eliminating frizz. Eco-certified formula. Results last 3-4 months.",
+    "price": 3000,
+    "originalPrice": 4000,
+    "isTrending": true,
+    "deal": "210+ bookings this month",
+    "duration": 180,
+    "keyIngredients": ["Plant Keratin", "Humectant Complex", "Thermal Activator"],
+    "benefits": [
+      "Weightless smoothing",
+      "Retains curl pattern",
+      "Adds 45% shine"
+    ],
+    "precautions": "Avoid salt water 1 week. No tight hairstyles 48hrs.",
+    "aftercare": "Wash 2x/week max. Use protein-free conditioner.",
+    "faqs": [
+      {"question": "Vegan formula?", "answer": "Yes - 100% plant-derived"},
+      {"question": "Safe for colored hair?", "answer": "Yes - includes color-lock technology"}
+    ]
+  },
+  {
+    "id": "hair_19",
+    "title": "Smoothening Treatment",
+    "category": "Hair Treatment",
+    "image": "./images/hair/smoothening.webp",
+    "description": "Brazilian-style keratin with formaldehyde-free formula. Reduces curl by 60-80%. Includes pH-balancing post-treatment. Lasts 4-5 months.",
+    "price": 3000,
+    "originalPrice": 4200,
+    "isTrending": true,
+    "deal": "190+ bookings this month",
+    "duration": 180,
+    "keyIngredients": ["Liquid Keratin", "Sealant Serum", "Post-Treatment Mask"],
+    "benefits": [
+      "95% frizz reduction",
+      "Up to 50% shorter dry time",
+      "Repairs cuticle damage"
+    ],
+    "precautions": "No washing/sweating 72hrs. Not for pregnant/nursing.",
+    "aftercare": "Use sodium chloride-free products. Sleep with hair straight.",
+    "faqs": [
+      {"question": "Curl retention?", "answer": "Depends on formula - we offer 3 curl-preservation options"},
+      {"question": "Touch-up cost?", "answer": "50% off within 5 months"}
+    ]
+  },
+  {
+    "id": "hair_1",
+    "title": "Straight Cut",
+    "category": "Hair Cut",
+    "image": "./images/hair/straight_cut.webp",
+    "description": "Precision one-length cut using Japanese shears for razor-sharp ends. Ideal for fine hair to create illusion of density. Includes complimentary neck taper refinement.",
+    "price": 120,
+    "originalPrice": 150,
+    "isTrending": false,
+    "deal": "180+ bookings this month",
+    "duration": 45,
+    "keyIngredients": ["Japanese Steel Shears", "Texturizing Razor", "Weight Distribution Spray"],
+    "benefits": [
+      "Eliminates split ends",
+      "Enhances natural hair swing",
+      "Low-maintenance styling"
+    ],
+    "precautions": "Avoid tight ponytails for 48hrs. Not recommended for highly textured curls.",
+    "aftercare": "Use sulfate-free shampoo. Schedule trims every 8 weeks.",
+    "faqs": [
+      {"question": "Does this work for thick hair?", "answer": "Yes, we use thinning techniques to reduce bulk"},
+      {"question": "Can I keep length?", "answer": "Absolutely - we only remove damaged ends"}
+    ]
+  },
+  {
+    "id": "hair_2",
+    "title": "V-Cut",
+    "category": "Hair Cut",
+    "image": "./images/hair/v_cut.webp",
+    "description": "Dramatic V-shaped layers starting at jawline. Uses point-cutting for seamless graduation. Popular for adding movement to straight/wavy hair. Includes face-framing customization.",
+    "price": 180,
+    "originalPrice": 250,
+    "isTrending": true,
+    "deal": "320+ bookings this month",
+    "duration": 60,
+    "keyIngredients": ["Slide Cutting Shears", "Layer Mapping Comb", "Anti-Frizz Serum"],
+    "benefits": [
+      "Creates illusion of length",
+      "Reduces triangular shape",
+      "Enhances natural wave pattern"
+    ],
+    "precautions": "Requires minimum shoulder-length hair. Bleached hair needs bond repair pre-service.",
+    "aftercare": "Apply mid-shaft to ends serum when damp. Use wide-tooth comb.",
+    "faqs": [
+      {"question": "Will this thin my hair?", "answer": "No - we remove weight without reducing density"},
+      {"question": "Suitable for round faces?", "answer": "Yes, we adjust angle to elongate features"}
+    ]
+  },
+  {
+    "id": "hair_3",
+    "title": "U-Cut",
+    "category": "Hair Cut",
+    "image": "./images/hair/u_cut.webp",
+    "description": "Soft rounded hemline with internal layers for bounce. Features 360° weight distribution. Ideal for blunt bob to mid-length styles. Includes collarbone-skimming refinement.",
+    "price": 180,
+    "originalPrice": 250,
+    "isTrending": false,
+    "deal": "150+ bookings this month",
+    "duration": 60,
+    "keyIngredients": ["Curved Shears", "Perimeter Blending Razor", "Hydration Mist"],
+    "benefits": [
+      "Adds volume at crown",
+      "Prevents flipped ends",
+      "Accentuates neckline"
+    ],
+    "precautions": "Avoid chemical services for 72hrs post-cut. Bring reference photos.",
+    "aftercare": "Sleep on silk pillowcase. Use round-brush when blowdrying.",
+    "faqs": [
+      {"question": "Works for curly hair?", "answer": "Yes - we dry-cut to perfect shape"},
+      {"question": "Maintenance frequency?", "answer": "Every 10-12 weeks for shape retention"}
+    ]
+  },
+  {
+    "id": "hair_4",
+    "title": "Step Cut",
+    "category": "Hair Cut",
+    "image": "./images/hair/step_cut.webp",
+    "description": "Geometric layers with visible graduation. Uses vertical sectioning for maximum lift. Features customized layering depth based on density. TikTok's #HairStacking trend.",
+    "price": 250,
+    "originalPrice": 350,
+    "isTrending": true,
+    "deal": "410+ bookings this month",
+    "duration": 75,
+    "keyIngredients": ["Notching Shears", "Elevation Clips", "Volume Mousse"],
+    "benefits": [
+      "Eliminates flatness at roots",
+      "Reduces styling time by 40%",
+      "Enhances texture definition"
+    ],
+    "precautions": "Thin hair requires conservative layering. Consult for density assessment.",
+    "aftercare": "Apply root-lift spray before drying. Avoid heavy oils.",
+    "faqs": [
+      {"question": "Can layers be softened?", "answer": "Yes - we offer seamless blending option"},
+      {"question": "Grow-out period?", "answer": "Graceful transition with 6-month grow-out plan"}
+    ]
+  },
+  {
+    "id": "hair_5",
+    "title": "Layered Cut",
+    "category": "Hair Cut",
+    "image": "./images/hair/layered_cut.webp",
+    "description": "Combined step + feathered layers using slice-cutting. Removes bulk while retaining length. Customized layer placement for face shape. Includes density-balancing technique.",
+    "price": 300,
+    "originalPrice": 450,
+    "isTrending": false,
+    "deal": "190+ bookings this month",
+    "duration": 90,
+    "keyIngredients": ["Blending Shears", "Tension Rods", "Texture Spray"],
+    "benefits": [
+      "Creates 360° movement",
+      "Adds dimension to monochrome hair",
+      "Reduces dry time by 30%"
+    ],
+    "precautions": "Virgin hair requires pre-consultation. Color-treated hair needs bond builder.",
+    "aftercare": "Use texturizing paste for piece-y finish. Schedule dusting every 6 weeks.",
+    "faqs": [
+      {"question": "Suitable for thick hair?", "answer": "Specialty - we remove internal weight safely"},
+      {"question": "Minimum length required?", "answer": "Chin-length for effective layering"}
+    ]
+  },
+  {
+    "id": "hair_6",
+    "title": "Child Haircut",
+    "category": "Hair Cut",
+    "image": "./images/hair/child_haircut.webp",
+    "description": "Gentle cut with distraction techniques (tablets/toys). Uses quiet clippers and rounded tips. Includes parent-guided style consultation. EPA-certified kid-safe products.",
+    "price": 80,
+    "originalPrice": 120,
+    "isTrending": false,
+    "deal": "95+ bookings this month",
+    "duration": 30,
+    "keyIngredients": ["Safety Clippers", "Detangler Spray", "Hypoallergenic Cape"],
+    "benefits": [
+      "Stress-free experience",
+      "Prevents split ends in children's hair",
+      "Special neckline shaping"
+    ],
+    "precautions": "Notify about sensory sensitivities. No chemical services under age 10.",
+    "aftercare": "Use tear-free shampoo. Schedule every 10-12 weeks.",
+    "faqs": [
+      {"question": "First haircut package?", "answer": "Includes certificate + lock of hair keepsake"},
+      {"question": "Special needs training?", "answer": "All stylists ASD-certified"}
+    ]
+  },
+  {
+    "id": "hair_7",
+    "title": "Blow Dry - Medium",
+    "category": "Hair Styling",
+    "image": "./images/hair/blow_dry.webp",
+    "description": "Ionic blowout with round-brush technique. Focuses on root lift and smooth ends. Uses heat protectant with UV filter. Includes 24-hr frizz control guarantee.",
+    "price": 200,
+    "originalPrice": 280,
+    "isTrending": true,
+    "deal": "220+ bookings this month",
+    "duration": 45,
+    "keyIngredients": ["Ionic Dryer", "Boar Bristle Brush", "Thermal Shield Serum"],
+    "benefits": [
+      "Adds 30% more volume",
+      "Seals cuticles for shine",
+      "Eliminates 90% of frizz"
+    ],
+    "precautions": "Avoid humidity exposure. Tie loosely if exercising.",
+    "aftercare": "Use dry shampoo at roots. Refresh with argan oil on ends.",
+    "faqs": [
+      {"question": "Lasts in humidity?", "answer": "Guaranteed 24hrs with our climate-control products"},
+      {"question": "Extensions-friendly?", "answer": "Yes - we use low-heat method on bonds"}
+    ]
+  },
+  {
+    "id": "hair_8",
+    "title": "Blow Dry - Long",
+    "category": "Hair Styling",
+    "image": "./images/hair/blow_dry.webp",
+    "description": "Volumizing blowout with section-by-section tension drying. Features scalp-cooling technology. Includes weighted crown-lift technique for extra height.",
+    "price": 250,
+    "originalPrice": 350,
+    "isTrending": false,
+    "deal": "180+ bookings this month",
+    "duration": 60,
+    "keyIngredients": ["Variable Temp Dryer", "Vent Brush", "Long Hair Elixir"],
+    "benefits": [
+      "Prevents traction alopecia",
+      "Creates beach-wave texture",
+      "Reduces breakage by 70%"
+    ],
+    "precautions": "Tangles must be pre-detangled. Not for wet-set curls.",
+    "aftercare": "Sleep in loose braid. Use silk scrunchie.",
+    "faqs": [
+      {"question": "Heat damage risk?", "answer": "None - we use 310°F max with ceramic tech"},
+      {"question": "Add hairpieces?", "answer": "Yes - $20 extra for clip-in integration"}
+    ]
+  },
+  {
+    "id": "hair_9",
+    "title": "Hair Ironing - Medium",
+    "category": "Hair Styling",
+    "image": "./images/hair/hair_ironing.webp",
+    "description": "Korean glass hair technique with ceramic plates. Uses tension-control method for zero-damage straightening. Includes shine-boosting cold shot finish.",
+    "price": 250,
+    "originalPrice": 350,
+    "isTrending": true,
+    "deal": "290+ bookings this month",
+    "duration": 60,
+    "keyIngredients": ["Nano-Ceramic Plates", "Heat Rescue Serum", "Gloss Enhancer"],
+    "benefits": [
+      "72hr frizz resistance",
+      "Mirror-like shine finish",
+      "Seals split ends temporarily"
+    ],
+    "precautions": "Not for recently colored hair (wait 7 days). Avoid moisture 12hrs post-service.",
+    "aftercare": "Use keratin-infused shampoo. Avoid ponytails first 24hrs.",
+    "faqs": [
+      {"question": "Works on coarse hair?", "answer": "Yes - we adjust temperature up to 410°F"},
+      {"question": "Touch-up policy?", "answer": "Free within 48hrs if results unsatisfactory"}
+    ]
+  },
+  {
+    "id": "hair_10",
+    "title": "Hair Ironing - Long",
+    "category": "Hair Styling",
+    "image": "./images/hair/hair_ironing.webp",
+    "description": "Bridal-grade straightening with 1 inch plates for seamless results. Features Japanese silk-press method. Includes underlayer smoothing for maximum sleekness.",
+    "price": 300,
+    "originalPrice": 420,
+    "isTrending": true,
+    "deal": "260+ bookings this month",
+    "duration": 75,
+    "keyIngredients": ["Tourmaline Plates", "Split End Sealer", "Anti-Reverbal Spray"],
+    "benefits": [
+      "Humidity resistance 85%",
+      "Reduces styling time at home",
+      "Eliminates poufiness"
+    ],
+    "precautions": "Requires blow-dry pre-service. No chemical treatments same day.",
+    "aftercare": "Wrap hair with silk scarf nightly. Avoid steam environments.",
+    "faqs": [
+      {"question": "Damage to curls?", "answer": "Temporary - washes out completely"},
+      {"question": "Lasts after washing?", "answer": "60-70% straightness maintained with proper care"}
+    ]
+  },
+  {
+    "id": "hair_11",
+    "title": "Curling - Medium",
+    "category": "Hair Styling",
+    "image": "./images/hair/curling.webp",
+    "description": "Multi-sized barrel curls with alternating directions. Uses clamp-free wand for natural fall. Includes pin-curl setting for extended hold.",
+    "price": 300,
+    "originalPrice": 400,
+    "isTrending": false,
+    "deal": "170+ bookings this month",
+    "duration": 60,
+    "keyIngredients": ["Variable Barrel Wand", "Flexible Hold Spray", "Curl Defining Cream"],
+    "benefits": [
+      "Creatives volume without backcombing",
+      "3-day curl memory",
+      "Face-framing pieces customization"
+    ],
+    "precautions": "Heat-sensitive clients request low temp. Avoid brushing curls.",
+    "aftercare": "Scrunch with salt spray. Sleep with pineapple updo.",
+    "faqs": [
+      {"question": "Works on short hair?", "answer": "Minimum 6-inch length required"},
+      {"question": "Beach waves option?", "answer": "Yes - we use 1.25\" barrel for loose waves"}
+    ]
+  },
+  {
+    "id": "hair_12",
+    "title": "Curling - Long",
+    "category": "Hair Styling",
+    "image": "./images/hair/curling.webp",
+    "description": "Mermaid waves with extra-long 4cm barrel. Features vertical wrapping technique for uniform spirals. Includes cool-air setting lock.",
+    "price": 400,
+    "originalPrice": 550,
+    "isTrending": false,
+    "deal": "150+ bookings this month",
+    "duration": 75,
+    "keyIngredients": ["Extended Length Wand", "Curl Booster Gel", "Shine Enhancing Drops"],
+    "benefits": [
+      "Prevents kinks at ends",
+      "Heat-safe up to 450°F",
+      "Scalp-protective sectioning"
+    ],
+    "precautions": "Hair must be 100% dry. Thick hair requires extra time.",
+    "aftercare": "Refresh with water/conditioner mix. Use diffuser when restyling.",
+    "faqs": [
+      {"question": "Lasts on fine hair?", "answer": "Guaranteed 48hr hold with our setting method"},
+      {"question": "Upcharge for extra density?", "answer": "Yes - +20% for hip-length/thick hair"}
+    ]
+  },
+  {
+    "id": "hair_13",
+    "title": "Crimping - Medium",
+    "category": "Hair Styling",
+    "image": "./images/hair/crimping.webp",
+    "description": "Y2K revival crimp with zigzag plates. Focuses on mid-lengths to ends. Includes texture spray for grunge finish. Not for fine/thin hair.",
+    "price": 360,
+    "originalPrice": 400,
+    "isTrending": false,
+    "deal": "80+ bookings this month",
+    "duration": 45,
+    "keyIngredients": ["Micro-Crimp Iron", "Texture Amplifier", "Matte Finishing Spray"],
+    "benefits": [
+      "Adds 200% volume",
+      "Camouflages regrowth",
+      "3-day hold guarantee"
+    ],
+    "precautions": "Avoid on chemically treated hair. Requires minimum density.",
+    "aftercare": "Remove with moisturizing shampoo. Deep condition after.",
+    "faqs": [
+      {"question": "Partial crimping option?", "answer": "Yes - underlayer only $220"},
+      {"question": "Damage level?", "answer": "Moderate - not recommended frequent use"}
+    ]
+  },
+  {
+    "id": "hair_14",
+    "title": "Crimping - Long",
+    "category": "Hair Styling",
+    "image": "./images/hair/crimping.webp",
+    "description": "Full-head crimp with adjustable plate width. Features heat-cool-heat technique for memory hold. Includes root-lift for dramatic effect.",
+    "price": 600,
+    "originalPrice": 700,
+    "isTrending": false,
+    "deal": "60+ bookings this month",
+    "duration": 60,
+    "keyIngredients": ["Adjustable Crimper", "Volume Powder", "Anti-Frizz Serum"],
+    "benefits": [
+      "Creates festival-ready texture",
+      "Reduces need for teasing",
+      "Works on extensions"
+    ],
+    "precautions": "Maximum 2x/month. Requires bond repair after.",
+    "aftercare": "Detangle from ends up. Use reconstructing mask.",
+    "faqs": [
+      {"question": "Can be combined with curls?", "answer": "Yes - $100 extra for hybrid style"},
+      {"question": "Wash-out difficulty?", "answer": "Requires clarifying shampoo - we provide sample"}
+    ]
+  },
+  {
+    "id": "hair_15",
+    "title": "Root Touch-up",
+    "category": "Hair Color",
+    "image": "./images/hair/root_touchup.webp",
+    "description": "Precision regrowth coverage with 100% gray blending. Uses smudge-proof formula with ammonia-free options. Includes scalp barrier application.",
+    "price": 300,
+    "originalPrice": 420,
+    "isTrending": true,
+    "deal": "340+ bookings this month",
+    "duration": 60,
+    "keyIngredients": ["MMF Color", "Scalp Protector", "Developer 20vol"],
+    "benefits": [
+      "Seamless color match",
+      "Covers resistant grays",
+      "No banding effect"
+    ],
+    "precautions": "Patch test 48hrs prior. No washing 72hrs pre-service.",
+    "aftercare": "Use color-safe shampoo. Avoid chlorine 1 week.",
+    "faqs": [
+      {"question": "Frequency?", "answer": "Every 4-8 weeks depending on growth"},
+      {"question": "Covers red tones?", "answer": "Specialized formula +$50"}
+    ]
+  },
+  {
+    "id": "hair_16",
+    "title": "Full Color Application",
+    "category": "Hair Color",
+    "image": "./images/hair/full_color.webp",
+    "description": "Single-process color with saturation boost. Features root-to-end saturation with bowl-and-brush method. Includes porosity equalizing treatment.",
+    "price": 800,
+    "originalPrice": 1100,
+    "isTrending": false,
+    "deal": "120+ bookings this month",
+    "duration": 90,
+    "keyIngredients": ["Permanent Creme Color", "Bond Restorer", "Sealing Gloss"],
+    "benefits": [
+      "100% coverage",
+      "Enhanced vibrancy",
+      "Fade resistance 6+ weeks"
+    ],
+    "precautions": "Requires strand test. Not for previously bleached hair.",
+    "aftercare": "First wash at salon after 72hrs. Use UV-protectant spray.",
+    "faqs": [
+      {"question": "Dark to light possible?", "answer": "Requires separate lightening service"},
+      {"question": "Vegan options?", "answer": "Yes - $50 upgrade for plant-based color"}
+    ]
+  },  
+  {
+    "id": "hair_18",
+    "title": "Global Coloring",
+    "category": "Hair Color",
+    "image": "./images/hair/global_color.webp",
+    "description": "Complete color overhaul with pre-pigmentation for dark hair. Includes strand mapping for even absorption. Features dual-process correction if needed.",
+    "price": 1500,
+    "originalPrice": 2200,
+    "isTrending": false,
+    "deal": "230+ bookings this month",
+    "duration": 120,
+    "keyIngredients": ["Color Remover", "Fill Pigment", "10-Step Conditioner"],
+    "benefits": [
+      "Corrects previous color issues",
+      "Achieves true tone depth",
+      "Long-lasting vibrancy"
+    ],
+    "precautions": "Mandatory consultation 48hrs prior. No box color history.",
+    "aftercare": "First 3 washes with cold water. Avoid sulfates.",
+    "faqs": [
+      {"question": "Includes cut/style?", "answer": "Cut included, style +$200"},
+      {"question": "Color lock treatment?", "answer": "Add $150 for 8-week fade protection"}
+    ]
+  },      
+  {
+    "id": "hair_22",
+    "title": "Anti-Hair Fall",
+    "category": "Hair Treatment",
+    "image": "./images/hair/anti_hairfall.webp",
+    "description": "Clinical-strength regimen with minoxidil alternative. Features LED light therapy + peptide serum. Includes take-home growth booster.",
+    "price": 500,
+    "originalPrice": 750,
+    "isTrending": false,
+    "deal": "110+ bookings this month",
+    "duration": 60,
+    "keyIngredients": ["Redensyl Complex", "Low-Level Laser", "DHT Blocker Serum"],
+    "benefits": [
+      "Reduces fallout in 4 weeks",
+      "Strengthens follicles",
+      "Improves hair thickness"
+    ],
+    "precautions": "Not for pregnant/nursing. Patch test required.",
+    "aftercare": "Apply serum nightly. Avoid stress triggers.",
+    "faqs": [
+      {"question": "Visible results timeline?", "answer": "8-12 weeks for noticeable density"},
+      {"question": "Compatibility with extensions?", "answer": "Safe if applied correctly"}
+    ]
+  },
+  {
+    "id": "hair_23",
+    "title": "Anti-Dandruff",
+    "category": "Hair Treatment",
+    "image": "./images/hair/anti_dandruff.webp",
+    "description": "Medicated treatment with 1% ketoconazole and tea tree. Features exfoliating scalp brush and cooling mask. Includes fungal barrier cream.",
+    "price": 500,
+    "originalPrice": 700,
+    "isTrending": false,
+    "deal": "90+ bookings this month",
+    "duration": 60,
+    "keyIngredients": ["Zinc Pyrithione", "Salicylic Acid Scalp Peel", "Probiotic Mist"],
+    "benefits": [
+      "Controls flaking in 3 uses",
+      "Balances microbiome",
+      "Relieves itching instantly"
+    ],
+    "precautions": "Disclose medical conditions. Avoid other actives 72hrs.",
+    "aftercare": "Use provided shampoo 3x/week. Avoid heavy conditioners.",
+    "faqs": [
+      {"question": "Safe for color?", "answer": "Yes - sulfate-free formula"},
+      {"question": "Maintenance required?", "answer": "Monthly sessions recommended"}
+    ]
+  },
+  {
+    "id": "hair_24",
+    "title": "Anti-Breakage",
+    "category": "Hair Treatment",
+    "image": "./images/hair/anti_breakage.webp",
+    "description": "Bond-rebuilding cocktail with liquid keratin. Features alternating hot/cold therapy for cuticle tightening. Includes elasticity test pre/post.",
+    "price": 700,
+    "originalPrice": 1100,
+    "isTrending": false,
+    "deal": "70+ bookings this month",
+    "duration": 75,
+    "keyIngredients": ["Olaplex Dupe", "Hydrolyzed Silk", "Ceramide Fusion"],
+    "benefits": [
+      "Improves tensile strength",
+      "Reduces split ends",
+      "Repairs thermal damage"
+    ],
+    "precautions": "Overprocessed hair needs multiple sessions. No bleach 2 weeks post.",
+    "aftercare": "Use leave-in conditioner daily. Sleep in protective style.",
+    "faqs": [
+      {"question": "Compatible with relaxers?", "answer": "Yes - apply 1 week before chemical service"},
+      {"question": "Frequency?", "answer": "Biweekly for 3 sessions, then monthly"}
+    ]
+  },
+  {
+    "id": "hair_25",
+    "title": "Scalp Cleansing",
+    "category": "Hair Treatment",
+    "image": "./images/hair/scalp_cleansing.webp",
+    "description": "Detox treatment with ultrasonic scrubber. Removes silicone/mineral buildup. Features charcoal-kaolin mask and lymphatic drainage massage.",
+    "price": 250,
+    "originalPrice": 350,
+    "isTrending": false,
+    "deal": "130+ bookings this month",
+    "duration": 45,
+    "keyIngredients": ["Clarifying Clay", "Microbead Scrub", "Peppermint Tonic"],
+    "benefits": [
+      "Unclogs follicles",
+      "Boosts product absorption",
+      "Reduces oiliness"
+    ],
+    "precautions": "Avoid if sunburned. Not within 48hrs of color service.",
+    "aftercare": "Use gentle shampoo next wash. Limit dry shampoo.",
+    "faqs": [
+      {"question": "Frequency?", "answer": "Every 4-6 weeks for oily scalp"},
+      {"question": "Add-on options?", "answer": "+$100 for hair growth serum application"}
+    ]
+  },
+  {
+    "id": "hair_26",
+    "title": "Deep Scalp Therapy",
+    "category": "Hair Treatment",
+    "image": "./images/hair/inner_spa.webp",
+    "description": "Holistic Ayurvedic therapy combining Shirodhara and chakra-balancing techniques. Features warm medicated oil cascade synchronized with pressure-point massage. Includes vibrational sound therapy for deep relaxation.",
+    "price": 250,
+    "originalPrice": 450,
+    "isTrending": false,
+    "deal": "210+ bookings this month",
+    "duration": 60,
+    "keyIngredients": ["Bhringraj Oil", "Ashwagandha Infusion", "Ylang-Ylang Essence"],
+    "benefits": [
+      "Reduces cortisol by 40%",
+      "Improves hair-mind connection",
+      "Enhances nutrient absorption"
+    ],
+    "precautions": "Avoid caffeine 4hrs prior. Not recommended during migraines.",
+    "aftercare": "Rest 30mins post-treatment. Avoid washing hair 48hrs.",
+    "faqs": [
+      {"question": "Frequency recommendation?", "answer": "Monthly for maintenance, weekly for therapeutic results"},
+      {"question": "Suitable for color-treated hair?", "answer": "Yes - uses pH-neutral herbal formulation"}
+    ]
+  },
+  {
+    "id": "hair_27",
+    "title": "Hair Wash with Conditioning - Medium",
+    "category": "Hair Treatment",
+    "image": "./images/hair/therapeutic_wash.webp",
+    "description": "Medical-grade scalp therapy with double-cleanse technique. Features lymphatic drainage massage and customized conditioner cocktail based on hair analysis. Includes cold-shot rinse for cuticle sealing.",
+    "price": 150,
+    "originalPrice": 300,
+    "isTrending": false,
+    "deal": "180+ bookings this month",
+    "duration": 45,
+    "keyIngredients": ["Prebiotic Shampoo", "Adaptogenic Conditioner", "Scalp Irrigation System"],
+    "benefits": [
+      "Removes 99% pollution particles",
+      "Balances scalp microbiome",
+      "Restores optimal moisture levels"
+    ],
+    "precautions": "Notify about skin sensitivities. Avoid if scalp abrasions present.",
+    "aftercare": "Use sulfate-free products. Limit heat styling next 24hrs.",
+    "faqs": [
+      {"question": "Includes blow-dry?", "answer": "Towel-dry only - add blowout for +₹150"},
+      {"question": "Safe for keratin treatments?", "answer": "Yes - uses protein-safe cleansers"}
+    ]
+  },
+  {
+    "id": "hair_28",
+    "title": "Hair Wash with Conditioning - Long",
+    "category": "Hair Treatment",
+    "image": "./images/hair/therapeutic_wash.webp",
+    "description": "Luxury wash ritual with extended 25-minute massage. Features weighted blanket relaxation and customized hair-mask application with steam penetration. Includes Japanese tsuge comb detangling.",
+    "price": 200,
+    "originalPrice": 350,
+    "isTrending": false,
+    "deal": "240+ bookings this month",
+    "duration": 60,
+    "keyIngredients": ["Ceramide Shampoo", "Gold Keratin Mask", "Detoxifying Scalp Serum"],
+    "benefits": [
+      "Prevents mechanical damage",
+      "Adds 3x more shine",
+      "Reduces detangling time by 70%"
+    ],
+    "precautions": "Tangles must be pre-detangled. Not for recent scalp procedures.",
+    "aftercare": "Use wide-tooth comb when wet. Apply leave-in conditioner daily.",
+    "faqs": [
+      {"question": "Extensions-friendly?", "answer": "Special bond-safe technique (+₹100)"},
+      {"question": "Can I upgrade mask?", "answer": "Yes - diamond-infused mask +₹300"}
+    ]
+  }
+]

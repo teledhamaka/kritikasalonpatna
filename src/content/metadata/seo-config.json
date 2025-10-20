@@ -1,0 +1,25 @@
+{
+  "defaultMeta": {
+    "siteName": "KRITIKA SALON",
+    "locale": "hi-IN",
+    "twitterCard": "summary_large_image",
+    "ogType": "article"
+  },
+  "organizationSchema": {
+    "@type": "LocalBusiness",
+    "name": "Kritika Ladies Beauty Parlour",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Bhootnath Road",
+      "addressLocality": "Patna",
+      "addressRegion": "Bihar",
+      "postalCode": "800026",
+      "addressCountry": "IN"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 25.587406341942586,
+      "longitude": 85.17572682575796
+    }
+  }
+}

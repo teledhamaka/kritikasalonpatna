@@ -1,0 +1,30 @@
+{
+      "id": "neelamSharma",
+      "name": "Neelam Sharma",
+      "avatar": "/assets/authors/neelam-sharma.jpg",
+      "bio": "Professional Makeup Artist with 8+ years experience. Specialized in party makeup, bridal makeup, and fashion shows. Trained from Pearl Academy Delhi.",
+      "expertise": [
+        "Party Makeup",
+        "Bridal Makeup",
+        "Fashion & Editorial Makeup",
+        "HD & Airbrush Techniques",
+        "Color Theory"
+      ],
+      "experience": "8+ years",
+      "certifications": [
+        "Professional Makeup Artistry - Pearl Academy",
+        "MAC Pro Makeup Artist Certification",
+        "Advanced Hair Styling Course"
+      ],
+      "socialLinks": {
+        "instagram": "https://instagram.com/neelam_makeupmagic",
+        "facebook": "https://facebook.com/neelamsharmamua",
+        "youtube": "https://youtube.com/@neelamsmakeuptutorials"
+      },
+      "achievements": [
+        "800+ Party Makeovers",
+        "Fashion Week Makeup Artist 2023",
+        "Featured in Bihar Beauty Awards"
+      ]
+    
+}

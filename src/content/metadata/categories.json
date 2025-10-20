@@ -1,0 +1,70 @@
+  {
+    "categories": [
+    {    
+    "id": "hair-care",
+    "name": "Hair Care",
+    "description": "Expert hair care tips, treatments, and styling guides for beautiful, healthy hair",
+    "icon": "💇‍♀️",
+    "color": "pink",
+    "gradient": "from-pink-400 to-rose-500"
+  },
+  {
+    "id": "makeup",
+    "name": "Makeup & Beauty",
+    "description": "Trending makeup looks, beauty tutorials, and product reviews",
+    "icon": "💄",
+    "color": "purple",
+    "gradient": "from-purple-400 to-pink-500"
+  },
+  {
+    "id": "skin-care",
+    "name": "Skin Care",
+    "description": "Glowing skin secrets, facial treatments, and skincare routines",
+    "icon": "✨",
+    "color": "blue",
+    "gradient": "from-blue-400 to-purple-500"
+  },
+  {
+    "id": "bridal",
+    "name": "Bridal Services",
+    "description": "Complete bridal packages, makeup tips, and wedding beauty guides",
+    "icon": "👰",
+    "color": "rose",
+    "gradient": "from-rose-400 to-pink-500"
+  },
+  {
+    "id": "nail-art",
+    "name": "Nail Art",
+    "description": "Latest nail trends, designs, and manicure/pedicure tips",
+    "icon": "💅",
+    "color": "red",
+    "gradient": "from-red-400 to-pink-500"
+  },
+  {
+    "id": "spa-wellness",
+    "name": "Spa & Wellness",
+    "description": "Relaxing spa treatments, wellness tips, and self-care routines",
+    "icon": "🧖‍♀️",
+    "color": "teal",
+    "gradient": "from-teal-400 to-blue-500"
+  },
+  {
+    "id": "fashion-trends",
+    "name": "Fashion & Trends",
+    "description": "Latest fashion trends, styling tips, and seasonal looks",
+    "icon": "👗",
+    "color": "indigo",
+    "gradient": "from-indigo-400 to-purple-500"
+  },
+  {
+    "id": "health-tips",
+    "name": "Health & Wellness",
+    "description": "Health tips, nutrition advice, and wellness guidance",
+    "icon": "🏥",
+    "color": "green",
+    "gradient": "from-green-400 to-teal-500"
+  }
+]
+
+
+}

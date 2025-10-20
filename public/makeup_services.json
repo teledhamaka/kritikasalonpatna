@@ -1,0 +1,482 @@
+[
+  {
+    "id": "makeup_1",
+    "title": "Bridal Basic Makeup",
+    "category": "Bridal",
+    "image": "./images/makeup/bridal_makeup.webp",
+    "description": "Traditional bridal look with long-lasting foundation, eye makeup, blush and lip color. Includes light contouring for natural definition. Perfect for daytime ceremonies.",
+    "price": 3000,
+    "originalPrice": 4000,
+    "isTrending": false,
+    "deal": "210+ bookings this month",
+    "duration": 90,
+    "keyIngredients": ["Long-wear Foundation", "Blendable Blush", "Smudge-proof Mascara"],
+    "benefits": [
+      "Natural-looking definition",
+      "Photography-friendly finish",
+      "All-day staying power (4-5 hours)"
+    ],
+    "precautions": "Avoid heavy skincare products before application. Inform artist of any skin sensitivities or allergies.",
+    "aftercare": "Use oil-free makeup remover. Avoid rubbing eyes vigorously.",
+    "faqs": [
+      {"question": "Can I customize the lip color?", "answer": "Yes, we offer a range of shades to match your outfit"},
+      {"question": "Is touch-up service included?", "answer": "One complimentary touch-up within 3 hours"}
+    ]
+  },
+  {
+    "id": "makeup_2",
+    "title": "Bridal HD Makeup",
+    "category": "Bridal",
+    "image": "./images/makeup/bridal_HDLook.webp",
+    "description": "High-definition camera-ready makeup with advanced products that won't cake or crease. Includes detailed contouring, false lashes, and professional finish.",
+    "price": 4000,
+    "originalPrice": 5500,
+    "isTrending": true,
+    "deal": "320+ bookings this month",
+    "duration": 120,
+    "keyIngredients": ["HD Foundation", "Contour Palette", "Individual Lashes"],
+    "benefits": [
+      "Flawless camera appearance",
+      "Crease-proof formula",
+      "12+ hour wear time"
+    ],
+    "precautions": "Do not use silicone-based primers. Avoid facial treatments 48 hours prior.",
+    "aftercare": "Remove with micellar water. Apply hydrating serum.",
+    "faqs": [
+      {"question": "Is this suitable for oily skin?", "answer": "Yes, we use oil-control formulas"},
+      {"question": "Can I request specific contour intensity?", "answer": "Absolutely, we customize based on your preference"}
+    ]
+  },
+  {
+    "id": "makeup_3",
+    "title": "Bridal Airbrush Makeup",
+    "category": "Bridal",
+    "image": "./images/makeup/airbrush_HD_makeup.webp",
+    "description": "Flawless, lightweight finish using airbrush technology. Provides poreless coverage that lasts 12+ hours. Includes waterproof products and custom color matching.",
+    "price": 5500,
+    "originalPrice": 7500,
+    "isTrending": true,
+    "deal": "280+ bookings this month",
+    "duration": 120,
+    "keyIngredients": ["Airbrush Foundation", "Waterproof Sealer", "Lash Adhesive"],
+    "benefits": [
+      "Weightless full coverage",
+      "Transfer-resistant finish",
+      "Sweat and humidity proof"
+    ],
+    "precautions": "Avoid moisturizers with SPF. Not recommended for active acne.",
+    "aftercare": "Use oil-based remover. Apply cooling gel mask.",
+    "faqs": [
+      {"question": "How long does airbrush makeup last?", "answer": "Typically 12-14 hours with proper application"},
+      {"question": "Can it cover tattoos?", "answer": "Yes, our high-pigment formulas provide excellent coverage"}
+    ]
+  },
+  {
+    "id": "makeup_4",
+    "title": "Engagement Basic Makeup",
+    "category": "Engagement",
+    "image": "./images/makeup/engagement_basic_makeup.webp",
+    "description": "Soft romantic look with dewy foundation, shimmer eyeshadow and nude lips. Includes highlighting for natural glow. Suitable for daytime functions.",
+    "price": 1500,
+    "originalPrice": 2000,
+    "isTrending": false,
+    "deal": "180+ bookings this month",
+    "duration": 60,
+    "keyIngredients": ["Dewy Foundation", "Shimmer Eyeshadow", "Nude Lip Stain"],
+    "benefits": [
+      "Natural radiance enhancement",
+      "Quick application process",
+      "Daytime-appropriate glam"
+    ],
+    "precautions": "Avoid heavy powder products before service.",
+    "aftercare": "Gently cleanse with milk cleanser. Apply light moisturizer.",
+    "faqs": [
+      {"question": "Can I upgrade to false lashes?", "answer": "Yes available at additional ₹200"},
+      {"question": "Is this suitable for mature skin?", "answer": "Yes, dewy formulas work well for mature skin"}
+    ]
+  },
+  {
+    "id": "makeup_5",
+    "title": "Engagement HD Makeup",
+    "category": "Engagement",
+    "image": "./images/makeup/engagement_hd.webp",
+    "description": "Photography-optimized makeup with precision contouring and false lashes. Features smudge-proof products and color correction.",
+    "price": 2000,
+    "originalPrice": 2800,
+    "isTrending": true,
+    "deal": "190+ bookings this month",
+    "duration": 90,
+    "keyIngredients": ["Color Correctors", "Strip Lashes", "Matte Setting Spray"],
+    "benefits": [
+      "Camera-perfect finish",
+      "All-day color fidelity",
+      "Professional color correction"
+    ],
+    "precautions": "No lash extensions should be applied prior. Avoid tanning 72 hours before.",
+    "aftercare": "Remove with dual-phase makeup remover. Use lash conditioner.",
+    "faqs": [
+      {"question": "Does this include eyebrow shaping?", "answer": "Basic grooming included, full shaping extra"},
+      {"question": "Can I provide my own lashes?", "answer": "Yes with sanitation certification"}
+    ]
+  },
+  {
+    "id": "makeup_6",
+    "title": "Engagement Airbrush Makeup",
+    "category": "Engagement",
+    "image": "./images/makeup/engagement_airbrush.webp",
+    "description": "Weightless airbrush application with ultra-HD finish. Customizable coverage with waterproof properties. Includes individual lash extensions.",
+    "price": 3000,
+    "originalPrice": 4000,
+    "isTrending": false,
+    "deal": "220+ bookings this month",
+    "duration": 90,
+    "keyIngredients": ["Airbrush Medium Coverage", "Individual Lashes", "Kiss-proof Lip Stain"],
+    "benefits": [
+      "Undetectable makeup finish",
+      "Meal-proof longevity",
+      "Custom coverage levels"
+    ],
+    "precautions": "Avoid facials 1 week prior. No retinoid products 72 hours before.",
+    "aftercare": "Special remover provided. Apply barrier repair cream.",
+    "faqs": [
+      {"question": "How long do individual lashes last?", "answer": "Typically 3-5 days with proper care"},
+      {"question": "Can it withstand tears?", "answer": "Yes, waterproof formulas are tear-resistant"}
+    ]
+  },
+  {
+    "id": "makeup_7",
+    "title": "Reception Basic Makeup",
+    "category": "Reception",
+    "image": "./images/makeup/reception_basic.webp",
+    "description": "Elegant evening look with satin finish foundation, smoky eyes and bold lips. Includes touch-up service. Designed for 5-6 hour wear.",
+    "price": 2500,
+    "originalPrice": 3200,
+    "isTrending": false,
+    "deal": "160+ bookings this month",
+    "duration": 60,
+    "keyIngredients": ["Satin Foundation", "Smoky Eye Palette", "Bold Lip Color"],
+    "benefits": [
+      "Evening-appropriate drama",
+      "Light-resistant formulas",
+      "Mid-event touch-up included"
+    ],
+    "precautions": "Avoid glitter cosmetics prior. Disclose any lip product allergies.",
+    "aftercare": "Double cleanse required. Apply nourishing lip mask.",
+    "faqs": [
+      {"question": "Can I change lip color mid-event?", "answer": "Yes, one color change included"},
+      {"question": "Is this suitable for humid climates?", "answer": "Formulated for humidity resistance"}
+    ]
+  },
+  {
+    "id": "makeup_8",
+    "title": "Reception HD Makeup",
+    "category": "Reception",
+    "image": "./images/makeup/reception_hd.webp",
+    "description": "High-definition glam with intense contouring, cut-crease eyes and statement lips. Features transfer-proof formulas for all-night wear.",
+    "price": 3000,
+    "originalPrice": 4000,
+    "isTrending": true,
+    "deal": "180+ bookings this month",
+    "duration": 90,
+    "keyIngredients": ["Full Coverage Foundation", "Cream Contour", "Transfer-proof Lipstick"],
+    "benefits": [
+      "Dance-proof durability",
+      "Professional setting techniques",
+      "10+ hour wear time"
+    ],
+    "precautions": "No facial oils before application. Avoid spray tans 48 hours prior.",
+    "aftercare": "Use cleansing balm. Apply post-makeup recovery mask.",
+    "faqs": [
+      {"question": "Can I incorporate glitter?", "answer": "Yes, cosmetic-grade glitter available"},
+      {"question": "Does this include body makeup?", "answer": "Décolletage coverage included"}
+    ]
+  },
+  {
+    "id": "makeup_9",
+    "title": "Reception Airbrush Makeup",
+    "category": "Reception",
+    "image": "./images/makeup/reception_airbrush.webp",
+    "description": "Luxury airbrush application with diamond dust highlighter. Includes individual lashes, lip sculpting and waterproof sealing.",
+    "price": 4000,
+    "originalPrice": 5500,
+    "isTrending": false,
+    "deal": "200+ bookings this month",
+    "duration": 90,
+    "keyIngredients": ["Luminescent Airbrush", "Diamond Highlighter", "Lip Sculpting Gloss"],
+    "benefits": [
+      "Diamond-dust luminosity",
+      "Kiss-proof and transfer-proof",
+      "Professional waterproof sealing"
+    ],
+    "precautions": "Avoid highlighter products prior. Not recommended for very oily skin.",
+    "aftercare": "Special remover kit provided. Apply intensive hydration mask.",
+    "faqs": [
+      {"question": "Can I get touch-ups next day?", "answer": "Airbrush typically lasts through next day"},
+      {"question": "Is highlighter customizable?", "answer": "Choose from gold/silver/rose gold tones"}
+    ]
+  },
+  {
+    "id": "makeup_10",
+    "title": "Party Basic Makeup",
+    "category": "Party",
+    "image": "./images/makeup/party_basic.webp",
+    "description": "Quick glam transformation with CC cream, metallic eyeshadow and tinted lips. Includes basic highlighting. Perfect for casual gatherings.",
+    "price": 1000,
+    "originalPrice": 1500,
+    "isTrending": false,
+    "deal": "150+ bookings this month",
+    "duration": 45,
+    "keyIngredients": ["CC Cream", "Metallic Eyeshadow", "Tinted Lip Balm"],
+    "benefits": [
+      "Quick 30-minute application",
+      "Natural enhancement",
+      "Easy at-home removal"
+    ],
+    "precautions": "Come with clean, moisturized face.",
+    "aftercare": "Gentle foaming cleanser. Light moisturizer.",
+    "faqs": [
+      {"question": "Can I request bold lips instead?", "answer": "Yes, color customization available"},
+      {"question": "Is this suitable for teens?", "answer": "Perfect for young skin and first-time makeup"}
+    ]
+  },
+  {
+    "id": "makeup_11",
+    "title": "Party HD Makeup",
+    "category": "Party",
+    "image": "./images/makeup/party_HD.webp",
+    "description": "Instagram-ready makeup with color correction, winged liner and bold lips. Features photo-friendly matte finish.",
+    "price": 1500,
+    "originalPrice": 2000,
+    "isTrending": true,
+    "deal": "170+ bookings this month",
+    "duration": 60,
+    "keyIngredients": ["Color Corrector", "Liquid Liner", "Matte Liquid Lipstick"],
+    "benefits": [
+      "Social media optimized",
+      "Flash photography ready",
+      "Smudge-proof precision"
+    ],
+    "precautions": "Have reference photos ready.",
+    "aftercare": "Oil-based remover for longwear products.",
+    "faqs": [
+      {"question": "Can I get dramatic contouring?", "answer": "Yes, at additional ₹200"},
+      {"question": "Do you do graphic liner designs?", "answer": "Yes, bring reference images"}
+    ]
+  },
+  {
+    "id": "makeup_12",
+    "title": "Party Airbrush Makeup",
+    "category": "Party",
+    "image": "./images/makeup/party_airbrush.webp",
+    "description": "Flawless airbrush base with glitter accents and ombre lips. Sweat and humidity resistant. Includes false lash application.",
+    "price": 2000,
+    "originalPrice": 2800,
+    "isTrending": false,
+    "deal": "190+ bookings this month",
+    "duration": 60,
+    "keyIngredients": ["Lightweight Airbrush", "Cosmetic Glitter", "Ombre Lip Palette"],
+    "benefits": [
+      "Club-light ready glow",
+      "Humidity-resistant",
+      "Easy-to-remove glitter"
+    ],
+    "precautions": "Avoid glitter if sensitive eyes.",
+    "aftercare": "Special glitter remover provided.",
+    "faqs": [
+      {"question": "Can I choose glitter colors?", "answer": "Yes, 12 color options available"},
+      {"question": "Is this transfer-proof for hugs?", "answer": "Yes, formulated to prevent transfer"}
+    ]
+  },
+  {
+    "id": "makeup_13",
+    "title": "Premium Bridal Package",
+    "category": "Bridal",
+    "image": "./images/makeup/premium_bridal.webp",
+    "description": "Complete bridal prep: 6 skincare sessions, 2 hair treatments, 3 makeup trials, manicure/pedicure and consultation.",
+    "price": 14000,
+    "originalPrice": 20000,
+    "isTrending": true,
+    "deal": "120+ bookings this month",
+    "duration": 0,
+    "keyIngredients": ["Custom Skincare", "Hair Repair", "Makeup Trials"],
+    "benefits": [
+      "Comprehensive bridal prep",
+      "Personalized regimen",
+      "Dedicated bridal manager"
+    ],
+    "precautions": "Start 6 months before wedding.",
+    "aftercare": "Customized homecare routine. Bridal emergency kit.",
+    "faqs": [
+      {"question": "Can I extend the package?", "answer": "Yes, additional services at 20% discount"},
+      {"question": "Are products included?", "answer": "Full-size bridal day products included"}
+    ]
+  },
+  {
+    "id": "makeup_14",
+    "title": "Luxury Bridal Package",
+    "category": "Bridal",
+    "image": "./images/makeup/luxury_bridal.webp",
+    "description": "4 facial treatments, 2 hair spa sessions, 2 makeup trials, and full body polish. Includes engagement day makeup.",
+    "price": 10000,
+    "originalPrice": 15000,
+    "isTrending": false,
+    "deal": "90+ bookings this month",
+    "duration": 0,
+    "keyIngredients": ["Luxury Facials", "Hair Spa", "Body Polish"],
+    "benefits": [
+      "Red carpet ready skin",
+      "Hair damage repair",
+      "Makeup customization"
+    ],
+    "precautions": "Start 4 months before events.",
+    "aftercare": "Maintenance plan provided. Bridal skin diary.",
+    "faqs": [
+      {"question": "Can I include mother's makeup?", "answer": "Yes, at additional cost"},
+      {"question": "Are bridesmaids services included?", "answer": "Special group rates available"}
+    ]
+  },
+  {
+    "id": "makeup_15",
+    "title": "Classic Bridal Package",
+    "category": "Bridal",
+    "image": "./images/makeup/classic_bridal.webp",
+    "description": "3 facials, 1 hair treatment, 1 makeup trial and mani-pedi. Focuses on basic glow enhancement and skin brightening.",
+    "price": 8000,
+    "originalPrice": 12000,
+    "isTrending": false,
+    "deal": "80+ bookings this month",
+    "duration": 0,
+    "keyIngredients": ["Brightening Facials", "Hair Treatment", "Nail Care"],
+    "benefits": [
+      "Essential bridal prep",
+      "Budget-friendly",
+      "Natural glow focus"
+    ],
+    "precautions": "Start 3 months before wedding.",
+    "aftercare": "Homecare guide. Bridal day prep checklist.",
+    "faqs": [
+      {"question": "Can I upgrade facial types?", "answer": "Yes, difference in cost applicable"},
+      {"question": "Is engagement makeup included?", "answer": "Available as add-on service"}
+    ]
+  },
+  {
+    "id": "makeup_16",
+    "title": "Haldi Ceremony Makeup",
+    "category": "Occassional",
+    "image": "./images/makeup/haldi_ceremony.webp",
+    "description": "Light, dewy makeup look perfect for Haldi ceremony. Waterproof formula to withstand turmeric paste. Includes brightening body prep.",
+    "price": 1500,
+    "originalPrice": 2000,
+    "isTrending": false,
+    "deal": "160+ bookings this month",
+    "duration": 60,
+    "keyIngredients": ["Waterproof Base", "Natural Glow Enhancers", "Turmeric Extract"],
+    "benefits": [
+      "Natural glow for ceremony photos",
+      "Withstands turmeric application",
+      "Easy removal"
+    ],
+    "precautions": "The Haldi stain is temporary and will fade in 2-3 days.",
+    "aftercare": "Wear old clothes as the Haldi paste can stain.",
+    "faqs": [
+      {"question": "Will the makeup last in Haldi?", "answer": "Yes, we use waterproof products"},
+      {"question": "Can this be done at home?", "answer": "Absolutely! Our team can come to your venue"}
+    ]
+  },
+  {
+    "id": "makeup_17",
+    "title": "Sangeet & Cocktail Glam Makeup Makeup",
+    "category": "Occassional",
+    "image": "./images/makeup/sangeet_makeup.webp",
+    "description": "Bold and dramatic makeup perfect for pre-wedding functions. Features shimmer, glitter, and bold colors that look stunning under party lights.",
+    "price": 2000,
+    "originalPrice": 2800,
+    "isTrending": true,
+    "deal": "180+ bookings this month",
+    "duration": 90,
+    "keyIngredients": ["Pigmented Eyeshadows", "Professional Glitters", "Individual Lashes"],
+    "benefits": [
+      "Photographs beautifully under lights",
+      "Withstands dancing and sweating",
+      "Long-lasting formula"
+    ],
+    "precautions": "Bring inspiration pictures and outfit color.",
+    "aftercare": "Includes glitter removal pads.",
+    "faqs": [
+      {"question": "Can I get a trial before?", "answer": "Yes, highly recommended"},
+      {"question": "Suitable for mature skin?", "answer": "Absolutely, we adjust techniques"}
+    ]
+  },
+  {
+    "id": "makeup_18",
+    "title": "No-Makeup Makeup Look",
+    "category": "Occassional",
+    "image": "./images/makeup/no_makeup.webp",
+    "description": "The art of looking naturally flawless. Enhanced features, perfected skin, and brightened eyes that appear completely natural.",
+    "price": 1200,
+    "originalPrice": 1800,
+    "isTrending": false,
+    "deal": "140+ bookings this month",
+    "duration": 60,
+    "keyIngredients": ["Skin Tints", "Cream Blushes", "Brow Gel"],
+    "benefits": [
+      "Fresh, natural appearance",
+      "Quick and lightweight",
+      "Perfect for professional settings"
+    ],
+    "precautions": "Skin should be well-moisturized.",
+    "aftercare": "Easy to touch up with minimal products.",
+    "faqs": [
+      {"question": "Will it cover imperfections?", "answer": "Yes, we use strategic coverage"},
+      {"question": "Good for mature skin?", "answer": "Excellent as it doesn't settle into lines"}
+    ]
+  },
+  {
+    "id": "makeup_19",
+    "title": "Waterproof Makeup",
+    "category": "Occassional",
+    "image": "./images/makeup/waterproof_makeup.webp",
+    "description": "Ultimate sweat-proof, water-resistant makeup. Perfect for destination weddings, pool parties, and monsoon events.",
+    "price": 1800,
+    "originalPrice": 2500,
+    "isTrending": true,
+    "deal": "150+ bookings this month",
+    "duration": 75,
+    "keyIngredients": ["Waterproof Foundation", "Cream Products", "Sealing Sprays"],
+    "benefits": [
+      "Lasts through water and sweat",
+      "No touch-ups needed",
+      "Photographs perfectly"
+    ],
+    "precautions": "Arrive with moisturized but product-free skin.",
+    "aftercare": "Special waterproof makeup remover included.",
+    "faqs": [
+      {"question": "Will it run in water?", "answer": "No, specially formulated"},
+      {"question": "Good for oily skin?", "answer": "Excellent for controlling oil"}
+    ]
+  },
+  {
+    "id": "makeup_20",
+    "title": "Saree Draping Service",
+    "category": "Occassional",
+    "image": "./images/makeup/saree_draping.webp",
+    "description": "Professional saree draping with perfect pleats and pallu management. Includes styling advice for blouses and accessories.",
+    "price": 500,
+    "originalPrice": 800,
+    "isTrending": false,
+    "deal": "200+ bookings this month",
+    "duration": 30,
+    "keyIngredients": ["Premium Pins", "Style Accessories", "Pinning Techniques"],
+    "benefits": [
+      "Perfect drape every time",
+      "Learn professional techniques",
+      "Confidence in traditional wear"
+    ],
+    "precautions": "Bring your own saree.",
+    "aftercare": "Receive a digital guide for reference.",
+    "faqs": [
+      {"question": "Can I learn different styles?", "answer": "Yes, we teach Bengali, Gujarati, Maharashtrian styles"},
+      {"question": "Do you provide blouse stitching?", "answer": "We have tie-up with expert tailors"}
+    ]
+  }
+]

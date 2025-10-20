@@ -1,0 +1,1202 @@
+    [
+      {
+        "id": "facial_9",
+        "title": "Hydra Facial",
+        "category": "Facial Treatments",
+        "image": "./images/skin/hydrafacial.webp",
+        "description": "Multi-step facial combining cleansing, exfoliation, extraction, hydration, and antioxidant protection simultaneously. No downtime.",
+        "price": 2500,
+        "originalPrice": 3000,
+        "isTrending": true,
+        "deal": "150+ bookings this month",
+        "duration": 60,
+        "keyIngredients": ["Hyaluronic Acid", "Glycolic Acid", "Salicylic Acid", "Antioxidant Serum"],
+        "benefits": [
+          "Deeply hydrates and nourishes skin",
+          "Reduces fine lines and wrinkles",
+          "Improves skin tone and texture"
+        ],
+        "precautions": "Avoid using Retin-A products for 3 days prior.",
+        "aftercare": "Use gentle moisturizer and SPF daily. Avoid sun 24hrs.",
+        "faqs": [
+          {"question": "How often can I get it?", "answer": "Every 4-6 weeks for optimal results"},
+          {"question": "Suitable for sensitive skin?", "answer": "Yes, customized for sensitive skin types"}
+        ]
+      },
+      {
+        "id": "body_1",
+        "title": "Full Body Polishing",
+        "category": "Body Care & Wellness",
+        "image": "./images/skin/full_body_polish.webp",
+        "description": "Detoxifying ritual with coffee-coconut scrub and marine algae wrap. Includes Vichy shower rinse and lymphatic drainage massage.",
+        "price": 3000,
+        "originalPrice": 3800,
+        "isTrending": true,
+        "deal": "90+ bookings this month",
+        "duration": 120,
+        "keyIngredients": ["Dead Sea Salt", "Cold-Pressed Coconut", "Chlorella Extract"],
+        "benefits": [
+          "Eliminates 95% dead skin",
+          "Reduces cellulite appearance",
+          "Boosts skin radiance"
+        ],
+        "precautions": "Not during pregnancy. Avoid if skin lesions present.",
+        "aftercare": "Moisturize daily. Drink detox tea.",
+        "faqs": [
+          {"question": "Frequency?", "answer": "Seasonal (every 3 months)"},
+          {"question": "Clothing?", "answer": "Disposable underwear and robe provided"}
+        ]
+      },
+      {    
+        "id": "treatment_1",
+        "title": "Acne Treatment",
+        "category": "Skin Treatments",
+        "image": "./images/skin/acne_cleanup.webp",
+        "description": "Medical-grade protocol with blue LED light therapy and salicylic acid infusion. Includes sterile extractions. 90% success rate.",
+        "price": 800,
+        "originalPrice": 1000,
+        "isTrending": true,
+        "deal": "370+ bookings this month",
+        "duration": 60,
+        "keyIngredients": ["Niacinamide Serum", "Zinc PCA", "Bacteriophage Solution"],
+        "benefits": [
+          "Reduces active breakouts in 24hrs",
+          "Minimizes acne scars",
+          "Regulates sebum production"
+        ],
+        "precautions": "Discontinue retinol 3 days prior. No picking post-treatment.",
+        "aftercare": "Use non-comedogenic moisturizer. Change pillowcase nightly.",
+        "faqs": [
+          {"question": "Cystic acne treatment?", "answer": "Add cortisone shot +₹250"},
+          {"question": "Package options?", "answer": "6-session package ₹4000"}
+        ]
+      },
+      {
+        "id": "facial_2",
+        "title": "Bridal O3+ Facial",
+        "category": "Facial Treatments",
+        "image": "./images/skin/bridal_O3_facial.webp",
+        "description": "Pre-wedding glow protocol with European enzyme peel and cryotherapy. Includes décolletage treatment. Guaranteed camera-ready skin.",
+        "price": 1500,
+        "originalPrice": 2000,
+        "isTrending": true,
+        "deal": "350+ bookings this month",
+        "duration": 120,
+        "keyIngredients": ["Ozone-Infused Serum", "Placental Extract", "Diamond Dust Mask"],
+        "benefits": [
+          "HD-ready complexion",
+          "24-hour hydration boost",
+          "Makeup longevity extension"
+        ],
+        "precautions": "Schedule 1 week before event. Patch test required.",
+        "aftercare": "Avoid heavy makeup. Use bridal skincare kit provided.",
+        "faqs": [
+          {"question": "Package deals?", "answer": "3-session package ₹4000"},
+          {"question": "Emergency fix for breakouts?", "answer": "Add acne spot treatment +₹250"}
+        ]
+      },  
+      {   
+        "id": "threading_1",
+        "title": "Eyebrows Threading",
+        "category": "Hair Removal Services",
+        "image": "./images/skin/eyebrow_threading.webp",
+        "description": "Precision eyebrow shaping with golden ratio technique using organic cotton thread. Includes brow symmetry analysis. Results last 4-6 weeks.",
+        "price": 50,
+        "originalPrice": 80,
+        "isTrending": true,
+        "deal": "450+ bookings this month",
+        "duration": 15,
+        "keyIngredients": ["Organic Cotton Thread", "Aloe Vera Soothing Gel"],
+        "benefits": [
+          "Hair-free for 6 weeks",
+          "Prevents ingrown hairs",
+          "Defines facial symmetry"
+        ],
+        "precautions": "Avoid retinoids 72hrs prior. No sun exposure 24hrs post.",
+        "aftercare": "Apply cooling gel 2x/day. Avoid makeup 12hrs.",
+        "faqs": [
+          {"question": "Pain level?", "answer": "Minimal - we use numbing cream upon request"},
+          {"question": "Suitable for sensitive skin?", "answer": "Yes - hypoallergenic thread available"}
+        ]
+      },
+      {
+        "id": "threading_2",
+        "title": "Full Face Threading",
+        "category": "Hair Removal Services",
+        "image": "./images/skin/fullface_threading.webp",
+        "description": "Complete facial hair removal covering forehead, cheeks, upper lip, chin, and neck. Features rosewater mist cooling and post-treatment care.",
+        "price": 150,
+        "originalPrice": 200,
+        "isTrending": true,
+        "deal": "210+ bookings this month",
+        "duration": 30,
+        "keyIngredients": ["Double-Filtered Thread", "Chamomile Extract", "Aloe Vera Gel"],
+        "benefits": [
+          "Exfoliates dead skin cells",
+          "Removes facial hair completely",
+          "Preps skin for better product absorption"
+        ],
+        "precautions": "No chemical peels 1 week prior. Discontinue Accutane 6 months prior.",
+        "aftercare": "Use gentle cleanser. Apply SPF 30+ daily.",
+        "faqs": [
+          {"question": "Frequency?", "answer": "Every 4-6 weeks for maintenance"},
+          {"question": "Combined with facial?", "answer": "Recommended 48hrs after threading"}
+        ]
+      },
+      {
+        "id": "threading_3",
+        "title": "Threading Upper Lip",
+        "category": "Hair Removal Services",
+        "image": "./images/skin/fullface_threading.webp",
+        "description": "Precision upper lip threading using organic cotton thread. Includes post-treatment aloe vera gel to soothe skin and prevent redness.",
+        "price": 30,
+        "originalPrice": 50,
+        "isTrending": true,
+        "deal": "380+ bookings this month",
+        "duration": 10,
+        "keyIngredients": ["Hypoallergenic Thread", "Aloe Vera Gel", "Chamomile Extract"],
+        "benefits": [
+          "Hair-free for 4-6 weeks",
+          "Precise shaping",
+          "Reduces peach fuzz"
+        ],
+        "precautions": "Avoid retinoids 72hrs prior. Not recommended during active breakouts.",
+        "aftercare": "Apply cooling gel 2x/day. Avoid makeup for 6hrs.",
+        "faqs": [
+          {"question": "Pain level?", "answer": "Minimal - we use numbing spray upon request"},
+          {"question": "How often needed?", "answer": "Every 3-4 weeks for maintenance"}
+        ]
+      },
+      {
+        "id": "threading_4",
+        "title": "Threading Forehead",
+        "category": "Hair Removal Services",
+        "image": "./images/skin/fullface_threading.webp",
+        "description": "Forehead hairline refinement with delicate threading technique. Creates clean makeup canvas and defines brow shape.",
+        "price": 40,
+        "originalPrice": 60,
+        "isTrending": false,
+        "deal": "150+ bookings this month",
+        "duration": 15,
+        "keyIngredients": ["Sterilized Cotton Thread", "Cucumber Toner"],
+        "benefits": [
+          "Defines brow shape",
+          "Removes baby hairs",
+          "Prevents product buildup"
+        ],
+        "precautions": "Notify about Botox/fillers. Avoid chemical peels 1 week prior.",
+        "aftercare": "Use gentle cleanser. Apply SPF daily.",
+        "faqs": [
+          {"question": "Regrowth texture?", "answer": "Softer/finer after 3 sessions"},
+          {"question": "For men?", "answer": "Yes - unisex forehead shaping available"}
+        ]
+      },
+      {
+        "id": "threading_5",
+        "title": "Threading Chin",
+        "category": "Hair Removal Services",
+        "image": "./images/skin/fullface_threading.webp",
+        "description": "Chin and jawline threading with hormonal hair growth pattern analysis. Includes post-treatment turmeric mask. Specialized for PCOS clients.",
+        "price": 40,
+        "originalPrice": 60,
+        "isTrending": false,
+        "deal": "290+ bookings this month",
+        "duration": 15,
+        "keyIngredients": ["Antimicrobial Thread", "Turmeric Paste", "Tea Tree Oil"],
+        "benefits": [
+          "Targets stubborn chin hairs",
+          "Reduces ingrown hairs",
+          "Slows hormonal hair growth"
+        ],
+        "precautions": "Avoid Accutane 6 months prior. Not during active acne.",
+        "aftercare": "Apply azulene cream. Avoid touching area.",
+        "faqs": [
+          {"question": "PCOS-friendly?", "answer": "Yes - we use anti-inflammatory techniques"},
+          {"question": "Combined with facial?", "answer": "Recommended 48hrs after threading"}
+        ]
+      },
+      {
+        "id": "waxing_1",
+        "title": "Full Face Waxing",
+        "category": "Hair Removal Services",
+        "image": "./images/skin/face_waxing.webp",
+        "description": "Hypoallergenic honey wax for complete facial hair removal. Includes dermaplaning option for dead skin removal.",
+        "price": 150,
+        "originalPrice": 200,
+        "isTrending": false,
+        "deal": "190+ bookings this month",
+        "duration": 20,
+        "keyIngredients": ["Bee Propolis Wax", "Tea Tree Oil"],
+        "benefits": [
+          "Smoother makeup application",
+          "Removes vellus hair",
+          "Stimulates collagen production"
+        ],
+        "precautions": "Avoid acids 48hrs prior. Not for rosacea patients.",
+        "aftercare": "Apply azulene cream. Avoid saunas 24hrs.",
+        "faqs": [
+          {"question": "Wax vs threading?", "answer": "Waxing faster, threading more precise"},
+          {"question": "Redness duration?", "answer": "Typically subsides in 2-3 hours"}
+        ]
+      },
+      {
+        "id": "waxing_2",
+        "title": "Upper Lip Waxing",
+        "category": "Hair Removal Services",
+        "image": "./images/skin/upperlip_wax.webp",
+        "description": "Precision upper lip waxing with facial muscle relaxation techniques. Includes post-wax brightening serum.",
+        "price": 50,
+        "originalPrice": 80,
+        "isTrending": false,
+        "deal": "220+ bookings this month",
+        "duration": 10,
+        "keyIngredients": ["Rose Wax", "Licorice Root Serum"],
+        "benefits": [
+          "Precise shaping",
+          "Reduces peach fuzz",
+          "Brightens lip contour"
+        ],
+        "precautions": "Avoid retinoids 72hrs prior. Not during breakouts.",
+        "aftercare": "Apply SPF 30+. Avoid lipstick 12hrs.",
+        "faqs": [
+          {"question": "Frequent maintenance?", "answer": "Every 3-4 weeks for best results"},
+          {"question": "Alternative to threading?", "answer": "Yes - less painful with our numbing cream"}
+        ]
+      },
+      {
+        "id": "waxing_3",
+        "title": "Full Hand Waxing",
+        "category": "Hair Removal Services",
+        "image": "./images/skin/hand_waxing.webp",
+        "description": "Complete hand waxing including fingers with hypoallergenic honey wax. Features post-wax aloe vera cooling gel.",
+        "price": 200,
+        "originalPrice": 300,
+        "isTrending": false,
+        "deal": "180+ bookings this month",
+        "duration": 20,
+        "keyIngredients": ["Bee Propolis Wax", "Tea Tree Oil", "Aloe Vera Gel"],
+        "benefits": [
+          "Smooth skin for 4-6 weeks",
+          "Reduces strawberry skin",
+          "Exfoliates dead skin cells"
+        ],
+        "precautions": "Avoid sun exposure 24hrs post-wax. Not recommended for eczema.",
+        "aftercare": "Apply soothing lotion daily. Exfoliate after 48hrs.",
+        "faqs": [
+          {"question": "Pain level?", "answer": "Low - we use pre-wax numbing spray upon request"},
+          {"question": "Suitable for sensitive skin?", "answer": "Yes - hypoallergenic formula available"}
+        ]
+      },
+      {
+        "id": "waxing_4",
+        "title": "Half Hand Waxing",
+        "category": "Hair Removal Services",
+        "image": "./images/skin/hand_waxing.webp",
+        "description": "Wrist to mid-forearm waxing with precision technique. Features cold compress application post-wax.",
+        "price": 150,
+        "originalPrice": 200,
+        "isTrending": false,
+        "deal": "90+ bookings this month",
+        "duration": 15,
+        "keyIngredients": ["Lychee-Infused Wax", "Azulene Oil", "Cucumber Mist"],
+        "benefits": [
+          "Targets visible hair only",
+          "Less discomfort",
+          "Quick lunchtime service"
+        ],
+        "precautions": "No recent sunburn. Disclose blood thinners.",
+        "aftercare": "Apply SPF 30+ daily. Avoid scrubs for 72hrs.",
+        "faqs": [
+          {"question": "Regrowth difference vs full hand?", "answer": "Same regrowth cycle - only area differs"},
+          {"question": "Combined with manicure?", "answer": "Recommended 24hrs after waxing"}
+        ]
+      },
+      {
+        "id": "waxing_5",
+        "title": "Full Leg Waxing",
+        "category": "Hair Removal Services",
+        "image": "./images/skin/leg_waxing.webp",
+        "description": "Complete leg waxing from thighs to ankles with anti-bruising technique. Includes knee/ankle detailing.",
+        "price": 400,
+        "originalPrice": 550,
+        "isTrending": true,
+        "deal": "250+ bookings this month",
+        "duration": 40,
+        "keyIngredients": ["Rosehip Wax", "Arnica Gel", "Colloidal Oatmeal"],
+        "benefits": [
+          "6-8 weeks hair-free",
+          "Reduces ingrown hairs by 70%",
+          "Exfoliates dead skin"
+        ],
+        "precautions": "Shave 3 weeks prior. No recent laser treatments.",
+        "aftercare": "Wear cotton pants. Apply ingrown serum nightly.",
+        "faqs": [
+          {"question": "First-time waxing tips?", "answer": "Take ibuprofen 30mins prior, avoid caffeine"},
+          {"question": "Swimming after?", "answer": "Wait 24hrs to prevent infection"}
+        ]
+      },
+      {
+        "id": "waxing_6",
+        "title": "Half Leg Waxing (Below Knee)",
+        "category": "Hair Removal Services",
+        "image": "./images/skin/leg_waxing.webp",
+        "description": "Knee-down waxing with precision ankle detailing. Includes callus softening treatment.",
+        "price": 250,
+        "originalPrice": 350,
+        "isTrending": false,
+        "deal": "150+ bookings this month",
+        "duration": 25,
+        "keyIngredients": ["Lavender Wax", "Shea Butter"],
+        "benefits": [
+          "Cost-effective maintenance",
+          "Focus on visible areas",
+          "Moisturizes dry skin"
+        ],
+        "precautions": "No recent self-tanner. Avoid epilators 2 weeks prior.",
+        "aftercare": "Apply foot cream nightly. Wear open-toe shoes.",
+        "faqs": [
+          {"question": "Best for which seasons?", "answer": "Year-round maintenance for skirts/pants"},
+          {"question": "Regrowth pattern?", "answer": "Softer/finer hair after 3 sessions"}
+        ]
+      },
+      {
+        "id": "waxing_7",
+        "title": "Chocolate Full Leg Waxing",
+        "category": "Hair Removal Services",
+        "image": "./images/skin/chocolate_leg_wax.webp",
+        "description": "Cocoa-infused wax with vitamin E for hydration. Features anti-bruising technique and lymphatic drainage massage.",
+        "price": 550,
+        "originalPrice": 700,
+        "isTrending": true,
+        "deal": "320+ bookings this month",
+        "duration": 45,
+        "keyIngredients": ["Raw Cacao Wax", "Shea Butter", "Arnica Gel"],
+        "benefits": [
+          "Moisturizes while removing hair",
+          "Reduces strawberry skin",
+          "Slows regrowth rate"
+        ],
+        "precautions": "Exfoliate 24hrs prior. No recent sunburns.",
+        "aftercare": "Wear loose clothing. Use ingrown prevention serum.",
+        "faqs": [
+          {"question": "Lasts through swimming?", "answer": "Yes - waterproof after 24hrs"},
+          {"question": "Suitable for varicose veins?", "answer": "Gentle technique available"}
+        ]
+      },
+      {
+        "id": "waxing_8",
+        "title": "Both Underarms Waxing",
+        "category": "Hair Removal Services",
+        "image": "./images/skin/underarm_waxing.webp",
+        "description": "Underarm waxing with sweat-gland soothing technique. Features pre-wax detox mask and post-wax aluminum-free deodorant.",
+        "price": 100,
+        "originalPrice": 150,
+        "isTrending": true,
+        "deal": "280+ bookings this month",
+        "duration": 15,
+        "keyIngredients": ["Tea Tree Wax", "Detox Clay", "Natural Deodorant"],
+        "benefits": [
+          "Reduces body odor",
+          "Lightens dark underarms",
+          "Thinner regrowth"
+        ],
+        "precautions": "Avoid antiperspirant 24hrs prior. Not after recent shaving.",
+        "aftercare": "Wear loose sleeves. Apply baking soda paste if needed.",
+        "faqs": [
+          {"question": "Pain level?", "answer": "Quick (7mins/side) - we use vibration tools to distract"},
+          {"question": "Lasts through workouts?", "answer": "Yes - sweat-proof after 12hrs"}
+        ]
+      },
+      {
+        "id": "waxing_9",
+        "title": "Stomach Waxing",
+        "category": "Hair Removal Services",
+        "image": "./images/skin/stomach_wax.webp",
+        "description": "Abdominal waxing with sensitive skin technique. Features breathwork guidance and post-wax calming treatment.",
+        "price": 300,
+        "originalPrice": 400,
+        "isTrending": false,
+        "deal": "190+ bookings this month",
+        "duration": 25,
+        "keyIngredients": ["Aloe Wax", "CBD Oil"],
+        "benefits": [
+          "Reduces pregnancy stretch marks",
+          "Prevents ingrown hairs",
+          "Smoother skin texture"
+        ],
+        "precautions": "Not during menstruation. Avoid abdominal exercises 24hrs prior.",
+        "aftercare": "Wear loose clothing. Apply azulene cream.",
+        "faqs": [
+          {"question": "Pain management?", "answer": "We use medical-grade numbing cream"},
+          {"question": "For men?", "answer": "Yes - specialized chest/stomach package available"}
+        ]
+      },
+      {
+        "id": "waxing_10",
+        "title": "Back Waxing",
+        "category": "Hair Removal Services",
+        "image": "./images/skin/back_wax.webp",
+        "description": "Complete back waxing with muscle-specific hair mapping. Features sports massage techniques and post-wax clay mask.",
+        "price": 350,
+        "originalPrice": 450,
+        "isTrending": false,
+        "deal": "150+ bookings this month",
+        "duration": 30,
+        "keyIngredients": ["Charcoal Wax", "Bentonite Clay", "Menthol Spray"],
+        "benefits": [
+          "Eliminates razor bumps",
+          "Reduces bacne",
+          "Longer regrowth cycle"
+        ],
+        "precautions": "Exfoliate 48hrs prior. No recent sun exposure.",
+        "aftercare": "Sleep on clean sheets. Use back applicator for lotion.",
+        "faqs": [
+          {"question": "Hard-to-reach areas?", "answer": "We use extended handles for full coverage"},
+          {"question": "Maintenance frequency?", "answer": "Every 6-8 weeks for men, 8-10 for women"}
+        ]
+      },
+      {
+        "id": "waxing_11",
+        "title": "Full Body Waxing",
+        "category": "Hair Removal Services",
+        "image": "./images/skin/fullbody_wax.webp",
+        "description": "Complete body waxing (arms, legs, back, stomach, underarms) with VIP privacy suite. Includes lymphatic drainage massage.",
+        "price": 1800,
+        "originalPrice": 2200,
+        "isTrending": true,
+        "deal": "150+ bookings this month",
+        "duration": 120,
+        "keyIngredients": ["Gold-Infused Wax", "Diamond Dust Oil"],
+        "benefits": [
+          "6-8 weeks hair-free",
+          "Exfoliates entire body",
+          "Reduces ingrown hairs"
+        ],
+        "precautions": "Shower before appointment. No caffeine day-of.",
+        "aftercare": "Wear loose cotton clothing. Use provided aftercare kit.",
+        "faqs": [
+          {"question": "Gender-specific techniques?", "answer": "Yes - customized for male/female hair patterns"},
+          {"question": "Bridal package?", "answer": "Adds trial session + touch-up kit for ₹2500"}
+        ]
+      },
+      {
+        "id": "intimate_1",
+        "title": "Bikini Waxing",
+        "category": "Hair Removal Services",
+        "image": "./images/skin/bikini_wax.webp",
+        "description": "Precision intimate waxing with hypoallergenic hard wax. Features pre-wax numbing spray. Performed in private suite.",
+        "price": 800,
+        "originalPrice": 1000,
+        "isTrending": true,
+        "deal": "190+ bookings this month",
+        "duration": 30,
+        "keyIngredients": ["Hard Wax Beads", "Lidocaine Spray", "Azulene Oil"],
+        "benefits": [
+          "6-8 weeks hair-free",
+          "Reduces ingrown hairs",
+          "Softer regrowth"
+        ],
+        "precautions": "Exfoliate 24hrs prior. Avoid during menstruation.",
+        "aftercare": "Wear cotton underwear. Apply ingrown hair serum.",
+        "faqs": [
+          {"question": "Pain management?", "answer": "Uses medical-grade numbing spray"},
+          {"question": "First-time tips?", "answer": "Take ibuprofen 30mins before"}
+        ]
+      },
+      {
+        "id": "intimate_2",
+        "title": "Brazilian Wax",
+        "category": "Hair Removal Services",
+        "image": "../images/skin/brazilian_wax.webp",
+        "description": "Complete hair removal from front to back, leaving a small strip. Uses medical-grade numbing spray. Performed in private suite.",
+        "price": 1200,
+        "originalPrice": 1500,
+        "isTrending": true,
+        "deal": "210+ bookings this month",
+        "duration": 40,
+        "keyIngredients": ["Hard Wax Beads", "Lidocaine Spray", "Chamomile Extract"],
+        "benefits": [
+          "Complete hair removal",
+          "Long-lasting results",
+          "Finer regrowth over time"
+        ],
+        "precautions": "Exfoliate 48 hours prior. Avoid sun exposure 24hrs before.",
+        "aftercare": "Apply cooling gel for 3 days. No sexual activity for 48hrs.",
+        "faqs": [
+          {"question": "How painful is it?", "answer": "Moderate discomfort with numbing spray"},
+          {"question": "How to prepare?", "answer": "Hair should be 1/4 inch long"}
+        ]
+      },
+      {
+        "id": "intimate_3",
+        "title": "Hollywood Wax",
+        "category": "Hair Removal Services",
+        "image": "../images/skin/hollywood_wax.webp",
+        "description": "Complete removal of all hair from front to back. Includes premium numbing cream and luxury aftercare. Performed by senior aestheticians.",
+        "price": 1500,
+        "originalPrice": 1800,
+        "isTrending": false,
+        "deal": "250+ bookings this month",
+        "duration": 45,
+        "keyIngredients": ["Hard Wax Beads", "Numbing Cream", "Calamine Lotion"],
+        "benefits": [
+          "Completely bare results",
+          "Precision technique",
+          "Professional aftercare"
+        ],
+        "precautions": "Take pain reliever 45mins before. Avoid alcohol 24hrs prior.",
+        "aftercare": "Free aftercare kit included. No swimming for 48hrs.",
+        "faqs": [
+          {"question": "Difference from Brazilian?", "answer": "Removes all hair completely without any strip"},
+          {"question": "Redness duration?", "answer": "Typically 2-4 hours post treatment"}
+        ]
+      },
+      {
+        "id": "facial_1",
+        "title": "Diamond Facial",
+        "category": "Facial Treatments",
+        "image": "./images/skin/diamond_facial.webp",
+        "description": "Microdermabrasion with medical-grade diamond tips. Features oxygen infusion and 24k gold mask. Includes LED light therapy.",
+        "price": 1200,
+        "originalPrice": 1500,
+        "isTrending": true,
+        "deal": "280+ bookings this month",
+        "duration": 90,
+        "keyIngredients": ["Nano-Diamond Crystals", "Platinum Serum", "Stem Cell Extract"],
+        "benefits": [
+          "Reduces wrinkles by 40%",
+          "Evens skin tone",
+          "Minimizes pores"
+        ],
+        "precautions": "Avoid retinoids 1 week prior. Not for active acne.",
+        "aftercare": "Use mineral sunscreen. Avoid exfoliation 72hrs.",
+        "faqs": [
+          {"question": "Frequency?", "answer": "Monthly for maintenance"},
+          {"question": "Visible results?", "answer": "Immediate glow, full results in 3 days"}
+        ]
+      },
+      {
+        "id": "facial_3",
+        "title": "Basic Facial",
+        "category": "Facial Treatments",
+        "image": "./images/skin/basic_facial.webp",
+        "description": "Foundational facial with double cleansing, steam exfoliation, and hydration massage. Features pH-balancing toner and hyaluronic acid mask.",
+        "price": 500,
+        "originalPrice": 650,
+        "isTrending": false,
+        "deal": "220+ bookings this month",
+        "duration": 60,
+        "keyIngredients": ["Hyaluronic Acid", "Aloe Vera Gel", "Green Tea Extract"],
+        "benefits": [
+          "Restores moisture barrier",
+          "Removes surface impurities",
+          "Boosts radiance"
+        ],
+        "precautions": "Avoid retinoids 48hrs prior. Not for active acne.",
+        "aftercare": "Use gentle cleanser. Apply SPF 30+ daily.",
+        "faqs": [
+          {"question": "Suitable for sensitive skin?", "answer": "Yes - fragrance-free formulation used"},
+          {"question": "Frequency?", "answer": "Monthly for maintenance"}
+        ]
+      },
+      {
+        "id": "facial_4",
+        "title": "Fruit Facial",
+        "category": "Facial Treatments",
+        "image": "./images/skin/fruits_facial.webp",
+        "description": "Vitamin-rich treatment with fresh fruit enzyme mask (papaya/pineapple/kiwi). Features antioxidant serum infusion and cryo-globe massage.",
+        "price": 700,
+        "originalPrice": 900,
+        "isTrending": true,
+        "deal": "280+ bookings this month",
+        "duration": 75,
+        "keyIngredients": ["Papain Enzyme", "Vitamin C Complex", "Berry Extract"],
+        "benefits": [
+          "Brightens dull skin",
+          "Reduces pigmentation",
+          "Gentle exfoliation"
+        ],
+        "precautions": "Patch test for fruit allergies. Avoid sun exposure post-treatment.",
+        "aftercare": "Use antioxidant serum. Avoid acids 48hrs.",
+        "faqs": [
+          {"question": "Vegan option?", "answer": "Yes - 100% plant-based ingredients"},
+          {"question": "For mature skin?", "answer": "Add peptide boost +₹200"}
+        ]
+      },
+      {
+        "id": "facial_5",
+        "title": "Gold Facial",
+        "category": "Facial Treatments",
+        "image": "./images/skin/gold_facial.webp",
+        "description": "24k gold nanoparticle treatment with diamond dust exfoliation. Features microcurrent lifting and caviar collagen mask.",
+        "price": 1000,
+        "originalPrice": 1300,
+        "isTrending": true,
+        "deal": "340+ bookings this month",
+        "duration": 100,
+        "keyIngredients": ["Colloidal Gold", "Diamond Microderm", "Stem Cell Complex"],
+        "benefits": [
+          "Reduces wrinkles by 45%",
+          "Lifts sagging contours",
+          "Creates mirror-like radiance"
+        ],
+        "precautions": "Notify about metal allergies. Avoid retinoids 1 week prior.",
+        "aftercare": "Use gold-infused serum. Sleep on back.",
+        "faqs": [
+          {"question": "Event-ready glow?", "answer": "HD camera-perfect results instantly"},
+          {"question": "Combined with botox?", "answer": "Schedule facial 2 weeks after injectables"}
+        ]
+      },
+      {
+        "id": "facial_6",
+        "title": "Pearl Facial",
+        "category": "Facial Treatments",
+        "image": "./images/skin/pearl_facial.webp",
+        "description": "Luxury treatment with crushed pearl powder and caviar extract. Features jade roller massage and platinum-infused mask.",
+        "price": 800,
+        "originalPrice": 1000,
+        "isTrending": false,
+        "deal": "180+ bookings this month",
+        "duration": 85,
+        "keyIngredients": ["Pearl Protein", "Caviar Extract", "Platinum Colloid"],
+        "benefits": [
+          "Refines skin texture",
+          "Creates luminous glow",
+          "Minimizes large pores"
+        ],
+        "precautions": "Avoid exfoliation 1 week prior. Not for active rosacea.",
+        "aftercare": "Sleep on silk pillow. Use illuminating primer.",
+        "faqs": [
+          {"question": "Bridal favorite?", "answer": "Top choice for pre-wedding glow"},
+          {"question": "For mature skin?", "answer": "Add firming booster +₹250"}
+        ]
+      },
+      {
+        "id": "facial_7",
+        "title": "D-Tan Facial",
+        "category": "Facial Treatments",
+        "image": "./images/skin/dtan_facial.webp",
+        "description": "Intensive tan removal with lactic acid peel and licorice root serum. Features ice globe therapy and UV-repair mask.",
+        "price": 800,
+        "originalPrice": 1000,
+        "isTrending": true,
+        "deal": "310+ bookings this month",
+        "duration": 90,
+        "keyIngredients": ["Lactic Acid", "Mulberry Extract", "Sunscreen Booster"],
+        "benefits": [
+          "Removes 80% sun tan",
+          "Prevents rebound pigmentation",
+          "Strengthens against UV damage"
+        ],
+        "precautions": "Not for sensitive skin. Avoid sun 1 week post.",
+        "aftercare": "Reapply SPF 50+ every 2hrs. Wear wide-brim hat.",
+        "faqs": [
+          {"question": "Beach vacation prep?", "answer": "Complete 3 sessions pre-trip"},
+          {"question": "Maintenance?", "answer": "Monthly session recommended"}
+        ]
+      },
+      {
+        "id": "facial_8",
+        "title": "Herbal Facial",
+        "category": "Facial Treatments",
+        "image": "./images/skin/herbal_facial.webp",
+        "description": "Ayurvedic treatment with neem-tulsi-turmeric paste. Features marma point massage and herbal steam to balance doshas.",
+        "price": 500,
+        "originalPrice": 650,
+        "isTrending": false,
+        "deal": "180+ bookings this month",
+        "duration": 60,
+        "keyIngredients": ["Neem Extract", "Holy Basil", "Manjistha Root"],
+        "benefits": [
+          "Detoxifies skin",
+          "Reduces inflammation",
+          "Balances oil production"
+        ],
+        "precautions": "Fasting 2hrs prior. Not during fever.",
+        "aftercare": "Drink warm water. Avoid cold foods.",
+        "faqs": [
+          {"question": "Dosha assessment?", "answer": "Included in consultation"},
+          {"question": "For acne-prone skin?", "answer": "Special neem-calamine variant available"}
+        ]
+      },      
+      {
+        "id": "cleanup_1",
+        "title": "Basic Cleanup",
+        "category": "Facial Treatments",
+        "image": "./images/skin/basic_cleanup.webp",
+        "description": "Essential skin reset with double cleansing, gentle exfoliation, and pore purification. Features steam therapy with herbal infusion.",
+        "price": 400,
+        "originalPrice": 550,
+        "isTrending": false,
+        "deal": "180+ bookings this month",
+        "duration": 45,
+        "keyIngredients": ["Kaolin Clay", "Witch Hazel", "Aloe Vera Gel"],
+        "benefits": [
+          "Removes surface impurities",
+          "Refines pores",
+          "Restores pH balance"
+        ],
+        "precautions": "Avoid retinoids 24hrs prior. Not for active acne.",
+        "aftercare": "Use oil-free moisturizer. Apply SPF 30+.",
+        "faqs": [
+          {"question": "Frequency?", "answer": "Every 2 weeks for oily skin, monthly for dry skin"},
+          {"question": "For sensitive skin?", "answer": "Yes - uses lukewarm steam only"}
+        ]
+      },
+      {
+        "id": "cleanup_2",
+        "title": "D-Tan Cleanup",
+        "category": "Facial Treatments",
+        "image": "./images/skin/dtan_cleanup.webp",
+        "description": "Targeted tan removal with licorice root extract and lactic acid peel. Features ice globe massage to calm inflammation.",
+        "price": 700,
+        "originalPrice": 900,
+        "isTrending": false,
+        "deal": "250+ bookings this month",
+        "duration": 60,
+        "keyIngredients": ["Mulberry Extract", "Vitamin C Complex", "Cooling Globules"],
+        "benefits": [
+          "Reduces sun damage by 70%",
+          "Evens skin tone",
+          "Prevents rebound pigmentation"
+        ],
+        "precautions": "Avoid sun exposure 48hrs post. Not for sensitive skin.",
+        "aftercare": "Reapply SPF 50+ every 2hrs. Wear wide-brim hat.",
+        "faqs": [
+          {"question": "Number of sessions?", "answer": "3-5 for deep tan removal"},
+          {"question": "For dark skin tones?", "answer": "Uses melanin-safe formula"}
+        ]
+      },
+      {
+        "id": "cleanup_3",
+        "title": "Skin Purification Cleanup",
+        "category": "Facial Treatments",
+        "image": "./images/skin/purification_cleanup.webp",
+        "description": "Medical-grade detox with ultrasonic blackhead extraction and oxygen infusion. Features charcoal mask with magnetic removal.",
+        "price": 1200,
+        "originalPrice": 1500,
+        "isTrending": true,
+        "deal": "290+ bookings this month",
+        "duration": 75,
+        "keyIngredients": ["Activated Charcoal", "Medical Oxygen", "Prebiotic Complex"],
+        "benefits": [
+          "Removes 95% impurities",
+          "Reduces pore size",
+          "Controls excess oil"
+        ],
+        "precautions": "No recent laser treatments. Avoid blood thinners.",
+        "aftercare": "Use clay mask weekly. Avoid heavy makeup.",
+        "faqs": [
+          {"question": "Pain level?", "answer": "Minimal - uses vibration distraction tech"},
+          {"question": "For acne-prone skin?", "answer": "Add salicylic acid booster +₹250"}
+        ]
+      },
+      {
+        "id": "bleach_1",
+        "title": "Face Bleach",
+        "category": "Facial Treatments",
+        "image": "./images/skin/face_bleach.webp",
+        "description": "Gentle facial lightening with ammonia-free formula. Features precision application. Includes post-bleach cooling mask.",
+        "price": 200,
+        "originalPrice": 300,
+        "isTrending": false,
+        "deal": "320+ bookings this month",
+        "duration": 30,
+        "keyIngredients": ["Almond Milk Base", "Chamomile Extract", "Aloe Vera Gel"],
+        "benefits": [
+          "Reduces facial hair visibility",
+          "Brightens complexion",
+          "Minimizes pores"
+        ],
+        "precautions": "Patch test required. Avoid retinoids 48hrs prior.",
+        "aftercare": "Apply SPF 30+. Avoid heat exposure 12hrs.",
+        "faqs": [
+          {"question": "For sensitive skin?", "answer": "Yes - uses hypoallergenic formula"},
+          {"question": "How long results last?", "answer": "3-4 weeks depending on hair growth"}
+        ]
+      },
+      {
+        "id": "bleach_2",
+        "title": "Gold Face Bleach",
+        "category": "Facial Treatments",
+        "image": "./images/skin/gold_bleach.webp",
+        "description": "Premium 24k gold particle infusion for facial brightening. Features collagen-boosting mask and cold therapy. Celebrity treatment.",
+        "price": 350,
+        "originalPrice": 500,
+        "isTrending": true,
+        "deal": "280+ bookings this month",
+        "duration": 45,
+        "keyIngredients": ["Colloidal Gold", "Diamond Dust", "Platinum Activator"],
+        "benefits": [
+          "Instant radiance boost",
+          "Reduces fine lines",
+          "Minimizes pores"
+        ],
+        "precautions": "Notify about metal allergies. Avoid retinoids 72hrs prior.",
+        "aftercare": "Use gold-infused serum. Avoid direct sun.",
+        "faqs": [
+          {"question": "Event-ready?", "answer": "HD camera-perfect results instantly"},
+          {"question": "For dark skin tones?", "answer": "Special melanin-safe formula"}
+        ]
+      },
+      {
+        "id": "bleach_3",
+        "title": "Diamond Face Bleach",
+        "category": "Facial Treatments",
+        "image": "./images/skin/diamond_bleach.webp",
+        "description": "Premium lightening with diamond micro-powders and platinum catalysts. Includes oxygen blast for deeper penetration.",
+        "price": 450,
+        "originalPrice": 650,
+        "isTrending": true,
+        "deal": "260+ bookings this month",
+        "duration": 45,
+        "keyIngredients": ["Nano-Diamonds", "Platinum Activator", "Pearl Extract"],
+        "benefits": [
+          "Instant brightening effect",
+          "Minimizes pores",
+          "Reduces melanin production"
+        ],
+        "precautions": "Not for active rosacea. Avoid retinoids 72hrs prior.",
+        "aftercare": "Use brightening mask. Limit sun exposure.",
+        "faqs": [
+          {"question": "Skin darkening risk?", "answer": "None with our pH-balanced formula"},
+          {"question": "For dark skin tones?", "answer": "Special melanin-safe formula available"}
+        ]
+      },
+      {
+        "id": "massage_2",
+        "title": "Face Massage (Gel)",
+        "category": "Facial Treatments",
+        "image": "./images/skin/gel_face_massage.webp",
+        "description": "Cooling gel massage with jade roller techniques. Features acupressure point stimulation and lymphatic drainage.",
+        "price": 300,
+        "originalPrice": 400,
+        "isTrending": false,
+        "deal": "140+ bookings this month",
+        "duration": 30,
+        "keyIngredients": ["Aloe Vera Gel", "Peppermint Extract", "Jade Roller"],
+        "benefits": [
+          "Reduces morning puffiness",
+          "Improves product absorption",
+          "Enhances facial contours"
+        ],
+        "precautions": "Avoid if rosacea present. Not after recent fillers.",
+        "aftercare": "Apply vitamin C serum. Use ice globes at home.",
+        "faqs": [
+          {"question": "For hangovers?", "answer": "Excellent for dehydration relief"},
+          {"question": "Makeup after?", "answer": "Wait 15mins for gel absorption"}
+        ]
+      },
+      {
+        "id": "massage_3",
+        "title": "Face Massage (Cream)",
+        "category": "Facial Treatments",
+        "image": "./images/skin/cream_face_massage.webp",
+        "description": "Nourishing cream massage with gua sha techniques. Features collagen-boosting cream and warm stone therapy.",
+        "price": 350,
+        "originalPrice": 450,
+        "isTrending": true,
+        "deal": "200+ bookings this month",
+        "duration": 35,
+        "keyIngredients": ["Collagen Cream", "Rosehip Oil", "Heated Basalt Stones"],
+        "benefits": [
+          "Plumps fine lines",
+          "Improves elasticity",
+          "Creates natural glow"
+        ],
+        "precautions": "Notify about nut allergies. Avoid active acne.",
+        "aftercare": "Sleep on back. Avoid washing face 4hrs post.",
+        "faqs": [
+          {"question": "For mature skin?", "answer": "Our top anti-aging massage"},
+          {"question": "Combined with facial?", "answer": "Ideal finishing step"}
+        ]
+      },
+      {
+        "id": "dtan_1",
+        "title": "D-Tan Full Face",
+        "category": "Skin Brightening & Pigmentation",
+        "image": "./images/skin/dtan_face.webp",
+        "description": "Multi-enzyme peel with licorice root and mulberry extract. Features ice globe massage to reduce inflammation.",
+        "price": 550,
+        "originalPrice": 700,
+        "isTrending": false,
+        "deal": "130+ bookings this month",
+        "duration": 60,
+        "keyIngredients": ["Kojic Acid", "Vitamin C Complex", "Bearberry Extract"],
+        "benefits": [
+          "Reduces dark spots in 3 sessions",
+          "Brightens complexion",
+          "Evens skin texture"
+        ],
+        "precautions": "Not for sensitive skin. Avoid sun 1 week post.",
+        "aftercare": "Use brightening serum. Reapply SPF 50+ every 2hrs.",
+        "faqs": [
+          {"question": "Suitable for melasma?", "answer": "Requires 6+ sessions"},
+          {"question": "Combined with laser?", "answer": "Not recommended same week"}
+        ]
+      },
+      {
+        "id": "dtan_2",
+        "title": "D-Tan Face with Neck",
+        "category": "Skin Brightening & Pigmentation",
+        "image": "./images/skin/dtan_face.webp",
+        "description": "Targeted tan removal for face and neck using licorice root extract and lactic acid peel. Includes décolletage brightening.",
+        "price": 600,
+        "originalPrice": 800,
+        "isTrending": true,
+        "deal": "240+ bookings this month",
+        "duration": 60,
+        "keyIngredients": ["Mulberry Extract", "Vitamin C Complex", "Cooling Globules"],
+        "benefits": [
+          "Reduces sun damage by 70%",
+          "Evens skin tone",
+          "Prevents rebound pigmentation"
+        ],
+        "precautions": "Avoid sun exposure 48hrs post. Not for sensitive skin.",
+        "aftercare": "Reapply SPF 50+ every 2hrs. Wear high-neck clothing.",
+        "faqs": [
+          {"question": "Number of sessions?", "answer": "3-5 for complete tan removal"},
+          {"question": "For dark skin tones?", "answer": "Uses melanin-safe formula"}
+        ]
+      },
+      {
+        "id": "dtan_3",
+        "title": "D-Tan Full Legs",
+        "category": "Skin Brightening & Pigmentation",
+        "image": "./images/skin/dtan_leg.webp",
+        "description": "Full leg exfoliation with coffee scrub and lactic acid peel. Includes lymphatic drainage massage and phyto-corrective mask.",
+        "price": 1200,
+        "originalPrice": 1500,
+        "isTrending": false,
+        "deal": "110+ bookings this month",
+        "duration": 75,
+        "keyIngredients": ["Mandelic Acid", "Turmeric Paste", "Ceramide Wrap"],
+        "benefits": [
+          "Evens skin tone",
+          "Reduces ingrown hairs",
+          "Improves skin elasticity"
+        ],
+        "precautions": "Avoid shaving 48hrs prior. Not after recent waxing.",
+        "aftercare": "Moisturize twice daily. Wear loose pants.",
+        "faqs": [
+          {"question": "Visible results timeline?", "answer": "Noticeable after 2 sessions"},
+          {"question": "Maintenance required?", "answer": "Monthly session recommended"}
+        ]
+      },
+      {
+        "id": "dtan_4",
+        "title": "D-Tan Full Hands",
+        "category": "Skin Brightening & Pigmentation",
+        "image": "./images/skin/dtan_hand.webp",
+        "description": "Complete hand and arm tan removal with multi-enzyme complex. Features shoulder-to-fingertip treatment with antioxidant serum boost.",
+        "price": 1000,
+        "originalPrice": 1300,
+        "isTrending": false,
+        "deal": "180+ bookings this month",
+        "duration": 60,
+        "keyIngredients": ["Proteolytic Enzymes", "Ferulic Acid", "SPF Booster"],
+        "benefits": [
+          "Removes 80% sun damage",
+          "Prevents age spots",
+          "Creates even skin tone"
+        ],
+        "precautions": "No recent hair removal. Avoid hot water 24hrs.",
+        "aftercare": "Apply brightening serum. Wear arm sleeves in sun.",
+        "faqs": [
+          {"question": "For wedding photos?", "answer": "Schedule 3 days pre-event"},
+          {"question": "Lasts through washing?", "answer": "Water-resistant after 12hrs"}
+        ]
+      },
+      {
+        "id": "treatment_2",
+        "title": "Pigmentation Treatment",
+        "category": "Skin Brightening & Pigmentation",
+        "image": "./images/skin/pigmentation_treatment.webp",
+        "description": "Clinical-grade treatment combining galvanic technology with tranexamic acid infusion. Features ultrasonic exfoliation.",
+        "price": 800,
+        "originalPrice": 1000,
+        "isTrending": false,
+        "deal": "210+ bookings this month",
+        "duration": 75,
+        "keyIngredients": ["Tranexamic Acid", "Galvanic Current", "Arbutin Serum"],
+        "benefits": [
+          "Reduces dark spots by 60%",
+          "Prevents new pigmentation",
+          "Evens skin tone"
+        ],
+        "precautions": "Strict sun avoidance required. Not for pregnant women.",
+        "aftercare": "Use brightening cream AM/PM. Reapply SPF 50+ every 2hrs.",
+        "faqs": [
+          {"question": "Results timeline?", "answer": "Visible in 4-6 sessions"},
+          {"question": "For hormonal pigmentation?", "answer": "Add oral supplement +₹250"}
+        ]
+      },
+      {
+        "id": "Intimate_4",
+        "title": "Intimate Area Lightening",
+        "category": "Skin Brightening & Pigmentation",
+        "image": "../images/skin/intimate_care.webp",
+        "description": "Safe and effective lightening treatment for underarms, bikini area, and inner thighs. Uses natural ingredients to reduce darkness.",
+        "price": 2000,
+        "originalPrice": 2500,
+        "isTrending": false,
+        "deal": "90+ bookings this month",
+        "duration": 45,
+        "keyIngredients": ["Kojic Acid", "Lactic Acid", "Mulberry Extract", "Niacinamide"],
+        "benefits": [
+          "Even skin tone in intimate areas",
+          "Reduces pigmentation",
+          "Safe for sensitive skin"
+        ],
+        "precautions": "Avoid shaving/waxing 3 days before treatment.",
+        "aftercare": "Wear loose cotton clothing. Avoid hot showers for 12 hours.",
+        "faqs": [
+          {"question": "How many sessions required?", "answer": "Visible results in 4-6 sessions spaced weekly"},
+          {"question": "Is it painful?", "answer": "Completely pain-free with mild cooling sensation"}
+        ]
+      },
+      {
+        "id": "body_5",
+        "title": "Underarm Detox & Brightening",
+        "category": "Skin Brightening & Pigmentation",
+        "image": "../images/skin/underarm_detox.webp",
+        "description": "Specialized treatment to combat underarm darkness, odor, and product buildup. Includes deep cleansing and brightening serum.",
+        "price": 1200,
+        "originalPrice": 1600,
+        "isTrending": false,
+        "deal": "30+ bookings this month",
+        "duration": 45,
+        "keyIngredients": ["Bentonite Clay", "Apple Cider Vinegar", "Kojic Acid", "Tea Tree Oil"],
+        "benefits": [
+          "Reduces underarm darkness",
+          "Minimizes odor-causing bacteria",
+          "Prevents product buildup"
+        ],
+        "precautions": "Avoid shaving or waxing 24 hours before treatment.",
+        "aftercare": "Use natural deodorant for 48 hours. Avoid tight clothing.",
+        "faqs": [
+          {"question": "Is it painful?", "answer": "Generally painless, with slight tingling from mask"},
+          {"question": "How many sessions?", "answer": "Best results with 3-5 sessions, one week apart"}
+        ]
+      },
+      {
+        "id": "treatment_3",
+        "title": "Skin Tightening Treatment",
+        "category": "Skin Treatments",
+        "image": "./images/skin/skin_tightening.webp",
+        "description": "Non-invasive radiofrequency with hyaluronic acid infusion. Features microcurrent technology and collagen-boosting cryo-stimulation.",
+        "price": 900,
+        "originalPrice": 1200,
+        "isTrending": false,
+        "deal": "160+ bookings this month",
+        "duration": 75,
+        "keyIngredients": ["RF Probes", "Peptide Cocktail", "Elastin Booster"],
+        "benefits": [
+          "Lifts sagging skin",
+          "Stimulates new collagen",
+          "Reduces fine lines"
+        ],
+        "precautions": "Not for pacemaker users. Avoid if pregnant.",
+        "aftercare": "Drink 2L water daily. Use firming cream.",
+        "faqs": [
+          {"question": "Results duration?", "answer": "6-12 months with maintenance"},
+          {"question": "Pain level?", "answer": "Warm sensation - no discomfort"}
+        ]
+      },      
+      {
+        "id": "body_2",
+        "title": "Back & Shoulder Treatment",
+        "category": "Body Care & Wellness",
+        "image": "../images/skin/back_massage.webp",
+        "description": "Specialized treatment targeting back acne, pigmentation, and tan lines. Includes deep cleansing, exfoliation, and brightening mask.",
+        "price": 2500,
+        "originalPrice": 3200,
+        "isTrending": false,
+        "deal": "90+ bookings this month",
+        "duration": 75,
+        "keyIngredients": ["Salicylic Acid", "Kojic Acid", "Vitamin C", "Turmeric"],
+        "benefits": [
+          "Reduces back acne and marks",
+          "Lightens tan and evens skin tone",
+          "Smooths skin texture"
+        ],
+        "precautions": "Avoid if you have active sunburn or broken skin.",
+        "aftercare": "Wear loose, cotton clothing. Use recommended brightening cream.",
+        "faqs": [
+          {"question": "How many sessions needed?", "answer": "Visible results after first session; 3-4 sessions recommended"},
+          {"question": "Suitable for men?", "answer": "Yes, very popular for grooms before weddings"}
+        ]
+      },
+      {
+        "id": "body_3",
+        "title": "Body Polish & Glow Treatment",
+        "category": "Body Care & Wellness",
+        "image": "../images/skin/full_body_polish.webp",
+        "description": "Full-body exfoliation using fine sugar crystals and nourishing oils. Leaves skin incredibly smooth, hydrated, and glowing.",
+        "price": 2200,
+        "originalPrice": 2800,
+        "isTrending": false,
+        "deal": "90+ bookings this month",
+        "duration": 60,
+        "keyIngredients": ["Fine Sugar Crystals", "Jojoba Oil", "Vanilla Extract", "Vitamin E"],
+        "benefits": [
+          "Silky-smooth skin instantly",
+          "Improves skin texture and tone",
+          "Enhances skin's natural radiance"
+        ],
+        "precautions": "Avoid if you have any open cuts, sunburn, or recent waxing.",
+        "aftercare": "Moisturize daily to maintain softness. Use gentle body wash.",
+        "faqs": [
+          {"question": "How often should I do this?", "answer": "Every 2-3 weeks for maintained smoothness"},
+          {"question": "Will it make skin sticky?", "answer": "No, oils absorb quickly leaving skin silky"}
+        ]
+      },
+      {
+        "id": "body_4",
+        "title": "Ubtan Body Treatment",
+        "category": "Body Care & Wellness",
+        "image": "../images/skin/haldi_ceremony.webp",
+        "description": "Ancient Ayurvedic body wrap using turmeric, sandalwood, and gram flour. Deeply cleanses and imparts radiant glow.",
+        "price": 2500,
+        "originalPrice": 3200,
+        "isTrending": false,
+        "deal": "20+ bookings this month",
+        "duration": 90,
+        "keyIngredients": ["Turmeric", "Sandalwood", "Saffron", "Gram Flour", "Milk"],
+        "benefits": [
+          "Natural skin brightening",
+          "Evens out skin tone",
+          "Removes dead skin and tan"
+        ],
+        "precautions": "The yellow tint from turmeric washes off in 1-2 showers.",
+        "aftercare": "Keep skin moisturized. The glow enhances over 2 days.",
+        "faqs": [
+          {"question": "Is it messy?", "answer": "Treatment done in dedicated spa area for easy cleanup"},
+          {"question": "When to do before wedding?", "answer": "2-3 days before main event for best glow"}
+        ]
+      },
+      {
+        "id": "massage_1",
+        "title": "Head Massage (Champi)",
+        "category": "Body Care & Wellness",
+        "image": "./images/skin/head_massage.webp",
+        "description": "Ancient Ayurvedic therapy focusing on head, neck, and shoulders. Uses warm aromatic oils to relieve stress and promote hair growth.",
+        "price": 400,
+        "originalPrice": 550,
+        "isTrending": false,
+        "deal": "20+ bookings this month",
+        "duration": 45,
+        "keyIngredients": ["Brahmi Oil", "Amla Oil", "Sesame Oil", "Lavender Essential Oil"],
+        "benefits": [
+          "Relieves stress and mental fatigue",
+          "Improves blood circulation to scalp",
+          "Induces deep sleep"
+        ],
+        "precautions": "Inform therapist of any neck injuries or severe headaches.",
+        "aftercare": "Leave oil on for few hours or overnight for best absorption.",
+        "faqs": [
+          {"question": "Will it make hair greasy?", "answer": "Oil is absorbed; you can wash off after"},
+          {"question": "How often?", "answer": "Once a week for best results"}
+        ]
+      }
+    ]

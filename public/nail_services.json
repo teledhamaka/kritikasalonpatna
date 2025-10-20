@@ -1,0 +1,314 @@
+[
+  {
+    "id": "manicure_4",
+    "title": "Bridal Nails Package",
+    "category": "Manicure",
+    "image": "./images/skin/bridal_nails.webp",
+    "description": "Premium bridal package with custom nail extensions, Swarovski embellishments, and chrome finishes. Includes trial session.",
+    "price": 1500,
+    "originalPrice": 2000,
+    "isTrending": true,
+    "deal": "230+ bookings this month",
+    "duration": 90,
+    "keyIngredients": ["Bio-Sculpture Gel", "24k Gold Foil", "Hypoallergenic Adhesives"],
+    "benefits": [
+      "Lasts through honeymoon",
+      "Photo-ready nail art",
+      "Strengthens natural nails"
+    ],
+    "precautions": "Patch test for adhesive allergy. Bring inspiration photos.",
+    "aftercare": "Use cuticle oil. Avoid acetone.",
+    "faqs": [
+      {"question": "Emergency repair?", "answer": "Free within 72hrs"},
+      {"question": "Nail health risk?", "answer": "Non-damaging removal technique used"}
+    ]
+  },
+  {
+    "id": "nailart_2",
+    "title": "Nail Extension (Acrylic/Gel)",
+    "category": "Nail Art",
+    "image": "./images/skin/nail_extension.webp",
+    "description": "Lengthening service with acrylic or gel extensions. Choose from stiletto, coffin, or square shapes. Includes basic polish.",
+    "price": 1500,
+    "originalPrice": 2000,
+    "isTrending": true,
+    "deal": "290+ bookings this month",
+    "duration": 120,
+    "keyIngredients": ["Odor-Free Acrylic", "LED Builder Gel", "Nail Forms"],
+    "benefits": [
+      "Instant length",
+      "Strengthens natural nails",
+      "Customizable shapes"
+    ],
+    "precautions": "Not for nail biters. Avoid water 24hrs post.",
+    "aftercare": "Use cuticle oil daily. Avoid using nails as tools.",
+    "faqs": [
+      {"question": "Damage to natural nails?", "answer": "Non-damaging removal process"},
+      {"question": "Fill policy?", "answer": "Recommended every 3 weeks"}
+    ]
+  },
+  {
+    "id": "nailart_1",
+    "title": "Nail Art (Basic Designs)",
+    "category": "Nail Art",
+    "image": "./images/skin/nail_art.webp",
+    "description": "Custom nail designs with hand-painted details and embellishments. Choose from various design options and colors.",
+    "price": 500,
+    "originalPrice": 700,
+    "isTrending": true,
+    "deal": "270+ bookings this month",
+    "duration": 60,
+    "keyIngredients": ["Acrylic Paints", "Nail Gems", "Chrome Powder"],
+    "benefits": [
+      "Personalized expression",
+      "Instagram-worthy nails",
+      "Lasts 2-3 weeks"
+    ],
+    "precautions": "Allergy test for adhesives. Avoid water 2hrs post.",
+    "aftercare": "Avoid picking designs. Use top coat every 5 days.",
+    "faqs": [
+      {"question": "Bridal designs?", "answer": "Premium designs available +₹300"},
+      {"question": "For short nails?", "answer": "Special mini-canvas designs"}
+    ]
+  },
+  {
+    "id": "manicure_2",
+    "title": "Deluxe Manicure",
+    "category": "Manicure",
+    "image": "./images/skin/deluxe_manicure.webp",
+    "description": "Luxury treatment with paraffin wax dip, hot stone massage. Features diamond dust buffing and collagen-infused top coat.",
+    "price": 900,
+    "originalPrice": 1200,
+    "isTrending": true,
+    "deal": "250+ bookings this month",
+    "duration": 60,
+    "keyIngredients": ["Paraffin Wax", "Heated Stones", "Collagen Polish"],
+    "benefits": [
+      "Deeply moisturizes hands",
+      "Reduces arthritis pain",
+      "Adds natural shine"
+    ],
+    "precautions": "Notify about skin conditions. Avoid if pregnant.",
+    "aftercare": "Sleep with cotton gloves. Apply cuticle cream.",
+    "faqs": [
+      {"question": "Bridal favorite?", "answer": "Top pre-wedding choice"},
+      {"question": "Add nail art?", "answer": "Basic designs included, premium +₹200"}
+    ]
+  },
+  {
+    "id": "manicure_1",
+    "title": "Basic Manicure",
+    "category": "Manicure",
+    "image": "./images/skin/plain_manicure.webp",
+    "description": "Essential nail care with cuticle treatment, nail shaping, and buffing. Includes moisturizing hand massage and polish.",
+    "price": 300,
+    "originalPrice": 400,
+    "isTrending": false,
+    "deal": "190+ bookings this month",
+    "duration": 40,
+    "keyIngredients": ["Cuticle Remover", "4-Way Buffer", "Hydrating Lotion"],
+    "benefits": [
+      "Improves nail health",
+      "Promotes growth",
+      "Prevents hangnails"
+    ],
+    "precautions": "Notify about nail fungus. Avoid water 1hr post.",
+    "aftercare": "Use nail strengthener. Avoid harsh chemicals.",
+    "faqs": [
+      {"question": "Gel upgrade?", "answer": "Add ₹250 for gel polish"},
+      {"question": "For men?", "answer": "Popular no-polish option available"}
+    ]
+  },  
+  {
+    "id": "manicure_3",
+    "title": "French Manicure",
+    "category": "Manicure",
+    "image": "./images/skin/french_manicure.webp",
+    "description": "Classic French tip design with precision white tip and natural pink base. Features cuticle grooming and high-gloss top coat.",
+    "price": 1000,
+    "originalPrice": 550,
+    "isTrending": true,
+    "deal": "280+ bookings this month",
+    "duration": 45,
+    "keyIngredients": ["Non-Yellowing Top Coat", "Cuticle Oil", "Almond Milk Soak"],
+    "benefits": [
+      "Timeless elegant look",
+      "Makes nails appear longer",
+      "Lasts 2-3 weeks"
+    ],
+    "precautions": "Avoid water 2hrs post-service. No recent cuticle cutting.",
+    "aftercare": "Apply cuticle oil daily. Wear gloves for chores.",
+    "faqs": [
+      {"question": "For short nails?", "answer": "Creates illusion of length"},
+      {"question": "Touch-up policy?", "answer": "Free within 48hrs for any chips"}
+    ]
+  },
+  {
+    "id": "pedicure_1",
+    "title": "Basic Pedicure",
+    "category": "Pedicure",
+    "image": "./images/skin/nail_polish_foot.webp",
+    "description": "Essential foot care with nail trimming, cuticle work, and exfoliation. Includes relaxing foot soak and polish.",
+    "price": 400,
+    "originalPrice": 550,
+    "isTrending": false,
+    "deal": "180+ bookings this month",
+    "duration": 50,
+    "keyIngredients": ["Epsom Salt Soak", "Callus Shaver", "Antifungal Spray"],
+    "benefits": [
+      "Prevents ingrown toenails",
+      "Reduces foot odor",
+      "Maintains nail health"
+    ],
+    "precautions": "Notify about diabetes. Avoid tight shoes post-service.",
+    "aftercare": "Use foot powder. Wear cotton socks.",
+    "faqs": [
+      {"question": "Medical pedicure?", "answer": "Sterile instruments +₹250"},
+      {"question": "For athletes?", "answer": "Special sports pedicure available"}
+    ]
+  },
+  {
+    "id": "pedicure_2",
+    "title": "French Pedicure",
+    "category": "Pedicure",
+    "image": "./images/skin/french_pedicure.webp",
+    "description": "Elegant French tips for toes with antimicrobial base coat. Includes callus removal, foot scrub, and extended calf massage.",
+    "price": 500,
+    "originalPrice": 650,
+    "isTrending": true,
+    "deal": "210+ bookings this month",
+    "duration": 55,
+    "keyIngredients": ["Tea Tree Polish", "Pumice Stone", "Peppermint Oil"],
+    "benefits": [
+      "Prevents fungal infections",
+      "Softens cracked heels",
+      "Improves circulation"
+    ],
+    "precautions": "No recent foot injuries. Diabetic consultation needed.",
+    "aftercare": "Wear open shoes. Apply foot cream nightly.",
+    "faqs": [
+      {"question": "For men?", "answer": "Clear polish option available"},
+      {"question": "Lasts through swimming?", "answer": "Water-resistant after 12hrs"}
+    ]
+  },  
+  {
+    "id": "nailcare_1",
+    "title": "Nail Cut & File (Hands)",
+    "category": "Nail Art",
+    "image": "./images/skin/nail_cut_salon.webp",
+    "description": "Basic nail maintenance with sanitized tools. Includes nail trimming, shaping with crystal file, and buffing.",
+    "price": 100,
+    "originalPrice": 150,
+    "isTrending": false,
+    "deal": "90+ bookings this month",
+    "duration": 20,
+    "keyIngredients": ["Medical-Grade Clippers", "Glass File", "Antibacterial Spray"],
+    "benefits": [
+      "Prevents breakage",
+      "Promotes healthy growth",
+      "Sanitary service"
+    ],
+    "precautions": "Notify about nail conditions. No recent injuries.",
+    "aftercare": "Apply nail hardener. Avoid harsh chemicals.",
+    "faqs": [
+      {"question": "For men?", "answer": "Most popular male service"},
+      {"question": "Add polish?", "answer": "Basic polish +₹80"}
+    ]
+  },
+  {
+    "id": "nailcare_2",
+    "title": "Nail Cut & File (Feet)",
+    "category": "Pedicure",
+    "image": "./images/skin/nail_cut_salon.webp",
+    "description": "Professional toenail care with orthopedic cutting technique. Features callus smoothing and antifungal spray.",
+    "price": 100,
+    "originalPrice": 150,
+    "isTrending": false,
+    "deal": "110+ bookings this month",
+    "duration": 25,
+    "keyIngredients": ["Curved Clippers", "Callus Rasp", "Antifungal Spray"],
+    "benefits": [
+      "Prevents ingrown nails",
+      "Reduces foot pain",
+      "Improves shoe comfort"
+    ],
+    "precautions": "Diabetic consultation required. No open wounds.",
+    "aftercare": "Wear breathable shoes. Apply foot powder.",
+    "faqs": [
+      {"question": "For athletes?", "answer": "Special sports technique available"},
+      {"question": "Medical grade?", "answer": "All tools sterilized after each use"}
+    ]
+  },
+  {
+    "id": "nailpolish_1",
+    "title": "Nail Polish (Hands Only)",
+    "category": "Nail Art",
+    "image": "./images/skin/nail_polish_hand.webp",
+    "description": "Professional polish application with base coat, 2 color coats, and quick-dry top coat. Includes nail shaping.",
+    "price": 150,
+    "originalPrice": 200,
+    "isTrending": false,
+    "deal": "150+ bookings this month",
+    "duration": 30,
+    "keyIngredients": ["5-Free Polish", "Quick Dry Drops", "Cuticle Oil"],
+    "benefits": [
+      "Chip-resistant finish",
+      "Non-toxic formula",
+      "Dries in 15 minutes"
+    ],
+    "precautions": "Avoid water 1hr post. No recent cuticle cutting.",
+    "aftercare": "Reapply top coat every 3 days. Use gloves for dishes.",
+    "faqs": [
+      {"question": "Gel option?", "answer": "Upgrade to gel for +₹250"},
+      {"question": "Color change?", "answer": "Free within 24hrs"}
+    ]
+  },
+  {
+    "id": "nailpolish_2",
+    "title": "Nail Polish (Feet Only)",
+    "category": "Pedicure",
+    "image": "./images/skin/nail_polish_foot.webp",
+    "description": "Toenail polish application with antifungal base coat. Includes light foot massage and toe separators.",
+    "price": 150,
+    "originalPrice": 200,
+    "isTrending": false,
+    "deal": "120+ bookings this month",
+    "duration": 35,
+    "keyIngredients": ["Antifungal Base", "Breathable Polish", "Tea Tree Oil"],
+    "benefits": [
+      "Prevents nail fungus",
+      "Lasts 3-4 weeks",
+      "Safe for diabetics"
+    ],
+    "precautions": "No open wounds. Wear open shoes post-service.",
+    "aftercare": "Apply antifungal powder. Avoid tight socks.",
+    "faqs": [
+      {"question": "For men?", "answer": "Clear/matte options available"},
+      {"question": "Combined with pedicure?", "answer": "Recommended for best results"}
+    ]
+  },
+  {
+    "id": "nailpolish_3",
+    "title": "Nail Polish (Hands & Feet)",
+    "category": "Nail Art",
+    "image": "./images/skin/nail_polish_combo.webp",
+    "description": "Complete polish set for hands and feet with matching/contrasting colors. Features LED lamp for smudge-proof finish.",
+    "price": 250,
+    "originalPrice": 350,
+    "isTrending": false,
+    "deal": "230+ bookings this month",
+    "duration": 60,
+    "keyIngredients": ["Chip-Resistant Polish", "LED Lamp", "Cuticle Serum"],
+    "benefits": [
+      "Coordinated look",
+      "Saves 20% vs separate services",
+      "Dries completely before leaving"
+    ],
+    "precautions": "Avoid handbags/shoes that may smudge. No water 2hrs.",
+    "aftercare": "Use cuticle oil. Avoid hot tubs 24hrs.",
+    "faqs": [
+      {"question": "Bridal package?", "answer": "Includes trial session"},
+      {"question": "Gel upgrade?", "answer": "Add ₹400 for full gel set"}
+    ]
+  }
+]

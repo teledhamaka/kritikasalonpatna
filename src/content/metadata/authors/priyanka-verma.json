@@ -1,0 +1,30 @@
+{
+      "id":"priyankaVerma",
+      "name": "Priyanka Verma",
+      "avatar": "/assets/authors/priyanka-verma.jpg",
+      "bio": "Senior Bridal Makeup Artist with 12+ years experience. Specialized in HD, Airbrush, and Traditional bridal makeup. Trained from VLCC Institute Delhi.",
+      "expertise": [
+        "Bridal Makeup",
+        "HD Makeup",
+        "Airbrush Makeup",
+        "Pre-Wedding Beauty",
+        "Celebrity Makeup"
+      ],
+      "experience": "12+ years",
+      "certifications": [
+        "VLCC Professional Makeup Course",
+        "MAC Pro Makeup Certification",
+        "International Airbrush Makeup"
+      ],
+      "socialLinks": {
+        "instagram": "https://instagram.com/priyankaverma_mua",
+        "facebook": "https://facebook.com/priyankavermaofficial",
+        "youtube": "https://youtube.com/@priyankavermabeauty"
+      },
+      "achievements": [
+        "500+ Brides Makeover",
+        "Featured in Bihar Wedding Magazine",
+        "4.9★ Rating (200+ Reviews)"
+      ]
+    
+}

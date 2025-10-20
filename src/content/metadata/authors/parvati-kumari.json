@@ -1,0 +1,16 @@
+{
+    "id":"parvatikumari",
+      "name": "Parvati kumari",
+      "avatar": "/assets/authors/parvati_kumari.jpg",
+      "bio": "Lkme Delhi Trained Cosmotologist, BSc Chemistry with 5+ years experience in hair care and trichology",
+      "expertise": [
+        "Hair Fall Treatment",
+        "Dermatology",
+        "Trichology"
+      ],
+      "socialLinks": {
+        "twitter": "https://twitter.com/salonic",
+        "linkedin": "https://linkedin.com/in/salonic"
+      }
+    
+}

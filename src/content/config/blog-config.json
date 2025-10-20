@@ -1,0 +1,15 @@
+{
+  "postsPerPage": 6,
+  "featuredPostsCount": 3,
+  "recentPostsCount": 5,
+  "relatedPostsCount": 4,
+  "defaultReadTime": 5,
+  "defaultAuthor": "parvatikumari",
+  "paths": {
+    "posts": "./src/content/posts",
+    "postMetadata": "./src/content/metadata/posts",
+    "authors": "./src/content/metadata/authors",
+    "categories": "./src/content/metadata/categories.json",
+    "seoConfig": "./src/content/metadata/seo-config.json"
+  }
+}
