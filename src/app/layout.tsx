@@ -7,6 +7,9 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { Providers } from './providers';
 
+import { Analytics } from '@vercel/analytics/next';
+
+
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
@@ -144,6 +147,11 @@ export default function RootLayout({
         {/* Your existing Footer */}
           <Footer />
         </Providers>
+
+        {/* ✅ Vercel Analytics - Add this component */}
+        <Analytics />
+
+
         {/* Google Analytics */}
         <script
           async
