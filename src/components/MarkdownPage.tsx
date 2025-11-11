@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import { FiArrowLeft, FiDownload, FiPrinter, FiShare2, FiLoader } from 'react-icons/fi';
 import ReactMarkdown from 'react-markdown';
 
+
 interface MarkdownPageProps {
   title: string;
   markdownFile: string;
@@ -123,63 +124,63 @@ export default function MarkdownPage({ title, markdownFile, lastUpdated }: Markd
         <div className="bg-white rounded-2xl shadow-lg border border-pink-100 p-8 md:p-12 prose prose-pink max-w-none">
           <ReactMarkdown
             components={{
-              h1: ({ node, ...props }) => (
+              h1: ({ ...props }) => (
                 <h1 className="text-3xl font-bold text-gray-800 mb-4 mt-8 pb-2 border-b-2 border-pink-200" {...props} />
               ),
-              h2: ({ node, ...props }) => (
+              h2: ({ ...props }) => (
                 <h2 className="text-2xl font-bold text-gray-800 mb-3 mt-6" {...props} />
               ),
-              h3: ({ node, ...props }) => (
+              h3: ({ ...props }) => (
                 <h3 className="text-xl font-semibold text-gray-800 mb-2 mt-4" {...props} />
               ),
-              h4: ({ node, ...props }) => (
+              h4: ({ ...props }) => (
                 <h4 className="text-lg font-semibold text-gray-700 mb-2 mt-3" {...props} />
               ),
-              p: ({ node, ...props }) => (
+              p: ({ ...props }) => (
                 <p className="text-gray-700 mb-4 leading-relaxed" {...props} />
               ),
-              ul: ({ node, ...props }) => (
+              ul: ({ ...props }) => (
                 <ul className="list-disc list-inside mb-4 space-y-2 text-gray-700" {...props} />
               ),
-              ol: ({ node, ...props }) => (
+              ol: ({ ...props }) => (
                 <ol className="list-decimal list-inside mb-4 space-y-2 text-gray-700" {...props} />
               ),
-              li: ({ node, ...props }) => (
+              li: ({ ...props }) => (
                 <li className="ml-4" {...props} />
               ),
-              a: ({ node, ...props }) => (
+              a: ({ ...props }) => (
                 <a className="text-pink-600 hover:text-pink-700 underline" {...props} />
               ),
-              strong: ({ node, ...props }) => (
+              strong: ({ ...props }) => (
                 <strong className="font-semibold text-gray-800" {...props} />
               ),
-              em: ({ node, ...props }) => (
+              em: ({ ...props }) => (
                 <em className="italic text-gray-700" {...props} />
               ),
-              blockquote: ({ node, ...props }) => (
+              blockquote: ({ ...props }) => (
                 <blockquote className="border-l-4 border-pink-500 pl-4 py-2 mb-4 bg-pink-50 italic text-gray-700" {...props} />
               ),
-              code: ({ node, ...props }) => (
+              code: ({ ...props }) => (
                 <code className="bg-gray-100 px-2 py-1 rounded text-sm font-mono text-pink-600" {...props} />
               ),
-              pre: ({ node, ...props }) => (
+              pre: ({ ...props }) => (
                 <pre className="bg-gray-100 p-4 rounded-lg overflow-x-auto mb-4" {...props} />
               ),
-              hr: ({ node, ...props }) => (
+              hr: ({ ...props }) => (
                 <hr className="my-8 border-t-2 border-pink-200" {...props} />
               ),
-              table: ({ node, ...props }) => (
+              table: ({ ...props }) => (
                 <div className="overflow-x-auto mb-4">
                   <table className="min-w-full border border-gray-300" {...props} />
                 </div>
               ),
-              thead: ({ node, ...props }) => (
+              thead: ({ ...props }) => (
                 <thead className="bg-pink-50" {...props} />
               ),
-              th: ({ node, ...props }) => (
+              th: ({ ...props }) => (
                 <th className="border border-gray-300 px-4 py-2 text-left font-semibold text-gray-800" {...props} />
               ),
-              td: ({ node, ...props }) => (
+              td: ({ ...props }) => (
                 <td className="border border-gray-300 px-4 py-2 text-gray-700" {...props} />
               ),
             }}
@@ -195,7 +196,7 @@ export default function MarkdownPage({ title, markdownFile, lastUpdated }: Markd
             Have Questions?
           </h3>
           <p className="text-gray-700 mb-4">
-            If you have any questions about our {title.toLowerCase()}, please don't hesitate to contact us.
+            If you have any questions about our {title.toLowerCase()}, please don&apos;t hesitate to contact us.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <a

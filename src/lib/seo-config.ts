@@ -37,11 +37,11 @@ export const BUSINESS_CONFIG = {
   
   // Social Media
   social: {
-    facebook: "https://facebook.com/glamoursalonpatna",
-    instagram: "https://instagram.com/glamoursalonpatna",
-    youtube: "https://youtube.com/@glamoursalonpatna",
-    pinterest: "https://pinterest.com/glamoursalonpatna",
-    twitter: "https://twitter.com/glamoursalon"
+    facebook: "https://facebook.com/kritikasalonpatna",
+    instagram: "https://instagram.com/kritikasalonpatna",
+    youtube: "https://youtube.com/@kritikasalonpatna",
+    pinterest: "https://pinterest.com/kritikasalonpatna",
+    twitter: "https://twitter.com/kritikasalon"
   },
   
   // Services
@@ -90,11 +90,11 @@ export function generateLocalBusinessSchema() {
   return {
     "@context": "https://schema.org",
     "@type": "BeautySalon",
-    "@id": "https://yourwebsite.com/#organization",
+    "@id": "https://kritikasalonpatna.com/#organization",
     "name": BUSINESS_CONFIG.name,
     "description": BUSINESS_CONFIG.description,
-    "image": "https://yourwebsite.com/og-image.jpg",
-    "logo": "https://yourwebsite.com/logo.png",
+    "image": "https://kritikasalonpatna.com/og-image.jpg",
+    "logo": "https://kritikasalonpatna.com/logo.png",
     
     "address": {
       "@type": "PostalAddress",
@@ -111,7 +111,7 @@ export function generateLocalBusinessSchema() {
       "longitude": BUSINESS_CONFIG.location.coordinates.longitude
     },
     
-    "url": "https://yourwebsite.com",
+    "url": "https://kritikasalonpatna.com",
     "telephone": BUSINESS_CONFIG.contact.phone,
     "email": BUSINESS_CONFIG.contact.email,
     
@@ -167,10 +167,10 @@ export function generateWebsiteSchema() {
     "@context": "https://schema.org",
     "@type": "WebSite",
     "name": BUSINESS_CONFIG.name,
-    "url": "https://yourwebsite.com",
+    "url": "https://kritikasalonpatna.com",
     "potentialAction": {
       "@type": "SearchAction",
-      "target": "https://yourwebsite.com/blog?search={search_term_string}",
+      "target": "https://kritikasalonpatna.com/blog?search={search_term_string}",
       "query-input": "required name=search_term_string"
     }
   };
@@ -201,7 +201,7 @@ export function generateMetaTags(page: {
   url?: string;
   type?: string;
 }) {
-  const baseUrl = "https://yourwebsite.com";
+  const baseUrl = "https://kritikasalonpatna.com";
   const fullUrl = page.url ? `${baseUrl}${page.url}` : baseUrl;
   const imageUrl = page.image || `${baseUrl}/og-image.jpg`;
   
@@ -232,8 +232,8 @@ export function generateMetaTags(page: {
       title: page.title,
       description: page.description,
       images: [imageUrl],
-      site: '@glamoursalon',
-      creator: '@glamoursalon'
+      site: '@kritikasalon',
+      creator: '@kritikasalon'
     },
     
     alternates: {

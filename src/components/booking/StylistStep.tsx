@@ -4,6 +4,7 @@
 import { FiStar, FiCheck, FiAward, FiHeart, FiTrendingUp, FiInstagram } from 'react-icons/fi';
 import { useBooking } from '../../context/BookingContext';
 import { useState, useEffect } from 'react';
+import Image from 'next/image';
 
 interface StylistStepProps {
   onNext: () => void;
@@ -121,7 +122,7 @@ const StylistStep = ({ onNext, onBack }: StylistStepProps) => {
                 
                 <div className="flex items-start gap-5">
                   <div className="relative">
-                    <img 
+                    <Image 
                       src={stylist.profile_image_url || '/api/placeholder/100/100'} 
                       alt={stylist.full_name} 
                       className={`w-24 h-24 rounded-2xl object-cover ${

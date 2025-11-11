@@ -17,8 +17,7 @@ const TimeStep = ({ onNext, onBack }: TimeStepProps) => {
     selectedStylist,
     availableTimeSlots,
     fetchAvailableTimeSlots,
-    cart,
-    loading 
+    cart
   } = useBooking();
   
   const [selectedDate, setSelectedDate] = useState('');
@@ -175,8 +174,7 @@ const TimeStep = ({ onNext, onBack }: TimeStepProps) => {
             <p className="font-semibold text-gray-800 mb-1">
               Estimated Duration: {formatDuration(totalDuration)}
             </p>
-            <p className="text-sm text-gray-600">
-              Please ensure you have enough time. We'll send you a reminder 30 minutes before.
+            <p className="text-sm text-gray-600">Please ensure you have enough time. We&apos;ll send you a reminder 30 minutes before.
             </p>
             {cart.length > 0 && (
               <p className="text-xs text-purple-600 mt-2">
@@ -228,8 +226,7 @@ const TimeStep = ({ onNext, onBack }: TimeStepProps) => {
           <h3 className="text-xl font-semibold text-gray-800 mb-2">
             No time slots available for this date
           </h3>
-          <p className="text-sm text-gray-600 mb-4">
-            Please select another date or we'll call you to schedule a convenient time.
+          <p className="text-sm text-gray-600 mb-4">Please select another date or we&apos;ll call you to schedule a convenient time.
           </p>
           <div className="flex justify-center gap-3">
             <button

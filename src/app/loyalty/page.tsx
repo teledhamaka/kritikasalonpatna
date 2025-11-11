@@ -3,12 +3,8 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
-import {
-  FiArrowLeft, FiGift, FiTrendingUp, FiCopy, FiShare2,
-  FiCheck, FiLoader, FiAward, FiUsers, FiClock,
-  FiInstagram, FiTwitter, FiMessageCircle, FiMail,
-  FiX, FiExternalLink
-} from 'react-icons/fi';
+import { ArrowLeft, Gift, TrendingUp, Copy, Share2, Check, Loader, Award, Users, Clock,
+  Instagram, Twitter, MessageCircle, Mail, X, ExternalLink } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 import { supabase } from '../../lib/supabase';
 
@@ -113,6 +109,7 @@ export default function LoyaltyPage() {
   useEffect(() => {
     if (!isLoggedIn) {
       router.push('/login');
+      return
     } else {
       fetchLoyaltyData();
     }
@@ -314,7 +311,7 @@ export default function LoyaltyPage() {
   if (loading) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-pink-50 via-white to-purple-50 flex items-center justify-center">
-        <FiLoader className="w-8 h-8 text-pink-500 animate-spin" />
+        <Loader className="w-8 h-8 text-pink-500 animate-spin" />
       </div>
     );
   }
@@ -329,11 +326,11 @@ export default function LoyaltyPage() {
               onClick={() => router.back()}
               className="p-2 rounded-full hover:bg-pink-100 mr-2"
             >
-              <FiArrowLeft className="w-5 h-5 text-gray-700" />
+              <ArrowLeft className="w-5 h-5 text-gray-700" />
             </button>
             <div>
               <h1 className="text-2xl font-bold text-gray-800 flex items-center">
-                <FiGift className="w-6 h-6 mr-2 text-pink-500" />
+                <Gift className="w-6 h-6 mr-2 text-pink-500" />
                 Loyalty & Rewards
               </h1>
               <p className="text-sm text-gray-600">Earn points, unlock rewards, and enjoy exclusive benefits</p>
@@ -403,11 +400,11 @@ export default function LoyaltyPage() {
         <div className="bg-white rounded-xl shadow-sm border border-pink-100 mb-6">
           <div className="flex overflow-x-auto">
             {[
-              { id: 'overview', label: 'Overview', icon: FiTrendingUp },
-              { id: 'tiers', label: 'Tiers', icon: FiAward },
-              { id: 'rewards', label: 'Rewards', icon: FiGift },
-              { id: 'transactions', label: 'History', icon: FiClock },
-              { id: 'referrals', label: 'Referrals', icon: FiUsers }
+              { id: 'overview', label: 'Overview', icon: TrendingUp },
+              { id: 'tiers', label: 'Tiers', icon: Award },
+              { id: 'rewards', label: 'Rewards', icon: Gift },
+              { id: 'transactions', label: 'History', icon: Clock },
+              { id: 'referrals', label: 'Referrals', icon: Users }
             ].map(({ id, label, icon: Icon }) => (
               <button
                 key={id}
@@ -440,7 +437,7 @@ export default function LoyaltyPage() {
                 <div className="bg-white rounded-xl p-6 shadow-sm border border-pink-100">
                   <div className="flex items-center mb-4">
                     <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mr-3">
-                      <FiUsers className="w-6 h-6 text-purple-600" />
+                      <Users className="w-6 h-6 text-purple-600" />
                     </div>
                     <div>
                       <h3 className="font-semibold text-gray-800">Refer Friends</h3>
@@ -458,7 +455,7 @@ export default function LoyaltyPage() {
                 <div className="bg-white rounded-xl p-6 shadow-sm border border-pink-100">
                   <div className="flex items-center mb-4">
                     <div className="w-12 h-12 bg-pink-100 rounded-lg flex items-center justify-center mr-3">
-                      <FiShare2 className="w-6 h-6 text-pink-600" />
+                      <Share2 className="w-6 h-6 text-pink-600" />
                     </div>
                     <div>
                       <h3 className="font-semibold text-gray-800">Social Media Bonus</h3>
@@ -577,7 +574,7 @@ export default function LoyaltyPage() {
                           </div>
                         </div>
                         {isUnlocked && (
-                          <FiCheck className="w-6 h-6 text-green-500" />
+                          <Check className="w-6 h-6 text-green-500" />
                         )}
                       </div>
 
@@ -597,7 +594,7 @@ export default function LoyaltyPage() {
                         <ul className="space-y-1">
                           {tier.perks.map((perk, idx) => (
                             <li key={idx} className="flex items-start text-sm text-gray-700">
-                              <FiCheck className="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
+                              <Check className="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
                               <span>{perk}</span>
                             </li>
                           ))}
@@ -674,12 +671,12 @@ export default function LoyaltyPage() {
                       >
                         {isRedeeming ? (
                           <>
-                            <FiLoader className="animate-spin mr-2 w-5 h-5" />
+                            <Loader className="animate-spin mr-2 w-5 h-5" />
                             Redeeming...
                           </>
                         ) : canRedeem ? (
                           <>
-                            <FiGift className="mr-2 w-5 h-5" />
+                            <Gift className="mr-2 w-5 h-5" />
                             Redeem Now
                           </>
                         ) : (
@@ -787,7 +784,7 @@ export default function LoyaltyPage() {
                 </div>
               ) : (
                 <div className="bg-white rounded-xl p-12 shadow-sm border border-pink-100 text-center">
-                  <FiClock className="w-12 h-12 text-gray-400 mx-auto mb-3" />
+                  <Clock className="w-12 h-12 text-gray-400 mx-auto mb-3" />
                   <p className="text-gray-600">No transaction history yet</p>
                 </div>
               )}
@@ -820,9 +817,9 @@ export default function LoyaltyPage() {
                         className="p-2 bg-white bg-opacity-20 rounded-lg hover:bg-opacity-30 transition-colors"
                       >
                         {copied ? (
-                          <FiCheck className="w-5 h-5" />
+                          <Check className="w-5 h-5" />
                         ) : (
-                          <FiCopy className="w-5 h-5" />
+                          <Copy className="w-5 h-5" />
                         )}
                       </button>
                     </div>
@@ -832,7 +829,7 @@ export default function LoyaltyPage() {
                     onClick={() => setShowShareModal(true)}
                     className="w-full px-4 py-3 bg-white text-purple-600 rounded-lg hover:bg-opacity-90 transition-all font-medium flex items-center justify-center"
                   >
-                    <FiShare2 className="mr-2 w-5 h-5" />
+                    <Share2 className="mr-2 w-5 h-5" />
                     Share Referral Link
                   </button>
                 </div>
@@ -926,9 +923,9 @@ export default function LoyaltyPage() {
                             <div className="text-xs text-gray-600 mb-1">Signed Up</div>
                             <div className="font-semibold text-gray-800">
                               {referral.referred_signup_at ? (
-                                <FiCheck className="w-5 h-5 text-green-500 mx-auto" />
+                                <Check className="w-5 h-5 text-green-500 mx-auto" />
                               ) : (
-                                <FiX className="w-5 h-5 text-gray-400 mx-auto" />
+                                <X className="w-5 h-5 text-gray-400 mx-auto" />
                               )}
                             </div>
                           </div>
@@ -936,9 +933,9 @@ export default function LoyaltyPage() {
                             <div className="text-xs text-gray-600 mb-1">First Booking</div>
                             <div className="font-semibold text-gray-800">
                               {referral.first_booking_completed_at ? (
-                                <FiCheck className="w-5 h-5 text-green-500 mx-auto" />
+                                <Check className="w-5 h-5 text-green-500 mx-auto" />
                               ) : (
-                                <FiX className="w-5 h-5 text-gray-400 mx-auto" />
+                                <X className="w-5 h-5 text-gray-400 mx-auto" />
                               )}
                             </div>
                           </div>
@@ -954,7 +951,7 @@ export default function LoyaltyPage() {
                   </div>
                 ) : (
                   <div className="p-12 text-center">
-                    <FiUsers className="w-12 h-12 text-gray-400 mx-auto mb-3" />
+                    <Users className="w-12 h-12 text-gray-400 mx-auto mb-3" />
                     <p className="text-gray-600 mb-4">No referrals yet</p>
                     <button
                       onClick={() => setShowShareModal(true)}
@@ -992,7 +989,7 @@ export default function LoyaltyPage() {
                     onClick={() => setShowShareModal(false)}
                     className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
                   >
-                    <FiX className="w-6 h-6 text-gray-600" />
+                    <X className="w-6 h-6 text-gray-600" />
                   </button>
                 </div>
 
@@ -1007,12 +1004,12 @@ export default function LoyaltyPage() {
                   >
                     {copied ? (
                       <>
-                        <FiCheck className="mr-2 w-4 h-4" />
+                        <Check className="mr-2 w-4 h-4" />
                         Copied!
                       </>
                     ) : (
                       <>
-                        <FiCopy className="mr-2 w-4 h-4" />
+                        <Copy className="mr-2 w-4 h-4" />
                         Copy Code
                       </>
                     )}
@@ -1024,7 +1021,7 @@ export default function LoyaltyPage() {
                     onClick={() => handleShareReferral('whatsapp')}
                     className="w-full px-4 py-3 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors font-medium flex items-center justify-center"
                   >
-                    <FiMessageCircle className="mr-2 w-5 h-5" />
+                    <MessageCircle className="mr-2 w-5 h-5" />
                     Share on WhatsApp
                   </button>
 
@@ -1032,7 +1029,7 @@ export default function LoyaltyPage() {
                     onClick={() => handleShareReferral('instagram')}
                     className="w-full px-4 py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-lg hover:from-purple-600 hover:to-pink-600 transition-colors font-medium flex items-center justify-center"
                   >
-                    <FiInstagram className="mr-2 w-5 h-5" />
+                    <Instagram className="mr-2 w-5 h-5" />
                     Share on Instagram
                   </button>
 
@@ -1040,7 +1037,7 @@ export default function LoyaltyPage() {
                     onClick={() => handleShareReferral('twitter')}
                     className="w-full px-4 py-3 bg-blue-400 text-white rounded-lg hover:bg-blue-500 transition-colors font-medium flex items-center justify-center"
                   >
-                    <FiTwitter className="mr-2 w-5 h-5" />
+                    <Twitter className="mr-2 w-5 h-5" />
                     Share on Twitter
                   </button>
 
@@ -1048,7 +1045,7 @@ export default function LoyaltyPage() {
                     onClick={() => handleShareReferral('email')}
                     className="w-full px-4 py-3 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors font-medium flex items-center justify-center"
                   >
-                    <FiMail className="mr-2 w-5 h-5" />
+                    <Mail className="mr-2 w-5 h-5" />
                     Share via Email
                   </button>
 
@@ -1056,7 +1053,7 @@ export default function LoyaltyPage() {
                     onClick={() => handleShareReferral('copy')}
                     className="w-full px-4 py-3 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors font-medium flex items-center justify-center"
                   >
-                    <FiExternalLink className="mr-2 w-5 h-5" />
+                    <ExternalLink className="mr-2 w-5 h-5" />
                     Copy Link
                   </button>
                 </div>

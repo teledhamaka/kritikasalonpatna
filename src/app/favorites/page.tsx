@@ -1,10 +1,10 @@
 "use client";
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
+import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FiArrowLeft, FiHeart, FiShoppingCart, FiClock, FiStar,  FiFilter, FiGrid, FiList, FiShare2, FiLoader, FiX,
-  FiInfo, FiTrendingUp} from 'react-icons/fi';
+import { ArrowLeft, Heart, ShoppingCart, Clock, Star, Filter, Grid, List, Share2, Loader, X, Info, TrendingUp} from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 import { useBooking } from '../../context/BookingContext';
 import { supabase } from '../../lib/supabase';
@@ -25,19 +25,35 @@ interface Service {
   tags?: string[];
 }
 
+interface CartItem {
+  id: string;
+  name: string;
+  category: string;
+  description: string;
+  image_url?: string;
+  base_price: number;
+  discounted_price?: number;
+  duration_minutes: number;
+  rating_average: number;
+  rating_count: number;
+  quantity: number;
+  service_type: string;
+  active: boolean;
+}
+
 type ViewMode = 'grid' | 'list';
 type SortOption = 'recent' | 'price-low' | 'price-high' | 'rating' | 'popular';
 
 export default function FavoritesPage() {
   const router = useRouter();
-  const { user, isLoggedIn } = useAuth();
+  const { isLoggedIn } = useAuth();
   const { favorites, toggleFavorite, addToCart, cartItemCount } = useBooking();
   const [services, setServices] = useState<Service[]>([]);
   const [loading, setLoading] = useState(true);
   const [viewMode, setViewMode] = useState<ViewMode>('grid');
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [sortBy, setSortBy] = useState<SortOption>('recent');
-  const [showFilters, setShowFilters] = useState(false);
+  //const [showFilters, setShowFilters] = useState(false);
   const [selectedService, setSelectedService] = useState<Service | null>(null);
   const [showDetailsModal, setShowDetailsModal] = useState(false);
 
@@ -49,15 +65,15 @@ export default function FavoritesPage() {
     { id: 'nail', name: 'Nails', icon: '💅' }
   ];
 
-  useEffect(() => {
-    if (!isLoggedIn) {
-      router.push('/login');
-    } else {
-      fetchFavoriteServices();
-    }
-  }, [isLoggedIn, favorites]);
+  // useEffect(() => {
+  //   if (!isLoggedIn) {
+  //     router.push('/login');
+  //   } else {
+  // //     fetchFavoriteServices();
+  //   }
+  // }, [isLoggedIn, favorites]);
 
-  const fetchFavoriteServices = async () => {
+  const fetchServices = useCallback(async () => {
     if (favorites.length === 0) {
       setServices([]);
       setLoading(false);
@@ -74,19 +90,27 @@ export default function FavoritesPage() {
 
       if (error) throw error;
       setServices(data || []);
-    } catch (error) {
-      console.error('Error fetching favorite services:', error);
+    } catch (err) {
+      console.error('Error fetching favorite services:', err);
     } finally {
       setLoading(false);
     }
-  };
+  }, [favorites]);
+
+  useEffect(() => {
+    if (!isLoggedIn) {
+      router.push('/login');
+    } else {
+      fetchServices();
+    }
+  }, [isLoggedIn, favorites, router, fetchServices]);
 
   const handleRemoveFavorite = async (serviceId: string) => {
     await toggleFavorite(serviceId);
   };
 
   const handleAddToCart = (service: Service) => {
-    addToCart({
+    const cartItem: CartItem ={
       id: service.id,
       name: service.name,
       category: service.category,
@@ -100,7 +124,8 @@ export default function FavoritesPage() {
       quantity: 1,
       service_type: service.category,
       active: true
-    } as any);
+    };
+    //addToCart(cartItem);
   };
 
   const handleShare = async () => {
@@ -154,7 +179,7 @@ export default function FavoritesPage() {
   if (loading) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-pink-50 via-white to-purple-50 flex items-center justify-center">
-        <FiLoader className="w-8 h-8 text-pink-500 animate-spin" />
+        <Loader className="w-8 h-8 text-pink-500 animate-spin" />
       </div>
     );
   }
@@ -169,11 +194,11 @@ export default function FavoritesPage() {
               onClick={() => router.back()}
               className="p-2 rounded-full hover:bg-pink-100 mr-2"
             >
-              <FiArrowLeft className="w-5 h-5 text-gray-700" />
+              <ArrowLeft className="w-5 h-5 text-gray-700" />
             </button>
             <div>
               <h1 className="text-2xl font-bold text-gray-800 flex items-center">
-                <FiHeart className="w-6 h-6 mr-2 text-pink-500 fill-current" />
+                <Heart className="w-6 h-6 mr-2 text-pink-500 fill-current" />
                 My Favorites
               </h1>
               <p className="text-sm text-gray-600">{stats.total} services saved</p>
@@ -185,13 +210,13 @@ export default function FavoritesPage() {
               onClick={handleShare}
               className="p-2 rounded-lg hover:bg-pink-100 transition-colors"
             >
-              <FiShare2 className="w-5 h-5 text-gray-700" />
+              <Share2 className="w-5 h-5 text-gray-700" />
             </button>
             <button
               onClick={() => router.push('/cart')}
               className="relative p-2 rounded-lg hover:bg-pink-100 transition-colors"
             >
-              <FiShoppingCart className="w-5 h-5 text-gray-700" />
+              <ShoppingCart className="w-5 h-5 text-gray-700" />
               {cartItemCount > 0 && (
                 <span className="absolute -top-1 -right-1 bg-pink-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs font-bold">
                   {cartItemCount}
@@ -205,18 +230,17 @@ export default function FavoritesPage() {
           /* Empty State */
           <div className="bg-white rounded-2xl p-12 shadow-sm border border-pink-100 text-center">
             <div className="w-24 h-24 mx-auto bg-pink-50 rounded-full flex items-center justify-center mb-6">
-              <FiHeart className="w-12 h-12 text-pink-300" />
+              <Heart className="w-12 h-12 text-pink-300" />
             </div>
             <h3 className="text-2xl font-bold text-gray-800 mb-2">No Favorites Yet</h3>
-            <p className="text-gray-600 mb-8 max-w-md mx-auto">
-              Start building your collection of favorite beauty services. They'll appear here for easy access!
+            <p className="text-gray-600 mb-8 max-w-md mx-auto">Start building your collection of favorite beauty services. They&apos;ll appear here for easy access!
             </p>
             <button
               onClick={() => router.push('/makeup')}
               className="px-8 py-3 bg-gradient-to-r from-pink-500 to-purple-600 text-white rounded-full hover:from-pink-600 hover:to-purple-700 transition-all font-medium inline-flex items-center"
             >
               Browse Services
-              <FiArrowLeft className="ml-2 w-5 h-5 rotate-180" />
+              <ArrowLeft className="ml-2 w-5 h-5 rotate-180" />
             </button>
           </div>
         ) : (
@@ -234,7 +258,7 @@ export default function FavoritesPage() {
               <div className="bg-white rounded-xl p-4 shadow-sm border border-pink-100">
                 <div className="text-2xl font-bold text-yellow-600 flex items-center">
                   {stats.avgRating.toFixed(1)}
-                  <FiStar className="w-5 h-5 ml-1 fill-current" />
+                  <Star className="w-5 h-5 ml-1 fill-current" />
                 </div>
                 <div className="text-sm text-gray-600">Avg Rating</div>
               </div>
@@ -284,7 +308,7 @@ export default function FavoritesPage() {
                         viewMode === 'grid' ? 'bg-white shadow-sm' : 'hover:bg-gray-200'
                       }`}
                     >
-                      <FiGrid className="w-5 h-5 text-gray-700" />
+                      <Grid className="w-5 h-5 text-gray-700" />
                     </button>
                     <button
                       onClick={() => setViewMode('list')}
@@ -292,7 +316,7 @@ export default function FavoritesPage() {
                         viewMode === 'list' ? 'bg-white shadow-sm' : 'hover:bg-gray-200'
                       }`}
                     >
-                      <FiList className="w-5 h-5 text-gray-700" />
+                      <List className="w-5 h-5 text-gray-700" />
                     </button>
                   </div>
                 </div>
@@ -302,7 +326,7 @@ export default function FavoritesPage() {
             {/* Services Grid/List */}
             {filteredServices.length === 0 ? (
               <div className="bg-white rounded-xl p-8 shadow-sm border border-pink-100 text-center">
-                <FiFilter className="w-12 h-12 text-gray-400 mx-auto mb-3" />
+                <Filter className="w-12 h-12 text-gray-400 mx-auto mb-3" />
                 <p className="text-gray-600">No services found in this category</p>
               </div>
             ) : viewMode === 'grid' ? (
@@ -318,7 +342,7 @@ export default function FavoritesPage() {
                     {/* Service Image */}
                     <div className="relative h-48 bg-gradient-to-br from-pink-100 to-purple-100">
                       {service.image_url ? (
-                        <img
+                        <Image
                           src={service.image_url}
                           alt={service.name}
                           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
@@ -333,7 +357,7 @@ export default function FavoritesPage() {
                       <div className="absolute top-3 left-3 flex flex-col gap-2">
                         {service.is_trending && (
                           <span className="px-2 py-1 bg-pink-500 text-white text-xs font-bold rounded-full flex items-center">
-                            <FiTrendingUp className="w-3 h-3 mr-1" />
+                            <TrendingUp className="w-3 h-3 mr-1" />
                             Trending
                           </span>
                         )}
@@ -349,7 +373,7 @@ export default function FavoritesPage() {
                         onClick={() => handleRemoveFavorite(service.id)}
                         className="absolute top-3 right-3 w-10 h-10 bg-white rounded-full flex items-center justify-center hover:scale-110 transition-transform shadow-lg"
                       >
-                        <FiHeart className="w-5 h-5 text-pink-500 fill-current" />
+                        <Heart className="w-5 h-5 text-pink-500 fill-current" />
                       </button>
                     </div>
 
@@ -366,7 +390,7 @@ export default function FavoritesPage() {
                       {/* Rating & Duration */}
                       <div className="flex items-center justify-between mb-3">
                         <div className="flex items-center">
-                          <FiStar className="w-4 h-4 text-yellow-400 fill-current mr-1" />
+                          <Star className="w-4 h-4 text-yellow-400 fill-current mr-1" />
                           <span className="text-sm font-medium text-gray-700">
                             {service.rating_average.toFixed(1)}
                           </span>
@@ -375,7 +399,7 @@ export default function FavoritesPage() {
                           </span>
                         </div>
                         <div className="flex items-center text-sm text-gray-600">
-                          <FiClock className="w-4 h-4 mr-1" />
+                          <Clock className="w-4 h-4 mr-1" />
                           {service.duration_minutes} mins
                         </div>
                       </div>
@@ -407,13 +431,13 @@ export default function FavoritesPage() {
                             }}
                             className="p-2 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors"
                           >
-                            <FiInfo className="w-4 h-4 text-gray-700" />
+                            <Info className="w-4 h-4 text-gray-700" />
                           </button>
                           <button
                             onClick={() => handleAddToCart(service)}
                             className="px-4 py-2 bg-gradient-to-r from-pink-500 to-purple-600 text-white rounded-lg hover:from-pink-600 hover:to-purple-700 transition-all font-medium flex items-center"
                           >
-                            <FiShoppingCart className="w-4 h-4 mr-1" />
+                            <ShoppingCart className="w-4 h-4 mr-1" />
                             Add
                           </button>
                         </div>
@@ -436,7 +460,7 @@ export default function FavoritesPage() {
                       {/* Service Image */}
                       <div className="relative w-48 h-32 bg-gradient-to-br from-pink-100 to-purple-100 flex-shrink-0">
                         {service.image_url ? (
-                          <img
+                          <Image
                             src={service.image_url}
                             alt={service.name}
                             className="w-full h-full object-cover"
@@ -470,22 +494,22 @@ export default function FavoritesPage() {
                               onClick={() => handleRemoveFavorite(service.id)}
                               className="ml-3 w-8 h-8 bg-pink-50 rounded-full flex items-center justify-center hover:bg-pink-100 transition-colors"
                             >
-                              <FiHeart className="w-4 h-4 text-pink-500 fill-current" />
+                              <Heart className="w-4 h-4 text-pink-500 fill-current" />
                             </button>
                           </div>
 
                           <div className="flex items-center space-x-4 text-sm text-gray-600 mb-3">
                             <div className="flex items-center">
-                              <FiStar className="w-4 h-4 text-yellow-400 fill-current mr-1" />
+                              <Star className="w-4 h-4 text-yellow-400 fill-current mr-1" />
                               {service.rating_average.toFixed(1)} ({service.rating_count})
                             </div>
                             <div className="flex items-center">
-                              <FiClock className="w-4 h-4 mr-1" />
+                              <Clock className="w-4 h-4 mr-1" />
                               {service.duration_minutes} mins
                             </div>
                             {service.is_trending && (
                               <span className="flex items-center text-pink-600 font-medium">
-                                <FiTrendingUp className="w-4 h-4 mr-1" />
+                                <TrendingUp className="w-4 h-4 mr-1" />
                                 Trending
                               </span>
                             )}
@@ -524,7 +548,7 @@ export default function FavoritesPage() {
                               onClick={() => handleAddToCart(service)}
                               className="px-4 py-2 bg-gradient-to-r from-pink-500 to-purple-600 text-white rounded-lg hover:from-pink-600 hover:to-purple-700 transition-all font-medium flex items-center"
                             >
-                              <FiShoppingCart className="w-4 h-4 mr-2" />
+                              <ShoppingCart className="w-4 h-4 mr-2" />
                               Add to Cart
                             </button>
                           </div>
@@ -550,7 +574,7 @@ export default function FavoritesPage() {
                     }}
                     className="px-6 py-3 bg-gradient-to-r from-pink-500 to-purple-600 text-white rounded-lg hover:from-pink-600 hover:to-purple-700 transition-all font-medium flex items-center"
                   >
-                    <FiShoppingCart className="w-5 h-5 mr-2" />
+                    <ShoppingCart className="w-5 h-5 mr-2" />
                     Add All to Cart
                   </button>
                 </div>
@@ -582,12 +606,12 @@ export default function FavoritesPage() {
                     onClick={() => setShowDetailsModal(false)}
                     className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
                   >
-                    <FiX className="w-6 h-6 text-gray-600" />
+                    <X className="w-6 h-6 text-gray-600" />
                   </button>
                 </div>
 
                 {selectedService.image_url && (
-                  <img
+                  <Image
                     src={selectedService.image_url}
                     alt={selectedService.name}
                     className="w-full h-64 object-cover rounded-xl mb-4"
@@ -600,12 +624,12 @@ export default function FavoritesPage() {
                   <div className="flex items-center justify-between py-3 border-t border-b border-gray-200">
                     <div className="flex items-center space-x-6">
                       <div className="flex items-center">
-                        <FiStar className="w-5 h-5 text-yellow-400 fill-current mr-1" />
+                        <Star className="w-5 h-5 text-yellow-400 fill-current mr-1" />
                         <span className="font-medium">{selectedService.rating_average.toFixed(1)}</span>
                         <span className="text-sm text-gray-500 ml-1">({selectedService.rating_count} reviews)</span>
                       </div>
                       <div className="flex items-center">
-                        <FiClock className="w-5 h-5 text-gray-600 mr-1" />
+                        <Clock className="w-5 h-5 text-gray-600 mr-1" />
                         <span className="font-medium">{selectedService.duration_minutes} mins</span>
                       </div>
                     </div>
@@ -645,7 +669,7 @@ export default function FavoritesPage() {
                       onClick={() => handleRemoveFavorite(selectedService.id)}
                       className="flex-1 px-4 py-3 bg-red-100 text-red-700 rounded-lg hover:bg-red-200 transition-colors font-medium flex items-center justify-center"
                     >
-                      <FiHeart className="w-5 h-5 mr-2 fill-current" />
+                      <Heart className="w-5 h-5 mr-2 fill-current" />
                       Remove from Favorites
                     </button>
                     <button
@@ -655,7 +679,7 @@ export default function FavoritesPage() {
                       }}
                       className="flex-1 px-4 py-3 bg-gradient-to-r from-pink-500 to-purple-600 text-white rounded-lg hover:from-pink-600 hover:to-purple-700 transition-all font-medium flex items-center justify-center"
                     >
-                      <FiShoppingCart className="w-5 h-5 mr-2" />
+                      <ShoppingCart className="w-5 h-5 mr-2" />
                       Add to Cart
                     </button>
                   </div>

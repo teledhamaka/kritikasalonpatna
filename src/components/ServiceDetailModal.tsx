@@ -2,8 +2,9 @@
 "use client";
 
 import { motion, AnimatePresence } from 'framer-motion';
-import { FiX, FiCheck, FiClock, FiChevronDown, FiChevronUp } from 'react-icons/fi';
-import { Service } from '../../types/service';
+import { X, Check, Clock, ChevronDown, ChevronUp } from 'lucide-react';
+import { Service } from '../types/service';
+import Image from 'next/image';
 
 interface ServiceDetailModalProps {
   service: Service | null;
@@ -43,7 +44,7 @@ const ServiceDetailModal = ({
           >
             {/* Header */}
             <div className="relative">
-              <img
+              <Image
                 src={service.image}
                 alt={service.title}
                 className="w-full h-64 object-cover rounded-t-xl"
@@ -52,13 +53,13 @@ const ServiceDetailModal = ({
                 onClick={onClose}
                 className="absolute top-4 right-4 p-2 bg-white/80 backdrop-blur-sm rounded-full"
               >
-                <FiX className="w-5 h-5" />
+                <X className="w-5 h-5" />
               </button>
-              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-6">
+              <div className="absolute bottom-0 left-0 right-0 bg-linear-to-t from-black to-transparent p-6">
                 <h2 className="text-white text-2xl font-bold mb-2">{service.title}</h2>
                 <div className="flex items-center space-x-4">
                   <div className="bg-black/60 backdrop-blur-sm text-white px-3 py-1 rounded-full text-sm flex items-center">
-                    <FiClock className="w-3 h-3 mr-1" />
+                    <Clock className="w-3 h-3 mr-1" />
                     {service.duration} mins
                   </div>
                   <div className="bg-pink-500 text-white px-3 py-1 rounded-full text-sm font-medium">
@@ -93,7 +94,7 @@ const ServiceDetailModal = ({
                 <div className="space-y-2">
                   {service.benefits.map((benefit, index) => (
                     <div key={index} className="flex items-start">
-                      <FiCheck className="text-green-500 mt-1 mr-2 flex-shrink-0" />
+                      <Check className="text-green-500 mt-1 mr-2 shrink-0" />
                       <p className="text-gray-600">{benefit}</p>
                     </div>
                   ))}
@@ -106,9 +107,9 @@ const ServiceDetailModal = ({
                   <h3 className="text-lg font-bold text-gray-800 mb-3">Key Ingredients</h3>
                   <div className="flex overflow-x-auto space-x-4 pb-2">
                     {service.keyIngredients.map((ingredient, index) => (
-                      <div key={index} className="flex flex-col items-center flex-shrink-0">
+                      <div key={index} className="flex flex-col items-center shrink-0">
                         <div className="w-16 h-16 bg-pink-100 rounded-full flex items-center justify-center mb-2">
-                          <FiCheck className="text-pink-500 w-6 h-6" />
+                          <Check className="text-pink-500 w-6 h-6" />
                         </div>
                         <span className="text-sm font-medium text-center">{ingredient}</span>
                       </div>
@@ -141,7 +142,7 @@ const ServiceDetailModal = ({
                           onClick={() => setActiveFaq(activeFaq === index ? null : index)}
                         >
                           <span className="font-medium text-pink-700">{faq.question}</span>
-                          {activeFaq === index ? <FiChevronUp /> : <FiChevronDown />}
+                          {activeFaq === index ? <ChevronUp /> : <ChevronDown />}
                         </button>
                         <AnimatePresence>
                           {activeFaq === index && (

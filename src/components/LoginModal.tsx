@@ -13,21 +13,21 @@ interface LoginModalProps {
 }
 
 // This interface should match your 'profiles' table columns exactly
-interface UserProfile {
-  id?: string;
-  full_name: string;
-  email: string;
-  birthday: string;
-  phone: string;
-  enable_period_tracker: boolean;
-  anniversary_date?: string;
-  age?: number;
-  theme_style?: string;
-  login_count?: number;
-  last_login_at?: string;
-  created_at?: string;
-  updated_at?: string;
-}
+// interface UserProfile {
+//   id?: string;
+//   full_name: string;
+//   email: string;
+//   birthday: string;
+//   phone: string;
+//   enable_period_tracker: boolean;
+//   anniversary_date?: string;
+//   age?: number;
+//   theme_style?: string;
+//   login_count?: number;
+//   last_login_at?: string;
+//   created_at?: string;
+//   updated_at?: string;
+// }
 
 const LoginModal = ({ isOpen, onClose, onLoginSuccess, onSkipToHome }: LoginModalProps) => {
   const [isLogin, setIsLogin] = useState(true);
@@ -230,7 +230,7 @@ const LoginModal = ({ isOpen, onClose, onLoginSuccess, onSkipToHome }: LoginModa
             <div className="text-6xl mb-4">🎉</div>
             <h3 className="text-2xl font-bold text-pink-600 mb-2">Welcome Bonus!</h3>
             <p className="text-gray-700 mb-4">
-              Congratulations! You've earned a 20% discount on your first service!
+              Congratulations! You&apos;ve earned a 20% discount on your first service!
             </p>
             <div className="inline-flex items-center bg-pink-100 text-pink-800 px-4 py-2 rounded-full">
               <FiGift className="mr-2" />

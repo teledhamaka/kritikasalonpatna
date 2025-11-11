@@ -1,14 +1,15 @@
 // app/signup/page.tsx
 "use client";
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react'; // ✅ FIXED: Added useCallback
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
-import { FiEye, FiEyeOff, FiMail, FiLock, FiPhone, FiUser, FiArrowLeft, FiCalendar, FiHeart, FiX, FiAlertCircle, FiCheck } from 'react-icons/fi';
-import { FcGoogle } from 'react-icons/fc';
-import { FaFacebook, FaInstagram } from 'react-icons/fa';
+import { Eye, EyeOff, Mail, Lock, Phone, User as UserIcon, ArrowLeft, Calendar, Heart, X, AlertCircle, Check, Loader, LogIn, Facebook, Instagram } from 'lucide-react'; // Renamed User import
 import { supabase } from '@/lib/supabase';
+// ✅ NEW IMPORT: Google Icon from react-icons
+import { FcGoogle } from 'react-icons/fc';
+import { User } from '@supabase/supabase-js'; // ✅ FIXED: Added Supabase User type
 
 export default function SignupPage() {
   const router = useRouter();
@@ -25,14 +26,14 @@ export default function SignupPage() {
   });
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-  const [signupMethod, setSignupMethod] = useState<'email' | 'mobile'>('email');
-  //const [otpSent, setOtpSent] = useState(false);
-  //const [otp, setOtp] = useState('');
+  const [signupMethod, setSignupMethod] = useState<'email' | 'mobile' | 'google'>('email');
   const [step, setStep] = useState(1);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
   const [passwordStrength, setPasswordStrength] = useState(0);
+  const [googleUser, setGoogleUser] = useState<User | null>(null); // ✅ FIXED
+  const [googleLoading, setGoogleLoading] = useState(false);
 
   // Check if user is already logged in
   useEffect(() => {
@@ -44,6 +45,52 @@ export default function SignupPage() {
     };
     checkUser();
   }, [router]);
+
+  // Handle Google user profile after OAuth
+  const handleGoogleUserProfile = useCallback(async (user: User) => { // ✅ FIXED
+    try {
+      // Extract name from Google profile
+      const fullName = user.user_metadata?.full_name || '';
+      const names = fullName.split(' ');
+      const firstName = names[0] || '';
+      const lastName = names.slice(1).join(' ') || '';
+
+      // Pre-fill form with Google data
+      setFormData(prev => ({
+        ...prev,
+        firstName,
+        lastName,
+        email: user.email || prev.email
+      }));
+
+      setGoogleUser(user);
+      setSignupMethod('google');
+      setSuccess('Google account connected! Please complete your profile details below.');
+      
+      // Auto-proceed to step 2 for Google users
+      if (step === 1) {
+        setStep(2);
+      }
+    } catch (error) {
+      console.error('Error handling Google profile:', error);
+      setError('Failed to load Google profile information.');
+    }
+  }, [step]); // ✅ FIXED: Added 'step' dependency
+
+  // Check for OAuth callback on component mount
+  useEffect(() => {
+    const checkOAuthSession = async () => {
+      const { data: { session } } = await supabase.auth.getSession();
+      if (session?.user) {
+        const user = session.user;
+        if (user.app_metadata?.provider === 'google') {
+          await handleGoogleUserProfile(user);
+        }
+      }
+    };
+
+    checkOAuthSession();
+  }, [handleGoogleUserProfile]); // ✅ FIXED
 
   // Password strength checker
   useEffect(() => {
@@ -60,23 +107,9 @@ export default function SignupPage() {
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
-    setError(''); // Clear error when user starts typing
+    setError('');
   };
 
-  const validateStep1 = () => {
-    if (!formData.firstName.trim() || !formData.lastName.trim() || !formData.email.trim()) {
-      return false;
-    }
-    if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      return false;
-    }
-    if (formData.password.length < 6) {
-      return false;
-    }
-    return formData.password === formData.confirmPassword;
-  };
-
-  //const isStep1Valid = validateStep1();
   const isStep1DataComplete = 
     formData.firstName.trim() && 
     formData.lastName.trim() && 
@@ -110,6 +143,35 @@ export default function SignupPage() {
     setStep(2);
   };
 
+  // Enhanced Google Sign-In Integration
+  const handleGoogleSignIn = async () => {
+    setGoogleLoading(true);
+    setError('');
+    
+    try {
+      const { error } = await supabase.auth.signInWithOAuth({
+        provider: 'google',
+        options: {
+          redirectTo: `${window.location.origin}/auth/callback`,
+          queryParams: {
+            access_type: 'offline',
+            prompt: 'consent',
+          }
+        }
+      });
+
+      if (error) throw error;
+
+    } catch (error: unknown) { // ✅ FIXED
+      console.error('Google OAuth error:', error);
+      let message = 'Google sign-in failed. Please try again.';
+      if (error instanceof Error) message = error.message;
+      setError(message);
+      setGoogleLoading(false);
+    }
+  };
+
+  // Enhanced submit handler for both manual and Google signup
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
@@ -128,47 +190,73 @@ export default function SignupPage() {
         throw new Error('Date of birth is required.');
       }
 
-      // Step 1: Create the user in Supabase Auth.
-      // The database trigger 'on_auth_user_created' will automatically create a basic profile.
-      const { data: authData, error: authError } = await supabase.auth.signUp({
-        email: formData.email.trim(),
-        password: formData.password,
-        options: {
+      let authUser: User;
+
+      if (signupMethod === 'google' && googleUser) {
+        // For Google users, we're already authenticated
+        authUser = googleUser;
+        
+        // Update Google user's profile with additional data
+        const { error: updateError } = await supabase.auth.updateUser({
           data: {
-            // This 'full_name' is passed to the trigger to populate the profile
             full_name: `${formData.firstName.trim()} ${formData.lastName.trim()}`,
           }
+        });
+
+        if (updateError) {
+          console.warn('Failed to update Google user metadata:', updateError);
         }
-      });
+      } else {
+        // For manual signup, create the user in Supabase Auth
+        const { data: signUpData, error: authError } = await supabase.auth.signUp({
+          email: formData.email.trim(),
+          password: formData.password,
+          options: {
+            data: {
+              full_name: `${formData.firstName.trim()} ${formData.lastName.trim()}`,
+            }
+          }
+        });
 
-      if (authError) {
-        throw authError; // Rethrow to be caught by the main catch block
+        if (authError) {
+          throw authError;
+        }
+
+        if (!signUpData.user) {
+          throw new Error('Failed to create user account. Please try again.');
+        }
+
+        authUser = signUpData.user;
       }
 
-      if (!authData.user) {
-        throw new Error('Failed to create user account. Please try again.');
-      }
-
-      // Step 2: Prepare the additional details to update the profile.
-      // We don't need to include id, email, or full_name as they are already set.
+      // Prepare profile updates
       const profileUpdates = {
         phone: formData.mobile.trim() || null,
         birthday: formData.dob || null,
         anniversary_date: formData.anniversaryDate || null,
-        enable_period_tracker: true, // Set custom default
+        enable_period_tracker: true,
+        signup_method: signupMethod,
+        ...(signupMethod === 'google' && {
+          // For Google users, ensure name is updated
+          full_name: `${formData.firstName.trim()} ${formData.lastName.trim()}`
+        })
       };
 
-      // Step 3: Update the newly created profile with the details from the form.
+      // Update or create profile
       const { error: updateError } = await supabase
         .from('profiles')
-        .update(profileUpdates)
-        .eq('id', authData.user.id);
+        .upsert({
+          id: authUser.id,
+          email: formData.email.trim(),
+          full_name: `${formData.firstName.trim()} ${formData.lastName.trim()}`,
+          ...profileUpdates
+        }, {
+          onConflict: 'id'
+        });
 
       if (updateError) {
-        // The user account was created, but saving details failed.
-        // Log the error and inform the user. They can update their profile later.
-        console.error('Error updating profile with details:', updateError);
-        throw new Error(`Account created, but failed to save details: ${updateError.message}`);
+        console.error('Error updating profile:', updateError);
+        throw new Error(`Failed to save profile details: ${updateError.message}`);
       }
 
       setSuccess('Account created successfully! Redirecting to your dashboard...');
@@ -177,11 +265,20 @@ export default function SignupPage() {
         router.push('/');
       }, 2000);
 
-    } catch (error: any) {
+    } catch (error: unknown) { // ✅ FIXED
       console.error('Signup process error:', error);
-      let errorMessage = error.message || 'An unknown error occurred during signup.';
+      let errorMessage = 'An unknown error occurred during signup.';
+      
+      if (error instanceof Error) {
+        errorMessage = error.message;
+      } else if (typeof error === 'object' && error !== null && 'message' in error) {
+        errorMessage = String((error as { message: unknown }).message);
+      }
+
       if (errorMessage.includes('User already registered')) {
         errorMessage = 'An account with this email already exists. Please login instead.';
+      } else if (errorMessage.includes('Email not confirmed')) {
+        errorMessage = 'Please check your email to confirm your account before proceeding.';
       }
       setError(errorMessage);
     } finally {
@@ -191,20 +288,26 @@ export default function SignupPage() {
 
   const handleSocialSignup = async (provider: 'google' | 'facebook') => {
     try {
+      if (provider === 'google') {
+        await handleGoogleSignIn();
+        return;
+      }
+
+      // Facebook OAuth
       const { error } = await supabase.auth.signInWithOAuth({
         provider,
         options: {
-          redirectTo: `${window.location.origin}/`
+          redirectTo: `${window.location.origin}/auth/callback`
         }
       });
       if (error) throw error;
-    } catch (error: any) {
-      setError(error.message || `${provider} signup failed`);
+    } catch (error: unknown) { // ✅ FIXED
+      let message = `${provider} signup failed`;
+      if (error instanceof Error) message = error.message;
+      setError(message || `${provider} signup failed`);
     }
   };
-  
-  // (The rest of your component's code for rendering the UI remains the same)
-  // ...
+
   const getPasswordStrengthColor = () => {
     if (passwordStrength <= 2) return 'bg-red-500';
     if (passwordStrength <= 3) return 'bg-yellow-500';
@@ -217,8 +320,33 @@ export default function SignupPage() {
     return 'Strong';
   };
 
+  // Google account information display
+  const renderGoogleAccountInfo = () => {
+    if (signupMethod !== 'google' || !googleUser) return null;
+
+    return (
+      <motion.div
+        initial={{ opacity: 0, y: -10 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="mb-4 p-3 bg-blue-50 border border-blue-200 rounded-lg"
+      >
+        <div className="flex items-center">
+          <LogIn className="w-5 h-5 mr-2" />
+          <div>
+            <p className="text-sm font-medium text-blue-800">
+              Connected with Google
+            </p>
+            <p className="text-xs text-blue-600">
+              {googleUser.email}
+            </p>
+          </div>
+        </div>
+      </motion.div>
+    );
+  };
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-pink-50 via-white to-purple-50 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-linear-to-br from-pink-50 via-white to-purple-50 flex items-center justify-center p-4">
       <div className="max-w-md w-full">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -227,26 +355,32 @@ export default function SignupPage() {
           className="bg-white rounded-2xl shadow-xl overflow-hidden border border-pink-100"
         >
           {/* Header with Navigation Buttons */}
-          <div className="bg-gradient-to-r from-pink-500 to-purple-600 p-6 text-center relative">
+          <div className="bg-linear-to-r from-pink-500 to-purple-600 p-6 text-center relative">
             <Link 
               href="/login" 
               className="absolute left-4 top-4 text-white hover:text-pink-200 transition-colors"
               title="Go to Login"
             >
-              <FiArrowLeft className="w-6 h-6" />
+              <ArrowLeft className="w-6 h-6" />
             </Link>
             <button
               onClick={() => router.push('/')}
               className="absolute right-4 top-4 bg-white/20 hover:bg-white/30 text-white rounded-full p-1 transition-all duration-200 backdrop-blur-sm"
               title="Skip to Home"
             >
-              <FiX className="w-4 h-4" />
+              <X className="w-4 h-4" />
             </button>
             <div className="flex justify-center mb-2">
               <span className="text-4xl">💄</span>
             </div>
-            <h1 className="text-3xl font-bold text-white">Create Account</h1>
-            <p className="text-pink-100 mt-2">Join our beauty community</p>
+            <h1 className="text-3xl font-bold text-white">
+              {signupMethod === 'google' ? 'Complete Profile' : 'Create Account'}
+            </h1>
+            <p className="text-pink-100 mt-2">
+              {signupMethod === 'google' 
+                ? 'Add your details to complete registration' 
+                : 'Join our beauty community'}
+            </p>
             
             {/* Progress Indicator */}
             <div className="flex justify-center mt-4">
@@ -264,7 +398,7 @@ export default function SignupPage() {
                 animate={{ opacity: 1, y: 0 }}
                 className="mb-4 p-3 bg-red-50 border border-red-200 text-red-700 rounded-lg flex items-center"
               >
-                <FiAlertCircle className="w-5 h-5 mr-2 flex-shrink-0" />
+                <AlertCircle className="w-5 h-5 mr-2 shrink-0" />
                 <span className="text-sm">{error}</span>
               </motion.div>
             )}
@@ -275,38 +409,42 @@ export default function SignupPage() {
                 animate={{ opacity: 1, y: 0 }}
                 className="mb-4 p-3 bg-green-50 border border-green-200 text-green-700 rounded-lg flex items-center"
               >
-                <FiCheck className="w-5 h-5 mr-2 flex-shrink-0" />
+                <Check className="w-5 h-5 mr-2 shrink-0" />
                 <span className="text-sm">{success}</span>
               </motion.div>
             )}
 
+            {renderGoogleAccountInfo()}
+
             {step === 1 ? (
               <>
-                {/* Signup Method Toggle */}
-                <div className="flex bg-pink-50 rounded-lg p-1 mb-6">
-                  <button
-                    onClick={() => setSignupMethod('email')}
-                    className={`flex-1 py-2 text-center rounded-md transition-colors ${
-                      signupMethod === 'email' 
-                        ? 'bg-white shadow-sm text-pink-600 font-medium' 
-                        : 'text-gray-600 hover:text-pink-500'
-                    }`}
-                  >
-                    Email
-                  </button>
-                  <button
-                    onClick={() => setSignupMethod('mobile')}
-                    className={`flex-1 py-2 text-center rounded-md transition-colors ${
-                      signupMethod === 'mobile' 
-                        ? 'bg-white shadow-sm text-pink-600 font-medium' 
-                        : 'text-gray-600 hover:text-pink-500'
-                    }`}
-                  >
-                    Mobile
-                  </button>
-                </div>
+                {/* Signup Method Toggle - Hide for Google users */}
+                {signupMethod !== 'google' && (
+                  <div className="flex bg-pink-50 rounded-lg p-1 mb-6">
+                    <button
+                      onClick={() => setSignupMethod('email')}
+                      className={`flex-1 py-2 text-center rounded-md transition-colors ${
+                        signupMethod === 'email' 
+                          ? 'bg-white shadow-sm text-pink-600 font-medium' 
+                          : 'text-gray-600 hover:text-pink-500'
+                      }`}
+                    >
+                      Email
+                    </button>
+                    <button
+                      onClick={() => setSignupMethod('mobile')}
+                      className={`flex-1 py-2 text-center rounded-md transition-colors ${
+                        signupMethod === 'mobile' 
+                          ? 'bg-white shadow-sm text-pink-600 font-medium' 
+                          : 'text-gray-600 hover:text-pink-500'
+                      }`}
+                    >
+                      Mobile
+                    </button>
+                  </div>
+                )}
 
-                {signupMethod === 'email' ? (
+                {(signupMethod === 'email' || signupMethod === 'google') ? (
                   <div className="space-y-4">
                     <div className="grid grid-cols-2 gap-4">
                       <div>
@@ -315,7 +453,7 @@ export default function SignupPage() {
                         </label>
                         <div className="relative">
                           <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                            <FiUser className="h-5 w-5 text-pink-400" />
+                            <UserIcon className="h-5 w-5 text-pink-400" />
                           </div>
                           <input
                             type="text"
@@ -323,7 +461,8 @@ export default function SignupPage() {
                             value={formData.firstName}
                             onChange={handleInputChange}
                             required
-                            className="block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-pink-500 transition-colors"
+                            disabled={signupMethod === 'google'}
+                            className="block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-pink-500 transition-colors disabled:bg-gray-100 disabled:cursor-not-allowed"
                             placeholder="First name"
                           />
                         </div>
@@ -338,7 +477,8 @@ export default function SignupPage() {
                           value={formData.lastName}
                           onChange={handleInputChange}
                           required
-                          className="block w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-pink-500 transition-colors"
+                          disabled={signupMethod === 'google'}
+                          className="block w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-pink-500 transition-colors disabled:bg-gray-100 disabled:cursor-not-allowed"
                           placeholder="Last name"
                         />
                       </div>
@@ -350,7 +490,7 @@ export default function SignupPage() {
                       </label>
                       <div className="relative">
                         <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                          <FiMail className="h-5 w-5 text-pink-400" />
+                          <Mail className="h-5 w-5 text-pink-400" />
                         </div>
                         <input
                           type="email"
@@ -358,7 +498,8 @@ export default function SignupPage() {
                           value={formData.email}
                           onChange={handleInputChange}
                           required
-                          className="block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-pink-500 transition-colors"
+                          disabled={signupMethod === 'google'}
+                          className="block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-pink-500 transition-colors disabled:bg-gray-100 disabled:cursor-not-allowed"
                           placeholder="your.email@example.com"
                         />
                       </div>
@@ -370,7 +511,7 @@ export default function SignupPage() {
                       </label>
                       <div className="relative">
                         <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                          <FiPhone className="h-5 w-5 text-pink-400" />
+                          <Phone className="h-5 w-5 text-pink-400" />
                         </div>
                         <input
                           type="tel"
@@ -383,115 +524,123 @@ export default function SignupPage() {
                       </div>
                     </div>
                     
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">
-                        Password <span className="text-red-500">*</span>
-                      </label>
-                      <div className="relative">
-                        <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                          <FiLock className="h-5 w-5 text-pink-400" />
-                        </div>
-                        <input
-                          type={showPassword ? "text" : "password"}
-                          name="password"
-                          value={formData.password}
-                          onChange={handleInputChange}
-                          required
-                          minLength={6}
-                          className="block w-full pl-10 pr-10 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-pink-500 transition-colors"
-                          placeholder="Create a password (min 6 characters)"
-                        />
-                        <button
-                          type="button"
-                          className="absolute inset-y-0 right-0 pr-3 flex items-center"
-                          onClick={() => setShowPassword(!showPassword)}
-                        >
-                          {showPassword ? (
-                            <FiEyeOff className="h-5 w-5 text-pink-400 hover:text-pink-600 transition-colors" />
-                          ) : (
-                            <FiEye className="h-5 w-5 text-pink-400 hover:text-pink-600 transition-colors" />
-                          )}
-                        </button>
-                      </div>
-                      {formData.password && (
-                        <div className="mt-2">
-                          <div className="flex items-center justify-between text-xs">
-                            <span className="text-gray-500">Password strength:</span>
-                            <span className={`font-medium ${
-                              passwordStrength <= 2 ? 'text-red-500' : 
-                              passwordStrength <= 3 ? 'text-yellow-500' : 'text-green-500'
-                            }`}>
-                              {getPasswordStrengthText()}
-                            </span>
-                          </div>
-                          <div className="w-full bg-gray-200 rounded-full h-1 mt-1">
-                            <div 
-                              className={`h-1 rounded-full transition-all ${getPasswordStrengthColor()}`}
-                              style={{ width: `${(passwordStrength / 5) * 100}%` }}
-                            ></div>
-                          </div>
-                        </div>
-                      )}
-                    </div>
-                    
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">
-                        Confirm Password <span className="text-red-500">*</span>
-                      </label>
-                      <div className="relative">
-                        <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                          <FiLock className="h-5 w-5 text-pink-400" />
-                        </div>
-                        <input
-                          type={showConfirmPassword ? "text" : "password"}
-                          name="confirmPassword"
-                          value={formData.confirmPassword}
-                          onChange={handleInputChange}
-                          required
-                          className="block w-full pl-10 pr-10 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-pink-500 transition-colors"
-                          placeholder="Confirm your password"
-                        />
-                        <button
-                          type="button"
-                          className="absolute inset-y-0 right-0 pr-3 flex items-center"
-                          onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                        >
-                          {showConfirmPassword ? (
-                            <FiEyeOff className="h-5 w-5 text-pink-400 hover:text-pink-600 transition-colors" />
-                          ) : (
-                            <FiEye className="h-5 w-5 text-pink-400 hover:text-pink-600 transition-colors" />
-                          )}
-                        </button>
-                      </div>
-                      {formData.confirmPassword && formData.password && (
-                        <div className="flex items-center mt-1">
-                          {formData.password === formData.confirmPassword ? (
-                            <div className="flex items-center text-green-600 text-xs">
-                              <FiCheck className="w-3 h-3 mr-1" />
-                              Passwords match
+                    {/* Password fields - Only show for email signup, not for Google */}
+                    {signupMethod === 'email' && (
+                      <>
+                        <div>
+                          <label className="block text-sm font-medium text-gray-700 mb-1">
+                            Password <span className="text-red-500">*</span>
+                          </label>
+                          <div className="relative">
+                            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                              <Lock className="h-5 w-5 text-pink-400" />
                             </div>
-                          ) : (
-                            <div className="flex items-center text-red-500 text-xs">
-                              <FiX className="w-3 h-3 mr-1" />
-                              Passwords don't match
+                            <input
+                              type={showPassword ? "text" : "password"}
+                              name="password"
+                              value={formData.password}
+                              onChange={handleInputChange}
+                              required
+                              minLength={6}
+                              className="block w-full pl-10 pr-10 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-pink-500 transition-colors"
+                              placeholder="Create a password (min 6 characters)"
+                            />
+                            <button
+                              type="button"
+                              className="absolute inset-y-0 right-0 pr-3 flex items-center"
+                              onClick={() => setShowPassword(!showPassword)}
+                            >
+                              {showPassword ? (
+                                <EyeOff className="h-5 w-5 text-pink-400 hover:text-pink-600 transition-colors" />
+                              ) : (
+                                <Eye className="h-5 w-5 text-pink-400 hover:text-pink-600 transition-colors" />
+                              )}
+                            </button>
+                          </div>
+                          {formData.password && (
+                            <div className="mt-2">
+                              <div className="flex items-center justify-between text-xs">
+                                <span className="text-gray-500">Password strength:</span>
+                                <span className={`font-medium ${
+                                  passwordStrength <= 2 ? 'text-red-500' : 
+                                  passwordStrength <= 3 ? 'text-yellow-500' : 'text-green-500'
+                                }`}>
+                                  {getPasswordStrengthText()}
+                                </span>
+                              </div>
+                              <div className="w-full bg-gray-200 rounded-full h-1 mt-1">
+                                <div 
+                                  className={`h-1 rounded-full transition-all ${getPasswordStrengthColor()}`}
+                                  style={{ width: `${(passwordStrength / 5) * 100}%` }}
+                                ></div>
+                              </div>
                             </div>
                           )}
                         </div>
-                      )}
-                    </div>
+                        
+                        <div>
+                          <label className="block text-sm font-medium text-gray-700 mb-1">
+                            Confirm Password <span className="text-red-500">*</span>
+                          </label>
+                          <div className="relative">
+                            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                              <Lock className="h-5 w-5 text-pink-400" />
+                            </div>
+                            <input
+                              type={showConfirmPassword ? "text" : "password"}
+                              name="confirmPassword"
+                              value={formData.confirmPassword}
+                              onChange={handleInputChange}
+                              required
+                              className="block w-full pl-10 pr-10 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-pink-500 transition-colors"
+                              placeholder="Confirm your password"
+                            />
+                            <button
+                              type="button"
+                              className="absolute inset-y-0 right-0 pr-3 flex items-center"
+                              onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                            >
+                              {showConfirmPassword ? (
+                                <EyeOff className="h-5 w-5 text-pink-400 hover:text-pink-600 transition-colors" />
+                              ) : (
+                                <Eye className="h-5 w-5 text-pink-400 hover:text-pink-600 transition-colors" />
+                              )}
+                            </button>
+                          </div>
+                          {formData.confirmPassword && formData.password && (
+                            <div className="flex items-center mt-1">
+                              {formData.password === formData.confirmPassword ? (
+                                <div className="flex items-center text-green-600 text-xs">
+                                  <Check className="w-3 h-3 mr-1" />
+                                  Passwords match
+                                </div>
+                              ) : (
+                                <div className="flex items-center text-red-500 text-xs">
+                                  <X className="w-3 h-3 mr-1" />
+                                  Passwords don&apos;t match
+                                </div>
+                              )}
+                            </div>
+                          )}
+                        </div>
+                      </>
+                    )}
                     
                     <button
                       type="button"
                       onClick={handleContinueToStep2}
-                      disabled={!isStep1DataComplete}
-                      className="w-full bg-gradient-to-r from-pink-500 to-purple-600 text-white py-3 px-4 rounded-lg hover:from-pink-600 hover:to-purple-700 transition-all font-medium disabled:opacity-50 disabled:cursor-not-allowed"
+                      disabled={signupMethod === 'email' ? !isStep1DataComplete : !formData.firstName.trim() || !formData.lastName.trim()}
+                      className="w-full bg-linear-to-r from-pink-500 to-purple-600 text-white py-3 px-4 rounded-lg hover:from-pink-600 hover:to-purple-700 transition-all font-medium disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                       Continue
                     </button>
                   </div>
                 ) : (
                   <div className="space-y-4">
-                    {/* Mobile OTP flow (unchanged) */}
+                    {/* Mobile OTP flow */}
+                    <div className="text-center text-gray-500 py-8">
+                      Mobile OTP signup coming soon...
+                    </div>
                   </div>
                 )}
                 
@@ -505,20 +654,26 @@ export default function SignupPage() {
                 </div>
                 
                 <div className="grid grid-cols-3 gap-3">
+                  {/* ✅ UPDATED: Using FcGoogle for the Google button */}
                   <button 
                     onClick={() => handleSocialSignup('google')}
-                    className="bg-white border border-gray-300 rounded-lg py-2 px-4 flex items-center justify-center hover:bg-gray-50 transition-colors"
+                    disabled={googleLoading}
+                    className="bg-white border border-gray-300 rounded-lg py-2 px-4 flex items-center justify-center hover:bg-gray-50 transition-colors disabled:opacity-50"
                   >
-                    <FcGoogle className="h-5 w-5" />
+                    {googleLoading ? (
+                      <Loader className="h-5 w-5 animate-spin" />
+                    ) : (
+                      <FcGoogle className="h-5 w-5" />
+                    )}
                   </button>
                   <button 
                     onClick={() => handleSocialSignup('facebook')}
                     className="bg-blue-600 text-white rounded-lg py-2 px-4 flex items-center justify-center hover:bg-blue-700 transition-colors"
                   >
-                    <FaFacebook className="h-5 w-5" />
+                    <Facebook className="h-5 w-5" />
                   </button>
-                  <button className="bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-lg py-2 px-4 flex items-center justify-center hover:from-purple-700 hover:to-pink-700 transition-colors">
-                    <FaInstagram className="h-5 w-5" />
+                  <button className="bg-linear-to-r from-purple-600 to-pink-600 text-white rounded-lg py-2 px-4 flex items-center justify-center hover:from-purple-700 hover:to-pink-700 transition-colors">
+                    <Instagram className="h-5 w-5" />
                   </button>
                 </div>
                 
@@ -544,7 +699,7 @@ export default function SignupPage() {
                   </label>
                   <div className="relative">
                     <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                      <FiCalendar className="h-5 w-5 text-pink-400" />
+                      <Calendar className="h-5 w-5 text-pink-400" />
                     </div>
                     <input
                       type="date"
@@ -557,7 +712,7 @@ export default function SignupPage() {
                     />
                   </div>
                   <p className="text-xs text-pink-600 mt-1">
-                    🎂 We'll send you special birthday offers! (Must be 13+ to register)
+                    🎂 We&apos;ll send you special birthday offers! (Must be 13+ to register)
                   </p>
                 </div>
                 
@@ -587,7 +742,7 @@ export default function SignupPage() {
                     </label>
                     <div className="relative">
                       <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                        <FiHeart className="h-5 w-5 text-pink-400" />
+                        <Heart className="h-5 w-5 text-pink-400" />
                       </div>
                       <input
                         type="date"
@@ -598,7 +753,8 @@ export default function SignupPage() {
                         max={new Date().toISOString().split('T')[0]}
                       />
                     </div>
-                    <p className="text-xs text-pink-600 mt-1">💝 We'll help you celebrate with special offers!</p>
+                    <p className="text-xs text-pink-600 mt-1">
+                      💝 We@apos;ll help you celebrate with special offers!</p>
                   </motion.div>
                 )}
                 
@@ -613,9 +769,16 @@ export default function SignupPage() {
                   <button
                     type="submit"
                     disabled={loading}
-                    className="flex-1 bg-gradient-to-r from-pink-500 to-purple-600 text-white py-3 px-4 rounded-lg hover:from-pink-600 hover:to-purple-700 transition-all font-medium disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="flex-1 bg-linear-to-r from-pink-500 to-purple-600 text-white py-3 px-4 rounded-lg hover:from-pink-600 hover:to-purple-700 transition-all font-medium disabled:opacity-50 disabled:cursor-not-allowed"
                   >
-                    {loading ? 'Creating Account...' : 'Create Account'}
+                    {loading ? (
+                      <>
+                        <Loader className="animate-spin inline mr-2" />
+                        {signupMethod === 'google' ? 'Completing Profile...' : 'Creating Account...'}
+                      </>
+                    ) : (
+                      signupMethod === 'google' ? 'Complete Profile' : 'Create Account'
+                    )}
                   </button>
                 </div>
                 
@@ -639,7 +802,7 @@ export default function SignupPage() {
         >
           <div className="flex items-center">
             <div className="bg-pink-100 p-3 rounded-full mr-3">
-              <FiHeart className="h-6 w-6 text-pink-600" />
+              <Heart className="h-6 w-6 text-pink-600" />
             </div>
             <div>
               <h3 className="font-medium text-gray-800">Personalized beauty experience</h3>
@@ -670,3 +833,5 @@ export default function SignupPage() {
     </div>
   );
 }
+
+// ✅ FIXED: Removed unused GoogleUser interface

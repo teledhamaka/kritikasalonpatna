@@ -78,7 +78,7 @@ export interface BookingItem extends Service {
   quantity: number;
   selected_stylist_id?: string;
   stylist_name?: string;
-  customizations?: any;
+  customizations?: Record<string, unknown>; // ✅ FIXED
   notes?: string;
   selectedDate?: string;
   selectedTime?: string;
@@ -192,101 +192,107 @@ export type DatabaseService = MakeupService | SkinService | HairService | NailSe
 
 // Transform database service to unified service format
 export const transformServiceForComponent = (
-  service: DatabaseService | any, 
+  service: DatabaseService | Record<string, unknown>, // ✅ FIXED
   serviceType: 'makeup' | 'skin' | 'hair' | 'nail' | 'viral' = 'makeup'
-): Service => ({
-  id: service.id,
-  name: service.name || service.title,
-  title: service.title || service.name,
-  description: service.description,
-  detailed_description: service.detailed_description,
-  category: service.category,
-  category_id: service.category_id,
-  category_name: service.category_name,
+): Service => {
+  const s = service as any; // Internal cast to avoid breaking property access
+  return {
+  id: s.id,
+  name: s.name || s.title,
+  title: s.title || s.name,
+  description: s.description,
+  detailed_description: s.detailed_description,
+  category: s.category,
+  category_id: s.category_id,
+  category_name: s.category_name,
   
-  image: service.image || service.image_url,
-  imageUrl: service.image || service.image_url,
-  image_url: service.image_url || service.image,
+  image: s.image || s.image_url,
+  imageUrl: s.image || s.image_url,
+  image_url: s.image_url || s.image,
   
-  price: service.price || service.base_price,
-  base_price: service.base_price || service.price,
-  originalPrice: service.original_price,
-  original_price: service.original_price,
-  discounted_price: service.discounted_price,
+  price: s.price || s.base_price,
+  base_price: s.base_price || s.price,
+  originalPrice: s.original_price,
+  original_price: s.original_price,
+  discounted_price: s.discounted_price,
   
-  duration: service.duration || service.duration_minutes,
-  duration_minutes: service.duration_minutes || service.duration,
+  duration: s.duration || s.duration_minutes,
+  duration_minutes: s.duration_minutes || s.duration,
   
-  isTrending: service.is_trending || service.isTrending || service.trending,
-  is_trending: service.is_trending || service.isTrending || service.trending,
-  trending: service.trending || service.is_trending || service.isTrending,
-  is_popular: service.is_popular,
-  is_signature: service.is_signature,
-  active: service.active !== false,
-  viral: service.viral,
+  isTrending: s.is_trending || s.isTrending || s.trending,
+  is_trending: s.is_trending || s.isTrending || s.trending,
+  trending: s.trending || s.is_trending || s.isTrending,
+  is_popular: s.is_popular,
+  is_signature: s.is_signature,
+  active: s.active !== false,
+  viral: s.viral,
   
-  keyIngredients: service.key_ingredients || service.keyIngredients,
-  key_ingredients: service.key_ingredients || service.keyIngredients,
-  benefits: service.benefits,
-  precautions: service.precautions,
-  aftercare: service.aftercare,
+  keyIngredients: s.key_ingredients || s.keyIngredients,
+  key_ingredients: s.key_ingredients || s.keyIngredients,
+  benefits: s.benefits,
+  precautions: s.precautions,
+  aftercare: s.aftercare,
   
-  requires_consultation: service.requires_consultation,
-  suitable_for: service.suitable_for || service.suitableFor,
-  suitableFor: service.suitableFor || service.suitable_for,
-  tags: service.tags,
-  rating: service.rating,
-  reviews: service.reviews,
-  availability: service.availability,
-  requirements: service.requirements,
-  faqs: service.faqs || [],
+  requires_consultation: s.requires_consultation,
+  suitable_for: s.suitable_for || s.suitableFor,
+  suitableFor: s.suitableFor || s.suitable_for,
+  tags: s.tags,
+  rating: s.rating,
+  reviews: s.reviews,
+  availability: s.availability,
+  requirements: s.requirements,
+  faqs: s.faqs || [],
   
-  link: service.link || `/${serviceType}/service/${service.id}`,
-  deal: service.deal || (service.original_price && service.original_price > (service.price || service.base_price)
-    ? `Save ₹${service.original_price - (service.price || service.base_price)}` 
+  link: s.link || `/${serviceType}/service/${s.id}`,
+  deal: s.deal || (s.original_price && s.original_price > (s.price || s.base_price)
+    ? `Save ₹${s.original_price - (s.price || s.base_price)}` 
     : undefined),
   serviceType,
-  service_type: service.service_type || serviceType,
+  service_type: s.service_type || serviceType,
   
-  created_at: service.created_at,
-  updated_at: service.updated_at,
-});
+  created_at: s.created_at,
+  updated_at: s.updated_at,
+  };
+};
 
 // Transform JSON data to Service format (for static data)
-export const transformJSONToService = (data: any): Service => ({
-  id: data.id,
-  name: data.name || data.title,
-  title: data.title || data.name,
-  description: data.description,
-  detailed_description: data.detailed_description,
-  category: data.category,
-  image: data.image,
-  imageUrl: data.image,
-  price: data.price,
-  base_price: data.price,
-  originalPrice: data.originalPrice,
-  discounted_price: data.discountedPrice,
-  duration: data.duration,
-  duration_minutes: data.duration,
-  isTrending: data.isTrending || data.trending,
-  is_trending: data.isTrending || data.trending,
-  trending: data.trending || data.isTrending,
+export const transformJSONToService = (data: Record<string, unknown>): Service => { // ✅ FIXED
+  const d = data as any; // Internal cast to avoid breaking property access
+  return {
+  id: d.id,
+  name: d.name || d.title,
+  title: d.title || d.name,
+  description: d.description,
+  detailed_description: d.detailed_description,
+  category: d.category,
+  image: d.image,
+  imageUrl: d.image,
+  price: d.price,
+  base_price: d.price,
+  originalPrice: d.originalPrice,
+  discounted_price: d.discountedPrice,
+  duration: d.duration,
+  duration_minutes: d.duration,
+  isTrending: d.isTrending || d.trending,
+  is_trending: d.isTrending || d.trending,
+  trending: d.trending || d.isTrending,
   active: true,
-  viral: data.viral,
-  keyIngredients: data.keyIngredients,
-  benefits: data.benefits,
-  precautions: data.precautions,
-  aftercare: data.aftercare,
-  suitable_for: data.suitableFor,
-  suitableFor: data.suitableFor,
-  rating: data.rating,
-  reviews: data.reviews,
-  faqs: data.faqs || [],
-  link: data.link,
-  deal: data.deal,
-  serviceType: data.serviceType,
-  service_type: data.serviceType || data.service_type,
-});
+  viral: d.viral,
+  keyIngredients: d.keyIngredients,
+  benefits: d.benefits,
+  precautions: d.precautions,
+  aftercare: d.aftercare,
+  suitable_for: d.suitableFor,
+  suitableFor: d.suitableFor,
+  rating: d.rating,
+  reviews: d.reviews,
+  faqs: d.faqs || [],
+  link: d.link,
+  deal: d.deal,
+  serviceType: d.serviceType,
+  service_type: d.serviceType || d.service_type,
+  };
+};
 
 // Filter types
 export interface ServiceFilters {

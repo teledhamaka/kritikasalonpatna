@@ -5,6 +5,7 @@ import { useState, useRef, useEffect } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { FiUpload, FiCamera, FiCheck, FiUser, FiX, FiShare2, FiRefreshCw, FiSun, FiWind, FiSmile, FiMeh } from 'react-icons/fi';
 import { supabase } from '../lib/supabase';
+import Image from 'next/image';
 
 interface SkinFeature {
   id: string;
@@ -212,7 +213,7 @@ export default function SkinAnalysis({ onClose }: { onClose: () => void }) {
           <div className="text-center mb-6">
             {selectedImage ? (
               <div className="relative inline-block">
-                <img src={selectedImage} alt="Skin analysis" className="rounded-2xl max-h-64 shadow-lg" />
+                <Image src={selectedImage} alt="Skin analysis" className="rounded-2xl max-h-64 shadow-lg" />
                 <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-black bg-opacity-60 text-white px-4 py-2 rounded-full text-sm backdrop-blur-sm">{analysisStatus}</div>
               </div>
             ) : (

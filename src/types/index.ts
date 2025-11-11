@@ -168,7 +168,7 @@ export interface Service {
   is_signature: boolean;
   requires_consultation: boolean;
   active: boolean;
-  faqs: any;
+  faqs: Array<{ question: string; answer: string; }> | null; // ✅ FIXED
   booking_count: number;
   rating_average: number;
   rating_count: number;
@@ -178,7 +178,7 @@ export interface Service {
 
 export interface BookingItem extends Service {
   quantity: number;
-  customizations?: Record<string, any>;
+  customizations?: Record<string, unknown>; // ✅ FIXED
   notes?: string;
 }
 
@@ -283,7 +283,7 @@ export interface AppointmentService {
   unit_price: number;
   discount_amount: number;
   total_price: number;
-  customizations: Record<string, any> | null;
+  customizations: Record<string, unknown> | null; // ✅ FIXED
   notes: string | null;
   created_at: string;
 }
@@ -298,7 +298,7 @@ export interface Booking {
   address_id: string | null;
   address: string | null;
   total_price: number;
-  services: any; // JSONB
+  services: BookingItem[]; // ✅ FIXED
   customer_name: string;
   customer_phone: string;
   payment_method: string;
@@ -321,7 +321,7 @@ export interface Payment {
   payment_method: 'credit_card' | 'phonepe' | 'google_pay' | 'paytm' | 'cash' | 'other';
   payment_status: 'pending' | 'processing' | 'completed' | 'failed' | 'refunded' | 'cancelled';
   transaction_id: string | null;
-  gateway_response: any;
+  gateway_response: Record<string, unknown> | null; // ✅ FIXED
   service_total: number;
   stylist_fee: number;
   discount_amount: number;
@@ -432,7 +432,7 @@ export interface UserPreference {
   id: string;
   user_id: string;
   preference_key: string;
-  preference_value: any; // JSONB
+  preference_value: unknown; // ✅ FIXED
   created_at: string;
   updated_at: string;
 }

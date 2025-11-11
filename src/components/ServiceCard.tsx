@@ -2,8 +2,9 @@
 "use client";
 
 import { motion } from 'framer-motion';
-import { FiHeart, FiClock, FiCheck } from 'react-icons/fi';
-import { Service } from '../../types/service';
+import { Heart, Clock } from 'lucide-react';
+import { Service } from '../types/service';
+import Image from 'next/image';
 
 interface ServiceCardProps {
   service: Service;
@@ -28,13 +29,16 @@ const ServiceCard = ({
   return (
     <motion.div
       whileHover={{ y: -5 }}
-      className="flex-shrink-0 w-72 bg-white rounded-2xl shadow-lg overflow-hidden border border-pink-100"
+      className="shrink-0 w-72 bg-white rounded-2xl shadow-lg overflow-hidden border border-pink-100"
     >
       <div className="relative">
-        <img
+        <Image
           src={service.image}
-          alt={service.title}
+          alt={`${service.title} - Kritika Salon Patna`}
           className="w-full h-48 object-cover"
+          loading="lazy"
+          width={288}
+          height={192}
         />
         <div className="absolute top-3 right-3 flex space-x-2">
           <button
@@ -45,7 +49,7 @@ const ServiceCard = ({
                 : 'bg-white/80 text-gray-600 hover:bg-pink-100'
             }`}
           >
-            <FiHeart className="w-4 h-4" fill={isFavorite ? 'currentColor' : 'none'} />
+            <Heart className="w-4 h-4" fill={isFavorite ? 'currentColor' : 'none'} />
           </button>
           {discountPercentage > 0 && (
             <div className="bg-pink-500 text-white px-3 py-1 rounded-full text-sm font-medium">
@@ -55,13 +59,13 @@ const ServiceCard = ({
         </div>
         <div className="absolute bottom-3 left-3">
           <div className="bg-black/60 backdrop-blur-sm text-white px-3 py-1 rounded-full text-sm flex items-center">
-            <FiClock className="w-3 h-3 mr-1" />
+            <Clock className="w-3 h-3 mr-1" />
             {service.duration} mins
           </div>
         </div>
         {service.isTrending && (
           <div className="absolute top-3 left-3">
-            <div className="bg-gradient-to-r from-orange-500 to-pink-500 text-white px-3 py-1 rounded-full text-xs font-bold flex items-center">
+            <div className="bg-linear-to-r from-orange-500 to-pink-500 text-white px-3 py-1 rounded-full text-xs font-bold flex items-center">
               🔥 HOT DEAL
             </div>
           </div>

@@ -1,9 +1,10 @@
 // app/components/booking/PersonalizationStep.tsx
 "use client";
 
-import { useState } from 'react';
+//import { useState } from 'react';
 import { FiMusic, FiSun, FiMessageCircle, FiHeart } from 'react-icons/fi';
 import { useBooking } from '../../context/BookingContext';
+import Image from 'next/image';
 
 interface PersonalizationStepProps {
   onNext: () => void;
@@ -59,7 +60,7 @@ const PersonalizationStep = ({ onNext, onBack }: PersonalizationStepProps) => {
       <div className="mb-8">
         <div className="flex items-center justify-between mb-4">
           <h3 className="font-semibold text-gray-800">Trending Styles</h3>
-          <span className="text-sm text-pink-600">See what's viral</span>
+          <span className="text-sm text-pink-600">See what&apos;s viral</span>
         </div>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">
           {trendingStyles.map(style => (
@@ -72,7 +73,7 @@ const PersonalizationStep = ({ onNext, onBack }: PersonalizationStepProps) => {
               }`}
               onClick={() => updatePersonalization({ preferred_style: style.id })}
             >
-              <img src={style.image} alt={style.name} className="w-12 h-12 rounded-lg object-cover mx-auto mb-2" />
+              <Image src={style.image} alt={style.name} className="w-12 h-12 rounded-lg object-cover mx-auto mb-2" />
               <p className="text-sm font-medium text-gray-800">{style.name}</p>
               <div className="flex justify-center space-x-1 mt-1">
                 {style.popular && <span className="bg-red-100 text-red-800 text-xs px-1 rounded">Popular</span>}

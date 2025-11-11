@@ -3,11 +3,8 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
-import {
-  FiArrowLeft, FiSettings, FiLock, FiBell, FiShield, FiMapPin, FiHeart, FiMoon, FiSun, FiHelpCircle, FiLogOut,
-  FiChevronRight, FiCheck, FiAlertTriangle, FiLoader, FiTrash2,
-  FiEdit, FiMail, FiPhone, FiUser
-} from 'react-icons/fi';
+import {ArrowLeft, Settings, Lock, Bell, Shield, MapPin, Heart, Moon, Sun, HelpCircle, LogOut,
+  ChevronRight, Check, AlertTriangle, Loader, Trash2, Mail, Phone, User} from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 import { supabase } from '../../lib/supabase';
 
@@ -36,6 +33,11 @@ interface Address {
   is_default: boolean;
 }
 
+interface NotificationUpdateError {
+  message: string;
+  code?: string;
+}
+
 export default function SettingsPage() {
   const router = useRouter();
   const { user, profile, signOut, isLoggedIn } = useAuth();
@@ -45,7 +47,7 @@ export default function SettingsPage() {
   
   // Account Settings
   const [showChangePassword, setShowChangePassword] = useState(false);
-  const [ setCurrentPassword] = useState('');
+  //const [ setCurrentPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [showDeleteAccount, setShowDeleteAccount] = useState(false);
@@ -133,7 +135,8 @@ export default function SettingsPage() {
         });
       }
     } catch (error) {
-      console.error('Error fetching settings:', error);
+      const err = error as NotificationUpdateError;
+      console.error('Error:', err.message);
     } finally {
       setLoading(false);
     }
@@ -163,8 +166,9 @@ export default function SettingsPage() {
       // setCurrentPassword('');
       setNewPassword('');
       setConfirmPassword('');
-    } catch (error: any) {
-      alert(error.message || 'Failed to change password');
+    } catch (error) {
+      const err = error as NotificationUpdateError;
+      console.error('Failed to change password:', err.message);
     } finally {
       setSaving(false);
     }
@@ -275,18 +279,18 @@ export default function SettingsPage() {
   };
 
   const sections = [
-    { id: 'account', label: 'Account Settings', icon: FiUser },
-    { id: 'notifications', label: 'Notifications', icon: FiBell },
-    { id: 'privacy', label: 'Privacy & Security', icon: FiShield },
-    { id: 'addresses', label: 'Saved Addresses', icon: FiMapPin },
-    { id: 'preferences', label: 'App Preferences', icon: FiSettings },
-    { id: 'help', label: 'Help & Support', icon: FiHelpCircle }
+    { id: 'account', label: 'Account Settings', icon: User },
+    { id: 'notifications', label: 'Notifications', icon: Bell },
+    { id: 'privacy', label: 'Privacy & Security', icon: Shield },
+    { id: 'addresses', label: 'Saved Addresses', icon: MapPin },
+    { id: 'preferences', label: 'App Preferences', icon: Settings },
+    { id: 'help', label: 'Help & Support', icon: HelpCircle }
   ];
 
   if (loading) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-pink-50 via-white to-purple-50 flex items-center justify-center">
-        <FiLoader className="w-8 h-8 text-pink-500 animate-spin" />
+        <Loader className="w-8 h-8 text-pink-500 animate-spin" />
       </div>
     );
   }
@@ -301,11 +305,11 @@ export default function SettingsPage() {
               onClick={() => router.back()}
               className="p-2 rounded-full hover:bg-pink-100 mr-2"
             >
-              <FiArrowLeft className="w-5 h-5 text-gray-700" />
+              <ArrowLeft className="w-5 h-5 text-gray-700" />
             </button>
             <div>
               <h1 className="text-2xl font-bold text-gray-800 flex items-center">
-                <FiSettings className="w-6 h-6 mr-2 text-pink-500" />
+                <Settings className="w-6 h-6 mr-2 text-pink-500" />
                 Settings
               </h1>
               <p className="text-sm text-gray-600">Manage your account and preferences</p>
@@ -333,7 +337,7 @@ export default function SettingsPage() {
                       <Icon className="w-5 h-5 mr-3" />
                       <span className="font-medium text-sm">{section.label}</span>
                     </div>
-                    <FiChevronRight className="w-4 h-4" />
+                    <ChevronRight className="w-4 h-4" />
                   </button>
                 );
               })}
@@ -359,7 +363,7 @@ export default function SettingsPage() {
                       <div>
                         <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
                         <div className="flex items-center p-3 bg-gray-50 rounded-lg">
-                          <FiMail className="w-5 h-5 text-gray-400 mr-3" />
+                          <Mail className="w-5 h-5 text-gray-400 mr-3" />
                           <span className="text-gray-800">{profile?.email}</span>
                           <span className="ml-auto px-2 py-1 bg-green-100 text-green-700 text-xs rounded-full">
                             Verified
@@ -370,7 +374,7 @@ export default function SettingsPage() {
                       <div>
                         <label className="block text-sm font-medium text-gray-700 mb-1">Phone</label>
                         <div className="flex items-center p-3 bg-gray-50 rounded-lg">
-                          <FiPhone className="w-5 h-5 text-gray-400 mr-3" />
+                          <Phone className="w-5 h-5 text-gray-400 mr-3" />
                           <span className="text-gray-800">{profile?.phone || 'Not added'}</span>
                           {profile?.phone && (
                             <button className="ml-auto text-pink-600 text-sm font-medium hover:text-pink-700">
@@ -444,12 +448,12 @@ export default function SettingsPage() {
                         >
                           {saving ? (
                             <>
-                              <FiLoader className="animate-spin mr-2 w-5 h-5" />
+                              <Loader className="animate-spin mr-2 w-5 h-5" />
                               Updating...
                             </>
                           ) : (
                             <>
-                              <FiLock className="mr-2 w-5 h-5" />
+                              <Lock className="mr-2 w-5 h-5" />
                               Update Password
                             </>
                           )}
@@ -461,7 +465,7 @@ export default function SettingsPage() {
                   {/* Delete Account */}
                   <div className="bg-red-50 border border-red-200 rounded-xl p-6">
                     <div className="flex items-start">
-                      <FiAlertTriangle className="w-6 h-6 text-red-600 mr-3 flex-shrink-0 mt-1" />
+                      <AlertTriangle className="w-6 h-6 text-red-600 mr-3 flex-shrink-0 mt-1" />
                       <div className="flex-1">
                         <h3 className="text-lg font-semibold text-red-800 mb-2">Delete Account</h3>
                         <p className="text-sm text-red-700 mb-4">
@@ -493,10 +497,10 @@ export default function SettingsPage() {
                     
                     <div className="space-y-4">
                       {[
-                        { key: 'email_enabled', label: 'Email Notifications', icon: FiMail },
-                        { key: 'sms_enabled', label: 'SMS Notifications', icon: FiPhone },
-                        { key: 'push_enabled', label: 'Push Notifications', icon: FiBell },
-                        { key: 'whatsapp_enabled', label: 'WhatsApp Notifications', icon: FiPhone }
+                        { key: 'email_enabled', label: 'Email Notifications', icon: Mail },
+                        { key: 'sms_enabled', label: 'SMS Notifications', icon: Phone },
+                        { key: 'push_enabled', label: 'Push Notifications', icon: Bell },
+                        { key: 'whatsapp_enabled', label: 'WhatsApp Notifications', icon: Phone }
                       ].map(({ key, label, icon: Icon }) => (
                         <div key={key} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
                           <div className="flex items-center">
@@ -582,12 +586,12 @@ export default function SettingsPage() {
                   >
                     {saving ? (
                       <>
-                        <FiLoader className="animate-spin mr-2 w-5 h-5" />
+                        <Loader className="animate-spin mr-2 w-5 h-5" />
                         Saving...
                       </>
                     ) : (
                       <>
-                        <FiCheck className="mr-2 w-5 h-5" />
+                        <Check className="mr-2 w-5 h-5" />
                         Save Preferences
                       </>
                     )}
@@ -678,15 +682,15 @@ export default function SettingsPage() {
                     <div className="space-y-3">
                       <button className="w-full flex items-center justify-between p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
                         <span className="font-medium text-gray-800">Download My Data</span>
-                        <FiChevronRight className="w-5 h-5 text-gray-600" />
+                        <ChevronRight className="w-5 h-5 text-gray-600" />
                       </button>
                       <button className="w-full flex items-center justify-between p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
                         <span className="font-medium text-gray-800">Privacy Policy</span>
-                        <FiChevronRight className="w-5 h-5 text-gray-600" />
+                        <ChevronRight className="w-5 h-5 text-gray-600" />
                       </button>
                       <button className="w-full flex items-center justify-between p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
                         <span className="font-medium text-gray-800">Terms of Service</span>
-                        <FiChevronRight className="w-5 h-5 text-gray-600" />
+                        <ChevronRight className="w-5 h-5 text-gray-600" />
                       </button>
                     </div>
                   </div>
@@ -698,12 +702,12 @@ export default function SettingsPage() {
                   >
                     {saving ? (
                       <>
-                        <FiLoader className="animate-spin mr-2 w-5 h-5" />
+                        <Loader className="animate-spin mr-2 w-5 h-5" />
                         Saving...
                       </>
                     ) : (
                       <>
-                        <FiCheck className="mr-2 w-5 h-5" />
+                        <Check className="mr-2 w-5 h-5" />
                         Save Settings
                       </>
                     )}
@@ -745,7 +749,7 @@ export default function SettingsPage() {
                             <div className="flex items-start justify-between">
                               <div className="flex-1">
                                 <div className="flex items-center mb-2">
-                                  <FiMapPin className="w-5 h-5 text-pink-500 mr-2" />
+                                  <MapPin className="w-5 h-5 text-pink-500 mr-2" />
                                   <span className="font-semibold text-gray-800">
                                     {address.flat ? `${address.flat}, ` : ''}{address.colony}
                                   </span>
@@ -771,7 +775,7 @@ export default function SettingsPage() {
                                     className="p-2 text-gray-600 hover:text-pink-600 hover:bg-pink-50 rounded-lg transition-colors"
                                     title="Set as default"
                                   >
-                                    <FiCheck className="w-5 h-5" />
+                                    <Check className="w-5 h-5" />
                                   </button>
                                 )}
                                 <button
@@ -779,7 +783,7 @@ export default function SettingsPage() {
                                   className="p-2 text-gray-600 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors"
                                   title="Delete address"
                                 >
-                                  <FiTrash2 className="w-5 h-5" />
+                                  <Trash2 className="w-5 h-5" />
                                 </button>
                               </div>
                             </div>
@@ -788,7 +792,7 @@ export default function SettingsPage() {
                       </div>
                     ) : (
                       <div className="text-center py-12">
-                        <FiMapPin className="w-16 h-16 text-gray-400 mx-auto mb-4" />
+                        <MapPin className="w-16 h-16 text-gray-400 mx-auto mb-4" />
                         <p className="text-gray-600 mb-4">No saved addresses yet</p>
                         <button
                           onClick={() => router.push('/profile')}
@@ -821,9 +825,9 @@ export default function SettingsPage() {
                         </label>
                         <div className="grid grid-cols-3 gap-3">
                           {[
-                            { value: 'light', label: 'Light', icon: FiSun },
-                            { value: 'dark', label: 'Dark', icon: FiMoon },
-                            { value: 'auto', label: 'Auto', icon: FiSettings }
+                            { value: 'light', label: 'Light', icon: Sun },
+                            { value: 'dark', label: 'Dark', icon: Moon },
+                            { value: 'auto', label: 'Auto', icon: Settings }
                           ].map(({ value, label, icon: Icon }) => (
                             <button
                               key={value}
@@ -882,20 +886,20 @@ export default function SettingsPage() {
                         className="w-full flex items-center justify-between p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors"
                       >
                         <div className="flex items-center">
-                          <FiHeart className="w-5 h-5 text-pink-500 mr-3" />
+                          <Heart className="w-5 h-5 text-pink-500 mr-3" />
                           <span className="font-medium text-gray-800">Skin Type & Preferences</span>
                         </div>
-                        <FiChevronRight className="w-5 h-5 text-gray-600" />
+                        <ChevronRight className="w-5 h-5 text-gray-600" />
                       </button>
                       <button 
                         onClick={() => router.push('/profile')}
                         className="w-full flex items-center justify-between p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors"
                       >
                         <div className="flex items-center">
-                          <FiUser className="w-5 h-5 text-purple-500 mr-3" />
+                          <User className="w-5 h-5 text-purple-500 mr-3" />
                           <span className="font-medium text-gray-800">Preferred Stylists</span>
                         </div>
-                        <FiChevronRight className="w-5 h-5 text-gray-600" />
+                        <ChevronRight className="w-5 h-5 text-gray-600" />
                       </button>
                     </div>
                   </div>
@@ -917,23 +921,23 @@ export default function SettingsPage() {
                     <div className="space-y-3">
                       <button className="w-full flex items-center justify-between p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
                         <div className="flex items-center">
-                          <FiHelpCircle className="w-5 h-5 text-pink-500 mr-3" />
+                          <HelpCircle className="w-5 h-5 text-pink-500 mr-3" />
                           <span className="font-medium text-gray-800">FAQ</span>
                         </div>
-                        <FiChevronRight className="w-5 h-5 text-gray-600" />
+                        <ChevronRight className="w-5 h-5 text-gray-600" />
                       </button>
 
                       <button className="w-full flex items-center justify-between p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
                         <div className="flex items-center">
-                          <FiMail className="w-5 h-5 text-purple-500 mr-3" />
+                          <Mail className="w-5 h-5 text-purple-500 mr-3" />
                           <span className="font-medium text-gray-800">Contact Support</span>
                         </div>
-                        <FiChevronRight className="w-5 h-5 text-gray-600" />
+                        <ChevronRight className="w-5 h-5 text-gray-600" />
                       </button>
 
                       <button className="w-full flex items-center justify-between p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
                         <div className="flex items-center">
-                          <FiPhone className="w-5 h-5 text-blue-500 mr-3" />
+                          <Phone className="w-5 h-5 text-blue-500 mr-3" />
                           <span className="font-medium text-gray-800">Call Us</span>
                         </div>
                         <span className="text-sm text-gray-600">1800-XXX-XXXX</span>
@@ -941,10 +945,10 @@ export default function SettingsPage() {
 
                       <button className="w-full flex items-center justify-between p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
                         <div className="flex items-center">
-                          <FiHelpCircle className="w-5 h-5 text-green-500 mr-3" />
+                          <HelpCircle className="w-5 h-5 text-green-500 mr-3" />
                           <span className="font-medium text-gray-800">Report an Issue</span>
                         </div>
-                        <FiChevronRight className="w-5 h-5 text-gray-600" />
+                        <ChevronRight className="w-5 h-5 text-gray-600" />
                       </button>
                     </div>
                   </div>
@@ -954,15 +958,15 @@ export default function SettingsPage() {
                     <div className="space-y-3">
                       <button className="w-full flex items-center justify-between p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
                         <span className="font-medium text-gray-800">About SALONIC</span>
-                        <FiChevronRight className="w-5 h-5 text-gray-600" />
+                        <ChevronRight className="w-5 h-5 text-gray-600" />
                       </button>
                       <button className="w-full flex items-center justify-between p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
                         <span className="font-medium text-gray-800">Terms & Conditions</span>
-                        <FiChevronRight className="w-5 h-5 text-gray-600" />
+                        <ChevronRight className="w-5 h-5 text-gray-600" />
                       </button>
                       <button className="w-full flex items-center justify-between p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
                         <span className="font-medium text-gray-800">Privacy Policy</span>
-                        <FiChevronRight className="w-5 h-5 text-gray-600" />
+                        <ChevronRight className="w-5 h-5 text-gray-600" />
                       </button>
                       <div className="p-3 bg-gray-50 rounded-lg text-center">
                         <span className="text-sm text-gray-600">Version 1.0.0</span>
@@ -979,7 +983,7 @@ export default function SettingsPage() {
                     }}
                     className="w-full px-4 py-3 bg-red-100 text-red-700 rounded-lg hover:bg-red-200 transition-colors font-medium flex items-center justify-center"
                   >
-                    <FiLogOut className="mr-2 w-5 h-5" />
+                    <LogOut className="mr-2 w-5 h-5" />
                     Sign Out
                   </button>
                 </motion.div>
@@ -1005,7 +1009,7 @@ export default function SettingsPage() {
               >
                 <div className="text-center">
                   <div className="w-16 h-16 mx-auto bg-red-100 rounded-full flex items-center justify-center mb-4">
-                    <FiAlertTriangle className="w-8 h-8 text-red-600" />
+                    <AlertTriangle className="w-8 h-8 text-red-600" />
                   </div>
                   <h3 className="text-xl font-bold text-gray-900 mb-2">
                     Delete Account?

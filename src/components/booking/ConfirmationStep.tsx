@@ -12,8 +12,8 @@ interface PaymentStepProps {
 }
 
 const PaymentStep = ({ onNext, onBack }: PaymentStepProps) => {
-  const { cart, selectedStylist, subtotal, taxAmount, totalAmount, updateBookingDetails } = useBooking();
-  const { user, profile } = useAuth();
+  const { cart, subtotal, taxAmount, updateBookingDetails } = useBooking();
+  const { profile } = useAuth();
   const [selectedPaymentMethod, setSelectedPaymentMethod] = useState('credit_card');
   const [applyLoyaltyPoints, setApplyLoyaltyPoints] = useState(false);
   const [processingPayment, setProcessingPayment] = useState(false);
@@ -168,8 +168,7 @@ const PaymentStep = ({ onNext, onBack }: PaymentStepProps) => {
               <p className="text-sm text-gray-600 mb-2">
                 You have {availableLoyaltyPoints} points available. Use up to {maxPointsUsable} points for this booking.
               </p>
-              <p className="text-xs text-purple-600 font-medium">
-                💡 You'll earn {pointsToEarn} points from this booking!
+              <p className="text-xs text-purple-600 font-medium">💡 You&apos;ll earn {pointsToEarn} points from this booking!
               </p>
             </div>
             <button

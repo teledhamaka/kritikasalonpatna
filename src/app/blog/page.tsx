@@ -1,322 +1,325 @@
-// app/blog/page.tsx - MOBILE OPTIMIZED
-'use client';
-
-import { useSearchParams } from 'next/navigation';
-import BlogList from '@/components/blog/BlogList';
-import Pagination from '@/components/blog/Pagination';
+// app/blog/page.tsx - FIXED VERSION
+import { createServerClient } from '@/lib/supabase/server';
+import BlogCard from '@/components/blog/BlogCard';
 import SearchBar from '@/components/blog/SearchBar';
-import { categories } from '../../lib/categories';
-import Link from 'next/link';
-import { useEffect, useState, Suspense } from 'react';
-import blogData from './blogData.json';
-import matter from 'gray-matter';
+//import { notFound } from 'next/navigation';
+import MobileBottomNav from '@/components/MobileBottomNav';
 
-interface Author {
-  name: string;
-  avatar: string;
-  bio?: string;
-}
-
-interface BlogPostMetadata {
-  title: string;
-  excerpt: string;
-  date: string;
-  coverImage: string;
-  category: string;
-  author: string;
-  tags: string[];
-  featured?: boolean;
-  readTime?: number;
-}
+// ✅ ISR: Revalidate every 1 hour
+export const revalidate = 3600;
 
 interface BlogPost {
+  id: string;
   slug: string;
   title: string;
   excerpt: string;
-  date: string;
-  coverImage: string;
-  category: string;
-  author: Author;
-  tags: string[];
   content: string;
-  featured?: boolean;
-  readTime?: number;
+  cover_image: string;
+  read_time: number;
+  views: number;
+  likes: number;
+  published_at: string;
+  featured: boolean;
+  tags: string[];
+  focus_keyphrase?: string;
+  seo_keywords?: string[];
+  canonical_url?: string;
+  category: {
+    id: string;
+    name: string;
+    slug: string;
+    color: string;
+    icon: string;
+  } | null; // ✅ Allow null
+  author: {
+    id: string;
+    name: string;
+    avatar_url: string;
+    bio: string;
+  } | null; // ✅ Allow null
 }
 
-interface RawPost {
-  slug: string;
-  metadata: BlogPostMetadata;
-  filePath: string;
+async function getBlogPosts(): Promise<BlogPost[]> {
+  const supabase = await createServerClient();
+
+  const { data, error } = await supabase
+    .from('blog_posts')
+    .select(`
+      id,
+      slug,
+      title,
+      excerpt,
+      content,
+      cover_image,
+      read_time,
+      views,
+      likes,
+      published_at,
+      featured,
+      tags,
+      focus_keyphrase,
+      seo_keywords,
+      canonical_url,
+      category:categories(id, name, slug, color, icon),
+      author:authors(id, name, avatar_url, bio)
+    `)
+    .eq('status', 'published')
+    .order('published_at', { ascending: false });
+
+  if (error) {
+    console.error('Error fetching posts:', error);
+    return [];
+  }
+
+  console.log('📊 Total posts:', data?.length);
+  
+  // ✅ Safe mapping with null checks
+  const posts = (data || []).map(post => {
+    const category = Array.isArray(post.category) ? post.category[0] : post.category;
+    const author = Array.isArray(post.author) ? post.author[0] : post.author;
+    
+    // ✅ Provide fallbacks for null values
+    return {
+      ...post,
+      category: category || { 
+        id: 'default', 
+        name: 'General', 
+        slug: 'general', 
+        color: '#ec4899', 
+        icon: '📝' 
+      },
+      author: author || { 
+        id: 'default', 
+        name: 'Team', 
+        avatar_url: '/images/all-services.webp', 
+        bio: 'Beauty Expert' 
+      },
+    };
+  });
+
+  console.log('📝 Posts loaded:', posts.length);
+  return posts;
 }
 
-function getPaginatedPosts(posts: BlogPost[], page: number, perPage: number, category?: string, search?: string) {
-  let filtered = category ? posts.filter(p => p.category === category) : posts;
+async function getCategories() {
+  const supabase = await createServerClient();
+  
+  const { data } = await supabase
+    .from('categories')
+    .select('id, name, slug, icon, color')
+    .order('name');
+  
+  return data || [];
+}
 
-  if (search) {
-    const s = search.toLowerCase();
-    filtered = filtered.filter(p => 
-      p.title.toLowerCase().includes(s) ||
-      p.excerpt.toLowerCase().includes(s) ||
-      p.tags.some(t => t.toLowerCase().includes(s))
+export default async function BlogPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ category?: string; search?: string }>;
+}) {
+  const params = await searchParams;
+  const posts = await getBlogPosts();
+  const categories = await getCategories();
+
+  // Filter by category
+  let filteredPosts = posts;
+  if (params.category) {
+    filteredPosts = posts.filter(
+      (post) => post.category?.slug === params.category?.toLowerCase()
     );
   }
 
-  filtered.sort((a, b) => {
-    if (a.featured && !b.featured) return -1;
-    if (!a.featured && b.featured) return 1;
-    return new Date(b.date).getTime() - new Date(a.date).getTime();
+  // Filter by search
+  if (params.search) {
+    const query = params.search.toLowerCase();
+    filteredPosts = filteredPosts.filter(
+      (post) =>
+        post.title.toLowerCase().includes(query) ||
+        post.excerpt.toLowerCase().includes(query) ||
+        (post.tags && post.tags.some(tag => tag.toLowerCase().includes(query)))
+    );
+  }
+
+  // Separate featured posts
+  const featuredPosts = filteredPosts.filter((p) => p.featured);
+  const regularPosts = filteredPosts.filter((p) => !p.featured);
+
+  // ✅ Safe data transformation for BlogCard
+  const transformPostForCard = (post: BlogPost) => ({
+    slug: post.slug,
+    title: post.title,
+    excerpt: post.excerpt,
+    coverImage: post.cover_image || '/images/all-services.webp',
+    category: {
+      name: post.category?.name || 'General',
+      color: post.category?.color || '#ec4899'
+    },
+    author: {
+      name: post.author?.name || 'Team',
+      avatar: post.author?.avatar_url || '/images/all-services.webp'
+    },
+    readTime: post.read_time || 5,
+    views: post.views || 0,
+    likes: post.likes || 0,
+    publishedAt: post.published_at,
+    featured: post.featured || false
   });
 
-  const total = filtered.length;
-  const totalPages = Math.ceil(total / perPage);
-  const start = (page - 1) * perPage;
-
-  return {
-    posts: filtered.slice(start, start + perPage),
-    total,
-    totalPages,
-    currentPage: page
-  };
-}
-
-export default function BlogPage() {
   return (
-    <Suspense fallback={<LoadingState />}>
-      <BlogContent />
-    </Suspense>
-  );
-}
-
-function LoadingState() {
-  return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-pink-50 to-purple-50">
-      <div className="text-center">
-        <div className="inline-block animate-spin rounded-full h-12 w-12 border-t-4 border-pink-500 mb-3"></div>
-        <p className="text-gray-600 font-medium">Loading...</p>
-      </div>
-    </div>
-  );
-}
-
-function BlogContent() {
-  const searchParams = useSearchParams();
-  const [data, setData] = useState<{
-    posts: BlogPost[];
-    total: number;
-    totalPages: number;
-    currentPage: number;
-  } | null>(null);
-  const [allPosts, setAllPosts] = useState<BlogPost[]>([]);
-  const [loading, setLoading] = useState(true);
-  
-  const page = Number(searchParams.get('page')) || 1;
-  const search = searchParams.get('search') || '';
-  const category = searchParams.get('category') || undefined;
-
-  useEffect(() => {
-    const loadPosts = async () => {
-      try {
-        const posts = await Promise.all(
-          (blogData.posts as RawPost[]).map(async (post) => {
-            const response = await fetch(post.filePath);
-            const content = await response.text();
-            const parsed = matter(content);
-            const author = blogData.authors[post.metadata.author as keyof typeof blogData.authors];
-            
-            return {
-              slug: post.slug,
-              title: post.metadata.title,
-              excerpt: post.metadata.excerpt,
-              date: post.metadata.date,
-              coverImage: post.metadata.coverImage,
-              category: post.metadata.category,
-              author: { name: author.name, avatar: author.avatar },
-              tags: post.metadata.tags,
-              content: parsed.content,
-              featured: post.metadata.featured || false,
-              readTime: post.metadata.readTime || 5
-            };
-          })
-        );
+    <div className="min-h-screen bg-linear-to-br from-pink-50 via-purple-50 to-blue-50">
+      <div className="container mx-auto px-4 py-12">
         
-        setAllPosts(posts);
-      } catch (error) {
-        console.error('Failed to load posts:', error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    loadPosts();
-  }, []);
-
-  useEffect(() => {
-    if (allPosts.length > 0) {
-      setData(getPaginatedPosts(allPosts, page, 6, category, search));
-    } else if (!loading) {
-      setData({ posts: [], total: 0, totalPages: 0, currentPage: 1 });
-    }
-  }, [allPosts, page, search, category, loading]);
-
-  if (loading) return <LoadingState />;
-
-  const { posts, total, totalPages, currentPage } = data || { posts: [], total: 0, totalPages: 0, currentPage: 1 };
-
-  return (
-    <div className="min-h-screen bg-gradient-to-br from-pink-50 via-purple-50 to-blue-50">
-      <div className="container mx-auto px-4 py-6">
-        {/* Compact Hero - Mobile Optimized */}
-        <section className="mb-8 text-center">
-          <div className="inline-flex items-center gap-2 bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full shadow-md mb-4 border border-pink-200">
-            <span className="text-lg">📍</span>
-            <span className="text-xs font-semibold text-gray-700">
+        {/* Hero Section */}
+        <section className="text-center mb-16">
+          <div className="inline-flex items-center gap-2 bg-white/90 backdrop-blur-sm px-6 py-3 rounded-full shadow-lg mb-6 border border-pink-200">
+            <span className="text-xl">💖</span>
+            <span className="text-sm font-semibold text-gray-700">
               Bhootnath Road, Patna
             </span>
           </div>
 
-          <h1 className="text-3xl md:text-5xl font-bold mb-3 bg-gradient-to-r from-pink-600 via-purple-600 to-blue-600 bg-clip-text text-transparent">
-            ✨ Beauty Hub ✨
+          <h1 className="text-5xl md:text-6xl font-bold mb-4 bg-linear-to-r from-pink-600 via-purple-600 to-blue-600 bg-clip-text text-transparent">
+            ✨ Beauty & You ✨
           </h1>
-          
-          <p className="text-sm md:text-lg text-gray-700 max-w-2xl mx-auto mb-4">
-            Latest beauty tips &amp; trends from Patna&apos;s top salon
+
+          <p className="text-xl text-gray-700 max-w-2xl mx-auto mb-8">Your trusted friend for beauty secrets, trends, and expert advice from Patna&apos;s favorite salon
           </p>
 
-          {/* Trust Pills - Compact */}
-          <div className="flex flex-wrap justify-center gap-2 text-xs">
+          {/* Trust Pills */}
+          <div className="flex flex-wrap justify-center gap-3">
             {[
-              { icon: '⭐', text: '4.9/5' },
-              { icon: '❤️', text: '10K+ Clients' },
-              { icon: '👑', text: 'Expert Team' }
+              { icon: '⭐', text: '4.9/5 Rating' },
+              { icon: '❤️', text: '10K+ Happy Clients' },
+              { icon: '👑', text: 'Expert Team' },
+              { icon: '💎', text: 'Premium Quality' },
             ].map((item) => (
-              <span 
+              <span
                 key={item.text}
-                className="px-3 py-1 bg-white/80 backdrop-blur-sm rounded-full border border-pink-200"
+                className="px-4 py-2 bg-white rounded-full border border-pink-200 text-sm font-medium flex items-center gap-2"
               >
-                {item.icon} {item.text}
+                <span className="text-lg">{item.icon}</span>
+                {item.text}
               </span>
             ))}
           </div>
         </section>
 
-        {/* Search Bar - Compact */}
-        <div className="mb-6 bg-white rounded-2xl shadow-lg p-4 border border-pink-100">
-          <SearchBar initialValue={search} />
-          <div className="flex items-center justify-between mt-3 text-xs text-gray-600">
-            <span>🔍 <strong className="text-pink-600">{total}</strong> articles</span>
-            <span className="flex items-center gap-1">
-              <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
-              Updated Daily
+        {/* Search Bar */}
+        <div className="mb-12 bg-white rounded-3xl shadow-2xl p-6 border border-pink-100 max-w-2xl mx-auto">
+          <SearchBar />
+          <div className="flex items-center justify-between mt-4 text-sm text-gray-600">
+            <span>
+              <strong className="text-pink-600 text-lg">{filteredPosts.length}</strong>{' '}
+              beauty articles
+            </span>
+            <span className="flex items-center gap-2 bg-green-50 px-3 py-1 rounded-full">
+              <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
+              Fresh Content Daily
             </span>
           </div>
         </div>
 
-        {/* Featured Badge */}
-        {posts.length > 0 && posts[0].featured && (
-          <div className="text-center mb-4">
-            <span className="inline-block px-4 py-1.5 bg-gradient-to-r from-pink-500 to-purple-500 text-white rounded-full text-xs font-bold shadow-md">
-              🔥 TRENDING
-            </span>
+        {/* Categories Filter */}
+        <div className="mb-8 flex flex-wrap gap-2 justify-center">
+          <button
+            className="px-4 py-2 bg-pink-500 text-white rounded-full text-sm font-medium hover:bg-pink-600 transition-colors"
+          >
+            All
+          </button>
+          {categories.map((category) => (
+            <button
+              key={category.id}
+              className="px-4 py-2 bg-white border border-pink-200 rounded-full text-sm font-medium hover:bg-pink-50 transition-colors flex items-center gap-2"
+            >
+              <span>{category.icon}</span>
+              {category.name}
+            </button>
+          ))}
+        </div>
+
+        {/* Featured Posts */}
+        {featuredPosts.length > 0 && (
+          <section className="mb-16">
+            <div className="text-center mb-8">
+              <span className="inline-flex items-center gap-2 px-6 py-3 bg-linear-to-r from-pink-500 to-purple-500 text-white rounded-full text-sm font-bold">
+                <span className="text-lg">🔥</span>
+                TRENDING NOW - MUST READ!
+              </span>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {featuredPosts.map((post) => (
+                <BlogCard 
+                  key={post.id} 
+                  post={transformPostForCard(post)}
+                />
+              ))}
+            </div>
+          </section>
+        )}
+
+        {/* Regular Posts */}
+        {regularPosts.length > 0 && (
+          <section>
+            <h2 className="text-3xl font-bold mb-8 text-gray-800">
+              Latest Articles
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {regularPosts.map((post) => (
+                <BlogCard 
+                  key={post.id} 
+                  post={transformPostForCard(post)}
+                />
+              ))}
+            </div>
+          </section>
+        )}
+
+        {/* Empty State */}
+        {filteredPosts.length === 0 && (
+          <div className="text-center py-20 bg-white rounded-3xl shadow-xl">
+            <div className="text-6xl mb-4">😔</div>
+            <h3 className="text-2xl font-bold text-gray-700 mb-2">
+              No articles found
+            </h3>
+            <p className="text-gray-500">Try different keywords or browse our categories
+            </p>
           </div>
         )}
 
-        {/* Blog List */}
-        {posts.length > 0 ? (
-          <BlogList posts={posts} />
-        ) : (
-          <div className="text-center py-16 bg-white rounded-2xl shadow-lg">
-            <div className="text-5xl mb-3">😔</div>
-            <p className="text-gray-600 text-lg mb-1">No articles found</p>
-            <p className="text-gray-400 text-sm">Try different keywords</p>
-          </div>
-        )}
-
-        {/* Pagination */}
-        {totalPages > 1 && (
-          <div className="mt-8">
-            <Pagination 
-              totalPages={totalPages} 
-              currentPage={currentPage}
-              searchQuery={search}
-              category={category}
-            />
-          </div>
-        )}
-
-        {/* Categories - Compact Grid */}
-        <section className="mt-12">
-          <h2 className="text-2xl md:text-3xl font-bold text-center mb-6 bg-gradient-to-r from-pink-600 to-purple-600 bg-clip-text text-transparent">
-            Explore Topics
-          </h2>
-          
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
-            {categories.map(cat => {
-              const count = allPosts.filter(p => p.category === cat.id).length;
-              
-              return (
-                <Link key={cat.id} href={`/blog/category/${cat.id}`}>
-                  <div className="group bg-white rounded-xl p-4 text-center hover:shadow-xl transition-all border-2 border-transparent hover:border-pink-300 transform hover:-translate-y-1">
-                    <div className="text-3xl md:text-4xl mb-2 group-hover:scale-110 transition-transform">
-                      {cat.icon}
-                    </div>
-                    <h3 className="text-sm md:text-base font-bold text-gray-800 group-hover:text-pink-600 mb-1">
-                      {cat.name}
-                    </h3>
-                    <p className="text-xs text-gray-600">{count} posts</p>
-                  </div>
-                </Link>
-              );
-            })}
-          </div>
-        </section>
-
-        {/* CTA Section - Compact */}
-        <section className="mt-12 bg-gradient-to-r from-pink-500 to-purple-500 rounded-2xl p-6 md:p-8 text-center text-white shadow-xl">
-          <h2 className="text-2xl md:text-3xl font-bold mb-3">
-            Ready For A Makeover? 💅
-          </h2>
-          <p className="text-sm md:text-lg mb-5 opacity-90">
-            Visit Patna&apos;s best ladies salon
+        {/* CTA Section */}
+        <section className="mt-20 bg-linear-to-r from-pink-500 via-purple-500 to-blue-500 rounded-3xl p-12 text-center text-white">
+          <h2 className="text-4xl font-bold mb-4">Ready For Your Glow Up? ✨</h2>
+          <p className="text-xl mb-8 opacity-95">Visit Patna&apos;s most trusted ladies salon for an unforgettable beauty experience
           </p>
-          <div className="flex flex-col sm:flex-row gap-3 justify-center">
-            <Link 
-              href="/booking" 
-              className="px-6 py-3 bg-white text-pink-600 rounded-full font-bold hover:shadow-xl transition-all text-sm"
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <a
+              href="/booking"
+              className="px-8 py-4 bg-white text-pink-600 rounded-full font-bold hover:shadow-2xl transition-all text-lg flex items-center justify-center gap-2"
             >
-              Book Now
-            </Link>
-            <a 
-              href="tel:+91-9650461390" 
-              className="px-6 py-3 bg-transparent border-2 border-white rounded-full font-bold hover:bg-white hover:text-pink-600 transition-all text-sm"
+              <span>💖</span>
+              Book Your Appointment
+            </a>
+            <a
+              href="tel:+91-9650461390"
+              className="px-8 py-4 bg-transparent border-2 border-white rounded-full font-bold hover:bg-white hover:text-pink-600 transition-all text-lg flex items-center justify-center gap-2"
             >
-              📞 Call Us
+              <span>📞</span>
+              Call Us Now
             </a>
           </div>
         </section>
 
-        {/* Social Proof - Compact */}
-        <section className="mt-10 text-center">
-          <h3 className="text-lg font-bold mb-4 text-gray-800">
-            Follow Us 📱
-          </h3>
-          <div className="grid grid-cols-4 gap-3">
-            {[
-              { icon: '📘', name: 'Facebook', count: '50K+' },
-              { icon: '📷', name: 'Instagram', count: '100K+' },
-              { icon: '▶️', name: 'YouTube', count: '25K+' },
-              { icon: '📌', name: 'Pinterest', count: '30K+' }
-            ].map((social) => (
-              <div 
-                key={social.name}
-                className="bg-white rounded-xl p-3 shadow-md hover:shadow-lg transition-shadow border border-pink-100"
-              >
-                <div className="text-2xl mb-1">{social.icon}</div>
-                <div className="text-xs font-bold text-pink-600">{social.count}</div>
-              </div>
-            ))}
-          </div>
-        </section>
+        <MobileBottomNav />
+
+
       </div>
     </div>
   );
 }
+
+// Metadata for SEO
+export const metadata = {
+  title: 'Beauty Blog - Expert Tips & Trends | Patna Salon',
+  description: 'Latest beauty tips, hair care, makeup tutorials and wellness advice from Patna\'s favorite salon',
+  keywords: 'beauty blog patna, hair care tips, makeup tutorials, skin care, bridal beauty',
+};

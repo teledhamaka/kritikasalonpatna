@@ -2,13 +2,12 @@
 "use client";
 
 import { useState, useEffect } from 'react';
-import Link from 'next/link';
+//import Link from 'next/link';
+import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
-import { 
-  FiArrowLeft, FiUser, FiMail, FiPhone, FiCalendar, FiHeart, FiEdit, FiSave, 
-  FiStar, FiGift, FiCamera, FiTrendingUp, 
-  FiCheckCircle, FiAlertCircle, FiLoader } from 'react-icons/fi';
+import { ArrowLeft, User, Mail, Phone, Calendar, Heart, Edit, Save, 
+  Star, Gift, Camera, TrendingUp, CheckCircle, AlertCircle, Loader } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 import { useBooking } from '../../context/BookingContext';
 
@@ -159,7 +158,7 @@ export default function ProfilePage() {
 
   const renderStars = (rating: number) => {
     return Array.from({ length: 5 }, (_, i) => (
-      <FiStar
+      <Star
         key={i}
         className={`w-4 h-4 ${i < rating ? 'text-yellow-400 fill-current' : 'text-gray-300'}`}
       />
@@ -169,7 +168,7 @@ export default function ProfilePage() {
   if (!isLoggedIn || !profile) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-pink-50 via-white to-purple-50 flex items-center justify-center">
-        <FiLoader className="w-8 h-8 text-pink-500 animate-spin" />
+        <Loader className="w-8 h-8 text-pink-500 animate-spin" />
       </div>
     );
   }
@@ -185,7 +184,7 @@ export default function ProfilePage() {
             onClick={() => router.back()}
             className="p-2 rounded-full hover:bg-pink-100 mr-2"
           >
-            <FiArrowLeft className="w-5 h-5 text-gray-700" />
+            <ArrowLeft className="w-5 h-5 text-gray-700" />
           </button>
           <h1 className="text-2xl font-bold text-gray-800">My Profile</h1>
         </div>
@@ -199,7 +198,7 @@ export default function ProfilePage() {
               exit={{ opacity: 0, y: -20 }}
               className="mb-4 p-3 bg-green-50 border border-green-200 text-green-700 rounded-lg flex items-center"
             >
-              <FiCheckCircle className="w-5 h-5 mr-2 flex-shrink-0" />
+              <CheckCircle className="w-5 h-5 mr-2 flex-shrink-0" />
               <span className="text-sm">{success}</span>
             </motion.div>
           )}
@@ -211,7 +210,7 @@ export default function ProfilePage() {
               exit={{ opacity: 0, y: -20 }}
               className="mb-4 p-3 bg-red-50 border border-red-200 text-red-700 rounded-lg flex items-center"
             >
-              <FiAlertCircle className="w-5 h-5 mr-2 flex-shrink-0" />
+              <AlertCircle className="w-5 h-5 mr-2 flex-shrink-0" />
               <span className="text-sm">{error}</span>
             </motion.div>
           )}
@@ -228,7 +227,7 @@ export default function ProfilePage() {
               <div className="relative">
                 <div className="w-20 h-20 bg-white rounded-full flex items-center justify-center text-2xl font-bold text-pink-600 shadow-lg">
                   {profile.profile_image_url ? (
-                    <img 
+                    <Image 
                       src={profile.profile_image_url} 
                       alt={profile.full_name} 
                       className="w-20 h-20 rounded-full object-cover"
@@ -241,7 +240,7 @@ export default function ProfilePage() {
                   onClick={() => setShowImageUpload(true)}
                   className="absolute -bottom-1 -right-1 bg-pink-500 text-white rounded-full p-1.5 hover:bg-pink-600 transition-colors"
                 >
-                  <FiCamera className="w-3 h-3" />
+                  <Camera className="w-3 h-3" />
                 </button>
               </div>
               
@@ -254,7 +253,7 @@ export default function ProfilePage() {
                     <span className="font-medium">{loyaltyTier.name} Member</span>
                   </div>
                   <div className="flex items-center">
-                    <FiGift className="mr-1 w-4 h-4" />
+                    <Gift className="mr-1 w-4 h-4" />
                     <span>{profile.loyalty_points} points</span>
                   </div>
                 </div>
@@ -284,10 +283,10 @@ export default function ProfilePage() {
           <div className="border-b border-pink-100">
             <div className="flex">
               {[
-                { id: 'profile', label: 'Personal Info', icon: FiUser },
-                { id: 'bookings', label: 'Booking History', icon: FiCalendar },
-                { id: 'preferences', label: 'Preferences', icon: FiHeart },
-                { id: 'loyalty', label: 'Loyalty & Rewards', icon: FiGift }
+                { id: 'profile', label: 'Personal Info', icon: User },
+                { id: 'bookings', label: 'Booking History', icon: Calendar },
+                { id: 'preferences', label: 'Preferences', icon: Heart },
+                { id: 'loyalty', label: 'Loyalty & Rewards', icon: Gift }
               ].map(({ id, label, icon: Icon }) => (
                 <button
                   key={id}
@@ -320,7 +319,7 @@ export default function ProfilePage() {
                       onClick={() => setIsEditing(true)}
                       className="flex items-center px-4 py-2 bg-pink-500 text-white rounded-lg hover:bg-pink-600 transition-colors"
                     >
-                      <FiEdit className="mr-2 w-4 h-4" />
+                      <Edit className="mr-2 w-4 h-4" />
                       Edit Profile
                     </button>
                   )}
@@ -330,7 +329,7 @@ export default function ProfilePage() {
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">First Name</label>
                     <div className="relative">
-                      <FiUser className="absolute left-3 top-3 w-5 h-5 text-pink-400" />
+                      <User className="absolute left-3 top-3 w-5 h-5 text-pink-400" />
                       <input
                         type="text"
                         name="first_name"
@@ -357,7 +356,7 @@ export default function ProfilePage() {
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">Email</label>
                     <div className="relative">
-                      <FiMail className="absolute left-3 top-3 w-5 h-5 text-pink-400" />
+                      <Mail className="absolute left-3 top-3 w-5 h-5 text-pink-400" />
                       <input
                         type="email"
                         value={profile.email}
@@ -371,7 +370,7 @@ export default function ProfilePage() {
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">Phone Number</label>
                     <div className="relative">
-                      <FiPhone className="absolute left-3 top-3 w-5 h-5 text-pink-400" />
+                      <Phone className="absolute left-3 top-3 w-5 h-5 text-pink-400" />
                       <input
                         type="tel"
                         name="phone"
@@ -387,7 +386,7 @@ export default function ProfilePage() {
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">Date of Birth</label>
                     <div className="relative">
-                      <FiCalendar className="absolute left-3 top-3 w-5 h-5 text-pink-400" />
+                      <Calendar className="absolute left-3 top-3 w-5 h-5 text-pink-400" />
                       <input
                         type="date"
                         name="birthday"
@@ -424,7 +423,7 @@ export default function ProfilePage() {
                         {formData.marital_status === 'married' ? 'Anniversary Date' : 'Engagement Date'}
                       </label>
                       <div className="relative">
-                        <FiHeart className="absolute left-3 top-3 w-5 h-5 text-pink-400" />
+                        <Heart className="absolute left-3 top-3 w-5 h-5 text-pink-400" />
                         <input
                           type="date"
                           name="anniversary_date"
@@ -503,8 +502,8 @@ export default function ProfilePage() {
                       disabled={saving}
                       className="flex items-center px-4 py-2 bg-gradient-to-r from-pink-500 to-purple-600 text-white rounded-lg hover:from-pink-600 hover:to-purple-700 transition-colors disabled:opacity-50"
                     >
-                      {saving && <FiLoader className="animate-spin mr-2 w-4 h-4" />}
-                      <FiSave className="mr-2 w-4 h-4" />
+                      {saving && <Loader className="animate-spin mr-2 w-4 h-4" />}
+                      <Save className="mr-2 w-4 h-4" />
                       {saving ? 'Saving...' : 'Save Changes'}
                     </button>
                   </div>
@@ -554,7 +553,7 @@ export default function ProfilePage() {
                         <div className="flex items-center space-x-2 pt-3 border-t border-gray-200">
                           <div className="flex">{renderStars(booking.rating)}</div>
                           {booking.review && (
-                            <p className="text-sm text-gray-600 italic">"{booking.review}"</p>
+                            <p className="text-sm text-gray-600 italic">&quot;{booking.review}&quot;</p>
                           )}
                         </div>
                       )}
@@ -575,7 +574,7 @@ export default function ProfilePage() {
 
                 {bookingHistory.length === 0 && (
                   <div className="text-center py-8">
-                    <FiCalendar className="w-12 h-12 text-gray-400 mx-auto mb-3" />
+                    <Calendar className="w-12 h-12 text-gray-400 mx-auto mb-3" />
                     <p className="text-gray-600">No bookings yet</p>
                     <button
                       onClick={() => router.push('/book')}
@@ -605,7 +604,7 @@ export default function ProfilePage() {
                         favorites.slice(0, 5).map((id, index) => (
                           <div key={index} className="flex items-center justify-between">
                             <span className="text-sm text-gray-600">Service #{id}</span>
-                            <FiHeart className="w-4 h-4 text-pink-500 fill-current" />
+                            <Heart className="w-4 h-4 text-pink-500 fill-current" />
                           </div>
                         ))
                       ) : (
@@ -619,15 +618,15 @@ export default function ProfilePage() {
                     <div className="space-y-2">
                       <div className="flex items-center justify-between">
                         <span className="text-sm text-gray-600">Threading</span>
-                        <FiTrendingUp className="w-4 h-4 text-purple-500" />
+                        <TrendingUp className="w-4 h-4 text-purple-500" />
                       </div>
                       <div className="flex items-center justify-between">
                         <span className="text-sm text-gray-600">Manicure</span>
-                        <FiTrendingUp className="w-4 h-4 text-purple-500" />
+                        <TrendingUp className="w-4 h-4 text-purple-500" />
                       </div>
                       <div className="flex items-center justify-between">
                         <span className="text-sm text-gray-600">Hair Color</span>
-                        <FiTrendingUp className="w-4 h-4 text-purple-500" />
+                        <TrendingUp className="w-4 h-4 text-purple-500" />
                       </div>
                     </div>
                   </div>
@@ -732,7 +731,7 @@ export default function ProfilePage() {
                   {formData.marital_status !== 'single' && formData.anniversary_date && (
                     <div className="bg-gradient-to-r from-rose-500 to-pink-600 text-white p-4 rounded-lg">
                       <h5 className="font-medium mb-1">Anniversary Special</h5>
-                      <p className="text-sm">Couple's spa treatment at 30% off</p>
+                      {/* <p className="text-sm">Couple&apos;s spa treatment at 30% off</p> */}
                       <p className="text-xs mt-2">Valid on your special day</p>
                     </div>
                   )}
@@ -760,7 +759,7 @@ export default function ProfilePage() {
             >
               <div className="text-center">
                 <div className="w-12 h-12 mx-auto bg-pink-100 rounded-full flex items-center justify-center mb-4">
-                  <FiCamera className="w-6 h-6 text-pink-600" />
+                  <Camera className="w-6 h-6 text-pink-600" />
                 </div>
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">
                   Update Profile Picture

@@ -3,19 +3,22 @@
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { useState, useEffect, useRef } from 'react';
-import { FiUser, FiHeart, FiShoppingBag, FiPhone, FiMenu, FiX, FiChevronDown, FiSettings, FiCalendar, FiLogOut, FiStar, FiGift, FiBell } from 'react-icons/fi';
+import { User, Heart, ShoppingBag, Phone, Menu, X, ChevronDown, Settings, Calendar, 
+  LogOut, Star, Gift, Bell } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import { useBooking } from '../context/BookingContext';
 import { motion, AnimatePresence } from 'framer-motion';
+import Image from 'next/image';
 
 const Navbar = () => {
   const pathname = usePathname();
   const router = useRouter();
-  const { user, profile, isLoggedIn, signOut, loading } = useAuth();
+  const { profile, isLoggedIn, signOut, loading: authLoading } = useAuth();
   const { cartItemCount, favorites } = useBooking();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [profileDropdownOpen, setProfileDropdownOpen] = useState(false);
   const [showSignOutModal, setShowSignOutModal] = useState(false);
+  const [isClient, setIsClient] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   
   const navItems = [
@@ -24,9 +27,12 @@ const Navbar = () => {
     { name: 'Skin', path: '/skin' },
     { name: 'Hair', path: '/hair' },
     { name: 'Nails', path: '/nails' },
-    // { name: 'AI Beauty Scan', path: '/ai-beauty-scan' },
     { name: 'Blog', path: '/blog' },
   ];
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   // Close dropdown when clicking outside
   useEffect(() => {
@@ -62,15 +68,41 @@ const Navbar = () => {
       .slice(0, 2);
   };
 
+  // Show loading state during initial auth check
+  if (!isClient || authLoading) {
+    return (
+      <nav className="bg-white shadow-md sticky top-0 z-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between h-16">
+            <div className="flex items-center">
+              <div className="text-2xl font-bold text-rose-500 flex items-center">
+                <div className="mr-2 relative w-8 h-8 md:w-10 md:h-10">
+                  <div className="w-6 h-6 md:w-8 md:h-8 lg:w-10 lg:h-10 bg-gray-200 rounded animate-pulse"></div>
+                </div>
+                <span className="bg-linear-to-r from-rose-500 to-pink-600 bg-clip-text text-transparent">
+                  KRITIKA SALON
+                </span>
+              </div>
+            </div>
+            <div className="hidden md:flex items-center space-x-4">
+              <div className="w-20 h-8 bg-gray-200 rounded animate-pulse"></div>
+              <div className="w-20 h-8 bg-gray-200 rounded animate-pulse"></div>
+            </div>
+          </div>
+        </div>
+      </nav>
+    );
+  }
+
   return (
     <>
       <nav className="bg-white shadow-md sticky top-0 z-50">
         {/* Top announcement bar */}
-        <div className="bg-gradient-to-r from-pink-100 to-purple-100 text-pink-800 py-2 text-center text-sm">
+        <div className="bg-linear-to-r from-pink-100 to-purple-100 text-pink-800 py-2 text-center text-sm">
           <span className="inline-flex items-center">
-            <FiGift className="mr-1" />
+            <Gift className="mr-1" />
             Get 20% off your first appointment! Book now.
-            <FiGift className="ml-1" />
+            <Gift className="ml-1" />
           </span>
         </div>
         
@@ -78,8 +110,20 @@ const Navbar = () => {
           <div className="flex justify-between h-16">
             <div className="flex items-center">
               <Link href="/" className="text-2xl font-bold text-rose-500 flex items-center">
-                <span className="mr-1 text-2xl">💄</span> 
-                <span className="bg-gradient-to-r from-rose-500 to-pink-600 bg-clip-text text-transparent">
+                <div className="mr-2 relative w-8 h-8 md:w-10 md:h-10">
+                  <Image
+                    src="/images/white_salon_icon.webp"
+                    alt="KRITIKA SALON"
+                    width={40}
+                    height={40}
+                    className="w-6 h-6 md:w-8 md:h-8 lg:w-10 lg:h-10 object-contain"
+                    priority
+                    onError={(e) => {
+                      e.currentTarget.src = '/images/white_salon_icon.png';
+                    }}
+                  />
+                </div>
+                <span className="bg-linear-to-r from-rose-500 to-pink-600 bg-clip-text text-transparent">
                   KRITIKA SALON
                 </span>
               </Link>
@@ -107,7 +151,7 @@ const Navbar = () => {
               {/* Notifications (only show when logged in) */}
               {isLoggedIn && (
                 <button className="p-2 text-gray-600 hover:text-rose-500 transition-colors relative">
-                  <FiBell className="w-5 h-5" />
+                  <Bell className="w-5 h-5" />
                   <span className="absolute -top-1 -right-1 bg-rose-500 text-white rounded-full w-4 h-4 flex items-center justify-center text-xs">2</span>
                 </button>
               )}
@@ -117,7 +161,7 @@ const Navbar = () => {
                 onClick={() => router.push('/favorites')}
                 className="p-2 text-gray-600 hover:text-rose-500 transition-colors relative"
               >
-                <FiHeart className="w-5 h-5" />
+                <Heart className="w-5 h-5" />
                 {favorites.length > 0 && (
                   <span className="absolute -top-1 -right-1 bg-rose-500 text-white rounded-full w-4 h-4 flex items-center justify-center text-xs">
                     {favorites.length}
@@ -130,7 +174,7 @@ const Navbar = () => {
                 onClick={() => router.push('/cart')}
                 className="p-2 text-gray-600 hover:text-rose-500 transition-colors relative"
               >
-                <FiShoppingBag className="w-5 h-5" />
+                <ShoppingBag className="w-5 h-5" />
                 {cartItemCount > 0 && (
                   <span className="absolute -top-1 -right-1 bg-rose-500 text-white rounded-full w-4 h-4 flex items-center justify-center text-xs">
                     {cartItemCount}
@@ -147,9 +191,9 @@ const Navbar = () => {
                       className="flex items-center space-x-2 text-gray-700 hover:text-rose-500 transition-colors p-2 rounded-lg hover:bg-pink-50"
                       onClick={() => setProfileDropdownOpen(!profileDropdownOpen)}
                     >
-                      <div className="w-8 h-8 bg-gradient-to-r from-pink-400 to-rose-500 text-white rounded-full flex items-center justify-center text-sm font-medium">
+                      <div className="w-8 h-8 bg-linear-to-r from-pink-400 to-rose-500 text-white rounded-full flex items-center justify-center text-sm font-medium">
                         {profile.profile_image_url ? (
-                          <img 
+                          <Image 
                             src={profile.profile_image_url} 
                             alt={profile.full_name} 
                             className="w-8 h-8 rounded-full object-cover"
@@ -166,7 +210,7 @@ const Navbar = () => {
                           {profile.loyalty_points} points
                         </div>
                       </div>
-                      <FiChevronDown className="w-4 h-4" />
+                      <ChevronDown className="w-4 h-4" />
                     </button>
                     
                     {/* Dropdown Menu */}
@@ -182,9 +226,9 @@ const Navbar = () => {
                           {/* Profile Header */}
                           <div className="px-4 py-3 border-b border-pink-100">
                             <div className="flex items-center space-x-3">
-                              <div className="w-12 h-12 bg-gradient-to-r from-pink-400 to-rose-500 text-white rounded-full flex items-center justify-center text-lg font-medium">
+                              <div className="w-12 h-12 bg-linear-to-r from-pink-400 to-rose-500 text-white rounded-full flex items-center justify-center text-lg font-medium">
                                 {profile.profile_image_url ? (
-                                  <img 
+                                  <Image 
                                     src={profile.profile_image_url} 
                                     alt={profile.full_name} 
                                     className="w-12 h-12 rounded-full object-cover"
@@ -200,7 +244,7 @@ const Navbar = () => {
                                 <div className="text-sm text-gray-500">{profile.email}</div>
                                 <div className="flex items-center space-x-3 mt-1">
                                   <span className="flex items-center text-xs text-pink-600">
-                                    <FiStar className="mr-1" />
+                                    <Star className="mr-1" />
                                     {profile.loyalty_points} points
                                   </span>
                                   <span className="text-xs text-gray-500">
@@ -218,7 +262,7 @@ const Navbar = () => {
                               className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-pink-50 hover:text-rose-600"
                               onClick={() => setProfileDropdownOpen(false)}
                             >
-                              <FiUser className="mr-3 w-4 h-4" />
+                              <User className="mr-3 w-4 h-4" />
                               My Profile
                             </Link>
                             <Link 
@@ -226,7 +270,7 @@ const Navbar = () => {
                               className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-pink-50 hover:text-rose-600"
                               onClick={() => setProfileDropdownOpen(false)}
                             >
-                              <FiCalendar className="mr-3 w-4 h-4" />
+                              <Calendar className="mr-3 w-4 h-4" />
                               My Appointments
                             </Link>
                             <Link 
@@ -234,7 +278,7 @@ const Navbar = () => {
                               className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-pink-50 hover:text-rose-600"
                               onClick={() => setProfileDropdownOpen(false)}
                             >
-                              <FiHeart className="mr-3 w-4 h-4" />
+                              <Heart className="mr-3 w-4 h-4" />
                               My Favorites
                             </Link>
                             <Link 
@@ -242,7 +286,7 @@ const Navbar = () => {
                               className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-pink-50 hover:text-rose-600"
                               onClick={() => setProfileDropdownOpen(false)}
                             >
-                              <FiGift className="mr-3 w-4 h-4" />
+                              <Gift className="mr-3 w-4 h-4" />
                               Loyalty Rewards
                             </Link>
                             <Link 
@@ -250,7 +294,7 @@ const Navbar = () => {
                               className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-pink-50 hover:text-rose-600"
                               onClick={() => setProfileDropdownOpen(false)}
                             >
-                              <FiSettings className="mr-3 w-4 h-4" />
+                              <Settings className="mr-3 w-4 h-4" />
                               Settings
                             </Link>
                           </div>
@@ -260,7 +304,7 @@ const Navbar = () => {
                               className="flex items-center w-full px-4 py-2 text-sm text-red-600 hover:bg-red-50"
                               onClick={() => setShowSignOutModal(true)}
                             >
-                              <FiLogOut className="mr-3 w-4 h-4" />
+                              <LogOut className="mr-3 w-4 h-4" />
                               Sign Out
                             </button>
                           </div>
@@ -278,22 +322,13 @@ const Navbar = () => {
                     </Link>
                     <Link 
                       href="/signup" 
-                      className="px-4 py-2 bg-gradient-to-r from-rose-500 to-pink-600 text-white rounded-full hover:from-rose-600 hover:to-pink-700 transition-all font-medium"
+                      className="px-4 py-2 bg-linear-to-r from-rose-500 to-pink-600 text-white rounded-full hover:from-rose-600 hover:to-pink-700 transition-all font-medium"
                     >
                       Sign Up
                     </Link>
                   </div>
                 )}
               </div>
-              
-              {/* Book Now Button
-              <button 
-                onClick={() => router.push('/book')}
-                className="bg-gradient-to-r from-rose-500 to-pink-600 text-white px-4 py-2 rounded-full hover:from-rose-600 hover:to-pink-700 transition-all font-medium flex items-center"
-              >
-                <FiPhone className="mr-2 w-4 h-4" />
-                Book Now
-              </button> */}
             </div>
             
             {/* Mobile Menu Button */}
@@ -302,7 +337,7 @@ const Navbar = () => {
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                 className="text-gray-700 hover:text-rose-500 p-2"
               >
-                {mobileMenuOpen ? <FiX className="w-6 h-6" /> : <FiMenu className="w-6 h-6" />}
+                {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
               </button>
             </div>
           </div>
@@ -336,9 +371,9 @@ const Navbar = () => {
                 <div className="border-t border-gray-200 pt-4 pb-3">
                   {isLoggedIn && profile ? (
                     <div className="flex items-center px-5 space-x-3">
-                      <div className="w-10 h-10 bg-gradient-to-r from-pink-400 to-rose-500 text-white rounded-full flex items-center justify-center text-sm font-medium">
+                      <div className="w-10 h-10 bg-linear-to-r from-pink-400 to-rose-500 text-white rounded-full flex items-center justify-center text-sm font-medium">
                         {profile.profile_image_url ? (
-                          <img 
+                          <Image 
                             src={profile.profile_image_url} 
                             alt={profile.full_name} 
                             className="w-10 h-10 rounded-full object-cover"
@@ -361,7 +396,7 @@ const Navbar = () => {
                   <div className="flex items-center justify-between px-5 space-x-4 mt-3">
                     <div className="flex space-x-4">
                       <button className="p-2 text-gray-600 relative">
-                        <FiHeart className="w-5 h-5" />
+                        <Heart className="w-5 h-5" />
                         {favorites.length > 0 && (
                           <span className="absolute -top-1 -right-1 bg-rose-500 text-white rounded-full w-4 h-4 flex items-center justify-center text-xs">
                             {favorites.length}
@@ -370,7 +405,7 @@ const Navbar = () => {
                       </button>
                       
                       <button className="p-2 text-gray-600 relative">
-                        <FiShoppingBag className="w-5 h-5" />
+                        <ShoppingBag className="w-5 h-5" />
                         {cartItemCount > 0 && (
                           <span className="absolute -top-1 -right-1 bg-rose-500 text-white rounded-full w-4 h-4 flex items-center justify-center text-xs">
                             {cartItemCount}
@@ -405,9 +440,9 @@ const Navbar = () => {
                         setMobileMenuOpen(false);
                         router.push('/book');
                       }}
-                      className="w-full bg-gradient-to-r from-rose-500 to-pink-600 text-white px-4 py-2 rounded-full hover:from-rose-600 hover:to-pink-700 transition-all font-medium flex items-center justify-center"
+                      className="w-full bg-linear-to-r from-rose-500 to-pink-600 text-white px-4 py-2 rounded-full hover:from-rose-600 hover:to-pink-700 transition-all font-medium flex items-center justify-center"
                     >
-                      <FiPhone className="mr-2 w-4 h-4" />
+                      <Phone className="mr-2 w-4 h-4" />
                       Book Appointment
                     </button>
                   </div>
@@ -419,7 +454,7 @@ const Navbar = () => {
                         className="flex items-center px-3 py-2 text-base font-medium text-gray-700 hover:bg-pink-50"
                         onClick={() => setMobileMenuOpen(false)}
                       >
-                        <FiUser className="mr-3 w-5 h-5" />
+                        <User className="mr-3 w-5 h-5" />
                         My Profile
                       </Link>
                       <Link 
@@ -427,14 +462,14 @@ const Navbar = () => {
                         className="flex items-center px-3 py-2 text-base font-medium text-gray-700 hover:bg-pink-50"
                         onClick={() => setMobileMenuOpen(false)}
                       >
-                        <FiCalendar className="mr-3 w-5 h-5" />
+                        <Calendar className="mr-3 w-5 h-5" />
                         My Appointments
                       </Link>
                       <button 
                         className="flex items-center w-full px-3 py-2 text-base font-medium text-red-600 hover:bg-red-50"
                         onClick={() => setShowSignOutModal(true)}
                       >
-                        <FiLogOut className="mr-3 w-5 h-5" />
+                        <LogOut className="mr-3 w-5 h-5" />
                         Sign Out
                       </button>
                     </div>
@@ -463,7 +498,7 @@ const Navbar = () => {
             >
               <div className="text-center">
                 <div className="w-12 h-12 mx-auto bg-red-100 rounded-full flex items-center justify-center mb-4">
-                  <FiLogOut className="w-6 h-6 text-red-600" />
+                  <LogOut className="w-6 h-6 text-red-600" />
                 </div>
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">
                   Sign Out
@@ -480,10 +515,10 @@ const Navbar = () => {
                   </button>
                   <button
                     onClick={handleSignOut}
-                    disabled={loading}
+                    disabled={authLoading}
                     className="flex-1 px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors disabled:opacity-50"
                   >
-                    {loading ? 'Signing out...' : 'Sign Out'}
+                    {authLoading ? 'Signing out...' : 'Sign Out'}
                   </button>
                 </div>
               </div>

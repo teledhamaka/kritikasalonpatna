@@ -78,8 +78,8 @@ export default function CommentList({ slug }: { slug: string }) {
     <div key={comment.id} className={depth > 0 ? 'ml-6 md:ml-10' : ''}>
       <div className="bg-white rounded-xl p-4 md:p-5 shadow-sm border border-pink-100 hover:shadow-md transition-shadow">
         <div className="flex gap-3">
-          <div className="flex-shrink-0">
-            <div className="w-10 h-10 rounded-full bg-gradient-to-br from-pink-400 to-purple-400 flex items-center justify-center text-white font-bold shadow-md">
+          <div className="shrink-0">
+            <div className="w-10 h-10 rounded-full bg-linear-to-br from-pink-400 to-purple-400 flex items-center justify-center text-white font-bold shadow-md">
               {comment.name.charAt(0).toUpperCase()}
             </div>
           </div>
@@ -155,7 +155,7 @@ export default function CommentList({ slug }: { slug: string }) {
       </div>
 
       {comments.length === 0 ? (
-        <div className="text-center py-12 bg-gradient-to-br from-pink-50 to-purple-50 rounded-2xl border-2 border-dashed border-pink-200">
+        <div className="text-center py-12 bg-linear-to-br from-pink-50 to-purple-50 rounded-2xl border-2 border-dashed border-pink-200">
           <div className="text-5xl mb-3">💭</div>
           <h4 className="text-lg font-semibold text-gray-800 mb-1">No comments yet</h4>
           <p className="text-gray-600 text-sm">Be the first to share your thoughts!</p>

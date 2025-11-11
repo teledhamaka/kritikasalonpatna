@@ -3,8 +3,8 @@
 
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FiArrowLeft, FiGift, FiShare2 } from 'react-icons/fi';
-import { BsStars } from 'react-icons/bs';
+import { ArrowLeft, Gift, Share2 } from 'lucide-react';
+import { Sparkles } from 'lucide-react';
 import { supabase } from '../lib/supabase';
 
 interface QuizQuestion {
@@ -41,7 +41,7 @@ export default function BeautyQuiz({ onClose }: { onClose: () => void; }) {
   const [isLoading, setIsLoading] = useState(true);
   const [quizResult, setQuizResult] = useState<QuizResult | null>(null);
   const [recommendedServices, setRecommendedServices] = useState<RecommendedService[]>([]);
-  const [error, setError] = useState('');
+  const [, setError] = useState('');
   const [showCelebration, setShowCelebration] = useState(false);
 
   useEffect(() => {
@@ -86,7 +86,8 @@ export default function BeautyQuiz({ onClose }: { onClose: () => void; }) {
       await fetchRecommendedServices(profileType);
       
       setTimeout(() => setShowCelebration(false), 2000);
-    } catch (err) {
+    } 
+    catch (err) {
       setError('Failed to get results');
     }
   };
@@ -211,7 +212,7 @@ export default function BeautyQuiz({ onClose }: { onClose: () => void; }) {
               <span className="text-4xl">{getProfileIcon(quizResult.profile_type)}</span>
             </div>
             <h2 className="text-3xl font-bold bg-gradient-to-r from-pink-600 to-purple-600 bg-clip-text text-transparent mb-2">
-              You're a {quizResult.profile_type}!
+              You&apos;re a {quizResult.profile_type}!
             </h2>
             <p className="text-gray-600 text-lg">{quizResult.description}</p>
           </div>
@@ -236,7 +237,7 @@ export default function BeautyQuiz({ onClose }: { onClose: () => void; }) {
           {recommendedServices.length > 0 && (
             <div className="mb-6">
               <h3 className="font-bold text-lg mb-4 flex items-center">
-                <FiGift className="mr-2 text-pink-600" />
+                <Gift className="mr-2 text-pink-600" />
                 Perfect Services For You
               </h3>
               <div className="space-y-3">
@@ -272,7 +273,7 @@ export default function BeautyQuiz({ onClose }: { onClose: () => void; }) {
           {/* Special Offer */}
           <div className="bg-gradient-to-r from-pink-500 to-purple-600 text-white rounded-xl p-4 mb-6 text-center">
             <div className="flex items-center justify-center mb-2">
-              <BsStars className="mr-2" />
+              <Sparkles className="mr-2" />
               <span className="font-bold">Quiz Completion Bonus!</span>
             </div>
             <p className="text-sm">Get 15% off on your first booking</p>
@@ -284,7 +285,7 @@ export default function BeautyQuiz({ onClose }: { onClose: () => void; }) {
                     onClick={() => alert('Sharing your amazing beauty profile!')}
                     className="w-full sm:w-auto flex-1 bg-gray-200 text-gray-800 py-4 rounded-xl font-bold text-lg hover:bg-gray-300 transition-all duration-300 flex items-center justify-center"
                 >
-                    <FiShare2 className="mr-2"/> Share
+                    <Share2 className="mr-2"/> Share
                 </button>
                 <button
                     onClick={handleFinish}
@@ -387,7 +388,7 @@ export default function BeautyQuiz({ onClose }: { onClose: () => void; }) {
               onClick={() => setCurrentQuestionIndex(currentQuestionIndex - 1)}
               className="flex items-center text-pink-600 hover:text-pink-700 transition-colors"
             >
-              <FiArrowLeft className="mr-2" />
+              <ArrowLeft className="mr-2" />
               Back
             </button>
           ) : <div></div>}

@@ -168,8 +168,7 @@ const PaymentStep = ({ onNext, onBack }: PaymentStepProps) => {
               <p className="text-sm text-gray-600 mb-2">
                 You have {availableLoyaltyPoints} points available. Use up to {maxPointsUsable} points for this booking.
               </p>
-              <p className="text-xs text-purple-600 font-medium">
-                💡 You'll earn {pointsToEarn} points from this booking!
+              <p className="text-xs text-purple-600 font-medium">💡 You&apos;ll earn {pointsToEarn} points from this booking!
               </p>
             </div>
             <button

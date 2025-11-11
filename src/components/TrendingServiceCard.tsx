@@ -3,7 +3,7 @@
 
 import { motion } from 'framer-motion';
 import { FiClock } from 'react-icons/fi';
-import { Service } from '../../types/service';
+import { Service } from '../types/service';
 
 interface TrendingServiceCardProps {
   service: Service;

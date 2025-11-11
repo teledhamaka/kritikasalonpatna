@@ -4,6 +4,7 @@
 import { FiX, FiShoppingCart } from 'react-icons/fi';
 //import { Service } from '../../types/service';
 import { useBooking } from '../../context/BookingContext';
+import Image from 'next/image';
 
 interface CartStepProps {
   onNext: () => void;
@@ -36,7 +37,7 @@ const CartStep = ({ onNext, onBack }: CartStepProps) => {
             {cart.map(service => (
               <div key={service.id} className="flex items-center justify-between p-4 border-b">
                 <div className="flex items-center">
-                  <img src={service.image} alt={service.title} className="w-16 h-16 rounded-lg object-cover" />
+                  <Image src={service.image} alt={service.title} className="w-16 h-16 rounded-lg object-cover" />
                   <div className="ml-4">
                     <h3 className="font-medium">{service.title}</h3>
                     <p className="text-gray-600 text-sm">{service.category}</p>
