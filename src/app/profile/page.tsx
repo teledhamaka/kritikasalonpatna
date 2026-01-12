@@ -25,7 +25,7 @@ interface BookingHistory {
 
 export default function ProfilePage() {
   const router = useRouter();
-  const { profile, updateProfile, loading, isLoggedIn } = useAuth();
+  const { profile, updateProfile, signOut, isLoggedIn, loading: authLoading } = useAuth();
   const { favorites } = useBooking();
   const [isEditing, setIsEditing] = useState(false);
   const [activeTab, setActiveTab] = useState<'profile' | 'bookings' | 'preferences' | 'loyalty'>('profile');
@@ -81,10 +81,20 @@ export default function ProfilePage() {
 
   // Redirect if not logged in
   useEffect(() => {
-    if (!loading && !isLoggedIn) {
+    // Check for OAuth success
+  const urlParams = new URLSearchParams(window.location.search);
+  if (urlParams.get('auth') === 'success' && isLoggedIn) {
+    // Remove the query parameter without refreshing
+    const newUrl = window.location.pathname;
+    window.history.replaceState({}, '', newUrl);
+    return;
+  }
+
+  // Redirect if not logged in
+    if (!isLoggedIn) {
       router.push('/login');
     }
-  }, [isLoggedIn, loading, router]);
+  }, [isLoggedIn, router]);
 
   // Initialize form data from profile
   useEffect(() => {
@@ -114,7 +124,7 @@ export default function ProfilePage() {
     setSuccess('');
 
     try {
-      const { error: updateError } = await updateProfile({
+      const result = await updateProfile({
         first_name: formData.first_name,
         last_name: formData.last_name,
         full_name: `${formData.first_name} ${formData.last_name}`.trim(),
@@ -126,17 +136,34 @@ export default function ProfilePage() {
         hair_type: formData.hair_type,
       });
 
-      if (updateError) {
-        setError(updateError);
-      } else {
+      // if (updateError) {
+      //   setError(updateError);
+      // } else {
+      //   setSuccess('Profile updated successfully!');
+      //   setIsEditing(false);
+      //   setTimeout(() => setSuccess(''), 3000);
+      // }
+
+      if (result.success) {
         setSuccess('Profile updated successfully!');
         setIsEditing(false);
         setTimeout(() => setSuccess(''), 3000);
+      } else {
+        setError(result.error || 'Failed to update profile');
       }
     } catch (error) {
       setError('Failed to update profile. Please try again.');
     } finally {
       setSaving(false);
+    }
+  };
+
+  const handleSignOut = async () => {
+    const result = await signOut();
+    if (result.success) {
+      router.push('/login');
+    } else {
+      setError(result.message);
     }
   };
 

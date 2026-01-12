@@ -1,86 +1,391 @@
-// app/makeup/page.tsx (SERVER COMPONENT)
+// kritika/src/app/makeup/page.tsx - COMPREHENSIVE SEO OPTIMIZED VERSION
 import { Metadata } from 'next';
 import ClientMakeupPage from './ClientMakeupPage';
 import { Service } from '../../types/service';
-
-// Import JSON data directly on the server
 import makeupServices from '../../../public/makeup_services.json';
+import seoData from '../../../public/seo.json';
+
+// Dynamic SEO keywords generation from both files
+const generateMakeupKeywords = () => {
+  const seoKeywords = seoData.seo.serviceSpecificKeywords.bridalServices || [];
+  const locationKeywords = seoData.seo.locationBasedKeywords.ultraLocal || [];
+  const serviceKeywords = makeupServices.flatMap((service: any) => service.seoKeywords || []);
+  
+  return [...new Set([...seoKeywords, ...locationKeywords, ...serviceKeywords])];
+};
+
+const MAKEUP_KEYWORDS = generateMakeupKeywords();
+
+// Generate rich description using actual services
+const generateDescription = () => {
+  const serviceCount = makeupServices.length;
+  const categories = [...new Set(makeupServices.map((s: any) => s.category))];
+  const minPrice = Math.min(...makeupServices.map((s: any) => s.price));
+  const maxPrice = Math.max(...makeupServices.map((s: any) => s.price));
+  
+  return `⭐${seoData.business.rating} Rated Expert Makeup Services in ${seoData.business.address.locality}, Patna. ${serviceCount}+ Services including ${categories.slice(0, 3).join(', ')}. Prices from ₹${minPrice} to ₹${maxPrice}. ${seoData.business.totalReviews}+ Happy Clients. Book: ${seoData.business.contact.phone}`;
+};
+
+const PAGE_TITLE = `Best Bridal Makeup Artist in ${seoData.business.address.locality} Patna | HD, Airbrush & Party Makeup | ${seoData.business.name}`;
 
 export const metadata: Metadata = {
-  title: "Makeup Magic - Kritika Ladies Beauty Parlour",
-  description: "Transform your look with our specialist Makeup artists. Flawless canvas, timeless elegance.",
+  //title: `Best Bridal Makeup Artist in ${seoData.business.address.locality} Patna | HD, Airbrush & Party Makeup | ${seoData.business.name}`,
+  title: PAGE_TITLE,
+  description: generateDescription(),
+  
+  keywords: MAKEUP_KEYWORDS.join(', '),
+
   openGraph: {
-    title: "Makeup Magic - Kritika Ladies Beauty Parlour",
-    description: "Flawless canvas, timeless elegance. Transform your look with our specialist Makeup artists.",
-  },
-};
-
-// Transform JSON service to match component interface
-const transformServiceForComponent = (service: any): Service => ({
-  id: service.id,
-  name: service.title,
-  title: service.title,
-  category: service.category,
-  imageUrl: service.image,
-  image: service.image,
-  description: service.description,
-  price: service.price,
-  base_price: service.price,
-  originalPrice: service.originalPrice,
-  isTrending: service.isTrending,
-  duration: service.duration,
-  duration_minutes: service.duration,
-  keyIngredients: service.keyIngredients,
-  benefits: service.benefits,
-  precautions: service.precautions,
-  aftercare: service.aftercare,
-  faqs: service.faqs,
-  link: '/services/' + service.id,
-  deal: service.deal || ''
-});
-
-// Server-side data fetching
-const getAllServices = (): Service[] => {
-  try {
-    return makeupServices.map(transformServiceForComponent);
-  } catch (error) {
-    console.error('Error loading makeup services:', error);
-    return [];
-  }
-};
-
-const getTrendingServices = (allServices: Service[]): Service[] => {
-  try {
-    const trendingServices = allServices.filter(service => service.isTrending === true);
-    
-    // Static trending data - no random values
-    const enhancedTrendingServices = trendingServices.map(service => ({
-      ...service,
-      isViral: service.category?.includes('Bridal') || service.category?.includes('Party'),
-      trendingScore: 80,
-      socialProof: {
-        shares: 400,
-        likes: 1500,
-        saves: 200
+    title: `Expert Bridal Makeup Artist ${seoData.business.address.locality} Patna | ${seoData.business.name}`,
+    description: generateDescription(),
+    images: [
+      {
+        url: "/images/makeup/bridal-makeup-patna-kritika.jpg",
+        width: 1200,
+        height: 630,
+        alt: `Best Bridal Makeup Artist in Patna - ${seoData.business.name}`
       }
-    }));
+    ],
+    type: "website",
+    locale: "en_IN",
+    siteName: seoData.business.name,
+    url: `${seoData.business.contact.website}/makeup`
+  },
 
-    return enhancedTrendingServices;
-  } catch (error) {
-    console.error('Error fetching trending makeup services:', error);
-    return [];
+  twitter: {
+    card: "summary_large_image",
+    title: `Best Bridal Makeup Artist Patna | ${seoData.business.name}`,
+    description: generateDescription(),
+    images: ["/images/makeup/makeup-twitter-card.jpg"],
+    creator: seoData.business.socialMedia.instagram
+  },
+
+  alternates: {
+    canonical: `${seoData.business.contact.website}/makeup`,
+    languages: {
+      'en-IN': `${seoData.business.contact.website}/makeup`,
+      'hi-IN': `${seoData.business.contact.website}/hi/makeup`
+    }
+  },
+
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    }
+  },
+
+  other: {
+    'geo.region': `IN-${seoData.business.address.state}`,
+    'geo.placename': `${seoData.business.address.city}, ${seoData.business.address.state}`,
+    'geo.position': `${seoData.business.coordinates.latitude};${seoData.business.coordinates.longitude}`,
+    'ICBM': `${seoData.business.coordinates.latitude}, ${seoData.business.coordinates.longitude}`,
+    'rating': seoData.business.rating.toString(),
+    'service-category': 'Bridal Makeup & Wedding Makeup Services',
+    'business-hours': seoData.business.workingHours.weekdays,
+    'price-range': '₹₹-₹₹₹'
+  },
+
+  verification: {
+    google: 'your-google-verification-code',
+    // yandex: 'your-yandex-verification-code',
   }
+};
+
+// Enhanced JSON-LD with all services
+const generateServiceOffers = () => {
+  return makeupServices.map((service: any) => ({
+    "@type": "Offer",
+    "itemOffered": {
+      "@type": "Service",
+      "name": service.title,
+      "description": service.shortDescription,
+      "image": `${seoData.business.contact.website}${service.image}`,
+      "provider": {
+        "@type": "BeautySalon",
+        "name": seoData.business.name
+      },
+      "category": service.category,
+      "aggregateRating": service.rating ? {
+        "@type": "AggregateRating",
+        "ratingValue": service.rating.toString(),
+        "reviewCount": service.reviewCount?.toString() || "0"
+      } : undefined
+    },
+    "price": service.price.toString(),
+    "priceCurrency": "INR",
+    "availability": "https://schema.org/InStock",
+    "priceValidUntil": new Date(Date.now() + 90 * 24 * 60 * 60 * 1000).toISOString(),
+    "url": `${seoData.business.contact.website}/service/${service.slug}`
+  }));
+};
+
+const makeupStructuredData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BeautySalon",
+      "@id": `${seoData.business.contact.website}/#organization`,
+      "name": seoData.business.name,
+      "legalName": seoData.business.legalName,
+      "description": seoData.business.description,
+      "url": seoData.business.contact.website,
+      "logo": `${seoData.business.contact.website}/logo.png`,
+      "image": `${seoData.business.contact.website}/images/salon-exterior.jpg`,
+      "telephone": seoData.business.contact.phone,
+      "email": seoData.business.contact.email,
+      "priceRange": "₹₹-₹₹₹",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": `${seoData.business.address.street}, ${seoData.business.address.locality}`,
+        "addressLocality": seoData.business.address.city,
+        "addressRegion": seoData.business.address.state,
+        "postalCode": seoData.business.address.pincode,
+        "addressCountry": seoData.business.address.country
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": seoData.business.coordinates.latitude,
+        "longitude": seoData.business.coordinates.longitude
+      },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+          "opens": seoData.business.workingHours.weekdays.split(' - ')[0],
+          "closes": seoData.business.workingHours.weekdays.split(' - ')[1]
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Saturday", "Sunday"],
+          "opens": seoData.business.workingHours.weekends.split(' - ')[0],
+          "closes": seoData.business.workingHours.weekends.split(' - ')[1]
+        }
+      ],
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": seoData.business.rating.toString(),
+        "reviewCount": seoData.business.totalReviews.toString(),
+        "bestRating": "5",
+        "worstRating": "1"
+      },
+      "makesOffer": generateServiceOffers(),
+      "areaServed": {
+        "@type": "GeoCircle",
+        "geoMidpoint": {
+          "@type": "GeoCoordinates",
+          "latitude": seoData.business.coordinates.latitude,
+          "longitude": seoData.business.coordinates.longitude
+        },
+        "geoRadius": seoData.business.serviceRadius,
+        "description": `Serving ${Object.values(seoData.nearbyLandmarks).flat().map((l: any) => l.name).slice(0, 10).join(', ')} and surrounding areas`
+      },
+      "sameAs": [
+        `https://instagram.com/${seoData.business.socialMedia.instagram}`,
+        `https://facebook.com/${seoData.business.socialMedia.facebook}`,
+        `https://youtube.com/${seoData.business.socialMedia.youtube}`,
+        seoData.localSEOOptimization.localCitations.justdial,
+        seoData.localSEOOptimization.localCitations.googleMaps
+      ],
+      "hasMap": seoData.localSEOOptimization.localCitations.googleMaps,
+      "paymentAccepted": "Cash, Credit Card, Debit Card, UPI, Net Banking",
+      "amenityFeature": seoData.localSEOOptimization.googleMyBusiness.attributes.map((attr: string) => ({
+        "@type": "LocationFeatureSpecification",
+        "name": attr
+      }))
+    },
+    {
+      "@type": "WebPage",
+      "@id": `${seoData.business.contact.website}/makeup/#webpage`,
+      "url": `${seoData.business.contact.website}/makeup`,
+      "name": metadata.title,
+      "description": metadata.description,
+      "isPartOf": {
+        "@id": `${seoData.business.contact.website}/#website`
+      },
+      "about": {
+        "@id": `${seoData.business.contact.website}/#organization`
+      },
+      "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": `${seoData.business.contact.website}/images/makeup/bridal-makeup-hero.jpg`
+      },
+      "datePublished": "2024-01-01T00:00:00+05:30",
+      "dateModified": new Date().toISOString()
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": seoData.business.contact.website
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Makeup Services",
+          "item": `${seoData.business.contact.website}/makeup`
+        }
+      ]
+    },
+    {
+      "@type": "ItemList",
+      "name": "Makeup Services",
+      "description": "Complete list of professional makeup services",
+      "itemListElement": makeupServices.map((service: any, index: number) => ({
+        "@type": "ListItem",
+        "position": index + 1,
+        "url": `${seoData.business.contact.website}/service/${service.slug}`,
+        "name": service.title
+      }))
+    }
+  ]
+};
+
+// Enhanced FAQ Schema with actual service FAQs
+const generateFAQSchema = () => {
+  const allFAQs = makeupServices.flatMap((service: any) => 
+    (service.faqs || []).map((faq: any) => ({
+      "@type": "Question",
+      "name": faq.question,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": faq.answer
+      }
+    }))
+  );
+
+  // Add general FAQs
+  const generalFAQs = [
+    {
+      "@type": "Question",
+      "name": `Where is ${seoData.business.name} located?`,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": `We are located at ${seoData.business.address.street}, ${seoData.business.address.locality}, ${seoData.business.address.city}, ${seoData.business.address.state} - ${seoData.business.address.pincode}. We serve a ${seoData.business.serviceRadius} radius including areas like Kankarbagh, Rajendra Nagar, and more.`
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What are your working hours?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": `We are open ${seoData.business.workingHours.weekdays} on weekdays and ${seoData.business.workingHours.weekends} on weekends. ${seoData.business.workingHours.emergencyBooking}`
+      }
+    }
+  ];
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [...allFAQs.slice(0, 10), ...generalFAQs]
+  };
+};
+
+// Video Schema if you have makeup tutorials
+const videoSchema = {
+  "@context": "https://schema.org",
+  "@type": "VideoObject",
+  "name": "Bridal Makeup Tutorial by Kritika Salon Patna",
+  "description": "Watch our expert makeup artists create stunning bridal looks",
+  "thumbnailUrl": `${seoData.business.contact.website}/images/makeup/video-thumbnail.jpg`,
+  "uploadDate": "2024-01-01T00:00:00+05:30",
+  "contentUrl": `${seoData.business.contact.website}/videos/bridal-makeup-tutorial.mp4`,
+  "embedUrl": `https://youtube.com/embed/your-video-id`
 };
 
 export default function MakeupPage() {
-  // Fetch data on the server
-  const allServices = getAllServices();
-  const trendingServices = getTrendingServices(allServices);
+  const allServices = makeupServices as Service[];
+  
+  const trendingServices = allServices
+    .filter(service => service.isTrending || service.isPopular || service.isBestSeller)
+    .sort((a, b) => (b.bookingCount || 0) - (a.bookingCount || 0));
 
   return (
-    <ClientMakeupPage 
-      allServices={allServices}
-      trendingServices={trendingServices}
-    />
+    <>
+      {/* Primary Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(makeupStructuredData)
+        }}
+      />
+
+      {/* FAQ Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(generateFAQSchema())
+        }}
+      />
+
+      {/* Video Schema (if applicable) */}
+      {/* <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(videoSchema)
+        }}
+      /> */}
+
+      {/* SEO-friendly content for crawlers */}
+      <div className="sr-only" aria-hidden="true">
+        <h1>{PAGE_TITLE}</h1>
+        <p>{metadata.description}</p>
+        
+        {/* Location keywords for crawler */}
+        <ul>
+          {seoData.nearbyLandmarks.educational.map((landmark: any) => (
+            <li key={landmark.name}>
+              Makeup services near {landmark.name} - {landmark.distance} away
+            </li>
+          ))}
+          {seoData.nearbyLandmarks.healthcare.map((landmark: any) => (
+            <li key={landmark.name}>
+              Bridal makeup near {landmark.name} - {landmark.distance} away
+            </li>
+          ))}
+          {seoData.nearbyLandmarks.commercial.map((landmark: any) => (
+            <li key={landmark.name}>
+              Professional makeup near {landmark.name} - {landmark.distance} away
+            </li>
+          ))}
+        </ul>
+
+        {/* Service listings for crawler */}
+        <section>
+          <h2>Our Makeup Services in Patna</h2>
+          {allServices.map(service => (
+            <article key={service.id}>
+              <h3>{service.title}</h3>
+              <p>{service.description}</p>
+              <p>Price: ₹{service.price} | Duration: {service.duration} minutes</p>
+              <p>Rating: {service.rating} ({service.reviewCount} reviews)</p>
+              <p>Category: {service.category}</p>
+              <ul>
+                {service.benefits.map((benefit, idx) => (
+                  <li key={idx}>{benefit}</li>
+                ))}
+              </ul>
+            </article>
+          ))}
+        </section>
+      </div>
+
+      <ClientMakeupPage 
+        allServices={allServices}
+        trendingServices={trendingServices}
+      />
+    </>
   );
 }
+
+// Export for static generation
+export const dynamic = 'force-static';
+export const revalidate = 3600; // Revalidate every hour

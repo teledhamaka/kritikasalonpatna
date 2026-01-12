@@ -1,33 +1,31 @@
-// src/lib/supabase/server.ts - FIXED VERSION
-import { createServerClient as createClient } from '@supabase/ssr';
+// FILE: lib/supabase/server.ts
+import { createServerClient as createSupabaseServerClient } from '@supabase/ssr';
 import { cookies } from 'next/headers';
 
 export async function createServerClient() {
   const cookieStore = await cookies();
-  
-  return createClient(
+
+  return createSupabaseServerClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
     {
       cookies: {
-        get(name: string) {
-          return cookieStore.get(name)?.value;
+        getAll() {
+          return cookieStore.getAll();
         },
-        set(name: string, value: string, options: any) {
+        setAll(cookiesToSet) {
           try {
-            cookieStore.set({ name, value, ...options });
-          } catch (error) {
-            // Handle error in static generation
-          }
-        },
-        remove(name: string, options: any) {
-          try {
-            cookieStore.set({ name, value: '', ...options });
-          } catch (error) {
-            // Handle error in static generation
+            cookiesToSet.forEach(({ name, value, options }) =>
+              cookieStore.set(name, value, options)
+            );
+          } catch {
+            // This can be ignored if you have middleware refreshing user sessions.
           }
         },
       },
     }
   );
 }
+
+// Backwards compatibility alias
+export const createClient = createServerClient;

@@ -1,0 +1,766 @@
+{
+  "business": {
+    "name": "Kritika Ladies Beauty Parlour",
+    "legalName": "My Ladies Beauty Parlour (Kritika Salon)",
+    "tagline": "Best Ladies Beauty Parlour in Bhootnath Road Patna | Bridal Makeup, Hair Spa & Skin Treatments",
+    "description": "⭐4.9 Rated Premium Beauty Salon at Bhootnath Road, Patna offering bridal makeup, hair styling, skin facials, nail art & beauty services. Expert makeup artists serving Kankarbagh, Rajendra Nagar, Zero Mile, Hanuman Nagar areas. 5000+ Happy Clients.",
+    "address": {
+      "street": "Bhootnath Road",
+      "locality": "BH Colony",
+      "city": "Patna",
+      "state": "Bihar",
+      "pincode": "800026",
+      "country": "India"
+    },
+    "coordinates": {
+      "latitude": 25.5875,
+      "longitude": 85.1757
+    },
+    "serviceRadius": "5km",
+    "established": "2020",
+    "rating": 4.9,
+    "totalReviews": 5000,
+    "contact": {
+      "phone": "+91-9650461390",
+      "whatsapp": "+91-9650461390",
+      "email": "info@kritikasalonpatna.com",
+      "website": "https://kritikasalonpatna.com"
+    },
+    "workingHours": {
+      "weekdays": "9:00 AM - 8:00 PM",
+      "weekends": "9:00 AM - 9:00 PM",
+      "sunday": "Open",
+      "emergencyBooking": "Available on request"
+    },
+    "socialMedia": {
+      "instagram": "@kritikasalonpatna",
+      "facebook": "KritikaSalonPatna",
+      "youtube": "@kritikasalon"
+    }
+  },
+
+  "seo": {
+    "primaryKeywords": [
+      "beauty parlour in Bhootnath Road Patna",
+      "ladies beauty parlour near Kankarbagh",
+      "bridal makeup artist in Bhootnath Road",
+      "best beauty parlour near Zero Mile Patna",
+      "makeup artist near Rajendra Nagar Terminus",
+      "beauty salon near Medanta Hospital Patna",
+      "hair spa in Bhootnath Road",
+      "skin facial near Bhootnath Metro Station",
+      "nail art studio Bhootnath Road",
+      "beauty parlour near Hanuman Nagar",
+      "bridal makeup near Kankarbagh Overbridge",
+      "beauty services near Bazar Samiti",
+      "HD makeup artist Bhootnath Road Patna",
+      "airbrush makeup near Sampatchak"
+    ],
+
+    "locationBasedKeywords": {
+      "ultraLocal": [
+        "beauty parlour Bhootnath Road Patna",
+        "salon BH Colony Patna",
+        "makeup artist near Zero Mile Patna",
+        "beauty parlour near Bhootnath Metro Station",
+        "bridal makeup near Gandhi Setu",
+        "beauty services Kumhrar area",
+        "salon near Pahadi Patna",
+        "beauty parlour Agamkuan",
+        "makeup artist Transport Nagar Patna"
+      ],
+      
+      "educationalHubs": [
+        "beauty parlour near College of Commerce Patna",
+        "student makeup near Bazar Samiti coaching",
+        "bridal makeup near NMCH College",
+        "beauty services for college students Kankarbagh",
+        "makeup artist near Bazar Samiti educational hub",
+        "salon for students near College of Commerce",
+        "party makeup near NMCH Hostel",
+        "college event makeup Bazar Samiti area",
+        "affordable beauty services for coaching students Patna",
+        "quick makeup near Kankarbagh coaching centers",
+        "budget facial near educational institutes",
+        "student discount beauty parlour Kankarbagh"
+      ],
+
+      "healthcare": [
+        "beauty parlour near Medanta Hospital Patna",
+        "makeup services near NMCH College",
+        "salon near healthcare facilities Patna",
+        "beauty parlour near hospitals Kankarbagh",
+        "bridal makeup near Medanta Hospital",
+        "beauty services for doctors Patna",
+        "quick makeup near medical college",
+        "salon for nurses Kankarbagh",
+        "medical professional beauty services",
+        "beauty parlour hospital area Patna"
+      ],
+
+      "commercialAreas": [
+        "beauty parlour Kankarbagh Market",
+        "salon near Zero Mile Shopping Area",
+        "bridal makeup near Kankarbagh Shopping Complex",
+        "beauty services Sampatchak market area",
+        "makeup artist near Kanti Factory",
+        "salon Bhootnath Road commercial area",
+        "beauty parlour near Kankarbagh Overbridge",
+        "bridal makeup Transport Nagar area"
+      ],
+
+      "transport": [
+        "beauty parlour near Rajendra Nagar Terminus",
+        "bridal makeup near Bairia Bus Terminus",
+        "quick makeup near Bhootnath Metro Station",
+        "salon near Gandhi Setu",
+        "pre-travel beauty services Patna",
+        "outstation bride makeup near bus terminus",
+        "emergency makeup near Rajendra Nagar Terminus",
+        "beauty parlour near metro station Patna"
+      ],
+
+      "residential": [
+        "beauty parlour BH Colony Patna",
+        "salon Hanuman Nagar",
+        "bridal makeup Sampatchak",
+        "beauty services Gandhi Nagar Patna",
+        "home service beauty parlour Munna Chak",
+        "salon Bhagwat Nagar area",
+        "beauty parlour Chittragupta Nagar",
+        "makeup artist Bahadurpur Housing Colony",
+        "salon Transport Nagar Patna"
+      ],
+
+      "nearbyAreas": [
+        "beauty parlour Kankarbagh Patna",
+        "bridal makeup Rajendra Nagar",
+        "salon Zero Mile Patna",
+        "beauty services Kumhrar",
+        "makeup artist near Agamkuan",
+        "salon near Pahadi Patna",
+        "beauty parlour near Gandhi Setu",
+        "bridal makeup Hanuman Nagar area"
+      ]
+    },
+
+    "serviceSpecificKeywords": {
+      "bridalServices": [
+        "bridal makeup package Bhootnath Road",
+        "pre bridal services near Kankarbagh",
+        "wedding makeup artist Bhootnath Road Patna",
+        "bridal makeup trial near Zero Mile",
+        "mehndi function makeup Patna",
+        "sangeet makeup artist near Medanta Hospital",
+        "engagement makeup Bhootnath Road",
+        "reception makeup near Rajendra Nagar Terminus",
+        "bridal hair styling Bhootnath Road",
+        "destination wedding makeup Kankarbagh"
+      ],
+
+      "hairServices": [
+        "hair spa near Bhootnath Road Patna",
+        "keratin treatment near Kankarbagh",
+        "hair smoothening near College of Commerce",
+        "hair color Bhootnath Road Patna",
+        "hair fall treatment near Zero Mile",
+        "dandruff treatment near Medanta Hospital",
+        "hair cut styling Bhootnath Road",
+        "blow dry services near Kankarbagh Market",
+        "hair ironing near Sampatchak"
+      ],
+
+      "skinServices": [
+        "facial near Bhootnath Road Patna",
+        "skin cleanup near Kankarbagh",
+        "acne treatment near College of Commerce",
+        "hydrafacial near Zero Mile",
+        "diamond facial Bhootnath Road",
+        "tan removal near Medanta Hospital",
+        "skin brightening near Rajendra Nagar",
+        "gold facial near Kankarbagh"
+      ],
+
+      "nailServices": [
+        "nail art Bhootnath Road Patna",
+        "nail extensions near Kankarbagh",
+        "bridal nails near Zero Mile",
+        "manicure pedicure Bhootnath Road",
+        "gel nails near College of Commerce",
+        "nail polish services near Hanuman Nagar"
+      ],
+
+      "hairRemoval": [
+        "waxing services Bhootnath Road",
+        "threading near Kankarbagh",
+        "full body waxing near Zero Mile",
+        "brazilian wax Bhootnath Road",
+        "eyebrow threading near College of Commerce",
+        "facial threading near Medanta Hospital"
+      ]
+    },
+
+    "longTailKeywords": [
+      "best bridal makeup artist in Bhootnath Road Patna for wedding",
+      "affordable beauty parlour near College of Commerce Patna",
+      "professional hair spa treatment near Bhootnath Metro Station",
+      "beauty parlour for students near Bazar Samiti coaching centers",
+      "emergency makeup services near Rajendra Nagar Terminus",
+      "home service beauty parlour in BH Colony Patna",
+      "pre bridal skincare package near Kankarbagh",
+      "HD makeup for engagement near Bhootnath Road",
+      "budget friendly beauty services for college students Kankarbagh",
+      "keratin treatment cost in Bhootnath Road area",
+      "best facial for glowing skin near Medanta Hospital",
+      "bridal makeup artist who comes home in Bhootnath Road",
+      "beauty parlour open on Sunday near Zero Mile",
+      "nail art for wedding near Kankarbagh",
+      "acne treatment for sensitive skin near Bhootnath Road"
+    ],
+
+    "voiceSearchOptimization": [
+      "beauty parlour near me in Bhootnath Road open now",
+      "best bridal makeup artist near Kankarbagh",
+      "hair spa treatment near Bhootnath Metro Station",
+      "affordable facial near College of Commerce Patna",
+      "beauty parlour near Medanta Hospital",
+      "makeup artist who comes home in Bhootnath Road",
+      "how much does bridal makeup cost in Bhootnath Road Patna",
+      "beauty parlour with HD makeup near Kankarbagh",
+      "nail art studio near Bhootnath Road",
+      "beauty parlour open on Sunday near me Bhootnath Road",
+      "best salon for students near College of Commerce",
+      "emergency makeup artist in Bhootnath Road Patna"
+    ],
+
+    "competitorKeywords": [
+      "better than Lakme Salon Kankarbagh",
+      "alternative to Shahnaz Hussain Patna",
+      "affordable than VLCC Kankarbagh",
+      "best beauty parlour Bhootnath Road Patna",
+      "top rated salon Kankarbagh area",
+      "premium beauty services Bhootnath Road"
+    ],
+
+    "emergencyKeywords": [
+      "emergency bridal makeup Bhootnath Road",
+      "last minute makeup artist Patna",
+      "same day booking beauty parlour Bhootnath Road",
+      "urgent hair styling near Kankarbagh",
+      "quick party makeup near Zero Mile",
+      "instant glow facial Bhootnath Road"
+    ],
+
+    "studentTargetedKeywords": [
+      "student discount beauty parlour Bhootnath Road",
+      "affordable makeup for college students Patna",
+      "budget beauty services near Bazar Samiti coaching",
+      "party makeup for students near College of Commerce",
+      "college fest makeup near NMCH",
+      "farewell party makeup Kankarbagh",
+      "student friendly beauty parlour Patna",
+      "cheap beauty services for students Bhootnath Road"
+    ],
+
+    "professionalKeywords": [
+      "office makeup Bhootnath Road Patna",
+      "professional grooming near Medanta Hospital",
+      "corporate makeup services Kankarbagh",
+      "business event makeup Patna",
+      "doctor beauty services near hospitals",
+      "nurse makeup services Patna",
+      "working women beauty parlour Bhootnath Road"
+    ]
+  },
+
+  "nearbyLandmarks": {
+    "educational": [
+      {
+        "name": "College of Commerce, Arts & Science",
+        "type": "Autonomous College",
+        "distance": "1.5km",
+        "pincode": "800020",
+        "targetAudience": "College Students, Faculty, Working Professionals",
+        "estimatedFootfall": "4000+ daily",
+        "keywords": [
+          "beauty parlour near College of Commerce Patna",
+          "student makeup near Commerce College",
+          "college event makeup Commerce College area",
+          "affordable beauty services for commerce students"
+        ]
+      },
+      {
+        "name": "NMCH (Nalanda Medical College & Hospital)",
+        "type": "Medical College & Hospital",
+        "distance": "2km",
+        "pincode": "800026",
+        "targetAudience": "Medical Students, Doctors, Nurses",
+        "estimatedFootfall": "5000+ daily",
+        "keywords": [
+          "beauty parlour near NMCH Patna",
+          "medical student makeup services",
+          "quick beauty services NMCH area",
+          "salon near NMCH hostel"
+        ]
+      },
+      {
+        "name": "Bazar Samiti Educational Hub",
+        "type": "Coaching Center Hub",
+        "distance": "1km",
+        "pincode": "800026",
+        "targetAudience": "Coaching Students, Aspirants",
+        "estimatedFootfall": "3000+ daily",
+        "keywords": [
+          "beauty parlour near Bazar Samiti coaching",
+          "student beauty services Bazar Samiti",
+          "coaching student makeup services Patna",
+          "affordable salon near Bazar Samiti"
+        ]
+      }
+    ],
+
+    "healthcare": [
+      {
+        "name": "Medanta Hospital Patna",
+        "type": "Multi-Specialty Hospital",
+        "distance": "1.2km",
+        "pincode": "800020",
+        "targetAudience": "Doctors, Nurses, Medical Staff, Patients' Families",
+        "estimatedFootfall": "8000+ daily",
+        "keywords": [
+          "beauty parlour near Medanta Hospital Patna",
+          "makeup for doctors near Medanta",
+          "beauty services for medical professionals Kankarbagh",
+          "salon near Medanta Hospital"
+        ]
+      },
+      {
+        "name": "NMCH College & Hospital",
+        "type": "Government Medical College & Hospital",
+        "distance": "2km",
+        "pincode": "800026",
+        "targetAudience": "Healthcare Professionals, Medical Students",
+        "estimatedFootfall": "6000+ daily",
+        "keywords": [
+          "beauty parlour near NMCH Hospital",
+          "quick beauty services medical college area",
+          "salon near Nalanda Medical College"
+        ]
+      }
+    ],
+
+    "commercial": [
+      {
+        "name": "Kankarbagh Market",
+        "type": "Major Shopping Area",
+        "distance": "0.8km",
+        "pincode": "800020",
+        "targetAudience": "Shoppers, Families, Young Professionals",
+        "estimatedFootfall": "15000+ daily",
+        "keywords": [
+          "beauty parlour near Kankarbagh Market",
+          "quick makeup after shopping Kankarbagh",
+          "salon near Kankarbagh shopping complex",
+          "bridal makeup Kankarbagh area"
+        ]
+      },
+      {
+        "name": "Zero Mile Shopping Area",
+        "type": "Commercial Hub",
+        "distance": "1km",
+        "pincode": "800020",
+        "targetAudience": "Shoppers, Local Residents",
+        "estimatedFootfall": "10000+ daily",
+        "keywords": [
+          "beauty parlour near Zero Mile Patna",
+          "salon Zero Mile area",
+          "bridal makeup near Zero Mile"
+        ]
+      },
+      {
+        "name": "Sampatchak Market",
+        "type": "Local Market",
+        "distance": "1.5km",
+        "pincode": "800026",
+        "targetAudience": "Local Shoppers",
+        "keywords": [
+          "salon near Sampatchak market",
+          "beauty services Sampatchak area"
+        ]
+      },
+      {
+        "name": "Bhootnath Road Commercial Area",
+        "type": "Commercial Street",
+        "distance": "0.1km",
+        "pincode": "800026",
+        "targetAudience": "Everyone",
+        "estimatedFootfall": "20000+ daily",
+        "keywords": [
+          "beauty parlour Bhootnath Road",
+          "salon at Bhootnath Road",
+          "bridal makeup Bhootnath Road Patna"
+        ]
+      },
+      {
+        "name": "Kanti Factory Area",
+        "type": "Industrial & Commercial Zone",
+        "distance": "2km",
+        "pincode": "800026",
+        "keywords": [
+          "salon near Kanti Factory Patna"
+        ]
+      },
+      {
+        "name": "Transport Nagar",
+        "type": "Commercial Transport Hub",
+        "distance": "1.8km",
+        "pincode": "800026",
+        "keywords": [
+          "beauty parlour Transport Nagar Patna"
+        ]
+      }
+    ],
+
+    "transport": [
+      {
+        "name": "Bhootnath Metro Station",
+        "type": "Metro Station",
+        "distance": "0.5km",
+        "pincode": "800026",
+        "targetAudience": "Commuters, Daily Travelers",
+        "estimatedFootfall": "25000+ daily",
+        "keywords": [
+          "beauty parlour near Bhootnath Metro Station",
+          "quick makeup near metro station",
+          "salon near Bhootnath Metro",
+          "pre-travel beauty services metro area"
+        ]
+      },
+      {
+        "name": "Rajendra Nagar Terminus",
+        "type": "Railway Terminal",
+        "distance": "1km",
+        "pincode": "800016",
+        "targetAudience": "Travelers, Outstation Brides",
+        "estimatedFootfall": "30000+ daily",
+        "keywords": [
+          "beauty parlour near Rajendra Nagar Terminus",
+          "emergency makeup near railway terminus",
+          "pre-travel beauty services Patna",
+          "outstation bride makeup near terminus"
+        ]
+      },
+      {
+        "name": "Bairia Bus Terminus",
+        "type": "Bus Terminal",
+        "distance": "2.5km",
+        "pincode": "800026",
+        "targetAudience": "Inter-city Travelers",
+        "estimatedFootfall": "20000+ daily",
+        "keywords": [
+          "beauty parlour near Bairia Bus Terminus",
+          "quick makeup before bus travel",
+          "salon near bus stand Patna"
+        ]
+      },
+      {
+        "name": "Gandhi Setu (Bridge)",
+        "type": "Major Transport Connection",
+        "distance": "2km",
+        "pincode": "800026",
+        "targetAudience": "Commuters from North Patna",
+        "keywords": [
+          "beauty parlour near Gandhi Setu",
+          "salon accessible from Gandhi Bridge"
+        ]
+      },
+      {
+        "name": "Kankarbagh Overbridge",
+        "type": "Transport Hub",
+        "distance": "0.7km",
+        "pincode": "800020",
+        "keywords": [
+          "beauty parlour near Kankarbagh Overbridge"
+        ]
+      }
+    ],
+
+    "residential": [
+      {
+        "name": "BH Colony",
+        "type": "Residential Colony",
+        "distance": "0.1km",
+        "pincode": "800026",
+        "targetAudience": "Homemakers, Working Professionals",
+        "population": "4000+",
+        "keywords": [
+          "beauty parlour BH Colony Patna",
+          "home service beauty BH Colony",
+          "salon in BH Colony"
+        ]
+      },
+      {
+        "name": "Hanuman Nagar",
+        "type": "Residential Area",
+        "distance": "1km",
+        "pincode": "800026",
+        "population": "8000+",
+        "keywords": [
+          "beauty services Hanuman Nagar",
+          "salon Hanuman Nagar Patna",
+          "bridal makeup Hanuman Nagar area"
+        ]
+      },
+      {
+        "name": "Sampatchak",
+        "type": "Residential Colony",
+        "distance": "1.5km",
+        "pincode": "800026",
+        "population": "6000+",
+        "keywords": [
+          "salon Sampatchak Patna",
+          "beauty parlour Sampatchak area"
+        ]
+      },
+      {
+        "name": "Gandhi Nagar",
+        "type": "Residential Colony",
+        "distance": "1.3km",
+        "pincode": "800026",
+        "population": "5000+",
+        "keywords": [
+          "beauty parlour Gandhi Nagar Patna",
+          "home service beauty Gandhi Nagar"
+        ]
+      },
+      {
+        "name": "Munna Chak",
+        "type": "Residential Area",
+        "distance": "1.8km",
+        "pincode": "800026",
+        "keywords": [
+          "salon Munna Chak Patna",
+          "beauty services Munna Chak"
+        ]
+      },
+      {
+        "name": "Bhagwat Nagar",
+        "type": "Residential Colony",
+        "distance": "2km",
+        "pincode": "800026",
+        "keywords": [
+          "beauty parlour Bhagwat Nagar"
+        ]
+      },
+      {
+        "name": "Chittragupta Nagar",
+        "type": "Residential Area",
+        "distance": "1.6km",
+        "pincode": "800026",
+        "keywords": [
+          "salon Chittragupta Nagar Patna"
+        ]
+      },
+      {
+        "name": "Bahadurpur Housing Colony",
+        "type": "Housing Colony",
+        "distance": "2.2km",
+        "pincode": "800026",
+        "keywords": [
+          "beauty parlour Bahadurpur Housing Colony"
+        ]
+      },
+      {
+        "name": "Kumhrar",
+        "type": "Residential Area",
+        "distance": "2.5km",
+        "pincode": "800026",
+        "population": "7000+",
+        "keywords": [
+          "beauty parlour Kumhrar Patna",
+          "salon Kumhrar area"
+        ]
+      },
+      {
+        "name": "Pahadi",
+        "type": "Residential Area",
+        "distance": "3km",
+        "pincode": "800026",
+        "keywords": [
+          "salon Pahadi Patna"
+        ]
+      },
+      {
+        "name": "Agamkuan",
+        "type": "Residential & Commercial Area",
+        "distance": "2.8km",
+        "pincode": "800007",
+        "keywords": [
+          "beauty parlour Agamkuan Patna"
+        ]
+      }
+    ],
+
+    "nearbyAreas": [
+      {
+        "name": "Kankarbagh",
+        "type": "Major Commercial & Residential Hub",
+        "distance": "0.8km",
+        "pincode": "800020",
+        "keywords": [
+          "beauty parlour Kankarbagh Patna",
+          "bridal makeup Kankarbagh area",
+          "salon near Kankarbagh market"
+        ]
+      },
+      {
+        "name": "Rajendra Nagar",
+        "type": "Residential & Transport Hub",
+        "distance": "1km",
+        "pincode": "800016",
+        "keywords": [
+          "beauty services Rajendra Nagar Patna",
+          "salon Rajendra Nagar area"
+        ]
+      },
+      {
+        "name": "Zero Mile",
+        "type": "Commercial Junction",
+        "distance": "1km",
+        "pincode": "800020",
+        "keywords": [
+          "beauty parlour Zero Mile Patna",
+          "salon near Zero Mile crossing"
+        ]
+      }
+    ]
+  },
+
+  "dynamicPageGeneration": {
+    "urlStructure": {
+      "services": "/services/[category]/[slug]",
+      "locations": "/locations/[area]/[landmark]",
+      "combined": "/[service-type]-near-[landmark]"
+    },
+
+    "servicePages": {
+      "template": "Create pages dynamically for each service",
+      "examples": [
+        "/services/bridal/hd-bridal-makeup",
+        "/services/hair/keratin-treatment",
+        "/services/skin/hydrafacial",
+        "/services/nails/gel-nail-extensions"
+      ],
+      "metadata": {
+        "title": "[Service Name] in Bhootnath Road Patna | Kritika Salon",
+        "description": "Professional [Service Name] at Kritika Salon, Bhootnath Road. Book now for expert [category] services. ₹[price] | [duration] mins",
+        "keywords": "[service], [service] Bhootnath Road, [service] Patna, [service] near me"
+      }
+    },
+
+    "locationPages": {
+      "template": "Create pages for each landmark/area combination",
+      "examples": [
+        "/locations/bhootnath-road/kankarbagh",
+        "/locations/bhootnath-road/medanta-hospital",
+        "/locations/kankarbagh/zero-mile",
+        "/locations/rajendra-nagar/terminus"
+      ],
+      "metadata": {
+        "title": "Beauty Parlour near [Landmark] | Kritika Salon Patna",
+        "description": "Premium beauty services near [Landmark]. [Distance] away. Bridal makeup, hair spa, facials & more.",
+        "keywords": "beauty parlour near [landmark], salon near [landmark], makeup artist [area]"
+      }
+    },
+
+    "combinedPages": {
+      "template": "Service + Location pages for high-value combinations",
+      "examples": [
+        "/bridal-makeup-near-kankarbagh",
+        "/hair-spa-near-medanta-hospital",
+        "/nail-art-near-bhootnath-metro-station",
+        "/facial-near-zero-mile",
+        "/bridal-makeup-near-college-of-commerce",
+        "/beauty-services-near-rajendra-nagar-terminus"
+      ],
+      "metadata": {
+        "title": "[Service] near [Landmark] | Kritika Salon Patna",
+        "description": "Best [Service] near [Landmark]. Expert beauticians, [distance] away. Book online or call +91-9650461390",
+        "keywords": "[service] near [landmark], [service] [area] Patna"
+      }
+    }
+  },
+
+  "contentStrategy": {
+    "blogTopics": [
+      "Complete Bridal Beauty Guide for Bhootnath Road Patna Brides 2025",
+      "Top 10 Beauty Trends at Kankarbagh - College Student Edition",
+      "Hair Care Tips for Patna's Monsoon Season - Expert Guide",
+      "Pre-Wedding Beauty Timeline: 6 Months to Your Big Day",
+      "Beauty Services Guide for Medical Professionals near NMCH & Medanta",
+      "Best Makeup Looks for College Events in Bhootnath Road Area",
+      "How to Choose Right Hair Treatment: Keratin vs Smoothening",
+      "Student Budget Beauty: Affordable Services near Bazar Samiti Coaching",
+      "Emergency Bridal Makeup Guide for Last-Minute Weddings Patna",
+      "Skin Care Routine for Patna Weather - All Seasons Guide",
+      "Beauty Guide for Commuters: Quick Services near Metro & Railway Station"
+    ],
+
+    "locationGuides": [
+      "Complete Beauty Services Guide for Bhootnath Road Residents",
+      "Best Beauty Parlour near College of Commerce - Student Guide",
+      "Beauty Services for Healthcare Professionals near Medanta Hospital",
+      "Shopping & Beauty: Kankarbagh Market to Kritika Salon Guide",
+      "Commuter's Beauty Guide: Services near Rajendra Nagar Terminus",
+      "Metro Commuter Beauty Guide: Bhootnath Metro Station Area"
+    ]
+  },
+
+  "localSEOOptimization": {
+    "googleMyBusiness": {
+      "primaryCategory": "Beauty Salon",
+      "additionalCategories": [
+        "Bridal Shop",
+        "Make-up Artist",
+        "Hair Salon",
+        "Skin Care Clinic",
+        "Nail Salon",
+        "Spa",
+        "Beautician"
+      ],
+      "attributes": [
+        "Women-led business",
+        "Wheelchair accessible",
+        "Free Wi-Fi",
+        "Accepts credit cards",
+        "Online bookings",
+        "Home service available",
+        "Student discounts",
+        "Emergency appointments",
+        "Sanitized equipment",
+        "Premium products",
+        "Near metro station",
+        "Easy parking"
+      ],
+      "services": [
+        "Bridal Makeup (HD & Airbrush)",
+        "Pre-Bridal Packages",
+        "Hair Spa & Treatments",
+        "Keratin Treatment",
+        "Skin Facials (All types)",
+        "Acne Treatment",
+        "Nail Art & Extensions",
+        "Waxing & Threading",
+        "Hair Coloring",
+        "Makeup Trials",
+        "Student Special Packages",
+        "Express Services"
+      ]
+    },
+
+    "localCitations": {
+      "justdial": "https://www.justdial.com/Patna/Kritika-Ladies-Beauty-Parlour-Bh-Colony/0612PX612-X612-220522124730-E6U5_BZDET",
+      "googleMaps": "https://www.google.com/maps/place/Kritika+Ladies+Beauty+Parlour/@25.5873981,85.1757259,17z"
+    }
+  }
+}

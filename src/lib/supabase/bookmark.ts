@@ -1,10 +1,11 @@
 // ========================================
 // lib/supabase/bookmark.ts - Bookmark Utilities
 // ========================================
-import { createClientSupabase } from './client';
+//import { createClientSupabase } from './client';
+import { supabase } from '@/lib/supabase/client';
 
 export async function toggleBookmark(postSlug: string, userId: string) {
-  const supabase = createClientSupabase();
+  //const supabase = createClientSupabase();
 
   // Check if already bookmarked
   const { data: existing } = await supabase
@@ -33,7 +34,7 @@ export async function toggleBookmark(postSlug: string, userId: string) {
 }
 
 export async function getUserBookmarks(userId: string) {
-  const supabase = createClientSupabase();
+  //const supabase = createClientSupabase();
 
   const { data, error } = await supabase
     .from('bookmarks')

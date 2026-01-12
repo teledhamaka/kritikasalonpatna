@@ -1,11 +1,13 @@
-// ========================================
-// lib/supabase/client.ts - CLIENT SIDE
-// ========================================
-import { createBrowserClient } from '@supabase/ssr';
+// lib/supabase/client.ts
+// Only keep if you need it for storage or other non-auth features
+import { createClient } from '@supabase/supabase-js';
 
-export function createClientSupabase() {
-  return createBrowserClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-  );
-}
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
+const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
+
+export const supabase = createClient(supabaseUrl, supabaseAnonKey, {
+  auth: {
+    persistSession: false, // Disable auth
+    autoRefreshToken: false,
+  },
+});

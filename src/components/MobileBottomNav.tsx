@@ -3,7 +3,7 @@
 
 import Link from 'next/link'
 import { useState } from 'react'
-import { Home, Book, Flower } from 'lucide-react'
+import { Home, Search, Heart, User, Book } from 'lucide-react'
 import { UserCircle, Leaf, Scissors } from 'lucide-react'
 
 export default function MobileBottomNav() {
@@ -36,7 +36,7 @@ export default function MobileBottomNav() {
             className={`flex flex-col items-center gap-1 ${activeTab === 'skin' ? 'text-pink-600' : 'text-gray-600'}`}
             onClick={() => setActiveTab('skin')}
           >
-            <Flower className="w-6 h-6" />
+            <Leaf className="w-6 h-6" />
             <span className="text-xs font-semibold">Skin</span>
           </Link>
           

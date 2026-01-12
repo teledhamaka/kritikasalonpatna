@@ -1,314 +1,913 @@
 [
   {
-    "id": "manicure_4",
-    "title": "Bridal Nails Package",
+    "id": "bridal-nails-package-patna",
+    "title": "Bridal Nails Package | Premium Bridal Nails Patna",
+    "slug": "bridal-nails-package-patna",
     "category": "Manicure",
+    "categorySlug": "manicure",
     "image": "/images/nails/bridal_nails.webp",
-    "description": "Premium bridal package with custom nail extensions, Swarovski embellishments, and chrome finishes. Includes trial session.",
+    "description": "Premium bridal nails package in Patna at My Ladies Beauty Parlour featuring custom nail extensions, Swarovski embellishments, and chrome finishes. Includes trial session to perfect your bridal look. Specially designed for Patna weddings with long-lasting durability through ceremonies and honeymoon.",
+    "shortDescription": "Premium bridal nails package in Patna with custom extensions and Swarovski embellishments. Perfect for Patna wedding ceremonies.",
     "price": 1500,
     "originalPrice": 2000,
+    "discountPercentage": 25,
     "isTrending": true,
-    "deal": "230+ bookings this month",
+    "isPopular": true,
+    "isBestSeller": true,
     "duration": 90,
-    "keyIngredients": ["Bio-Sculpture Gel", "24k Gold Foil", "Hypoallergenic Adhesives"],
+    "durationText": "1.5 hours",
+    "rating": 4.8,
+    "reviewCount": 156,
+    "bookingCount": 230,
+    "keyIngredients": ["Bio-Sculpture Gel", "24k Gold Foil", "Hypoallergenic Adhesives", "Swarovski Crystals"],
     "benefits": [
-      "Lasts through honeymoon",
-      "Photo-ready nail art",
-      "Strengthens natural nails"
+      "Lasts through entire Patna wedding celebrations and honeymoon",
+      "Photo-ready nail art perfect for wedding photography",
+      "Strengthens natural nails for long-term health",
+      "Custom designs that complement Patna bridal outfits"
     ],
-    "precautions": "Patch test for adhesive allergy. Bring inspiration photos.",
-    "aftercare": "Use cuticle oil. Avoid acetone.",
+    "precautions": "Patch test recommended for adhesive allergies. Bring inspiration photos for perfect customization.",
+    "aftercare": "Apply cuticle oil daily. Avoid acetone-based products. Special care instructions for Patna climate.",
     "faqs": [
-      {"question": "Emergency repair?", "answer": "Free within 72hrs"},
-      {"question": "Nail health risk?", "answer": "Non-damaging removal technique used"}
-    ]
+      {"question": "Do you offer emergency nail repair for Patna weddings?", "answer": "Yes, we provide free emergency repair within 72 hours of application for Patna brides"},
+      {"question": "Is there risk of damage to natural nails?", "answer": "We use non-damaging removal techniques specifically developed for sensitive nails common in Bihar"},
+      {"question": "Can I match nails with my bridal jewelry?", "answer": "Absolutely, we coordinate nail designs with your bridal jewelry for a cohesive Patna wedding look"},
+      {"question": "How long before my wedding should I get bridal nails?", "answer": "We recommend 1-2 days before the wedding for optimal freshness and durability"},
+      {"question": "Do you provide trial sessions for bridal nails?", "answer": "Yes, one trial session is included in this package to perfect your bridal nail design"}
+    ],
+    "seoKeywords": [
+      "bridal nails patna",
+      "bridal nail art patna",
+      "wedding nails patna",
+      "premium bridal manicure",
+      "bridal nail extensions patna",
+      "bridal nails Boring Road",
+      "wedding nail art Bailey Road",
+      "bridal nail package Patna"
+    ],
+    "targetAudience": ["Patna brides", "Wedding preparations", "Premium service seekers"],
+    "idealFor": ["Wedding ceremonies", "Bridal photoshoots", "Destination weddings", "Grand receptions"],
+    "whatsIncluded": [
+      "Custom nail extensions",
+      "Swarovski embellishments",
+      "Chrome finish application",
+      "Trial session",
+      "Bridal nail design consultation"
+    ],
+    "whatsNotIncluded": ["Toe nail art", "Nail removal service", "Follow-up fills", "Nail jewelry"],
+    "addOns": [
+      {"name": "Toe Nail Art Matching", "price": 800},
+      {"name": "Nail Jewelry Setting", "price": 500},
+      {"name": "Express Removal Service", "price": 300}
+    ],
+    "nearbyLandmarks": [
+      "Boring Road bridal studios (0.5km)",
+      "Bailey Road wedding venues (1.5km)",
+      "Rajendra Nagar banquet halls (1km)",
+      "Kankarbagh residential areas (0.5km)"
+    ],
+    "seasonalTags": ["Wedding season", "Bridal preparations", "Year-round"],
+    "processingTime": "Book 2-3 days in advance for trial",
+    "cancellationPolicy": "Free cancellation up to 48 hours before appointment"
   },
   {
-    "id": "nailart_2",
-    "title": "Nail Extension (Acrylic/Gel)",
+    "id": "nail-extension-acrylic-gel-patna",
+    "title": "Nail Extension (Acrylic/Gel) | Lengthening Service Patna",
+    "slug": "nail-extension-acrylic-gel-patna",
     "category": "Nail Art",
+    "categorySlug": "nail-art",
     "image": "/images/nails/nail_extension.webp",
-    "description": "Lengthening service with acrylic or gel extensions. Choose from stiletto, coffin, or square shapes. Includes basic polish.",
+    "description": "Professional nail lengthening service in Patna at My Ladies Beauty Parlour with acrylic or gel extensions. Choose from stiletto, coffin, or square shapes. Includes basic polish and shaping. Perfect for Patna events and special occasions with durable, long-lasting results.",
+    "shortDescription": "Professional nail extensions in Patna with acrylic or gel. Choose from stiletto, coffin, or square shapes. Perfect for Patna events.",
     "price": 1500,
     "originalPrice": 2000,
+    "discountPercentage": 25,
     "isTrending": true,
-    "deal": "290+ bookings this month",
+    "isPopular": true,
+    "isBestSeller": true,
     "duration": 120,
-    "keyIngredients": ["Odor-Free Acrylic", "LED Builder Gel", "Nail Forms"],
+    "durationText": "2 hours",
+    "rating": 4.7,
+    "reviewCount": 203,
+    "bookingCount": 290,
+    "keyIngredients": ["Odor-Free Acrylic", "LED Builder Gel", "Nail Forms", "Professional Primer"],
     "benefits": [
-      "Instant length",
-      "Strengthens natural nails",
-      "Customizable shapes"
+      "Instant length enhancement perfect for Patna social events",
+      "Strengthens and protects natural nails",
+      "Customizable shapes to match personal style",
+      "Long-lasting durability for Patna's active lifestyle"
     ],
-    "precautions": "Not for nail biters. Avoid water 24hrs post.",
-    "aftercare": "Use cuticle oil daily. Avoid using nails as tools.",
+    "precautions": "Not recommended for severe nail biters. Avoid water exposure for 24 hours post-service.",
+    "aftercare": "Use cuticle oil daily. Avoid using nails as tools. Special care for Patna climate conditions.",
     "faqs": [
-      {"question": "Damage to natural nails?", "answer": "Non-damaging removal process"},
-      {"question": "Fill policy?", "answer": "Recommended every 3 weeks"}
-    ]
+      {"question": "Will extensions damage my natural nails?", "answer": "We use non-damaging removal processes specifically designed for sensitive nails"},
+      {"question": "How often do I need fills for nail extensions?", "answer": "We recommend fills every 3 weeks for optimal maintenance"},
+      {"question": "Which is better for Patna's climate - acrylic or gel?", "answer": "Gel extensions are more flexible and better for Patna's humidity, while acrylic is more durable for rigorous activities"},
+      {"question": "Can I switch shapes during fills?", "answer": "Yes, we can reshape your extensions during fill appointments"},
+      {"question": "How long do nail extensions typically last?", "answer": "With proper care, extensions last 3-4 weeks before needing fills"}
+    ],
+    "seoKeywords": [
+      "nail extensions patna",
+      "acrylic nails patna",
+      "gel nails patna",
+      "nail lengthening service",
+      "nail extensions Boring Road",
+      "acrylic nails Bailey Road",
+      "nail art extensions Patna"
+    ],
+    "targetAudience": ["Fashion enthusiasts", "Special event attendees", "Nail length seekers"],
+    "idealFor": ["Weddings", "Parties", "Special occasions", "Fashion events"],
+    "whatsIncluded": [
+      "Acrylic or gel extension application",
+      "Shape customization",
+      "Basic polish",
+      "Nail shaping and buffing",
+      "Sanitization process"
+    ],
+    "whatsNotIncluded": ["Nail art designs", "French tips", "Gel polish upgrade", "Nail jewelry"],
+    "addOns": [
+      {"name": "French Tip Design", "price": 300},
+      {"name": "Nail Art Design", "price": 500},
+      {"name": "Gel Polish Upgrade", "price": 400}
+    ],
+    "nearbyLandmarks": [
+      "Boring Road shopping areas (0.5km)",
+      "GV Mall (0.5km)",
+      "Bailey Road restaurants (1.5km)",
+      "Fraser Road markets (1.5km)"
+    ],
+    "seasonalTags": ["Year-round", "Festival season", "Wedding season"],
+    "processingTime": "Same day booking available",
+    "cancellationPolicy": "Free cancellation up to 24 hours before"
   },
   {
-    "id": "nailart_1",
-    "title": "Nail Art (Basic Designs)",
+    "id": "nail-art-basic-designs-patna",
+    "title": "Nail Art (Basic Designs) | Custom Nail Designs Patna",
+    "slug": "nail-art-basic-designs-patna",
     "category": "Nail Art",
+    "categorySlug": "nail-art",
     "image": "/images/nails/nail_art.webp",
-    "description": "Custom nail designs with hand-painted details and embellishments. Choose from various design options and colors.",
+    "description": "Custom nail art designs in Patna at My Ladies Beauty Parlour featuring hand-painted details and embellishments. Choose from various design options and colors. Perfect for adding personality to your look for Patna events and social gatherings.",
+    "shortDescription": "Custom nail art designs in Patna with hand-painted details and embellishments. Perfect for Patna social events.",
     "price": 500,
     "originalPrice": 700,
+    "discountPercentage": 29,
     "isTrending": true,
-    "deal": "270+ bookings this month",
+    "isPopular": true,
+    "isBestSeller": true,
     "duration": 60,
-    "keyIngredients": ["Acrylic Paints", "Nail Gems", "Chrome Powder"],
+    "durationText": "1 hour",
+    "rating": 4.6,
+    "reviewCount": 178,
+    "bookingCount": 270,
+    "keyIngredients": ["Acrylic Paints", "Nail Gems", "Chrome Powder", "Fine Detail Brushes"],
     "benefits": [
-      "Personalized expression",
-      "Instagram-worthy nails",
-      "Lasts 2-3 weeks"
+      "Personalized expression through nail art",
+      "Instagram-worthy designs perfect for Patna social media",
+      "Lasts 2-3 weeks with proper care",
+      "Complements Patna fashion trends"
     ],
-    "precautions": "Allergy test for adhesives. Avoid water 2hrs post.",
-    "aftercare": "Avoid picking designs. Use top coat every 5 days.",
+    "precautions": "Allergy test recommended for adhesive products. Avoid water exposure for 2 hours post-service.",
+    "aftercare": "Avoid picking at designs. Apply top coat every 5 days. Special care for Patna climate.",
     "faqs": [
-      {"question": "Bridal designs?", "answer": "Premium designs available +₹300"},
-      {"question": "For short nails?", "answer": "Special mini-canvas designs"}
-    ]
+      {"question": "Do you offer bridal nail art designs?", "answer": "Yes, premium bridal designs available for additional ₹300"},
+      {"question": "Can you do nail art on short nails?", "answer": "Yes, we specialize in mini-canvas designs for short nails popular in Patna"},
+      {"question": "How many design options do you offer?", "answer": "We have a catalog of 50+ designs and can create custom designs based on your inspiration"},
+      {"question": "Can nail art be removed easily?", "answer": "Yes, our nail art can be easily removed without damaging natural nails"},
+      {"question": "Do you recreate designs from Pinterest or Instagram?", "answer": "Yes, bring your inspiration photos and we'll recreate them for you"}
+    ],
+    "seoKeywords": [
+      "nail art patna",
+      "nail designs patna",
+      "custom nail art",
+      "hand painted nails",
+      "nail art Boring Road",
+      "nail designs Bailey Road",
+      "nail art studio Patna"
+    ],
+    "targetAudience": ["Fashion-forward individuals", "Social media enthusiasts", "Trend followers"],
+    "idealFor": ["Parties", "Festivals", "Social gatherings", "Special occasions"],
+    "whatsIncluded": [
+      "Basic nail art design",
+      "Hand-painted details",
+      "Basic embellishments",
+      "Top coat application",
+      "Design consultation"
+    ],
+    "whatsNotIncluded": ["Premium crystals", "3D nail art", "Nail extensions", "French tips"],
+    "addOns": [
+      {"name": "Premium Crystal Embellishments", "price": 300},
+      {"name": "3D Nail Art", "price": 400},
+      {"name": "French Tip with Design", "price": 350}
+    ],
+    "nearbyLandmarks": [
+      "Boring Road cafes (0.5km)",
+      "GV Mall (0.5km)",
+      "Bailey Road social venues (1.5km)",
+      "College areas (2km)"
+    ],
+    "seasonalTags": ["Festival specials", "Seasonal designs", "Year-round"],
+    "processingTime": "Same day booking available",
+    "cancellationPolicy": "Free cancellation up to 12 hours before"
   },
   {
-    "id": "manicure_2",
-    "title": "Deluxe Manicure",
+    "id": "deluxe-manicure-patna",
+    "title": "Deluxe Manicure | Luxury Hand Treatment Patna",
+    "slug": "deluxe-manicure-patna",
     "category": "Manicure",
+    "categorySlug": "manicure",
     "image": "/images/nails/deluxe_manicure.webp",
-    "description": "Luxury treatment with paraffin wax dip, hot stone massage. Features diamond dust buffing and collagen-infused top coat.",
+    "description": "Luxury deluxe manicure treatment in Patna at My Ladies Beauty Parlour featuring paraffin wax dip, hot stone massage, diamond dust buffing and collagen-infused top coat. Perfect for deep hand nourishment and relaxation.",
+    "shortDescription": "Luxury deluxe manicure in Patna with paraffin wax, hot stone massage and collagen treatment. Perfect for hand nourishment.",
     "price": 900,
     "originalPrice": 1200,
+    "discountPercentage": 25,
     "isTrending": true,
-    "deal": "250+ bookings this month",
+    "isPopular": true,
+    "isBestSeller": true,
     "duration": 60,
-    "keyIngredients": ["Paraffin Wax", "Heated Stones", "Collagen Polish"],
+    "durationText": "1 hour",
+    "rating": 4.7,
+    "reviewCount": 189,
+    "bookingCount": 250,
+    "keyIngredients": ["Paraffin Wax", "Heated Stones", "Collagen Polish", "Diamond Dust Buffer"],
     "benefits": [
-      "Deeply moisturizes hands",
-      "Reduces arthritis pain",
-      "Adds natural shine"
+      "Deeply moisturizes and nourishes hands",
+      "Reduces arthritis and joint pain",
+      "Adds natural shine and smoothness",
+      "Promotes circulation for healthier hands"
     ],
-    "precautions": "Notify about skin conditions. Avoid if pregnant.",
-    "aftercare": "Sleep with cotton gloves. Apply cuticle cream.",
+    "precautions": "Notify technician about any skin conditions. Not recommended during pregnancy.",
+    "aftercare": "Sleep with cotton gloves for enhanced absorption. Apply cuticle cream regularly. Special care for Patna climate.",
     "faqs": [
-      {"question": "Bridal favorite?", "answer": "Top pre-wedding choice"},
-      {"question": "Add nail art?", "answer": "Basic designs included, premium +₹200"}
-    ]
+      {"question": "Is this service popular for bridal preparations?", "answer": "Yes, this is a top pre-wedding choice among Patna brides"},
+      {"question": "Can I add nail art to this manicure?", "answer": "Basic designs are included, premium designs available for additional ₹200"},
+      {"question": "How often should I get a deluxe manicure?", "answer": "We recommend every 3-4 weeks for optimal hand health"},
+      {"question": "Is paraffin wax safe for all skin types?", "answer": "Yes, but please inform us of any skin conditions beforehand"},
+      {"question": "Does this help with dry, cracked hands common in Patna's climate?", "answer": "Absolutely, this treatment is specifically beneficial for dry skin conditions"}
+    ],
+    "seoKeywords": [
+      "deluxe manicure patna",
+      "luxury manicure",
+      "paraffin wax manicure",
+      "hot stone hand massage",
+      "deluxe manicure Boring Road",
+      "luxury hand treatment Bailey Road",
+      "premium manicure Patna"
+    ],
+    "targetAudience": ["Luxury service seekers", "Bridal preparations", "Hand care enthusiasts"],
+    "idealFor": ["Pre-wedding preparations", "Special occasions", "Hand rejuvenation", "Gift treatments"],
+    "whatsIncluded": [
+      "Paraffin wax dip treatment",
+      "Hot stone hand massage",
+      "Diamond dust buffing",
+      "Collagen-infused polish",
+      "Cuticle treatment"
+    ],
+    "whatsNotIncluded": ["Nail extensions", "Premium nail art", "Gel polish", "Nail jewelry"],
+    "addOns": [
+      {"name": "Gel Polish Upgrade", "price": 300},
+      {"name": "Premium Nail Art", "price": 400},
+      {"name": "Hand Mask Treatment", "price": 350}
+    ],
+    "nearbyLandmarks": [
+      "Boring Road residential areas (0.5km)",
+      "Bailey Road offices (1.5km)",
+      "Rajendra Nagar homes (1km)",
+      "Kankarbagh community (0.5km)"
+    ],
+    "seasonalTags": ["Year-round", "Winter special", "Bridal season"],
+    "processingTime": "Same day booking available",
+    "cancellationPolicy": "Free cancellation up to 12 hours before"
   },
   {
-    "id": "manicure_1",
-    "title": "Basic Manicure",
+    "id": "basic-manicure-patna",
+    "title": "Basic Manicure | Essential Nail Care Patna",
+    "slug": "basic-manicure-patna",
     "category": "Manicure",
+    "categorySlug": "manicure",
     "image": "/images/nails/plain_manicure.webp",
-    "description": "Essential nail care with cuticle treatment, nail shaping, and buffing. Includes moisturizing hand massage and polish.",
+    "description": "Essential basic manicure service in Patna at My Ladies Beauty Parlour featuring cuticle treatment, nail shaping, buffing, moisturizing hand massage and polish. Perfect for regular nail maintenance.",
+    "shortDescription": "Essential basic manicure in Patna with cuticle treatment, nail shaping and polish. Perfect for regular nail care.",
     "price": 300,
     "originalPrice": 400,
+    "discountPercentage": 25,
     "isTrending": false,
-    "deal": "190+ bookings this month",
+    "isPopular": true,
+    "isBestSeller": true,
     "duration": 40,
-    "keyIngredients": ["Cuticle Remover", "4-Way Buffer", "Hydrating Lotion"],
+    "durationText": "40 minutes",
+    "rating": 4.5,
+    "reviewCount": 145,
+    "bookingCount": 190,
+    "keyIngredients": ["Cuticle Remover", "4-Way Buffer", "Hydrating Lotion", "Nail Strengthener"],
     "benefits": [
-      "Improves nail health",
-      "Promotes growth",
-      "Prevents hangnails"
+      "Improves overall nail health",
+      "Promotes healthy nail growth",
+      "Prevents hangnails and breakage",
+      "Maintains clean, polished appearance"
     ],
-    "precautions": "Notify about nail fungus. Avoid water 1hr post.",
-    "aftercare": "Use nail strengthener. Avoid harsh chemicals.",
+    "precautions": "Notify technician about any nail fungus or infections. Avoid water exposure for 1 hour post-service.",
+    "aftercare": "Use nail strengthener regularly. Avoid harsh chemicals without gloves. Special care for Patna climate.",
     "faqs": [
-      {"question": "Gel upgrade?", "answer": "Add ₹250 for gel polish"},
-      {"question": "For men?", "answer": "Popular no-polish option available"}
-    ]
-  },  
+      {"question": "Can I upgrade to gel polish?", "answer": "Yes, add ₹250 for gel polish upgrade"},
+      {"question": "Do you offer basic manicure for men?", "answer": "Yes, we offer a popular no-polish option for men"},
+      {"question": "How often should I get a basic manicure?", "answer": "Every 2-3 weeks for optimal nail health"},
+      {"question": "Is this suitable for teenagers?", "answer": "Yes, perfect for first-time manicure experiences"},
+      {"question": "Do you use sterilized tools?", "answer": "Yes, all tools are sterilized after each use for hygiene"}
+    ],
+    "seoKeywords": [
+      "basic manicure patna",
+      "simple manicure",
+      "nail care patna",
+      "regular manicure",
+      "basic manicure Boring Road",
+      "affordable manicure Bailey Road",
+      "nail maintenance Patna"
+    ],
+    "targetAudience": ["Regular maintenance seekers", "Budget-conscious clients", "First-time visitors"],
+    "idealFor": ["Weekly maintenance", "Office professionals", "Students", "Regular grooming"],
+    "whatsIncluded": [
+      "Cuticle treatment",
+      "Nail shaping",
+      "Buffing and smoothing",
+      "Moisturizing hand massage",
+      "Basic polish application"
+    ],
+    "whatsNotIncluded": ["Gel polish", "Nail art", "Paraffin treatment", "Nail extensions"],
+    "addOns": [
+      {"name": "Gel Polish", "price": 250},
+      {"name": "Basic Nail Art", "price": 200},
+      {"name": "Cuticle Oil Take-home", "price": 150}
+    ],
+    "nearbyLandmarks": [
+      "Boring Road offices (0.5km)",
+      "College areas (1km)",
+      "Residential neighborhoods (0.5km)",
+      "Shopping areas (1km)"
+    ],
+    "seasonalTags": ["Year-round", "Regular maintenance", "Essential care"],
+    "processingTime": "Same day booking available",
+    "cancellationPolicy": "Free cancellation up to 6 hours before"
+  },
   {
-    "id": "manicure_3",
-    "title": "French Manicure",
+    "id": "french-manicure-patna",
+    "title": "French Manicure | Classic Elegant Nails Patna",
+    "slug": "french-manicure-patna",
     "category": "Manicure",
+    "categorySlug": "manicure",
     "image": "/images/nails/french_manicure.webp",
-    "description": "Classic French tip design with precision white tip and natural pink base. Features cuticle grooming and high-gloss top coat.",
+    "description": "Classic French manicure in Patna at My Ladies Beauty Parlour featuring precision white tip and natural pink base. Includes cuticle grooming, high-gloss top coat and almond milk soak. Timeless elegance for any occasion.",
+    "shortDescription": "Classic French manicure in Patna with precision white tips and natural pink base. Timeless elegant look.",
     "price": 1000,
     "originalPrice": 550,
+    "discountPercentage": 45,
     "isTrending": true,
-    "deal": "280+ bookings this month",
+    "isPopular": true,
+    "isBestSeller": true,
     "duration": 45,
-    "keyIngredients": ["Non-Yellowing Top Coat", "Cuticle Oil", "Almond Milk Soak"],
+    "durationText": "45 minutes",
+    "rating": 4.8,
+    "reviewCount": 167,
+    "bookingCount": 280,
+    "keyIngredients": ["Non-Yellowing Top Coat", "Cuticle Oil", "Almond Milk Soak", "Precision Tip Guides"],
     "benefits": [
-      "Timeless elegant look",
-      "Makes nails appear longer",
-      "Lasts 2-3 weeks"
+      "Timeless elegant look for any occasion",
+      "Makes nails appear longer and more slender",
+      "Lasts 2-3 weeks with proper care",
+      "Professional finish for work and social events"
     ],
-    "precautions": "Avoid water 2hrs post-service. No recent cuticle cutting.",
-    "aftercare": "Apply cuticle oil daily. Wear gloves for chores.",
+    "precautions": "Avoid water exposure for 2 hours post-service. No recent cuticle cutting before appointment.",
+    "aftercare": "Apply cuticle oil daily. Wear gloves for household chores. Special care for Patna climate.",
     "faqs": [
-      {"question": "For short nails?", "answer": "Creates illusion of length"},
-      {"question": "Touch-up policy?", "answer": "Free within 48hrs for any chips"}
-    ]
+      {"question": "Is French manicure suitable for short nails?", "answer": "Yes, it creates an illusion of length and elegance even on short nails"},
+      {"question": "What is your touch-up policy?", "answer": "Free touch-ups within 48 hours for any chips or imperfections"},
+      {"question": "Can French manicure be done with gel polish?", "answer": "Yes, we offer gel French manicure for longer lasting results"},
+      {"question": "How is French manicure different from American manicure?", "answer": "French has crisp white tips while American has softer, more natural tips"},
+      {"question": "Do you offer reverse French manicure?", "answer": "Yes, we offer various French style variations including reverse French"}
+    ],
+    "seoKeywords": [
+      "french manicure patna",
+      "classic french nails",
+      "elegant manicure",
+      "white tip nails",
+      "french manicure Boring Road",
+      "classic nails Bailey Road",
+      "french tip nails Patna"
+    ],
+    "targetAudience": ["Professional settings", "Classic style lovers", "Office professionals"],
+    "idealFor": ["Work environments", "Weddings", "Formal events", "Job interviews"],
+    "whatsIncluded": [
+      "Precision French tip application",
+      "Natural pink base",
+      "Cuticle grooming",
+      "Almond milk soak",
+      "High-gloss top coat"
+    ],
+    "whatsNotIncluded": ["Nail art", "Gel polish", "Nail extensions", "Nail jewelry"],
+    "addOns": [
+      {"name": "Gel Polish Upgrade", "price": 300},
+      {"name": "French Tip with Glitter", "price": 200},
+      {"name": "Luxury Hand Massage", "price": 250}
+    ],
+    "nearbyLandmarks": [
+      "Boring Road corporate offices (0.5km)",
+      "Bailey Road business district (1.5km)",
+      "Fraser Road commercial area (1.5km)",
+      "Office complexes (1km)"
+    ],
+    "seasonalTags": ["Year-round", "Wedding season", "Professional settings"],
+    "processingTime": "Same day booking available",
+    "cancellationPolicy": "Free cancellation up to 12 hours before"
   },
   {
-    "id": "pedicure_1",
-    "title": "Basic Pedicure",
+    "id": "basic-pedicure-patna",
+    "title": "Basic Pedicure | Essential Foot Care Patna",
+    "slug": "basic-pedicure-patna",
     "category": "Pedicure",
+    "categorySlug": "pedicure",
     "image": "/images/nails/nail_polish_foot.webp",
-    "description": "Essential foot care with nail trimming, cuticle work, and exfoliation. Includes relaxing foot soak and polish.",
+    "description": "Essential basic pedicure service in Patna at My Ladies Beauty Parlour featuring nail trimming, cuticle work, exfoliation, relaxing foot soak and polish. Perfect for regular foot maintenance and hygiene.",
+    "shortDescription": "Essential basic pedicure in Patna with nail trimming, exfoliation and polish. Perfect for regular foot care.",
     "price": 400,
     "originalPrice": 550,
+    "discountPercentage": 27,
     "isTrending": false,
-    "deal": "180+ bookings this month",
+    "isPopular": true,
+    "isBestSeller": true,
     "duration": 50,
-    "keyIngredients": ["Epsom Salt Soak", "Callus Shaver", "Antifungal Spray"],
+    "durationText": "50 minutes",
+    "rating": 4.6,
+    "reviewCount": 156,
+    "bookingCount": 180,
+    "keyIngredients": ["Epsom Salt Soak", "Callus Shaver", "Antifungal Spray", "Foot Scrub"],
     "benefits": [
-      "Prevents ingrown toenails",
-      "Reduces foot odor",
-      "Maintains nail health"
+      "Prevents ingrown toenails and infections",
+      "Reduces foot odor through proper hygiene",
+      "Maintains overall foot and nail health",
+      "Promotes relaxation and stress relief"
     ],
-    "precautions": "Notify about diabetes. Avoid tight shoes post-service.",
-    "aftercare": "Use foot powder. Wear cotton socks.",
+    "precautions": "Notify technician about diabetes or circulation issues. Avoid tight shoes post-service.",
+    "aftercare": "Use foot powder regularly. Wear cotton socks. Special care for Patna climate conditions.",
     "faqs": [
-      {"question": "Medical pedicure?", "answer": "Sterile instruments +₹250"},
-      {"question": "For athletes?", "answer": "Special sports pedicure available"}
-    ]
+      {"question": "Do you offer medical pedicure services?", "answer": "Yes, sterile instrument medical pedicure available for additional ₹250"},
+      {"question": "Is basic pedicure suitable for athletes?", "answer": "Yes, we offer special sports pedicure modifications for athletes"},
+      {"question": "How often should I get a pedicure?", "answer": "Every 3-4 weeks for optimal foot health"},
+      {"question": "Can men get basic pedicure?", "answer": "Absolutely, we have many male clients for foot care services"},
+      {"question": "Is this service suitable for elderly clients?", "answer": "Yes, we provide gentle care suitable for all ages"}
+    ],
+    "seoKeywords": [
+      "basic pedicure patna",
+      "foot care patna",
+      "pedicure service",
+      "foot hygiene",
+      "basic pedicure Boring Road",
+      "foot care Bailey Road",
+      "pedicure salon Patna"
+    ],
+    "targetAudience": ["Regular foot care seekers", "All genders", "Health-conscious individuals"],
+    "idealFor": ["Regular maintenance", "Foot health", "Pre-sandal season", "General hygiene"],
+    "whatsIncluded": [
+      "Nail trimming and shaping",
+      "Cuticle work",
+      "Foot exfoliation",
+      "Relaxing foot soak",
+      "Basic polish application"
+    ],
+    "whatsNotIncluded": ["Callus removal", "Foot massage", "Gel polish", "Foot mask"],
+    "addOns": [
+      {"name": "Extended Foot Massage", "price": 200},
+      {"name": "Gel Polish Upgrade", "price": 300},
+      {"name": "Foot Mask Treatment", "price": 250}
+    ],
+    "nearbyLandmarks": [
+      "Boring Road residential areas (0.5km)",
+      "Kankarbagh homes (0.5km)",
+      "Bailey Road apartments (1.5km)",
+      "Rajendra Nagar community (1km)"
+    ],
+    "seasonalTags": ["Year-round", "Summer special", "Pre-sandal season"],
+    "processingTime": "Same day booking available",
+    "cancellationPolicy": "Free cancellation up to 12 hours before"
   },
   {
-    "id": "pedicure_2",
-    "title": "French Pedicure",
+    "id": "french-pedicure-patna",
+    "title": "French Pedicure | Elegant Foot Care Patna",
+    "slug": "french-pedicure-patna",
     "category": "Pedicure",
+    "categorySlug": "pedicure",
     "image": "/images/nails/french_pedicure.webp",
-    "description": "Elegant French tips for toes with antimicrobial base coat. Includes callus removal, foot scrub, and extended calf massage.",
+    "description": "Elegant French pedicure in Patna at My Ladies Beauty Parlour featuring French tips for toes with antimicrobial base coat. Includes callus removal, foot scrub, and extended calf massage for complete foot care.",
+    "shortDescription": "Elegant French pedicure in Patna with French tips, callus removal and calf massage. Complete foot care treatment.",
     "price": 500,
     "originalPrice": 650,
+    "discountPercentage": 23,
     "isTrending": true,
-    "deal": "210+ bookings this month",
+    "isPopular": true,
+    "isBestSeller": true,
     "duration": 55,
-    "keyIngredients": ["Tea Tree Polish", "Pumice Stone", "Peppermint Oil"],
+    "durationText": "55 minutes",
+    "rating": 4.7,
+    "reviewCount": 178,
+    "bookingCount": 210,
+    "keyIngredients": ["Tea Tree Polish", "Pumice Stone", "Peppermint Oil", "Antimicrobial Base"],
     "benefits": [
-      "Prevents fungal infections",
-      "Softens cracked heels",
-      "Improves circulation"
+      "Prevents fungal infections with antimicrobial protection",
+      "Softens cracked heels and rough skin",
+      "Improves circulation through massage",
+      "Elegant appearance for open footwear"
     ],
-    "precautions": "No recent foot injuries. Diabetic consultation needed.",
-    "aftercare": "Wear open shoes. Apply foot cream nightly.",
+    "precautions": "No recent foot injuries. Diabetic clients require prior consultation.",
+    "aftercare": "Wear open shoes when possible. Apply foot cream nightly. Special care for Patna climate.",
     "faqs": [
-      {"question": "For men?", "answer": "Clear polish option available"},
-      {"question": "Lasts through swimming?", "answer": "Water-resistant after 12hrs"}
-    ]
-  },  
+      {"question": "Do you offer French pedicure for men?", "answer": "Yes, we offer clear polish or natural finish options for men"},
+      {"question": "How long does French pedicure last through swimming?", "answer": "Water-resistant after 12 hours curing time"},
+      {"question": "Can I get French pedicure with gel polish?", "answer": "Yes, gel French pedicure available for longer wear"},
+      {"question": "Is callus removal included?", "answer": "Yes, basic callus removal is included in this service"},
+      {"question": "Do you offer spa pedicure upgrades?", "answer": "Yes, we offer various upgrades including paraffin wax treatment"}
+    ],
+    "seoKeywords": [
+      "french pedicure patna",
+      "foot french tips",
+      "elegant pedicure",
+      "foot care service",
+      "french pedicure Boring Road",
+      "foot french tips Bailey Road",
+      "pedicure with massage Patna"
+    ],
+    "targetAudience": ["Open footwear wearers", "Summer season", "Foot appearance conscious"],
+    "idealFor": ["Summer season", "Beach vacations", "Open shoe occasions", "Foot aesthetics"],
+    "whatsIncluded": [
+      "French tip application",
+      "Callus removal",
+      "Foot scrub exfoliation",
+      "Extended calf massage",
+      "Antimicrobial base coat"
+    ],
+    "whatsNotIncluded": ["Foot paraffin treatment", "Gel polish", "Toe nail art", "Medical pedicure"],
+    "addOns": [
+      {"name": "Paraffin Wax Treatment", "price": 300},
+      {"name": "Gel Polish Upgrade", "price": 350},
+      {"name": "Toe Nail Art", "price": 250}
+    ],
+    "nearbyLandmarks": [
+      "Boring Road shopping areas (0.5km)",
+      "GV Mall (0.5km)",
+      "Bailey Road restaurants (1.5km)",
+      "Summer event venues (2km)"
+    ],
+    "seasonalTags": ["Summer special", "Beach season", "Open footwear season"],
+    "processingTime": "Same day booking available",
+    "cancellationPolicy": "Free cancellation up to 12 hours before"
+  },
   {
-    "id": "nailcare_1",
-    "title": "Nail Cut & File (Hands)",
+    "id": "nail-cut-file-hands-patna",
+    "title": "Nail Cut & File (Hands) | Basic Nail Maintenance Patna",
+    "slug": "nail-cut-file-hands-patna",
     "category": "Nail Art",
+    "categorySlug": "nail-art",
     "image": "/images/nails/nail_cut_salon.webp",
-    "description": "Basic nail maintenance with sanitized tools. Includes nail trimming, shaping with crystal file, and buffing.",
+    "description": "Basic nail maintenance service for hands in Patna at My Ladies Beauty Parlour using sanitized tools. Includes nail trimming, shaping with crystal file, and buffing for healthy nail care.",
+    "shortDescription": "Basic nail cut and file service for hands in Patna with sanitized tools. Essential nail maintenance.",
     "price": 100,
     "originalPrice": 150,
+    "discountPercentage": 33,
     "isTrending": false,
-    "deal": "90+ bookings this month",
+    "isPopular": true,
+    "isBestSeller": true,
     "duration": 20,
-    "keyIngredients": ["Medical-Grade Clippers", "Glass File", "Antibacterial Spray"],
+    "durationText": "20 minutes",
+    "rating": 4.4,
+    "reviewCount": 123,
+    "bookingCount": 90,
+    "keyIngredients": ["Medical-Grade Clippers", "Glass File", "Antibacterial Spray", "Nail Buffer"],
     "benefits": [
-      "Prevents breakage",
-      "Promotes healthy growth",
-      "Sanitary service"
+      "Prevents nail breakage and splitting",
+      "Promotes healthy nail growth",
+      "Sanitary service with sterilized tools",
+      "Maintains neat, groomed appearance"
     ],
-    "precautions": "Notify about nail conditions. No recent injuries.",
-    "aftercare": "Apply nail hardener. Avoid harsh chemicals.",
+    "precautions": "Notify technician about any nail conditions or recent injuries.",
+    "aftercare": "Apply nail hardener if needed. Avoid harsh chemicals. Special care for Patna climate.",
     "faqs": [
-      {"question": "For men?", "answer": "Most popular male service"},
-      {"question": "Add polish?", "answer": "Basic polish +₹80"}
-    ]
+      {"question": "Is this service popular among men?", "answer": "Yes, this is one of our most popular services for male clients"},
+      {"question": "Can I add polish to this service?", "answer": "Yes, basic polish available for additional ₹80"},
+      {"question": "How often should I get nails cut and filed?", "answer": "Every 2-3 weeks depending on nail growth rate"},
+      {"question": "Do you use disposable tools?", "answer": "We use sterilized metal tools or disposable options upon request"},
+      {"question": "Can you fix broken nails?", "answer": "Yes, we offer nail repair services for broken or damaged nails"}
+    ],
+    "seoKeywords": [
+      "nail cutting patna",
+      "nail filing service",
+      "nail maintenance",
+      "basic nail care",
+      "nail cut Boring Road",
+      "nail file service Bailey Road",
+      "nail grooming Patna"
+    ],
+    "targetAudience": ["Men", "Regular maintenance", "Budget-conscious clients"],
+    "idealFor": ["Quick maintenance", "Between manicures", "Men's grooming", "Basic nail care"],
+    "whatsIncluded": [
+      "Nail trimming",
+      "Shaping with glass file",
+      "Buffing and smoothing",
+      "Sanitization process",
+      "Basic grooming"
+    ],
+    "whatsNotIncluded": ["Cuticle work", "Polish", "Hand massage", "Nail treatments"],
+    "addOns": [
+      {"name": "Basic Polish", "price": 80},
+      {"name": "Cuticle Treatment", "price": 100},
+      {"name": "Hand Massage", "price": 150}
+    ],
+    "nearbyLandmarks": [
+      "Boring Road offices (0.5km)",
+      "Business districts (1km)",
+      "Residential areas (0.5km)",
+      "Commercial complexes (1km)"
+    ],
+    "seasonalTags": ["Year-round", "Regular maintenance", "Essential service"],
+    "processingTime": "Walk-in service available",
+    "cancellationPolicy": "Free cancellation up to 3 hours before"
   },
   {
-    "id": "nailcare_2",
-    "title": "Nail Cut & File (Feet)",
+    "id": "nail-cut-file-feet-patna",
+    "title": "Nail Cut & File (Feet) | Professional Toenail Care Patna",
+    "slug": "nail-cut-file-feet-patna",
     "category": "Pedicure",
+    "categorySlug": "pedicure",
     "image": "/images/nails/nail_cut_salon.webp",
-    "description": "Professional toenail care with orthopedic cutting technique. Features callus smoothing and antifungal spray.",
+    "description": "Professional toenail care service in Patna at My Ladies Beauty Parlour using orthopedic cutting techniques. Features callus smoothing and antifungal spray application for complete foot hygiene.",
+    "shortDescription": "Professional toenail cut and file service in Patna with orthopedic techniques. Essential foot hygiene.",
     "price": 100,
     "originalPrice": 150,
+    "discountPercentage": 33,
     "isTrending": false,
-    "deal": "110+ bookings this month",
+    "isPopular": true,
+    "isBestSeller": true,
     "duration": 25,
-    "keyIngredients": ["Curved Clippers", "Callus Rasp", "Antifungal Spray"],
+    "durationText": "25 minutes",
+    "rating": 4.5,
+    "reviewCount": 134,
+    "bookingCount": 110,
+    "keyIngredients": ["Curved Clippers", "Callus Rasp", "Antifungal Spray", "Medical-Grade Tools"],
     "benefits": [
-      "Prevents ingrown nails",
-      "Reduces foot pain",
-      "Improves shoe comfort"
+      "Prevents ingrown toenails and infections",
+      "Reduces foot pain and discomfort",
+      "Improves shoe comfort and fit",
+      "Maintains proper foot hygiene"
     ],
-    "precautions": "Diabetic consultation required. No open wounds.",
-    "aftercare": "Wear breathable shoes. Apply foot powder.",
+    "precautions": "Diabetic consultation required before service. No open wounds or infections.",
+    "aftercare": "Wear breathable shoes. Apply foot powder if needed. Special care for Patna climate.",
     "faqs": [
-      {"question": "For athletes?", "answer": "Special sports technique available"},
-      {"question": "Medical grade?", "answer": "All tools sterilized after each use"}
-    ]
+      {"question": "Do you offer special techniques for athletes?", "answer": "Yes, we offer sports-specific techniques for athletes"},
+      {"question": "Are your tools medical grade?", "answer": "Yes, all tools are sterilized after each use following medical standards"},
+      {"question": "Can this help with ingrown toenails?", "answer": "Yes, proper cutting techniques can prevent and manage ingrown toenails"},
+      {"question": "Is this service suitable for elderly clients?", "answer": "Yes, we provide gentle care suitable for all ages and conditions"},
+      {"question": "Do you offer home service for this?", "answer": "Yes, home service available for elderly or mobility-challenged clients"}
+    ],
+    "seoKeywords": [
+      "toenail cutting patna",
+      "foot nail care",
+      "toenail maintenance",
+      "foot hygiene service",
+      "toenail care Boring Road",
+      "foot nail cutting Bailey Road",
+      "pedicure basics Patna"
+    ],
+    "targetAudience": ["Athletes", "Elderly clients", "Foot health conscious", "Diabetic clients"],
+    "idealFor": ["Foot health maintenance", "Between pedicures", "Medical foot care", "Basic hygiene"],
+    "whatsIncluded": [
+      "Toenail trimming with orthopedic technique",
+      "Callus smoothing",
+      "Antifungal spray application",
+      "Basic foot inspection",
+      "Sanitization process"
+    ],
+    "whatsNotIncluded": ["Foot soak", "Polish", "Foot massage", "Complete pedicure"],
+    "addOns": [
+      {"name": "Antifungal Treatment", "price": 150},
+      {"name": "Basic Foot Soak", "price": 100},
+      {"name": "Toe Polish", "price": 80}
+    ],
+    "nearbyLandmarks": [
+      "Boring Road medical clinics (0.5km)",
+      "Residential areas (0.5km)",
+      "Sports facilities (2km)",
+      "Elderly care centers (1.5km)"
+    ],
+    "seasonalTags": ["Year-round", "Medical care", "Foot health"],
+    "processingTime": "Walk-in service available",
+    "cancellationPolicy": "Free cancellation up to 3 hours before"
   },
   {
-    "id": "nailpolish_1",
-    "title": "Nail Polish (Hands Only)",
+    "id": "nail-polish-hands-patna",
+    "title": "Nail Polish (Hands Only) | Professional Polish Application Patna",
+    "slug": "nail-polish-hands-patna",
     "category": "Nail Art",
+    "categorySlug": "nail-art",
     "image": "/images/nails/nail_polish_hand.webp",
-    "description": "Professional polish application with base coat, 2 color coats, and quick-dry top coat. Includes nail shaping.",
+    "description": "Professional nail polish application for hands in Patna at My Ladies Beauty Parlour featuring base coat, 2 color coats, quick-dry top coat and nail shaping. Quick and efficient service.",
+    "shortDescription": "Professional nail polish application for hands in Patna with quick-dry technology. Fast and efficient service.",
     "price": 150,
     "originalPrice": 200,
+    "discountPercentage": 25,
     "isTrending": false,
-    "deal": "150+ bookings this month",
+    "isPopular": true,
+    "isBestSeller": true,
     "duration": 30,
-    "keyIngredients": ["5-Free Polish", "Quick Dry Drops", "Cuticle Oil"],
+    "durationText": "30 minutes",
+    "rating": 4.5,
+    "reviewCount": 145,
+    "bookingCount": 150,
+    "keyIngredients": ["5-Free Polish", "Quick Dry Drops", "Cuticle Oil", "Base and Top Coats"],
     "benefits": [
-      "Chip-resistant finish",
-      "Non-toxic formula",
-      "Dries in 15 minutes"
+      "Chip-resistant finish for longer wear",
+      "Non-toxic formula safe for regular use",
+      "Dries completely in 15 minutes",
+      "Professional application for even coverage"
     ],
-    "precautions": "Avoid water 1hr post. No recent cuticle cutting.",
-    "aftercare": "Reapply top coat every 3 days. Use gloves for dishes.",
+    "precautions": "Avoid water exposure for 1 hour post-service. No recent cuticle cutting.",
+    "aftercare": "Reapply top coat every 3 days. Use gloves for dishwashing. Special care for Patna climate.",
     "faqs": [
-      {"question": "Gel option?", "answer": "Upgrade to gel for +₹250"},
-      {"question": "Color change?", "answer": "Free within 24hrs"}
-    ]
+      {"question": "Can I upgrade to gel polish?", "answer": "Yes, upgrade to gel polish available for additional ₹250"},
+      {"question": "What is your color change policy?", "answer": "Free color change within 24 hours of application"},
+      {"question": "How many color options do you have?", "answer": "We have 100+ colors including seasonal collections"},
+      {"question": "Is this service suitable for short nails?", "answer": "Yes, polish application works beautifully on all nail lengths"},
+      {"question": "Do you offer quick-dry services?", "answer": "Yes, we use quick-dry drops and top coats for faster drying"}
+    ],
+    "seoKeywords": [
+      "nail polish patna",
+      "hand polish service",
+      "nail coloring",
+      "polish application",
+      "nail polish Boring Road",
+      "hand polish Bailey Road",
+      "nail color service Patna"
+    ],
+    "targetAudience": ["Quick service seekers", "Regular polish users", "Color change enthusiasts"],
+    "idealFor": ["Quick touch-ups", "Color changes", "Regular maintenance", "Between manicures"],
+    "whatsIncluded": [
+      "Base coat application",
+      "2 color coats",
+      "Quick-dry top coat",
+      "Nail shaping",
+      "Cuticle oil application"
+    ],
+    "whatsNotIncluded": ["Gel polish", "Nail art", "Hand massage", "Cuticle treatment"],
+    "addOns": [
+      {"name": "Gel Polish Upgrade", "price": 250},
+      {"name": "Quick-Dry Accelerator", "price": 50},
+      {"name": "Color Change Next Day", "price": 100}
+    ],
+    "nearbyLandmarks": [
+      "Boring Road shopping areas (0.5km)",
+      "GV Mall (0.5km)",
+      "Bailey Road cafes (1.5km)",
+      "Quick service locations (1km)"
+    ],
+    "seasonalTags": ["Year-round", "Quick service", "Color trends"],
+    "processingTime": "Walk-in service available",
+    "cancellationPolicy": "Free cancellation up to 3 hours before"
   },
   {
-    "id": "nailpolish_2",
-    "title": "Nail Polish (Feet Only)",
+    "id": "nail-polish-feet-patna",
+    "title": "Nail Polish (Feet Only) | Toenail Polish Application Patna",
+    "slug": "nail-polish-feet-patna",
     "category": "Pedicure",
+    "categorySlug": "pedicure",
     "image": "/images/nails/nail_polish_foot.webp",
-    "description": "Toenail polish application with antifungal base coat. Includes light foot massage and toe separators.",
+    "description": "Professional toenail polish application in Patna at My Ladies Beauty Parlour featuring antifungal base coat, breathable polish, light foot massage and toe separators. Hygienic and comfortable service.",
+    "shortDescription": "Professional toenail polish application in Patna with antifungal base coat. Hygienic foot service.",
     "price": 150,
     "originalPrice": 200,
+    "discountPercentage": 25,
     "isTrending": false,
-    "deal": "120+ bookings this month",
+    "isPopular": true,
+    "isBestSeller": true,
     "duration": 35,
-    "keyIngredients": ["Antifungal Base", "Breathable Polish", "Tea Tree Oil"],
+    "durationText": "35 minutes",
+    "rating": 4.6,
+    "reviewCount": 134,
+    "bookingCount": 120,
+    "keyIngredients": ["Antifungal Base", "Breathable Polish", "Tea Tree Oil", "Toe Separators"],
     "benefits": [
-      "Prevents nail fungus",
-      "Lasts 3-4 weeks",
-      "Safe for diabetics"
+      "Prevents nail fungus with antifungal protection",
+      "Lasts 3-4 weeks with proper care",
+      "Safe for diabetic clients with proper precautions",
+      "Breathable formula for healthy nails"
     ],
-    "precautions": "No open wounds. Wear open shoes post-service.",
-    "aftercare": "Apply antifungal powder. Avoid tight socks.",
+    "precautions": "No open wounds or infections. Wear open shoes post-service.",
+    "aftercare": "Apply antifungal powder if prone to infections. Avoid tight socks. Special care for Patna climate.",
     "faqs": [
-      {"question": "For men?", "answer": "Clear/matte options available"},
-      {"question": "Combined with pedicure?", "answer": "Recommended for best results"}
-    ]
+      {"question": "Do you offer toenail polish for men?", "answer": "Yes, we offer clear and matte options for men"},
+      {"question": "Should this be combined with pedicure?", "answer": "Yes, we recommend pedicure before polish for best results"},
+      {"question": "How long does toenail polish last?", "answer": "Typically 3-4 weeks with proper application"},
+      {"question": "Is antifungal base coat necessary?", "answer": "Recommended, especially in humid climates like Patna"},
+      {"question": "Can I get matching hand and foot polish?", "answer": "Yes, we offer coordinated hand and foot polish services"}
+    ],
+    "seoKeywords": [
+      "toenail polish patna",
+      "foot polish service",
+      "toenail coloring",
+      "foot polish application",
+      "toenail polish Boring Road",
+      "foot polish Bailey Road",
+      "pedicure polish Patna"
+    ],
+    "targetAudience": ["Open footwear wearers", "Summer season", "Foot appearance conscious"],
+    "idealFor": ["Summer season", "Beach vacations", "Open shoe occasions", "Foot aesthetics"],
+    "whatsIncluded": [
+      "Antifungal base coat",
+      "Breathable polish application",
+      "Light foot massage",
+      "Toe separator placement",
+      "Drying time"
+    ],
+    "whatsNotIncluded": ["Foot soak", "Callus removal", "Complete pedicure", "Nail trimming"],
+    "addOns": [
+      {"name": "Basic Foot Soak", "price": 100},
+      {"name": "Callus Removal", "price": 150},
+      {"name": "Extended Foot Massage", "price": 200}
+    ],
+    "nearbyLandmarks": [
+      "Boring Road residential areas (0.5km)",
+      "Summer event venues (1km)",
+      "Beach preparation spots (2km)",
+      "Open footwear shopping areas (1km)"
+    ],
+    "seasonalTags": ["Summer special", "Beach season", "Open footwear season"],
+    "processingTime": "Walk-in service available",
+    "cancellationPolicy": "Free cancellation up to 3 hours before"
   },
   {
-    "id": "nailpolish_3",
-    "title": "Nail Polish (Hands & Feet)",
+    "id": "nail-polish-hands-feet-patna",
+    "title": "Nail Polish (Hands & Feet) | Complete Polish Set Patna",
+    "slug": "nail-polish-hands-feet-patna",
     "category": "Nail Art",
+    "categorySlug": "nail-art",
     "image": "/images/nails/nail_polish_combo.webp",
-    "description": "Complete polish set for hands and feet with matching/contrasting colors. Features LED lamp for smudge-proof finish.",
+    "description": "Complete nail polish set for hands and feet in Patna at My Ladies Beauty Parlour featuring matching or contrasting colors, LED lamp for smudge-proof finish and coordinated look. Time-saving combo service.",
+    "shortDescription": "Complete nail polish set for hands and feet in Patna with matching colors. Time-saving combo service.",
     "price": 250,
     "originalPrice": 350,
+    "discountPercentage": 29,
     "isTrending": false,
-    "deal": "230+ bookings this month",
+    "isPopular": true,
+    "isBestSeller": true,
     "duration": 60,
-    "keyIngredients": ["Chip-Resistant Polish", "LED Lamp", "Cuticle Serum"],
+    "durationText": "1 hour",
+    "rating": 4.7,
+    "reviewCount": 167,
+    "bookingCount": 230,
+    "keyIngredients": ["Chip-Resistant Polish", "LED Lamp", "Cuticle Serum", "Quick-Dry Technology"],
     "benefits": [
-      "Coordinated look",
-      "Saves 20% vs separate services",
-      "Dries completely before leaving"
+      "Coordinated look for hands and feet",
+      "Saves 20% compared to separate services",
+      "Dries completely before leaving salon",
+      "Professional finish for complete grooming"
     ],
-    "precautions": "Avoid handbags/shoes that may smudge. No water 2hrs.",
-    "aftercare": "Use cuticle oil. Avoid hot tubs 24hrs.",
+    "precautions": "Avoid handbags or shoes that may smudge polish. No water exposure for 2 hours.",
+    "aftercare": "Use cuticle oil regularly. Avoid hot tubs for 24 hours. Special care for Patna climate.",
     "faqs": [
-      {"question": "Bridal package?", "answer": "Includes trial session"},
-      {"question": "Gel upgrade?", "answer": "Add ₹400 for full gel set"}
-    ]
+      {"question": "Do you offer bridal polish packages?", "answer": "Yes, bridal packages include trial sessions and special designs"},
+      {"question": "Can I upgrade to gel polish?", "answer": "Yes, add ₹400 for complete gel polish set"},
+      {"question": "How long does this combo service take?", "answer": "Approximately 1 hour for complete application and drying"},
+      {"question": "Can I choose different colors for hands and feet?", "answer": "Yes, you can choose matching or contrasting colors as preferred"},
+      {"question": "Is this service suitable for special occasions?", "answer": "Perfect for weddings, parties, and special events"}
+    ],
+    "seoKeywords": [
+      "nail polish combo patna",
+      "hands and feet polish",
+      "complete nail service",
+      "polish set patna",
+      "nail polish combo Boring Road",
+      "hands feet polish Bailey Road",
+      "complete nail care Patna"
+    ],
+    "targetAudience": ["Time-saving seekers", "Complete grooming", "Special occasion preparation"],
+    "idealFor": ["Time efficiency", "Complete grooming sessions", "Special events", "Regular maintenance"],
+    "whatsIncluded": [
+      "Hand polish application",
+      "Foot polish application",
+      "Matching/contrasting colors",
+      "LED lamp drying",
+      "Cuticle serum application"
+    ],
+    "whatsNotIncluded": ["Gel polish", "Nail art", "Hand/foot treatments", "Nail extensions"],
+    "addOns": [
+      {"name": "Gel Polish Upgrade", "price": 400},
+      {"name": "Basic Nail Art", "price": 300},
+      {"name": "Quick-Dry Accelerator", "price": 100}
+    ],
+    "nearbyLandmarks": [
+      "Boring Road shopping areas (0.5km)",
+      "GV Mall (0.5km)",
+      "Bailey Road event venues (1.5km)",
+      "Special occasion locations (2km)"
+    ],
+    "seasonalTags": ["Year-round", "Time-saving service", "Complete grooming"],
+    "processingTime": "Same day booking available",
+    "cancellationPolicy": "Free cancellation up to 6 hours before"
   }
 ]

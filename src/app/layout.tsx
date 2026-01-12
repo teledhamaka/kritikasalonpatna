@@ -1,74 +1,80 @@
-// src/app/layout.tsx
+// src/app/layout.tsx - SEO OPTIMIZED VERSION
 import type { Metadata, Viewport } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
 import Image from 'next/image';
 import Script from 'next/script';
-import { BUSINESS_CONFIG } from '../lib/seo-config';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import WhatsAppFloating from '../components/WhatsAppFloating';
 import { Providers } from './providers';
-import PWARegister from '../components/PWARegister';
-import PWAInstallPrompt from '../components/PWAInstallPrompt';
-
+//import PWARegister from '../components/PWARegister';
+//import PWAInstallPrompt from '../components/PWAInstallPrompt';
+//import FloatingInstallButton from '../components/FloatingInstallButton';
 import { Analytics } from '@vercel/analytics/next';
 import { SpeedInsights } from '@vercel/speed-insights/next';
-import FloatingInstallButton from '../components/FloatingInstallButton';
 
-const inter = Inter({ subsets: ['latin'] });
+// Import SEO data
+import seoData from '../../public/seo.json';
 
+const inter = Inter({ 
+  subsets: ['latin'],
+  display: 'swap',
+  preload: true
+});
+
+// Generate dynamic metadata from seo.json
 export const metadata: Metadata = {
   title: {
-    default: `${BUSINESS_CONFIG.name} - ${BUSINESS_CONFIG.tagline}`,
-    template: `%s | ${BUSINESS_CONFIG.name}`
+    default: `${seoData.business.name} - ${seoData.business.tagline}`,
+    template: `%s | ${seoData.business.name}`
   },
-  description: BUSINESS_CONFIG.description,
+  description: seoData.business.description,
   keywords: [
-    ...BUSINESS_CONFIG.primaryKeywords,
-    ...BUSINESS_CONFIG.secondaryKeywords
+    ...seoData.seo.serviceSpecificKeywords.hairServices,
+    ...seoData.seo.serviceSpecificKeywords.skinServices,
+    ...seoData.seo.serviceSpecificKeywords.nailServices,
+    ...seoData.seo.serviceSpecificKeywords.bridalServices,
+    ...seoData.seo.locationBasedKeywords.ultraLocal
   ].join(', '),
   
-  authors: [{ name: BUSINESS_CONFIG.name }],
-  creator: BUSINESS_CONFIG.name,
-  publisher: BUSINESS_CONFIG.name,
+  authors: [{ name: seoData.business.name }],
+  creator: seoData.business.name,
+  publisher: seoData.business.name,
   
-  metadataBase: new URL('https://kritikasalonpatna.com'),
+  metadataBase: new URL(seoData.business.contact.website),
   
   alternates: {
     canonical: '/',
   },
   
-  // PWA Manifest - Updated to use our generated manifest
   manifest: '/manifest.json',
   
-  // Open Graph
   openGraph: {
     type: 'website',
-    locale: 'hi_IN',
-    url: 'https://kritikasalonpatna.com',
-    siteName: BUSINESS_CONFIG.name,
-    title: BUSINESS_CONFIG.name,
-    description: BUSINESS_CONFIG.description,
+    locale: 'en_IN',
+    url: seoData.business.contact.website,
+    siteName: seoData.business.name,
+    title: seoData.business.name,
+    description: seoData.business.description,
     images: [
       {
-        url: '/icons/icon-512x512.png', // Using our generated icon for OG
+        url: `${seoData.business.contact.website}/icons/icon-512x512.png`,
         width: 512,
         height: 512,
-        alt: BUSINESS_CONFIG.name
+        alt: seoData.business.name
       }
     ]
   },
   
-  // Twitter Cards
   twitter: {
     card: 'summary_large_image',
-    title: BUSINESS_CONFIG.name,
-    description: BUSINESS_CONFIG.description,
-    images: ['/icons/icon-512x512.png'], // Using our generated icon for Twitter
+    title: seoData.business.name,
+    description: seoData.business.description,
+    images: [`${seoData.business.contact.website}/icons/icon-512x512.png`],
+    creator: `@${seoData.business.socialMedia.instagram}`
   },
   
-  // Robots
   robots: {
     index: true,
     follow: true,
@@ -89,7 +95,6 @@ export const metadata: Metadata = {
     }
   },
   
-  // Updated Icons for PWA - Using all generated icons
   icons: {
     icon: [
       { url: '/icons/icon-16x16.png', sizes: '16x16', type: 'image/png' },
@@ -114,20 +119,27 @@ export const metadata: Metadata = {
     ]
   },
 
-  // Apple Web App Capabilities
   appleWebApp: {
     capable: true,
     statusBarStyle: 'black-translucent',
-    title: 'Kritika Salon'
+    title: seoData.business.name
   },
   
-  applicationName: 'Kritika Salon',
+  applicationName: seoData.business.name,
   formatDetection: {
     telephone: false
+  },
+  
+  other: {
+    'geo.region': `IN-${seoData.business.address.state}`,
+    'geo.placename': `${seoData.business.address.city}, ${seoData.business.address.state}`,
+    'geo.position': `${seoData.business.coordinates.latitude};${seoData.business.coordinates.longitude}`,
+    'ICBM': `${seoData.business.coordinates.latitude}, ${seoData.business.coordinates.longitude}`,
+    'rating': seoData.business.rating.toString(),
+    'service-radius': seoData.business.serviceRadius
   }
 };
 
-// PWA Viewport configuration
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
@@ -140,143 +152,134 @@ export const viewport: Viewport = {
   colorScheme: 'light'
 };
 
+// Generate organization schema from seo.json
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "BeautySalon",
+  "@id": `${seoData.business.contact.website}/#organization`,
+  "name": seoData.business.name,
+  "legalName": seoData.business.legalName,
+  "description": seoData.business.description,
+  "url": seoData.business.contact.website,
+  "logo": `${seoData.business.contact.website}/logo.png`,
+  "image": `${seoData.business.contact.website}/images/salon-exterior.jpg`,
+  "telephone": seoData.business.contact.phone,
+  "email": seoData.business.contact.email,
+  "priceRange": "₹₹-₹₹₹",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": `${seoData.business.address.street}, ${seoData.business.address.locality}`,
+    "addressLocality": seoData.business.address.city,
+    "addressRegion": seoData.business.address.state,
+    "postalCode": seoData.business.address.pincode,
+    "addressCountry": seoData.business.address.country
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": seoData.business.coordinates.latitude,
+    "longitude": seoData.business.coordinates.longitude
+  },
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+      "opens": seoData.business.workingHours.weekdays.split(' - ')[0],
+      "closes": seoData.business.workingHours.weekdays.split(' - ')[1]
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Saturday", "Sunday"],
+      "opens": seoData.business.workingHours.weekends.split(' - ')[0],
+      "closes": seoData.business.workingHours.weekends.split(' - ')[1]
+    }
+  ],
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": seoData.business.rating.toString(),
+    "reviewCount": seoData.business.totalReviews.toString(),
+    "bestRating": "5",
+    "worstRating": "1"
+  },
+  "areaServed": {
+    "@type": "GeoCircle",
+    "geoMidpoint": {
+      "@type": "GeoCoordinates",
+      "latitude": seoData.business.coordinates.latitude,
+      "longitude": seoData.business.coordinates.longitude
+    },
+    "geoRadius": seoData.business.serviceRadius
+  },
+  "sameAs": [
+    `https://instagram.com/${seoData.business.socialMedia.instagram}`,
+    `https://facebook.com/${seoData.business.socialMedia.facebook}`,
+    `https://youtube.com/${seoData.business.socialMedia.youtube}`,
+    seoData.localSEOOptimization.localCitations.justdial,
+    seoData.localSEOOptimization.localCitations.googleMaps
+  ],
+  "hasMap": seoData.localSEOOptimization.localCitations.googleMaps,
+  "paymentAccepted": "Cash, Credit Card, Debit Card, UPI, Net Banking"
+};
+
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   return (
-    <html lang="hi" className="scroll-smooth">      
+    <html lang="en" className="scroll-smooth">      
       <head>
         {/* Essential PWA Meta Tags */}
-        <meta name="application-name" content="Kritika Salon" />
+        <meta name="application-name" content={seoData.business.name} />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-        <meta name="apple-mobile-web-app-title" content="Kritika Salon" />
-        <meta name="description" content={BUSINESS_CONFIG.description} />
+        <meta name="apple-mobile-web-app-title" content={seoData.business.name} />
         <meta name="format-detection" content="telephone=no" />
         <meta name="mobile-web-app-capable" content="yes" />
-        <meta name="msapplication-config" content="/browserconfig.xml" />
         <meta name="msapplication-TileColor" content="#ec4899" />
-        <meta name="msapplication-tap-highlight" content="no" />
         <meta name="theme-color" content="#ec4899" />
 
         {/* Apple Touch Icons */}
         <link rel="apple-touch-icon" href="/icons/icon-152x152.png" />
         <link rel="apple-touch-icon" sizes="152x152" href="/icons/icon-152x152.png" />
         <link rel="apple-touch-icon" sizes="180x180" href="/icons/icon-180x180.png" />
-        <link rel="apple-touch-icon" sizes="167x167" href="/icons/icon-152x152.png" />
 
-        {/* iOS Splash Screens - Updated with all generated splash screens */}
+        {/* iOS Splash Screens */}
         <link 
           rel="apple-touch-startup-image" 
           href="/splash/iphone5_splash.png" 
-          media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" 
+          media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)" 
         />
         <link 
           rel="apple-touch-startup-image" 
           href="/splash/iphone6_splash.png" 
-          media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" 
-        />
-        <link 
-          rel="apple-touch-startup-image" 
-          href="/splash/iphoneplus_splash.png" 
-          media="(device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" 
+          media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2)" 
         />
         <link 
           rel="apple-touch-startup-image" 
           href="/splash/iphonex_splash.png" 
-          media="(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" 
-        />
-        <link 
-          rel="apple-touch-startup-image" 
-          href="/splash/iphonexr_splash.png" 
-          media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" 
-        />
-        <link 
-          rel="apple-touch-startup-image" 
-          href="/splash/iphonexsmax_splash.png" 
-          media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" 
-        />
-        <link 
-          rel="apple-touch-startup-image" 
-          href="/splash/ipad_splash.png" 
-          media="(device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" 
-        />
-        <link 
-          rel="apple-touch-startup-image" 
-          href="/splash/ipadpro1_splash.png" 
-          media="(device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" 
-        />
-        <link 
-          rel="apple-touch-startup-image" 
-          href="/splash/ipadpro2_splash.png" 
-          media="(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" 
-        />
-
-        {/* Landscape Splash Screens */}
-        <link 
-          rel="apple-touch-startup-image" 
-          href="/splash/iphone5_splash.png" 
-          media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" 
-        />
-        <link 
-          rel="apple-touch-startup-image" 
-          href="/splash/iphone6_splash.png" 
-          media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" 
-        />
-        <link 
-          rel="apple-touch-startup-image" 
-          href="/splash/iphoneplus_splash.png" 
-          media="(device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" 
+          media="(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3)" 
         />
 
         {/* Preconnect for performance */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://www.google-analytics.com" />
         
-        {/* Favicon for older browsers */}
+        {/* Favicon */}
         <link rel="icon" type="image/png" sizes="32x32" href="/icons/icon-32x32.png" />
         <link rel="icon" type="image/png" sizes="16x16" href="/icons/icon-16x16.png" />
         <link rel="shortcut icon" href="/icons/icon-96x96.png" />
 
-        {/* Local Business Schema */}
+        {/* Organization Schema */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "BeautySalon",
-              "name": "Kritika Salon Patna",
-              "url": "https://kritikasalonpatna.com",
-              "description": "Premium ladies beauty parlour in Patna offering bridal makeup, skincare, hair & nail services. Where every woman is a heroine.",
-              "telephone": "+91-9650461390",
-              "address": {
-                "@type": "PostalAddress",
-                "streetAddress": "Bhootnath Road",
-                "addressLocality": "Patna",
-                "addressRegion": "Bihar",
-                "postalCode": "800010",
-                "addressCountry": "IN"
-              },
-              "geo": {
-                "@type": "GeoCoordinates",
-                "latitude": "25.6154",
-                "longitude": "85.1354"
-              },
-              "openingHours": "Mo-Su 09:00-20:00",
-              "priceRange": "₹₹",
-              "aggregateRating": {
-                "@type": "AggregateRating",
-                "ratingValue": "4.9",
-                "reviewCount": "5000"
-              }
-            })
+            __html: JSON.stringify(organizationSchema)
           }}
         />
       </head>
-      <body className={`${inter.className} bg-linear-to-br from-pink-50 via-white to-purple-50 min-h-screen`}>
-        {/* Skip to main content for accessibility */}
+      <body className={`${inter.className} bg-gradient-to-br from-pink-50 via-white to-purple-50 min-h-screen`}>
+        {/* Skip to main content */}
         <a 
           href="#main-content" 
           className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-pink-600 text-white px-4 py-2 rounded-lg z-50"
@@ -284,29 +287,20 @@ export default function RootLayout({
           Skip to main content
         </a>
         
-        {/* Your existing Header/Navbar */}
         <Providers>
           <Navbar />
-        
-          {/* Main content */}
           <main id="main-content" className="grow">
             {children}
           </main>
-        
-          {/* Your existing Footer */}
           <Footer />
         </Providers>
 
-        {/* PWA Service Worker Registration */}
-        <PWARegister />
-
-        {/* PWA Install Prompt */}
+        {/* PWA Components */}
+        {/* <PWARegister />
         <PWAInstallPrompt />
+        <FloatingInstallButton /> */}
 
-        {/* Floating Install Button */}
-        <FloatingInstallButton />
-
-        {/* Vercel Analytics */}
+        {/* Analytics */}
         <Analytics />
         <SpeedInsights />
 
@@ -325,22 +319,20 @@ export default function RootLayout({
         </Script>
         
         {/* Facebook Pixel */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              !function(f,b,e,v,n,t,s)
-              {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-              n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-              if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-              n.queue=[];t=b.createElement(e);t.async=!0;
-              t.src=v;s=b.getElementsByTagName(e)[0];
-              s.parentNode.insertBefore(t,s)}(window, document,'script',
-              'https://connect.facebook.net/en_US/fbevents.js');
-              fbq('init', 'YOUR_PIXEL_ID');
-              fbq('track', 'PageView');
-            `,
-          }}
-        />
+        <Script id="facebook-pixel" strategy="afterInteractive">
+          {`
+            !function(f,b,e,v,n,t,s)
+            {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+            n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+            if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+            n.queue=[];t=b.createElement(e);t.async=!0;
+            t.src=v;s=b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t,s)}(window, document,'script',
+            'https://connect.facebook.net/en_US/fbevents.js');
+            fbq('init', 'YOUR_PIXEL_ID');
+            fbq('track', 'PageView');
+          `}
+        </Script>
         <noscript>
           <Image
             height="1"

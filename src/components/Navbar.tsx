@@ -32,7 +32,13 @@ const Navbar = () => {
 
   useEffect(() => {
     setIsClient(true);
-  }, []);
+    // Check for successful auth redirect
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('auth') === 'success' && isLoggedIn) {
+      // Remove the query param
+      router.replace('/profile');
+    }
+  }, [isLoggedIn, router]);
 
   // Close dropdown when clicking outside
   useEffect(() => {
@@ -79,7 +85,7 @@ const Navbar = () => {
                 <div className="mr-2 relative w-8 h-8 md:w-10 md:h-10">
                   <div className="w-6 h-6 md:w-8 md:h-8 lg:w-10 lg:h-10 bg-gray-200 rounded animate-pulse"></div>
                 </div>
-                <span className="bg-linear-to-r from-rose-500 to-pink-600 bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-rose-500 to-pink-600 bg-clip-text text-transparent">
                   KRITIKA SALON
                 </span>
               </div>
@@ -98,11 +104,11 @@ const Navbar = () => {
     <>
       <nav className="bg-white shadow-md sticky top-0 z-50">
         {/* Top announcement bar */}
-        <div className="bg-linear-to-r from-pink-100 to-purple-100 text-pink-800 py-2 text-center text-sm">
+        <div className="bg-gradient-to-r from-pink-100 to-purple-100 text-pink-800 py-2 text-center text-sm">
           <span className="inline-flex items-center">
-            <Gift className="mr-1" />
+            <Gift className="mr-1 w-4 h-4" />
             Get 20% off your first appointment! Book now.
-            <Gift className="ml-1" />
+            <Gift className="ml-1 w-4 h-4" />
           </span>
         </div>
         
@@ -123,7 +129,7 @@ const Navbar = () => {
                     }}
                   />
                 </div>
-                <span className="bg-linear-to-r from-rose-500 to-pink-600 bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-rose-500 to-pink-600 bg-clip-text text-transparent">
                   KRITIKA SALON
                 </span>
               </Link>
@@ -150,7 +156,10 @@ const Navbar = () => {
             <div className="hidden md:flex items-center space-x-4">
               {/* Notifications (only show when logged in) */}
               {isLoggedIn && (
-                <button className="p-2 text-gray-600 hover:text-rose-500 transition-colors relative">
+                <button 
+                  onClick={() => router.push('/notifications')}
+                  className="p-2 text-gray-600 hover:text-rose-500 transition-colors relative"
+                >
                   <Bell className="w-5 h-5" />
                   <span className="absolute -top-1 -right-1 bg-rose-500 text-white rounded-full w-4 h-4 flex items-center justify-center text-xs">2</span>
                 </button>
@@ -191,11 +200,13 @@ const Navbar = () => {
                       className="flex items-center space-x-2 text-gray-700 hover:text-rose-500 transition-colors p-2 rounded-lg hover:bg-pink-50"
                       onClick={() => setProfileDropdownOpen(!profileDropdownOpen)}
                     >
-                      <div className="w-8 h-8 bg-linear-to-r from-pink-400 to-rose-500 text-white rounded-full flex items-center justify-center text-sm font-medium">
+                      <div className="w-8 h-8 bg-gradient-to-r from-pink-400 to-rose-500 text-white rounded-full flex items-center justify-center text-sm font-medium">
                         {profile.profile_image_url ? (
                           <Image 
                             src={profile.profile_image_url} 
                             alt={profile.full_name} 
+                            width={32}
+                            height={32}
                             className="w-8 h-8 rounded-full object-cover"
                           />
                         ) : (
@@ -226,11 +237,13 @@ const Navbar = () => {
                           {/* Profile Header */}
                           <div className="px-4 py-3 border-b border-pink-100">
                             <div className="flex items-center space-x-3">
-                              <div className="w-12 h-12 bg-linear-to-r from-pink-400 to-rose-500 text-white rounded-full flex items-center justify-center text-lg font-medium">
+                              <div className="w-12 h-12 bg-gradient-to-r from-pink-400 to-rose-500 text-white rounded-full flex items-center justify-center text-lg font-medium">
                                 {profile.profile_image_url ? (
                                   <Image 
                                     src={profile.profile_image_url} 
-                                    alt={profile.full_name} 
+                                    alt={profile.full_name}
+                                    width={48}
+                                    height={48}
                                     className="w-12 h-12 rounded-full object-cover"
                                   />
                                 ) : (
@@ -244,7 +257,7 @@ const Navbar = () => {
                                 <div className="text-sm text-gray-500">{profile.email}</div>
                                 <div className="flex items-center space-x-3 mt-1">
                                   <span className="flex items-center text-xs text-pink-600">
-                                    <Star className="mr-1" />
+                                    <Star className="mr-1 w-3 h-3" />
                                     {profile.loyalty_points} points
                                   </span>
                                   <span className="text-xs text-gray-500">
@@ -322,7 +335,7 @@ const Navbar = () => {
                     </Link>
                     <Link 
                       href="/signup" 
-                      className="px-4 py-2 bg-linear-to-r from-rose-500 to-pink-600 text-white rounded-full hover:from-rose-600 hover:to-pink-700 transition-all font-medium"
+                      className="px-4 py-2 bg-gradient-to-r from-rose-500 to-pink-600 text-white rounded-full hover:from-rose-600 hover:to-pink-700 transition-all font-medium"
                     >
                       Sign Up
                     </Link>
@@ -371,11 +384,13 @@ const Navbar = () => {
                 <div className="border-t border-gray-200 pt-4 pb-3">
                   {isLoggedIn && profile ? (
                     <div className="flex items-center px-5 space-x-3">
-                      <div className="w-10 h-10 bg-linear-to-r from-pink-400 to-rose-500 text-white rounded-full flex items-center justify-center text-sm font-medium">
+                      <div className="w-10 h-10 bg-gradient-to-r from-pink-400 to-rose-500 text-white rounded-full flex items-center justify-center text-sm font-medium">
                         {profile.profile_image_url ? (
                           <Image 
                             src={profile.profile_image_url} 
-                            alt={profile.full_name} 
+                            alt={profile.full_name}
+                            width={40}
+                            height={40}
                             className="w-10 h-10 rounded-full object-cover"
                           />
                         ) : (
@@ -395,7 +410,13 @@ const Navbar = () => {
 
                   <div className="flex items-center justify-between px-5 space-x-4 mt-3">
                     <div className="flex space-x-4">
-                      <button className="p-2 text-gray-600 relative">
+                      <button 
+                        onClick={() => {
+                          setMobileMenuOpen(false);
+                          router.push('/favorites');
+                        }}
+                        className="p-2 text-gray-600 relative"
+                      >
                         <Heart className="w-5 h-5" />
                         {favorites.length > 0 && (
                           <span className="absolute -top-1 -right-1 bg-rose-500 text-white rounded-full w-4 h-4 flex items-center justify-center text-xs">
@@ -404,7 +425,13 @@ const Navbar = () => {
                         )}
                       </button>
                       
-                      <button className="p-2 text-gray-600 relative">
+                      <button 
+                        onClick={() => {
+                          setMobileMenuOpen(false);
+                          router.push('/cart');
+                        }}
+                        className="p-2 text-gray-600 relative"
+                      >
                         <ShoppingBag className="w-5 h-5" />
                         {cartItemCount > 0 && (
                           <span className="absolute -top-1 -right-1 bg-rose-500 text-white rounded-full w-4 h-4 flex items-center justify-center text-xs">
@@ -440,7 +467,7 @@ const Navbar = () => {
                         setMobileMenuOpen(false);
                         router.push('/book');
                       }}
-                      className="w-full bg-linear-to-r from-rose-500 to-pink-600 text-white px-4 py-2 rounded-full hover:from-rose-600 hover:to-pink-700 transition-all font-medium flex items-center justify-center"
+                      className="w-full bg-gradient-to-r from-rose-500 to-pink-600 text-white px-4 py-2 rounded-full hover:from-rose-600 hover:to-pink-700 transition-all font-medium flex items-center justify-center"
                     >
                       <Phone className="mr-2 w-4 h-4" />
                       Book Appointment
@@ -451,7 +478,7 @@ const Navbar = () => {
                     <div className="mt-4 px-2 space-y-1">
                       <Link 
                         href="/profile" 
-                        className="flex items-center px-3 py-2 text-base font-medium text-gray-700 hover:bg-pink-50"
+                        className="flex items-center px-3 py-2 text-base font-medium text-gray-700 hover:bg-pink-50 rounded-md"
                         onClick={() => setMobileMenuOpen(false)}
                       >
                         <User className="mr-3 w-5 h-5" />
@@ -459,15 +486,18 @@ const Navbar = () => {
                       </Link>
                       <Link 
                         href="/appointments" 
-                        className="flex items-center px-3 py-2 text-base font-medium text-gray-700 hover:bg-pink-50"
+                        className="flex items-center px-3 py-2 text-base font-medium text-gray-700 hover:bg-pink-50 rounded-md"
                         onClick={() => setMobileMenuOpen(false)}
                       >
                         <Calendar className="mr-3 w-5 h-5" />
                         My Appointments
                       </Link>
                       <button 
-                        className="flex items-center w-full px-3 py-2 text-base font-medium text-red-600 hover:bg-red-50"
-                        onClick={() => setShowSignOutModal(true)}
+                        className="flex items-center w-full px-3 py-2 text-base font-medium text-red-600 hover:bg-red-50 rounded-md"
+                        onClick={() => {
+                          setMobileMenuOpen(false);
+                          setShowSignOutModal(true);
+                        }}
                       >
                         <LogOut className="mr-3 w-5 h-5" />
                         Sign Out
