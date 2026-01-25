@@ -6,7 +6,8 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { MessageCircle, Heart, Reply, Send, User, Loader } from 'lucide-react';
-import { createClientSupabase } from '@/lib/supabase/client';
+// import { createClientSupabase } from '@/lib/supabase/client';
+import { supabase } from '@/lib/supabase/client';
 
 interface Comment {
   id: string;
@@ -46,7 +47,7 @@ export default function CommentsSection({ postId }: CommentsSectionProps) {
 
   const loadComments = async () => {
     try {
-      const supabase = createClientSupabase();
+      //const supabase = createClientSupabase();
       
       const { data, error } = await supabase
         .from('comments')
@@ -87,7 +88,7 @@ export default function CommentsSection({ postId }: CommentsSectionProps) {
     setSubmitting(true);
 
     try {
-      const supabase = createClientSupabase();
+      //const supabase = createClientSupabase();
 
       const { error } = await supabase
         .from('comments')
@@ -117,7 +118,7 @@ export default function CommentsSection({ postId }: CommentsSectionProps) {
   };
 
   const toggleLike = async (commentId: string) => {
-    const supabase = createClientSupabase();
+    //const supabase = createClientSupabase();
     const newLiked = new Set(likedComments);
 
     if (newLiked.has(commentId)) {

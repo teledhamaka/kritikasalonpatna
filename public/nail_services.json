@@ -5,11 +5,14 @@
     "slug": "bridal-nails-package-patna",
     "category": "Manicure",
     "categorySlug": "manicure",
+    "primaryCategory": "nails",
+    "eventCategory": "bridal",
     "image": "/images/nails/bridal_nails.webp",
-    "description": "Premium bridal nails package in Patna at My Ladies Beauty Parlour featuring custom nail extensions, Swarovski embellishments, and chrome finishes. Includes trial session to perfect your bridal look. Specially designed for Patna weddings with long-lasting durability through ceremonies and honeymoon.",
+    "description": "Premium bridal nails package in Patna at Kritika Ladies Beauty Parlour featuring custom nail extensions, Swarovski embellishments, and chrome finishes. Includes trial session to perfect your bridal look. Specially designed for Patna weddings with long-lasting durability through ceremonies and honeymoon.",
     "shortDescription": "Premium bridal nails package in Patna with custom extensions and Swarovski embellishments. Perfect for Patna wedding ceremonies.",
-    "price": 1500,
-    "originalPrice": 2000,
+    "price": 1500.0,
+    "originalPrice": 2000.0,
+    "priceCurrency": "INR",
     "discountPercentage": 25,
     "isTrending": true,
     "isPopular": true,
@@ -41,9 +44,10 @@
       "wedding nails patna",
       "premium bridal manicure",
       "bridal nail extensions patna",
-      "bridal nails Boring Road",
-      "wedding nail art Bailey Road",
-      "bridal nail package Patna"
+      "bridal nails Bhootnath road",
+      "wedding nail art Bhagwat Nagar",
+      "bridal nail package Patna",
+      "bridal nail home service Patna"
     ],
     "targetAudience": ["Patna brides", "Wedding preparations", "Premium service seekers"],
     "idealFor": ["Wedding ceremonies", "Bridal photoshoots", "Destination weddings", "Grand receptions"],
@@ -60,12 +64,34 @@
       {"name": "Nail Jewelry Setting", "price": 500},
       {"name": "Express Removal Service", "price": 300}
     ],
+    "serviceArea": {
+      "city": "Patna",
+      "region": "Bihar",
+      "country": "India",
+      "radiusKm": 20
+    },
+    "provider": {
+      "name": "Kritika Ladies Beauty Parlour",
+      "address": "BH Colony, Patna, Bihar 800026, India",
+      "phone": "+91-9650461390",
+      "googleMapsUrl": "https://www.google.com/maps/place/Kritika+Ladies+Beauty+Parlour/@25.5873981,85.1757259,17z"
+    },
+    "geo": {
+      "lat": 25.5873981,
+      "lng": 85.1757259
+    },
     "nearbyLandmarks": [
-      "Boring Road bridal studios (0.5km)",
-      "Bailey Road wedding venues (1.5km)",
-      "Rajendra Nagar banquet halls (1km)",
-      "Kankarbagh residential areas (0.5km)"
+      "Bhootnath Metro Station (~200m)",
+      "Bhootnath Road",
+      "Kumhrar",
+      "Bahadurpur Housing Colony",
+      "Patna Bypass",
+      "Bairia Bus Stand",
+      "Zero Mile",
+      "Khemnichak"
     ],
+    "url": "/manicure/bridal-nails-package-patna",
+    "reviewSource": "In-house reviews from Kritika Ladies Beauty Parlour Bookings",
     "seasonalTags": ["Wedding season", "Bridal preparations", "Year-round"],
     "processingTime": "Book 2-3 days in advance for trial",
     "cancellationPolicy": "Free cancellation up to 48 hours before appointment"
@@ -76,11 +102,14 @@
     "slug": "nail-extension-acrylic-gel-patna",
     "category": "Nail Art",
     "categorySlug": "nail-art",
+    "primaryCategory": "nails",
+    "eventCategory": "nail-art",
     "image": "/images/nails/nail_extension.webp",
-    "description": "Professional nail lengthening service in Patna at My Ladies Beauty Parlour with acrylic or gel extensions. Choose from stiletto, coffin, or square shapes. Includes basic polish and shaping. Perfect for Patna events and special occasions with durable, long-lasting results.",
+    "description": "Professional nail lengthening service in Patna at Kritika Ladies Beauty Parlour with acrylic or gel extensions. Choose from stiletto, coffin, or square shapes. Includes basic polish and shaping. Perfect for Patna events and special occasions with durable, long-lasting results.",
     "shortDescription": "Professional nail extensions in Patna with acrylic or gel. Choose from stiletto, coffin, or square shapes. Perfect for Patna events.",
-    "price": 1500,
-    "originalPrice": 2000,
+    "price": 1500.0,
+    "originalPrice": 2000.0,
+    "priceCurrency": "INR",
     "discountPercentage": 25,
     "isTrending": true,
     "isPopular": true,
@@ -111,9 +140,10 @@
       "acrylic nails patna",
       "gel nails patna",
       "nail lengthening service",
-      "nail extensions Boring Road",
-      "acrylic nails Bailey Road",
-      "nail art extensions Patna"
+      "nail extensions Bhootnath road",
+      "acrylic nails Bhagwat Nagar",
+      "nail art extensions Patna",
+      "nail extension home service Patna"
     ],
     "targetAudience": ["Fashion enthusiasts", "Special event attendees", "Nail length seekers"],
     "idealFor": ["Weddings", "Parties", "Special occasions", "Fashion events"],
@@ -130,12 +160,34 @@
       {"name": "Nail Art Design", "price": 500},
       {"name": "Gel Polish Upgrade", "price": 400}
     ],
+    "serviceArea": {
+      "city": "Patna",
+      "region": "Bihar",
+      "country": "India",
+      "radiusKm": 20
+    },
+    "provider": {
+      "name": "Kritika Ladies Beauty Parlour",
+      "address": "BH Colony, Patna, Bihar 800026, India",
+      "phone": "+91-9650461390",
+      "googleMapsUrl": "https://www.google.com/maps/place/Kritika+Ladies+Beauty+Parlour/@25.5873981,85.1757259,17z"
+    },
+    "geo": {
+      "lat": 25.5873981,
+      "lng": 85.1757259
+    },
     "nearbyLandmarks": [
-      "Boring Road shopping areas (0.5km)",
-      "GV Mall (0.5km)",
-      "Bailey Road restaurants (1.5km)",
-      "Fraser Road markets (1.5km)"
+      "Bhootnath Metro Station (~200m)",
+      "Bhootnath Road",
+      "Kumhrar",
+      "Bahadurpur Housing Colony",
+      "Patna Bypass",
+      "Bairia Bus Stand",
+      "Zero Mile",
+      "Khemnichak"
     ],
+    "url": "/nail-art/nail-extension-acrylic-gel-patna",
+    "reviewSource": "In-house reviews from Kritika Ladies Beauty Parlour Bookings",
     "seasonalTags": ["Year-round", "Festival season", "Wedding season"],
     "processingTime": "Same day booking available",
     "cancellationPolicy": "Free cancellation up to 24 hours before"
@@ -146,11 +198,14 @@
     "slug": "nail-art-basic-designs-patna",
     "category": "Nail Art",
     "categorySlug": "nail-art",
+    "primaryCategory": "nails",
+    "eventCategory": "nail-art",
     "image": "/images/nails/nail_art.webp",
-    "description": "Custom nail art designs in Patna at My Ladies Beauty Parlour featuring hand-painted details and embellishments. Choose from various design options and colors. Perfect for adding personality to your look for Patna events and social gatherings.",
+    "description": "Custom nail art designs in Patna at Kritika Ladies Beauty Parlour featuring hand-painted details and embellishments. Choose from various design options and colors. Perfect for adding personality to your look for Patna events and social gatherings.",
     "shortDescription": "Custom nail art designs in Patna with hand-painted details and embellishments. Perfect for Patna social events.",
-    "price": 500,
-    "originalPrice": 700,
+    "price": 500.0,
+    "originalPrice": 700.0,
+    "priceCurrency": "INR",
     "discountPercentage": 29,
     "isTrending": true,
     "isPopular": true,
@@ -181,9 +236,10 @@
       "nail designs patna",
       "custom nail art",
       "hand painted nails",
-      "nail art Boring Road",
-      "nail designs Bailey Road",
-      "nail art studio Patna"
+      "nail art Bhootnath road",
+      "nail designs Bhagwat Nagar",
+      "nail art studio Patna",
+      "nail art home service Patna"
     ],
     "targetAudience": ["Fashion-forward individuals", "Social media enthusiasts", "Trend followers"],
     "idealFor": ["Parties", "Festivals", "Social gatherings", "Special occasions"],
@@ -200,12 +256,34 @@
       {"name": "3D Nail Art", "price": 400},
       {"name": "French Tip with Design", "price": 350}
     ],
+    "serviceArea": {
+      "city": "Patna",
+      "region": "Bihar",
+      "country": "India",
+      "radiusKm": 20
+    },
+    "provider": {
+      "name": "Kritika Ladies Beauty Parlour",
+      "address": "BH Colony, Patna, Bihar 800026, India",
+      "phone": "+91-9650461390",
+      "googleMapsUrl": "https://www.google.com/maps/place/Kritika+Ladies+Beauty+Parlour/@25.5873981,85.1757259,17z"
+    },
+    "geo": {
+      "lat": 25.5873981,
+      "lng": 85.1757259
+    },
     "nearbyLandmarks": [
-      "Boring Road cafes (0.5km)",
-      "GV Mall (0.5km)",
-      "Bailey Road social venues (1.5km)",
-      "College areas (2km)"
+      "Bhootnath Metro Station (~200m)",
+      "Bhootnath Road",
+      "Kumhrar",
+      "Bahadurpur Housing Colony",
+      "Patna Bypass",
+      "Bairia Bus Stand",
+      "Zero Mile",
+      "Khemnichak"
     ],
+    "url": "/nail-art/nail-art-basic-designs-patna",
+    "reviewSource": "In-house reviews from Kritika Ladies Beauty Parlour Bookings",
     "seasonalTags": ["Festival specials", "Seasonal designs", "Year-round"],
     "processingTime": "Same day booking available",
     "cancellationPolicy": "Free cancellation up to 12 hours before"
@@ -216,11 +294,14 @@
     "slug": "deluxe-manicure-patna",
     "category": "Manicure",
     "categorySlug": "manicure",
+    "primaryCategory": "nails",
+    "eventCategory": "spa",
     "image": "/images/nails/deluxe_manicure.webp",
-    "description": "Luxury deluxe manicure treatment in Patna at My Ladies Beauty Parlour featuring paraffin wax dip, hot stone massage, diamond dust buffing and collagen-infused top coat. Perfect for deep hand nourishment and relaxation.",
+    "description": "Luxury deluxe manicure treatment in Patna at Kritika Ladies Beauty Parlour featuring paraffin wax dip, hot stone massage, diamond dust buffing and collagen-infused top coat. Perfect for deep hand nourishment and relaxation.",
     "shortDescription": "Luxury deluxe manicure in Patna with paraffin wax, hot stone massage and collagen treatment. Perfect for hand nourishment.",
-    "price": 900,
-    "originalPrice": 1200,
+    "price": 900.0,
+    "originalPrice": 1200.0,
+    "priceCurrency": "INR",
     "discountPercentage": 25,
     "isTrending": true,
     "isPopular": true,
@@ -251,9 +332,10 @@
       "luxury manicure",
       "paraffin wax manicure",
       "hot stone hand massage",
-      "deluxe manicure Boring Road",
-      "luxury hand treatment Bailey Road",
-      "premium manicure Patna"
+      "deluxe manicure Bhootnath road",
+      "luxury hand treatment Bhagwat Nagar",
+      "premium manicure Patna",
+      "manicure home service Patna"
     ],
     "targetAudience": ["Luxury service seekers", "Bridal preparations", "Hand care enthusiasts"],
     "idealFor": ["Pre-wedding preparations", "Special occasions", "Hand rejuvenation", "Gift treatments"],
@@ -270,12 +352,34 @@
       {"name": "Premium Nail Art", "price": 400},
       {"name": "Hand Mask Treatment", "price": 350}
     ],
+    "serviceArea": {
+      "city": "Patna",
+      "region": "Bihar",
+      "country": "India",
+      "radiusKm": 20
+    },
+    "provider": {
+      "name": "Kritika Ladies Beauty Parlour",
+      "address": "BH Colony, Patna, Bihar 800026, India",
+      "phone": "+91-9650461390",
+      "googleMapsUrl": "https://www.google.com/maps/place/Kritika+Ladies+Beauty+Parlour/@25.5873981,85.1757259,17z"
+    },
+    "geo": {
+      "lat": 25.5873981,
+      "lng": 85.1757259
+    },
     "nearbyLandmarks": [
-      "Boring Road residential areas (0.5km)",
-      "Bailey Road offices (1.5km)",
-      "Rajendra Nagar homes (1km)",
-      "Kankarbagh community (0.5km)"
+      "Bhootnath Metro Station (~200m)",
+      "Bhootnath Road",
+      "Kumhrar",
+      "Bahadurpur Housing Colony",
+      "Patna Bypass",
+      "Bairia Bus Stand",
+      "Zero Mile",
+      "Khemnichak"
     ],
+    "url": "/manicure/deluxe-manicure-patna",
+    "reviewSource": "In-house reviews from Kritika Ladies Beauty Parlour Bookings",
     "seasonalTags": ["Year-round", "Winter special", "Bridal season"],
     "processingTime": "Same day booking available",
     "cancellationPolicy": "Free cancellation up to 12 hours before"
@@ -286,11 +390,14 @@
     "slug": "basic-manicure-patna",
     "category": "Manicure",
     "categorySlug": "manicure",
+    "primaryCategory": "nails",
+    "eventCategory": "maintenance",
     "image": "/images/nails/plain_manicure.webp",
-    "description": "Essential basic manicure service in Patna at My Ladies Beauty Parlour featuring cuticle treatment, nail shaping, buffing, moisturizing hand massage and polish. Perfect for regular nail maintenance.",
+    "description": "Essential basic manicure service in Patna at Kritika Ladies Beauty Parlour featuring cuticle treatment, nail shaping, buffing, moisturizing hand massage and polish. Perfect for regular nail maintenance.",
     "shortDescription": "Essential basic manicure in Patna with cuticle treatment, nail shaping and polish. Perfect for regular nail care.",
-    "price": 300,
-    "originalPrice": 400,
+    "price": 300.0,
+    "originalPrice": 400.0,
+    "priceCurrency": "INR",
     "discountPercentage": 25,
     "isTrending": false,
     "isPopular": true,
@@ -321,9 +428,10 @@
       "simple manicure",
       "nail care patna",
       "regular manicure",
-      "basic manicure Boring Road",
-      "affordable manicure Bailey Road",
-      "nail maintenance Patna"
+      "basic manicure Bhootnath road",
+      "affordable manicure Bhagwat Nagar",
+      "nail maintenance Patna",
+      "manicure home service Patna"
     ],
     "targetAudience": ["Regular maintenance seekers", "Budget-conscious clients", "First-time visitors"],
     "idealFor": ["Weekly maintenance", "Office professionals", "Students", "Regular grooming"],
@@ -340,12 +448,34 @@
       {"name": "Basic Nail Art", "price": 200},
       {"name": "Cuticle Oil Take-home", "price": 150}
     ],
+    "serviceArea": {
+      "city": "Patna",
+      "region": "Bihar",
+      "country": "India",
+      "radiusKm": 20
+    },
+    "provider": {
+      "name": "Kritika Ladies Beauty Parlour",
+      "address": "BH Colony, Patna, Bihar 800026, India",
+      "phone": "+91-9650461390",
+      "googleMapsUrl": "https://www.google.com/maps/place/Kritika+Ladies+Beauty+Parlour/@25.5873981,85.1757259,17z"
+    },
+    "geo": {
+      "lat": 25.5873981,
+      "lng": 85.1757259
+    },
     "nearbyLandmarks": [
-      "Boring Road offices (0.5km)",
-      "College areas (1km)",
-      "Residential neighborhoods (0.5km)",
-      "Shopping areas (1km)"
+      "Bhootnath Metro Station (~200m)",
+      "Bhootnath Road",
+      "Kumhrar",
+      "Bahadurpur Housing Colony",
+      "Patna Bypass",
+      "Bairia Bus Stand",
+      "Zero Mile",
+      "Khemnichak"
     ],
+    "url": "/manicure/basic-manicure-patna",
+    "reviewSource": "In-house reviews from Kritika Ladies Beauty Parlour Bookings",
     "seasonalTags": ["Year-round", "Regular maintenance", "Essential care"],
     "processingTime": "Same day booking available",
     "cancellationPolicy": "Free cancellation up to 6 hours before"
@@ -356,11 +486,14 @@
     "slug": "french-manicure-patna",
     "category": "Manicure",
     "categorySlug": "manicure",
+    "primaryCategory": "nails",
+    "eventCategory": "bridal",
     "image": "/images/nails/french_manicure.webp",
-    "description": "Classic French manicure in Patna at My Ladies Beauty Parlour featuring precision white tip and natural pink base. Includes cuticle grooming, high-gloss top coat and almond milk soak. Timeless elegance for any occasion.",
+    "description": "Classic French manicure in Patna at Kritika Ladies Beauty Parlour featuring precision white tip and natural pink base. Includes cuticle grooming, high-gloss top coat and almond milk soak. Timeless elegance for any occasion.",
     "shortDescription": "Classic French manicure in Patna with precision white tips and natural pink base. Timeless elegant look.",
-    "price": 1000,
-    "originalPrice": 550,
+    "price": 1000.0,
+    "originalPrice": 550.0,
+    "priceCurrency": "INR",
     "discountPercentage": 45,
     "isTrending": true,
     "isPopular": true,
@@ -391,9 +524,10 @@
       "classic french nails",
       "elegant manicure",
       "white tip nails",
-      "french manicure Boring Road",
-      "classic nails Bailey Road",
-      "french tip nails Patna"
+      "french manicure Bhootnath road",
+      "classic nails Bhagwat Nagar",
+      "french tip nails Patna",
+      "french manicure home service Patna"
     ],
     "targetAudience": ["Professional settings", "Classic style lovers", "Office professionals"],
     "idealFor": ["Work environments", "Weddings", "Formal events", "Job interviews"],
@@ -410,12 +544,34 @@
       {"name": "French Tip with Glitter", "price": 200},
       {"name": "Luxury Hand Massage", "price": 250}
     ],
+    "serviceArea": {
+      "city": "Patna",
+      "region": "Bihar",
+      "country": "India",
+      "radiusKm": 20
+    },
+    "provider": {
+      "name": "Kritika Ladies Beauty Parlour",
+      "address": "BH Colony, Patna, Bihar 800026, India",
+      "phone": "+91-9650461390",
+      "googleMapsUrl": "https://www.google.com/maps/place/Kritika+Ladies+Beauty+Parlour/@25.5873981,85.1757259,17z"
+    },
+    "geo": {
+      "lat": 25.5873981,
+      "lng": 85.1757259
+    },
     "nearbyLandmarks": [
-      "Boring Road corporate offices (0.5km)",
-      "Bailey Road business district (1.5km)",
-      "Fraser Road commercial area (1.5km)",
-      "Office complexes (1km)"
+      "Bhootnath Metro Station (~200m)",
+      "Bhootnath Road",
+      "Kumhrar",
+      "Bahadurpur Housing Colony",
+      "Patna Bypass",
+      "Bairia Bus Stand",
+      "Zero Mile",
+      "Khemnichak"
     ],
+    "url": "/manicure/french-manicure-patna",
+    "reviewSource": "In-house reviews from Kritika Ladies Beauty Parlour Bookings",
     "seasonalTags": ["Year-round", "Wedding season", "Professional settings"],
     "processingTime": "Same day booking available",
     "cancellationPolicy": "Free cancellation up to 12 hours before"
@@ -426,11 +582,14 @@
     "slug": "basic-pedicure-patna",
     "category": "Pedicure",
     "categorySlug": "pedicure",
+    "primaryCategory": "nails",
+    "eventCategory": "maintenance",
     "image": "/images/nails/nail_polish_foot.webp",
-    "description": "Essential basic pedicure service in Patna at My Ladies Beauty Parlour featuring nail trimming, cuticle work, exfoliation, relaxing foot soak and polish. Perfect for regular foot maintenance and hygiene.",
+    "description": "Essential basic pedicure service in Patna at Kritika Ladies Beauty Parlour featuring nail trimming, cuticle work, exfoliation, relaxing foot soak and polish. Perfect for regular foot maintenance and hygiene.",
     "shortDescription": "Essential basic pedicure in Patna with nail trimming, exfoliation and polish. Perfect for regular foot care.",
-    "price": 400,
-    "originalPrice": 550,
+    "price": 400.0,
+    "originalPrice": 550.0,
+    "priceCurrency": "INR",
     "discountPercentage": 27,
     "isTrending": false,
     "isPopular": true,
@@ -461,9 +620,10 @@
       "foot care patna",
       "pedicure service",
       "foot hygiene",
-      "basic pedicure Boring Road",
-      "foot care Bailey Road",
-      "pedicure salon Patna"
+      "basic pedicure Bhootnath road",
+      "foot care Bhagwat Nagar",
+      "pedicure salon Patna",
+      "pedicure home service Patna"
     ],
     "targetAudience": ["Regular foot care seekers", "All genders", "Health-conscious individuals"],
     "idealFor": ["Regular maintenance", "Foot health", "Pre-sandal season", "General hygiene"],
@@ -480,12 +640,34 @@
       {"name": "Gel Polish Upgrade", "price": 300},
       {"name": "Foot Mask Treatment", "price": 250}
     ],
+    "serviceArea": {
+      "city": "Patna",
+      "region": "Bihar",
+      "country": "India",
+      "radiusKm": 20
+    },
+    "provider": {
+      "name": "Kritika Ladies Beauty Parlour",
+      "address": "BH Colony, Patna, Bihar 800026, India",
+      "phone": "+91-9650461390",
+      "googleMapsUrl": "https://www.google.com/maps/place/Kritika+Ladies+Beauty+Parlour/@25.5873981,85.1757259,17z"
+    },
+    "geo": {
+      "lat": 25.5873981,
+      "lng": 85.1757259
+    },
     "nearbyLandmarks": [
-      "Boring Road residential areas (0.5km)",
-      "Kankarbagh homes (0.5km)",
-      "Bailey Road apartments (1.5km)",
-      "Rajendra Nagar community (1km)"
+      "Bhootnath Metro Station (~200m)",
+      "Bhootnath Road",
+      "Kumhrar",
+      "Bahadurpur Housing Colony",
+      "Patna Bypass",
+      "Bairia Bus Stand",
+      "Zero Mile",
+      "Khemnichak"
     ],
+    "url": "/pedicure/basic-pedicure-patna",
+    "reviewSource": "In-house reviews from Kritika Ladies Beauty Parlour Bookings",
     "seasonalTags": ["Year-round", "Summer special", "Pre-sandal season"],
     "processingTime": "Same day booking available",
     "cancellationPolicy": "Free cancellation up to 12 hours before"
@@ -496,11 +678,14 @@
     "slug": "french-pedicure-patna",
     "category": "Pedicure",
     "categorySlug": "pedicure",
+    "primaryCategory": "nails",
+    "eventCategory": "spa",
     "image": "/images/nails/french_pedicure.webp",
-    "description": "Elegant French pedicure in Patna at My Ladies Beauty Parlour featuring French tips for toes with antimicrobial base coat. Includes callus removal, foot scrub, and extended calf massage for complete foot care.",
+    "description": "Elegant French pedicure in Patna at Kritika Ladies Beauty Parlour featuring French tips for toes with antimicrobial base coat. Includes callus removal, foot scrub, and extended calf massage for complete foot care.",
     "shortDescription": "Elegant French pedicure in Patna with French tips, callus removal and calf massage. Complete foot care treatment.",
-    "price": 500,
-    "originalPrice": 650,
+    "price": 500.0,
+    "originalPrice": 650.0,
+    "priceCurrency": "INR",
     "discountPercentage": 23,
     "isTrending": true,
     "isPopular": true,
@@ -531,9 +716,10 @@
       "foot french tips",
       "elegant pedicure",
       "foot care service",
-      "french pedicure Boring Road",
-      "foot french tips Bailey Road",
-      "pedicure with massage Patna"
+      "french pedicure Bhootnath road",
+      "foot french tips Bhagwat Nagar",
+      "pedicure with massage Patna",
+      "pedicure home service Patna"
     ],
     "targetAudience": ["Open footwear wearers", "Summer season", "Foot appearance conscious"],
     "idealFor": ["Summer season", "Beach vacations", "Open shoe occasions", "Foot aesthetics"],
@@ -550,12 +736,34 @@
       {"name": "Gel Polish Upgrade", "price": 350},
       {"name": "Toe Nail Art", "price": 250}
     ],
+    "serviceArea": {
+      "city": "Patna",
+      "region": "Bihar",
+      "country": "India",
+      "radiusKm": 20
+    },
+    "provider": {
+      "name": "Kritika Ladies Beauty Parlour",
+      "address": "BH Colony, Patna, Bihar 800026, India",
+      "phone": "+91-9650461390",
+      "googleMapsUrl": "https://www.google.com/maps/place/Kritika+Ladies+Beauty+Parlour/@25.5873981,85.1757259,17z"
+    },
+    "geo": {
+      "lat": 25.5873981,
+      "lng": 85.1757259
+    },
     "nearbyLandmarks": [
-      "Boring Road shopping areas (0.5km)",
-      "GV Mall (0.5km)",
-      "Bailey Road restaurants (1.5km)",
-      "Summer event venues (2km)"
+      "Bhootnath Metro Station (~200m)",
+      "Bhootnath Road",
+      "Kumhrar",
+      "Bahadurpur Housing Colony",
+      "Patna Bypass",
+      "Bairia Bus Stand",
+      "Zero Mile",
+      "Khemnichak"
     ],
+    "url": "/pedicure/french-pedicure-patna",
+    "reviewSource": "In-house reviews from Kritika Ladies Beauty Parlour Bookings",
     "seasonalTags": ["Summer special", "Beach season", "Open footwear season"],
     "processingTime": "Same day booking available",
     "cancellationPolicy": "Free cancellation up to 12 hours before"
@@ -566,11 +774,14 @@
     "slug": "nail-cut-file-hands-patna",
     "category": "Nail Art",
     "categorySlug": "nail-art",
+    "primaryCategory": "nails",
+    "eventCategory": "maintenance",
     "image": "/images/nails/nail_cut_salon.webp",
-    "description": "Basic nail maintenance service for hands in Patna at My Ladies Beauty Parlour using sanitized tools. Includes nail trimming, shaping with crystal file, and buffing for healthy nail care.",
+    "description": "Basic nail maintenance service for hands in Patna at Kritika Ladies Beauty Parlour using sanitized tools. Includes nail trimming, shaping with crystal file, and buffing for healthy nail care.",
     "shortDescription": "Basic nail cut and file service for hands in Patna with sanitized tools. Essential nail maintenance.",
-    "price": 100,
-    "originalPrice": 150,
+    "price": 100.0,
+    "originalPrice": 150.0,
+    "priceCurrency": "INR",
     "discountPercentage": 33,
     "isTrending": false,
     "isPopular": true,
@@ -601,9 +812,10 @@
       "nail filing service",
       "nail maintenance",
       "basic nail care",
-      "nail cut Boring Road",
-      "nail file service Bailey Road",
-      "nail grooming Patna"
+      "nail cut Bhootnath road",
+      "nail file service Bhagwat Nagar",
+      "nail grooming Patna",
+      "nail care home service Patna"
     ],
     "targetAudience": ["Men", "Regular maintenance", "Budget-conscious clients"],
     "idealFor": ["Quick maintenance", "Between manicures", "Men's grooming", "Basic nail care"],
@@ -620,12 +832,34 @@
       {"name": "Cuticle Treatment", "price": 100},
       {"name": "Hand Massage", "price": 150}
     ],
+    "serviceArea": {
+      "city": "Patna",
+      "region": "Bihar",
+      "country": "India",
+      "radiusKm": 20
+    },
+    "provider": {
+      "name": "Kritika Ladies Beauty Parlour",
+      "address": "BH Colony, Patna, Bihar 800026, India",
+      "phone": "+91-9650461390",
+      "googleMapsUrl": "https://www.google.com/maps/place/Kritika+Ladies+Beauty+Parlour/@25.5873981,85.1757259,17z"
+    },
+    "geo": {
+      "lat": 25.5873981,
+      "lng": 85.1757259
+    },
     "nearbyLandmarks": [
-      "Boring Road offices (0.5km)",
-      "Business districts (1km)",
-      "Residential areas (0.5km)",
-      "Commercial complexes (1km)"
+      "Bhootnath Metro Station (~200m)",
+      "Bhootnath Road",
+      "Kumhrar",
+      "Bahadurpur Housing Colony",
+      "Patna Bypass",
+      "Bairia Bus Stand",
+      "Zero Mile",
+      "Khemnichak"
     ],
+    "url": "/nail-art/nail-cut-file-hands-patna",
+    "reviewSource": "In-house reviews from Kritika Ladies Beauty Parlour Bookings",
     "seasonalTags": ["Year-round", "Regular maintenance", "Essential service"],
     "processingTime": "Walk-in service available",
     "cancellationPolicy": "Free cancellation up to 3 hours before"
@@ -636,11 +870,14 @@
     "slug": "nail-cut-file-feet-patna",
     "category": "Pedicure",
     "categorySlug": "pedicure",
+    "primaryCategory": "nails",
+    "eventCategory": "maintenance",
     "image": "/images/nails/nail_cut_salon.webp",
-    "description": "Professional toenail care service in Patna at My Ladies Beauty Parlour using orthopedic cutting techniques. Features callus smoothing and antifungal spray application for complete foot hygiene.",
+    "description": "Professional toenail care service in Patna at Kritika Ladies Beauty Parlour using orthopedic cutting techniques. Features callus smoothing and antifungal spray application for complete foot hygiene.",
     "shortDescription": "Professional toenail cut and file service in Patna with orthopedic techniques. Essential foot hygiene.",
-    "price": 100,
-    "originalPrice": 150,
+    "price": 100.0,
+    "originalPrice": 150.0,
+    "priceCurrency": "INR",
     "discountPercentage": 33,
     "isTrending": false,
     "isPopular": true,
@@ -671,9 +908,10 @@
       "foot nail care",
       "toenail maintenance",
       "foot hygiene service",
-      "toenail care Boring Road",
-      "foot nail cutting Bailey Road",
-      "pedicure basics Patna"
+      "toenail care Bhootnath road",
+      "foot nail cutting Bhagwat Nagar",
+      "pedicure basics Patna",
+      "foot care home service Patna"
     ],
     "targetAudience": ["Athletes", "Elderly clients", "Foot health conscious", "Diabetic clients"],
     "idealFor": ["Foot health maintenance", "Between pedicures", "Medical foot care", "Basic hygiene"],
@@ -690,12 +928,34 @@
       {"name": "Basic Foot Soak", "price": 100},
       {"name": "Toe Polish", "price": 80}
     ],
+    "serviceArea": {
+      "city": "Patna",
+      "region": "Bihar",
+      "country": "India",
+      "radiusKm": 20
+    },
+    "provider": {
+      "name": "Kritika Ladies Beauty Parlour",
+      "address": "BH Colony, Patna, Bihar 800026, India",
+      "phone": "+91-9650461390",
+      "googleMapsUrl": "https://www.google.com/maps/place/Kritika+Ladies+Beauty+Parlour/@25.5873981,85.1757259,17z"
+    },
+    "geo": {
+      "lat": 25.5873981,
+      "lng": 85.1757259
+    },
     "nearbyLandmarks": [
-      "Boring Road medical clinics (0.5km)",
-      "Residential areas (0.5km)",
-      "Sports facilities (2km)",
-      "Elderly care centers (1.5km)"
+      "Bhootnath Metro Station (~200m)",
+      "Bhootnath Road",
+      "Kumhrar",
+      "Bahadurpur Housing Colony",
+      "Patna Bypass",
+      "Bairia Bus Stand",
+      "Zero Mile",
+      "Khemnichak"
     ],
+    "url": "/pedicure/nail-cut-file-feet-patna",
+    "reviewSource": "In-house reviews from Kritika Ladies Beauty Parlour Bookings",
     "seasonalTags": ["Year-round", "Medical care", "Foot health"],
     "processingTime": "Walk-in service available",
     "cancellationPolicy": "Free cancellation up to 3 hours before"
@@ -706,11 +966,14 @@
     "slug": "nail-polish-hands-patna",
     "category": "Nail Art",
     "categorySlug": "nail-art",
+    "primaryCategory": "nails",
+    "eventCategory": "maintenance",
     "image": "/images/nails/nail_polish_hand.webp",
-    "description": "Professional nail polish application for hands in Patna at My Ladies Beauty Parlour featuring base coat, 2 color coats, quick-dry top coat and nail shaping. Quick and efficient service.",
+    "description": "Professional nail polish application for hands in Patna at Kritika Ladies Beauty Parlour featuring base coat, 2 color coats, quick-dry top coat and nail shaping. Quick and efficient service.",
     "shortDescription": "Professional nail polish application for hands in Patna with quick-dry technology. Fast and efficient service.",
-    "price": 150,
-    "originalPrice": 200,
+    "price": 150.0,
+    "originalPrice": 200.0,
+    "priceCurrency": "INR",
     "discountPercentage": 25,
     "isTrending": false,
     "isPopular": true,
@@ -741,9 +1004,10 @@
       "hand polish service",
       "nail coloring",
       "polish application",
-      "nail polish Boring Road",
-      "hand polish Bailey Road",
-      "nail color service Patna"
+      "nail polish Bhootnath road",
+      "hand polish Bhagwat Nagar",
+      "nail color service Patna",
+      "nail polish home service Patna"
     ],
     "targetAudience": ["Quick service seekers", "Regular polish users", "Color change enthusiasts"],
     "idealFor": ["Quick touch-ups", "Color changes", "Regular maintenance", "Between manicures"],
@@ -760,12 +1024,34 @@
       {"name": "Quick-Dry Accelerator", "price": 50},
       {"name": "Color Change Next Day", "price": 100}
     ],
+    "serviceArea": {
+      "city": "Patna",
+      "region": "Bihar",
+      "country": "India",
+      "radiusKm": 20
+    },
+    "provider": {
+      "name": "Kritika Ladies Beauty Parlour",
+      "address": "BH Colony, Patna, Bihar 800026, India",
+      "phone": "+91-9650461390",
+      "googleMapsUrl": "https://www.google.com/maps/place/Kritika+Ladies+Beauty+Parlour/@25.5873981,85.1757259,17z"
+    },
+    "geo": {
+      "lat": 25.5873981,
+      "lng": 85.1757259
+    },
     "nearbyLandmarks": [
-      "Boring Road shopping areas (0.5km)",
-      "GV Mall (0.5km)",
-      "Bailey Road cafes (1.5km)",
-      "Quick service locations (1km)"
+      "Bhootnath Metro Station (~200m)",
+      "Bhootnath Road",
+      "Kumhrar",
+      "Bahadurpur Housing Colony",
+      "Patna Bypass",
+      "Bairia Bus Stand",
+      "Zero Mile",
+      "Khemnichak"
     ],
+    "url": "/nail-art/nail-polish-hands-patna",
+    "reviewSource": "In-house reviews from Kritika Ladies Beauty Parlour Bookings",
     "seasonalTags": ["Year-round", "Quick service", "Color trends"],
     "processingTime": "Walk-in service available",
     "cancellationPolicy": "Free cancellation up to 3 hours before"
@@ -776,11 +1062,14 @@
     "slug": "nail-polish-feet-patna",
     "category": "Pedicure",
     "categorySlug": "pedicure",
+    "primaryCategory": "nails",
+    "eventCategory": "maintenance",
     "image": "/images/nails/nail_polish_foot.webp",
-    "description": "Professional toenail polish application in Patna at My Ladies Beauty Parlour featuring antifungal base coat, breathable polish, light foot massage and toe separators. Hygienic and comfortable service.",
+    "description": "Professional toenail polish application in Patna at Kritika Ladies Beauty Parlour featuring antifungal base coat, breathable polish, light foot massage and toe separators. Hygienic and comfortable service.",
     "shortDescription": "Professional toenail polish application in Patna with antifungal base coat. Hygienic foot service.",
-    "price": 150,
-    "originalPrice": 200,
+    "price": 150.0,
+    "originalPrice": 200.0,
+    "priceCurrency": "INR",
     "discountPercentage": 25,
     "isTrending": false,
     "isPopular": true,
@@ -811,9 +1100,10 @@
       "foot polish service",
       "toenail coloring",
       "foot polish application",
-      "toenail polish Boring Road",
-      "foot polish Bailey Road",
-      "pedicure polish Patna"
+      "toenail polish Bhootnath road",
+      "foot polish Bhagwat Nagar",
+      "pedicure polish Patna",
+      "foot polish home service Patna"
     ],
     "targetAudience": ["Open footwear wearers", "Summer season", "Foot appearance conscious"],
     "idealFor": ["Summer season", "Beach vacations", "Open shoe occasions", "Foot aesthetics"],
@@ -830,12 +1120,34 @@
       {"name": "Callus Removal", "price": 150},
       {"name": "Extended Foot Massage", "price": 200}
     ],
+    "serviceArea": {
+      "city": "Patna",
+      "region": "Bihar",
+      "country": "India",
+      "radiusKm": 20
+    },
+    "provider": {
+      "name": "Kritika Ladies Beauty Parlour",
+      "address": "BH Colony, Patna, Bihar 800026, India",
+      "phone": "+91-9650461390",
+      "googleMapsUrl": "https://www.google.com/maps/place/Kritika+Ladies+Beauty+Parlour/@25.5873981,85.1757259,17z"
+    },
+    "geo": {
+      "lat": 25.5873981,
+      "lng": 85.1757259
+    },
     "nearbyLandmarks": [
-      "Boring Road residential areas (0.5km)",
-      "Summer event venues (1km)",
-      "Beach preparation spots (2km)",
-      "Open footwear shopping areas (1km)"
+      "Bhootnath Metro Station (~200m)",
+      "Bhootnath Road",
+      "Kumhrar",
+      "Bahadurpur Housing Colony",
+      "Patna Bypass",
+      "Bairia Bus Stand",
+      "Zero Mile",
+      "Khemnichak"
     ],
+    "url": "/pedicure/nail-polish-feet-patna",
+    "reviewSource": "In-house reviews from Kritika Ladies Beauty Parlour Bookings",
     "seasonalTags": ["Summer special", "Beach season", "Open footwear season"],
     "processingTime": "Walk-in service available",
     "cancellationPolicy": "Free cancellation up to 3 hours before"
@@ -846,11 +1158,14 @@
     "slug": "nail-polish-hands-feet-patna",
     "category": "Nail Art",
     "categorySlug": "nail-art",
+    "primaryCategory": "nails",
+    "eventCategory": "maintenance",
     "image": "/images/nails/nail_polish_combo.webp",
-    "description": "Complete nail polish set for hands and feet in Patna at My Ladies Beauty Parlour featuring matching or contrasting colors, LED lamp for smudge-proof finish and coordinated look. Time-saving combo service.",
+    "description": "Complete nail polish set for hands and feet in Patna at Kritika Ladies Beauty Parlour featuring matching or contrasting colors, LED lamp for smudge-proof finish and coordinated look. Time-saving combo service.",
     "shortDescription": "Complete nail polish set for hands and feet in Patna with matching colors. Time-saving combo service.",
-    "price": 250,
-    "originalPrice": 350,
+    "price": 250.0,
+    "originalPrice": 350.0,
+    "priceCurrency": "INR",
     "discountPercentage": 29,
     "isTrending": false,
     "isPopular": true,
@@ -881,9 +1196,10 @@
       "hands and feet polish",
       "complete nail service",
       "polish set patna",
-      "nail polish combo Boring Road",
-      "hands feet polish Bailey Road",
-      "complete nail care Patna"
+      "nail polish combo Bhootnath road",
+      "hands feet polish Bhagwat Nagar",
+      "complete nail care Patna",
+      "nail polish home service Patna"
     ],
     "targetAudience": ["Time-saving seekers", "Complete grooming", "Special occasion preparation"],
     "idealFor": ["Time efficiency", "Complete grooming sessions", "Special events", "Regular maintenance"],
@@ -900,12 +1216,34 @@
       {"name": "Basic Nail Art", "price": 300},
       {"name": "Quick-Dry Accelerator", "price": 100}
     ],
+    "serviceArea": {
+      "city": "Patna",
+      "region": "Bihar",
+      "country": "India",
+      "radiusKm": 20
+    },
+    "provider": {
+      "name": "Kritika Ladies Beauty Parlour",
+      "address": "BH Colony, Patna, Bihar 800026, India",
+      "phone": "+91-9650461390",
+      "googleMapsUrl": "https://www.google.com/maps/place/Kritika+Ladies+Beauty+Parlour/@25.5873981,85.1757259,17z"
+    },
+    "geo": {
+      "lat": 25.5873981,
+      "lng": 85.1757259
+    },
     "nearbyLandmarks": [
-      "Boring Road shopping areas (0.5km)",
-      "GV Mall (0.5km)",
-      "Bailey Road event venues (1.5km)",
-      "Special occasion locations (2km)"
+      "Bhootnath Metro Station (~200m)",
+      "Bhootnath Road",
+      "Kumhrar",
+      "Bahadurpur Housing Colony",
+      "Patna Bypass",
+      "Bairia Bus Stand",
+      "Zero Mile",
+      "Khemnichak"
     ],
+    "url": "/nail-art/nail-polish-hands-feet-patna",
+    "reviewSource": "In-house reviews from Kritika Ladies Beauty Parlour Bookings",
     "seasonalTags": ["Year-round", "Time-saving service", "Complete grooming"],
     "processingTime": "Same day booking available",
     "cancellationPolicy": "Free cancellation up to 6 hours before"

@@ -1,50 +1,49 @@
-// app/hair/page.tsx - SEO OPTIMIZED VERSION
+// app/hair/page.tsx - UPDATED TO MATCH NAIL PAGE PATTERNS
 import { Metadata } from 'next';
 import ClientHairPage from './ClientHairPage';
 import { Service } from '../../types/service';
 import hairServices from '../../../public/hair_services.json';
 import seoData from '../../../public/seo.json';
 
-// Dynamic SEO keywords generation
+// FIXED: Generate limited keywords (top 60)
 const generateHairKeywords = () => {
-  const seoKeywords = [
-    ...seoData.seo.serviceSpecificKeywords.hairServices,
-    ...seoData.seo.locationBasedKeywords.ultraLocal
-  ];
+  const seoKeywords = seoData.seo.serviceSpecificKeywords.hairServices || [];
+  const locationKeywords = seoData.seo.locationBasedKeywords.ultraLocal || [];
   const serviceKeywords = hairServices.flatMap((service: any) => service.seoKeywords || []);
   
-  return [...new Set([...seoKeywords, ...serviceKeywords])];
+  // FIXED: Limit to top 60 keywords
+  return [...new Set([...seoKeywords, ...locationKeywords, ...serviceKeywords])].slice(0, 60);
 };
 
 const HAIR_KEYWORDS = generateHairKeywords();
 
-// Generate rich description using actual services
+// FIXED: Generate description using city field
 const generateDescription = () => {
   const serviceCount = hairServices.length;
   const categories = [...new Set(hairServices.map((s: any) => s.category))];
   const minPrice = Math.min(...hairServices.map((s: any) => s.price));
   const maxPrice = Math.max(...hairServices.map((s: any) => s.price));
   
-  return `⭐${seoData.business.rating} Rated Expert Hair Care Services in ${seoData.business.address.locality}, Patna. ${serviceCount}+ Services including ${categories.slice(0, 3).join(', ')}. Prices from ₹${minPrice} to ₹${maxPrice}. ${seoData.business.totalReviews}+ Happy Clients. Book: ${seoData.business.contact.phone}`;
+  return `⭐${seoData.business.rating} Rated Professional Hair Services in ${seoData.business.address.city}. ${serviceCount}+ Services including ${categories.slice(0, 3).join(', ')}. Prices from ₹${minPrice} to ₹${maxPrice}. ${seoData.business.totalReviews}+ Happy Clients. Book: ${seoData.business.contact.phone}`;
 };
 
-const PAGE_TITLE = `Best Hair Salon & Hair Treatment in ${seoData.business.address.locality} Patna | Keratin, Hair Spa, Coloring, Smoothening | ${seoData.business.name}`;
+// FIXED: Using city instead of locality
+const PAGE_TITLE = `Best Hair Salon & Treatment in ${seoData.business.address.city} | Keratin, Hair Spa, Coloring | ${seoData.business.name}`;
 
 export const metadata: Metadata = {
   title: PAGE_TITLE,
   description: generateDescription(),
-  
   keywords: HAIR_KEYWORDS.join(', '),
 
   openGraph: {
-    title: `Professional Hair Care Services ${seoData.business.address.locality} Patna | ${seoData.business.name}`,
+    title: `Expert Hair Services ${seoData.business.address.city} | ${seoData.business.name}`,
     description: generateDescription(),
     images: [
       {
-        url: "/images/hair/hair-transformation-patna-kritika.jpg",
+        url: `${seoData.business.contact.website}/images/hair/hair-transformation-patna-kritika.jpg`,
         width: 1200,
         height: 630,
-        alt: `Best Hair Salon in Patna - ${seoData.business.name}`
+        alt: `Best Hair Salon in ${seoData.business.address.city} - ${seoData.business.name}`
       }
     ],
     type: "website",
@@ -55,10 +54,11 @@ export const metadata: Metadata = {
 
   twitter: {
     card: "summary_large_image",
-    title: `Best Hair Salon Patna | ${seoData.business.name}`,
+    title: `Best Hair Salon ${seoData.business.address.city} | ${seoData.business.name}`,
     description: generateDescription(),
-    images: ["/images/hair/hair-twitter-card.jpg"],
-    creator: seoData.business.socialMedia.instagram
+    images: [`${seoData.business.contact.website}/images/hair/hair-twitter-card.jpg`],
+    // FIXED: Proper Twitter handle format
+    creator: `@${seoData.business.socialMedia.instagram.replace('@', '')}`
   },
 
   alternates: {
@@ -87,43 +87,51 @@ export const metadata: Metadata = {
     'geo.position': `${seoData.business.coordinates.latitude};${seoData.business.coordinates.longitude}`,
     'ICBM': `${seoData.business.coordinates.latitude}, ${seoData.business.coordinates.longitude}`,
     'rating': seoData.business.rating.toString(),
-    'service-category': 'Hair Care, Hair Treatment & Styling Services',
+    'service-category': 'Hair Care, Treatment, Styling, Coloring, Keratin',
     'business-hours': seoData.business.workingHours.weekdays,
     'price-range': '₹₹-₹₹₹'
   },
 
   verification: {
-    google: 'your-google-verification-code',
+    google: 'Uj54YUbFFcOLdeffGXlZMH35yYC-N6HyO9Wdoxj_DXA',
   }
 };
 
-// Enhanced JSON-LD with all hair services
-const generateHairServiceOffers = () => {
-  return hairServices.map((service: any) => ({
-    "@type": "Offer",
-    "itemOffered": {
-      "@type": "Service",
-      "name": service.title,
-      "description": service.shortDescription,
-      "image": `${seoData.business.contact.website}${service.image}`,
-      "provider": {
-        "@type": "BeautySalon",
-        "name": seoData.business.name
+// FIXED: Enhanced service offers - limited to top 20
+const generateServiceOffers = () => {
+  // FIXED: Sort by booking count and limit to top 20
+  return hairServices
+    .sort((a: any, b: any) => (b.bookingCount || 0) - (a.bookingCount || 0))
+    .slice(0, 20)
+    .map((service: any) => ({
+      "@type": "Offer",
+      "itemOffered": {
+        "@type": "Service",
+        "name": service.title,
+        "description": service.shortDescription || service.description,
+        "image": `${seoData.business.contact.website}${service.image}`,
+        "provider": {
+          "@type": "BeautySalon",
+          "name": seoData.business.name
+        },
+        // FIXED: Using primaryCategory if available
+        "category": service.primaryCategory || service.category,
+        "serviceType": service.eventCategory || service.primaryCategory || service.category,
+        // FIXED: Only add ratings if legitimate
+        "aggregateRating": service.rating && service.reviewCount && service.reviewCount >= 5 ? {
+          "@type": "AggregateRating",
+          "ratingValue": service.rating.toString(),
+          "reviewCount": service.reviewCount.toString()
+        } : undefined
       },
-      "category": service.category,
-      "serviceType": "HairCare",
-      "aggregateRating": service.rating ? {
-        "@type": "AggregateRating",
-        "ratingValue": service.rating.toString(),
-        "reviewCount": service.reviewCount?.toString() || "0"
-      } : undefined
-    },
-    "price": service.price.toString(),
-    "priceCurrency": "INR",
-    "availability": "https://schema.org/InStock",
-    "priceValidUntil": new Date(Date.now() + 90 * 24 * 60 * 60 * 1000).toISOString(),
-    "url": `${seoData.business.contact.website}/hair/service/${service.slug}`
-  }));
+      "price": service.price.toString(),
+      "priceCurrency": "INR",
+      "availability": "https://schema.org/InStock",
+      // FIXED: Correct URL generation
+      "url": service.url 
+        ? `${seoData.business.contact.website}${service.url}`
+        : `${seoData.business.contact.website}/hair/service/${service.slug || service.id}`
+    }));
 };
 
 const hairStructuredData = {
@@ -143,7 +151,8 @@ const hairStructuredData = {
       "priceRange": "₹₹-₹₹₹",
       "address": {
         "@type": "PostalAddress",
-        "streetAddress": `${seoData.business.address.street}, ${seoData.business.address.locality}`,
+        // FIXED: Using city instead of locality
+        "streetAddress": seoData.business.address.street,
         "addressLocality": seoData.business.address.city,
         "addressRegion": seoData.business.address.state,
         "postalCode": seoData.business.address.pincode,
@@ -175,16 +184,11 @@ const hairStructuredData = {
         "bestRating": "5",
         "worstRating": "1"
       },
-      "makesOffer": generateHairServiceOffers(),
+      "makesOffer": generateServiceOffers(),
+      // FIXED: Simplified to City
       "areaServed": {
-        "@type": "GeoCircle",
-        "geoMidpoint": {
-          "@type": "GeoCoordinates",
-          "latitude": seoData.business.coordinates.latitude,
-          "longitude": seoData.business.coordinates.longitude
-        },
-        "geoRadius": seoData.business.serviceRadius,
-        "description": `Serving ${seoData.nearbyLandmarks.residential.map((l: any) => l.name).slice(0, 10).join(', ')} and surrounding areas`
+        "@type": "City",
+        "name": "Patna"
       },
       "sameAs": [
         `https://instagram.com/${seoData.business.socialMedia.instagram}`,
@@ -204,8 +208,8 @@ const hairStructuredData = {
       "@type": "WebPage",
       "@id": `${seoData.business.contact.website}/hair/#webpage`,
       "url": `${seoData.business.contact.website}/hair`,
-      "name": metadata.title,
-      "description": metadata.description,
+      "name": PAGE_TITLE,
+      "description": generateDescription(),
       "isPartOf": {
         "@id": `${seoData.business.contact.website}/#website`
       },
@@ -235,57 +239,42 @@ const hairStructuredData = {
           "item": `${seoData.business.contact.website}/hair`
         }
       ]
-    },
-    {
-      "@type": "ItemList",
-      "name": "Hair Care Services",
-      "description": "Complete list of professional hair care and styling services",
-      "itemListElement": hairServices.map((service: any, index: number) => ({
-        "@type": "ListItem",
-        "position": index + 1,
-        "url": `${seoData.business.contact.website}/hair/service/${service.slug}`,
-        "name": service.title
-      }))
     }
   ]
 };
 
-// Enhanced FAQ Schema for hair services
-const generateHairFAQSchema = () => {
-  const hairFAQs = hairServices.flatMap((service: any) => 
-    (service.faqs || []).map((faq: any) => ({
+// FIXED: Generate concise FAQ
+const generateFAQSchema = () => {
+  // Get top 5 service FAQs
+  const serviceFAQs = hairServices
+    .flatMap((service: any) => service.faqs || [])
+    .slice(0, 5)
+    .map((faq: any) => ({
       "@type": "Question",
       "name": faq.question,
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": faq.answer
+        // FIXED: Escape quotes
+        "text": faq.answer.replace(/"/g, '\\"')
       }
-    }))
-  );
+    }));
 
-  const generalHairFAQs = [
+  const generalFAQs = [
     {
       "@type": "Question",
-      "name": `What is the best hair treatment for Patna's climate?`,
+      "name": `Where is ${seoData.business.name} located?`,
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": `For Patna's humid climate, we recommend keratin treatments for frizz control and anti-hairfall treatments to combat seasonal shedding. Our experts will assess your hair type and suggest the perfect treatment.`
+        // FIXED: Using city field
+        "text": `We are located at ${seoData.business.address.street}, ${seoData.business.address.city} - ${seoData.business.address.pincode}.`
       }
     },
     {
       "@type": "Question",
-      "name": `Do you offer home services for hair treatments?`,
+      "name": "What hair services do you offer?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": `Yes, we provide home services for all hair treatments within ${seoData.business.serviceRadius} radius of our salon in ${seoData.business.address.locality}.`
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "What's the difference between keratin and smoothening?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Keratin treatment reduces frizz while maintaining natural texture, perfect for wavy hair. Smoothening straightens hair completely, ideal for curly hair. Our experts will guide you to choose based on your hair type."
+        "text": `We offer ${hairServices.length}+ hair services including Keratin Treatment, Hair Spa, Hair Coloring, Smoothening, Haircuts, and more. Prices range from ₹${Math.min(...hairServices.map((s: any) => s.price))} to ₹${Math.max(...hairServices.map((s: any) => s.price))}.`
       }
     }
   ];
@@ -293,43 +282,26 @@ const generateHairFAQSchema = () => {
   return {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    "mainEntity": [...hairFAQs.slice(0, 10), ...generalHairFAQs]
+    "mainEntity": [...serviceFAQs, ...generalFAQs]
   };
 };
 
-// Transform JSON service to match component interface
-const transformServiceForComponent = (service: any): Service => ({
-  id: service.id,
-  name: service.title,
-  title: service.title,
-  category: service.category,
-  imageUrl: service.image,
-  image: service.image,
-  description: service.description,
-  price: service.price,
-  base_price: service.price,
-  originalPrice: service.originalPrice,
-  isTrending: service.isTrending,
-  duration: service.duration,
-  duration_minutes: service.duration,
-  keyIngredients: service.keyIngredients,
-  benefits: service.benefits,
-  precautions: service.precautions,
-  aftercare: service.aftercare,
-  faqs: service.faqs,
-  link: '/hair/service/' + service.id,
-  deal: service.deal || '',
-  rating: service.rating || 4.5,
-  reviewCount: service.reviewCount || 0,
-  bookingCount: service.bookingCount || 0
-});
+// Get all services from JSON
+const getAllServices = (): Service[] => {
+  return hairServices as Service[];
+};
+
+// Get trending services (bestsellers)
+const getTrendingServices = (allServices: Service[]): Service[] => {
+  return allServices
+    .filter(service => service.isBestSeller === true)
+    .sort((a, b) => (b.bookingCount || 0) - (a.bookingCount || 0))
+    .slice(0, 15); // Limit to top 15 trending services
+};
 
 export default function HairPage() {
-  const allServices = hairServices.map(transformServiceForComponent) as Service[];
-  
-  const trendingServices = allServices
-    .filter(service => service.isTrending || service.isPopular || service.isBestSeller)
-    .sort((a, b) => (b.bookingCount || 0) - (a.bookingCount || 0));
+  const allServices = getAllServices();
+  const trendingServices = getTrendingServices(allServices);
 
   return (
     <>
@@ -345,66 +317,14 @@ export default function HairPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify(generateHairFAQSchema())
+          __html: JSON.stringify(generateFAQSchema())
         }}
       />
 
-      {/* SEO-friendly content for crawlers */}
+      {/* FIXED: Minimal SEO-friendly content */}
       <div className="sr-only" aria-hidden="true">
         <h1>{PAGE_TITLE}</h1>
-        <p>{metadata.description}</p>
-        
-        {/* Location keywords for crawler */}
-        <ul>
-          {seoData.nearbyLandmarks.educational.map((landmark: any) => (
-            <li key={landmark.name}>
-              Hair services near {landmark.name} - {landmark.distance} away
-            </li>
-          ))}
-          {seoData.nearbyLandmarks.healthcare.map((landmark: any) => (
-            <li key={landmark.name}>
-              Hair treatments near {landmark.name} - {landmark.distance} away
-            </li>
-          ))}
-          {seoData.nearbyLandmarks.residential.slice(0, 5).map((landmark: any) => (
-            <li key={landmark.name}>
-              Hair salon near {landmark.name} - {landmark.distance} away
-            </li>
-          ))}
-        </ul>
-
-        {/* Service listings for crawler */}
-        <section>
-          <h2>Our Hair Care Services in {seoData.business.address.locality}, Patna</h2>
-          {allServices.slice(0, 10).map(service => (
-            <article key={service.id}>
-              <h3>{service.title}</h3>
-              <p>{service.description}</p>
-              <p>Price: ₹{service.price} | Duration: {service.duration} minutes</p>
-              <p>Rating: {service.rating} ({service.reviewCount} reviews)</p>
-              <p>Category: {service.category}</p>
-              <ul>
-                {service.benefits?.map((benefit: string, idx: number) => (
-                  <li key={idx}>{benefit}</li>
-                ))}
-              </ul>
-            </article>
-          ))}
-        </section>
-
-        {/* Local service areas */}
-        <div>
-          <h3>Hair Services Available In:</h3>
-          <ul>
-            <li>Kankarbagh Patna - 0.8km</li>
-            <li>Rajendra Nagar Patna - 1km</li>
-            <li>Zero Mile Patna - 1km</li>
-            <li>Bhootnath Road Patna - 0.1km</li>
-            <li>Hanuman Nagar Patna - 1km</li>
-            <li>BH Colony Patna - 0.1km</li>
-            <li>Kumhrar Patna - 2.5km</li>
-          </ul>
-        </div>
+        <p>{generateDescription()}</p>
       </div>
 
       <ClientHairPage 
@@ -415,6 +335,5 @@ export default function HairPage() {
   );
 }
 
-// Export for static generation
 export const dynamic = 'force-static';
-export const revalidate = 3600; // Revalidate every hour
+export const revalidate = 3600;

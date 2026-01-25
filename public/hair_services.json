@@ -5,16 +5,18 @@
     "slug": "hair-spa-treatment-patna",
     "category": "Hair Treatment",
     "categorySlug": "hair-treatment",
+    "primaryCategory": "hair",
+    "eventCategory": "spa",
     "image": "/images/hair/hair_spa.webp",
-    "description": "Experience the best hair spa treatment in Patna at My Ladies Beauty Parlour. Our holistic treatment includes hot oil massage with infrared steam therapy and customized hair masks for moisture, protein, or scalp care. Features acupressure scalp stimulation to increase blood circulation and reduce hair fall. Perfect for Patna's climate conditions.",
+    "description": "Experience the best hair spa treatment in Patna at Kritika Ladies Beauty Parlour. Our holistic treatment includes hot oil massage with infrared steam therapy and customized hair masks for moisture, protein, or scalp care. Features acupressure scalp stimulation to increase blood circulation and reduce hair fall. Perfect for Patna's climate conditions.",
     "shortDescription": "Holistic hair spa in Patna with hot oil massage, infrared steam, and customized masks. Reduces shedding by 40% with acupressure scalp stimulation.",
-    "price": 900,
-    "originalPrice": 1500,
+    "price": 900.0,
+    "originalPrice": 1500.0,
+    "priceCurrency": "INR",
     "discountPercentage": 40,
     "isTrending": true,
     "isPopular": true,
     "isBestSeller": true,
-    "deal": "380+ bookings this month",
     "duration": 90,
     "durationText": "1.5 hours",
     "rating": 4.8,
@@ -29,11 +31,26 @@
     "precautions": "Notify about oil sensitivities. Avoid tight hairstyles post-service for best results.",
     "aftercare": "No washing for 48hrs. Scalp massage daily to maintain results.",
     "faqs": [
-      {"question": "How often should I get hair spa in Patna's climate?", "answer": "Monthly for maintenance, biweekly for repair - especially beneficial in Patna's dry weather"},
-      {"question": "Can I add hair analysis with this treatment?", "answer": "Yes, +$150 for microscopic assessment of your scalp and hair health"},
-      {"question": "Is this suitable for colored hair in Patna?", "answer": "Yes, we use color-safe formulas perfect for Patna's water conditions"},
-      {"question": "How long do results last in Patna's weather?", "answer": "Results last 2-3 weeks depending on Patna's humidity and water quality"},
-      {"question": "Can men also avail this service?", "answer": "Absolutely, this treatment works for all hair types and genders"}
+      {
+        "question": "How often should I get hair spa in Patna's climate?",
+        "answer": "Monthly for maintenance, biweekly for repair - especially beneficial in Patna's dry weather"
+      },
+      {
+        "question": "Can I add hair analysis with this treatment?",
+        "answer": "Yes, +$150 for microscopic assessment of your scalp and hair health"
+      },
+      {
+        "question": "Is this suitable for colored hair in Patna?",
+        "answer": "Yes, we use color-safe formulas perfect for Patna's water conditions"
+      },
+      {
+        "question": "How long do results last in Patna's weather?",
+        "answer": "Results last 2-3 weeks depending on Patna's humidity and water quality"
+      },
+      {
+        "question": "Can men also avail this service?",
+        "answer": "Absolutely, this treatment works for all hair types and genders"
+      }
     ],
     "seoKeywords": [
       "hair spa patna",
@@ -41,8 +58,15 @@
       "scalp treatment patna",
       "hair fall treatment",
       "patna hair salon",
-      "hair spa Boring Road",
-      "scalp massage Bailey Road"
+      "hair spa Bhootnath road Metro",
+      "scalp massage Bazar Samiti",
+      "hydra facial patna",
+      "hair spa near me",
+      "best hair spa in Patna",
+      "advanced hair spa treatment Patna",
+      "no downtime hair spa patna",
+      "hair spa at Kritika Ladies Beauty Parlour",
+      "hair spa treatment home service Patna"
     ],
     "targetAudience": ["Hair fall sufferers", "Dry/damaged hair", "Stress relief seekers"],
     "idealFor": ["Pollution protection", "Seasonal hair care", "Pre-wedding hair prep"],
@@ -59,12 +83,33 @@
       {"name": "Deep Conditioning", "price": 300},
       {"name": "Scalp Exfoliation", "price": 200}
     ],
+    "serviceArea": {
+      "city": "Patna",
+      "region": "Bihar",
+      "country": "India",
+      "radiusKm": 20
+    },
+    "provider": {
+      "name": "Kritika Ladies Beauty Parlour",
+      "address": "BH Colony, Patna, Bihar 800026, India",
+      "phone": "+91-9650461390",
+      "googleMapsUrl": "https://www.google.com/maps/place/Kritika+Ladies+Beauty+Parlour/@25.5873981,85.1757259,17z"
+    },
+    "geo": {
+      "lat": 25.5873981,
+      "lng": 85.1757259
+    },
     "nearbyLandmarks": [
-      "Patna Women's College (0.5km)",
-      "Boring Road Chauraha (0.2km)",
-      "GV Mall (0.5km)",
-      "Bailey Road (1.5km)"
+      "Bhootnath Metro Station (~200m)",
+      "Bhootnath Road",
+      "Kumhrar",
+      "Bahadurpur Housing Colony",
+      "Patna Bypass",
+      "Bairia Bus Stand",
+      "Zero Mile"
     ],
+    "url": "/hair-treatment/hair-spa-treatment-patna",
+    "reviewSource": "In-house reviews from Kritika Ladies Beauty Parlour Bookings",
     "seasonalTags": ["Monsoon hair care", "Winter dryness", "Summer hydration"],
     "processingTime": "Same day booking available",
     "cancellationPolicy": "Free cancellation up to 24 hours before appointment"
@@ -75,16 +120,18 @@
     "slug": "highlights-hair-color-patna",
     "category": "Hair Color",
     "categorySlug": "hair-color",
+    "primaryCategory": "hair",
+    "eventCategory": "coloring",
     "image": "/images/hair/highlights.webp",
-    "description": "Get stunning babylight highlights in Patna at My Ladies Beauty Parlour. Our micro-foiling technique creates natural-looking highlights with customized placement for face brightening. Includes toner customization for your desired undertone and scalp comfort system for pain-free application. Perfect for Patna's fashion trends.",
+    "description": "Get stunning babylight highlights in Patna at Kritika Ladies Beauty Parlour. Our micro-foiling technique creates natural-looking highlights with customized placement for face brightening. Includes toner customization for your desired undertone and scalp comfort system for pain-free application. Perfect for Patna's fashion trends.",
     "shortDescription": "Babylight highlights in Patna with micro-foiling technique. Customized placement for face brightening with pain-free application.",
-    "price": 1500,
-    "originalPrice": 2100,
+    "price": 1500.0,
+    "originalPrice": 2100.0,
+    "priceCurrency": "INR",
     "discountPercentage": 29,
     "isTrending": true,
     "isPopular": true,
     "isBestSeller": true,
-    "deal": "270+ bookings this month",
     "duration": 120,
     "durationText": "2 hours",
     "rating": 4.7,
@@ -99,11 +146,26 @@
     "precautions": "Requires integrity test. Avoid heat tools 1 week prior to service.",
     "aftercare": "Use purple shampoo weekly. Deep condition 2x/week for best results.",
     "faqs": [
-      {"question": "What is the cost per streak for highlights?", "answer": "Rs. 200/- per streak - we customize based on your desired look"},
-      {"question": "Is the highlighting process painful?", "answer": "Pain-free with our buffer technology - comfortable for all clients"},
-      {"question": "What's the difference between partial and full highlights?", "answer": "Partial starts at Rs. 1000 (crown only), full covers entire head"},
-      {"question": "How long do highlights last in Patna's sun?", "answer": "Typically 8-10 weeks with proper care and UV protection"},
-      {"question": "Can highlights damage my hair?", "answer": "Our gentle formulas and techniques minimize damage - includes bond repair"}
+      {
+        "question": "What is the cost per streak for highlights?",
+        "answer": "Rs. 200/- per streak - we customize based on your desired look"
+      },
+      {
+        "question": "Is the highlighting process painful?",
+        "answer": "Pain-free with our buffer technology - comfortable for all clients"
+      },
+      {
+        "question": "What's the difference between partial and full highlights?",
+        "answer": "Partial starts at Rs. 1000 (crown only), full covers entire head"
+      },
+      {
+        "question": "How long do highlights last in Patna's sun?",
+        "answer": "Typically 8-10 weeks with proper care and UV protection"
+      },
+      {
+        "question": "Can highlights damage my hair?",
+        "answer": "Our gentle formulas and techniques minimize damage - includes bond repair"
+      }
     ],
     "seoKeywords": [
       "highlights patna",
@@ -111,8 +173,8 @@
       "babylights patna",
       "foil highlights",
       "patna hair color",
-      "highlights Boring Road",
-      "hair color Bailey Road"
+      "highlights Bhootnath road Metro",
+      "hair color Bazar Samiti"
     ],
     "targetAudience": ["First-time highlighters", "Fashion-forward clients", "Volume seekers"],
     "idealFor": ["Adding dimension", "Face framing", "Low-maintenance color"],
@@ -129,12 +191,33 @@
       {"name": "Gloss Treatment", "price": 300},
       {"name": "Root Smudging", "price": 200}
     ],
+    "serviceArea": {
+      "city": "Patna",
+      "region": "Bihar",
+      "country": "India",
+      "radiusKm": 20
+    },
+    "provider": {
+      "name": "Kritika Ladies Beauty Parlour",
+      "address": "BH Colony, Patna, Bihar 800026, India",
+      "phone": "+91-9650461390",
+      "googleMapsUrl": "https://www.google.com/maps/place/Kritika+Ladies+Beauty+Parlour/@25.5873981,85.1757259,17z"
+    },
+    "geo": {
+      "lat": 25.5873981,
+      "lng": 85.1757259
+    },
     "nearbyLandmarks": [
-      "Patna Women's College (0.5km)",
-      "A N College (0.3km)",
-      "Boring Road Chauraha (0.2km)",
-      "GV Mall (0.5km)"
+      "Bhootnath Metro Station (~200m)",
+      "Bhootnath Road",
+      "Kumhrar",
+      "Bahadurpur Housing Colony",
+      "Patna Bypass",
+      "Bairia Bus Stand",
+      "Zero Mile"
     ],
+    "url": "/hair-color/highlights-hair-color-patna",
+    "reviewSource": "In-house reviews from Kritika Ladies Beauty Parlour Bookings",
     "seasonalTags": ["Summer highlights", "Festival looks", "Year-round"],
     "processingTime": "Book 2-3 days in advance",
     "cancellationPolicy": "Free cancellation up to 48 hours before"
@@ -145,16 +228,18 @@
     "slug": "keratin-treatment-patna",
     "category": "Hair Treatment",
     "categorySlug": "hair-treatment",
-    "image": "/images/hair/keratin.webp",
-    "description": "Get botanical keratin infusion treatment in Patna at My Ladies Beauty Parlour. Our eco-certified formula with cocoa extract maintains natural texture while eliminating frizz. Results last 3-4 months with weightless smoothing that retains your curl pattern. Perfect for Patna's humidity.",
+    "primaryCategory": "hair",
+    "eventCategory": "hair-treatment",
+    "image": "/images/hair/keratin_treatment.webp",
+    "description": "Get botanical keratin infusion treatment in Patna at Kritika Ladies Beauty Parlour. Our eco-certified formula with cocoa extract maintains natural texture while eliminating frizz. Results last 3-4 months with weightless smoothing that retains your curl pattern. Perfect for Patna's humidity.",
     "shortDescription": "Botanical keratin treatment in Patna that eliminates frizz while maintaining natural texture. Results last 3-4 months.",
-    "price": 3000,
-    "originalPrice": 4000,
+    "price": 3000.0,
+    "originalPrice": 4000.0,
+    "priceCurrency": "INR",
     "discountPercentage": 25,
     "isTrending": true,
     "isPopular": true,
     "isBestSeller": true,
-    "deal": "210+ bookings this month",
     "duration": 180,
     "durationText": "3 hours",
     "rating": 4.9,
@@ -169,11 +254,26 @@
     "precautions": "Avoid salt water for 1 week. No tight hairstyles for 48hrs after treatment.",
     "aftercare": "Wash 2x/week maximum. Use protein-free conditioner for longevity.",
     "faqs": [
-      {"question": "Is your keratin formula vegan?", "answer": "Yes - 100% plant-derived and eco-certified"},
-      {"question": "Is it safe for colored hair in Patna?", "answer": "Yes - includes color-lock technology to protect your color"},
-      {"question": "How does this differ from smoothening?", "answer": "Keratin maintains texture while smoothening straightens - we guide you to the right choice"},
-      {"question": "Can I tie my hair after treatment?", "answer": "Wait 48 hours before any tight hairstyles for best results"},
-      {"question": "How often should I get keratin in Patna's climate?", "answer": "Every 3-4 months depending on your hair type and Patna's humidity"}
+      {
+        "question": "Is your keratin formula vegan?",
+        "answer": "Yes - 100% plant-derived and eco-certified"
+      },
+      {
+        "question": "Is it safe for colored hair in Patna?",
+        "answer": "Yes - includes color-lock technology to protect your color"
+      },
+      {
+        "question": "How does this differ from smoothening?",
+        "answer": "Keratin maintains texture while smoothening straightens - we guide you to the right choice"
+      },
+      {
+        "question": "Can I tie my hair after treatment?",
+        "answer": "Wait 48 hours before any tight hairstyles for best results"
+      },
+      {
+        "question": "How often should I get keratin in Patna's climate?",
+        "answer": "Every 3-4 months depending on your hair type and Patna's humidity"
+      }
     ],
     "seoKeywords": [
       "keratin treatment patna",
@@ -181,8 +281,8 @@
       "keratin smoothing",
       "patna hair straightening",
       "botanical keratin",
-      "keratin Boring Road",
-      "smoothing treatment Bailey Road"
+      "keratin Bhootnath road Metro",
+      "smoothing treatment Bazar Samiti"
     ],
     "targetAudience": ["Frizz sufferers", "Curly/wavy hair", "Humidity fighters"],
     "idealFor": ["Monsoon frizz control", "Low-maintenance styling", "Natural look"],
@@ -199,12 +299,33 @@
       {"name": "Deep Conditioning", "price": 300},
       {"name": "Scalp Treatment", "price": 200}
     ],
+    "serviceArea": {
+      "city": "Patna",
+      "region": "Bihar",
+      "country": "India",
+      "radiusKm": 20
+    },
+    "provider": {
+      "name": "Kritika Ladies Beauty Parlour",
+      "address": "BH Colony, Patna, Bihar 800026, India",
+      "phone": "+91-9650461390",
+      "googleMapsUrl": "https://www.google.com/maps/place/Kritika+Ladies+Beauty+Parlour/@25.5873981,85.1757259,17z"
+    },
+    "geo": {
+      "lat": 25.5873981,
+      "lng": 85.1757259
+    },
     "nearbyLandmarks": [
-      "Boring Road Chauraha (0.2km)",
-      "GV Mall (0.5km)",
-      "Patliputra Junction (2.5km)",
-      "Bailey Road Crossing (1.5km)"
+      "Bhootnath Metro Station (~200m)",
+      "Bhootnath Road",
+      "Kumhrar",
+      "Bahadurpur Housing Colony",
+      "Patna Bypass",
+      "Bairia Bus Stand",
+      "Zero Mile"
     ],
+    "url": "/hair-treatment/keratin-treatment-patna",
+    "reviewSource": "In-house reviews from Kritika Ladies Beauty Parlour Bookings",
     "seasonalTags": ["Monsoon-proof", "Humidity control", "Year-round"],
     "processingTime": "Book 1 week in advance",
     "cancellationPolicy": "50% refund if cancelled 72 hours prior"
@@ -215,16 +336,18 @@
     "slug": "smoothening-treatment-patna",
     "category": "Hair Treatment",
     "categorySlug": "hair-treatment",
+    "primaryCategory": "hair",
+    "eventCategory": "hair-treatment",
     "image": "/images/hair/smoothening.webp",
-    "description": "Experience Brazilian-style keratin smoothening in Patna at My Ladies Beauty Parlour. Our formaldehyde-free formula reduces curl by 60-80% with pH-balancing post-treatment. Results last 4-5 months with 95% frizz reduction. Perfect for Patna's weather conditions.",
+    "description": "Experience Brazilian-style keratin smoothening in Patna at Kritika Ladies Beauty Parlour. Our formaldehyde-free formula reduces curl by 60-80% with pH-balancing post-treatment. Results last 4-5 months with 95% frizz reduction. Perfect for Patna's weather conditions.",
     "shortDescription": "Brazilian keratin smoothening in Patna with formaldehyde-free formula. Reduces curl by 60-80%, lasts 4-5 months.",
-    "price": 3000,
-    "originalPrice": 4200,
+    "price": 3000.0,
+    "originalPrice": 4200.0,
+    "priceCurrency": "INR",
     "discountPercentage": 29,
     "isTrending": true,
     "isPopular": true,
     "isBestSeller": true,
-    "deal": "190+ bookings this month",
     "duration": 180,
     "durationText": "3 hours",
     "rating": 4.8,
@@ -239,11 +362,26 @@
     "precautions": "No washing/sweating for 72hrs. Not recommended for pregnant/nursing women.",
     "aftercare": "Use sodium chloride-free products. Sleep with hair straight for best results.",
     "faqs": [
-      {"question": "How much curl will be retained after smoothening?", "answer": "Depends on formula - we offer 3 curl-preservation options from 20-80% retention"},
-      {"question": "What is the touch-up cost after initial treatment?", "answer": "50% off within 5 months for touch-up services"},
-      {"question": "Is this safe for thin/fine hair in Patna?", "answer": "Yes, we adjust formula strength based on your hair type and Patna's climate"},
-      {"question": "Can I color my hair after smoothening?", "answer": "Wait 2 weeks before any chemical service including coloring"},
-      {"question": "How does this work with Patna's hard water?", "answer": "Includes pH-balancing to combat Patna's water mineral effects"}
+      {
+        "question": "How much curl will be retained after smoothening?",
+        "answer": "Depends on formula - we offer 3 curl-preservation options from 20-80% retention"
+      },
+      {
+        "question": "What is the touch-up cost after initial treatment?",
+        "answer": "50% off within 5 months for touch-up services"
+      },
+      {
+        "question": "Is this safe for thin/fine hair in Patna?",
+        "answer": "Yes, we adjust formula strength based on your hair type and Patna's climate"
+      },
+      {
+        "question": "Can I color my hair after smoothening?",
+        "answer": "Wait 2 weeks before any chemical service including coloring"
+      },
+      {
+        "question": "How does this work with Patna's hard water?",
+        "answer": "Includes pH-balancing to combat Patna's water mineral effects"
+      }
     ],
     "seoKeywords": [
       "smoothening treatment patna",
@@ -251,8 +389,8 @@
       "hair straightening",
       "patna hair smoothening",
       "formaldehyde free",
-      "smoothening Boring Road",
-      "straightening treatment Bailey Road"
+      "smoothening Bhootnath road Metro",
+      "straightening treatment Bazar Samiti"
     ],
     "targetAudience": ["Curly hair clients", "Straight hair seekers", "High-maintenance hair"],
     "idealFor": ["Permanent straightening", "Frizz elimination", "Easy styling"],
@@ -269,12 +407,33 @@
       {"name": "Protective Serum", "price": 350},
       {"name": "Color Protection", "price": 300}
     ],
+    "serviceArea": {
+      "city": "Patna",
+      "region": "Bihar",
+      "country": "India",
+      "radiusKm": 20
+    },
+    "provider": {
+      "name": "Kritika Ladies Beauty Parlour",
+      "address": "BH Colony, Patna, Bihar 800026, India",
+      "phone": "+91-9650461390",
+      "googleMapsUrl": "https://www.google.com/maps/place/Kritika+Ladies+Beauty+Parlour/@25.5873981,85.1757259,17z"
+    },
+    "geo": {
+      "lat": 25.5873981,
+      "lng": 85.1757259
+    },
     "nearbyLandmarks": [
-      "Boring Road Chauraha (0.2km)",
-      "GV Mall (0.5km)",
-      "Patliputra Junction (2.5km)",
-      "Bailey Road Crossing (1.5km)"
+      "Bhootnath Metro Station (~200m)",
+      "Bhootnath Road",
+      "Kumhrar",
+      "Bahadurpur Housing Colony",
+      "Patna Bypass",
+      "Bairia Bus Stand",
+      "Zero Mile"
     ],
+    "url": "/hair-treatment/smoothening-treatment-patna",
+    "reviewSource": "In-house reviews from Kritika Ladies Beauty Parlour Bookings",
     "seasonalTags": ["Humidity control", "Monsoon hair care", "Year-round"],
     "processingTime": "Book 1 week in advance",
     "cancellationPolicy": "50% refund if cancelled 72 hours prior"
@@ -285,16 +444,18 @@
     "slug": "straight-haircut-patna",
     "category": "Hair Cut",
     "categorySlug": "hair-cut",
+    "primaryCategory": "hair",
+    "eventCategory": "haircut",
     "image": "/images/hair/straight_cut.webp",
-    "description": "Get precision one-length haircut in Patna at My Ladies Beauty Parlour. Using Japanese shears for razor-sharp ends, this cut creates illusion of density for fine hair. Includes complimentary neck taper refinement. Ideal for Patna's professional women.",
+    "description": "Get precision one-length haircut in Patna at Kritika Ladies Beauty Parlour. Using Japanese shears for razor-sharp ends, this cut creates illusion of density for fine hair. Includes complimentary neck taper refinement. Ideal for Patna's professional women.",
     "shortDescription": "Precision straight haircut in Patna with Japanese shears for sharp ends. Creates density illusion for fine hair.",
-    "price": 120,
-    "originalPrice": 150,
+    "price": 120.0,
+    "originalPrice": 150.0,
+    "priceCurrency": "INR",
     "discountPercentage": 20,
     "isTrending": false,
     "isPopular": true,
     "isBestSeller": false,
-    "deal": "180+ bookings this month",
     "duration": 45,
     "durationText": "45 minutes",
     "rating": 4.6,
@@ -309,11 +470,26 @@
     "precautions": "Avoid tight ponytails for 48hrs. Not recommended for highly textured curls.",
     "aftercare": "Use sulfate-free shampoo. Schedule trims every 8 weeks for maintenance.",
     "faqs": [
-      {"question": "Does this haircut work for thick hair in Patna?", "answer": "Yes, we use thinning techniques to reduce bulk while maintaining style"},
-      {"question": "Can I keep my length with this cut?", "answer": "Absolutely - we only remove damaged ends to preserve your length"},
-      {"question": "How often should I get this haircut in Patna's climate?", "answer": "Every 8 weeks for fine hair, 10-12 weeks for thick hair in Patna's conditions"},
-      {"question": "Is this suitable for working women in Patna?", "answer": "Perfect for professional settings - low maintenance and always neat"},
-      {"question": "Can you customize the cut for my face shape?", "answer": "Yes, we customize every cut based on your face shape and features"}
+      {
+        "question": "Does this haircut work for thick hair in Patna?",
+        "answer": "Yes, we use thinning techniques to reduce bulk while maintaining style"
+      },
+      {
+        "question": "Can I keep my length with this cut?",
+        "answer": "Absolutely - we only remove damaged ends to preserve your length"
+      },
+      {
+        "question": "How often should I get this haircut in Patna's climate?",
+        "answer": "Every 8 weeks for fine hair, 10-12 weeks for thick hair in Patna's conditions"
+      },
+      {
+        "question": "Is this suitable for working women in Patna?",
+        "answer": "Perfect for professional settings - low maintenance and always neat"
+      },
+      {
+        "question": "Can you customize the cut for my face shape?",
+        "answer": "Yes, we customize every cut based on your face shape and features"
+      }
     ],
     "seoKeywords": [
       "haircut patna",
@@ -321,8 +497,8 @@
       "precision haircut",
       "patna hair salon",
       "women haircut",
-      "haircut Boring Road",
-      "salon near Patna Women's College"
+      "haircut Bhootnath road Metro",
+      "salon near Bhootnath Metro"
     ],
     "targetAudience": ["Fine hair clients", "Professional women", "Low-maintenance seekers"],
     "idealFor": ["Office styles", "Easy maintenance", "Healthy hair goals"],
@@ -339,12 +515,33 @@
       {"name": "Basic Conditioning", "price": 100},
       {"name": "Hair Serum Application", "price": 50}
     ],
+    "serviceArea": {
+      "city": "Patna",
+      "region": "Bihar",
+      "country": "India",
+      "radiusKm": 20
+    },
+    "provider": {
+      "name": "Kritika Ladies Beauty Parlour",
+      "address": "BH Colony, Patna, Bihar 800026, India",
+      "phone": "+91-9650461390",
+      "googleMapsUrl": "https://www.google.com/maps/place/Kritika+Ladies+Beauty+Parlour/@25.5873981,85.1757259,17z"
+    },
+    "geo": {
+      "lat": 25.5873981,
+      "lng": 85.1757259
+    },
     "nearbyLandmarks": [
-      "Patna Women's College (0.5km)",
-      "A N College (0.3km)",
-      "Boring Road Chauraha (0.2km)",
-      "GV Mall (0.5km)"
+      "Bhootnath Metro Station (~200m)",
+      "Bhootnath Road",
+      "Kumhrar",
+      "Bahadurpur Housing Colony",
+      "Patna Bypass",
+      "Bairia Bus Stand",
+      "Zero Mile"
     ],
+    "url": "/hair-cut/straight-haircut-patna",
+    "reviewSource": "In-house reviews from Kritika Ladies Beauty Parlour Bookings",
     "seasonalTags": ["Year-round", "Professional styles", "Maintenance cuts"],
     "processingTime": "Same day booking available",
     "cancellationPolicy": "Free cancellation up to 6 hours before"
@@ -355,16 +552,18 @@
     "slug": "v-cut-haircut-patna",
     "category": "Hair Cut",
     "categorySlug": "hair-cut",
+    "primaryCategory": "hair",
+    "eventCategory": "haircut",
     "image": "/images/hair/v_cut.webp",
-    "description": "Get dramatic V-shaped layered haircut in Patna at My Ladies Beauty Parlour. Starting at jawline, this cut uses point-cutting for seamless graduation. Popular for adding movement to straight/wavy hair with face-framing customization. Perfect for Patna's fashion trends.",
+    "description": "Get dramatic V-shaped layered haircut in Patna at Kritika Ladies Beauty Parlour. Starting at jawline, this cut uses point-cutting for seamless graduation. Popular for adding movement to straight/wavy hair with face-framing customization. Perfect for Patna's fashion trends.",
     "shortDescription": "Dramatic V-shaped layered haircut in Patna with point-cutting technique. Adds movement and face-framing effects.",
-    "price": 180,
-    "originalPrice": 250,
+    "price": 180.0,
+    "originalPrice": 250.0,
+    "priceCurrency": "INR",
     "discountPercentage": 28,
     "isTrending": true,
     "isPopular": true,
-    "isBestSeller": true,
-    "deal": "320+ bookings this month",
+    "isBestSeller": false,
     "duration": 60,
     "durationText": "1 hour",
     "rating": 4.8,
@@ -379,11 +578,26 @@
     "precautions": "Requires minimum shoulder-length hair. Bleached hair needs bond repair pre-service.",
     "aftercare": "Apply mid-shaft to ends serum when damp. Use wide-tooth comb to prevent breakage.",
     "faqs": [
-      {"question": "Will V-cut make my hair look thinner?", "answer": "No - we remove weight without reducing density for fuller appearance"},
-      {"question": "Is V-cut suitable for round faces in Patna?", "answer": "Yes, we adjust angle to elongate features - perfect for round faces"},
-      {"question": "How often should I maintain V-cut in Patna?", "answer": "Every 10-12 weeks to maintain shape and prevent split ends"},
-      {"question": "Can V-cut be done on curly hair?", "answer": "Yes, we dry-cut curly hair to perfect the V-shape"},
-      {"question": "Is this suitable for thick Indian hair?", "answer": "Perfect for thick hair - removes bulk while maintaining style"}
+      {
+        "question": "Will V-cut make my hair look thinner?",
+        "answer": "No - we remove weight without reducing density for fuller appearance"
+      },
+      {
+        "question": "Is V-cut suitable for round faces in Patna?",
+        "answer": "Yes, we adjust angle to elongate features - perfect for round faces"
+      },
+      {
+        "question": "How often should I maintain V-cut in Patna?",
+        "answer": "Every 10-12 weeks to maintain shape and prevent split ends"
+      },
+      {
+        "question": "Can V-cut be done on curly hair?",
+        "answer": "Yes, we dry-cut curly hair to perfect the V-shape"
+      },
+      {
+        "question": "Is this suitable for thick Indian hair?",
+        "answer": "Perfect for thick hair - removes bulk while maintaining style"
+      }
     ],
     "seoKeywords": [
       "v cut hair patna",
@@ -391,8 +605,8 @@
       "layered haircut",
       "patna hair styles",
       "face framing cut",
-      "V-cut Boring Road",
-      "layers haircut Bailey Road"
+      "V-cut Bhootnath road Metro",
+      "layers haircut Bazar Samiti"
     ],
     "targetAudience": ["Long hair clients", "Volume seekers", "Face framing lovers"],
     "idealFor": ["Adding movement", "Reducing bulk", "Modern styles"],
@@ -409,12 +623,33 @@
       {"name": "Keratin Treatment", "price": 3000},
       {"name": "Highlights", "price": 1500}
     ],
+    "serviceArea": {
+      "city": "Patna",
+      "region": "Bihar",
+      "country": "India",
+      "radiusKm": 20
+    },
+    "provider": {
+      "name": "Kritika Ladies Beauty Parlour",
+      "address": "BH Colony, Patna, Bihar 800026, India",
+      "phone": "+91-9650461390",
+      "googleMapsUrl": "https://www.google.com/maps/place/Kritika+Ladies+Beauty+Parlour/@25.5873981,85.1757259,17z"
+    },
+    "geo": {
+      "lat": 25.5873981,
+      "lng": 85.1757259
+    },
     "nearbyLandmarks": [
-      "Patna Women's College (0.5km)",
-      "A N College (0.3km)",
-      "Boring Road Chauraha (0.2km)",
-      "GV Mall (0.5km)"
+      "Bhootnath Metro Station (~200m)",
+      "Bhootnath Road",
+      "Kumhrar",
+      "Bahadurpur Housing Colony",
+      "Patna Bypass",
+      "Bairia Bus Stand",
+      "Zero Mile"
     ],
+    "url": "/hair-cut/v-cut-haircut-patna",
+    "reviewSource": "In-house reviews from Kritika Ladies Beauty Parlour Bookings",
     "seasonalTags": ["Festival styles", "Wedding season", "Year-round"],
     "processingTime": "Same day booking available",
     "cancellationPolicy": "Free cancellation up to 12 hours before"
@@ -425,16 +660,18 @@
     "slug": "u-cut-haircut-patna",
     "category": "Hair Cut",
     "categorySlug": "hair-cut",
+    "primaryCategory": "hair",
+    "eventCategory": "haircut",
     "image": "/images/hair/u_cut.webp",
-    "description": "Get soft rounded hemline haircut in Patna at My Ladies Beauty Parlour. Features internal layers for bounce and 360° weight distribution. Ideal for blunt bob to mid-length styles with collarbone-skimming refinement. Perfect for Patna's professional women.",
+    "description": "Get soft rounded hemline haircut in Patna at Kritika Ladies Beauty Parlour. Features internal layers for bounce and 360° weight distribution. Ideal for blunt bob to mid-length styles with collarbone-skimming refinement. Perfect for Patna's professional women.",
     "shortDescription": "Soft rounded U-cut haircut in Patna with internal layers for bounce. Perfect for blunt bob and mid-length styles.",
-    "price": 180,
-    "originalPrice": 250,
+    "price": 180.0,
+    "originalPrice": 250.0,
+    "priceCurrency": "INR",
     "discountPercentage": 28,
     "isTrending": false,
     "isPopular": true,
     "isBestSeller": false,
-    "deal": "150+ bookings this month",
     "duration": 60,
     "durationText": "1 hour",
     "rating": 4.7,
@@ -449,11 +686,26 @@
     "precautions": "Avoid chemical services for 72hrs post-cut. Bring reference photos for accuracy.",
     "aftercare": "Sleep on silk pillowcase. Use round-brush when blowdrying for best results.",
     "faqs": [
-      {"question": "Does U-cut work for curly hair in Patna?", "answer": "Yes - we dry-cut to perfect shape for curly hair textures"},
-      {"question": "How often should I maintain U-cut shape?", "answer": "Every 10-12 weeks for shape retention in Patna's climate"},
-      {"question": "Is U-cut suitable for fine/thin hair?", "answer": "Excellent for fine hair - creates illusion of thickness and volume"},
-      {"question": "Can U-cut be styled in different ways?", "answer": "Very versatile - can be styled straight, wavy, or curly"},
-      {"question": "What face shapes suit U-cut best?", "answer": "Works for most face shapes - we customize for oval, round, and square faces"}
+      {
+        "question": "Does U-cut work for curly hair in Patna?",
+        "answer": "Yes - we dry-cut to perfect shape for curly hair textures"
+      },
+      {
+        "question": "How often should I maintain U-cut shape?",
+        "answer": "Every 10-12 weeks for shape retention in Patna's climate"
+      },
+      {
+        "question": "Is U-cut suitable for fine/thin hair?",
+        "answer": "Excellent for fine hair - creates illusion of thickness and volume"
+      },
+      {
+        "question": "Can U-cut be styled in different ways?",
+        "answer": "Very versatile - can be styled straight, wavy, or curly"
+      },
+      {
+        "question": "What face shapes suit U-cut best?",
+        "answer": "Works for most face shapes - we customize for oval, round, and square faces"
+      }
     ],
     "seoKeywords": [
       "u cut hair patna",
@@ -461,8 +713,8 @@
       "rounded haircut",
       "patna bob cut",
       "short hair styles",
-      "U-cut Boring Road",
-      "bob cut Bailey Road"
+      "U-cut Bhootnath road Metro",
+      "bob cut Bazar Samiti"
     ],
     "targetAudience": ["Bob lovers", "Short hair clients", "Professional styles"],
     "idealFor": ["Office styles", "Easy maintenance", "Classic looks"],
@@ -479,12 +731,33 @@
       {"name": "Hair Ironing", "price": 250},
       {"name": "Curling", "price": 300}
     ],
+    "serviceArea": {
+      "city": "Patna",
+      "region": "Bihar",
+      "country": "India",
+      "radiusKm": 20
+    },
+    "provider": {
+      "name": "Kritika Ladies Beauty Parlour",
+      "address": "BH Colony, Patna, Bihar 800026, India",
+      "phone": "+91-9650461390",
+      "googleMapsUrl": "https://www.google.com/maps/place/Kritika+Ladies+Beauty+Parlour/@25.5873981,85.1757259,17z"
+    },
+    "geo": {
+      "lat": 25.5873981,
+      "lng": 85.1757259
+    },
     "nearbyLandmarks": [
-      "Patna Women's College (0.5km)",
-      "A N College (0.3km)",
-      "Boring Road Chauraha (0.2km)",
-      "GV Mall (0.5km)"
+      "Bhootnath Metro Station (~200m)",
+      "Bhootnath Road",
+      "Kumhrar",
+      "Bahadurpur Housing Colony",
+      "Patna Bypass",
+      "Bairia Bus Stand",
+      "Zero Mile"
     ],
+    "url": "/hair-cut/u-cut-haircut-patna",
+    "reviewSource": "In-house reviews from Kritika Ladies Beauty Parlour Bookings",
     "seasonalTags": ["Professional styles", "Year-round", "Classic cuts"],
     "processingTime": "Same day booking available",
     "cancellationPolicy": "Free cancellation up to 12 hours before"
@@ -495,16 +768,18 @@
     "slug": "step-cut-haircut-patna",
     "category": "Hair Cut",
     "categorySlug": "hair-cut",
+    "primaryCategory": "hair",
+    "eventCategory": "haircut",
     "image": "/images/hair/step_cut.webp",
-    "description": "Get geometric layered step cut in Patna at My Ladies Beauty Parlour. Features visible graduation with vertical sectioning for maximum lift. Customized layering depth based on your hair density. TikTok's popular #HairStacking trend now in Patna.",
+    "description": "Get geometric layered step cut in Patna at Kritika Ladies Beauty Parlour. Features visible graduation with vertical sectioning for maximum lift. Customized layering depth based on your hair density. TikTok's popular #HairStacking trend now in Patna.",
     "shortDescription": "Geometric step cut in Patna with visible graduation layers. Creates maximum lift and volume - TikTok's #HairStacking trend.",
-    "price": 250,
-    "originalPrice": 350,
+    "price": 250.0,
+    "originalPrice": 350.0,
+    "priceCurrency": "INR",
     "discountPercentage": 29,
     "isTrending": true,
     "isPopular": true,
-    "isBestSeller": true,
-    "deal": "410+ bookings this month",
+    "isBestSeller": false,
     "duration": 75,
     "durationText": "1 hour 15 minutes",
     "rating": 4.9,
@@ -519,11 +794,26 @@
     "precautions": "Thin hair requires conservative layering. Consult for density assessment first.",
     "aftercare": "Apply root-lift spray before drying. Avoid heavy oils that weigh hair down.",
     "faqs": [
-      {"question": "Can step cut layers be softened if too dramatic?", "answer": "Yes - we offer seamless blending option for softer transition"},
-      {"question": "How does step cut grow out over time?", "answer": "Graceful transition with 6-month grow-out plan for easy maintenance"},
-      {"question": "Is step cut suitable for thick Indian hair in Patna?", "answer": "Perfect for thick hair - removes bulk while creating beautiful layers"},
-      {"question": "How often should I trim step cut layers?", "answer": "Every 8-10 weeks to maintain shape and prevent tangling"},
-      {"question": "Can step cut be combined with other styles?", "answer": "Yes, combines well with face-framing layers and texturizing"}
+      {
+        "question": "Can step cut layers be softened if too dramatic?",
+        "answer": "Yes - we offer seamless blending option for softer transition"
+      },
+      {
+        "question": "How does step cut grow out over time?",
+        "answer": "Graceful transition with 6-month grow-out plan for easy maintenance"
+      },
+      {
+        "question": "Is step cut suitable for thick Indian hair in Patna?",
+        "answer": "Perfect for thick hair - removes bulk while creating beautiful layers"
+      },
+      {
+        "question": "How often should I trim step cut layers?",
+        "answer": "Every 8-10 weeks to maintain shape and prevent tangling"
+      },
+      {
+        "question": "Can step cut be combined with other styles?",
+        "answer": "Yes, combines well with face-framing layers and texturizing"
+      }
     ],
     "seoKeywords": [
       "step cut hair patna",
@@ -531,8 +821,8 @@
       "layered haircut",
       "patna hair trends",
       "volume haircut",
-      "step cut Boring Road",
-      "layers haircut Bailey Road"
+      "step cut Bhootnath road Metro",
+      "layers haircut Bazar Samiti"
     ],
     "targetAudience": ["Thick hair clients", "Volume seekers", "Trend followers"],
     "idealFor": ["Adding texture", "Reducing bulk", "Modern styles"],
@@ -549,12 +839,33 @@
       {"name": "Volume Boost", "price": 200},
       {"name": "Anti-Frizz Serum", "price": 150}
     ],
+    "serviceArea": {
+      "city": "Patna",
+      "region": "Bihar",
+      "country": "India",
+      "radiusKm": 20
+    },
+    "provider": {
+      "name": "Kritika Ladies Beauty Parlour",
+      "address": "BH Colony, Patna, Bihar 800026, India",
+      "phone": "+91-9650461390",
+      "googleMapsUrl": "https://www.google.com/maps/place/Kritika+Ladies+Beauty+Parlour/@25.5873981,85.1757259,17z"
+    },
+    "geo": {
+      "lat": 25.5873981,
+      "lng": 85.1757259
+    },
     "nearbyLandmarks": [
-      "Patna Women's College (0.5km)",
-      "A N College (0.3km)",
-      "Boring Road Chauraha (0.2km)",
-      "GV Mall (0.5km)"
+      "Bhootnath Metro Station (~200m)",
+      "Bhootnath Road",
+      "Kumhrar",
+      "Bahadurpur Housing Colony",
+      "Patna Bypass",
+      "Bairia Bus Stand",
+      "Zero Mile"
     ],
+    "url": "/hair-cut/step-cut-haircut-patna",
+    "reviewSource": "In-house reviews from Kritika Ladies Beauty Parlour Bookings",
     "seasonalTags": ["Trending styles", "Festival looks", "Year-round"],
     "processingTime": "Book 2-3 days in advance",
     "cancellationPolicy": "Free cancellation up to 24 hours before"
@@ -565,16 +876,18 @@
     "slug": "layered-haircut-patna",
     "category": "Hair Cut",
     "categorySlug": "hair-cut",
+    "primaryCategory": "hair",
+    "eventCategory": "haircut",
     "image": "/images/hair/layered_cut.webp",
-    "description": "Get combined step and feathered layered haircut in Patna at My Ladies Beauty Parlour. Uses slice-cutting technique to remove bulk while retaining length. Customized layer placement for your face shape with density-balancing technique. Perfect for Patna's fashion-conscious women.",
+    "description": "Get combined step and feathered layered haircut in Patna at Kritika Ladies Beauty Parlour. Uses slice-cutting technique to remove bulk while retaining length. Customized layer placement for your face shape with density-balancing technique. Perfect for Patna's fashion-conscious women.",
     "shortDescription": "Combined step and feathered layered haircut in Patna. Removes bulk while retaining length with customized face-shape placement.",
-    "price": 300,
-    "originalPrice": 450,
+    "price": 300.0,
+    "originalPrice": 450.0,
+    "priceCurrency": "INR",
     "discountPercentage": 33,
     "isTrending": false,
     "isPopular": true,
     "isBestSeller": false,
-    "deal": "190+ bookings this month",
     "duration": 90,
     "durationText": "1.5 hours",
     "rating": 4.8,
@@ -589,11 +902,26 @@
     "precautions": "Virgin hair requires pre-consultation. Color-treated hair needs bond builder.",
     "aftercare": "Use texturizing paste for piece-y finish. Schedule dusting every 6 weeks.",
     "faqs": [
-      {"question": "Is layered cut suitable for thick hair in Patna?", "answer": "Specialty - we remove internal weight safely while maintaining style"},
-      {"question": "What minimum length is required for layering?", "answer": "Chin-length minimum for effective layering results"},
-      {"question": "How do layered cuts work with Patna's humidity?", "answer": "Reduces puffiness and frizz common in Patna's climate"},
-      {"question": "Can I get layers with curly hair?", "answer": "Yes, we specialize in curly hair layering techniques"},
-      {"question": "How often should layered hair be trimmed?", "answer": "Every 8-10 weeks to maintain shape and prevent split ends"}
+      {
+        "question": "Is layered cut suitable for thick hair in Patna?",
+        "answer": "Specialty - we remove internal weight safely while maintaining style"
+      },
+      {
+        "question": "What minimum length is required for layering?",
+        "answer": "Chin-length minimum for effective layering results"
+      },
+      {
+        "question": "How do layered cuts work with Patna's humidity?",
+        "answer": "Reduces puffiness and frizz common in Patna's climate"
+      },
+      {
+        "question": "Can I get layers with curly hair?",
+        "answer": "Yes, we specialize in curly hair layering techniques"
+      },
+      {
+        "question": "How often should layered hair be trimmed?",
+        "answer": "Every 8-10 weeks to maintain shape and prevent split ends"
+      }
     ],
     "seoKeywords": [
       "layered haircut patna",
@@ -601,8 +929,8 @@
       "slice cutting",
       "patna hair salon",
       "volume layers",
-      "layered cut Boring Road",
-      "feather cut Bailey Road"
+      "layered cut Bhootnath road Metro",
+      "feather cut Bazar Samiti"
     ],
     "targetAudience": ["All hair types", "Volume seekers", "Style changers"],
     "idealFor": ["Adding movement", "Reducing weight", "Face framing"],
@@ -619,12 +947,33 @@
       {"name": "Hair Spa", "price": 900},
       {"name": "Highlights", "price": 1500}
     ],
+    "serviceArea": {
+      "city": "Patna",
+      "region": "Bihar",
+      "country": "India",
+      "radiusKm": 20
+    },
+    "provider": {
+      "name": "Kritika Ladies Beauty Parlour",
+      "address": "BH Colony, Patna, Bihar 800026, India",
+      "phone": "+91-9650461390",
+      "googleMapsUrl": "https://www.google.com/maps/place/Kritika+Ladies+Beauty+Parlour/@25.5873981,85.1757259,17z"
+    },
+    "geo": {
+      "lat": 25.5873981,
+      "lng": 85.1757259
+    },
     "nearbyLandmarks": [
-      "Patna Women's College (0.5km)",
-      "A N College (0.3km)",
-      "Boring Road Chauraha (0.2km)",
-      "GV Mall (0.5km)"
+      "Bhootnath Metro Station (~200m)",
+      "Bhootnath Road",
+      "Kumhrar",
+      "Bahadurpur Housing Colony",
+      "Patna Bypass",
+      "Bairia Bus Stand",
+      "Zero Mile"
     ],
+    "url": "/hair-cut/layered-haircut-patna",
+    "reviewSource": "In-house reviews from Kritika Ladies Beauty Parlour Bookings",
     "seasonalTags": ["Year-round", "Versatile styles", "Modern cuts"],
     "processingTime": "Book 2-3 days in advance",
     "cancellationPolicy": "Free cancellation up to 24 hours before"
@@ -635,16 +984,18 @@
     "slug": "child-haircut-patna",
     "category": "Hair Cut",
     "categorySlug": "hair-cut",
+    "primaryCategory": "hair",
+    "eventCategory": "haircut",
     "image": "/images/hair/child_haircut.webp",
-    "description": "Get gentle children's haircut in Patna at My Ladies Beauty Parlour. Uses distraction techniques (tablets/toys) with quiet clippers and rounded tips. Includes parent-guided style consultation and EPA-certified kid-safe products. Perfect for Patna's young residents.",
+    "description": "Get gentle children's haircut in Patna at Kritika Ladies Beauty Parlour. Uses distraction techniques (tablets/toys) with quiet clippers and rounded tips. Includes parent-guided style consultation and EPA-certified kid-safe products. Perfect for Patna's young residents.",
     "shortDescription": "Gentle children's haircut in Patna with distraction techniques and quiet clippers. Kid-safe products and stress-free experience.",
-    "price": 80,
-    "originalPrice": 120,
+    "price": 80.0,
+    "originalPrice": 120.0,
+    "priceCurrency": "INR",
     "discountPercentage": 33,
     "isTrending": false,
     "isPopular": true,
     "isBestSeller": false,
-    "deal": "95+ bookings this month",
     "duration": 30,
     "durationText": "30 minutes",
     "rating": 4.9,
@@ -659,11 +1010,26 @@
     "precautions": "Notify about sensory sensitivities. No chemical services under age 10.",
     "aftercare": "Use tear-free shampoo. Schedule every 10-12 weeks for maintenance.",
     "faqs": [
-      {"question": "Do you offer first haircut packages for babies?", "answer": "Includes certificate + lock of hair keepsake for memorable first cut"},
-      {"question": "Are your stylists trained for special needs children?", "answer": "All stylists ASD-certified and patient with all children"},
-      {"question": "What age is suitable for first haircut?", "answer": "We recommend 12+ months, but consult based on hair growth"},
-      {"question": "Can parents stay during the haircut?", "answer": "Yes, we encourage parent participation for child comfort"},
-      {"question": "Do you offer styling for school events in Patna?", "answer": "Yes, special styles for school functions and events"}
+      {
+        "question": "Do you offer first haircut packages for babies?",
+        "answer": "Includes certificate + lock of hair keepsake for memorable first cut"
+      },
+      {
+        "question": "Are your stylists trained for special needs children?",
+        "answer": "All stylists ASD-certified and patient with all children"
+      },
+      {
+        "question": "What age is suitable for first haircut?",
+        "answer": "We recommend 12+ months, but consult based on hair growth"
+      },
+      {
+        "question": "Can parents stay during the haircut?",
+        "answer": "Yes, we encourage parent participation for child comfort"
+      },
+      {
+        "question": "Do you offer styling for school events in Patna?",
+        "answer": "Yes, special styles for school functions and events"
+      }
     ],
     "seoKeywords": [
       "child haircut patna",
@@ -671,8 +1037,8 @@
       "children salon",
       "patna kids haircut",
       "baby first haircut",
-      "child haircut Boring Road",
-      "kids salon Bailey Road"
+      "child haircut Bhootnath road Metro",
+      "kids salon Bazar Samiti"
     ],
     "targetAudience": ["Parents with children", "School-age kids", "First haircut babies"],
     "idealFor": ["School styles", "First haircuts", "Regular maintenance"],
@@ -689,12 +1055,33 @@
       {"name": "Braiding", "price": 100},
       {"name": "Hair Accessories", "price": 50}
     ],
+    "serviceArea": {
+      "city": "Patna",
+      "region": "Bihar",
+      "country": "India",
+      "radiusKm": 20
+    },
+    "provider": {
+      "name": "Kritika Ladies Beauty Parlour",
+      "address": "BH Colony, Patna, Bihar 800026, India",
+      "phone": "+91-9650461390",
+      "googleMapsUrl": "https://www.google.com/maps/place/Kritika+Ladies+Beauty+Parlour/@25.5873981,85.1757259,17z"
+    },
+    "geo": {
+      "lat": 25.5873981,
+      "lng": 85.1757259
+    },
     "nearbyLandmarks": [
-      "Patna Women's College (0.5km)",
-      "A N College (0.3km)",
-      "Boring Road Chauraha (0.2km)",
-      "GV Mall (0.5km)"
+      "Bhootnath Metro Station (~200m)",
+      "Bhootnath Road",
+      "Kumhrar",
+      "Bahadurpur Housing Colony",
+      "Patna Bypass",
+      "Bairia Bus Stand",
+      "Zero Mile"
     ],
+    "url": "/hair-cut/child-haircut-patna",
+    "reviewSource": "In-house reviews from Kritika Ladies Beauty Parlour Bookings",
     "seasonalTags": ["School season", "Year-round", "Festival styles"],
     "processingTime": "Same day booking available",
     "cancellationPolicy": "Free cancellation up to 3 hours before"
@@ -705,16 +1092,18 @@
     "slug": "blow-dry-medium-patna",
     "category": "Hair Styling",
     "categorySlug": "hair-styling",
+    "primaryCategory": "hair",
+    "eventCategory": "styling",
     "image": "/images/hair/blow_dry.webp",
-    "description": "Get ionic blowout styling for medium hair in Patna at My Ladies Beauty Parlour. Features round-brush technique focusing on root lift and smooth ends. Uses heat protectant with UV filter and includes 24-hour frizz control guarantee. Perfect for Patna's events and occasions.",
+    "description": "Get ionic blowout styling for medium hair in Patna at Kritika Ladies Beauty Parlour. Features round-brush technique focusing on root lift and smooth ends. Uses heat protectant with UV filter and includes 24-hour frizz control guarantee. Perfect for Patna's events and occasions.",
     "shortDescription": "Ionic blowout for medium hair in Patna with round-brush technique. 24-hour frizz control guarantee with UV protection.",
-    "price": 200,
-    "originalPrice": 280,
+    "price": 200.0,
+    "originalPrice": 280.0,
+    "priceCurrency": "INR",
     "discountPercentage": 29,
     "isTrending": true,
     "isPopular": true,
-    "isBestSeller": true,
-    "deal": "220+ bookings this month",
+    "isBestSeller": false,
     "duration": 45,
     "durationText": "45 minutes",
     "rating": 4.7,
@@ -729,11 +1118,26 @@
     "precautions": "Avoid humidity exposure immediately after. Tie loosely if exercising.",
     "aftercare": "Use dry shampoo at roots. Refresh with argan oil on ends.",
     "faqs": [
-      {"question": "How long does blow dry last in Patna's humidity?", "answer": "Guaranteed 24hrs with our climate-control products for Patna's weather"},
-      {"question": "Is this service extensions-friendly?", "answer": "Yes - we use low-heat method on bonds to protect extensions"},
-      {"question": "Can I get same-day blow dry for events in Patna?", "answer": "Yes, same-day bookings available for last-minute events"},
-      {"question": "Does blow dry damage hair in long term?", "answer": "No, we use heat protectants and proper techniques to prevent damage"},
-      {"question": "Can I request specific volume levels?", "answer": "Yes, we customize volume from natural to maximum based on preference"}
+      {
+        "question": "How long does blow dry last in Patna's humidity?",
+        "answer": "Guaranteed 24hrs with our climate-control products for Patna's weather"
+      },
+      {
+        "question": "Is this service extensions-friendly?",
+        "answer": "Yes - we use low-heat method on bonds to protect extensions"
+      },
+      {
+        "question": "Can I get same-day blow dry for events in Patna?",
+        "answer": "Yes, same-day bookings available for last-minute events"
+      },
+      {
+        "question": "Does blow dry damage hair in long term?",
+        "answer": "No, we use heat protectants and proper techniques to prevent damage"
+      },
+      {
+        "question": "Can I request specific volume levels?",
+        "answer": "Yes, we customize volume from natural to maximum based on preference"
+      }
     ],
     "seoKeywords": [
       "blow dry patna",
@@ -741,8 +1145,8 @@
       "ionic blow dry",
       "patna hair styling",
       "frizz control",
-      "blow dry Boring Road",
-      "hair styling Bailey Road"
+      "blow dry Bhootnath road Metro",
+      "hair styling Bazar Samiti"
     ],
     "targetAudience": ["Event attendees", "Office professionals", "Special occasion"],
     "idealFor": ["Weddings", "Parties", "Office events", "Date nights"],
@@ -759,12 +1163,33 @@
       {"name": "Volume Boost", "price": 150},
       {"name": "Deep Conditioning", "price": 200}
     ],
+    "serviceArea": {
+      "city": "Patna",
+      "region": "Bihar",
+      "country": "India",
+      "radiusKm": 20
+    },
+    "provider": {
+      "name": "Kritika Ladies Beauty Parlour",
+      "address": "BH Colony, Patna, Bihar 800026, India",
+      "phone": "+91-9650461390",
+      "googleMapsUrl": "https://www.google.com/maps/place/Kritika+Ladies+Beauty+Parlour/@25.5873981,85.1757259,17z"
+    },
+    "geo": {
+      "lat": 25.5873981,
+      "lng": 85.1757259
+    },
     "nearbyLandmarks": [
-      "Patna Women's College (0.5km)",
-      "A N College (0.3km)",
-      "Boring Road Chauraha (0.2km)",
-      "GV Mall (0.5km)"
+      "Bhootnath Metro Station (~200m)",
+      "Bhootnath Road",
+      "Kumhrar",
+      "Bahadurpur Housing Colony",
+      "Patna Bypass",
+      "Bairia Bus Stand",
+      "Zero Mile"
     ],
+    "url": "/hair-styling/blow-dry-medium-patna",
+    "reviewSource": "In-house reviews from Kritika Ladies Beauty Parlour Bookings",
     "seasonalTags": ["Wedding season", "Festival styles", "Year-round"],
     "processingTime": "Same day booking available",
     "cancellationPolicy": "Free cancellation up to 6 hours before"
@@ -775,16 +1200,18 @@
     "slug": "blow-dry-long-patna",
     "category": "Hair Styling",
     "categorySlug": "hair-styling",
+    "primaryCategory": "hair",
+    "eventCategory": "styling",
     "image": "/images/hair/blow_dry.webp",
-    "description": "Get volumizing blowout for long hair in Patna at My Ladies Beauty Parlour. Features section-by-section tension drying with scalp-cooling technology. Includes weighted crown-lift technique for extra height and movement. Perfect for Patna's grand events.",
+    "description": "Get volumizing blowout for long hair in Patna at Kritika Ladies Beauty Parlour. Features section-by-section tension drying with scalp-cooling technology. Includes weighted crown-lift technique for extra height and movement. Perfect for Patna's grand events.",
     "shortDescription": "Volumizing blowout for long hair in Patna with scalp-cooling technology. Crown-lift technique for maximum height.",
-    "price": 250,
-    "originalPrice": 350,
+    "price": 250.0,
+    "originalPrice": 350.0,
+    "priceCurrency": "INR",
     "discountPercentage": 29,
     "isTrending": false,
     "isPopular": true,
     "isBestSeller": false,
-    "deal": "180+ bookings this month",
     "duration": 60,
     "durationText": "1 hour",
     "rating": 4.8,
@@ -799,11 +1226,26 @@
     "precautions": "Tangles must be pre-detangled. Not for wet-set curls.",
     "aftercare": "Sleep in loose braid. Use silk scrunchie for protection.",
     "faqs": [
-      {"question": "Is there heat damage risk with long hair blow dry?", "answer": "None - we use 310°F max with ceramic technology for safety"},
-      {"question": "Can I add hairpieces with this service?", "answer": "Yes - $20 extra for clip-in integration and blending"},
-      {"question": "How long does volume last on long hair?", "answer": "2-3 days with proper care and sleeping techniques"},
-      {"question": "Can you create different styles with blow dry?", "answer": "Yes, straight, wavy, or voluminous based on your preference"},
-      {"question": "Is this suitable for thick long hair?", "answer": "Specialty - we have techniques for all thickness levels"}
+      {
+        "question": "Is there heat damage risk with long hair blow dry?",
+        "answer": "None - we use 310°F max with ceramic technology for safety"
+      },
+      {
+        "question": "Can I add hairpieces with this service?",
+        "answer": "Yes - $20 extra for clip-in integration and blending"
+      },
+      {
+        "question": "How long does volume last on long hair?",
+        "answer": "2-3 days with proper care and sleeping techniques"
+      },
+      {
+        "question": "Can you create different styles with blow dry?",
+        "answer": "Yes, straight, wavy, or voluminous based on your preference"
+      },
+      {
+        "question": "Is this suitable for thick long hair?",
+        "answer": "Specialty - we have techniques for all thickness levels"
+      }
     ],
     "seoKeywords": [
       "long hair blow dry patna",
@@ -811,8 +1253,8 @@
       "hair volume",
       "patna long hair styling",
       "beach waves",
-      "long hair blow dry Boring Road",
-      "volume styling Bailey Road"
+      "long hair blow dry Bhootnath road Metro",
+      "volume styling Bazar Samiti"
     ],
     "targetAudience": ["Long hair clients", "Volume seekers", "Event attendees"],
     "idealFor": ["Weddings", "Receptions", "Photoshoots", "Special events"],
@@ -829,12 +1271,33 @@
       {"name": "Premium Serum", "price": 150},
       {"name": "Overnight Style Protection", "price": 100}
     ],
+    "serviceArea": {
+      "city": "Patna",
+      "region": "Bihar",
+      "country": "India",
+      "radiusKm": 20
+    },
+    "provider": {
+      "name": "Kritika Ladies Beauty Parlour",
+      "address": "BH Colony, Patna, Bihar 800026, India",
+      "phone": "+91-9650461390",
+      "googleMapsUrl": "https://www.google.com/maps/place/Kritika+Ladies+Beauty+Parlour/@25.5873981,85.1757259,17z"
+    },
+    "geo": {
+      "lat": 25.5873981,
+      "lng": 85.1757259
+    },
     "nearbyLandmarks": [
-      "Patna Women's College (0.5km)",
-      "A N College (0.3km)",
-      "Boring Road Chauraha (0.2km)",
-      "GV Mall (0.5km)"
+      "Bhootnath Metro Station (~200m)",
+      "Bhootnath Road",
+      "Kumhrar",
+      "Bahadurpur Housing Colony",
+      "Patna Bypass",
+      "Bairia Bus Stand",
+      "Zero Mile"
     ],
+    "url": "/hair-styling/blow-dry-long-patna",
+    "reviewSource": "In-house reviews from Kritika Ladies Beauty Parlour Bookings",
     "seasonalTags": ["Wedding season", "Festival looks", "Year-round"],
     "processingTime": "Same day booking available",
     "cancellationPolicy": "Free cancellation up to 6 hours before"
@@ -845,16 +1308,18 @@
     "slug": "hair-ironing-medium-patna",
     "category": "Hair Styling",
     "categorySlug": "hair-styling",
+    "primaryCategory": "hair",
+    "eventCategory": "styling",
     "image": "/images/hair/hair_ironing.webp",
-    "description": "Get Korean glass hair ironing for medium hair in Patna at My Ladies Beauty Parlour. Uses ceramic plates with tension-control method for zero-damage straightening. Includes shine-boosting cold shot finish for mirror-like shine. Perfect for Patna's special occasions.",
-    "shortDescription": "Korean glass hair ironing for medium hair in Patna. Zero-damage straightening with ceramic plates and cold shot finish.",
-    "price": 250,
-    "originalPrice": 350,
+    "description": "Get Korean glass hair ironing for medium hair in Patna at Kritika Ladies Beauty Parlour. Uses ceramic plates with tension-control method for zero-damage straightening. Includes shine-boosting cold shot finish for mirror-like shine. Perfect for Patna's special occasions.",
+    "shortDescription": "Korean glass hair ironing for medium hair in Patna with ceramic plates. Zero-damage straightening with cold shot finish.",
+    "price": 250.0,
+    "originalPrice": 350.0,
+    "priceCurrency": "INR",
     "discountPercentage": 29,
     "isTrending": true,
     "isPopular": true,
     "isBestSeller": true,
-    "deal": "290+ bookings this month",
     "duration": 60,
     "durationText": "1 hour",
     "rating": 4.8,
@@ -869,11 +1334,26 @@
     "precautions": "Not for recently colored hair (wait 7 days). Avoid moisture 12hrs post-service.",
     "aftercare": "Use keratin-infused shampoo. Avoid ponytails first 24hrs.",
     "faqs": [
-      {"question": "Does Korean glass hair work on coarse Indian hair?", "answer": "Yes - we adjust temperature up to 410°F for coarse hair types"},
-      {"question": "What is your touch-up policy if I'm not satisfied?", "answer": "Free within 48hrs if results unsatisfactory - we guarantee satisfaction"},
-      {"question": "How long does glass hair effect last in Patna?", "answer": "3-4 days depending on Patna's humidity and your hair type"},
-      {"question": "Can I wash my hair after ironing?", "answer": "Wait 48 hours for best results and longevity"},
-      {"question": "Is this suitable for fine/thin hair?", "answer": "Yes, we adjust temperature and technique for all hair types"}
+      {
+        "question": "Does Korean glass hair work on coarse Indian hair?",
+        "answer": "Yes - we adjust temperature up to 410°F for coarse hair types"
+      },
+      {
+        "question": "What is your touch-up policy if I'm not satisfied?",
+        "answer": "Free within 48hrs if results unsatisfactory - we guarantee satisfaction"
+      },
+      {
+        "question": "How long does glass hair effect last in Patna?",
+        "answer": "3-4 days depending on Patna's humidity and your hair type"
+      },
+      {
+        "question": "Can I wash my hair after ironing?",
+        "answer": "Wait 48 hours for best results and longevity"
+      },
+      {
+        "question": "Is this suitable for fine/thin hair?",
+        "answer": "Yes, we adjust temperature and technique for all hair types"
+      }
     ],
     "seoKeywords": [
       "hair ironing patna",
@@ -881,8 +1361,8 @@
       "hair straightening",
       "patna hair styling",
       "ceramic ironing",
-      "hair ironing Boring Road",
-      "straightening Bailey Road"
+      "hair ironing Bhootnath road Metro",
+      "straightening Bazar Samiti"
     ],
     "targetAudience": ["Straight hair lovers", "Frizz fighters", "Special occasion"],
     "idealFor": ["Weddings", "Parties", "Professional events", "Photoshoots"],
@@ -899,12 +1379,33 @@
       {"name": "Anti-Frizz Serum", "price": 150},
       {"name": "Heat Protection", "price": 100}
     ],
+    "serviceArea": {
+      "city": "Patna",
+      "region": "Bihar",
+      "country": "India",
+      "radiusKm": 20
+    },
+    "provider": {
+      "name": "Kritika Ladies Beauty Parlour",
+      "address": "BH Colony, Patna, Bihar 800026, India",
+      "phone": "+91-9650461390",
+      "googleMapsUrl": "https://www.google.com/maps/place/Kritika+Ladies+Beauty+Parlour/@25.5873981,85.1757259,17z"
+    },
+    "geo": {
+      "lat": 25.5873981,
+      "lng": 85.1757259
+    },
     "nearbyLandmarks": [
-      "Patna Women's College (0.5km)",
-      "A N College (0.3km)",
-      "Boring Road Chauraha (0.2km)",
-      "GV Mall (0.5km)"
+      "Bhootnath Metro Station (~200m)",
+      "Bhootnath Road",
+      "Kumhrar",
+      "Bahadurpur Housing Colony",
+      "Patna Bypass",
+      "Bairia Bus Stand",
+      "Zero Mile"
     ],
+    "url": "/hair-styling/hair-ironing-medium-patna",
+    "reviewSource": "In-house reviews from Kritika Ladies Beauty Parlour Bookings",
     "seasonalTags": ["Monsoon frizz control", "Year-round", "Special events"],
     "processingTime": "Same day booking available",
     "cancellationPolicy": "Free cancellation up to 6 hours before"
@@ -915,16 +1416,18 @@
     "slug": "hair-ironing-long-patna",
     "category": "Hair Styling",
     "categorySlug": "hair-styling",
+    "primaryCategory": "hair",
+    "eventCategory": "styling",
     "image": "/images/hair/hair_ironing.webp",
-    "description": "Get bridal-grade hair ironing for long hair in Patna at My Ladies Beauty Parlour. Features Japanese silk-press method with 1-inch plates for seamless results. Includes underlayer smoothing for maximum sleekness and humidity resistance. Perfect for Patna's wedding season.",
+    "description": "Get bridal-grade hair ironing for long hair in Patna at Kritika Ladies Beauty Parlour. Features Japanese silk-press method with 1-inch plates for seamless results. Includes underlayer smoothing for maximum sleekness and humidity resistance. Perfect for Patna's wedding season.",
     "shortDescription": "Bridal-grade hair ironing for long hair in Patna with Japanese silk-press method. Maximum sleekness with humidity resistance.",
-    "price": 300,
-    "originalPrice": 420,
+    "price": 300.0,
+    "originalPrice": 420.0,
+    "priceCurrency": "INR",
     "discountPercentage": 29,
     "isTrending": true,
     "isPopular": true,
-    "isBestSeller": true,
-    "deal": "260+ bookings this month",
+    "isBestSeller": false,
     "duration": 75,
     "durationText": "1 hour 15 minutes",
     "rating": 4.9,
@@ -939,11 +1442,26 @@
     "precautions": "Requires blow-dry pre-service. No chemical treatments same day.",
     "aftercare": "Wrap hair with silk scarf nightly. Avoid steam environments.",
     "faqs": [
-      {"question": "Does hair ironing damage natural curls permanently?", "answer": "Temporary - washes out completely, curls return to normal"},
-      {"question": "How much straightness remains after washing?", "answer": "60-70% straightness maintained with proper aftercare in Patna"},
-      {"question": "Is this suitable for wedding hairstyles?", "answer": "Perfect base for wedding updos and styles - highly recommended"},
-      {"question": "Can I color my hair before ironing?", "answer": "Wait 2 weeks between coloring and ironing for hair health"},
-      {"question": "How often can I get hair ironing done?", "answer": "Every 2-3 weeks maximum to prevent heat damage"}
+      {
+        "question": "Does hair ironing damage natural curls permanently?",
+        "answer": "Temporary - washes out completely, curls return to normal"
+      },
+      {
+        "question": "How much straightness remains after washing?",
+        "answer": "60-70% straightness maintained with proper aftercare in Patna"
+      },
+      {
+        "question": "Is this suitable for wedding hairstyles?",
+        "answer": "Perfect base for wedding updos and styles - highly recommended"
+      },
+      {
+        "question": "Can I color my hair before ironing?",
+        "answer": "Wait 2 weeks between coloring and ironing for hair health"
+      },
+      {
+        "question": "How often can I get hair ironing done?",
+        "answer": "Every 2-3 weeks maximum to prevent heat damage"
+      }
     ],
     "seoKeywords": [
       "long hair ironing patna",
@@ -951,8 +1469,8 @@
       "silk press",
       "patna wedding hair",
       "humidity resistant",
-      "long hair ironing Boring Road",
-      "bridal styling Bailey Road"
+      "long hair ironing Bhootnath road Metro",
+      "bridal styling Bazar Samiti"
     ],
     "targetAudience": ["Bridal clients", "Long hair owners", "Humidity fighters"],
     "idealFor": ["Weddings", "Receptions", "Grand events", "Photography"],
@@ -969,12 +1487,33 @@
       {"name": "Premium Serum", "price": 200},
       {"name": "Overnight Protection", "price": 150}
     ],
+    "serviceArea": {
+      "city": "Patna",
+      "region": "Bihar",
+      "country": "India",
+      "radiusKm": 20
+    },
+    "provider": {
+      "name": "Kritika Ladies Beauty Parlour",
+      "address": "BH Colony, Patna, Bihar 800026, India",
+      "phone": "+91-9650461390",
+      "googleMapsUrl": "https://www.google.com/maps/place/Kritika+Ladies+Beauty+Parlour/@25.5873981,85.1757259,17z"
+    },
+    "geo": {
+      "lat": 25.5873981,
+      "lng": 85.1757259
+    },
     "nearbyLandmarks": [
-      "Patna Women's College (0.5km)",
-      "A N College (0.3km)",
-      "Boring Road Chauraha (0.2km)",
-      "GV Mall (0.5km)"
+      "Bhootnath Metro Station (~200m)",
+      "Bhootnath Road",
+      "Kumhrar",
+      "Bahadurpur Housing Colony",
+      "Patna Bypass",
+      "Bairia Bus Stand",
+      "Zero Mile"
     ],
+    "url": "/hair-styling/hair-ironing-long-patna",
+    "reviewSource": "In-house reviews from Kritika Ladies Beauty Parlour Bookings",
     "seasonalTags": ["Wedding season", "Monsoon frizz control", "Special events"],
     "processingTime": "Book 2-3 days in advance",
     "cancellationPolicy": "Free cancellation up to 24 hours before"
@@ -985,16 +1524,18 @@
     "slug": "curling-medium-patna",
     "category": "Hair Styling",
     "categorySlug": "hair-styling",
+    "primaryCategory": "hair",
+    "eventCategory": "styling",
     "image": "/images/hair/curling.webp",
-    "description": "Get multi-sized barrel curls for medium hair in Patna at My Ladies Beauty Parlour. Uses clamp-free wand for natural fall with alternating curl directions. Includes pin-curl setting for extended hold through Patna's events and celebrations.",
+    "description": "Get multi-sized barrel curls for medium hair in Patna at Kritika Ladies Beauty Parlour. Uses clamp-free wand for natural fall with alternating curl directions. Includes pin-curl setting for extended hold through Patna's events and celebrations.",
     "shortDescription": "Multi-sized barrel curls for medium hair in Patna with clamp-free wand. Natural fall with 3-day curl memory.",
-    "price": 300,
-    "originalPrice": 400,
+    "price": 300.0,
+    "originalPrice": 400.0,
+    "priceCurrency": "INR",
     "discountPercentage": 25,
     "isTrending": false,
     "isPopular": true,
-    "isBestSeller": false,
-    "deal": "170+ bookings this month",
+    "isBestSeller": true,
     "duration": 60,
     "durationText": "1 hour",
     "rating": 4.7,
@@ -1009,11 +1550,26 @@
     "precautions": "Heat-sensitive clients request low temp. Avoid brushing curls.",
     "aftercare": "Scrunch with salt spray. Sleep with pineapple updo.",
     "faqs": [
-      {"question": "Does curling work on short hair in Patna?", "answer": "Minimum 6-inch length required for effective curling"},
-      {"question": "Can I get beach waves instead of curls?", "answer": "Yes - we use 1.25\" barrel for loose waves popular in Patna"},
-      {"question": "How long do curls last in Patna's humidity?", "answer": "2-3 days with proper care and humidity-resistant products"},
-      {"question": "Can I specify curl direction and tightness?", "answer": "Yes, we customize based on your preference and face shape"},
-      {"question": "Is curling damaging to hair?", "answer": "We use heat protectants and proper techniques to minimize damage"}
+      {
+        "question": "Does curling work on short hair in Patna?",
+        "answer": "Minimum 6-inch length required for effective curling"
+      },
+      {
+        "question": "Can I get beach waves instead of curls?",
+        "answer": "Yes - we use 1.25\" barrel for loose waves popular in Patna"
+      },
+      {
+        "question": "How long do curls last in Patna's humidity?",
+        "answer": "2-3 days with proper care and humidity-resistant products"
+      },
+      {
+        "question": "Can I specify curl direction and tightness?",
+        "answer": "Yes, we customize based on your preference and face shape"
+      },
+      {
+        "question": "Is curling damaging to hair?",
+        "answer": "We use heat protectants and proper techniques to minimize damage"
+      }
     ],
     "seoKeywords": [
       "hair curling patna",
@@ -1021,8 +1577,8 @@
       "curl styling",
       "patna hair styles",
       "beach waves",
-      "curling Boring Road",
-      "curl styling Bailey Road"
+      "curling Bhootnath road Metro",
+      "curl styling Bazar Samiti"
     ],
     "targetAudience": ["Curly style lovers", "Event attendees", "Volume seekers"],
     "idealFor": ["Weddings", "Parties", "Date nights", "Photoshoots"],
@@ -1039,12 +1595,33 @@
       {"name": "Volume Boost", "price": 150},
       {"name": "Heat Protection", "price": 100}
     ],
+    "serviceArea": {
+      "city": "Patna",
+      "region": "Bihar",
+      "country": "India",
+      "radiusKm": 20
+    },
+    "provider": {
+      "name": "Kritika Ladies Beauty Parlour",
+      "address": "BH Colony, Patna, Bihar 800026, India",
+      "phone": "+91-9650461390",
+      "googleMapsUrl": "https://www.google.com/maps/place/Kritika+Ladies+Beauty+Parlour/@25.5873981,85.1757259,17z"
+    },
+    "geo": {
+      "lat": 25.5873981,
+      "lng": 85.1757259
+    },
     "nearbyLandmarks": [
-      "Patna Women's College (0.5km)",
-      "A N College (0.3km)",
-      "Boring Road Chauraha (0.2km)",
-      "GV Mall (0.5km)"
+      "Bhootnath Metro Station (~200m)",
+      "Bhootnath Road",
+      "Kumhrar",
+      "Bahadurpur Housing Colony",
+      "Patna Bypass",
+      "Bairia Bus Stand",
+      "Zero Mile"
     ],
+    "url": "/hair-styling/curling-medium-patna",
+    "reviewSource": "In-house reviews from Kritika Ladies Beauty Parlour Bookings",
     "seasonalTags": ["Wedding season", "Festival styles", "Year-round"],
     "processingTime": "Same day booking available",
     "cancellationPolicy": "Free cancellation up to 6 hours before"
@@ -1055,16 +1632,18 @@
     "slug": "curling-long-patna",
     "category": "Hair Styling",
     "categorySlug": "hair-styling",
+    "primaryCategory": "hair",
+    "eventCategory": "styling",
     "image": "/images/hair/curling.webp",
-    "description": "Get mermaid waves for long hair in Patna at My Ladies Beauty Parlour. Features extra-long 4cm barrel with vertical wrapping technique for uniform spirals. Includes cool-air setting lock for extended hold through Patna's events and celebrations.",
+    "description": "Get mermaid waves for long hair in Patna at Kritika Ladies Beauty Parlour. Features extra-long 4cm barrel with vertical wrapping technique for uniform spirals. Includes cool-air setting lock for extended hold through Patna's events and celebrations.",
     "shortDescription": "Mermaid waves for long hair in Patna with 4cm barrel. Uniform spirals with cool-air setting lock for extended hold.",
-    "price": 400,
-    "originalPrice": 550,
+    "price": 400.0,
+    "originalPrice": 550.0,
+    "priceCurrency": "INR",
     "discountPercentage": 27,
     "isTrending": false,
     "isPopular": true,
     "isBestSeller": false,
-    "deal": "150+ bookings this month",
     "duration": 75,
     "durationText": "1 hour 15 minutes",
     "rating": 4.8,
@@ -1079,11 +1658,26 @@
     "precautions": "Hair must be 100% dry. Thick hair requires extra time.",
     "aftercare": "Refresh with water/conditioner mix. Use diffuser when restyling.",
     "faqs": [
-      {"question": "How long do mermaid waves last on fine hair?", "answer": "Guaranteed 48hr hold with our setting method for fine hair"},
-      {"question": "Is there extra charge for extra thick or hip-length hair?", "answer": "Yes - +20% for hip-length/thick hair requiring extra time"},
-      {"question": "Can I get this style for wedding functions?", "answer": "Perfect for weddings - lasts through long ceremonies and events"},
-      {"question": "How do I maintain curls overnight?", "answer": "We provide instructions for overnight curl preservation"},
-      {"question": "Can curls be combined with hair accessories?", "answer": "Yes, we can incorporate accessories into the style"}
+      {
+        "question": "How long do mermaid waves last on fine hair?",
+        "answer": "Guaranteed 48hr hold with our setting method for fine hair"
+      },
+      {
+        "question": "Is there extra charge for extra thick or hip-length hair?",
+        "answer": "Yes - +20% for hip-length/thick hair requiring extra time"
+      },
+      {
+        "question": "Can I get this style for wedding functions?",
+        "answer": "Perfect for weddings - lasts through long ceremonies and events"
+      },
+      {
+        "question": "How do I maintain curls overnight?",
+        "answer": "We provide instructions for overnight curl preservation"
+      },
+      {
+        "question": "Can curls be combined with hair accessories?",
+        "answer": "Yes, we can incorporate accessories into the style"
+      }
     ],
     "seoKeywords": [
       "mermaid waves patna",
@@ -1091,8 +1685,8 @@
       "spiral curls",
       "patna hair styling",
       "wedding curls",
-      "mermaid waves Boring Road",
-      "long curls Bailey Road"
+      "mermaid waves Bhootnath road Metro",
+      "long curls Bazar Samiti"
     ],
     "targetAudience": ["Long hair clients", "Bridal parties", "Special events"],
     "idealFor": ["Weddings", "Photoshoots", "Parties", "Formal events"],
@@ -1109,12 +1703,33 @@
       {"name": "Premium Hold Spray", "price": 200},
       {"name": "Overnight Protection", "price": 150}
     ],
+    "serviceArea": {
+      "city": "Patna",
+      "region": "Bihar",
+      "country": "India",
+      "radiusKm": 20
+    },
+    "provider": {
+      "name": "Kritika Ladies Beauty Parlour",
+      "address": "BH Colony, Patna, Bihar 800026, India",
+      "phone": "+91-9650461390",
+      "googleMapsUrl": "https://www.google.com/maps/place/Kritika+Ladies+Beauty+Parlour/@25.5873981,85.1757259,17z"
+    },
+    "geo": {
+      "lat": 25.5873981,
+      "lng": 85.1757259
+    },
     "nearbyLandmarks": [
-      "Patna Women's College (0.5km)",
-      "A N College (0.3km)",
-      "Boring Road Chauraha (0.2km)",
-      "GV Mall (0.5km)"
+      "Bhootnath Metro Station (~200m)",
+      "Bhootnath Road",
+      "Kumhrar",
+      "Bahadurpur Housing Colony",
+      "Patna Bypass",
+      "Bairia Bus Stand",
+      "Zero Mile"
     ],
+    "url": "/hair-styling/curling-long-patna",
+    "reviewSource": "In-house reviews from Kritika Ladies Beauty Parlour Bookings",
     "seasonalTags": ["Wedding season", "Festival styles", "Year-round"],
     "processingTime": "Book 2-3 days in advance",
     "cancellationPolicy": "Free cancellation up to 24 hours before"
@@ -1125,16 +1740,18 @@
     "slug": "crimping-medium-patna",
     "category": "Hair Styling",
     "categorySlug": "hair-styling",
+    "primaryCategory": "hair",
+    "eventCategory": "styling",
     "image": "/images/hair/crimping.webp",
-    "description": "Get Y2K revival crimped style for medium hair in Patna at My Ladies Beauty Parlour. Features zigzag plates focusing on mid-lengths to ends with texture spray for grunge finish. 3-day hold guarantee for Patna's parties and events.",
+    "description": "Get Y2K revival crimped style for medium hair in Patna at Kritika Ladies Beauty Parlour. Features zigzag plates focusing on mid-lengths to ends with texture spray for grunge finish. 3-day hold guarantee for Patna's parties and events.",
     "shortDescription": "Y2K revival crimped style for medium hair in Patna with zigzag plates. Grunge finish with 3-day hold guarantee.",
-    "price": 360,
-    "originalPrice": 400,
+    "price": 360.0,
+    "originalPrice": 400.0,
+    "priceCurrency": "INR",
     "discountPercentage": 10,
     "isTrending": false,
     "isPopular": true,
     "isBestSeller": false,
-    "deal": "80+ bookings this month",
     "duration": 45,
     "durationText": "45 minutes",
     "rating": 4.6,
@@ -1149,11 +1766,26 @@
     "precautions": "Avoid on chemically treated hair. Requires minimum density.",
     "aftercare": "Remove with moisturizing shampoo. Deep condition after service.",
     "faqs": [
-      {"question": "Can I get partial crimping instead of full head?", "answer": "Yes - underlayer only $220 for subtle texture"},
-      {"question": "How damaging is crimping to hair health?", "answer": "Moderate damage - not recommended for frequent use, maximum 2x/month"},
-      {"question": "Is crimping suitable for thin hair?", "answer": "Not recommended for thin/fine hair - better for medium to thick hair"},
-      {"question": "How do I remove crimped style?", "answer": "Requires clarifying shampoo - we provide sample for easy removal"},
-      {"question": "Can crimping be done on extensions?", "answer": "Yes, works on extensions for added volume and texture"}
+      {
+        "question": "Can I get partial crimping instead of full head?",
+        "answer": "Yes - underlayer only $220 for subtle texture"
+      },
+      {
+        "question": "How damaging is crimping to hair health?",
+        "answer": "Moderate damage - not recommended for frequent use, maximum 2x/month"
+      },
+      {
+        "question": "Is crimping suitable for thin hair?",
+        "answer": "Not recommended for thin/fine hair - better for medium to thick hair"
+      },
+      {
+        "question": "How do I remove crimped style?",
+        "answer": "Requires clarifying shampoo - we provide sample for easy removal"
+      },
+      {
+        "question": "Can crimping be done on extensions?",
+        "answer": "Yes, works on extensions for added volume and texture"
+      }
     ],
     "seoKeywords": [
       "crimping hair patna",
@@ -1161,8 +1793,8 @@
       "textured hair",
       "patna party hair",
       "grunge style",
-      "crimping Boring Road",
-      "texture styling Bailey Road"
+      "crimping Bhootnath road Metro",
+      "texture styling Bazar Samiti"
     ],
     "targetAudience": ["Party-goers", "Festival attendees", "Trend followers"],
     "idealFor": ["Parties", "Concerts", "Festivals", "Themed events"],
@@ -1179,12 +1811,33 @@
       {"name": "Glitter Application", "price": 200},
       {"name": "Theme Accessories", "price": 150}
     ],
+    "serviceArea": {
+      "city": "Patna",
+      "region": "Bihar",
+      "country": "India",
+      "radiusKm": 20
+    },
+    "provider": {
+      "name": "Kritika Ladies Beauty Parlour",
+      "address": "BH Colony, Patna, Bihar 800026, India",
+      "phone": "+91-9650461390",
+      "googleMapsUrl": "https://www.google.com/maps/place/Kritika+Ladies+Beauty+Parlour/@25.5873981,85.1757259,17z"
+    },
+    "geo": {
+      "lat": 25.5873981,
+      "lng": 85.1757259
+    },
     "nearbyLandmarks": [
-      "Patna Women's College (0.5km)",
-      "A N College (0.3km)",
-      "Boring Road Chauraha (0.2km)",
-      "GV Mall (0.5km)"
+      "Bhootnath Metro Station (~200m)",
+      "Bhootnath Road",
+      "Kumhrar",
+      "Bahadurpur Housing Colony",
+      "Patna Bypass",
+      "Bairia Bus Stand",
+      "Zero Mile"
     ],
+    "url": "/hair-styling/crimping-medium-patna",
+    "reviewSource": "In-house reviews from Kritika Ladies Beauty Parlour Bookings",
     "seasonalTags": ["Festival season", "Party looks", "Themed events"],
     "processingTime": "Same day booking available",
     "cancellationPolicy": "Free cancellation up to 6 hours before"
@@ -1195,16 +1848,18 @@
     "slug": "crimping-long-patna",
     "category": "Hair Styling",
     "categorySlug": "hair-styling",
+    "primaryCategory": "hair",
+    "eventCategory": "styling",
     "image": "/images/hair/crimping.webp",
-    "description": "Get festival-ready crimped texture for long hair in Patna at My Ladies Beauty Parlour. Features adjustable plate width with heat-cool-heat technique for memory hold. Includes root-lift for dramatic effect perfect for Patna's festivals and events.",
+    "description": "Get festival-ready crimped texture for long hair in Patna at Kritika Ladies Beauty Parlour. Features adjustable plate width with heat-cool-heat technique for memory hold. Includes root-lift for dramatic effect perfect for Patna's festivals and events.",
     "shortDescription": "Festival-ready crimped texture for long hair in Patna with adjustable plates. Heat-cool-heat technique for memory hold.",
-    "price": 600,
-    "originalPrice": 700,
+    "price": 600.0,
+    "originalPrice": 700.0,
+    "priceCurrency": "INR",
     "discountPercentage": 14,
     "isTrending": false,
     "isPopular": true,
-    "isBestSeller": false,
-    "deal": "60+ bookings this month",
+    "isBestSeller": true,
     "duration": 60,
     "durationText": "1 hour",
     "rating": 4.7,
@@ -1219,11 +1874,26 @@
     "precautions": "Maximum 2x/month frequency. Requires bond repair after service.",
     "aftercare": "Detangle from ends up. Use reconstructing mask after removal.",
     "faqs": [
-      {"question": "Can crimping be combined with curls for hybrid style?", "answer": "Yes - $100 extra for hybrid crimp-curl style popular in Patna"},
-      {"question": "How difficult is crimp removal after event?", "answer": "Requires clarifying shampoo - we provide sample for easy removal"},
-      {"question": "Is crimping suitable for colored hair?", "answer": "Yes, but wait 2 weeks after coloring for hair health"},
-      {"question": "How long does festival crimp last?", "answer": "2-3 days with proper care and minimal brushing"},
-      {"question": "Can I get this for wedding sangeet functions?", "answer": "Perfect for sangeet and mehendi functions - dramatic and festive"}
+      {
+        "question": "Can crimping be combined with curls for hybrid style?",
+        "answer": "Yes - $100 extra for hybrid crimp-curl style popular in Patna"
+      },
+      {
+        "question": "How difficult is crimp removal after event?",
+        "answer": "Requires clarifying shampoo - we provide sample for easy removal"
+      },
+      {
+        "question": "Is crimping suitable for colored hair?",
+        "answer": "Yes, but wait 2 weeks after coloring for hair health"
+      },
+      {
+        "question": "How long does festival crimp last?",
+        "answer": "2-3 days with proper care and minimal brushing"
+      },
+      {
+        "question": "Can I get this for wedding sangeet functions?",
+        "answer": "Perfect for sangeet and mehendi functions - dramatic and festive"
+      }
     ],
     "seoKeywords": [
       "long hair crimping patna",
@@ -1231,8 +1901,8 @@
       "textured styles",
       "patna event hair",
       "volume crimping",
-      "festival hair Boring Road",
-      "crimping style Bailey Road"
+      "festival hair Bhootnath road Metro",
+      "crimping style Bazar Samiti"
     ],
     "targetAudience": ["Festival-goers", "Concert attendees", "Themed party lovers"],
     "idealFor": ["Festivals", "Concerts", "Themed parties", "College events"],
@@ -1249,12 +1919,33 @@
       {"name": "Glitter Roots", "price": 300},
       {"name": "Theme Braiding", "price": 400}
     ],
+    "serviceArea": {
+      "city": "Patna",
+      "region": "Bihar",
+      "country": "India",
+      "radiusKm": 20
+    },
+    "provider": {
+      "name": "Kritika Ladies Beauty Parlour",
+      "address": "BH Colony, Patna, Bihar 800026, India",
+      "phone": "+91-9650461390",
+      "googleMapsUrl": "https://www.google.com/maps/place/Kritika+Ladies+Beauty+Parlour/@25.5873981,85.1757259,17z"
+    },
+    "geo": {
+      "lat": 25.5873981,
+      "lng": 85.1757259
+    },
     "nearbyLandmarks": [
-      "Patna Women's College (0.5km)",
-      "A N College (0.3km)",
-      "Boring Road Chauraha (0.2km)",
-      "GV Mall (0.5km)"
+      "Bhootnath Metro Station (~200m)",
+      "Bhootnath Road",
+      "Kumhrar",
+      "Bahadurpur Housing Colony",
+      "Patna Bypass",
+      "Bairia Bus Stand",
+      "Zero Mile"
     ],
+    "url": "/hair-styling/crimping-long-patna",
+    "reviewSource": "In-house reviews from Kritika Ladies Beauty Parlour Bookings",
     "seasonalTags": ["Festival season", "Concert looks", "Themed events"],
     "processingTime": "Book 2-3 days in advance",
     "cancellationPolicy": "Free cancellation up to 24 hours before"
@@ -1265,16 +1956,18 @@
     "slug": "root-touchup-hair-color-patna",
     "category": "Hair Color",
     "categorySlug": "hair-color",
+    "primaryCategory": "hair",
+    "eventCategory": "coloring",
     "image": "/images/hair/root_touchup.webp",
-    "description": "Get precision root touch-up service in Patna at My Ladies Beauty Parlour. Features 100% gray blending with smudge-proof formula and ammonia-free options. Includes scalp barrier application for comfortable service. Perfect for Patna's busy professionals.",
+    "description": "Get precision root touch-up service in Patna at Kritika Ladies Beauty Parlour. Features 100% gray blending with smudge-proof formula and ammonia-free options. Includes scalp barrier application for comfortable service. Perfect for Patna's busy professionals.",
     "shortDescription": "Precision root touch-up in Patna with 100% gray coverage. Smudge-proof formula with scalp barrier for comfort.",
-    "price": 300,
-    "originalPrice": 420,
+    "price": 300.0,
+    "originalPrice": 420.0,
+    "priceCurrency": "INR",
     "discountPercentage": 29,
     "isTrending": true,
     "isPopular": true,
-    "isBestSeller": true,
-    "deal": "340+ bookings this month",
+    "isBestSeller": false,
     "duration": 60,
     "durationText": "1 hour",
     "rating": 4.8,
@@ -1289,11 +1982,26 @@
     "precautions": "Patch test 48hrs prior required. No washing 72hrs pre-service.",
     "aftercare": "Use color-safe shampoo. Avoid chlorine for 1 week.",
     "faqs": [
-      {"question": "How often should I get root touch-up in Patna?", "answer": "Every 4-8 weeks depending on growth rate and Patna's climate"},
-      {"question": "Can you cover red tones in my hair?", "answer": "Specialized formula available at +$50 for red tone coverage"},
-      {"question": "Is root touch-up damaging to hair?", "answer": "Minimal damage with our ammonia-free options and scalp protection"},
-      {"question": "Can I get partial vs full root coverage?", "answer": "Yes, we offer both options based on your needs and budget"},
-      {"question": "How long does root touch-up service take?", "answer": "Typically 45-60 minutes depending on hair thickness"}
+      {
+        "question": "How often should I get root touch-up in Patna?",
+        "answer": "Every 4-8 weeks depending on growth rate and Patna's climate"
+      },
+      {
+        "question": "Can you cover red tones in my hair?",
+        "answer": "Specialized formula available at +$50 for red tone coverage"
+      },
+      {
+        "question": "Is root touch-up damaging to hair?",
+        "answer": "Minimal damage with our ammonia-free options and scalp protection"
+      },
+      {
+        "question": "Can I get partial vs full root coverage?",
+        "answer": "Yes, we offer both options based on your needs and budget"
+      },
+      {
+        "question": "How long does root touch-up service take?",
+        "answer": "Typically 45-60 minutes depending on hair thickness"
+      }
     ],
     "seoKeywords": [
       "root touchup patna",
@@ -1301,8 +2009,8 @@
       "hair color touchup",
       "patna hair color",
       "root coloring",
-      "root touchup Boring Road",
-      "hair color Bailey Road"
+      "root touchup Bhootnath road Metro",
+      "hair color Bazar Samiti"
     ],
     "targetAudience": ["Gray hair clients", "Busy professionals", "Color maintenance"],
     "idealFor": ["Quick color fixes", "Gray coverage", "Between appointments"],
@@ -1319,12 +2027,33 @@
       {"name": "Scalp Treatment", "price": 150},
       {"name": "Anti-Frizz Serum", "price": 100}
     ],
+    "serviceArea": {
+      "city": "Patna",
+      "region": "Bihar",
+      "country": "India",
+      "radiusKm": 20
+    },
+    "provider": {
+      "name": "Kritika Ladies Beauty Parlour",
+      "address": "BH Colony, Patna, Bihar 800026, India",
+      "phone": "+91-9650461390",
+      "googleMapsUrl": "https://www.google.com/maps/place/Kritika+Ladies+Beauty+Parlour/@25.5873981,85.1757259,17z"
+    },
+    "geo": {
+      "lat": 25.5873981,
+      "lng": 85.1757259
+    },
     "nearbyLandmarks": [
-      "Patna Women's College (0.5km)",
-      "A N College (0.3km)",
-      "Boring Road Chauraha (0.2km)",
-      "GV Mall (0.5km)"
+      "Bhootnath Metro Station (~200m)",
+      "Bhootnath Road",
+      "Kumhrar",
+      "Bahadurpur Housing Colony",
+      "Patna Bypass",
+      "Bairia Bus Stand",
+      "Zero Mile"
     ],
+    "url": "/hair-color/root-touchup-hair-color-patna",
+    "reviewSource": "In-house reviews from Kritika Ladies Beauty Parlour Bookings",
     "seasonalTags": ["Year-round", "Maintenance service", "Quick fixes"],
     "processingTime": "Same day booking available",
     "cancellationPolicy": "Free cancellation up to 6 hours before"
@@ -1335,16 +2064,18 @@
     "slug": "full-color-application-patna",
     "category": "Hair Color",
     "categorySlug": "hair-color",
+    "primaryCategory": "hair",
+    "eventCategory": "coloring",
     "image": "/images/hair/full_color.webp",
-    "description": "Get single-process full hair color application in Patna at My Ladies Beauty Parlour. Features root-to-end saturation with bowl-and-brush method for even coverage. Includes porosity equalizing treatment for consistent color results in Patna's water conditions.",
+    "description": "Get single-process full hair color application in Patna at Kritika Ladies Beauty Parlour. Features root-to-end saturation with bowl-and-brush method for even coverage. Includes porosity equalizing treatment for consistent color results in Patna's water conditions.",
     "shortDescription": "Single-process full hair color in Patna with root-to-end saturation. Porosity equalizing for consistent color results.",
-    "price": 800,
-    "originalPrice": 1100,
+    "price": 800.0,
+    "originalPrice": 1100.0,
+    "priceCurrency": "INR",
     "discountPercentage": 27,
     "isTrending": false,
     "isPopular": true,
-    "isBestSeller": false,
-    "deal": "120+ bookings this month",
+    "isBestSeller": true,
     "duration": 90,
     "durationText": "1.5 hours",
     "rating": 4.7,
@@ -1359,11 +2090,26 @@
     "precautions": "Requires strand test before service. Not for previously bleached hair.",
     "aftercare": "First wash at salon after 72hrs. Use UV-protectant spray.",
     "faqs": [
-      {"question": "Can I go from dark to light with this service?", "answer": "Requires separate lightening service for dark to light transformation"},
-      {"question": "Do you offer vegan color options?", "answer": "Yes - $50 upgrade for plant-based vegan color formulas"},
-      {"question": "How long does full color last in Patna's sun?", "answer": "6-8 weeks with proper care and UV protection in Patna"},
-      {"question": "Can I get highlights with full color?", "answer": "Yes, combined services available for dimensional color"},
-      {"question": "Is this suitable for sensitive scalp?", "answer": "Yes, we use gentle formulas and scalp protection"}
+      {
+        "question": "Can I go from dark to light with this service?",
+        "answer": "Requires separate lightening service for dark to light transformation"
+      },
+      {
+        "question": "Do you offer vegan color options?",
+        "answer": "Yes - $50 upgrade for plant-based vegan color formulas"
+      },
+      {
+        "question": "How long does full color last in Patna's sun?",
+        "answer": "6-8 weeks with proper care and UV protection in Patna"
+      },
+      {
+        "question": "Can I get highlights with full color?",
+        "answer": "Yes, combined services available for dimensional color"
+      },
+      {
+        "question": "Is this suitable for sensitive scalp?",
+        "answer": "Yes, we use gentle formulas and scalp protection"
+      }
     ],
     "seoKeywords": [
       "full hair color patna",
@@ -1371,8 +2117,8 @@
       "hair coloring",
       "patna hair salon",
       "permanent color",
-      "full color Boring Road",
-      "hair dye Bailey Road"
+      "full color Bhootnath road Metro",
+      "hair dye Bazar Samiti"
     ],
     "targetAudience": ["First-time color clients", "Complete color change", "Vibrant color lovers"],
     "idealFor": ["Color refresh", "Complete change", "Vibrant looks"],
@@ -1389,12 +2135,33 @@
       {"name": "Color Gloss", "price": 300},
       {"name": "UV Protection", "price": 200}
     ],
+    "serviceArea": {
+      "city": "Patna",
+      "region": "Bihar",
+      "country": "India",
+      "radiusKm": 20
+    },
+    "provider": {
+      "name": "Kritika Ladies Beauty Parlour",
+      "address": "BH Colony, Patna, Bihar 800026, India",
+      "phone": "+91-9650461390",
+      "googleMapsUrl": "https://www.google.com/maps/place/Kritika+Ladies+Beauty+Parlour/@25.5873981,85.1757259,17z"
+    },
+    "geo": {
+      "lat": 25.5873981,
+      "lng": 85.1757259
+    },
     "nearbyLandmarks": [
-      "Patna Women's College (0.5km)",
-      "A N College (0.3km)",
-      "Boring Road Chauraha (0.2km)",
-      "GV Mall (0.5km)"
+      "Bhootnath Metro Station (~200m)",
+      "Bhootnath Road",
+      "Kumhrar",
+      "Bahadurpur Housing Colony",
+      "Patna Bypass",
+      "Bairia Bus Stand",
+      "Zero Mile"
     ],
+    "url": "/hair-color/full-color-application-patna",
+    "reviewSource": "In-house reviews from Kritika Ladies Beauty Parlour Bookings",
     "seasonalTags": ["Year-round", "Color change", "Maintenance"],
     "processingTime": "Book 2-3 days in advance",
     "cancellationPolicy": "Free cancellation up to 24 hours before"
@@ -1405,16 +2172,18 @@
     "slug": "global-coloring-patna",
     "category": "Hair Color",
     "categorySlug": "hair-color",
+    "primaryCategory": "hair",
+    "eventCategory": "coloring",
     "image": "/images/hair/global_color.webp",
-    "description": "Get complete color overhaul with global coloring in Patna at My Ladies Beauty Parlour. Includes pre-pigmentation for dark hair and strand mapping for even absorption. Features dual-process correction if needed for perfect color results in Patna.",
+    "description": "Get complete color overhaul with global coloring in Patna at Kritika Ladies Beauty Parlour. Includes pre-pigmentation for dark hair and strand mapping for even absorption. Features dual-process correction if needed for perfect color results in Patna.",
     "shortDescription": "Complete global coloring in Patna with pre-pigmentation and strand mapping. Dual-process correction for perfect color results.",
-    "price": 1500,
-    "originalPrice": 2200,
+    "price": 1500.0,
+    "originalPrice": 2200.0,
+    "priceCurrency": "INR",
     "discountPercentage": 32,
     "isTrending": false,
     "isPopular": true,
-    "isBestSeller": false,
-    "deal": "230+ bookings this month",
+    "isBestSeller": true,
     "duration": 120,
     "durationText": "2 hours",
     "rating": 4.8,
@@ -1429,11 +2198,26 @@
     "precautions": "Mandatory consultation 48hrs prior required. No box color history.",
     "aftercare": "First 3 washes with cold water. Avoid sulfates in products.",
     "faqs": [
-      {"question": "Does global coloring include haircut and styling?", "answer": "Cut included in service, styling available at +$200 extra"},
-      {"question": "Can I add color lock treatment for longevity?", "answer": "Add $150 for 8-week fade protection in Patna's climate"},
-      {"question": "How is global coloring different from full color?", "answer": "Includes color correction and pre-pigmentation for better results"},
-      {"question": "Can you fix previous salon color mistakes?", "answer": "Yes, specializes in color correction for previous unsatisfactory results"},
-      {"question": "How long does global coloring process take?", "answer": "2-3 hours depending on hair length and condition"}
+      {
+        "question": "Does global coloring include haircut and styling?",
+        "answer": "Cut included in service, styling available at +$200 extra"
+      },
+      {
+        "question": "Can I add color lock treatment for longevity?",
+        "answer": "Add $150 for 8-week fade protection in Patna's climate"
+      },
+      {
+        "question": "How is global coloring different from full color?",
+        "answer": "Includes color correction and pre-pigmentation for better results"
+      },
+      {
+        "question": "Can you fix previous salon color mistakes?",
+        "answer": "Yes, specializes in color correction for previous unsatisfactory results"
+      },
+      {
+        "question": "How long does global coloring process take?",
+        "answer": "2-3 hours depending on hair length and condition"
+      }
     ],
     "seoKeywords": [
       "global coloring patna",
@@ -1441,8 +2225,8 @@
       "hair color overhaul",
       "patna color specialist",
       "color transformation",
-      "global color Boring Road",
-      "color correction Bailey Road"
+      "global color Bhootnath road Metro",
+      "color correction Bazar Samiti"
     ],
     "targetAudience": ["Color correction needs", "Major color changes", "Dissatisfied clients"],
     "idealFor": ["Color fixes", "Major transformations", "Correcting mistakes"],
@@ -1459,12 +2243,33 @@
       {"name": "Professional Styling", "price": 200},
       {"name": "Deep Conditioning", "price": 300}
     ],
+    "serviceArea": {
+      "city": "Patna",
+      "region": "Bihar",
+      "country": "India",
+      "radiusKm": 20
+    },
+    "provider": {
+      "name": "Kritika Ladies Beauty Parlour",
+      "address": "BH Colony, Patna, Bihar 800026, India",
+      "phone": "+91-9650461390",
+      "googleMapsUrl": "https://www.google.com/maps/place/Kritika+Ladies+Beauty+Parlour/@25.5873981,85.1757259,17z"
+    },
+    "geo": {
+      "lat": 25.5873981,
+      "lng": 85.1757259
+    },
     "nearbyLandmarks": [
-      "Patna Women's College (0.5km)",
-      "A N College (0.3km)",
-      "Boring Road Chauraha (0.2km)",
-      "GV Mall (0.5km)"
+      "Bhootnath Metro Station (~200m)",
+      "Bhootnath Road",
+      "Kumhrar",
+      "Bahadurpur Housing Colony",
+      "Patna Bypass",
+      "Bairia Bus Stand",
+      "Zero Mile"
     ],
+    "url": "/hair-color/global-coloring-patna",
+    "reviewSource": "In-house reviews from Kritika Ladies Beauty Parlour Bookings",
     "seasonalTags": ["Year-round", "Transformations", "Corrections"],
     "processingTime": "Book 1 week in advance",
     "cancellationPolicy": "50% refund if cancelled 72 hours prior"
@@ -1475,16 +2280,18 @@
     "slug": "anti-hairfall-treatment-patna",
     "category": "Hair Treatment",
     "categorySlug": "hair-treatment",
+    "primaryCategory": "hair",
+    "eventCategory": "hair-treatment",
     "image": "/images/hair/anti_hairfall.webp",
-    "description": "Get clinical-strength anti-hair fall treatment in Patna at My Ladies Beauty Parlour. Features LED light therapy with peptide serum and minoxidil alternative formula. Includes take-home growth booster for continuous care in Patna's climate.",
+    "description": "Get clinical-strength anti-hair fall treatment in Patna at Kritika Ladies Beauty Parlour. Features LED light therapy with peptide serum and minoxidil alternative formula. Includes take-home growth booster for continuous care in Patna's climate.",
     "shortDescription": "Clinical anti-hair fall treatment in Patna with LED therapy and peptide serum. Reduces fallout in 4 weeks with growth booster.",
-    "price": 500,
-    "originalPrice": 750,
+    "price": 500.0,
+    "originalPrice": 750.0,
+    "priceCurrency": "INR",
     "discountPercentage": 33,
     "isTrending": false,
     "isPopular": true,
-    "isBestSeller": false,
-    "deal": "110+ bookings this month",
+    "isBestSeller": true,
     "duration": 60,
     "durationText": "1 hour",
     "rating": 4.6,
@@ -1499,11 +2306,26 @@
     "precautions": "Not for pregnant/nursing women. Patch test required before treatment.",
     "aftercare": "Apply serum nightly. Avoid stress triggers for best results.",
     "faqs": [
-      {"question": "When will I see visible results from anti-hair fall treatment?", "answer": "8-12 weeks for noticeable density improvement in Patna's conditions"},
-      {"question": "Is this treatment compatible with hair extensions?", "answer": "Safe if applied correctly around extension bonds and attachments"},
-      {"question": "How many sessions are recommended for best results?", "answer": "6-8 sessions biweekly for optimal hair fall reduction"},
-      {"question": "Can men also benefit from this treatment?", "answer": "Yes, effective for both men and women experiencing hair fall"},
-      {"question": "Is this treatment painful or uncomfortable?", "answer": "Completely pain-free with relaxing LED therapy and massage"}
+      {
+        "question": "When will I see visible results from anti-hair fall treatment?",
+        "answer": "8-12 weeks for noticeable density improvement in Patna's conditions"
+      },
+      {
+        "question": "Is this treatment compatible with hair extensions?",
+        "answer": "Safe if applied correctly around extension bonds and attachments"
+      },
+      {
+        "question": "How many sessions are recommended for best results?",
+        "answer": "6-8 sessions biweekly for optimal hair fall reduction"
+      },
+      {
+        "question": "Can men also benefit from this treatment?",
+        "answer": "Yes, effective for both men and women experiencing hair fall"
+      },
+      {
+        "question": "Is this treatment painful or uncomfortable?",
+        "answer": "Completely pain-free with relaxing LED therapy and massage"
+      }
     ],
     "seoKeywords": [
       "anti hair fall patna",
@@ -1511,8 +2333,8 @@
       "hair fall control",
       "patna hair care",
       "hair growth treatment",
-      "hair fall treatment Boring Road",
-      "hair loss solution Bailey Road"
+      "hair fall treatment Bhootnath road Metro",
+      "hair loss solution Bazar Samiti"
     ],
     "targetAudience": ["Hair loss sufferers", "Thinning hair", "Stress-related fall"],
     "idealFor": ["Seasonal shedding", "Post-pregnancy fall", "Stress management"],
@@ -1529,12 +2351,33 @@
       {"name": "Hair Growth Supplements", "price": 300},
       {"name": "Home Care Kit", "price": 400}
     ],
+    "serviceArea": {
+      "city": "Patna",
+      "region": "Bihar",
+      "country": "India",
+      "radiusKm": 20
+    },
+    "provider": {
+      "name": "Kritika Ladies Beauty Parlour",
+      "address": "BH Colony, Patna, Bihar 800026, India",
+      "phone": "+91-9650461390",
+      "googleMapsUrl": "https://www.google.com/maps/place/Kritika+Ladies+Beauty+Parlour/@25.5873981,85.1757259,17z"
+    },
+    "geo": {
+      "lat": 25.5873981,
+      "lng": 85.1757259
+    },
     "nearbyLandmarks": [
-      "Patna Women's College (0.5km)",
-      "A N College (0.3km)",
-      "Boring Road Chauraha (0.2km)",
-      "GV Mall (0.5km)"
+      "Bhootnath Metro Station (~200m)",
+      "Bhootnath Road",
+      "Kumhrar",
+      "Bahadurpur Housing Colony",
+      "Patna Bypass",
+      "Bairia Bus Stand",
+      "Zero Mile"
     ],
+    "url": "/hair-treatment/anti-hairfall-treatment-patna",
+    "reviewSource": "In-house reviews from Kritika Ladies Beauty Parlour Bookings",
     "seasonalTags": ["Seasonal shedding", "Year-round", "Hair health"],
     "processingTime": "Same day booking available",
     "cancellationPolicy": "Free cancellation up to 6 hours before"
@@ -1545,16 +2388,18 @@
     "slug": "anti-dandruff-treatment-patna",
     "category": "Hair Treatment",
     "categorySlug": "hair-treatment",
+    "primaryCategory": "hair",
+    "eventCategory": "hair-treatment",
     "image": "/images/hair/anti_dandruff.webp",
-    "description": "Get medicated anti-dandruff treatment in Patna at My Ladies Beauty Parlour. Features 1% ketoconazole with tea tree and exfoliating scalp brush. Includes cooling mask and fungal barrier cream for complete dandruff control in Patna's climate.",
+    "description": "Get medicated anti-dandruff treatment in Patna at Kritika Ladies Beauty Parlour. Features 1% ketoconazole with tea tree and exfoliating scalp brush. Includes cooling mask and fungal barrier cream for complete dandruff control in Patna's climate.",
     "shortDescription": "Medicated anti-dandruff treatment in Patna with ketoconazole and tea tree. Controls flaking in 3 uses with cooling mask.",
-    "price": 500,
-    "originalPrice": 700,
+    "price": 500.0,
+    "originalPrice": 700.0,
+    "priceCurrency": "INR",
     "discountPercentage": 29,
     "isTrending": false,
     "isPopular": true,
     "isBestSeller": false,
-    "deal": "90+ bookings this month",
     "duration": 60,
     "durationText": "1 hour",
     "rating": 4.7,
@@ -1569,11 +2414,26 @@
     "precautions": "Disclose medical conditions. Avoid other actives 72hrs post-treatment.",
     "aftercare": "Use provided shampoo 3x/week. Avoid heavy conditioners on scalp.",
     "faqs": [
-      {"question": "Is anti-dandruff treatment safe for colored hair?", "answer": "Yes - sulfate-free formula safe for color-treated hair in Patna"},
-      {"question": "How often should I get maintenance sessions?", "answer": "Monthly sessions recommended for ongoing dandruff control"},
-      {"question": "Can this treat severe dandruff cases?", "answer": "Yes, effective for mild to severe dandruff conditions"},
-      {"question": "Is this treatment suitable for sensitive scalp?", "answer": "Yes, includes cooling mask for sensitive scalp comfort"},
-      {"question": "How long does relief last after treatment?", "answer": "2-3 weeks relief with proper aftercare in Patna's climate"}
+      {
+        "question": "Is anti-dandruff treatment safe for colored hair?",
+        "answer": "Yes - sulfate-free formula safe for color-treated hair in Patna"
+      },
+      {
+        "question": "How often should I get maintenance sessions?",
+        "answer": "Monthly sessions recommended for ongoing dandruff control"
+      },
+      {
+        "question": "Can this treat severe dandruff cases?",
+        "answer": "Yes, effective for mild to severe dandruff conditions"
+      },
+      {
+        "question": "Is this treatment suitable for sensitive scalp?",
+        "answer": "Yes, includes cooling mask for sensitive scalp comfort"
+      },
+      {
+        "question": "How long does relief last after treatment?",
+        "answer": "2-3 weeks relief with proper aftercare in Patna's climate"
+      }
     ],
     "seoKeywords": [
       "anti dandruff patna",
@@ -1581,8 +2441,8 @@
       "scalp treatment",
       "patna scalp care",
       "flaky scalp",
-      "dandruff treatment Boring Road",
-      "scalp care Bailey Road"
+      "dandruff treatment Bhootnath road Metro",
+      "scalp care Bazar Samiti"
     ],
     "targetAudience": ["Dandruff sufferers", "Itchy scalp", "Flaky scalp"],
     "idealFor": ["Seasonal dandruff", "Dry scalp", "Fungal issues"],
@@ -1599,12 +2459,33 @@
       {"name": "Home Care Kit", "price": 300},
       {"name": "Follow-up Session", "price": 400}
     ],
+    "serviceArea": {
+      "city": "Patna",
+      "region": "Bihar",
+      "country": "India",
+      "radiusKm": 20
+    },
+    "provider": {
+      "name": "Kritika Ladies Beauty Parlour",
+      "address": "BH Colony, Patna, Bihar 800026, India",
+      "phone": "+91-9650461390",
+      "googleMapsUrl": "https://www.google.com/maps/place/Kritika+Ladies+Beauty+Parlour/@25.5873981,85.1757259,17z"
+    },
+    "geo": {
+      "lat": 25.5873981,
+      "lng": 85.1757259
+    },
     "nearbyLandmarks": [
-      "Patna Women's College (0.5km)",
-      "A N College (0.3km)",
-      "Boring Road Chauraha (0.2km)",
-      "GV Mall (0.5km)"
+      "Bhootnath Metro Station (~200m)",
+      "Bhootnath Road",
+      "Kumhrar",
+      "Bahadurpur Housing Colony",
+      "Patna Bypass",
+      "Bairia Bus Stand",
+      "Zero Mile"
     ],
+    "url": "/hair-treatment/anti-dandruff-treatment-patna",
+    "reviewSource": "In-house reviews from Kritika Ladies Beauty Parlour Bookings",
     "seasonalTags": ["Winter dryness", "Monsoon fungal", "Year-round"],
     "processingTime": "Same day booking available",
     "cancellationPolicy": "Free cancellation up to 6 hours before"
@@ -1615,16 +2496,18 @@
     "slug": "anti-breakage-treatment-patna",
     "category": "Hair Treatment",
     "categorySlug": "hair-treatment",
+    "primaryCategory": "hair",
+    "eventCategory": "hair-treatment",
     "image": "/images/hair/anti_breakage.webp",
-    "description": "Get bond-rebuilding anti-breakage treatment in Patna at My Ladies Beauty Parlour. Features liquid keratin cocktail with alternating hot/cold therapy for cuticle tightening. Includes elasticity test pre/post treatment for measurable results in Patna.",
+    "description": "Get bond-rebuilding anti-breakage treatment in Patna at Kritika Ladies Beauty Parlour. Features liquid keratin cocktail with alternating hot/cold therapy for cuticle tightening. Includes elasticity test pre/post treatment for measurable results in Patna.",
     "shortDescription": "Bond-rebuilding anti-breakage treatment in Patna with liquid keratin. Hot/cold therapy improves tensile strength and elasticity.",
-    "price": 700,
-    "originalPrice": 1100,
+    "price": 700.0,
+    "originalPrice": 1100.0,
+    "priceCurrency": "INR",
     "discountPercentage": 36,
     "isTrending": false,
     "isPopular": true,
     "isBestSeller": false,
-    "deal": "70+ bookings this month",
     "duration": 75,
     "durationText": "1 hour 15 minutes",
     "rating": 4.8,
@@ -1639,11 +2522,26 @@
     "precautions": "Overprocessed hair needs multiple sessions. No bleach 2 weeks post.",
     "aftercare": "Use leave-in conditioner daily. Sleep in protective style.",
     "faqs": [
-      {"question": "Is anti-breakage treatment compatible with relaxers?", "answer": "Yes - apply 1 week before chemical service for protection"},
-      {"question": "How many sessions are recommended for best results?", "answer": "Biweekly for 3 sessions, then monthly for maintenance"},
-      {"question": "Can this repair severely damaged hair?", "answer": "Yes, effective for moderate to severe damage from styling and chemicals"},
-      {"question": "How soon will I see reduced breakage?", "answer": "Noticeable reduction after first session, significant after 3 sessions"},
-      {"question": "Is this suitable for colored/bleached hair?", "answer": "Perfect for color-treated hair to maintain integrity"}
+      {
+        "question": "Is anti-breakage treatment compatible with relaxers?",
+        "answer": "Yes - apply 1 week before chemical service for protection"
+      },
+      {
+        "question": "How many sessions are recommended for best results?",
+        "answer": "Biweekly for 3 sessions, then monthly for maintenance"
+      },
+      {
+        "question": "Can this repair severely damaged hair?",
+        "answer": "Yes, effective for moderate to severe damage from styling and chemicals"
+      },
+      {
+        "question": "How soon will I see reduced breakage?",
+        "answer": "Noticeable reduction after first session, significant after 3 sessions"
+      },
+      {
+        "question": "Is this suitable for colored/bleached hair?",
+        "answer": "Perfect for color-treated hair to maintain integrity"
+      }
     ],
     "seoKeywords": [
       "anti breakage patna",
@@ -1651,8 +2549,8 @@
       "bond rebuilding",
       "patna hair repair",
       "split ends treatment",
-      "breakage treatment Boring Road",
-      "hair repair Bailey Road"
+      "breakage treatment Bhootnath road Metro",
+      "hair repair Bazar Samiti"
     ],
     "targetAudience": ["Damaged hair", "Split ends", "Chemical damage"],
     "idealFor": ["Post-chemical repair", "Heat damage", "Weak hair"],
@@ -1669,12 +2567,33 @@
       {"name": "Protein Treatment", "price": 300},
       {"name": "Home Care Kit", "price": 400}
     ],
+    "serviceArea": {
+      "city": "Patna",
+      "region": "Bihar",
+      "country": "India",
+      "radiusKm": 20
+    },
+    "provider": {
+      "name": "Kritika Ladies Beauty Parlour",
+      "address": "BH Colony, Patna, Bihar 800026, India",
+      "phone": "+91-9650461390",
+      "googleMapsUrl": "https://www.google.com/maps/place/Kritika+Ladies+Beauty+Parlour/@25.5873981,85.1757259,17z"
+    },
+    "geo": {
+      "lat": 25.5873981,
+      "lng": 85.1757259
+    },
     "nearbyLandmarks": [
-      "Patna Women's College (0.5km)",
-      "A N College (0.3km)",
-      "Boring Road Chauraha (0.2km)",
-      "GV Mall (0.5km)"
+      "Bhootnath Metro Station (~200m)",
+      "Bhootnath Road",
+      "Kumhrar",
+      "Bahadurpur Housing Colony",
+      "Patna Bypass",
+      "Bairia Bus Stand",
+      "Zero Mile"
     ],
+    "url": "/hair-treatment/anti-breakage-treatment-patna",
+    "reviewSource": "In-house reviews from Kritika Ladies Beauty Parlour Bookings",
     "seasonalTags": ["Year-round", "Damage repair", "Hair health"],
     "processingTime": "Same day booking available",
     "cancellationPolicy": "Free cancellation up to 6 hours before"
@@ -1685,16 +2604,18 @@
     "slug": "scalp-cleansing-treatment-patna",
     "category": "Hair Treatment",
     "categorySlug": "hair-treatment",
+    "primaryCategory": "hair",
+    "eventCategory": "hair-treatment",
     "image": "/images/hair/scalp_cleansing.webp",
-    "description": "Get deep detox scalp cleansing treatment in Patna at My Ladies Beauty Parlour. Features ultrasonic scrubber to remove silicone/mineral buildup. Includes charcoal-kaolin mask and lymphatic drainage massage for purified scalp in Patna's polluted environment.",
+    "description": "Get deep detox scalp cleansing treatment in Patna at Kritika Ladies Beauty Parlour. Features ultrasonic scrubber to remove silicone/mineral buildup. Includes charcoal-kaolin mask and lymphatic drainage massage for purified scalp in Patna's polluted environment.",
     "shortDescription": "Deep detox scalp cleansing in Patna with ultrasonic scrubber. Removes buildup with charcoal mask and lymphatic massage.",
-    "price": 250,
-    "originalPrice": 350,
+    "price": 250.0,
+    "originalPrice": 350.0,
+    "priceCurrency": "INR",
     "discountPercentage": 29,
     "isTrending": false,
     "isPopular": true,
     "isBestSeller": false,
-    "deal": "130+ bookings this month",
     "duration": 45,
     "durationText": "45 minutes",
     "rating": 4.7,
@@ -1709,11 +2630,26 @@
     "precautions": "Avoid if sunburned. Not within 48hrs of color service.",
     "aftercare": "Use gentle shampoo next wash. Limit dry shampoo use.",
     "faqs": [
-      {"question": "How often should I get scalp cleansing in Patna?", "answer": "Every 4-6 weeks for oily scalp, 8 weeks for normal scalp"},
-      {"question": "Can I add hair growth serum with this treatment?", "answer": "+$100 for hair growth serum application after cleansing"},
-      {"question": "Is this suitable for sensitive scalp?", "answer": "Yes, gentle formula with adjustable intensity for sensitivity"},
-      {"question": "How does this help with Patna's pollution?", "answer": "Removes pollution particles and hard water mineral buildup"},
-      {"question": "Can I color my hair after scalp cleansing?", "answer": "Wait 48 hours before any chemical service post-treatment"}
+      {
+        "question": "How often should I get scalp cleansing in Patna?",
+        "answer": "Every 4-6 weeks for oily scalp, 8 weeks for normal scalp"
+      },
+      {
+        "question": "Can I add hair growth serum with this treatment?",
+        "answer": "+$100 for hair growth serum application after cleansing"
+      },
+      {
+        "question": "Is this suitable for sensitive scalp?",
+        "answer": "Yes, gentle formula with adjustable intensity for sensitivity"
+      },
+      {
+        "question": "How does this help with Patna's pollution?",
+        "answer": "Removes pollution particles and hard water mineral buildup"
+      },
+      {
+        "question": "Can I color my hair after scalp cleansing?",
+        "answer": "Wait 48 hours before any chemical service post-treatment"
+      }
     ],
     "seoKeywords": [
       "scalp cleansing patna",
@@ -1721,8 +2657,8 @@
       "scalp purification",
       "patna scalp treatment",
       "buildup removal",
-      "scalp cleansing Boring Road",
-      "detox treatment Bailey Road"
+      "scalp cleansing Bhootnath road Metro",
+      "detox treatment Bazar Samiti"
     ],
     "targetAudience": ["Oily scalp", "Product buildup", "City pollution exposure"],
     "idealFor": ["Buildup removal", "Pre-color preparation", "Scalp health"],
@@ -1739,12 +2675,33 @@
       {"name": "Scalp Massage Extension", "price": 150},
       {"name": "Home Care Kit", "price": 200}
     ],
+    "serviceArea": {
+      "city": "Patna",
+      "region": "Bihar",
+      "country": "India",
+      "radiusKm": 20
+    },
+    "provider": {
+      "name": "Kritika Ladies Beauty Parlour",
+      "address": "BH Colony, Patna, Bihar 800026, India",
+      "phone": "+91-9650461390",
+      "googleMapsUrl": "https://www.google.com/maps/place/Kritika+Ladies+Beauty+Parlour/@25.5873981,85.1757259,17z"
+    },
+    "geo": {
+      "lat": 25.5873981,
+      "lng": 85.1757259
+    },
     "nearbyLandmarks": [
-      "Patna Women's College (0.5km)",
-      "A N College (0.3km)",
-      "Boring Road Chauraha (0.2km)",
-      "GV Mall (0.5km)"
+      "Bhootnath Metro Station (~200m)",
+      "Bhootnath Road",
+      "Kumhrar",
+      "Bahadurpur Housing Colony",
+      "Patna Bypass",
+      "Bairia Bus Stand",
+      "Zero Mile"
     ],
+    "url": "/hair-treatment/scalp-cleansing-treatment-patna",
+    "reviewSource": "In-house reviews from Kritika Ladies Beauty Parlour Bookings",
     "seasonalTags": ["Pollution protection", "Year-round", "Scalp health"],
     "processingTime": "Same day booking available",
     "cancellationPolicy": "Free cancellation up to 6 hours before"
@@ -1755,16 +2712,18 @@
     "slug": "deep-scalp-therapy-patna",
     "category": "Hair Treatment",
     "categorySlug": "hair-treatment",
+    "primaryCategory": "hair",
+    "eventCategory": "spa",
     "image": "/images/hair/inner_spa.webp",
-    "description": "Experience holistic Ayurvedic deep scalp therapy in Patna at My Ladies Beauty Parlour. Combines Shirodhara with chakra-balancing techniques. Features warm medicated oil cascade synchronized with pressure-point massage and vibrational sound therapy for deep relaxation in Patna's stressful environment.",
+    "description": "Experience holistic Ayurvedic deep scalp therapy in Patna at Kritika Ladies Beauty Parlour. Combines Shirodhara with chakra-balancing techniques. Features warm medicated oil cascade synchronized with pressure-point massage and vibrational sound therapy for deep relaxation in Patna's stressful environment.",
     "shortDescription": "Ayurvedic deep scalp therapy in Patna with Shirodhara and chakra-balancing. Reduces cortisol by 40% with sound therapy.",
-    "price": 250,
-    "originalPrice": 450,
+    "price": 250.0,
+    "originalPrice": 450.0,
+    "priceCurrency": "INR",
     "discountPercentage": 44,
     "isTrending": false,
     "isPopular": true,
     "isBestSeller": false,
-    "deal": "210+ bookings this month",
     "duration": 60,
     "durationText": "1 hour",
     "rating": 4.9,
@@ -1779,11 +2738,26 @@
     "precautions": "Avoid caffeine 4hrs prior. Not recommended during migraines.",
     "aftercare": "Rest 30mins post-treatment. Avoid washing hair 48hrs.",
     "faqs": [
-      {"question": "How often should I get deep scalp therapy?", "answer": "Monthly for maintenance, weekly for therapeutic stress relief results"},
-      {"question": "Is this suitable for color-treated hair in Patna?", "answer": "Yes - uses pH-neutral herbal formulation safe for colored hair"},
-      {"question": "Can this help with stress-related hair fall?", "answer": "Excellent for stress-induced hair fall common in Patna lifestyle"},
-      {"question": "Is this therapy suitable for all ages?", "answer": "Yes, beneficial for adults of all ages experiencing stress"},
-      {"question": "How long do relaxation effects last?", "answer": "Deep relaxation effects last several days post-treatment"}
+      {
+        "question": "How often should I get deep scalp therapy?",
+        "answer": "Monthly for maintenance, weekly for therapeutic stress relief results"
+      },
+      {
+        "question": "Is this suitable for color-treated hair in Patna?",
+        "answer": "Yes - uses pH-neutral herbal formulation safe for colored hair"
+      },
+      {
+        "question": "Can this help with stress-related hair fall?",
+        "answer": "Excellent for stress-induced hair fall common in Patna lifestyle"
+      },
+      {
+        "question": "Is this therapy suitable for all ages?",
+        "answer": "Yes, beneficial for adults of all ages experiencing stress"
+      },
+      {
+        "question": "How long do relaxation effects last?",
+        "answer": "Deep relaxation effects last several days post-treatment"
+      }
     ],
     "seoKeywords": [
       "deep scalp therapy patna",
@@ -1791,8 +2765,8 @@
       "shirodhara patna",
       "stress relief therapy",
       "patna relaxation",
-      "scalp therapy Boring Road",
-      "ayurvedic Bailey Road"
+      "scalp therapy Bhootnath road Metro",
+      "ayurvedic Bazar Samiti"
     ],
     "targetAudience": ["Stress sufferers", "Holistic health seekers", "Relaxation lovers"],
     "idealFor": ["Stress management", "Holistic wellness", "Relaxation"],
@@ -1809,12 +2783,33 @@
       {"name": "Aromatherapy Upgrade", "price": 150},
       {"name": "Home Oil Kit", "price": 300}
     ],
+    "serviceArea": {
+      "city": "Patna",
+      "region": "Bihar",
+      "country": "India",
+      "radiusKm": 20
+    },
+    "provider": {
+      "name": "Kritika Ladies Beauty Parlour",
+      "address": "BH Colony, Patna, Bihar 800026, India",
+      "phone": "+91-9650461390",
+      "googleMapsUrl": "https://www.google.com/maps/place/Kritika+Ladies+Beauty+Parlour/@25.5873981,85.1757259,17z"
+    },
+    "geo": {
+      "lat": 25.5873981,
+      "lng": 85.1757259
+    },
     "nearbyLandmarks": [
-      "Patna Women's College (0.5km)",
-      "A N College (0.3km)",
-      "Boring Road Chauraha (0.2km)",
-      "GV Mall (0.5km)"
+      "Bhootnath Metro Station (~200m)",
+      "Bhootnath Road",
+      "Kumhrar",
+      "Bahadurpur Housing Colony",
+      "Patna Bypass",
+      "Bairia Bus Stand",
+      "Zero Mile"
     ],
+    "url": "/hair-treatment/deep-scalp-therapy-patna",
+    "reviewSource": "In-house reviews from Kritika Ladies Beauty Parlour Bookings",
     "seasonalTags": ["Stress relief", "Year-round", "Holistic wellness"],
     "processingTime": "Same day booking available",
     "cancellationPolicy": "Free cancellation up to 6 hours before"
@@ -1825,16 +2820,18 @@
     "slug": "hair-wash-conditioning-medium-patna",
     "category": "Hair Treatment",
     "categorySlug": "hair-treatment",
+    "primaryCategory": "hair",
+    "eventCategory": "hair-treatment",
     "image": "/images/hair/therapeutic_wash.webp",
-    "description": "Get medical-grade therapeutic hair wash for medium hair in Patna at My Ladies Beauty Parlour. Features double-cleanse technique with lymphatic drainage massage and customized conditioner cocktail based on hair analysis. Includes cold-shot rinse for cuticle sealing in Patna's water conditions.",
+    "description": "Get medical-grade therapeutic hair wash for medium hair in Patna at Kritika Ladies Beauty Parlour. Features double-cleanse technique with lymphatic drainage massage and customized conditioner cocktail based on hair analysis. Includes cold-shot rinse for cuticle sealing in Patna's water conditions.",
     "shortDescription": "Therapeutic hair wash for medium hair in Patna with double-cleanse technique. Customized conditioner with cold-shot rinse.",
-    "price": 150,
-    "originalPrice": 300,
+    "price": 150.0,
+    "originalPrice": 300.0,
+    "priceCurrency": "INR",
     "discountPercentage": 50,
     "isTrending": false,
     "isPopular": true,
     "isBestSeller": false,
-    "deal": "180+ bookings this month",
     "duration": 45,
     "durationText": "45 minutes",
     "rating": 4.6,
@@ -1849,11 +2846,26 @@
     "precautions": "Notify about skin sensitivities. Avoid if scalp abrasions present.",
     "aftercare": "Use sulfate-free products. Limit heat styling next 24hrs.",
     "faqs": [
-      {"question": "Does therapeutic wash include blow-dry styling?", "answer": "Towel-dry only - add blowout service for +₹150 extra"},
-      {"question": "Is this wash safe for keratin-treated hair?", "answer": "Yes - uses protein-safe cleansers that won't strip keratin"},
-      {"question": "How often should I get professional hair wash?", "answer": "Weekly for optimal scalp health in Patna's conditions"},
-      {"question": "Can this help with itchy scalp?", "answer": "Yes, includes soothing ingredients for itchy scalp relief"},
-      {"question": "Is massage included in wash service?", "answer": "Yes, includes lymphatic drainage scalp massage"}
+      {
+        "question": "Does therapeutic wash include blow-dry styling?",
+        "answer": "Towel-dry only - add blowout service for +₹150 extra"
+      },
+      {
+        "question": "Is this wash safe for keratin-treated hair?",
+        "answer": "Yes - uses protein-safe cleansers that won't strip keratin"
+      },
+      {
+        "question": "How often should I get professional hair wash?",
+        "answer": "Weekly for optimal scalp health in Patna's conditions"
+      },
+      {
+        "question": "Can this help with itchy scalp?",
+        "answer": "Yes, includes soothing ingredients for itchy scalp relief"
+      },
+      {
+        "question": "Is massage included in wash service?",
+        "answer": "Yes, includes lymphatic drainage scalp massage"
+      }
     ],
     "seoKeywords": [
       "hair wash patna",
@@ -1861,8 +2873,8 @@
       "scalp massage",
       "patna hair care",
       "professional wash",
-      "hair wash Boring Road",
-      "scalp massage Bailey Road"
+      "hair wash Bhootnath road Metro",
+      "scalp massage Bazar Samiti"
     ],
     "targetAudience": ["All hair types", "Scalp health seekers", "Busy professionals"],
     "idealFor": ["Regular maintenance", "Scalp health", "Relaxation"],
@@ -1879,12 +2891,33 @@
       {"name": "Scalp Treatment", "price": 200},
       {"name": "Deep Conditioning", "price": 300}
     ],
+    "serviceArea": {
+      "city": "Patna",
+      "region": "Bihar",
+      "country": "India",
+      "radiusKm": 20
+    },
+    "provider": {
+      "name": "Kritika Ladies Beauty Parlour",
+      "address": "BH Colony, Patna, Bihar 800026, India",
+      "phone": "+91-9650461390",
+      "googleMapsUrl": "https://www.google.com/maps/place/Kritika+Ladies+Beauty+Parlour/@25.5873981,85.1757259,17z"
+    },
+    "geo": {
+      "lat": 25.5873981,
+      "lng": 85.1757259
+    },
     "nearbyLandmarks": [
-      "Patna Women's College (0.5km)",
-      "A N College (0.3km)",
-      "Boring Road Chauraha (0.2km)",
-      "GV Mall (0.5km)"
+      "Bhootnath Metro Station (~200m)",
+      "Bhootnath Road",
+      "Kumhrar",
+      "Bahadurpur Housing Colony",
+      "Patna Bypass",
+      "Bairia Bus Stand",
+      "Zero Mile"
     ],
+    "url": "/hair-treatment/hair-wash-conditioning-medium-patna",
+    "reviewSource": "In-house reviews from Kritika Ladies Beauty Parlour Bookings",
     "seasonalTags": ["Year-round", "Maintenance", "Scalp health"],
     "processingTime": "Same day booking available",
     "cancellationPolicy": "Free cancellation up to 3 hours before"
@@ -1895,16 +2928,18 @@
     "slug": "hair-wash-conditioning-long-patna",
     "category": "Hair Treatment",
     "categorySlug": "hair-treatment",
+    "primaryCategory": "hair",
+    "eventCategory": "hair-treatment",
     "image": "/images/hair/therapeutic_wash.webp",
-    "description": "Experience luxury hair wash ritual for long hair in Patna at My Ladies Beauty Parlour. Features extended 25-minute massage with weighted blanket relaxation and customized hair-mask application with steam penetration. Includes Japanese tsuge comb detangling for gentle care.",
+    "description": "Experience luxury hair wash ritual for long hair in Patna at Kritika Ladies Beauty Parlour. Features extended 25-minute massage with weighted blanket relaxation and customized hair-mask application with steam penetration. Includes Japanese tsuge comb detangling for gentle care.",
     "shortDescription": "Luxury hair wash ritual for long hair in Patna with 25-minute massage. Customized hair mask with Japanese comb detangling.",
-    "price": 200,
-    "originalPrice": 350,
+    "price": 200.0,
+    "originalPrice": 350.0,
+    "priceCurrency": "INR",
     "discountPercentage": 43,
     "isTrending": false,
     "isPopular": true,
     "isBestSeller": false,
-    "deal": "240+ bookings this month",
     "duration": 60,
     "durationText": "1 hour",
     "rating": 4.8,
@@ -1919,11 +2954,26 @@
     "precautions": "Tangles must be pre-detangled. Not for recent scalp procedures.",
     "aftercare": "Use wide-tooth comb when wet. Apply leave-in conditioner daily.",
     "faqs": [
-      {"question": "Is luxury hair wash extensions-friendly?", "answer": "Special bond-safe technique available at +₹100 extra for extensions"},
-      {"question": "Can I upgrade to premium hair mask?", "answer": "Yes - diamond-infused mask available at +₹300 upgrade"},
-      {"question": "How often should long hair get professional wash?", "answer": "Weekly for optimal health and detangling of long hair"},
-      {"question": "Is steam treatment included in this service?", "answer": "Yes, includes steam penetration for deep mask conditioning"},
-      {"question": "Can I request specific massage techniques?", "answer": "Yes, we customize massage based on your preference and needs"}
+      {
+        "question": "Is luxury hair wash extensions-friendly?",
+        "answer": "Special bond-safe technique available at +₹100 extra for extensions"
+      },
+      {
+        "question": "Can I upgrade to premium hair mask?",
+        "answer": "Yes - diamond-infused mask available at +₹300 upgrade"
+      },
+      {
+        "question": "How often should long hair get professional wash?",
+        "answer": "Weekly for optimal health and detangling of long hair"
+      },
+      {
+        "question": "Is steam treatment included in this service?",
+        "answer": "Yes, includes steam penetration for deep mask conditioning"
+      },
+      {
+        "question": "Can I request specific massage techniques?",
+        "answer": "Yes, we customize massage based on your preference and needs"
+      }
     ],
     "seoKeywords": [
       "long hair wash patna",
@@ -1931,8 +2981,8 @@
       "hair massage",
       "patna hair treatment",
       "detangling service",
-      "hair wash Boring Road",
-      "luxury treatment Bailey Road"
+      "hair wash Bhootnath road Metro",
+      "luxury treatment Bazar Samiti"
     ],
     "targetAudience": ["Long hair clients", "Luxury seekers", "Detangling needs"],
     "idealFor": ["Long hair care", "Luxury relaxation", "Detangling help"],
@@ -1949,12 +2999,33 @@
       {"name": "Premium Mask Upgrade", "price": 300},
       {"name": "Blow Dry Styling", "price": 200}
     ],
+    "serviceArea": {
+      "city": "Patna",
+      "region": "Bihar",
+      "country": "India",
+      "radiusKm": 20
+    },
+    "provider": {
+      "name": "Kritika Ladies Beauty Parlour",
+      "address": "BH Colony, Patna, Bihar 800026, India",
+      "phone": "+91-9650461390",
+      "googleMapsUrl": "https://www.google.com/maps/place/Kritika+Ladies+Beauty+Parlour/@25.5873981,85.1757259,17z"
+    },
+    "geo": {
+      "lat": 25.5873981,
+      "lng": 85.1757259
+    },
     "nearbyLandmarks": [
-      "Patna Women's College (0.5km)",
-      "A N College (0.3km)",
-      "Boring Road Chauraha (0.2km)",
-      "GV Mall (0.5km)"
+      "Bhootnath Metro Station (~200m)",
+      "Bhootnath Road",
+      "Kumhrar",
+      "Bahadurpur Housing Colony",
+      "Patna Bypass",
+      "Bairia Bus Stand",
+      "Zero Mile"
     ],
+    "url": "/hair-treatment/hair-wash-conditioning-long-patna",
+    "reviewSource": "In-house reviews from Kritika Ladies Beauty Parlour Bookings",
     "seasonalTags": ["Year-round", "Luxury care", "Long hair maintenance"],
     "processingTime": "Same day booking available",
     "cancellationPolicy": "Free cancellation up to 3 hours before"

@@ -4,7 +4,8 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { createClientSupabase } from '@/lib/supabase/client';
+// import { createClientSupabase } from '@/lib/supabase/client';
+import { supabase } from '@/lib/supabase/client';
 import { Image as ImageIcon, Trash2, Search } from 'lucide-react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
@@ -20,7 +21,7 @@ export default function MediaLibrary({ onSelect }: { onSelect?: (url: string) =>
 
   const loadImages = async () => {
     try {
-      const supabase = createClientSupabase();
+      // const supabase = createClientSupabase();
       
       const { data, error } = await supabase.storage
         .from('blog-images')
@@ -51,7 +52,7 @@ export default function MediaLibrary({ onSelect }: { onSelect?: (url: string) =>
     if (!confirm('Delete this image?')) return;
 
     try {
-      const supabase = createClientSupabase();
+      // const supabase = createClientSupabase();
       const urlObj = new URL(url);
       const pathMatch = urlObj.pathname.match(/\/storage\/v1\/object\/public\/[^/]+\/(.+)/);
       

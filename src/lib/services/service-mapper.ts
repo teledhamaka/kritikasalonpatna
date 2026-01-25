@@ -79,7 +79,7 @@ export function getServiceBySlug(slug: string): Service | null {
 export function getServicesByCategory(category: string): Service[] {
   const allServices = getAllServices();
   return allServices.filter(s => 
-    s.category.toLowerCase() === category.toLowerCase()
+    s.category && s.category.toLowerCase() === category.toLowerCase()
   );
 }
 
@@ -87,7 +87,7 @@ export function getServicesByCategory(category: string): Service[] {
  * Get related services for "You may also like" section
  */
 export function getRelatedServices(service: Service, limit: number = 4): Service[] {
-  const categoryServices = getServicesByCategory(service.category);
+  const categoryServices = getServicesByCategory(service.category || '');
   return categoryServices
     .filter(s => s.id !== service.id)
     .slice(0, limit);

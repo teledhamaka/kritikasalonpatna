@@ -1,33 +1,34 @@
-// app/nail/page.tsx - COMPREHENSIVE SEO OPTIMIZED VERSION
+// kritika/src/app/nail/page.tsx - UPDATED TO MATCH HOME PAGE PATTERNS
 import { Metadata } from 'next';
 import ClientNailPage from './ClientNailPage';
 import { Service } from '../../types/service';
 import nailServices from '../../../public/nail_services.json';
 import seoData from '../../../public/seo.json';
 
-// Dynamic SEO keywords generation
+// FIXED: Generate limited keywords (top 60)
 const generateNailKeywords = () => {
   const seoKeywords = seoData.seo.serviceSpecificKeywords.nailServices || [];
   const locationKeywords = seoData.seo.locationBasedKeywords.ultraLocal || [];
   const serviceKeywords = nailServices.flatMap((service: any) => service.seoKeywords || []);
   
-  return [...new Set([...seoKeywords, ...locationKeywords, ...serviceKeywords])];
+  // FIXED: Limit to top 60 keywords
+  return [...new Set([...seoKeywords, ...locationKeywords, ...serviceKeywords])].slice(0, 60);
 };
 
 const NAIL_KEYWORDS = generateNailKeywords();
 
-// Generate rich description using actual services
+// FIXED: Generate description using city field
 const generateDescription = () => {
   const serviceCount = nailServices.length;
   const categories = [...new Set(nailServices.map((s: any) => s.category))];
   const minPrice = Math.min(...nailServices.map((s: any) => s.price));
   const maxPrice = Math.max(...nailServices.map((s: any) => s.price));
-  const totalBookings = nailServices.reduce((sum, s) => sum + (s.bookingCount || 0), 0);
   
-  return `⭐${seoData.business.rating} Rated Professional Nail Services in ${seoData.business.address.locality}, Patna. ${serviceCount}+ Services including ${categories.slice(0, 3).join(', ')}. Prices from ₹${minPrice} to ₹${maxPrice}. ${totalBookings.toLocaleString()}+ Nail Appointments. Book: ${seoData.business.contact.phone}`;
+  return `⭐${seoData.business.rating} Rated Professional Nail Services in ${seoData.business.address.city}. ${serviceCount}+ Services including ${categories.slice(0, 3).join(', ')}. Prices from ₹${minPrice} to ₹${maxPrice}. ${seoData.business.totalReviews}+ Happy Clients. Book: ${seoData.business.contact.phone}`;
 };
 
-const PAGE_TITLE = `Best Nail Art & Manicure Pedicure in ${seoData.business.address.locality} Patna | Gel Nails, Bridal Nails | ${seoData.business.name}`;
+// FIXED: Using city instead of locality
+const PAGE_TITLE = `Best Nail Art & Manicure Pedicure in ${seoData.business.address.city} | Gel Nails, Bridal Nails | ${seoData.business.name}`;
 
 export const metadata: Metadata = {
   title: PAGE_TITLE,
@@ -35,14 +36,14 @@ export const metadata: Metadata = {
   keywords: NAIL_KEYWORDS.join(', '),
 
   openGraph: {
-    title: `Expert Nail Services ${seoData.business.address.locality} Patna | ${seoData.business.name}`,
+    title: `Expert Nail Services ${seoData.business.address.city} | ${seoData.business.name}`,
     description: generateDescription(),
     images: [
       {
-        url: "/images/nails/bridal-nails-patna-kritika.jpg",
+        url: `${seoData.business.contact.website}/images/nails/bridal-nails-patna-kritika.jpg`,
         width: 1200,
         height: 630,
-        alt: `Best Nail Art & Manicure in Patna - ${seoData.business.name}`
+        alt: `Best Nail Art & Manicure in ${seoData.business.address.city} - ${seoData.business.name}`
       }
     ],
     type: "website",
@@ -53,10 +54,11 @@ export const metadata: Metadata = {
 
   twitter: {
     card: "summary_large_image",
-    title: `Best Nail Art Studio Patna | ${seoData.business.name}`,
+    title: `Best Nail Art Studio ${seoData.business.address.city} | ${seoData.business.name}`,
     description: generateDescription(),
-    images: ["/images/nails/nail-art-twitter-card.jpg"],
-    creator: seoData.business.socialMedia.instagram
+    images: [`${seoData.business.contact.website}/images/nails/nail-art-twitter-card.jpg`],
+    // FIXED: Proper Twitter handle format
+    creator: `@${seoData.business.socialMedia.instagram.replace('@', '')}`
   },
 
   alternates: {
@@ -88,38 +90,48 @@ export const metadata: Metadata = {
     'service-category': 'Manicure, Pedicure, Nail Art, Gel Nails, Bridal Nails',
     'business-hours': seoData.business.workingHours.weekdays,
     'price-range': '₹-₹₹₹'
+  },
+
+  verification: {
+    google: 'Uj54YUbFFcOLdeffGXlZMH35yYC-N6HyO9Wdoxj_DXA',
   }
 };
 
-// Enhanced JSON-LD with all nail services
+// FIXED: Enhanced service offers - limited to top 20
 const generateServiceOffers = () => {
-  return nailServices.map((service: any) => ({
-    "@type": "Offer",
-    "itemOffered": {
-      "@type": "Service",
-      "name": service.title,
-      "description": service.shortDescription,
-      "image": `${seoData.business.contact.website}${service.image}`,
-      "provider": {
-        "@type": "BeautySalon",
-        "name": seoData.business.name
+  // FIXED: Sort by booking count and limit to top 20
+  return nailServices
+    .sort((a: any, b: any) => (b.bookingCount || 0) - (a.bookingCount || 0))
+    .slice(0, 20)
+    .map((service: any) => ({
+      "@type": "Offer",
+      "itemOffered": {
+        "@type": "Service",
+        "name": service.title,
+        "description": service.shortDescription || service.description,
+        "image": `${seoData.business.contact.website}${service.image}`,
+        "provider": {
+          "@type": "BeautySalon",
+          "name": seoData.business.name
+        },
+        // FIXED: Using primaryCategory if available
+        "category": service.primaryCategory || service.category,
+        "serviceType": service.eventCategory || service.primaryCategory || service.category,
+        // FIXED: Only add ratings if legitimate
+        "aggregateRating": service.rating && service.reviewCount && service.reviewCount >= 5 ? {
+          "@type": "AggregateRating",
+          "ratingValue": service.rating.toString(),
+          "reviewCount": service.reviewCount.toString()
+        } : undefined
       },
-      "serviceType": service.category,
-      "aggregateRating": service.rating ? {
-        "@type": "AggregateRating",
-        "ratingValue": service.rating.toString(),
-        "reviewCount": service.reviewCount?.toString() || "0",
-        "ratingCount": service.reviewCount?.toString() || "0"
-      } : undefined,
-      "duration": `PT${service.duration}M`
-    },
-    "price": service.price.toString(),
-    "priceCurrency": "INR",
-    "priceValidUntil": new Date(Date.now() + 90 * 24 * 60 * 60 * 1000).toISOString(),
-    "url": `${seoData.business.contact.website}/nail/${service.slug}`,
-    "availability": "https://schema.org/InStock",
-    "category": service.category
-  }));
+      "price": service.price.toString(),
+      "priceCurrency": "INR",
+      "availability": "https://schema.org/InStock",
+      // FIXED: Correct URL generation
+      "url": service.url 
+        ? `${seoData.business.contact.website}${service.url}`
+        : `${seoData.business.contact.website}/nail/${service.slug || service.id}`
+    }));
 };
 
 const nailStructuredData = {
@@ -129,15 +141,18 @@ const nailStructuredData = {
       "@type": "BeautySalon",
       "@id": `${seoData.business.contact.website}/#organization`,
       "name": seoData.business.name,
-      "description": `${seoData.business.description} - Professional nail salon offering manicure, pedicure, nail art, and bridal nail services.`,
+      "legalName": seoData.business.legalName,
+      "description": seoData.business.description,
       "url": seoData.business.contact.website,
       "logo": `${seoData.business.contact.website}/logo.png`,
+      "image": `${seoData.business.contact.website}/images/salon-exterior.jpg`,
       "telephone": seoData.business.contact.phone,
       "email": seoData.business.contact.email,
-      "priceRange": "₹-₹₹₹",
+      "priceRange": "₹₹-₹₹₹",
       "address": {
         "@type": "PostalAddress",
-        "streetAddress": `${seoData.business.address.street}, ${seoData.business.address.locality}`,
+        // FIXED: Using city instead of locality
+        "streetAddress": seoData.business.address.street,
         "addressLocality": seoData.business.address.city,
         "addressRegion": seoData.business.address.state,
         "postalCode": seoData.business.address.pincode,
@@ -170,28 +185,24 @@ const nailStructuredData = {
         "worstRating": "1"
       },
       "makesOffer": generateServiceOffers(),
-      "hasOfferCatalog": {
-        "@type": "OfferCatalog",
-        "name": "Nail Services",
-        "itemListElement": nailServices.map((service: any, index: number) => ({
-          "@type": "Offer",
-          "itemOffered": {
-            "@type": "Service",
-            "name": service.title
-          },
-          "position": index + 1
-        }))
-      },
+      // FIXED: Simplified to City
       "areaServed": {
-        "@type": "GeoCircle",
-        "geoMidpoint": {
-          "@type": "GeoCoordinates",
-          "latitude": seoData.business.coordinates.latitude,
-          "longitude": seoData.business.coordinates.longitude
-        },
-        "geoRadius": seoData.business.serviceRadius,
-        "description": `Serving nail services to ${Object.values(seoData.nearbyLandmarks).flat().map((l: any) => l.name).slice(0, 10).join(', ')} and surrounding areas`
-      }
+        "@type": "City",
+        "name": "Patna"
+      },
+      "sameAs": [
+        `https://instagram.com/${seoData.business.socialMedia.instagram}`,
+        `https://facebook.com/${seoData.business.socialMedia.facebook}`,
+        `https://youtube.com/${seoData.business.socialMedia.youtube}`,
+        seoData.localSEOOptimization.localCitations.justdial,
+        seoData.localSEOOptimization.localCitations.googleMaps
+      ],
+      "hasMap": seoData.localSEOOptimization.localCitations.googleMaps,
+      "paymentAccepted": "Cash, Credit Card, Debit Card, UPI, Net Banking",
+      "amenityFeature": seoData.localSEOOptimization.googleMyBusiness.attributes.map((attr: string) => ({
+        "@type": "LocationFeatureSpecification",
+        "name": attr
+      }))
     },
     {
       "@type": "WebPage",
@@ -232,51 +243,38 @@ const nailStructuredData = {
   ]
 };
 
-// Enhanced FAQ Schema for nail services
-const generateNailFAQSchema = () => {
-  const allFAQs = nailServices.flatMap((service: any) => 
-    (service.faqs || []).slice(0, 3).map((faq: any) => ({
+// FIXED: Generate concise FAQ
+const generateFAQSchema = () => {
+  // Get top 5 service FAQs
+  const serviceFAQs = nailServices
+    .flatMap((service: any) => service.faqs || [])
+    .slice(0, 5)
+    .map((faq: any) => ({
       "@type": "Question",
       "name": faq.question,
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": faq.answer
+        // FIXED: Escape quotes
+        "text": faq.answer.replace(/"/g, '\\"')
       }
-    }))
-  );
+    }));
 
-  // Add general nail FAQs
   const generalFAQs = [
     {
       "@type": "Question",
-      "name": "What is the difference between gel and acrylic nails?",
+      "name": `Where is ${seoData.business.name} located?`,
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": `Gel nails are more flexible and better for Patna's humid climate, while acrylic is more durable for rigorous activities. At ${seoData.business.name} in ${seoData.business.address.locality}, we help you choose based on your lifestyle and nail health.`
+        // FIXED: Using city field
+        "text": `We are located at ${seoData.business.address.street}, ${seoData.business.address.city} - ${seoData.business.address.pincode}.`
       }
     },
     {
       "@type": "Question",
-      "name": "How long do nail extensions last?",
+      "name": "What nail services do you offer?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "With proper care, our nail extensions last 3-4 weeks before needing fills. We recommend fills every 3 weeks for optimal maintenance and nail health."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": `Where is ${seoData.business.name} located for nail services?`,
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": `We are located at ${seoData.business.address.street}, ${seoData.business.address.locality}, Patna - ${seoData.business.address.pincode}. Easily accessible from ${seoData.nearbyLandmarks.transport.slice(0, 3).map((t: any) => t.name).join(', ')}.`
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "How far in advance should I book bridal nails?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "We recommend booking 2-3 days in advance for bridal nail trials and 1-2 days before the wedding for the actual appointment. This ensures optimal freshness and durability for your wedding ceremonies."
+        "text": `We offer ${nailServices.length}+ nail services including Manicure, Pedicure, Nail Art, Gel Nails, Acrylic Nails, Bridal Nails, and more. Prices range from ₹${Math.min(...nailServices.map((s: any) => s.price))} to ₹${Math.max(...nailServices.map((s: any) => s.price))}.`
       }
     }
   ];
@@ -284,44 +282,26 @@ const generateNailFAQSchema = () => {
   return {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    "mainEntity": [...allFAQs.slice(0, 6), ...generalFAQs]
+    "mainEntity": [...serviceFAQs, ...generalFAQs]
   };
 };
 
-export default function NailPage() {
-  const allServices = nailServices.map((service: any): Service => ({
-    id: service.id,
-    name: service.title,
-    title: service.title,
-    category: service.category,
-    imageUrl: service.image,
-    image: service.image,
-    description: service.description,
-    shortDescription: service.shortDescription,
-    price: service.price,
-    base_price: service.price,
-    originalPrice: service.originalPrice,
-    discountPercentage: service.discountPercentage,
-    isTrending: service.isTrending,
-    isPopular: service.isPopular,
-    isBestSeller: service.isBestSeller,
-    duration: service.duration,
-    duration_minutes: service.duration,
-    keyIngredients: service.keyIngredients,
-    benefits: service.benefits,
-    precautions: service.precautions,
-    aftercare: service.aftercare,
-    faqs: service.faqs,
-    rating: service.rating,
-    reviewCount: service.reviewCount,
-    bookingCount: service.bookingCount,
-    link: `/nail/${service.slug}`,
-    deal: `${service.discountPercentage}% OFF`
-  }));
+// Get all services from JSON
+const getAllServices = (): Service[] => {
+  return nailServices as Service[];
+};
 
-  const trendingServices = allServices
-    .filter(service => service.isTrending || service.isPopular || service.isBestSeller)
-    .sort((a, b) => (b.bookingCount || 0) - (a.bookingCount || 0));
+// Get trending services (bestsellers)
+const getTrendingServices = (allServices: Service[]): Service[] => {
+  return allServices
+    .filter(service => service.isBestSeller === true)
+    .sort((a, b) => (b.bookingCount || 0) - (a.bookingCount || 0))
+    .slice(0, 15); // Limit to top 15 trending services
+};
+
+export default function NailPage() {
+  const allServices = getAllServices();
+  const trendingServices = getTrendingServices(allServices);
 
   return (
     <>
@@ -337,56 +317,14 @@ export default function NailPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify(generateNailFAQSchema())
+          __html: JSON.stringify(generateFAQSchema())
         }}
       />
 
-      {/* Hidden SEO content for crawlers */}
+      {/* FIXED: Minimal SEO-friendly content */}
       <div className="sr-only" aria-hidden="true">
         <h1>{PAGE_TITLE}</h1>
         <p>{generateDescription()}</p>
-        
-        {/* Location-based content */}
-        <section>
-          <h2>Nail Services in {seoData.business.address.locality} and Nearby Areas</h2>
-          <ul>
-            {seoData.nearbyLandmarks.educational.map((landmark: any) => (
-              <li key={landmark.name}>
-                Nail art near {landmark.name} - {landmark.distance} away
-              </li>
-            ))}
-            {seoData.nearbyLandmarks.commercial.map((landmark: any) => (
-              <li key={landmark.name}>
-                Manicure pedicure near {landmark.name} - {landmark.distance} away
-              </li>
-            ))}
-            {seoData.nearbyLandmarks.residential.map((landmark: any) => (
-              <li key={landmark.name}>
-                Home nail services near {landmark.name} - {landmark.distance} away
-              </li>
-            ))}
-          </ul>
-        </section>
-
-        {/* Service details for crawlers */}
-        <section>
-          <h2>Our Professional Nail Services</h2>
-          {allServices.map(service => (
-            <article key={service.id} itemScope itemType="https://schema.org/Service">
-              <h3 itemProp="name">{service.title}</h3>
-              <p itemProp="description">{service.description}</p>
-              <div itemProp="offers" itemScope itemType="https://schema.org/Offer">
-                <meta itemProp="price" content={service.price.toString()} />
-                <meta itemProp="priceCurrency" content="INR" />
-              </div>
-              <p>Duration: {service.duration} minutes | Rating: {service.rating}/5 ({service.reviewCount} reviews)</p>
-              <p>Category: {service.category}</p>
-              {service.keyIngredients && service.keyIngredients.length > 0 && (
-                <p>Key Ingredients: {service.keyIngredients.join(', ')}</p>
-              )}
-            </article>
-          ))}
-        </section>
       </div>
 
       <ClientNailPage 

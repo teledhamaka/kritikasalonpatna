@@ -111,6 +111,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             <Image
               src={blogPost.cover_image || '/images/all-services.webp'}
               alt={blogPost.title}
+              fill
               className="w-full h-full object-cover"
             />
             <div className="absolute inset-0 bg-linear-to-t from-black/50 to-transparent" />
@@ -149,7 +150,9 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
               <div className="flex items-center gap-3">
                 <Image
                   src={blogPost.author?.avatar_url || '/images/all-services.webp'}
-                  alt={blogPost.author?.name}
+                  alt={blogPost.author?.name || 'Author profile picture'}
+                  width={32}
+                  height={32}  
                   className="w-12 h-12 rounded-full border-2 border-pink-200 object-cover"
                 />
                 <div>

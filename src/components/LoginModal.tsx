@@ -153,7 +153,7 @@ const LoginModal = ({ isOpen, onClose, onLoginSuccess, onSkipToHome }: LoginModa
             theme_style: 'pink',
           };
 
-          const result = await signUp(email, password, userData);
+          const result = await signUp(email);
 
           if (result.error) {
             setError(result.error);

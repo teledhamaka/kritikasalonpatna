@@ -34,7 +34,7 @@ export function generateServiceMetadata(service: Service): Metadata {
       url: `https://kritikasalonpatna.com/service/${generateServiceSlug(service)}`,
       images: [
         {
-          url: service.image,
+          url: service.image|| 'Service image',
           width: 800,
           height: 600,
           alt: service.title
@@ -45,7 +45,7 @@ export function generateServiceMetadata(service: Service): Metadata {
       card: 'summary_large_image',
       title,
       description,
-      images: [service.image]
+      images: [service.image|| 'Service image']
     },
     alternates: {
       canonical: `/service/${generateServiceSlug(service)}`

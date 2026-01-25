@@ -144,7 +144,7 @@ export default function ProfilePage() {
       //   setTimeout(() => setSuccess(''), 3000);
       // }
 
-      if (result.success) {
+      if (!result?.error) {
         setSuccess('Profile updated successfully!');
         setIsEditing(false);
         setTimeout(() => setSuccess(''), 3000);
@@ -159,13 +159,15 @@ export default function ProfilePage() {
   };
 
   const handleSignOut = async () => {
-    const result = await signOut();
-    if (result.success) {
-      router.push('/login');
-    } else {
-      setError(result.message);
-    }
-  };
+  try {
+    await signOut();
+    // Since signOut returns void, if we reach this line, it succeeded
+    router.push('/login');
+  } catch (err: any) {
+    // Handle the error if the sign-out process fails
+    setError(err.message || 'Failed to sign out');
+  }
+};
 
   const getStatusColor = (status: string) => {
     switch (status) {

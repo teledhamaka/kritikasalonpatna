@@ -1,4 +1,4 @@
-// src/app/layout.tsx - SEO OPTIMIZED VERSION
+// src/app/layout.tsx - COMPLETE FIXED VERSION
 import type { Metadata, Viewport } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
@@ -8,9 +8,6 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import WhatsAppFloating from '../components/WhatsAppFloating';
 import { Providers } from './providers';
-//import PWARegister from '../components/PWARegister';
-//import PWAInstallPrompt from '../components/PWAInstallPrompt';
-//import FloatingInstallButton from '../components/FloatingInstallButton';
 import { Analytics } from '@vercel/analytics/next';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 
@@ -88,11 +85,11 @@ export const metadata: Metadata = {
   },
   
   verification: {
-    google: 'your-google-verification-code',
-    yandex: 'your-yandex-verification-code',
-    other: {
-      'facebook-domain-verification': 'your-fb-verification-code'
-    }
+    google: 'Uj54YUbFFcOLdeffGXlZMH35yYC-N6HyO9Wdoxj_DXA',
+    // yandex: 'your-yandex-verification-code',
+    // other: {
+    //   'facebook-domain-verification': 'your-fb-verification-code'
+    // }
   },
   
   icons: {
@@ -149,7 +146,8 @@ export const viewport: Viewport = {
     { media: '(prefers-color-scheme: light)', color: '#ec4899' },
     { media: '(prefers-color-scheme: dark)', color: '#ec4899' }
   ],
-  colorScheme: 'light'
+  colorScheme: 'light',
+  viewportFit: 'cover'
 };
 
 // Generate organization schema from seo.json
@@ -226,7 +224,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="scroll-smooth">      
+    <html lang="en" className="scroll-smooth h-full">      
       <head>
         {/* Essential PWA Meta Tags */}
         <meta name="application-name" content={seoData.business.name} />
@@ -277,28 +275,65 @@ export default function RootLayout({
             __html: JSON.stringify(organizationSchema)
           }}
         />
+
+        {/* Preload critical CSS */}
+        <style dangerouslySetInnerHTML={{
+          __html: `
+            .safe-area-inset {
+              padding-left: env(safe-area-inset-left, 0px);
+              padding-right: env(safe-area-inset-right, 0px);
+              padding-bottom: env(safe-area-inset-bottom, 0px);
+              padding-top: env(safe-area-inset-top, 0px);
+            }
+            @media (max-width: 768px) {
+              html {
+                overflow-x: hidden;
+              }
+              body {
+                overflow-x: hidden;
+                width: 100%;
+                position: relative;
+              }
+            }
+          `
+        }} />
       </head>
-      <body className={`${inter.className} bg-gradient-to-br from-pink-50 via-white to-purple-50 min-h-screen`}>
+      <body className={`
+        ${inter.className} 
+        bg-gradient-to-br from-pink-50 via-white to-purple-50 
+        min-h-screen 
+        h-full
+        safe-area-inset
+        overflow-x-hidden
+        w-full
+        relative
+      `}>
         {/* Skip to main content */}
         <a 
           href="#main-content" 
-          className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-pink-600 text-white px-4 py-2 rounded-lg z-50"
+          className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-pink-600 text-white px-4 py-2 rounded-lg z-[100] touch-target"
         >
           Skip to main content
         </a>
         
         <Providers>
           <Navbar />
-          <main id="main-content" className="grow">
-            {children}
-          </main>
-          <Footer />
+          <div className="flex flex-col min-h-screen">
+            <main 
+              id="main-content" 
+              className="
+                grow 
+                w-full 
+                min-h-[calc(100vh-200px)] 
+                relative
+                overflow-x-hidden
+              "
+            >
+              {children}
+            </main>
+            <Footer />
+          </div>
         </Providers>
-
-        {/* PWA Components */}
-        {/* <PWARegister />
-        <PWAInstallPrompt />
-        <FloatingInstallButton /> */}
 
         {/* Analytics */}
         <Analytics />
@@ -306,7 +341,7 @@ export default function RootLayout({
 
         {/* Google Analytics */}
         <Script          
-          src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"
+          src="https://www.googletagmanager.com/gtag/js?id=G-MS55SP8K7E"
           strategy="afterInteractive"
         />
         <Script id="google-analytics" strategy="afterInteractive">
@@ -314,7 +349,7 @@ export default function RootLayout({
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-            gtag('config', 'G-XXXXXXXXXX');
+            gtag('config', 'G-MS55SP8K7E');
           `}
         </Script>
         

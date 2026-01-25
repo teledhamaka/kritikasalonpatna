@@ -77,7 +77,7 @@ const Navbar = () => {
   // Show loading state during initial auth check
   if (!isClient || authLoading) {
     return (
-      <nav className="bg-white shadow-md sticky top-0 z-50">
+      <nav className="bg-white shadow-md sticky top-0 z-50 w-full">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between h-16">
             <div className="flex items-center">
@@ -102,7 +102,7 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className="bg-white shadow-md sticky top-0 z-50">
+      <nav className="bg-white shadow-md sticky top-0 z-50 w-full">
         {/* Top announcement bar */}
         <div className="bg-gradient-to-r from-pink-100 to-purple-100 text-pink-800 py-2 text-center text-sm">
           <span className="inline-flex items-center">
@@ -363,7 +363,7 @@ const Navbar = () => {
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
-              className="md:hidden bg-white shadow-lg border-t border-pink-100"
+              className="md:hidden bg-white shadow-lg border-t border-pink-100 absolute top-full left-0 right-0 z-40"
             >
               <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
                 {navItems.map((item) => (

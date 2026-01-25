@@ -314,7 +314,7 @@ const ClientNailPage = ({ allServices, trendingServices }: ClientNailPageProps) 
                   <button
                     key={category}
                     onClick={() => {
-                      setSelectedCategory(category);
+                      setSelectedCategory(category || 'Nails');
                       if (serviceScrollRef.current) {
                         serviceScrollRef.current.scrollLeft = 0;
                       }
@@ -330,7 +330,7 @@ const ClientNailPage = ({ allServices, trendingServices }: ClientNailPageProps) 
                     }`}>
                       <div className="w-8 h-8 md:w-10 md:h-10 mx-auto mb-1 rounded-full overflow-hidden border border-white/20">
                         <Image 
-                          src={getCategoryImage(category)} 
+                          src={getCategoryImage(category|| 'Nails')} 
                           alt={`${category} nail services in ${seoData.business.address.locality}`}
                           width={40}
                           height={40}

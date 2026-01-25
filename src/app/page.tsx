@@ -1,4 +1,4 @@
-// kritika/src/app/page.tsx - COMPREHENSIVE SEO OPTIMIZED VERSION
+// kritika/src/app/page.tsx - PATCHED SEO OPTIMIZED VERSION
 import { Metadata } from 'next';
 import ClientHomePage from './ClientHomePage';
 import { Service } from '../types/service';
@@ -10,7 +10,7 @@ import nailServices from '../../public/nail_services.json';
 import skinServices from '../../public/skin_services.json';
 import seoData from '../../public/seo.json';
 
-// Generate comprehensive keywords from all services and SEO data
+// FIXED: Generate comprehensive keywords (limited to top 60)
 const generateHomeKeywords = () => {
   const allSeoKeywords = [
     ...seoData.seo.serviceSpecificKeywords.hairServices,
@@ -33,29 +33,31 @@ const generateHomeKeywords = () => {
     ...skinServices
   ].flatMap((service: any) => service.seoKeywords || []);
   
-  return [...new Set([...allSeoKeywords, ...serviceKeywords])];
+  // FIXED: Limit to top 60 keywords to avoid bloat
+  return [...new Set([...allSeoKeywords, ...serviceKeywords])].slice(0, 60);
 };
 
 const HOME_KEYWORDS = generateHomeKeywords();
 
-// Generate rich description using actual data
+// FIXED: Generate rich description using actual data and correct city field
 const generateDescription = () => {
   const totalServices = makeupServices.length + hairServices.length + nailServices.length + skinServices.length;
-  const categories = ['Makeup', 'Hair', 'Skin', 'Nail'];
+  const categories = ['Makeup', 'Hair', 'Skin', 'Nails'];
   
-  return `⭐${seoData.business.rating} Rated ${seoData.business.name} in ${seoData.business.address.locality}, Patna. ${totalServices}+ Premium Beauty Services including ${categories.join(', ')} treatments. Expert Bridal Makeup, Hair Spa, Facials & Nail Art. ${seoData.business.totalReviews}+ Happy Clients. Book: ${seoData.business.contact.phone}`;
+  return `⭐${seoData.business.rating} Rated ${seoData.business.name} in ${seoData.business.address.city}. ${totalServices}+ Premium Beauty Services including ${categories.join(', ')} treatments. Expert Bridal Makeup, Hair Spa, Facials & Nail Art. ${seoData.business.totalReviews}+ Happy Clients. Book: ${seoData.business.contact.phone}`;
 };
 
-const PAGE_TITLE = `Best Ladies Beauty Parlour in ${seoData.business.address.locality} Patna | ${seoData.business.name} | Premium Makeup, Hair, Skin & Nail Services`;
+// FIXED: Using city instead of locality
+const PAGE_TITLE = `Best Ladies Beauty Parlour in ${seoData.business.address.city} | ${seoData.business.name} | Premium Makeup, Hair, Skin & Nail Services`;
 
 export const metadata: Metadata = {
   title: PAGE_TITLE,
   description: generateDescription(),
   
-  keywords: HOME_KEYWORDS.join(', '),
+  keywords: HOME_KEYWORDS.join(', '), // Already limited to 60
 
   openGraph: {
-    title: `${seoData.business.name} - Premier Beauty Salon in ${seoData.business.address.locality}, Patna`,
+    title: `${seoData.business.name} - Premier Beauty Salon in ${seoData.business.address.city}`,
     description: generateDescription(),
     images: [
       {
@@ -76,7 +78,8 @@ export const metadata: Metadata = {
     title: `${seoData.business.name} - Premium Beauty Salon Patna`,
     description: generateDescription(),
     images: [`${seoData.business.contact.website}/images/twitter-card.jpg`],
-    creator: seoData.business.socialMedia.instagram
+    // FIXED: Proper Twitter handle format
+    creator: `@${seoData.business.socialMedia.instagram.replace('@', '')}`
   },
 
   alternates: {
@@ -111,11 +114,11 @@ export const metadata: Metadata = {
   },
 
   verification: {
-    google: 'your-google-verification-code',
+    google: 'Uj54YUbFFcOLdeffGXlZMH35yYC-N6HyO9Wdoxj_DXA',
   }
 };
 
-// Enhanced JSON-LD with comprehensive service catalog
+// FIXED: Enhanced service offers - limited to top 20, with correct fields
 const generateAllServiceOffers = () => {
   const allServices = [
     ...makeupServices,
@@ -124,31 +127,40 @@ const generateAllServiceOffers = () => {
     ...skinServices
   ];
   
-  return allServices.map((service: any) => ({
-    "@type": "Offer",
-    "itemOffered": {
-      "@type": "Service",
-      "name": service.title,
-      "description": service.shortDescription,
-      "image": `${seoData.business.contact.website}${service.image}`,
-      "provider": {
-        "@type": "BeautySalon",
-        "name": seoData.business.name
+  // FIXED: Limit to top 20 services by booking count
+  return allServices
+    .sort((a: any, b: any) => (b.bookingCount || 0) - (a.bookingCount || 0))
+    .slice(0, 20)
+    .map((service: any) => ({
+      "@type": "Offer",
+      "itemOffered": {
+        "@type": "Service",
+        "name": service.title,
+        "description": service.shortDescription || service.description,
+        "image": `${seoData.business.contact.website}${service.image}`,
+        "provider": {
+          "@type": "BeautySalon",
+          "name": seoData.business.name
+        },
+        // FIXED: Using primaryCategory
+        "category": service.primaryCategory,
+        "serviceType": service.eventCategory || service.primaryCategory,
+        // FIXED: Only add ratings if legitimate (5+ reviews)
+        "aggregateRating": service.rating && service.reviewCount && service.reviewCount >= 5 ? {
+          "@type": "AggregateRating",
+          "ratingValue": service.rating.toString(),
+          "reviewCount": service.reviewCount.toString()
+        } : undefined
       },
-      "category": service.category,
-      "serviceType": service.serviceType || "BeautyService",
-      "aggregateRating": service.rating ? {
-        "@type": "AggregateRating",
-        "ratingValue": service.rating.toString(),
-        "reviewCount": service.reviewCount?.toString() || "0"
-      } : undefined
-    },
-    "price": service.price.toString(),
-    "priceCurrency": "INR",
-    "availability": "https://schema.org/InStock",
-    "priceValidUntil": new Date(Date.now() + 90 * 24 * 60 * 60 * 1000).toISOString(),
-    "url": `${seoData.business.contact.website}/service/${service.slug}`
-  }));
+      "price": service.price.toString(),
+      "priceCurrency": "INR",
+      "availability": "https://schema.org/InStock",
+      // "priceValidUntil": new Date(Date.now() + 90 * 24 * 60 * 60 * 1000).toISOString(),
+      // FIXED: Correct URL generation using primaryCategory
+      "url": service.url 
+        ? `${seoData.business.contact.website}${service.url}`
+        : `${seoData.business.contact.website}/${service.primaryCategory}/${service.slug || service.id}`
+    }));
 };
 
 const homeStructuredData = {
@@ -168,7 +180,8 @@ const homeStructuredData = {
       "priceRange": "₹₹-₹₹₹",
       "address": {
         "@type": "PostalAddress",
-        "streetAddress": `${seoData.business.address.street}, ${seoData.business.address.locality}`,
+        // FIXED: Using city instead of locality
+        "streetAddress": seoData.business.address.street,
         "addressLocality": seoData.business.address.city,
         "addressRegion": seoData.business.address.state,
         "postalCode": seoData.business.address.pincode,
@@ -201,19 +214,10 @@ const homeStructuredData = {
         "worstRating": "1"
       },
       "makesOffer": generateAllServiceOffers(),
+      // FIXED: Simplified to City instead of GeoCircle
       "areaServed": {
-        "@type": "GeoCircle",
-        "geoMidpoint": {
-          "@type": "GeoCoordinates",
-          "latitude": seoData.business.coordinates.latitude,
-          "longitude": seoData.business.coordinates.longitude
-        },
-        "geoRadius": seoData.business.serviceRadius,
-        "description": `Serving ${[
-          ...seoData.nearbyLandmarks.educational.map((l: any) => l.name),
-          ...seoData.nearbyLandmarks.residential.map((l: any) => l.name),
-          ...seoData.nearbyLandmarks.commercial.map((l: any) => l.name)
-        ].slice(0, 15).join(', ')} and surrounding areas`
+        "@type": "City",
+        "name": "Patna"
       },
       "sameAs": [
         `https://instagram.com/${seoData.business.socialMedia.instagram}`,
@@ -262,7 +266,7 @@ const homeStructuredData = {
   ]
 };
 
-// Generate comprehensive FAQ from all services
+// FIXED: Generate comprehensive FAQ with escaped HTML
 const generateComprehensiveFAQ = () => {
   const allServices = [
     ...makeupServices,
@@ -279,7 +283,8 @@ const generateComprehensiveFAQ = () => {
       "name": faq.question,
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": faq.answer
+        // FIXED: Escape quotes in answers
+        "text": faq.answer.replace(/"/g, '\\"')
       }
     }));
 
@@ -289,7 +294,8 @@ const generateComprehensiveFAQ = () => {
       "name": `Where is ${seoData.business.name} located?`,
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": `We are located at ${seoData.business.address.street}, ${seoData.business.address.locality}, ${seoData.business.address.city} - ${seoData.business.address.pincode}. Easily accessible from ${seoData.nearbyLandmarks.transport.map((t: any) => t.name).join(', ')}.`
+        // FIXED: Using city field
+        "text": `We are located at ${seoData.business.address.street}, ${seoData.business.address.city} - ${seoData.business.address.pincode}. Easily accessible from ${seoData.nearbyLandmarks.transport.map((t: any) => t.name).join(', ')}.`
       }
     },
     {
@@ -338,11 +344,7 @@ const getAllServices = (): Service[] => {
 // Get trending services across all categories
 const getTrendingServices = (allServices: Service[]): Service[] => {
   return allServices
-    .filter(service => 
-      service.isTrending === true || 
-      service.isPopular === true || 
-      service.isBestSeller === true
-    )
+    .filter(service => service.isBestSeller === true)
     .sort((a, b) => (b.bookingCount || 0) - (a.bookingCount || 0))
     .slice(0, 20); // Limit to top 20 trending services
 };
@@ -369,55 +371,10 @@ export default function HomePage() {
         }}
       />
 
-      {/* SEO-friendly content for crawlers */}
+      {/* FIXED: Minimal SEO-friendly content (anti-spam) */}
       <div className="sr-only" aria-hidden="true">
         <h1>{PAGE_TITLE}</h1>
         <p>{generateDescription()}</p>
-        
-        {/* Service categories for crawlers */}
-        <nav aria-label="Service categories">
-          <ul>
-            <li><a href="/makeup">Bridal & Party Makeup Services - {makeupServices.length} options</a></li>
-            <li><a href="/hair">Hair Care & Styling Services - {hairServices.length} options</a></li>
-            <li><a href="/skin">Skin Treatment & Facial Services - {skinServices.length} options</a></li>
-            <li><a href="/nail">Nail Art & Manicure Services - {nailServices.length} options</a></li>
-          </ul>
-        </nav>
-
-        {/* Location coverage for crawlers */}
-        <section>
-          <h2>Areas We Serve in Patna</h2>
-          <ul>
-            {seoData.nearbyLandmarks.educational.map((landmark: any) => (
-              <li key={landmark.name}>
-                Beauty services near {landmark.name} - {landmark.distance}
-              </li>
-            ))}
-            {seoData.nearbyLandmarks.residential.map((landmark: any) => (
-              <li key={landmark.name}>
-                Ladies parlour near {landmark.name} - {landmark.distance}
-              </li>
-            ))}
-            {seoData.nearbyLandmarks.commercial.map((landmark: any) => (
-              <li key={landmark.name}>
-                Salon services near {landmark.name} - {landmark.distance}
-              </li>
-            ))}
-          </ul>
-        </section>
-
-        {/* Featured services for crawlers */}
-        <section>
-          <h2>Featured Services</h2>
-          {trendingServices.slice(0, 10).map(service => (
-            <article key={service.id}>
-              <h3>{service.title}</h3>
-              <p>{service.description}</p>
-              <p>Price: ₹{service.price} | Duration: {service.duration} minutes</p>
-              <p>Rating: {service.rating}/5 ({service.reviewCount} reviews)</p>
-            </article>
-          ))}
-        </section>
       </div>
 
       <ClientHomePage 

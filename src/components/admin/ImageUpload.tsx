@@ -6,7 +6,8 @@
 import { useState, useRef } from 'react';
 import { Upload, X, Image as ImageIcon, Loader } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { createClientSupabase } from '@/lib/supabase/client';
+// import { createClient } from '@/lib/supabase/client';
+import { supabase } from '@/lib/supabase/client';
 import Image from 'next/image';
 
 interface ImageUploadProps {
@@ -54,7 +55,7 @@ export default function ImageUpload({
     setError('');
 
     try {
-      const supabase = createClientSupabase();
+      // const supabase = createClient();
 
       // Generate unique filename
       const fileExt = file.name.split('.').pop();
@@ -120,7 +121,7 @@ export default function ImageUpload({
     if (!preview) return;
 
     try {
-      const supabase = createClientSupabase();
+      // const supabase = createClient();
       
       // Extract path from URL
       const url = new URL(preview);

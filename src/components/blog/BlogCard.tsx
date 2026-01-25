@@ -70,6 +70,8 @@ export default function BlogCard({ post }: BlogCardProps) {
         <Image
           src={safePost.coverImage}
           alt={safePost.title}
+          width={600}
+          height={400}
           className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
           onError={(e) => {
             e.currentTarget.src = '/images/all-services.webp';
@@ -97,9 +99,10 @@ export default function BlogCard({ post }: BlogCardProps) {
           <Image
             src={safePost.author.avatar}
             alt={safePost.author.name}
-            className="w-10 h-10 rounded-full border-2 border-pink-200 object-cover"
+            width={40}
+            height={40}
+            className="rounded-full border-2 border-pink-200 object-cover"
             onError={(e) => {
-              e.currentTarget.src = '/images/default-avatar.jpg';
             }}
           />
           <div className="flex-1 min-w-0">

@@ -347,7 +347,7 @@ const ClientHairPage = ({ allServices, trendingServices }: ClientHairPageProps) 
                   <button
                     key={category}
                     onClick={() => {
-                      setSelectedCategory(category);
+                      setSelectedCategory(category || 'Hair');
                       if (serviceScrollRef.current) {
                         serviceScrollRef.current.scrollLeft = 0;
                       }
@@ -363,7 +363,7 @@ const ClientHairPage = ({ allServices, trendingServices }: ClientHairPageProps) 
                     }`}>
                       <div className="w-8 h-8 md:w-10 md:h-10 mx-auto mb-1 rounded-full overflow-hidden border border-white/20">
                         <Image 
-                          src={getCategoryImage(category)} 
+                          src={getCategoryImage(category|| 'Hair')} 
                           alt={`${category} hair services in ${seoData.business.address.locality}`}
                           width={40}
                           height={40}

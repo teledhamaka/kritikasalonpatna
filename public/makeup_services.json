@@ -5,11 +5,14 @@
     "slug": "bridal-basic-makeup-patna",
     "category": "Bridal",
     "categorySlug": "bridal",
+    "primaryCategory": "makeup",
+    "eventCategory": "bridal",
     "image": "/images/makeup/bridal_makeup.webp",
-    "description": "Experience the best bridal basic makeup in Patna at My Ladies Beauty Parlour. Our traditional bridal look features long-lasting foundation that withstands Patna's climate, professional eye makeup, blendable blush, and perfect lip color. Includes light contouring for natural definition, making it ideal for daytime wedding ceremonies in Patna.",
+    "description": "Experience the best bridal basic makeup in Patna at Kritika Ladies Beauty Parlour. Our traditional bridal look features long-lasting foundation that withstands Patna's climate, professional eye makeup, blendable blush, and perfect lip color. Includes light contouring for natural definition, making it ideal for daytime wedding ceremonies in Patna.",
     "shortDescription": "Traditional bridal makeup in Patna with long-lasting foundation, eye makeup, blush and lip color. Perfect for Patna weddings with natural definition.",
     "price": 3000.0,
     "originalPrice": 4000.0,
+    "priceCurrency": "INR",
     "discountPercentage": 25,
     "isTrending": false,
     "isPopular": true,
@@ -40,11 +43,11 @@
       "wedding makeup patna",
       "basic bridal makeup",
       "patna bridal makeup artist",
-      "affordable bridal makeup",
-      "bridal makeup Boring Road",
+      "affordable bridal makeup Patna",
+      "bridal makeup Bhootnath road",
       "traditional bridal makeup Patna",
       "wedding makeup near me",
-      "bridal makeup Patna Women's College area"
+      "bridal makeup home service"
     ],
     "targetAudience": ["Budget-conscious brides", "Daytime weddings", "Traditional Patna weddings"],
     "idealFor": ["Morning weddings in Patna", "Court marriages", "Temple ceremonies", "Simple wedding functions"],
@@ -61,13 +64,33 @@
       {"name": "Hair Styling", "price": 1500},
       {"name": "Saree Draping", "price": 800}
     ],
+    "serviceArea": {
+      "city": "Patna",
+      "region": "Bihar",
+      "country": "India",
+      "radiusKm": 20
+    },
+    "provider": {
+      "name": "Kritika Ladies Beauty Parlour",
+      "address": "BH Colony, Patna, Bihar 800026, India",
+      "phone": "+91-9650461390",
+      "googleMapsUrl": "https://www.google.com/maps/place/Kritika+Ladies+Beauty+Parlour/@25.5873981,85.1757259,17z"
+    },
+    "geo": {
+      "lat": 25.5873981,
+      "lng": 85.1757259
+    },
     "nearbyLandmarks": [
-      "Patna Women's College (0.5km)",
-      "A N College (0.3km)",
-      "Boring Road Chauraha (0.2km)",
-      "GV Mall (0.5km)",
-      "Bailey Road (1.5km)"
+      "Bhootnath Metro Station (~200m)",
+      "Bhootnath Road",
+      "BH Colony",
+      "Bahadurpur Housing Colony",
+      "Patna Bypass",
+      "Bairia Bus Stand",
+      "Zero Mile"
     ],
+    "url": "/makeup/bridal-basic-makeup-patna",
+    "reviewSource": "In-house reviews from Kritika Ladies Beauty Parlour Bookings",
     "seasonalTags": ["Winter weddings in Patna", "Morning functions", "Traditional ceremonies"],
     "processingTime": "Same day booking available",
     "cancellationPolicy": "Free cancellation up to 24 hours before appointment"
@@ -78,11 +101,14 @@
     "slug": "bridal-hd-makeup-patna",
     "category": "Bridal",
     "categorySlug": "bridal",
+    "primaryCategory": "makeup",
+    "eventCategory": "bridal",
     "image": "/images/makeup/bridal_HDLook.webp",
-    "description": "Get flawless camera-ready HD bridal makeup in Patna at My Ladies Beauty Parlour. Our high-definition makeup uses advanced products that won't cake or crease, even in Patna's challenging weather. Includes detailed contouring, individual false lashes, and professional finish that looks stunning in both indoor and outdoor wedding photography.",
+    "description": "Get flawless camera-ready HD bridal makeup in Patna at Kritika Ladies Beauty Parlour. Our high-definition makeup uses advanced products that won't cake or crease, even in Patna's challenging weather. Includes detailed contouring, individual false lashes, and professional finish that looks stunning in both indoor and outdoor wedding photography.",
     "shortDescription": "High-definition camera-ready bridal makeup in Patna. Advanced products that won't cake or crease. Perfect for Patna wedding photography.",
     "price": 4000.0,
     "originalPrice": 5500.0,
+    "priceCurrency": "INR",
     "discountPercentage": 27,
     "isTrending": true,
     "isPopular": true,
@@ -102,11 +128,12 @@
     "precautions": "Do not use silicone-based primers. Avoid facial treatments 48 hours prior. Special considerations for Patna's weather.",
     "aftercare": "Remove with micellar water. Apply hydrating serum suitable for Patna's climate.",
     "faqs": [
-{"question": "Is HD makeup suitable for oily skin in Patna's weather?", "answer": "Yes, we use special oil-control formulas designed for Patna's climate and skin types"},
+      {"question": "Is HD makeup suitable for oily skin in Patna's weather?", "answer": "Yes, we use special oil-control formulas designed for Patna's climate and skin types"},
       {"question": "Can I request specific contour intensity for my face shape?", "answer": "Absolutely, our Patna makeup artists customize contouring based on your preference and face structure"},
       {"question": "How does HD makeup differ from regular makeup for photography?", "answer": "HD makeup uses specially formulated products that don't flash back in photos, giving you flawless camera appearance perfect for Patna wedding photography"},
       {"question": "Can I include body makeup in this package?", "answer": "Body makeup for arms and back is available as an add-on service, popular for sleeveless bridal outfits in Patna"},
-      {"question": "Is this makeup sweat-proof for outdoor ceremonies?", "answer": "Yes, our HD formulas are humidity and sweat-resistant, tested specifically for Patna's weather conditions"}    ],
+      {"question": "Is this makeup sweat-proof for outdoor ceremonies?", "answer": "Yes, our HD formulas are humidity and sweat-resistant, tested specifically for Patna's weather conditions"}
+    ],
     "seoKeywords": [
       "hd bridal makeup patna",
       "camera ready makeup",
@@ -114,7 +141,8 @@
       "premium bridal makeup patna",
       "hd makeup artist patna",
       "HD bridal makeup Patna",
-      "camera ready bridal makeup Boring Road"
+      "camera ready bridal makeup Bhootnath road",
+      "bridal makeup home service"
     ],
     "targetAudience": ["Modern brides", "Photography-conscious couples", "Evening weddings in Patna"],
     "idealFor": ["Professional photoshoots in Patna", "Grand receptions", "Destination weddings", "Videography"],
@@ -132,12 +160,33 @@
       {"name": "Body Makeup (arms/back)", "price": 1500},
       {"name": "Bridal Hair Styling", "price": 2000}
     ],
+    "serviceArea": {
+      "city": "Patna",
+      "region": "Bihar",
+      "country": "India",
+      "radiusKm": 20
+    },
+    "provider": {
+      "name": "Kritika Ladies Beauty Parlour",
+      "address": "BH Colony, Patna, Bihar 800026, India",
+      "phone": "+91-9650461390",
+      "googleMapsUrl": "https://www.google.com/maps/place/Kritika+Ladies+Beauty+Parlour/@25.5873981,85.1757259,17z"
+    },
+    "geo": {
+      "lat": 25.5873981,
+      "lng": 85.1757259
+    },
     "nearbyLandmarks": [
-      "Patna Women's College (0.5km)",
-      "IGIMS Hospital (2km)",
-      "Bailey Road (1.5km)",
-      "Boring Road Chauraha (0.2km)"
+      "Bhootnath Metro Station (~200m)",
+      "Bhootnath Road",
+      "BH Colony",
+      "Bahadurpur Housing Colony",
+      "Patna Bypass",
+      "Bairia Bus Stand",
+      "Zero Mile"
     ],
+    "url": "/makeup/bridal-hd-makeup-patna",
+    "reviewSource": "In-house reviews from Kritika Ladies Beauty Parlour Bookings",
     "seasonalTags": ["Year-round in Patna", "Evening weddings", "Grand celebrations"],
     "processingTime": "Advanced booking recommended (48 hours)",
     "cancellationPolicy": "Free cancellation up to 48 hours, 50% charge thereafter"
@@ -148,11 +197,14 @@
     "slug": "airbrush-bridal-makeup-patna",
     "category": "Bridal",
     "categorySlug": "bridal",
+    "primaryCategory": "makeup",
+    "eventCategory": "bridal",
     "image": "/images/makeup/airbrush_HD_makeup.webp",
-    "description": "Experience luxury airbrush bridal makeup in Patna at My Ladies Beauty Parlour. Using advanced airbrush technology, we create flawless, lightweight finish with poreless coverage that lasts 12+ hours - perfect for long Patna wedding celebrations. Includes waterproof products, custom color matching, and professional sealing.",
+    "description": "Experience luxury airbrush bridal makeup in Patna at Kritika Ladies Beauty Parlour. Using advanced airbrush technology, we create flawless, lightweight finish with poreless coverage that lasts 12+ hours - perfect for long Patna wedding celebrations. Includes waterproof products, custom color matching, and professional sealing.",
     "shortDescription": "Flawless airbrush bridal makeup in Patna using advanced technology. Lightweight, poreless coverage that lasts 12+ hours. Perfect for Patna weddings.",
     "price": 5500.0,
     "originalPrice": 7500.0,
+    "priceCurrency": "INR",
     "discountPercentage": 27,
     "isTrending": true,
     "isPopular": true,
@@ -172,11 +224,12 @@
     "precautions": "Avoid moisturizers with SPF. Not recommended for active acne. Special preparation for Patna's climate.",
     "aftercare": "Use oil-based remover. Apply cooling gel mask suitable for Patna weather conditions.",
     "faqs": [
-{"question": "How long does airbrush makeup last in Patna's weather?", "answer": "Typically 12-14 hours with proper application, tested specifically for Patna's climate conditions"},
+      {"question": "How long does airbrush makeup last in Patna's weather?", "answer": "Typically 12-14 hours with proper application, tested specifically for Patna's climate conditions"},
       {"question": "Can airbrush makeup cover tattoos or birthmarks?", "answer": "Yes, our high-pigment airbrush formulas provide excellent coverage for tattoos common in Bihar"},
       {"question": "Is airbrush makeup suitable for sensitive skin?", "answer": "Yes, airbrush makeup is often better for sensitive skin as it's hygienic and doesn't require brushes that can irritate skin"},
       {"question": "Can it withstand monsoon humidity in Patna?", "answer": "Absolutely, our waterproof sealing makes it perfect for monsoon weddings and humid conditions in Patna"},
-      {"question": "How does airbrush feel compared to traditional makeup?", "answer": "Airbrush feels incredibly lightweight and natural, like wearing no makeup at all, which is perfect for long Patna wedding celebrations"}    ],
+      {"question": "How does airbrush feel compared to traditional makeup?", "answer": "Airbrush feels incredibly lightweight and natural, like wearing no makeup at all, which is perfect for long Patna wedding celebrations"}
+    ],
     "seoKeywords": [
       "airbrush bridal makeup patna",
       "luxury wedding makeup",
@@ -184,7 +237,8 @@
       "airbrush makeup artist patna",
       "premium bridal makeup",
       "airbrush bridal makeup Patna",
-      "best airbrush makeup Boring Road"
+      "best airbrush makeup Bhootnath road",
+      "bridal makeup home service"
     ],
     "targetAudience": ["Luxury brides", "Summer/outdoor weddings in Patna", "High-profile events"],
     "idealFor": ["Outdoor ceremonies in Patna", "Monsoon weddings", "All-day events", "Luxury receptions"],
@@ -203,12 +257,33 @@
       {"name": "Bridal Hair Package", "price": 3000},
       {"name": "Bridal Manicure/Pedicure", "price": 2000}
     ],
+    "serviceArea": {
+      "city": "Patna",
+      "region": "Bihar",
+      "country": "India",
+      "radiusKm": 20
+    },
+    "provider": {
+      "name": "Kritika Ladies Beauty Parlour",
+      "address": "BH Colony, Patna, Bihar 800026, India",
+      "phone": "+91-9650461390",
+      "googleMapsUrl": "https://www.google.com/maps/place/Kritika+Ladies+Beauty+Parlour/@25.5873981,85.1757259,17z"
+    },
+    "geo": {
+      "lat": 25.5873981,
+      "lng": 85.1757259
+    },
     "nearbyLandmarks": [
-      "Boring Road Chauraha (0.2km)",
-      "GV Mall (0.5km)",
-      "Patliputra Junction (2.5km)",
-      "Bailey Road Crossing (1.5km)"
+      "Bhootnath Metro Station (~200m)",
+      "Bhootnath Road",
+      "BH Colony",
+      "Bahadurpur Housing Colony",
+      "Patna Bypass",
+      "Bairia Bus Stand",
+      "Zero Mile"
     ],
+    "url": "/makeup/airbrush-bridal-makeup-patna",
+    "reviewSource": "In-house reviews from Kritika Ladies Beauty Parlour Bookings",
     "seasonalTags": ["Monsoon proof in Patna", "Summer weddings", "Outdoor ceremonies"],
     "processingTime": "Book 1 week in advance for trial",
     "cancellationPolicy": "Trial non-refundable, main booking 50% refund 72 hours prior"
@@ -219,15 +294,18 @@
     "slug": "engagement-basic-makeup-patna",
     "category": "Engagement",
     "categorySlug": "engagement",
+    "primaryCategory": "makeup",
+    "eventCategory": "engagement",
     "image": "/images/makeup/engagement_basic_makeup.webp",
-    "description": "Get the perfect romantic engagement makeup look in Patna at My Ladies Beauty Parlour. Our soft, romantic look features dewy foundation that gives you that bridal-to-be glow, shimmer eyeshadow that catches the light beautifully, and nude lips that complement traditional Patna engagement outfits. Includes highlighting for natural glow.",
+    "description": "Get the perfect romantic engagement makeup look in Patna at Kritika Ladies Beauty Parlour. Our soft, romantic look features dewy foundation that gives you that bridal-to-be glow, shimmer eyeshadow that catches the light beautifully, and nude lips that complement traditional Patna engagement outfits. Includes highlighting for natural glow.",
     "shortDescription": "Soft romantic engagement makeup in Patna with dewy foundation, shimmer eyeshadow and nude lips. Perfect for Patna engagement ceremonies.",
     "price": 1500.0,
     "originalPrice": 2000.0,
+    "priceCurrency": "INR",
     "discountPercentage": 25,
     "isTrending": false,
     "isPopular": true,
-    "isBestSeller": true,
+    "isBestSeller": false,
     "duration": 60,
     "durationText": "1 hour",
     "rating": 4.7,
@@ -243,19 +321,21 @@
     "precautions": "Avoid heavy powder products before service. Disclose any eye sensitivities.",
     "aftercare": "Gently cleanse with milk cleanser. Apply light moisturizer suitable for Patna weather.",
     "faqs": [
-{"question": "Can I upgrade to false lashes for my engagement?", "answer": "Yes available at additional ₹200, highly recommended for Patna engagement photography"},
+      {"question": "Can I upgrade to false lashes for my engagement?", "answer": "Yes available at additional ₹200, highly recommended for Patna engagement photography"},
       {"question": "Is this suitable for mature skin for mother of the bride?", "answer": "Yes, dewy formulas work well for mature skin common in Patna family functions"},
       {"question": "How long in advance should I book for my engagement?", "answer": "We recommend booking at least 2-3 days in advance, though same-day bookings are sometimes available"},
       {"question": "Can I bring my own makeup products?", "answer": "Yes, you can bring your own products, though our professional-grade products are optimized for photography and longevity"},
-      {"question": "Is this makeup transfer-proof for hugs and greetings?", "answer": "Yes, we use transfer-resistant formulas perfect for engagement functions with lots of greetings"}    ],
+      {"question": "Is this makeup transfer-proof for hugs and greetings?", "answer": "Yes, we use transfer-resistant formulas perfect for engagement functions with lots of greetings"}
+    ],
     "seoKeywords": [
       "engagement makeup patna",
       "romantic makeup look",
       "function makeup patna",
       "engagement party makeup",
       "patna engagement makeup artist",
-      "engagement makeup Boring Road Patna",
-      "simple engagement makeup near Patna Women's College"
+      "engagement makeup Bhootnath road Patna",
+      "simple engagement makeup near me",
+      "engagement makeup home service"
     ],
     "targetAudience": ["Young couples in Patna", "Daytime engagements", "Budget-conscious", "Students"],
     "idealFor": ["Home ceremonies in Patna", "Small gatherings", "College students", "Quick events"],
@@ -272,12 +352,33 @@
       {"name": "Simple Hair Styling", "price": 1000},
       {"name": "Basic Contouring", "price": 500}
     ],
+    "serviceArea": {
+      "city": "Patna",
+      "region": "Bihar",
+      "country": "India",
+      "radiusKm": 20
+    },
+    "provider": {
+      "name": "Kritika Ladies Beauty Parlour",
+      "address": "BH Colony, Patna, Bihar 800026, India",
+      "phone": "+91-9650461390",
+      "googleMapsUrl": "https://www.google.com/maps/place/Kritika+Ladies+Beauty+Parlour/@25.5873981,85.1757259,17z"
+    },
+    "geo": {
+      "lat": 25.5873981,
+      "lng": 85.1757259
+    },
     "nearbyLandmarks": [
-      "Patna Women's College (0.5km)",
-      "A N College (0.3km)",
-      "Boring Road Coaching Centers (1km)",
-      "Fraser Road (2km)"
+      "Bhootnath Metro Station (~200m)",
+      "Bhootnath Road",
+      "BH Colony",
+      "Bahadurpur Housing Colony",
+      "Patna Bypass",
+      "Bairia Bus Stand",
+      "Zero Mile"
     ],
+    "url": "/makeup/engagement-basic-makeup-patna",
+    "reviewSource": "In-house reviews from Kritika Ladies Beauty Parlour Bookings",
     "seasonalTags": ["Morning functions in Patna", "Home ceremonies", "College events"],
     "processingTime": "Same day booking available",
     "cancellationPolicy": "Free cancellation up to 12 hours before"
@@ -288,11 +389,14 @@
     "slug": "engagement-hd-makeup-patna",
     "category": "Engagement",
     "categorySlug": "engagement",
+    "primaryCategory": "makeup",
+    "eventCategory": "engagement",
     "image": "/images/makeup/engagement_hd.webp",
-    "description": "Get camera-ready HD engagement makeup in Patna at My Ladies Beauty Parlour. Our photography-optimized makeup features precision contouring that enhances your facial features, professional false lashes, and smudge-proof products that last through your entire engagement function. Includes color correction to perfect your skin tone.",
+    "description": "Get camera-ready HD engagement makeup in Patna at Kritika Ladies Beauty Parlour. Our photography-optimized makeup features precision contouring that enhances your facial features, professional false lashes, and smudge-proof products that last through your entire engagement function. Includes color correction to perfect your skin tone.",
     "shortDescription": "Photography-optimized HD engagement makeup in Patna with precision contouring and false lashes. Perfect for Patna engagement photography.",
     "price": 2000.0,
     "originalPrice": 2800.0,
+    "priceCurrency": "INR",
     "discountPercentage": 29,
     "isTrending": true,
     "isPopular": true,
@@ -312,11 +416,12 @@
     "precautions": "No lash extensions should be applied prior. Avoid tanning 72 hours before. Special preparation for Patna climate.",
     "aftercare": "Remove with dual-phase makeup remover. Use lash conditioner. Special care for Patna weather conditions.",
     "faqs": [
-{"question": "Does this include eyebrow shaping?", "answer": "Basic grooming included, full shaping available at extra cost for Patna clients"},
+      {"question": "Does this include eyebrow shaping?", "answer": "Basic grooming included, full shaping available at extra cost for Patna clients"},
       {"question": "Can I provide my own lashes?", "answer": "Yes with sanitation certification, our Patna artists will professionally apply them"},
       {"question": "How does HD engagement makeup differ from regular?", "answer": "HD makeup is specifically formulated for camera, with finer pigments that don't settle into lines and look flawless in photos"},
       {"question": "Can you match the makeup to my engagement outfit?", "answer": "Yes, bring your outfit or photos and we'll customize colors to complement it perfectly"},
-      {"question": "Is there a trial available before the engagement?", "answer": "Yes, we highly recommend a trial to perfect your look before the main event"}    ],
+      {"question": "Is there a trial available before the engagement?", "answer": "Yes, we highly recommend a trial to perfect your look before the main event"}
+    ],
     "seoKeywords": [
       "engagement hd makeup patna",
       "camera ready engagement makeup",
@@ -324,7 +429,8 @@
       "photography makeup patna",
       "hd makeup for engagement",
       "HD engagement makeup Patna",
-      "engagement photography makeup Boring Road"
+      "engagement photography makeup Bhootnath road",
+      "engagement makeup home service"
     ],
     "targetAudience": ["Photography-focused couples in Patna", "Evening engagements", "Professionals"],
     "idealFor": ["Professional photoshoots in Patna", "Evening ceremonies", "Hotel functions", "Large gatherings"],
@@ -342,12 +448,33 @@
       {"name": "Hair Styling", "price": 1500},
       {"name": "Saree Draping", "price": 800}
     ],
+    "serviceArea": {
+      "city": "Patna",
+      "region": "Bihar",
+      "country": "India",
+      "radiusKm": 20
+    },
+    "provider": {
+      "name": "Kritika Ladies Beauty Parlour",
+      "address": "BH Colony, Patna, Bihar 800026, India",
+      "phone": "+91-9650461390",
+      "googleMapsUrl": "https://www.google.com/maps/place/Kritika+Ladies+Beauty+Parlour/@25.5873981,85.1757259,17z"
+    },
+    "geo": {
+      "lat": 25.5873981,
+      "lng": 85.1757259
+    },
     "nearbyLandmarks": [
-      "Bailey Road Hotels (1.5km)",
-      "GV Mall (0.5km)",
-      "Boring Road Banquet Halls (1km)",
-      "Patliputra Junction Area (2.5km)"
+      "Bhootnath Metro Station (~200m)",
+      "Bhootnath Road",
+      "BH Colony",
+      "Bahadurpur Housing Colony",
+      "Patna Bypass",
+      "Bairia Bus Stand",
+      "Zero Mile"
     ],
+    "url": "/makeup/engagement-hd-makeup-patna",
+    "reviewSource": "In-house reviews from Kritika Ladies Beauty Parlour Bookings",
     "seasonalTags": ["Evening functions in Patna", "Hotel ceremonies", "Photography sessions"],
     "processingTime": "Book 2-3 days in advance",
     "cancellationPolicy": "Free cancellation 24 hours prior, 30% charge thereafter"
@@ -358,15 +485,18 @@
     "slug": "engagement-airbrush-makeup-patna",
     "category": "Engagement",
     "categorySlug": "engagement",
+    "primaryCategory": "makeup",
+    "eventCategory": "engagement",
     "image": "/images/makeup/engagement_airbrush.webp",
-    "description": "Experience luxury airbrush engagement makeup in Patna at My Ladies Beauty Parlour. Our weightless airbrush application creates an ultra-HD finish that looks completely natural yet flawless. Features customizable coverage levels to suit your preference, waterproof properties that withstand emotional moments.",
+    "description": "Experience luxury airbrush engagement makeup in Patna at Kritika Ladies Beauty Parlour. Our weightless airbrush application creates an ultra-HD finish that looks completely natural yet flawless. Features customizable coverage levels to suit your preference, waterproof properties that withstand emotional moments.",
     "shortDescription": "Weightless airbrush engagement makeup in Patna with ultra-HD finish. Customizable coverage perfect for Patna engagement functions.",
     "price": 3000.0,
     "originalPrice": 4000.0,
+    "priceCurrency": "INR",
     "discountPercentage": 25,
     "isTrending": false,
     "isPopular": true,
-    "isBestSeller": true,
+    "isBestSeller": false,
     "duration": 90,
     "durationText": "1.5 hours",
     "rating": 4.8,
@@ -382,11 +512,12 @@
     "precautions": "Avoid facials 1 week prior. No retinoid products 72 hours before. Special preparation for Patna climate.",
     "aftercare": "Special remover provided. Apply barrier repair cream suitable for Patna weather conditions.",
     "faqs": [
-{"question": "How long do individual lashes last?", "answer": "Typically 3-5 days with proper care, perfect for multiple Patna engagement events"},
+      {"question": "How long do individual lashes last?", "answer": "Typically 3-5 days with proper care, perfect for multiple Patna engagement events"},
       {"question": "Can it withstand emotional tears?", "answer": "Yes, waterproof formulas are tear-resistant for emotional Patna engagement moments"},
       {"question": "Can I choose the coverage level with airbrush?", "answer": "Yes, airbrush makeup offers customizable coverage from sheer to full based on your preference"},
       {"question": "Is this suitable for outdoor engagement venues?", "answer": "Perfect for outdoor venues as it's humidity and sweat-resistant, great for Patna's weather"},
-      {"question": "How does airbrush handle different lighting conditions?", "answer": "Airbrush provides flawless finish in all lighting - natural, indoor, and flash photography"}    ],
+      {"question": "How does airbrush handle different lighting conditions?", "answer": "Airbrush provides flawless finish in all lighting - natural, indoor, and flash photography"}
+    ],
     "seoKeywords": [
       "engagement airbrush makeup patna",
       "luxury engagement makeup",
@@ -394,7 +525,8 @@
       "airbrush makeup patna",
       "premium engagement makeup",
       "airbrush engagement makeup Patna",
-      "luxury engagement makeup Boring Road"
+      "luxury engagement makeup Bhootnath road",
+      "engagement makeup home service"
     ],
     "targetAudience": ["Luxury engagements in Patna", "Working professionals", "High-profile events"],
     "idealFor": ["Five-star hotels in Patna", "Grand celebrations", "Outdoor events", "All-day functions"],
@@ -412,12 +544,33 @@
       {"name": "Bridal Hair Package", "price": 2500},
       {"name": "Makeup Trial", "price": 1500}
     ],
+    "serviceArea": {
+      "city": "Patna",
+      "region": "Bihar",
+      "country": "India",
+      "radiusKm": 20
+    },
+    "provider": {
+      "name": "Kritika Ladies Beauty Parlour",
+      "address": "BH Colony, Patna, Bihar 800026, India",
+      "phone": "+91-9650461390",
+      "googleMapsUrl": "https://www.google.com/maps/place/Kritika+Ladies+Beauty+Parlour/@25.5873981,85.1757259,17z"
+    },
+    "geo": {
+      "lat": 25.5873981,
+      "lng": 85.1757259
+    },
     "nearbyLandmarks": [
-      "Five-star hotels Bailey Road (2km)",
-      "GV Mall (0.5km)",
-      "Premium banquet halls Boring Road (1km)",
-      "IGIMS Hospital area (2km)"
+      "Bhootnath Metro Station (~200m)",
+      "Bhootnath Road",
+      "BH Colony",
+      "Bahadurpur Housing Colony",
+      "Patna Bypass",
+      "Bairia Bus Stand",
+      "Zero Mile"
     ],
+    "url": "/makeup/engagement-airbrush-makeup-patna",
+    "reviewSource": "In-house reviews from Kritika Ladies Beauty Parlour Bookings",
     "seasonalTags": ["Luxury events in Patna", "Outdoor ceremonies", "Grand celebrations"],
     "processingTime": "Book 1 week in advance for best scheduling",
     "cancellationPolicy": "50% refund if cancelled 48 hours prior"
@@ -428,15 +581,18 @@
     "slug": "reception-basic-makeup-patna",
     "category": "Reception",
     "categorySlug": "reception",
+    "primaryCategory": "makeup",
+    "eventCategory": "reception",
     "image": "/images/makeup/reception_basic.webp",
-    "description": "Get glamorous reception makeup in Patna at My Ladies Beauty Parlour. Our elegant evening look features satin finish foundation that gives you that perfect reception glow, smoky eyes that stand out in reception lighting, and bold lips that complement your reception outfit. Includes touch-up service and is specially designed for 5-6 hour wear typical of Patna wedding receptions.",
+    "description": "Get glamorous reception makeup in Patna at Kritika Ladies Beauty Parlour. Our elegant evening look features satin finish foundation that gives you that perfect reception glow, smoky eyes that stand out in reception lighting, and bold lips that complement your reception outfit. Includes touch-up service and is specially designed for 5-6 hour wear typical of Patna wedding receptions.",
     "shortDescription": "Elegant evening reception makeup in Patna with satin finish foundation, smoky eyes and bold lips. Perfect for Patna wedding receptions.",
     "price": 2500.0,
     "originalPrice": 3200.0,
+    "priceCurrency": "INR",
     "discountPercentage": 22,
     "isTrending": false,
     "isPopular": true,
-    "isBestSeller": true,
+    "isBestSeller": false,
     "duration": 60,
     "durationText": "1 hour",
     "rating": 4.8,
@@ -452,19 +608,21 @@
     "precautions": "Avoid glitter cosmetics prior. Disclose any lip product allergies. Special preparation for reception lighting.",
     "aftercare": "Double cleanse required. Apply nourishing lip mask. Special care for Patna reception aftermath.",
     "faqs": [
-{"question": "Can I change lip color mid-reception?", "answer": "Yes, one color change included, popular for Patna reception outfit changes"},
+      {"question": "Can I change lip color mid-reception?", "answer": "Yes, one color change included, popular for Patna reception outfit changes"},
       {"question": "Is this suitable for humid reception venues in Patna?", "answer": "Formulated for humidity resistance, tested for Patna reception conditions"},
       {"question": "How long does this makeup last through dancing?", "answer": "Specially formulated to last 5-6 hours through dancing and celebrations"},
       {"question": "Can I add glitter for extra glam?", "answer": "Yes, glitter accents available as add-ons for extra reception glamour"},
-      {"question": "Is this makeup transfer-proof for cheek kisses?", "answer": "Yes, we use transfer-resistant formulas perfect for greeting relatives"}    ],
+      {"question": "Is this makeup transfer-proof for cheek kisses?", "answer": "Yes, we use transfer-resistant formulas perfect for greeting relatives"}
+    ],
     "seoKeywords": [
       "reception makeup patna",
       "evening makeup",
       "wedding reception makeup",
       "glamorous makeup patna",
       "reception party makeup",
-      "reception makeup Boring Road",
-      "wedding reception makeup Bailey Road"
+      "reception makeup Bhootnath road",
+      "wedding reception makeup Patna",
+      "reception makeup home service"
     ],
     "targetAudience": ["Evening event attendees in Patna", "Wedding reception guests", "Party-goers"],
     "idealFor": ["Wedding receptions in Patna", "Evening parties", "Hotel events", "Dinner functions"],
@@ -481,12 +639,33 @@
       {"name": "Hair Styling", "price": 1500},
       {"name": "Airbrush Upgrade", "price": 1500}
     ],
+    "serviceArea": {
+      "city": "Patna",
+      "region": "Bihar",
+      "country": "India",
+      "radiusKm": 20
+    },
+    "provider": {
+      "name": "Kritika Ladies Beauty Parlour",
+      "address": "BH Colony, Patna, Bihar 800026, India",
+      "phone": "+91-9650461390",
+      "googleMapsUrl": "https://www.google.com/maps/place/Kritika+Ladies+Beauty+Parlour/@25.5873981,85.1757259,17z"
+    },
+    "geo": {
+      "lat": 25.5873981,
+      "lng": 85.1757259
+    },
     "nearbyLandmarks": [
-      "Bailey Road Hotels (1.5km)",
-      "GV Mall (0.5km)",
-      "Boring Road Banquet Halls (1km)",
-      "Patliputra Junction (2.5km)"
+      "Bhootnath Metro Station (~200m)",
+      "Bhootnath Road",
+      "BH Colony",
+      "Bahadurpur Housing Colony",
+      "Patna Bypass",
+      "Bairia Bus Stand",
+      "Zero Mile"
     ],
+    "url": "/makeup/reception-basic-makeup-patna",
+    "reviewSource": "In-house reviews from Kritika Ladies Beauty Parlour Bookings",
     "seasonalTags": ["Evening events", "Wedding season", "Year-round"],
     "processingTime": "Same day booking available",
     "cancellationPolicy": "Free cancellation up to 12 hours before"
@@ -497,11 +676,14 @@
     "slug": "reception-hd-makeup-patna",
     "category": "Reception",
     "categorySlug": "reception",
+    "primaryCategory": "makeup",
+    "eventCategory": "reception",
     "image": "/images/makeup/reception_hd.webp",
-    "description": "Get stunning HD reception makeup in Patna at My Ladies Beauty Parlour. Our high-definition glam features intense contouring that sculpts your features beautifully under reception lights, cut-crease eyes that create dramatic impact, and statement lips that complete your reception look. Features transfer-proof formulas that last all night through dancing and celebrations typical of Patna wedding receptions.",
+    "description": "Get stunning HD reception makeup in Patna at Kritika Ladies Beauty Parlour. Our high-definition glam features intense contouring that sculpts your features beautifully under reception lights, cut-crease eyes that create dramatic impact, and statement lips that complete your reception look. Features transfer-proof formulas that last all night through dancing and celebrations typical of Patna wedding receptions.",
     "shortDescription": "High-definition glam reception makeup in Patna with intense contouring and statement lips. Perfect for Patna wedding reception photography.",
     "price": 3000.0,
     "originalPrice": 4000.0,
+    "priceCurrency": "INR",
     "discountPercentage": 25,
     "isTrending": true,
     "isPopular": true,
@@ -521,11 +703,12 @@
     "precautions": "No facial oils before application. Avoid spray tans 48 hours prior. Special considerations for Patna reception conditions.",
     "aftercare": "Use cleansing balm. Apply post-makeup recovery mask. Special care for Patna climate.",
     "faqs": [
-{"question": "Can I incorporate glitter for extra glam?", "answer": "Yes, cosmetic-grade glitter available, popular for Patna reception celebrations"},
+      {"question": "Can I incorporate glitter for extra glam?", "answer": "Yes, cosmetic-grade glitter available, popular for Patna reception celebrations"},
       {"question": "Does this include body makeup for reception outfits?", "answer": "Décolletage coverage included, perfect for Patna reception fashion"},
       {"question": "How does this makeup perform under reception lights?", "answer": "Specially formulated to look flawless under all types of reception lighting"},
       {"question": "Can it withstand sweat from dancing?", "answer": "Yes, dance-proof formulas that last through energetic Patna receptions"},
-      {"question": "Is there touch-up service during reception?", "answer": "We provide a touch-up kit and guidance for quick fixes during the event"}    ],
+      {"question": "Is there touch-up service during reception?", "answer": "We provide a touch-up kit and guidance for quick fixes during the event"}
+    ],
     "seoKeywords": [
       "reception hd makeup patna",
       "glamorous reception makeup",
@@ -533,7 +716,8 @@
       "wedding reception makeup patna",
       "premium reception makeup",
       "HD reception makeup Patna",
-      "glamorous reception makeup Bailey Road"
+      "glamorous reception makeup Bhootnath road",
+      "reception makeup home service"
     ],
     "targetAudience": ["Glamorous event attendees", "Wedding reception hosts", "Evening party lovers"],
     "idealFor": ["Grand wedding receptions", "Evening galas", "Hotel celebrations", "Photography-focused events"],
@@ -550,12 +734,33 @@
       {"name": "Full Body Makeup", "price": 2000},
       {"name": "Premium Hair Styling", "price": 2000}
     ],
+    "serviceArea": {
+      "city": "Patna",
+      "region": "Bihar",
+      "country": "India",
+      "radiusKm": 20
+    },
+    "provider": {
+      "name": "Kritika Ladies Beauty Parlour",
+      "address": "BH Colony, Patna, Bihar 800026, India",
+      "phone": "+91-9650461390",
+      "googleMapsUrl": "https://www.google.com/maps/place/Kritika+Ladies+Beauty+Parlour/@25.5873981,85.1757259,17z"
+    },
+    "geo": {
+      "lat": 25.5873981,
+      "lng": 85.1757259
+    },
     "nearbyLandmarks": [
-      "Rajendra Nagar venues (1km)",
-      "Bailey Road banquet halls (2km)",
-      "Boring Road hotels (0.5km)",
-      "Patliputra area (3km)"
+      "Bhootnath Metro Station (~200m)",
+      "Bhootnath Road",
+      "BH Colony",
+      "Bahadurpur Housing Colony",
+      "Patna Bypass",
+      "Bairia Bus Stand",
+      "Zero Mile"
     ],
+    "url": "/makeup/reception-hd-makeup-patna",
+    "reviewSource": "In-house reviews from Kritika Ladies Beauty Parlour Bookings",
     "seasonalTags": ["Wedding season", "Evening celebrations", "Year-round"],
     "processingTime": "Book 2-3 days in advance",
     "cancellationPolicy": "Free cancellation up to 24 hours, 30% charge thereafter"
@@ -566,15 +771,18 @@
     "slug": "reception-airbrush-makeup-patna",
     "category": "Reception",
     "categorySlug": "reception",
+    "primaryCategory": "makeup",
+    "eventCategory": "reception",
     "image": "/images/makeup/reception_airbrush.webp",
-    "description": "Experience ultimate luxury with airbrush reception makeup in Patna at My Ladies Beauty Parlour. Our premium airbrush application features diamond dust highlighter that catches reception lights beautifully, individual lashes for dramatic effect, and professional lip sculpting that defines your pout. Includes waterproof sealing that withstands both emotional moments and energetic dancing typical of Patna wedding receptions.",
+    "description": "Experience ultimate luxury with airbrush reception makeup in Patna at Kritika Ladies Beauty Parlour. Our premium airbrush application features diamond dust highlighter that catches reception lights beautifully, individual lashes for dramatic effect, and professional lip sculpting that defines your pout. Includes waterproof sealing that withstands both emotional moments and energetic dancing typical of Patna wedding receptions.",
     "shortDescription": "Luxury airbrush reception makeup in Patna with diamond dust highlighter. Waterproof sealing perfect for emotional Patna receptions.",
     "price": 4000.0,
     "originalPrice": 5500.0,
+    "priceCurrency": "INR",
     "discountPercentage": 27,
     "isTrending": false,
     "isPopular": true,
-    "isBestSeller": true,
+    "isBestSeller": false,
     "duration": 90,
     "durationText": "1.5 hours",
     "rating": 4.9,
@@ -590,19 +798,21 @@
     "precautions": "Avoid highlighter products prior. Not recommended for very oily skin. Special preparation for Patna reception conditions.",
     "aftercare": "Special remover kit provided. Apply intensive hydration mask. Special care for Patna climate.",
     "faqs": [
-{"question": "Can I get touch-ups next day for Patna wedding events?", "answer": "Airbrush typically lasts through next day, perfect for multiple Patna wedding functions"},
+      {"question": "Can I get touch-ups next day for Patna wedding events?", "answer": "Airbrush typically lasts through next day, perfect for multiple Patna wedding functions"},
       {"question": "Is highlighter customizable for my skin tone?", "answer": "Choose from gold/silver/rose gold tones to match your Patna reception outfit"},
       {"question": "How does diamond dust highlighter look in photos?", "answer": "Creates beautiful light-catching effects that photograph stunningly under reception lights"},
       {"question": "Can this makeup withstand emotional moments?", "answer": "Yes, waterproof sealing makes it tear-proof for emotional reception moments"},
-      {"question": "Is it heavy or cakey feeling?", "answer": "Not at all - airbrush feels incredibly lightweight despite its long-lasting coverage"}    ],
+      {"question": "Is it heavy or cakey feeling?", "answer": "Not at all - airbrush feels incredibly lightweight despite its long-lasting coverage"}
+    ],
     "seoKeywords": [
       "reception airbrush makeup patna",
       "luxury reception makeup",
       "diamond makeup patna",
       "premium reception look",
       "airbrush makeup for reception",
-      "luxury reception makeup Boring Road",
-      "airbrush reception makeup Bailey Road"
+      "luxury reception makeup Bhootnath road",
+      "airbrush reception makeup Patna",
+      "reception makeup home service"
     ],
     "targetAudience": ["Luxury event attendees", "Premium wedding receptions", "High-profile celebrations"],
     "idealFor": ["Luxury hotel receptions", "Grand celebrations", "VIP events", "Red-carpet appearances"],
@@ -619,12 +829,33 @@
       {"name": "Luxury Hair Package", "price": 2500},
       {"name": "Bridal Jewelry Setting", "price": 1000}
     ],
+    "serviceArea": {
+      "city": "Patna",
+      "region": "Bihar",
+      "country": "India",
+      "radiusKm": 20
+    },
+    "provider": {
+      "name": "Kritika Ladies Beauty Parlour",
+      "address": "BH Colony, Patna, Bihar 800026, India",
+      "phone": "+91-9650461390",
+      "googleMapsUrl": "https://www.google.com/maps/place/Kritika+Ladies+Beauty+Parlour/@25.5873981,85.1757259,17z"
+    },
+    "geo": {
+      "lat": 25.5873981,
+      "lng": 85.1757259
+    },
     "nearbyLandmarks": [
-      "Boring Road premium venues (0.5km)",
-      "Bailey Road luxury hotels (2km)",
-      "Rajendra Nagar banquet halls (1km)",
-      "GV Mall area (0.5km)"
+      "Bhootnath Metro Station (~200m)",
+      "Bhootnath Road",
+      "BH Colony",
+      "Bahadurpur Housing Colony",
+      "Patna Bypass",
+      "Bairia Bus Stand",
+      "Zero Mile"
     ],
+    "url": "/makeup/reception-airbrush-makeup-patna",
+    "reviewSource": "In-house reviews from Kritika Ladies Beauty Parlour Bookings",
     "seasonalTags": ["Luxury events", "Wedding season", "Year-round"],
     "processingTime": "Book 1 week in advance",
     "cancellationPolicy": "50% refund if cancelled 72 hours prior"
@@ -635,15 +866,18 @@
     "slug": "party-basic-makeup-patna",
     "category": "Party",
     "categorySlug": "party",
+    "primaryCategory": "makeup",
+    "eventCategory": "party",
     "image": "/images/makeup/party_basic.webp",
-    "description": "Get ready for parties in Patna with our quick glam basic makeup at My Ladies Beauty Parlour. Perfect for casual gatherings, kitty parties, and social events across Patna. Features CC cream that evens out your skin tone, metallic eyeshadow that adds just the right amount of sparkle, and tinted lips for a natural yet polished look.",
+    "description": "Get ready for parties in Patna with our quick glam basic makeup at Kritika Ladies Beauty Parlour. Perfect for casual gatherings, kitty parties, and social events across Patna. Features CC cream that evens out your skin tone, metallic eyeshadow that adds just the right amount of sparkle, and tinted lips for a natural yet polished look.",
     "shortDescription": "Quick glam party makeup in Patna with CC cream, metallic eyeshadow and tinted lips. Perfect for casual gatherings in Patna.",
     "price": 1000.0,
     "originalPrice": 1500.0,
+    "priceCurrency": "INR",
     "discountPercentage": 33,
     "isTrending": false,
     "isPopular": true,
-    "isBestSeller": true,
+    "isBestSeller": false,
     "duration": 45,
     "durationText": "45 minutes",
     "rating": 4.6,
@@ -659,19 +893,21 @@
     "precautions": "Come with clean, moisturized face. Ideal for Patna weather conditions.",
     "aftercare": "Gentle foaming cleanser. Light moisturizer. Perfect for Patna climate.",
     "faqs": [
-{"question": "Can I request bold lips instead of tinted?", "answer": "Yes, color customization available to match your Patna party outfit"},
+      {"question": "Can I request bold lips instead of tinted?", "answer": "Yes, color customization available to match your Patna party outfit"},
       {"question": "Is this suitable for teenage parties in Patna?", "answer": "Perfect for young skin and first-time makeup, popular for Patna college parties"},
       {"question": "How quickly can this makeup be done?", "answer": "Designed for quick application - typically 30-45 minutes for busy schedules"},
       {"question": "Is this makeup easy to remove after party?", "answer": "Yes, uses lightweight formulas that are easy to remove with regular cleanser"},
-      {"question": "Can I upgrade to smoky eyes?", "answer": "Yes, available as an add-on service for more dramatic party looks"}    ],
+      {"question": "Can I upgrade to smoky eyes?", "answer": "Yes, available as an add-on service for more dramatic party looks"}
+    ],
     "seoKeywords": [
       "party makeup patna",
       "quick makeup",
       "casual makeup patna",
       "basic party makeup",
       "social event makeup patna",
-      "party makeup Boring Road",
-      "casual makeup Bailey Road"
+      "party makeup Bhootnath road",
+      "casual makeup Patna",
+      "party makeup home service"
     ],
     "targetAudience": ["Casual party-goers", "College students", "Kitty party attendees", "Social gatherings"],
     "idealFor": ["Birthday parties", "College events", "Kitty parties", "Casual get-togethers"],
@@ -688,12 +924,33 @@
       {"name": "Simple Contouring", "price": 400},
       {"name": "Basic Hair Styling", "price": 800}
     ],
+    "serviceArea": {
+      "city": "Patna",
+      "region": "Bihar",
+      "country": "India",
+      "radiusKm": 20
+    },
+    "provider": {
+      "name": "Kritika Ladies Beauty Parlour",
+      "address": "BH Colony, Patna, Bihar 800026, India",
+      "phone": "+91-9650461390",
+      "googleMapsUrl": "https://www.google.com/maps/place/Kritika+Ladies+Beauty+Parlour/@25.5873981,85.1757259,17z"
+    },
+    "geo": {
+      "lat": 25.5873981,
+      "lng": 85.1757259
+    },
     "nearbyLandmarks": [
-      "Kankarbagh residential areas (0.5km)",
-      "Boring Road cafes (1km)",
-      "Bailey Road restaurants (2km)",
-      "Fraser Road shops (1.5km)"
+      "Bhootnath Metro Station (~200m)",
+      "Bhootnath Road",
+      "BH Colony",
+      "Bahadurpur Housing Colony",
+      "Patna Bypass",
+      "Bairia Bus Stand",
+      "Zero Mile"
     ],
+    "url": "/makeup/party-basic-makeup-patna",
+    "reviewSource": "In-house reviews from Kritika Ladies Beauty Parlour Bookings",
     "seasonalTags": ["Year-round", "Casual events", "Social gatherings"],
     "processingTime": "Same day booking available",
     "cancellationPolicy": "Free cancellation up to 6 hours before"
@@ -704,11 +961,14 @@
     "slug": "party-hd-makeup-patna",
     "category": "Party",
     "categorySlug": "party",
+    "primaryCategory": "makeup",
+    "eventCategory": "party",
     "image": "/images/makeup/party_HD.webp",
-    "description": "Get Instagram-ready with HD party makeup in Patna at My Ladies Beauty Parlour. Our social media optimized makeup features professional color correction, precise winged liner that photographs beautifully, and bold matte lips that make a statement. Designed with photo-friendly matte finish that looks stunning in both natural light and party lighting common in Patna venues.",
+    "description": "Get Instagram-ready with HD party makeup in Patna at Kritika Ladies Beauty Parlour. Our social media optimized makeup features professional color correction, precise winged liner that photographs beautifully, and bold matte lips that make a statement. Designed with photo-friendly matte finish that looks stunning in both natural light and party lighting common in Patna venues.",
     "shortDescription": "Instagram-ready HD party makeup in Patna with color correction, winged liner and bold lips. Perfect for Patna social events.",
     "price": 1500.0,
     "originalPrice": 2000.0,
+    "priceCurrency": "INR",
     "discountPercentage": 25,
     "isTrending": true,
     "isPopular": true,
@@ -728,19 +988,21 @@
     "precautions": "Have reference photos ready. Ideal for Patna party conditions.",
     "aftercare": "Oil-based remover for longwear products. Special care for Patna climate.",
     "faqs": [
-{"question": "Can I get dramatic contouring for party photos?", "answer": "Yes, at additional ₹200, popular for Patna party photography"},
+      {"question": "Can I get dramatic contouring for party photos?", "answer": "Yes, at additional ₹200, popular for Patna party photography"},
       {"question": "Do you do graphic liner designs for themed parties?", "answer": "Yes, bring reference images, perfect for Patna college fests and themed parties"},
       {"question": "How does this makeup perform in club lighting?", "answer": "Specially formulated to look stunning under UV and party lighting"},
       {"question": "Is it transfer-proof for social events?", "answer": "Yes, transfer-resistant formulas perfect for Patna social gatherings"},
-      {"question": "Can you create Instagram-specific looks?", "answer": "Absolutely, we specialize in looks optimized for social media photography"}    ],
+      {"question": "Can you create Instagram-specific looks?", "answer": "Absolutely, we specialize in looks optimized for social media photography"}
+    ],
     "seoKeywords": [
       "party hd makeup patna",
       "instagram makeup",
       "social media makeup patna",
       "premium party makeup",
       "photography makeup patna",
-      "HD party makeup Boring Road",
-      "Instagram makeup Bailey Road"
+      "HD party makeup Bhootnath road",
+      "Instagram makeup Patna",
+      "party makeup home service"
     ],
     "targetAudience": ["Social media enthusiasts", "Themed party attendees", "Nightlife lovers", "College fest participants"],
     "idealFor": ["Instagram photoshoots", "Themed parties", "College fests", "Nightclub events"],
@@ -757,12 +1019,33 @@
       {"name": "Graphic Liner Designs", "price": 400},
       {"name": "Party Hair Styling", "price": 1200}
     ],
+    "serviceArea": {
+      "city": "Patna",
+      "region": "Bihar",
+      "country": "India",
+      "radiusKm": 20
+    },
+    "provider": {
+      "name": "Kritika Ladies Beauty Parlour",
+      "address": "BH Colony, Patna, Bihar 800026, India",
+      "phone": "+91-9650461390",
+      "googleMapsUrl": "https://www.google.com/maps/place/Kritika+Ladies+Beauty+Parlour/@25.5873981,85.1757259,17z"
+    },
+    "geo": {
+      "lat": 25.5873981,
+      "lng": 85.1757259
+    },
     "nearbyLandmarks": [
-      "Bailey Road nightlife (1.5km)",
-      "Boring Road cafes and bars (0.5km)",
-      "College fest venues (2km)",
-      "Social event locations (1km)"
+      "Bhootnath Metro Station (~200m)",
+      "Bhootnath Road",
+      "BH Colony",
+      "Bahadurpur Housing Colony",
+      "Patna Bypass",
+      "Bairia Bus Stand",
+      "Zero Mile"
     ],
+    "url": "/makeup/party-hd-makeup-patna",
+    "reviewSource": "In-house reviews from Kritika Ladies Beauty Parlour Bookings",
     "seasonalTags": ["Nightlife", "College fests", "Themed parties", "Year-round"],
     "processingTime": "Same day booking available",
     "cancellationPolicy": "Free cancellation up to 12 hours before"
@@ -773,15 +1056,18 @@
     "slug": "party-airbrush-makeup-patna",
     "category": "Party",
     "categorySlug": "party",
+    "primaryCategory": "makeup",
+    "eventCategory": "party",
     "image": "/images/makeup/party_airbrush.webp",
-    "description": "Experience flawless airbrush party makeup in Patna at My Ladies Beauty Parlour. Our premium airbrush base creates perfect coverage that lasts all night, complemented by cosmetic glitter accents that catch the light beautifully, and trendy ombre lips that complete your party look. Specially formulated to be sweat and humidity resistant, making it perfect for energetic Patna parties and crowded venues.",
+    "description": "Experience flawless airbrush party makeup in Patna at Kritika Ladies Beauty Parlour. Our premium airbrush base creates perfect coverage that lasts all night, complemented by cosmetic glitter accents that catch the light beautifully, and trendy ombre lips that complete your party look. Specially formulated to be sweat and humidity resistant, making it perfect for energetic Patna parties and crowded venues.",
     "shortDescription": "Flawless airbrush party makeup in Patna with glitter accents and ombre lips. Sweat-resistant for Patna party venues.",
     "price": 2000.0,
     "originalPrice": 2800.0,
+    "priceCurrency": "INR",
     "discountPercentage": 29,
     "isTrending": false,
     "isPopular": true,
-    "isBestSeller": true,
+    "isBestSeller": false,
     "duration": 60,
     "durationText": "1 hour",
     "rating": 4.8,
@@ -797,19 +1083,21 @@
     "precautions": "Avoid glitter if sensitive eyes. Special preparation for Patna party conditions.",
     "aftercare": "Special glitter remover provided. Gentle cleansing for Patna climate.",
     "faqs": [
-{"question": "Can I choose glitter colors for my outfit?", "answer": "Yes, 12 color options available to match your Patna party fashion"},
+      {"question": "Can I choose glitter colors for my outfit?", "answer": "Yes, 12 color options available to match your Patna party fashion"},
       {"question": "Is this transfer-proof for hugs and greetings?", "answer": "Yes, formulated to prevent transfer during Patna social events"},
       {"question": "How does airbrush handle crowded, humid venues?", "answer": "Specially formulated to be sweat and humidity resistant for Patna's crowded venues"},
       {"question": "Can ombre lips be customized?", "answer": "Yes, we can create custom ombre effects to match your party outfit"},
-      {"question": "Is glitter safe for sensitive eyes?", "answer": "We use cosmetic-grade, eye-safe glitter specifically formulated for facial use"}    ],
+      {"question": "Is glitter safe for sensitive eyes?", "answer": "We use cosmetic-grade, eye-safe glitter specifically formulated for facial use"}
+    ],
     "seoKeywords": [
       "party airbrush makeup patna",
       "flawless party makeup",
       "glitter makeup patna",
       "luxury party makeup",
       "airbrush makeup for parties",
-      "airbrush party makeup Boring Road",
-      "glitter makeup Bailey Road"
+      "airbrush party makeup Bhootnath road",
+      "glitter makeup Patna",
+      "party makeup home service"
     ],
     "targetAudience": ["Party enthusiasts", "Nightclub goers", "Festival attendees", "Special event guests"],
     "idealFor": ["Nightclub parties", "Festivals", "Special celebrations", "New Year parties"],
@@ -826,12 +1114,33 @@
       {"name": "Special Effects Makeup", "price": 1500},
       {"name": "Party Hair Styling", "price": 1500}
     ],
+    "serviceArea": {
+      "city": "Patna",
+      "region": "Bihar",
+      "country": "India",
+      "radiusKm": 20
+    },
+    "provider": {
+      "name": "Kritika Ladies Beauty Parlour",
+      "address": "BH Colony, Patna, Bihar 800026, India",
+      "phone": "+91-9650461390",
+      "googleMapsUrl": "https://www.google.com/maps/place/Kritika+Ladies+Beauty+Parlour/@25.5873981,85.1757259,17z"
+    },
+    "geo": {
+      "lat": 25.5873981,
+      "lng": 85.1757259
+    },
     "nearbyLandmarks": [
-      "Rajendra Nagar party venues (1km)",
-      "Bailey Road clubs (2km)",
-      "Boring Road event spaces (0.5km)",
-      "Festival locations (3km)"
+      "Bhootnath Metro Station (~200m)",
+      "Bhootnath Road",
+      "BH Colony",
+      "Bahadurpur Housing Colony",
+      "Patna Bypass",
+      "Bairia Bus Stand",
+      "Zero Mile"
     ],
+    "url": "/makeup/party-airbrush-makeup-patna",
+    "reviewSource": "In-house reviews from Kritika Ladies Beauty Parlour Bookings",
     "seasonalTags": ["Festival season", "Nightlife", "Special celebrations", "Year-round"],
     "processingTime": "Book 2-3 days in advance",
     "cancellationPolicy": "Free cancellation up to 24 hours, 50% charge thereafter"
@@ -842,11 +1151,14 @@
     "slug": "premium-bridal-package-patna",
     "category": "Bridal Packages",
     "categorySlug": "bridal-packages",
+    "primaryCategory": "makeup",
+    "eventCategory": "bridal",
     "image": "/images/makeup/premium_bridal.webp",
-    "description": "Experience comprehensive bridal preparation with our premium bridal package in Patna at My Ladies Beauty Parlour. This complete package includes 6 customized skincare sessions to achieve wedding-ready glow, 2 intensive hair treatments for lustrous locks, 3 detailed makeup trials to perfect your bridal look, professional manicure and pedicure, and personalized consultation with our bridal experts.",
+    "description": "Experience comprehensive bridal preparation with our premium bridal package in Patna at Kritika Ladies Beauty Parlour. This complete package includes 6 customized skincare sessions to achieve wedding-ready glow, 2 intensive hair treatments for lustrous locks, 3 detailed makeup trials to perfect your bridal look, professional manicure and pedicure, and personalized consultation with our bridal experts.",
     "shortDescription": "Complete bridal preparation package in Patna with skincare, hair treatments, makeup trials and beauty services.",
     "price": 14000.0,
     "originalPrice": 20000.0,
+    "priceCurrency": "INR",
     "discountPercentage": 30,
     "isTrending": true,
     "isPopular": true,
@@ -866,19 +1178,21 @@
     "precautions": "Start 6 months before wedding. Special timeline for Patna wedding seasons.",
     "aftercare": "Customized homecare routine. Bridal emergency kit for Patna weddings.",
     "faqs": [
-{"question": "Can I extend the package for additional services?", "answer": "Yes, additional services at 20% discount, perfect for extended Patna wedding celebrations"},
+      {"question": "Can I extend the package for additional services?", "answer": "Yes, additional services at 20% discount, perfect for extended Patna wedding celebrations"},
       {"question": "Are wedding day products included in the package?", "answer": "Full-size bridal day products included, specially selected for Patna climate"},
       {"question": "How far in advance should I start this package?", "answer": "We recommend starting 6 months before your wedding for optimal results"},
       {"question": "Is there a dedicated coordinator for this package?", "answer": "Yes, you get a dedicated bridal manager who coordinates all your services"},
-      {"question": "Can I customize the skincare treatments?", "answer": "Absolutely, all treatments are customized based on your skin analysis and needs"}    ],
+      {"question": "Can I customize the skincare treatments?", "answer": "Absolutely, all treatments are customized based on your skin analysis and needs"}
+    ],
     "seoKeywords": [
       "premium bridal package patna",
       "complete bridal prep",
       "bridal skincare patna",
       "wedding beauty package",
       "bridal makeup trials patna",
-      "bridal package Boring Road",
-      "wedding prep Bailey Road"
+      "bridal package Bhootnath road",
+      "wedding prep Patna",
+      "bridal package home service"
     ],
     "targetAudience": ["Comprehensive bridal prep seekers", "Traditional Patna weddings", "Full-service brides"],
     "idealFor": ["Traditional Patna weddings", "Extended wedding celebrations", "Complete beauty preparation", "Multi-event weddings"],
@@ -896,12 +1210,33 @@
       {"name": "Family Member Makeup Packages", "price": 5000},
       {"name": "Saree Draping Service", "price": 2000}
     ],
+    "serviceArea": {
+      "city": "Patna",
+      "region": "Bihar",
+      "country": "India",
+      "radiusKm": 20
+    },
+    "provider": {
+      "name": "Kritika Ladies Beauty Parlour",
+      "address": "BH Colony, Patna, Bihar 800026, India",
+      "phone": "+91-9650461390",
+      "googleMapsUrl": "https://www.google.com/maps/place/Kritika+Ladies+Beauty+Parlour/@25.5873981,85.1757259,17z"
+    },
+    "geo": {
+      "lat": 25.5873981,
+      "lng": 85.1757259
+    },
     "nearbyLandmarks": [
-      "Boring Road bridal studios (0.5km)",
-      "Bailey Road wedding planners (2km)",
-      "Rajendra Nagar beauty clinics (1km)",
-      "Kankarbagh bridal boutiques (3km)"
+      "Bhootnath Metro Station (~200m)",
+      "Bhootnath Road",
+      "BH Colony",
+      "Bahadurpur Housing Colony",
+      "Patna Bypass",
+      "Bairia Bus Stand",
+      "Zero Mile"
     ],
+    "url": "/makeup/premium-bridal-package-patna",
+    "reviewSource": "In-house reviews from Kritika Ladies Beauty Parlour Bookings",
     "seasonalTags": ["Wedding season in Patna", "Traditional celebrations", "Year-round"],
     "processingTime": "Book 3 months in advance",
     "cancellationPolicy": "30% deposit non-refundable, balance refundable 1 month prior"
@@ -912,11 +1247,14 @@
     "slug": "luxury-bridal-package-patna",
     "category": "Bridal Packages",
     "categorySlug": "bridal-packages",
+    "primaryCategory": "makeup",
+    "eventCategory": "bridal",
     "image": "/images/makeup/luxury_bridal.webp",
-    "description": "Get red carpet ready with our luxury bridal package in Patna at My Ladies Beauty Parlour. This premium package includes 4 luxury facial treatments for radiant skin, 2 rejuvenating hair spa sessions for glossy hair, 2 detailed makeup trials to create your perfect look, and indulgent full body polish for all-over glow. Also includes professional engagement day makeup to ensure you look stunning for all your Patna pre-wedding functions.",
+    "description": "Get red carpet ready with our luxury bridal package in Patna at Kritika Ladies Beauty Parlour. This premium package includes 4 luxury facial treatments for radiant skin, 2 rejuvenating hair spa sessions for glossy hair, 2 detailed makeup trials to create your perfect look, and indulgent full body polish for all-over glow. Also includes professional engagement day makeup to ensure you look stunning for all your Patna pre-wedding functions.",
     "shortDescription": "Luxury bridal package in Patna with facial treatments, hair spa, makeup trials and full body polish.",
     "price": 10000.0,
     "originalPrice": 15000.0,
+    "priceCurrency": "INR",
     "discountPercentage": 33,
     "isTrending": false,
     "isPopular": true,
@@ -936,19 +1274,21 @@
     "precautions": "Start 4 months before events. Special schedule for Patna wedding calendar.",
     "aftercare": "Maintenance plan provided. Bridal skin diary for Patna climate.",
     "faqs": [
- {"question": "Can I include mother's makeup in the package?", "answer": "Yes, at additional cost, perfect for Patna family wedding traditions"},
+      {"question": "Can I include mother's makeup in the package?", "answer": "Yes, at additional cost, perfect for Patna family wedding traditions"},
       {"question": "Are bridesmaids services included for Patna weddings?", "answer": "Special group rates available for Patna wedding parties"},
       {"question": "What makes this a 'luxury' package?", "answer": "Includes premium treatments, luxury product brands, and personalized attention from senior artists"},
       {"question": "Is engagement makeup included?", "answer": "Yes, professional engagement day makeup is included in this package"},
-      {"question": "Can I schedule treatments around my work schedule?", "answer": "Yes, we offer flexible scheduling including evenings and weekends"}    ],
+      {"question": "Can I schedule treatments around my work schedule?", "answer": "Yes, we offer flexible scheduling including evenings and weekends"}
+    ],
     "seoKeywords": [
       "luxury bridal package patna",
       "red carpet bridal",
       "premium wedding package",
       "bridal luxury package",
       "patna luxury bridal",
-      "luxury bridal Bailey Road",
-      "premium wedding package Boring Road"
+      "luxury bridal Patna",
+      "premium wedding package Bhootnath road",
+      "bridal package home service"
     ],
     "targetAudience": ["Luxury brides", "Red carpet events", "Premium weddings", "High-profile celebrations"],
     "idealFor": ["Luxury hotel weddings", "Destination wedding prep", "VIP celebrations", "Grand Patna weddings"],
@@ -965,12 +1305,33 @@
       {"name": "Mother of the Bride Makeup", "price": 3000},
       {"name": "Bridesmaids Package (3 persons)", "price": 6000}
     ],
+    "serviceArea": {
+      "city": "Patna",
+      "region": "Bihar",
+      "country": "India",
+      "radiusKm": 20
+    },
+    "provider": {
+      "name": "Kritika Ladies Beauty Parlour",
+      "address": "BH Colony, Patna, Bihar 800026, India",
+      "phone": "+91-9650461390",
+      "googleMapsUrl": "https://www.google.com/maps/place/Kritika+Ladies+Beauty+Parlour/@25.5873981,85.1757259,17z"
+    },
+    "geo": {
+      "lat": 25.5873981,
+      "lng": 85.1757259
+    },
     "nearbyLandmarks": [
-      "Bailey Road luxury hotels (2km)",
-      "Boring Road premium venues (0.5km)",
-      "Rajendra Nagar elite residences (1km)",
-      "Five-star hotel locations (3km)"
+      "Bhootnath Metro Station (~200m)",
+      "Bhootnath Road",
+      "BH Colony",
+      "Bahadurpur Housing Colony",
+      "Patna Bypass",
+      "Bairia Bus Stand",
+      "Zero Mile"
     ],
+    "url": "/makeup/luxury-bridal-package-patna",
+    "reviewSource": "In-house reviews from Kritika Ladies Beauty Parlour Bookings",
     "seasonalTags": ["Luxury weddings", "Premium events", "Year-round"],
     "processingTime": "Book 2 months in advance",
     "cancellationPolicy": "50% deposit non-refundable, balance refundable 2 weeks prior"
@@ -981,11 +1342,14 @@
     "slug": "classic-bridal-package-patna",
     "category": "Bridal Packages",
     "categorySlug": "bridal-packages",
+    "primaryCategory": "makeup",
+    "eventCategory": "bridal",
     "image": "/images/makeup/classic_bridal.webp",
-    "description": "Get essential bridal preparation with our classic bridal package in Patna at My Ladies Beauty Parlour. This budget-friendly package includes 3 brightening facials for natural glow, 1 intensive hair treatment for manageable hair, 1 comprehensive makeup trial to plan your look, and professional manicure-pedicure for perfect hands and feet. Focuses on basic glow enhancement and skin brightening that works beautifully for traditional Patna weddings.",
+    "description": "Get essential bridal preparation with our classic bridal package in Patna at Kritika Ladies Beauty Parlour. This budget-friendly package includes 3 brightening facials for natural glow, 1 intensive hair treatment for manageable hair, 1 comprehensive makeup trial to plan your look, and professional manicure-pedicure for perfect hands and feet. Focuses on basic glow enhancement and skin brightening that works beautifully for traditional Patna weddings.",
     "shortDescription": "Classic bridal package in Patna with facials, hair treatment, makeup trial and mani-pedi. Budget-friendly for Patna brides.",
     "price": 8000.0,
     "originalPrice": 12000.0,
+    "priceCurrency": "INR",
     "discountPercentage": 33,
     "isTrending": false,
     "isPopular": true,
@@ -1005,19 +1369,21 @@
     "precautions": "Start 3 months before wedding. Flexible for Patna wedding planning.",
     "aftercare": "Homecare guide. Bridal day prep checklist for Patna weddings.",
     "faqs": [
-{"question": "Can I upgrade facial types in the package?", "answer": "Yes, difference in cost applicable, customized for Patna skin types"},
+      {"question": "Can I upgrade facial types in the package?", "answer": "Yes, difference in cost applicable, customized for Patna skin types"},
       {"question": "Is engagement makeup included for pre-wedding?", "answer": "Available as add-on service, perfect for Patna engagement traditions"},
       {"question": "Is this package suitable for destination brides?", "answer": "Yes, includes essential treatments that can be completed before traveling"},
       {"question": "Can I add hair treatments?", "answer": "Additional hair treatments available as add-ons to the package"},
-      {"question": "What's the minimum duration needed for this package?", "answer": "We recommend 3 months for optimal results from this package"}    ],
+      {"question": "What's the minimum duration needed for this package?", "answer": "We recommend 3 months for optimal results from this package"}
+    ],
     "seoKeywords": [
       "classic bridal package patna",
       "budget bridal package",
       "essential bridal prep",
       "affordable bridal package patna",
       "patna bridal package",
-      "budget bridal package Kankarbagh",
-      "essential bridal prep Boring Road"
+      "budget bridal package Patna",
+      "essential bridal prep Bhootnath road",
+      "bridal package home service"
     ],
     "targetAudience": ["Budget-conscious brides", "Simple weddings", "Essential preparation seekers"],
     "idealFor": ["Intimate Patna weddings", "Budget-friendly preparations", "Essential beauty prep", "Simple wedding celebrations"],
@@ -1034,12 +1400,33 @@
       {"name": "Hair Spa Treatment", "price": 2000},
       {"name": "Engagement Makeup Service", "price": 2000}
     ],
+    "serviceArea": {
+      "city": "Patna",
+      "region": "Bihar",
+      "country": "India",
+      "radiusKm": 20
+    },
+    "provider": {
+      "name": "Kritika Ladies Beauty Parlour",
+      "address": "BH Colony, Patna, Bihar 800026, India",
+      "phone": "+91-9650461390",
+      "googleMapsUrl": "https://www.google.com/maps/place/Kritika+Ladies+Beauty+Parlour/@25.5873981,85.1757259,17z"
+    },
+    "geo": {
+      "lat": 25.5873981,
+      "lng": 85.1757259
+    },
     "nearbyLandmarks": [
-      "Kankarbagh residential areas (0.5km)",
-      "Boring Road beauty clinics (1km)",
-      "Bailey Road affordable venues (2km)",
-      "Fraser Road shopping areas (1.5km)"
+      "Bhootnath Metro Station (~200m)",
+      "Bhootnath Road",
+      "BH Colony",
+      "Bahadurpur Housing Colony",
+      "Patna Bypass",
+      "Bairia Bus Stand",
+      "Zero Mile"
     ],
+    "url": "/makeup/classic-bridal-package-patna",
+    "reviewSource": "In-house reviews from Kritika Ladies Beauty Parlour Bookings",
     "seasonalTags": ["Budget weddings", "Essential prep", "Year-round"],
     "processingTime": "Book 1 month in advance",
     "cancellationPolicy": "25% deposit non-refundable, balance refundable 2 weeks prior"
@@ -1050,11 +1437,14 @@
     "slug": "haldi-makeup-patna",
     "category": "Occasional",
     "categorySlug": "occasional",
+    "primaryCategory": "makeup",
+    "eventCategory": "occasional",
     "image": "/images/makeup/haldi_ceremony.webp",
-    "description": "Get the perfect traditional look for your Haldi ceremony in Patna at My Ladies Beauty Parlour. Our light, dewy makeup is specially designed for Haldi functions with waterproof formula that withstands turmeric paste application. Includes brightening body prep that enhances your natural glow for beautiful ceremony photos.",
+    "description": "Get the perfect traditional look for your Haldi ceremony in Patna at Kritika Ladies Beauty Parlour. Our light, dewy makeup is specially designed for Haldi functions with waterproof formula that withstands turmeric paste application. Includes brightening body prep that enhances your natural glow for beautiful ceremony photos.",
     "shortDescription": "Light, dewy Haldi ceremony makeup in Patna with waterproof formula to withstand turmeric. Perfect for Patna Haldi functions.",
     "price": 1500.0,
     "originalPrice": 2000.0,
+    "priceCurrency": "INR",
     "discountPercentage": 25,
     "isTrending": false,
     "isPopular": true,
@@ -1074,19 +1464,21 @@
     "precautions": "The Haldi stain is temporary and will fade in 2-3 days. Normal for Patna ceremonies.",
     "aftercare": "Wear old clothes as the Haldi paste can stain. Special care for Patna climate.",
     "faqs": [
-{"question": "Will the makeup last through Haldi application?", "answer": "Yes, we use special waterproof products tested for Patna Haldi traditions"},
+      {"question": "Will the makeup last through Haldi application?", "answer": "Yes, we use special waterproof products tested for Patna Haldi traditions"},
       {"question": "Can this be done at home for intimate Haldi?", "answer": "Absolutely! Our team can come to your Patna venue for home service"},
       {"question": "Does turmeric stain affect the makeup?", "answer": "Our products are formulated to work with turmeric without breaking down"},
       {"question": "Is this makeup suitable for outdoor Haldi ceremonies?", "answer": "Perfect for outdoor ceremonies with sun protection and humidity resistance"},
-      {"question": "Can I include simple hairstyling with this?", "answer": "Yes, simple traditional hairstyling available as add-on service"}    ],
+      {"question": "Can I include simple hairstyling with this?", "answer": "Yes, simple traditional hairstyling available as add-on service"}
+    ],
     "seoKeywords": [
       "haldi makeup patna",
       "turmeric ceremony makeup",
       "traditional makeup patna",
       "haldi function makeup",
       "patna haldi ceremony",
-      "Haldi makeup Rajendra Nagar",
-      "turmeric ceremony makeup Boring Road"
+      "Haldi makeup Patna",
+      "turmeric ceremony makeup Bhootnath road",
+      "haldi makeup home service"
     ],
     "targetAudience": ["Haldi ceremony attendees", "Traditional function participants", "Wedding pre-function guests"],
     "idealFor": ["Haldi ceremonies", "Turmeric functions", "Pre-wedding rituals", "Traditional Patna celebrations"],
@@ -1103,12 +1495,33 @@
       {"name": "Body Glow Treatment", "price": 1000},
       {"name": "Traditional Jewelry Setting", "price": 500}
     ],
+    "serviceArea": {
+      "city": "Patna",
+      "region": "Bihar",
+      "country": "India",
+      "radiusKm": 20
+    },
+    "provider": {
+      "name": "Kritika Ladies Beauty Parlour",
+      "address": "BH Colony, Patna, Bihar 800026, India",
+      "phone": "+91-9650461390",
+      "googleMapsUrl": "https://www.google.com/maps/place/Kritika+Ladies+Beauty+Parlour/@25.5873981,85.1757259,17z"
+    },
+    "geo": {
+      "lat": 25.5873981,
+      "lng": 85.1757259
+    },
     "nearbyLandmarks": [
-      "Rajendra Nagar residential areas (1km)",
-      "Boring Road traditional venues (0.5km)",
-      "Bailey Road function halls (2km)",
-      "Family home locations across Patna"
+      "Bhootnath Metro Station (~200m)",
+      "Bhootnath Road",
+      "BH Colony",
+      "Bahadurpur Housing Colony",
+      "Patna Bypass",
+      "Bairia Bus Stand",
+      "Zero Mile"
     ],
+    "url": "/makeup/haldi-makeup-patna",
+    "reviewSource": "In-house reviews from Kritika Ladies Beauty Parlour Bookings",
     "seasonalTags": ["Wedding season", "Traditional ceremonies", "Year-round"],
     "processingTime": "Same day booking available",
     "cancellationPolicy": "Free cancellation up to 12 hours before"
@@ -1119,15 +1532,18 @@
     "slug": "sangeet-makeup-patna",
     "category": "Occasional",
     "categorySlug": "occasional",
+    "primaryCategory": "makeup",
+    "eventCategory": "occasional",
     "image": "/images/makeup/sangeet_makeup.webp",
-    "description": "Get stunning dramatic makeup for your Sangeet function in Patna at My Ladies Beauty Parlour. Our bold Sangeet look features professional shimmer that catches the light, cosmetic glitter that adds celebration sparkle, and vibrant colors that complement traditional Patna Sangeet outfits. Specially designed to look absolutely breathtaking under party lights and stage lighting common in Patna Sangeet venues.",
+    "description": "Get stunning dramatic makeup for your Sangeet function in Patna at Kritika Ladies Beauty Parlour. Our bold Sangeet look features professional shimmer that catches the light, cosmetic glitter that adds celebration sparkle, and vibrant colors that complement traditional Patna Sangeet outfits. Specially designed to look absolutely breathtaking under party lights and stage lighting common in Patna Sangeet venues.",
     "shortDescription": "Bold and dramatic Sangeet makeup in Patna with shimmer, glitter and bold colors. Perfect for Patna pre-wedding functions.",
     "price": 2000.0,
     "originalPrice": 2800.0,
+    "priceCurrency": "INR",
     "discountPercentage": 29,
     "isTrending": true,
     "isPopular": true,
-    "isBestSeller": true,
+    "isBestSeller": false,
     "duration": 90,
     "durationText": "1.5 hours",
     "rating": 4.8,
@@ -1143,19 +1559,21 @@
     "precautions": "Bring inspiration pictures and outfit color. Special preparation for Patna Sangeet events.",
     "aftercare": "Includes glitter removal pads. Special care for Patna climate.",
     "faqs": [
-{"question": "Can I get a trial before my Sangeet function?", "answer": "Yes, highly recommended to perfect your Patna Sangeet look"},
+      {"question": "Can I get a trial before my Sangeet function?", "answer": "Yes, highly recommended to perfect your Patna Sangeet look"},
       {"question": "Is this suitable for mature skin for family functions?", "answer": "Absolutely, we adjust techniques for all ages in Patna family events"},
       {"question": "Can you coordinate makeup with my performance costume?", "answer": "Yes, we coordinate colors and styles with your Sangeet outfit"},
       {"question": "How does this makeup handle stage lighting?", "answer": "Formulated to look vibrant and flawless under stage and performance lighting"},
-      {"question": "Is glitter removal difficult after the function?", "answer": "We provide special removal pads and instructions for easy glitter removal"}    ],
+      {"question": "Is glitter removal difficult after the function?", "answer": "We provide special removal pads and instructions for easy glitter removal"}
+    ],
     "seoKeywords": [
       "sangeet makeup patna",
       "dramatic function makeup",
       "pre-wedding makeup",
       "sangeet function makeup",
       "patna sangeet makeup",
-      "Sangeet makeup Bailey Road",
-      "dramatic function makeup Boring Road"
+      "Sangeet makeup Patna",
+      "dramatic function makeup Bhootnath road",
+      "sangeet makeup home service"
     ],
     "targetAudience": ["Sangeet performers", "Function attendees", "Stage performance participants", "Wedding pre-function guests"],
     "idealFor": ["Sangeet functions", "Dance performances", "Stage events", "Pre-wedding celebrations"],
@@ -1172,12 +1590,33 @@
       {"name": "Performance Hair Styling", "price": 1500},
       {"name": "Special Effects Makeup", "price": 2000}
     ],
+    "serviceArea": {
+      "city": "Patna",
+      "region": "Bihar",
+      "country": "India",
+      "radiusKm": 20
+    },
+    "provider": {
+      "name": "Kritika Ladies Beauty Parlour",
+      "address": "BH Colony, Patna, Bihar 800026, India",
+      "phone": "+91-9650461390",
+      "googleMapsUrl": "https://www.google.com/maps/place/Kritika+Ladies+Beauty+Parlour/@25.5873981,85.1757259,17z"
+    },
+    "geo": {
+      "lat": 25.5873981,
+      "lng": 85.1757259
+    },
     "nearbyLandmarks": [
-      "Bailey Road banquet halls (2km)",
-      "Boring Road event venues (0.5km)",
-      "Rajendra Nagar function spaces (1km)",
-      "Hotel ballrooms across Patna"
+      "Bhootnath Metro Station (~200m)",
+      "Bhootnath Road",
+      "BH Colony",
+      "Bahadurpur Housing Colony",
+      "Patna Bypass",
+      "Bairia Bus Stand",
+      "Zero Mile"
     ],
+    "url": "/makeup/sangeet-makeup-patna",
+    "reviewSource": "In-house reviews from Kritika Ladies Beauty Parlour Bookings",
     "seasonalTags": ["Wedding season", "Function season", "Year-round"],
     "processingTime": "Book 2-3 days in advance",
     "cancellationPolicy": "Free cancellation up to 24 hours, 40% charge thereafter"
@@ -1188,15 +1627,18 @@
     "slug": "no-makeup-makeup-patna",
     "category": "Occasional",
     "categorySlug": "occasional",
+    "primaryCategory": "makeup",
+    "eventCategory": "occasional",
     "image": "/images/makeup/no_makeup.webp",
-    "description": "Master the art of looking naturally flawless with our no-makeup makeup service in Patna at My Ladies Beauty Parlour. This sophisticated technique enhances your natural features, perfects your skin texture, and brightens your eyes while appearing completely makeup-free. Using skin tints, cream blushes, and brow gels, we create fresh, natural appearance that's perfect for professional settings, daytime events, or when you want to look polished without obvious makeup.",
+    "description": "Master the art of looking naturally flawless with our no-makeup makeup service in Patna at Kritika Ladies Beauty Parlour. This sophisticated technique enhances your natural features, perfects your skin texture, and brightens your eyes while appearing completely makeup-free. Using skin tints, cream blushes, and brow gels, we create fresh, natural appearance that's perfect for professional settings, daytime events, or when you want to look polished without obvious makeup.",
     "shortDescription": "Natural no-makeup makeup look in Patna that enhances features while looking completely natural. Perfect for professional settings.",
     "price": 1200.0,
     "originalPrice": 1800.0,
+    "priceCurrency": "INR",
     "discountPercentage": 33,
     "isTrending": false,
     "isPopular": true,
-    "isBestSeller": true,
+    "isBestSeller": false,
     "duration": 60,
     "durationText": "1 hour",
     "rating": 4.6,
@@ -1212,19 +1654,21 @@
     "precautions": "Skin should be well-moisturized. Ideal for Patna weather conditions.",
     "aftercare": "Easy to touch up with minimal products. Perfect for Patna climate.",
     "faqs": [
-{"question": "Will it cover imperfections while looking natural?", "answer": "Yes, we use strategic coverage techniques perfect for Patna professional settings"},
+      {"question": "Will it cover imperfections while looking natural?", "answer": "Yes, we use strategic coverage techniques perfect for Patna professional settings"},
       {"question": "Good for mature skin in professional environments?", "answer": "Excellent as it doesn't settle into lines, popular among Patna working professionals"},
       {"question": "How long does this natural look last?", "answer": "Lasts all day with minimal touch-ups needed"},
       {"question": "Is this suitable for humid Patna weather?", "answer": "Yes, lightweight formulas that work well in Patna's climate"},
-      {"question": "Can I learn to recreate this look myself?", "answer": "Yes, we can provide tips and product recommendations for daily use"}    ],
+      {"question": "Can I learn to recreate this look myself?", "answer": "Yes, we can provide tips and product recommendations for daily use"}
+    ],
     "seoKeywords": [
       "no makeup makeup patna",
       "natural makeup look",
       "professional makeup patna",
       "subtle makeup",
       "patna natural makeup",
-      "natural makeup Kankarbagh",
-      "professional makeup Boring Road"
+      "natural makeup Patna",
+      "professional makeup Bhootnath road",
+      "natural makeup home service"
     ],
     "targetAudience": ["Working professionals", "Interview candidates", "Daytime event attendees", "Natural look enthusiasts"],
     "idealFor": ["Office environments", "Job interviews", "Daytime meetings", "Casual outings"],
@@ -1241,12 +1685,33 @@
       {"name": "Lash Tint", "price": 400},
       {"name": "Professional Consultation", "price": 500}
     ],
+    "serviceArea": {
+      "city": "Patna",
+      "region": "Bihar",
+      "country": "India",
+      "radiusKm": 20
+    },
+    "provider": {
+      "name": "Kritika Ladies Beauty Parlour",
+      "address": "BH Colony, Patna, Bihar 800026, India",
+      "phone": "+91-9650461390",
+      "googleMapsUrl": "https://www.google.com/maps/place/Kritika+Ladies+Beauty+Parlour/@25.5873981,85.1757259,17z"
+    },
+    "geo": {
+      "lat": 25.5873981,
+      "lng": 85.1757259
+    },
     "nearbyLandmarks": [
-      "Kankarbagh office areas (0.5km)",
-      "Boring Road corporate centers (1km)",
-      "Bailey Road business districts (2km)",
-      "Fraser Road commercial areas (1.5km)"
+      "Bhootnath Metro Station (~200m)",
+      "Bhootnath Road",
+      "BH Colony",
+      "Bahadurpur Housing Colony",
+      "Patna Bypass",
+      "Bairia Bus Stand",
+      "Zero Mile"
     ],
+    "url": "/makeup/no-makeup-makeup-patna",
+    "reviewSource": "In-house reviews from Kritika Ladies Beauty Parlour Bookings",
     "seasonalTags": ["Professional settings", "Year-round", "Daytime events"],
     "processingTime": "Same day booking available",
     "cancellationPolicy": "Free cancellation up to 6 hours before"
@@ -1257,15 +1722,18 @@
     "slug": "waterproof-makeup-patna",
     "category": "Occasional",
     "categorySlug": "occasional",
+    "primaryCategory": "makeup",
+    "eventCategory": "occasional",
     "image": "/images/makeup/waterproof_makeup.webp",
-    "description": "Get ultimate protection with our waterproof makeup service in Patna at My Ladies Beauty Parlour. This specialized makeup is completely sweat-proof and water-resistant, making it perfect for destination weddings, pool parties, monsoon events, and emotional ceremonies common in Bihar celebrations. Using waterproof foundation, cream products, and professional sealing sprays, we create looks that withstand both water exposure and emotional tears while maintaining perfect appearance.",
+    "description": "Get ultimate protection with our waterproof makeup service in Patna at Kritika Ladies Beauty Parlour. This specialized makeup is completely sweat-proof and water-resistant, making it perfect for destination weddings, pool parties, monsoon events, and emotional ceremonies common in Bihar celebrations. Using waterproof foundation, cream products, and professional sealing sprays, we create looks that withstand both water exposure and emotional tears while maintaining perfect appearance.",
     "shortDescription": "Ultimate sweat-proof, water-resistant makeup in Patna. Perfect for destination weddings and monsoon events in Bihar.",
     "price": 1800.0,
     "originalPrice": 2500.0,
+    "priceCurrency": "INR",
     "discountPercentage": 28,
     "isTrending": true,
     "isPopular": true,
-    "isBestSeller": true,
+    "isBestSeller": false,
     "duration": 75,
     "durationText": "1 hour 15 minutes",
     "rating": 4.7,
@@ -1281,19 +1749,21 @@
     "precautions": "Arrive with moisturized but product-free skin. Special preparation for Patna conditions.",
     "aftercare": "Special waterproof makeup remover included. Care instructions for Patna climate.",
     "faqs": [
- {"question": "Will it run in water during pool parties?", "answer": "No, specially formulated for water exposure in Patna events"},
+      {"question": "Will it run in water during pool parties?", "answer": "No, specially formulated for water exposure in Patna events"},
       {"question": "Good for oily skin in humid Patna weather?", "answer": "Excellent for controlling oil in Patna's challenging climate"},
       {"question": "How do I remove waterproof makeup?", "answer": "We provide special remover and instructions for easy removal"},
       {"question": "Can it withstand monsoon rains?", "answer": "Yes, specifically tested for Patna's monsoon conditions"},
-      {"question": "Is it suitable for emotional ceremonies?", "answer": "Perfect for emotional events as it's completely tear-proof"}    ],
+      {"question": "Is it suitable for emotional ceremonies?", "answer": "Perfect for emotional events as it's completely tear-proof"}
+    ],
     "seoKeywords": [
       "waterproof makeup patna",
       "sweat proof makeup",
       "monsoon makeup patna",
       "water resistant makeup",
       "patna waterproof makeup",
-      "waterproof makeup Boring Road",
-      "sweat proof makeup Bailey Road"
+      "waterproof makeup Bhootnath road",
+      "sweat proof makeup Patna",
+      "waterproof makeup home service"
     ],
     "targetAudience": ["Monsoon event attendees", "Pool party guests", "Emotional ceremony participants", "Outdoor event lovers"],
     "idealFor": ["Monsoon weddings", "Pool parties", "Outdoor ceremonies", "Emotional functions"],
@@ -1310,12 +1780,33 @@
       {"name": "Swim-proof Hair Styling", "price": 1200},
       {"name": "Emergency Touch-up Kit", "price": 800}
     ],
+    "serviceArea": {
+      "city": "Patna",
+      "region": "Bihar",
+      "country": "India",
+      "radiusKm": 20
+    },
+    "provider": {
+      "name": "Kritika Ladies Beauty Parlour",
+      "address": "BH Colony, Patna, Bihar 800026, India",
+      "phone": "+91-9650461390",
+      "googleMapsUrl": "https://www.google.com/maps/place/Kritika+Ladies+Beauty+Parlour/@25.5873981,85.1757259,17z"
+    },
+    "geo": {
+      "lat": 25.5873981,
+      "lng": 85.1757259
+    },
     "nearbyLandmarks": [
-      "Boring Road outdoor venues (0.5km)",
-      "Bailey Road pool party locations (2km)",
-      "Rajendra Nagar monsoon event spaces (1km)",
-      "Outdoor celebration venues across Patna"
+      "Bhootnath Metro Station (~200m)",
+      "Bhootnath Road",
+      "BH Colony",
+      "Bahadurpur Housing Colony",
+      "Patna Bypass",
+      "Bairia Bus Stand",
+      "Zero Mile"
     ],
+    "url": "/makeup/waterproof-makeup-patna",
+    "reviewSource": "In-house reviews from Kritika Ladies Beauty Parlour Bookings",
     "seasonalTags": ["Monsoon season", "Summer events", "Outdoor celebrations", "Pool parties"],
     "processingTime": "Book 2-3 days in advance",
     "cancellationPolicy": "Free cancellation up to 24 hours, weather-dependent adjustments"
@@ -1326,15 +1817,18 @@
     "slug": "saree-draping-patna",
     "category": "Occasional",
     "categorySlug": "occasional",
+    "primaryCategory": "makeup",
+    "eventCategory": "occasional",
     "image": "/images/makeup/saree_draping.webp",
-    "description": "Master the art of perfect saree draping with our professional service in Patna at My Ladies Beauty Parlour. Our expert stylists create flawless drapes with perfect pleats and elegant pallu management that stays secure through any event. Includes comprehensive styling advice for blouses and accessories to complete your traditional look. We teach various regional styles including Bengali, Gujarati, Maharashtrian, and contemporary drapes that are popular in Patna's social scene.",
+    "description": "Master the art of perfect saree draping with our professional service in Patna at Kritika Ladies Beauty Parlour. Our expert stylists create flawless drapes with perfect pleats and elegant pallu management that stays secure through any event. Includes comprehensive styling advice for blouses and accessories to complete your traditional look. We teach various regional styles including Bengali, Gujarati, Maharashtrian, and contemporary drapes that are popular in Patna's social scene.",
     "shortDescription": "Professional saree draping service in Patna with perfect pleats and pallu management. Learn different regional styles.",
     "price": 500.0,
     "originalPrice": 800.0,
+    "priceCurrency": "INR",
     "discountPercentage": 38,
     "isTrending": false,
     "isPopular": true,
-    "isBestSeller": true,
+    "isBestSeller": false,
     "duration": 30,
     "durationText": "30 minutes",
     "rating": 4.8,
@@ -1350,19 +1844,21 @@
     "precautions": "Bring your own saree and blouse for perfect fit.",
     "aftercare": "Receive a digital guide for reference. Perfect for Patna traditional events.",
     "faqs": [
-{"question": "Can I learn different regional styles for festivals?", "answer": "Yes, we teach Bengali, Gujarati, Maharashtrian styles popular in Patna festivals"},
+      {"question": "Can I learn different regional styles for festivals?", "answer": "Yes, we teach Bengali, Gujarati, Maharashtrian styles popular in Patna festivals"},
       {"question": "Do you provide blouse stitching services?", "answer": "We have tie-up with expert tailors for perfect Patna traditional wear"},
       {"question": "How long does the perfect drape last?", "answer": "Our professional draping lasts all day without slipping or loosening"},
       {"question": "Can you teach me to drape myself?", "answer": "Yes, we include teaching during the service for self-draping in future"},
-      {"question": "Do you provide saree fall attachment?", "answer": "Yes, we can attach falls and provide all necessary accessories"}    ],
+      {"question": "Do you provide saree fall attachment?", "answer": "Yes, we can attach falls and provide all necessary accessories"}
+    ],
     "seoKeywords": [
       "saree draping patna",
       "professional saree draping",
       "traditional draping patna",
       "saree styling service",
       "patna saree draping",
-      "saree draping Kankarbagh",
-      "traditional styling Boring Road"
+      "saree draping Patna",
+      "traditional styling Bhootnath road",
+      "saree draping home service"
     ],
     "targetAudience": ["Traditional wear enthusiasts", "Festival attendees", "Wedding guests", "Cultural event participants"],
     "idealFor": ["Weddings", "Festivals", "Cultural events", "Traditional celebrations"],
@@ -1379,12 +1875,33 @@
       {"name": "Accessory Styling", "price": 300},
       {"name": "Quick Makeup Service", "price": 800}
     ],
+    "serviceArea": {
+      "city": "Patna",
+      "region": "Bihar",
+      "country": "India",
+      "radiusKm": 20
+    },
+    "provider": {
+      "name": "Kritika Ladies Beauty Parlour",
+      "address": "BH Colony, Patna, Bihar 800026, India",
+      "phone": "+91-9650461390",
+      "googleMapsUrl": "https://www.google.com/maps/place/Kritika+Ladies+Beauty+Parlour/@25.5873981,85.1757259,17z"
+    },
+    "geo": {
+      "lat": 25.5873981,
+      "lng": 85.1757259
+    },
     "nearbyLandmarks": [
-      "Kankarbagh residential areas (0.5km)",
-      "Boring Road traditional shops (1km)",
-      "Bailey Road event venues (2km)",
-      "Fraser Road saree boutiques (1.5km)"
+      "Bhootnath Metro Station (~200m)",
+      "Bhootnath Road",
+      "BH Colony",
+      "Bahadurpur Housing Colony",
+      "Patna Bypass",
+      "Bairia Bus Stand",
+      "Zero Mile"
     ],
+    "url": "/makeup/saree-draping-patna",
+    "reviewSource": "In-house reviews from Kritika Ladies Beauty Parlour Bookings",
     "seasonalTags": ["Festival season", "Wedding season", "Year-round traditional events"],
     "processingTime": "Same day booking available",
     "cancellationPolicy": "Free cancellation up to 3 hours before"

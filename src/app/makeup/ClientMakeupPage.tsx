@@ -1,22 +1,19 @@
-// kritika/src/app/makeup/ClientMakeupPage.tsx - SEO OPTIMIZED VERSION
+// kritika/src/app/makeup/ClientMakeupPage.tsx - UPDATED TO MATCH HOME PAGE PATTERNS
 "use client";
 
 import { useState, useRef, useCallback, useEffect } from 'react';
 import Image from 'next/image';
 import dynamic from 'next/dynamic';
-import { MapPin, Sparkles, Zap, Phone, Clock, Star, Award } from 'lucide-react';
+import { MapPin, Sparkles, Zap, Phone, Clock, Award, TrendingUp, Users, Heart, ArrowRight, Star } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 
 import { Service } from '../../types/service';
 import { useAuth } from '../../context/AuthContext';
 import { useBooking } from '../../context/BookingContext';
 import ServiceSkeleton from '../../components/ServiceSkeleton';
 
-// Import SEO data
-import seoData from '../../../public/seo.json';
-
-// Lazy load components
+// Lazy load heavy components
 const ServiceCard = dynamic(() => import('../../components/ServiceCard'), {
-  ssr: false,
   loading: () => <ServiceSkeleton />
 });
 
@@ -32,9 +29,7 @@ const SkinAnalysis = dynamic(() => import('../../components/SkinAnalysis'), {
   ssr: false
 });
 
-const TestimonialCard = dynamic(() => import('../../components/TestimonialCard'), {
-  ssr: false
-});
+const TestimonialCard = dynamic(() => import('../../components/TestimonialCard'));
 
 const LoginModal = dynamic(() => import('../../components/LoginModal'), {
   ssr: false
@@ -44,13 +39,9 @@ const BookingFlow = dynamic(() => import('../../components/booking/BookingFlow')
   ssr: false
 });
 
-const MobileBottomNav = dynamic(() => import('../../components/MobileBottomNav'), {
-  ssr: false
-});
+const MobileBottomNav = dynamic(() => import('../../components/MobileBottomNav'));
 
-const FloatingCart = dynamic(() => import('../../components/FloatingCart'), {
-  ssr: false
-});
+const FloatingCart = dynamic(() => import('../../components/FloatingCart'));
 
 interface ClientMakeupPageProps {
   allServices: Service[];
@@ -58,6 +49,7 @@ interface ClientMakeupPageProps {
 }
 
 const ClientMakeupPage = ({ allServices, trendingServices }: ClientMakeupPageProps) => {
+  const router = useRouter();
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
   const [favorites, setFavorites] = useState<Set<string>>(new Set());
   const [selectedService, setSelectedService] = useState<Service | null>(null);
@@ -67,15 +59,106 @@ const ClientMakeupPage = ({ allServices, trendingServices }: ClientMakeupPagePro
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [bookingStep, setBookingStep] = useState<'browsing' | 'booking'>('browsing');
   const [activeFaq, setActiveFaq] = useState<number | null>(null);
-  const [currentServiceIndex, setCurrentServiceIndex] = useState<number>(0);
-  const [visibleServiceIndices, setVisibleServiceIndices] = useState<Set<number>>(new Set([0]));
+  const [isMobile, setIsMobile] = useState<boolean>(false);
+  const [isLandscape, setIsLandscape] = useState<boolean>(false);
+  const [autoScroll, setAutoScroll] = useState<boolean>(true);
 
   const serviceScrollRef = useRef<HTMLDivElement>(null);
+  const trendingScrollRef = useRef<HTMLDivElement>(null);
   const { isLoggedIn } = useAuth();
   const { addToCart } = useBooking();
 
-  const serviceCategories = ['All', ...Array.from(new Set(allServices.map(service => service.category)))];
+  // Get trending services count
+  const trendingCount = trendingServices?.length || 0;
+  const hasTrendingServices = trendingCount > 0;
 
+  // Get unique categories
+  const serviceCategories = [
+    'All',
+    ...Array.from(new Set(allServices.map(service => service.category || '').filter(Boolean)))
+  ];
+
+  // Viewport detection useEffect - SAME AS HOME PAGE
+  useEffect(() => {
+    let timeoutId: NodeJS.Timeout | null = null;
+
+    const updateViewport = () => {
+      const isMob = window.innerWidth < 768;
+      setIsMobile(isMob);
+      setIsLandscape(window.innerWidth > window.innerHeight);
+    };
+
+    const handleResize = () => {
+      if (timeoutId) clearTimeout(timeoutId);
+      
+      timeoutId = setTimeout(() => {
+        updateViewport();
+      }, 150);
+    };
+
+    updateViewport();
+
+    window.addEventListener('resize', handleResize);
+    window.addEventListener('orientationchange', handleResize);
+    
+    return () => {
+      if (timeoutId) clearTimeout(timeoutId);
+      window.removeEventListener('resize', handleResize);
+      window.removeEventListener('orientationchange', handleResize);
+    };
+  }, []);
+
+  // Auto-scroll trending services on desktop - SAME AS HOME PAGE
+  useEffect(() => {
+    if (!trendingScrollRef.current || !autoScroll || isMobile || trendingCount < 3) return;
+    
+    const scrollContainer = trendingScrollRef.current;
+    let scrollInterval: NodeJS.Timeout;
+    let scrollDirection = 1;
+    let scrollPosition = 0;
+    
+    const startScrolling = () => {
+      scrollInterval = setInterval(() => {
+        if (!scrollContainer) return;
+        
+        const containerWidth = scrollContainer.clientWidth;
+        const contentWidth = scrollContainer.scrollWidth;
+        const maxScroll = contentWidth - containerWidth;
+        
+        if (scrollPosition >= maxScroll - 10) {
+          scrollDirection = -1;
+        } else if (scrollPosition <= 10) {
+          scrollDirection = 1;
+        }
+        
+        scrollPosition += scrollDirection * 0.5;
+        scrollContainer.scrollLeft = scrollPosition;
+      }, 20);
+    };
+    
+    const stopScrolling = () => {
+      clearInterval(scrollInterval);
+    };
+    
+    startScrolling();
+    
+    scrollContainer.addEventListener('mouseenter', () => {
+      setAutoScroll(false);
+      stopScrolling();
+    });
+    
+    scrollContainer.addEventListener('mouseleave', () => {
+      setAutoScroll(true);
+    });
+    
+    return () => {
+      stopScrolling();
+      scrollContainer.removeEventListener('mouseenter', () => {});
+      scrollContainer.removeEventListener('mouseleave', () => {});
+    };
+  }, [trendingCount, isMobile, autoScroll]);
+
+  // Filter services by selected category
   const getFilteredServices = useCallback(() => {
     if (selectedCategory === 'All') return allServices;
     return allServices.filter(service => service.category === selectedCategory);
@@ -83,76 +166,48 @@ const ClientMakeupPage = ({ allServices, trendingServices }: ClientMakeupPagePro
 
   const filteredServices = getFilteredServices();
 
+  // Get category image - SAME PATTERN AS HOME PAGE
   const getCategoryImage = useCallback((category: string) => {
     if (category === 'All') return '/images/all-services.jpg';
     const firstService = allServices.find(s => s.category === category);
     return firstService?.image || '/images/placeholder.jpg';
   }, [allServices]);
 
-  useEffect(() => {
-    setCurrentServiceIndex(0);
-    setVisibleServiceIndices(new Set([0]));
-  }, [selectedCategory]);
-
-  const updateVisibleServices = useCallback(() => {
-    if (!serviceScrollRef.current) return;
-
-    const container = serviceScrollRef.current;
-    const containerRect = container.getBoundingClientRect();
-    const services = container.children;
-    const newVisibleIndices = new Set<number>();
-
-    for (let i = 0; i < services.length; i++) {
-      const serviceRect = services[i].getBoundingClientRect();
-      const isVisible = 
-        serviceRect.left >= containerRect.left && 
-        serviceRect.right <= containerRect.right;
-      
-      if (isVisible) {
-        newVisibleIndices.add(i);
-      }
+  // Makeup subcategories for horizontal display - SIMILAR TO HOME PAGE
+  const MAKEUP_SUBCATEGORIES = [
+    {
+      id: 'bridal',
+      title: 'Bridal Makeup',
+      description: 'Complete bridal packages',
+      image: '/images/makeup/complete_bridal_package.webp',
+      icon: '👰',
+      color: 'from-pink-500 to-rose-600'
+    },
+    {
+      id: 'engagement',
+      title: 'Engagement',
+      description: 'Pre-wedding makeup',
+      image: '/images/makeup/bridal_HDLook.webp',
+      icon: '💍',
+      color: 'from-purple-500 to-pink-600'
+    },
+    {
+      id: 'party',
+      title: 'Party Makeup',
+      description: 'Evening & party looks',
+      image: '/images/makeup/bridal_makeup.webp',
+      icon: '🎉',
+      color: 'from-amber-500 to-orange-600'
+    },
+    {
+      id: 'hd',
+      title: 'HD Makeup',
+      description: 'Camera-ready makeup',
+      image: '/images/makeup/hd_makeup.webp',
+      icon: '📸',
+      color: 'from-blue-500 to-cyan-600'
     }
-
-    if (newVisibleIndices.size > 0) {
-      const indices = Array.from(newVisibleIndices);
-      const centeredIndex = indices.reduce((prev, curr) => {
-        const prevRect = services[prev].getBoundingClientRect();
-        const currRect = services[curr].getBoundingClientRect();
-        const prevCenter = Math.abs(prevRect.left + prevRect.right - containerRect.left - containerRect.right) / 2;
-        const currCenter = Math.abs(currRect.left + currRect.right - containerRect.left - containerRect.right) / 2;
-        return currCenter < prevCenter ? curr : prev;
-      }, indices[0]);
-      
-      setCurrentServiceIndex(centeredIndex);
-    }
-
-    setVisibleServiceIndices(newVisibleIndices);
-  }, []);
-
-  useEffect(() => {
-    const container = serviceScrollRef.current;
-    if (!container) return;
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            const index = parseInt(entry.target.getAttribute('data-index') || '0');
-            setVisibleServiceIndices(prev => new Set([...prev, index]));
-          }
-        });
-      },
-      {
-        root: container,
-        threshold: 0.5
-      }
-    );
-
-    const serviceElements = container.querySelectorAll('[data-index]');
-    serviceElements.forEach(element => observer.observe(element));
-
-    return () => observer.disconnect();
-  }, [filteredServices.length]);
+  ];
 
   const toggleFavorite = useCallback((serviceId: string) => {
     setFavorites(prev => {
@@ -164,16 +219,6 @@ const ClientMakeupPage = ({ allServices, trendingServices }: ClientMakeupPagePro
       }
       return newFavorites;
     });
-  }, []);
-
-  const scrollToService = useCallback((index: number) => {
-    if (serviceScrollRef.current && serviceScrollRef.current.children[index]) {
-      serviceScrollRef.current.children[index].scrollIntoView({
-        behavior: 'smooth',
-        inline: 'center'
-      });
-      setCurrentServiceIndex(index);
-    }
   }, []);
 
   const proceedToBooking = useCallback(() => {
@@ -188,116 +233,404 @@ const ClientMakeupPage = ({ allServices, trendingServices }: ClientMakeupPagePro
     addToCart(service);
   }, [addToCart]);
 
-  useEffect(() => {
-    const container = serviceScrollRef.current;
-    if (!container) return;
+  const handleServiceClick = useCallback((service: Service) => {
+    if (service.url) {
+      router.push(service.url);
+    } else {
+      setSelectedService(service);
+      setShowServiceDetail(true);
+    }
+  }, [router]);
 
-    const handleScroll = () => {
-      requestAnimationFrame(updateVisibleServices);
-    };
-
-    container.addEventListener('scroll', handleScroll);
-    return () => container.removeEventListener('scroll', handleScroll);
-  }, [updateVisibleServices]);
+  const navigateToCategory = useCallback((category: string) => {
+    setSelectedCategory(category);
+    if (serviceScrollRef.current) {
+      serviceScrollRef.current.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  }, []);
 
   if (bookingStep === 'booking') {
     return <BookingFlow onBack={() => setBookingStep('browsing')} />;
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-pink-50 via-white to-purple-50">
-      {/* SEO Header - Hidden but crawlable */}
-      <header className="sr-only">
-        <h1>Best Bridal Makeup Artist in {seoData.business.address.locality}, Patna | {seoData.business.name}</h1>
-        <p>
-          Professional makeup services including HD makeup, airbrush makeup, bridal makeup, 
-          engagement makeup, and party makeup in {seoData.business.address.locality}, Patna. 
-          Rated {seoData.business.rating}⭐ with {seoData.business.totalReviews}+ happy clients.
-        </p>
-        <address>
-          {seoData.business.address.street}, {seoData.business.address.locality}, 
-          {seoData.business.address.city}, {seoData.business.address.state} - {seoData.business.address.pincode}
-        </address>
-        <p>Phone: <a href={`tel:${seoData.business.contact.phone}`}>{seoData.business.contact.phone}</a></p>
-      </header>
-
-      <main className="max-w-7xl mx-auto px-4 py-6 pb-24 md:pb-8">
-        {/* Trust Signals Banner - SEO Rich */}
+    <div className={`
+      min-h-screen 
+      bg-gradient-to-br from-pink-50 via-white to-purple-50 
+      safe-area-inset
+      overflow-x-hidden
+      w-full
+      ${isLandscape ? 'landscape-mode' : ''}
+    `}>
+      <main className={`
+        max-w-7xl 
+        mx-auto 
+        px-4 
+        py-6 
+        ${isMobile ? (isLandscape ? 'pb-28' : 'pb-32') : 'pb-8'}
+        safe-area-inset
+        w-full
+        overflow-x-hidden
+        scroll-padding
+      `}>
         
-        {/* Category Services Banner */}
-        <section className="bg-gradient-to-r from-pink-50 via-purple-50 to-rose-50 rounded-2xl p-4 mb-6 flex flex-col border border-pink-200">
-          <h2 className="sr-only">
-            {selectedCategory !== 'All' 
-              ? `${selectedCategory} Makeup Services in ${seoData.business.address.locality}` 
-              : `All Makeup Services in ${seoData.business.address.locality}, Patna`}
-          </h2>
-          
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-gradient-to-br from-pink-500 to-purple-500 rounded-full flex items-center justify-center">
-                <Sparkles className="w-5 h-5 text-white" />
-              </div>
-              <div>
-                <h3 className="font-bold text-gray-900 text-sm sm:text-base">
-                  {selectedCategory !== 'All' ? `${selectedCategory} Services` : 'All Makeup Services'}
-                </h3>
-                <p className="text-xs text-gray-600">
-                  {filteredServices.length} professional services available
-                </p>
+        {/* TRENDING MAKEUP SERVICES BANNER - SIMILAR TO HOME PAGE */}
+        {hasTrendingServices && (
+          <section className={`
+            bg-gradient-to-r from-yellow-50 via-pink-50 to-purple-50 
+            rounded-2xl 
+            p-4 
+            mb-6 
+            border 
+            border-pink-200
+            w-full
+            ${isLandscape ? 'py-3' : ''}
+          `}>
+            <h2 className="sr-only">
+              Trending Makeup Services
+            </h2>
+            
+            <div className="flex items-center justify-between mb-4">
+              <div className="flex items-center gap-3">
+                <div className={`
+                  ${isMobile && isLandscape ? 'w-8 h-8' : 'w-10 h-10'}
+                  bg-gradient-to-br from-pink-500 to-rose-500 
+                  rounded-full 
+                  flex 
+                  items-center 
+                  justify-center
+                  flex-shrink-0
+                  animate-pulse
+                `}>
+                  <TrendingUp className={`
+                    ${isMobile && isLandscape ? 'w-4 h-4' : 'w-5 h-5'} 
+                    text-white
+                  `} />
+                </div>
+                <div>
+                  <h3 className={`
+                    font-bold 
+                    text-gray-900 
+                    ${isMobile ? (isLandscape ? 'text-sm' : 'text-base') : 'text-lg'}
+                  `}>
+                    Trending Makeup Services
+                  </h3>
+                  <p className={`
+                    ${isLandscape ? 'text-[10px]' : 'text-xs'} 
+                    text-gray-600
+                  `}>
+                    Most booked {trendingCount} makeup services
+                  </p>
+                </div>
               </div>
             </div>
             
-            <div className="bg-black/70 text-white text-xs font-medium px-2 py-1 rounded-full hidden sm:block">
-              {currentServiceIndex + 1}/{filteredServices.length}
-            </div>
-            <div className="bg-black/70 text-white text-[10px] font-medium px-1.5 py-0.5 rounded-full sm:hidden">
-              {currentServiceIndex + 1}/{filteredServices.length}
-            </div>
-          </div>
-          
-          {/* Instagram-like dot indicators */}
-          {filteredServices.length > 0 && (
-            <div className="flex justify-center items-center gap-[6px] mt-3">
-              {filteredServices.slice(0, 20).map((_, index) => (
-                <span
-                  key={index}
-                  onClick={() => scrollToService(index)}
+            {/* HORIZONTAL SCROLLING TRENDING SERVICES - SAME AS HOME PAGE */}
+            <div 
+              ref={trendingScrollRef}
+              className={`
+                flex 
+                ${isMobile ? 'overflow-x-auto space-x-4' : 'overflow-hidden'} 
+                pb-3 
+                mb-4 
+                ${isMobile ? 'scrollbar-hide' : ''}
+                ${!isMobile ? 'relative' : ''}
+              `}
+              style={{
+                WebkitOverflowScrolling: 'touch',
+                scrollbarWidth: 'none',
+                msOverflowStyle: 'none'
+              }}
+            >
+              {trendingServices.map((service) => (
+                <div 
+                  key={service.id} 
                   className={`
-                    block cursor-pointer rounded-full
-                    transition-all duration-200
-                    ${currentServiceIndex === index
-                      ? 'bg-pink-600'
-                      : 'bg-gray-300'}
-                    ${currentServiceIndex === index
-                      ? 'w-2 h-2'
-                      : 'w-1.5 h-1.5'}
-                    sm:${currentServiceIndex === index
-                      ? 'w-2 h-2'
-                      : 'w-1.5 h-1.5'}
+                    ${isMobile ? 'flex-shrink-0' : 'flex-shrink-0'}
+                    ${isLandscape ? 'min-w-[160px]' : isMobile ? 'min-w-[200px]' : 'min-w-[220px]'}
+                    ${isLandscape ? 'max-w-[160px]' : isMobile ? 'max-w-[200px]' : 'max-w-[220px]'}
+                    bg-white 
+                    rounded-xl 
+                    ${isLandscape ? 'p-2' : isMobile ? 'p-3' : 'p-3'}
+                    border 
+                    border-pink-100 
+                    shadow-sm
+                    hover:shadow-md
+                    transition-all 
+                    duration-300
+                    flex 
+                    flex-col
+                    cursor-pointer
+                    group
+                    ${!isMobile ? 'hover:scale-[1.02]' : ''}
                   `}
-                  aria-label={`Go to service ${index + 1}`}
-                />
+                  onClick={() => handleServiceClick(service)}
+                  aria-label={`View ${service.title}`}
+                >
+                  {/* Service Image */}
+                  <div className={`
+                    relative 
+                    ${isLandscape ? 'h-24' : isMobile ? 'h-32' : 'h-36'} 
+                    w-full 
+                    rounded-lg 
+                    overflow-hidden 
+                    mb-2
+                    group-hover:shadow-inner
+                  `}>
+                    <Image
+                      src={service.image || '/images/placeholder.jpg'}
+                      alt={service.title}
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-300"
+                      sizes={isMobile ? "200px" : "220px"}
+                      priority={true}
+                    />
+                    {/* Best Seller Badge */}
+                    {service.isBestSeller && (
+                      <div className="absolute top-2 left-2 z-10">
+                        <span className="bg-gradient-to-r from-yellow-500 to-orange-500 text-white text-xs font-bold px-2 py-1 rounded-full shadow-md flex items-center gap-1">
+                          <Star className="w-3 h-3 fill-white" />
+                          Best Seller
+                        </span>
+                      </div>
+                    )}
+                    {/* Rating Badge */}
+                    <div className="absolute bottom-2 right-2 bg-black/70 backdrop-blur-sm text-white text-xs font-bold px-2 py-1 rounded-full flex items-center gap-1">
+                      <Star className="w-3 h-3 fill-yellow-400 text-yellow-400" />
+                      <span>{service.rating?.toFixed(1) || '4.5'}</span>
+                    </div>
+                  </div>
+                  
+                  {/* Service Info */}
+                  <div className="flex-1 flex flex-col">
+                    <h4 className={`
+                      font-semibold 
+                      text-gray-800 
+                      ${isLandscape ? 'text-xs' : isMobile ? 'text-sm' : 'text-sm'}
+                      line-clamp-2 
+                      mb-1
+                      group-hover:text-pink-600
+                      transition-colors
+                    `}>
+                      {service.title}
+                    </h4>
+                    
+                    <p className={`
+                      text-gray-600 
+                      ${isLandscape ? 'text-[10px]' : 'text-xs'}
+                      line-clamp-2 
+                      mb-2
+                    `}>
+                      {service.shortDescription || service.description?.substring(0, 60)}...
+                    </p>
+                    
+                    <div className="flex items-center justify-between mt-auto">
+                      <div className="flex flex-col">
+                        <span className={`
+                          font-bold 
+                          text-pink-600 
+                          ${isLandscape ? 'text-sm' : 'text-base'}
+                        `}>
+                          ₹{service.price}
+                        </span>
+                        {service.originalPrice && service.originalPrice > service.price && (
+                          <span className={`
+                            text-gray-400 
+                            ${isLandscape ? 'text-[10px]' : 'text-xs'}
+                            line-through
+                          `}>
+                            ₹{service.originalPrice}
+                          </span>
+                        )}
+                      </div>
+                      
+                      <div className={`
+                        ${isLandscape ? 'text-[10px]' : 'text-xs'} 
+                        text-gray-500
+                        flex items-center gap-1
+                      `}>
+                        <Clock className={isLandscape ? 'w-3 h-3' : 'w-3 h-3'} />
+                        <span>{service.durationText || `${service.duration || 60} min`}</span>
+                      </div>
+                    </div>
+                    
+                    {/* Quick Action Button */}
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleAddToCart(service);
+                      }}
+                      className={`
+                        w-full 
+                        mt-2 
+                        ${isLandscape ? 'py-1.5 text-xs' : isMobile ? 'py-2 text-sm' : 'py-2 text-sm'}
+                        bg-gradient-to-r from-pink-500 to-rose-500 
+                        text-white 
+                        font-medium 
+                        rounded-lg 
+                        hover:from-pink-600 hover:to-rose-600
+                        active:from-pink-700 active:to-rose-700
+                        transition-all 
+                        duration-200
+                        shadow-sm hover:shadow-md
+                        flex items-center justify-center gap-1
+                      `}
+                    >
+                      <span>Add to Cart</span>
+                      <Heart className="w-4 h-4" />
+                    </button>
+                  </div>
+                </div>
               ))}
             </div>
-          )}
+          </section>
+        )}
+
+        {/* Makeup Subcategories - SIMILAR TO HOME PAGE */}
+        <section className="mb-8" aria-label="Makeup service categories">
+          <h2 className={`
+            ${isLandscape ? 'text-lg' : 'text-xl'} 
+            font-bold 
+            text-gray-800 
+            mb-4 
+            text-center 
+            flex 
+            items-center 
+            justify-center
+          `}>
+            <Zap className="mr-2 text-pink-600" />
+            Makeup Categories
+          </h2>
+          
+          <div className={`
+            ${isMobile ? 'grid grid-cols-2 gap-3' : 'flex flex-wrap justify-center gap-3'}
+          `}>
+            {MAKEUP_SUBCATEGORIES.map((category) => (
+              <div
+                key={category.id}
+                className={`
+                  ${isMobile ? '' : 'flex-1 min-w-[240px] max-w-[280px]'}
+                  bg-gradient-to-br ${category.color} 
+                  rounded-xl 
+                  overflow-hidden 
+                  shadow-lg 
+                  hover:shadow-xl 
+                  transition-all 
+                  duration-300 
+                  transform 
+                  hover:-translate-y-1
+                  ${isLandscape ? 'h-full' : ''}
+                `}
+              >
+                <div className="p-5 text-white">
+                  <div className="flex items-start justify-between mb-3">
+                    <div>
+                      <h3 className={`font-bold ${isLandscape ? 'text-lg' : 'text-xl'}`}>
+                        {category.title}
+                      </h3>
+                      <p className="text-white/80 text-sm mt-1">
+                        {category.description}
+                      </p>
+                    </div>
+                  </div>
+                  
+                  <div className="relative h-40 rounded-lg overflow-hidden mb-4 border-2 border-white/20">
+                    <Image
+                      src={category.image}
+                      alt={`${category.title} services`}
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 768px) 280px, (max-width: 1024px) 200px, 250px"
+                      loading="lazy"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
+                  </div>
+                  
+                  <button
+                    onClick={() => navigateToCategory(category.title.split(' ')[0])}
+                    className={`
+                      w-full 
+                      bg-white 
+                      text-gray-800 
+                      font-semibold 
+                      py-2.5 
+                      px-4 
+                      rounded-lg 
+                      flex 
+                      items-center 
+                      justify-center 
+                      gap-2 
+                      hover:bg-gray-50 
+                      active:bg-gray-100 
+                      transition-colors 
+                      duration-200
+                      ${isLandscape ? 'py-2 text-sm' : ''}
+                    `}
+                    aria-label={`Browse ${category.title} services`}
+                  >
+                    <span>Browse Services</span>
+                    <ArrowRight className="w-4 h-4" />
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
         </section>
 
-        {/* Services Grid - Semantic HTML for SEO */}
-        <section aria-label="Makeup services list">
+        {/* Category Filter Buttons */}
+        <section className="mb-6" aria-label="Filter makeup services by category">
+          <div className={`
+            ${isMobile ? 'flex overflow-x-auto space-x-2 pb-2' : 'flex flex-wrap justify-center gap-2'}
+          `}>
+            {serviceCategories.map((category) => {
+              const categoryServices = allServices.filter(s => 
+                category === 'All' ? true : s.category === category
+              );
+              
+              return (
+                <button
+                  key={category}
+                  onClick={() => setSelectedCategory(category)}
+                  className={`
+                    ${isMobile ? 'flex-shrink-0' : ''}
+                    px-4 
+                    py-2 
+                    rounded-full 
+                    font-medium 
+                    transition-all 
+                    duration-200
+                    ${selectedCategory === category 
+                      ? 'bg-gradient-to-r from-pink-500 to-purple-500 text-white shadow-lg' 
+                      : 'bg-white text-gray-700 hover:bg-gray-50 border border-pink-100'
+                    }
+                    ${isLandscape ? 'text-xs px-3 py-1.5' : isMobile ? 'text-sm' : 'text-sm'}
+                  `}
+                  aria-label={`Show ${category} makeup services - ${categoryServices.length} available`}
+                  aria-pressed={selectedCategory === category}
+                >
+                  {category} ({categoryServices.length})
+                </button>
+              );
+            })}
+          </div>
+        </section>
+
+        {/* Services Grid */}
+        <section aria-label={`${selectedCategory} makeup services`}>
           <div
             ref={serviceScrollRef}
-            className="flex sm:grid sm:grid-cols-2 lg:grid-cols-4 gap-4 overflow-x-auto sm:overflow-visible scrollbar-hide snap-x snap-mandatory pb-4"
-            onScroll={updateVisibleServices}
-            role="list"
+            className={`
+              ${isMobile ? 'grid grid-cols-1 gap-4' : 'grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4'}
+            `}
           >
-            {filteredServices.map((service, index) => (
+            {filteredServices.map((service) => (
               <article 
-                key={service.id} 
-                data-index={index}
-                className="snap-start min-w-[280px] sm:min-w-0"
+                key={service.id}
+                className={`
+                  ${isLandscape ? 'h-full' : ''}
+                `}
                 itemScope
                 itemType="https://schema.org/Service"
-                role="listitem"
               >
                 <meta itemProp="name" content={service.title} />
                 <meta itemProp="description" content={service.shortDescription} />
@@ -317,6 +650,8 @@ const ClientMakeupPage = ({ allServices, trendingServices }: ClientMakeupPagePro
                     setSelectedService(service);
                     setShowServiceDetail(true);
                   }}
+                  variant={isLandscape ? 'compact' : 'detailed'}
+                  showBestSellerBadge={service.isBestSeller === true}
                 />
               </article>
             ))}
@@ -331,176 +666,243 @@ const ClientMakeupPage = ({ allServices, trendingServices }: ClientMakeupPagePro
           )}
         </section>
 
-        {/* Browse Categories - SEO Optimized */}
-        <section className="mb-8" aria-label="Browse makeup categories">
-          <h2 className="text-xl font-bold text-gray-800 mb-4 text-center flex items-center justify-center">
-            <Zap className="mr-2 text-pink-600" />
-            Browse Makeup Categories
-          </h2>
-          
-          <nav aria-label="Makeup service categories">
-            <div className="grid grid-cols-4 sm:grid-cols-6 gap-2 sm:gap-3">
-              {serviceCategories.map((category) => {
-                const categoryServices = allServices.filter(s => 
-                  category === 'All' ? true : s.category === category
-                );
-                
-                return (
-                  <button
-                    key={category}
-                    onClick={() => {
-                      setSelectedCategory(category);
-                      if (serviceScrollRef.current) {
-                        serviceScrollRef.current.scrollLeft = 0;
-                      }
-                    }}
-                    className="cursor-pointer transition-all duration-300 aspect-square hover:scale-105"
-                    aria-label={`View ${category} services - ${categoryServices.length} available`}
-                    aria-pressed={selectedCategory === category}
-                  >
-                    <div className={`h-full rounded-xl p-2 text-center transition-all duration-300 flex flex-col items-center justify-center ${
-                      selectedCategory === category 
-                        ? 'bg-gradient-to-br from-pink-500 to-purple-600 text-white shadow-lg' 
-                        : 'bg-white text-gray-700 shadow-md hover:shadow-lg border border-pink-100'
-                    }`}>
-                      <div className="w-8 h-8 md:w-10 md:h-10 mx-auto mb-1 rounded-full overflow-hidden border border-white/20">
-                        <Image 
-                          src={getCategoryImage(category)} 
-                          alt={`${category} makeup services in ${seoData.business.address.locality}`}
-                          width={40}
-                          height={40}
-                          className="w-full h-full object-cover"
-                          loading="lazy"
-                        />
-                      </div>
-                      <p className="font-medium text-xs leading-tight truncate w-full">{category}</p>
-                      <p className="text-[10px] opacity-75 mt-0.5">
-                        {categoryServices.length} services
-                      </p>
-                    </div>
-                  </button>
-                );
-              })}
-            </div>
-          </nav>
-        </section>
-
-        {/* Interactive Tools */}
+        {/* Interactive Tools - SAME AS HOME PAGE */}
         <section className="mb-8" aria-label="Makeup consultation tools">
-          <h2 className="text-xl font-bold text-gray-800 mb-4 text-center flex items-center justify-center">
+          <h2 className={`
+            ${isLandscape ? 'text-lg' : 'text-xl'} 
+            font-bold 
+            text-gray-800 
+            mb-4 
+            text-center 
+            flex 
+            items-center 
+            justify-center
+          `}>
             <Zap className="mr-2 text-pink-600" />
             Discover Your Perfect Look
           </h2>
-          <div className="grid grid-cols-2 gap-3">
+          <div className={`
+            grid 
+            ${isLandscape ? 'grid-cols-2 gap-2' : 'grid-cols-2 gap-3'}
+          `}>
             <button
               onClick={() => setShowBeautyQuiz(true)}
-              className="bg-gradient-to-br from-pink-50 to-purple-100 p-4 rounded-xl hover:shadow-xl transition-all duration-300 flex flex-col items-center text-center border-2 border-pink-200"
+              className="
+                bg-gradient-to-br from-pink-50 to-purple-100 
+                p-4 
+                rounded-xl 
+                hover:shadow-xl 
+                transition-all 
+                duration-300 
+                flex 
+                flex-col 
+                items-center 
+                text-center 
+                border-2 
+                border-pink-200
+                touch-target
+                ${isLandscape ? 'p-3' : ''}
+              "
               aria-label="Take our makeup style quiz"
             >
               <div className="text-3xl mb-2">💫</div>
-              <h3 className="text-base font-bold text-purple-800">Makeup Style Quiz</h3>
-              <p className="text-gray-600 text-xs mt-1">Find your perfect makeup look!</p>
-              <span className="mt-3 bg-white text-pink-600 font-semibold py-1.5 px-3 rounded-full text-xs border border-pink-300">
+              <h3 className={`
+                ${isLandscape ? 'text-sm' : 'text-base'} 
+                font-bold 
+                text-purple-800
+              `}>
+                Makeup Style Quiz
+              </h3>
+              <p className={`
+                text-gray-600 
+                ${isLandscape ? 'text-xs' : 'text-xs mt-1'}
+              `}>
+                Find your perfect makeup look!
+              </p>
+              <span className={`
+                mt-3 
+                bg-white 
+                text-pink-600 
+                font-semibold 
+                py-1.5 
+                px-3 
+                rounded-full 
+                ${isLandscape ? 'text-xs' : 'text-xs'} 
+                border 
+                border-pink-300
+              `}>
                 Start Quiz
               </span>
             </button>
             <button
               onClick={() => setShowSkinAnalysis(true)}
-              className="bg-gradient-to-br from-purple-50 to-pink-100 p-4 rounded-xl hover:shadow-xl transition-all duration-300 flex flex-col items-center text-center border-2 border-purple-200"
+              className="
+                bg-gradient-to-br from-purple-50 to-pink-100 
+                p-4 
+                rounded-xl 
+                hover:shadow-xl 
+                transition-all 
+                duration-300 
+                flex 
+                flex-col 
+                items-center 
+                text-center 
+                border-2 
+                border-purple-200
+                touch-target
+                ${isLandscape ? 'p-3' : ''}
+              "
               aria-label="Analyze your skin tone"
             >
               <div className="text-3xl mb-2">✨</div>
-              <h3 className="text-base font-bold text-purple-800">Skin Tone Analysis</h3>
-              <p className="text-gray-600 text-xs mt-1">Find your perfect foundation match.</p>
-              <span className="mt-3 bg-white text-purple-600 font-semibold py-1.5 px-3 rounded-full text-xs border border-purple-300">
+              <h3 className={`
+                ${isLandscape ? 'text-sm' : 'text-base'} 
+                font-bold 
+                text-purple-800
+              `}>
+                Skin Tone Analysis
+              </h3>
+              <p className={`
+                text-gray-600 
+                ${isLandscape ? 'text-xs' : 'text-xs mt-1'}
+              `}>
+                Find your perfect foundation match.
+              </p>
+              <span className={`
+                mt-3 
+                bg-white 
+                text-purple-600 
+                font-semibold 
+                py-1.5 
+                px-3 
+                rounded-full 
+                ${isLandscape ? 'text-xs' : 'text-xs'} 
+                border 
+                border-purple-300
+              `}>
                 Analyze Skin
               </span>
             </button>
           </div>
         </section>
 
-        {/* Location & Contact - Rich Schema */}
-        <section 
-          className="bg-white rounded-2xl p-6 shadow-md mb-6"
-          itemScope
-          itemType="https://schema.org/LocalBusiness"
-        >
-          <meta itemProp="name" content={seoData.business.name} />
-          <meta itemProp="image" content={`${seoData.business.contact.website}/logo.png`} />
+        {/* Why Choose Us Banner - SIMILAR TO HOME PAGE */}
+        <section className="
+          bg-gradient-to-r from-pink-100 via-purple-100 to-rose-100 
+          rounded-2xl 
+          p-6 
+          mb-6 
+          border-2 
+          border-pink-200
+        ">
+          <h2 className={`
+            ${isLandscape ? 'text-lg' : 'text-xl'} 
+            font-bold 
+            text-gray-800 
+            mb-6 
+            text-center
+          `}>
+            Why Choose Our Makeup Services?
+          </h2>
           
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
-            <div className="flex items-start gap-3" itemProp="address" itemScope itemType="https://schema.org/PostalAddress">
-              <div className="w-10 h-10 bg-pink-100 rounded-full flex items-center justify-center flex-shrink-0">
-                <MapPin className="w-5 h-5 text-pink-600" />
+          <div className="grid grid-cols-3 gap-4 text-center">
+            <div className="flex flex-col items-center">
+              <Sparkles className={`
+                ${isLandscape ? 'w-6 h-6' : 'w-8 h-8'} 
+                text-purple-600 
+                mb-2
+              `} />
+              <div className={`
+                ${isLandscape ? 'text-xl' : 'text-2xl'} 
+                font-bold 
+                text-gray-900
+              `}>
+                {allServices.length}+
               </div>
-              <div>
-                <h3 className="font-bold text-gray-900 mb-1">Visit Us</h3>
-                <p className="text-gray-600 text-sm">
-                  <span itemProp="streetAddress">{seoData.business.address.street}, {seoData.business.address.locality}</span>,{' '}
-                  <span itemProp="addressLocality">{seoData.business.address.city}</span>,{' '}
-                  <span itemProp="addressRegion">{seoData.business.address.state}</span>{' '}
-                  <span itemProp="postalCode">{seoData.business.address.pincode}</span>
-                </p>
-                <a
-                  href={seoData.localSEOOptimization.localCitations.googleMaps}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-pink-600 text-sm font-medium mt-2 inline-block hover:underline"
-                  itemProp="hasMap"
-                >
-                  Get Directions →
-                </a>
+              <div className={`
+                ${isLandscape ? 'text-[10px]' : 'text-xs'} 
+                text-gray-600
+              `}>
+                Makeup Services
               </div>
             </div>
-
-            <div className="flex items-start gap-3">
-              <div className="w-10 h-10 bg-pink-100 rounded-full flex items-center justify-center flex-shrink-0">
-                <Phone className="w-5 h-5 text-pink-600" />
+            <div className="flex flex-col items-center" itemProp="aggregateRating" itemScope itemType="https://schema.org/AggregateRating">
+              <Award className={`
+                ${isLandscape ? 'w-6 h-6' : 'w-8 h-8'} 
+                text-pink-600 
+                mb-2
+              `} />
+              <div className={`
+                ${isLandscape ? 'text-xl' : 'text-2xl'} 
+                font-bold 
+                text-gray-900
+              `}>
+                <span itemProp="ratingValue">4.8</span>
               </div>
-              <div>
-                <h3 className="font-bold text-gray-900 mb-1">Call Us</h3>
-                <a
-                  href={`tel:${seoData.business.contact.phone}`}
-                  className="text-gray-600 text-sm hover:text-pink-600 block"
-                  itemProp="telephone"
-                >
-                  {seoData.business.contact.phone}
-                </a>
-                <p className="text-xs text-gray-500 mt-1">
-                  <time itemProp="openingHours">{seoData.business.workingHours.weekdays}</time>
-                </p>
+              <div className={`
+                ${isLandscape ? 'text-[10px]' : 'text-xs'} 
+                text-gray-600
+              `}>
+                ⭐ <span itemProp="reviewCount">1000+</span> Reviews
+              </div>
+            </div>
+            <div className="flex flex-col items-center">
+              <Users className={`
+                ${isLandscape ? 'w-6 h-6' : 'w-8 h-8'} 
+                text-rose-600 
+                mb-2
+              `} />
+              <div className={`
+                ${isLandscape ? 'text-xl' : 'text-2xl'} 
+                font-bold 
+                text-gray-900
+              `}>
+                1000+
+              </div>
+              <div className={`
+                ${isLandscape ? 'text-[10px]' : 'text-xs'} 
+                text-gray-600
+              `}>
+                Happy Brides
               </div>
             </div>
           </div>
-
-          <div className="pt-6 border-t border-pink-100">
-            <h3 className="font-bold text-gray-900 mb-4 text-center">
-              Why Choose {seoData.business.name}?
-            </h3>
-            <div className="grid grid-cols-3 gap-4">
-              <div className="text-center">
-                <div className="text-2xl font-bold text-pink-600 mb-1">1000+</div>
-                <div className="text-xs text-gray-600">Brides Served</div>
-              </div>
-              <div className="text-center" itemProp="aggregateRating" itemScope itemType="https://schema.org/AggregateRating">
-                <div className="text-2xl font-bold text-pink-600 mb-1">
-                  <span itemProp="ratingValue">{seoData.business.rating}</span>
-                </div>
-                <div className="text-xs text-gray-600">
-                  ⭐ <span itemProp="reviewCount">{seoData.business.totalReviews}+</span> Reviews
-                </div>
-              </div>
-              <div className="text-center">
-                <div className="text-2xl font-bold text-pink-600 mb-1">{allServices.length}+</div>
-                <div className="text-xs text-gray-600">Makeup Services</div>
-              </div>
+          
+          {/* Open Now Badge */}
+          <div className="mt-6 text-center">
+            <div className="
+              inline-flex 
+              items-center 
+              gap-2 
+              bg-white 
+              text-green-600 
+              font-bold 
+              ${isLandscape ? 'text-xs px-3 py-1.5' : 'text-sm px-4 py-2'} 
+              rounded-full 
+              border 
+              border-green-200
+              shadow-sm
+            ">
+              <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+              <span>Open Now</span>
+              <span className="text-gray-600 font-normal">
+                9:00 AM - 8:00 PM
+              </span>
             </div>
           </div>
         </section>
 
-        {/* Testimonials */}
+        {/* Testimonials - SIMILAR TO HOME PAGE */}
         <section className="mb-6" aria-label="Customer testimonials">
-          <h2 className="text-xl font-bold text-gray-800 mb-4 text-center">Makeup Transformations</h2>
+          <h2 className={`
+            ${isLandscape ? 'text-lg' : 'text-xl'} 
+            font-bold 
+            text-gray-800 
+            mb-4 
+            text-center
+          `}>
+            Makeup Transformations
+          </h2>
           <div className="flex overflow-x-auto space-x-4 pb-4 scrollbar-hide">
             <TestimonialCard 
               name="Priya S." 
@@ -520,42 +922,47 @@ const ClientMakeupPage = ({ allServices, trendingServices }: ClientMakeupPagePro
           </div>
         </section>
 
-        <section className="bg-gradient-to-r from-pink-100 via-purple-100 to-rose-100 rounded-2xl p-4 mb-6 border-2 border-pink-200">
-          <div className="grid grid-cols-3 gap-4 text-center">
-            <div className="flex flex-col items-center">
-              <Award className="w-8 h-8 text-pink-600 mb-2" />
-              <div className="text-2xl font-bold text-gray-900" itemProp="ratingValue">
-                {seoData.business.rating}⭐
-              </div>
-              <div className="text-xs text-gray-600" itemProp="ratingCount">
-                {seoData.business.totalReviews.toLocaleString()}+ Reviews
-              </div>
-            </div>
-            <div className="flex flex-col items-center">
-              <Sparkles className="w-8 h-8 text-purple-600 mb-2" />
-              <div className="text-2xl font-bold text-gray-900">{allServices.length}+</div>
-              <div className="text-xs text-gray-600">Makeup Services</div>
-            </div>
-            <div className="flex flex-col items-center">
-              <Clock className="w-8 h-8 text-rose-600 mb-2" />
-              <div className="text-sm font-bold text-gray-900">Open Now</div>
-              <div className="text-xs text-gray-600">{seoData.business.workingHours.weekdays}</div>
-            </div>
-          </div>
-        </section>
-
         {/* Promotional Banner */}
-        <section className="bg-gradient-to-r from-pink-100 to-purple-100 rounded-xl p-6 text-center border-2 border-pink-200">
-          <div className="inline-flex items-center bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-full mb-2">
+        <section className="
+          bg-gradient-to-r from-pink-100 to-purple-100 
+          rounded-xl 
+          p-6 
+          text-center 
+          border-2 
+          border-pink-200
+        ">
+          <div className="
+            inline-flex 
+            items-center 
+            bg-red-500 
+            text-white 
+            text-xs 
+            font-bold 
+            px-2 
+            py-1 
+            rounded-full 
+            mb-2
+          ">
             <Zap className="mr-1" />
             BRIDAL SPECIAL
           </div>
-          <h3 className="text-lg font-bold text-gray-800">20% OFF On Bridal Makeup Packages</h3>
-          <p className="text-gray-600 text-sm mt-1">Book your trial now and save!</p>
+          <h3 className={`
+            ${isLandscape ? 'text-base' : 'text-lg'} 
+            font-bold 
+            text-gray-800
+          `}>
+            20% OFF On Bridal Makeup Packages
+          </h3>
+          <p className={`
+            text-gray-600 
+            ${isLandscape ? 'text-xs' : 'text-sm mt-1'}
+          `}>
+            Book your trial now and save big!
+          </p>
         </section>
       </main>
 
-      {/* Modals & Components */}
+      {/* Modals & Components - SAME AS HOME PAGE */}
       {selectedService && showServiceDetail && (
         <ServiceDetailModal
           service={selectedService}

@@ -1,10 +1,10 @@
-// kritika/src/app/ClientHomePage.tsx - SEO OPTIMIZED VERSION
+// kritika/src/app/ClientHomePage.tsx - COMPLETE MODIFIED VERSION
 "use client";
 
 import { useState, useRef, useCallback, useEffect } from 'react';
 import Image from 'next/image';
 import dynamic from 'next/dynamic';
-import { MapPin, Sparkles, Zap, Phone, Clock, Award, TrendingUp } from 'lucide-react';
+import { MapPin, Sparkles, Zap, Phone, Clock, Award, TrendingUp, Users, Heart, ArrowRight, Star } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 
 import { Service } from '../types/service';
@@ -12,12 +12,8 @@ import { useAuth } from '../context/AuthContext';
 import { useBooking } from '../context/BookingContext';
 import ServiceSkeleton from '../components/ServiceSkeleton';
 
-// Import SEO data
-import seoData from '../../public/seo.json';
-
 // Lazy load heavy components
 const ServiceCard = dynamic(() => import('../components/ServiceCard'), {
-  ssr: false,
   loading: () => <ServiceSkeleton />
 });
 
@@ -33,9 +29,7 @@ const SkinAnalysis = dynamic(() => import('../components/SkinAnalysis'), {
   ssr: false
 });
 
-const TestimonialCard = dynamic(() => import('../components/TestimonialCard'), {
-  ssr: false
-});
+const TestimonialCard = dynamic(() => import('../components/TestimonialCard'));
 
 const LoginModal = dynamic(() => import('../components/LoginModal'), {
   ssr: false
@@ -45,18 +39,17 @@ const BookingFlow = dynamic(() => import('../components/booking/BookingFlow'), {
   ssr: false
 });
 
-const MobileBottomNav = dynamic(() => import('../components/MobileBottomNav'), {
-  ssr: false
-});
+const MobileBottomNav = dynamic(() => import('../components/MobileBottomNav'));
 
-const FloatingCart = dynamic(() => import('../components/FloatingCart'), {
-  ssr: false
-});
+const FloatingCart = dynamic(() => import('../components/FloatingCart'));
 
 interface ClientHomePageProps {
   allServices: Service[];
   trendingServices: Service[];
 }
+
+// Define main categories in the desired order
+const MAIN_CATEGORIES = ['Bridal', 'Makeup', 'Skin', 'Hair', 'Nails'];
 
 const ClientHomePage = ({ allServices, trendingServices }: ClientHomePageProps) => {
   const router = useRouter();
@@ -69,22 +62,177 @@ const ClientHomePage = ({ allServices, trendingServices }: ClientHomePageProps) 
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [bookingStep, setBookingStep] = useState<'browsing' | 'booking'>('browsing');
   const [activeFaq, setActiveFaq] = useState<number | null>(null);
-  const [currentServiceIndex, setCurrentServiceIndex] = useState<number>(0);
-  const [visibleServiceIndices, setVisibleServiceIndices] = useState<Set<number>>(new Set([0]));
+  const [isMobile, setIsMobile] = useState<boolean>(false);
+  const [isLandscape, setIsLandscape] = useState<boolean>(false);
+  const [autoScroll, setAutoScroll] = useState<boolean>(true);
 
   const serviceScrollRef = useRef<HTMLDivElement>(null);
+  const trendingScrollRef = useRef<HTMLDivElement>(null);
   const { isLoggedIn } = useAuth();
   const { addToCart } = useBooking();
 
-  // Get unique categories
-  const serviceCategories = ['All', ...Array.from(new Set(allServices.map(service => service.category)))];
+  // Get trending services count
+  const trendingCount = trendingServices?.length || 0;
+  const hasTrendingServices = trendingCount > 0;
 
-  const getFilteredServices = useCallback(() => {
-    if (selectedCategory === 'All') return allServices;
-    return allServices.filter(service => service.category === selectedCategory);
-  }, [selectedCategory, allServices]);
+  // Get unique categories for browsing section
+  const serviceCategories = [
+    'All',
+    ...Array.from(new Set(allServices.map(service => service.category || '').filter(Boolean)))
+  ];
 
-  const filteredServices = getFilteredServices();
+  // Viewport detection useEffect
+  useEffect(() => {
+    let timeoutId: NodeJS.Timeout | null = null;
+
+    const updateViewport = () => {
+      const isMob = window.innerWidth < 768;
+      setIsMobile(isMob);
+      setIsLandscape(window.innerWidth > window.innerHeight);
+    };
+
+    const handleResize = () => {
+      if (timeoutId) clearTimeout(timeoutId);
+      
+      timeoutId = setTimeout(() => {
+        updateViewport();
+      }, 150);
+    };
+
+    updateViewport();
+
+    window.addEventListener('resize', handleResize);
+    window.addEventListener('orientationchange', handleResize);
+    
+    return () => {
+      if (timeoutId) clearTimeout(timeoutId);
+      window.removeEventListener('resize', handleResize);
+      window.removeEventListener('orientationchange', handleResize);
+    };
+  }, []);
+
+  // Auto-scroll trending services on desktop
+  useEffect(() => {
+    if (!trendingScrollRef.current || !autoScroll || isMobile || trendingCount < 3) return;
+    
+    const scrollContainer = trendingScrollRef.current;
+    let scrollInterval: NodeJS.Timeout;
+    let scrollDirection = 1; // 1 for forward, -1 for backward
+    let scrollPosition = 0;
+    
+    const startScrolling = () => {
+      scrollInterval = setInterval(() => {
+        if (!scrollContainer) return;
+        
+        const containerWidth = scrollContainer.clientWidth;
+        const contentWidth = scrollContainer.scrollWidth;
+        const maxScroll = contentWidth - containerWidth;
+        
+        if (scrollPosition >= maxScroll - 10) {
+          scrollDirection = -1;
+        } else if (scrollPosition <= 10) {
+          scrollDirection = 1;
+        }
+        
+        scrollPosition += scrollDirection * 0.5; // Adjust speed
+        scrollContainer.scrollLeft = scrollPosition;
+      }, 20);
+    };
+    
+    const stopScrolling = () => {
+      clearInterval(scrollInterval);
+    };
+    
+    startScrolling();
+    
+    scrollContainer.addEventListener('mouseenter', () => {
+      setAutoScroll(false);
+      stopScrolling();
+    });
+    
+    scrollContainer.addEventListener('mouseleave', () => {
+      setAutoScroll(true);
+    });
+    
+    return () => {
+      stopScrolling();
+      scrollContainer.removeEventListener('mouseenter', () => {});
+      scrollContainer.removeEventListener('mouseleave', () => {});
+    };
+  }, [trendingCount, isMobile, autoScroll]);
+
+  // Get bestseller services by main category
+  const getBestsellerServicesByMainCategory = useCallback((mainCategory: string): Service[] => {
+    const bestSellerPool = allServices.filter(service => service.isBestSeller === true);
+
+    if (mainCategory === 'Bridal') {
+      const bridalBestSellers = bestSellerPool.filter(service => 
+        service.eventCategory && service.eventCategory.toLowerCase() === 'bridal'
+      );
+      
+      return bridalBestSellers
+        .sort((a, b) => (b.bookingCount || 0) - (a.bookingCount || 0))
+        .slice(0, 10);
+    }
+    
+    const categoryBestSellers = bestSellerPool.filter(service => {
+      const primaryCategory = service.primaryCategory?.toLowerCase() || '';
+      const category = service.category?.toLowerCase() || '';
+      
+      if (mainCategory === 'Makeup') {
+        const makeupTerms = ['makeup', 'bridal', 'engagement', 'reception', 'party', 'occasional', 'package'];
+        return primaryCategory === 'makeup' || 
+               makeupTerms.some(term => category.includes(term)) ||
+               makeupTerms.some(term => primaryCategory.includes(term));        
+      }
+      
+      if (mainCategory === 'Nails') {
+        const nailTerms = ['manicure', 'nail', 'pedicure', 'nails'];
+        return primaryCategory === 'nails' || 
+               nailTerms.some(term => category.includes(term)) ||
+               nailTerms.some(term => primaryCategory.includes(term));
+      }
+      
+      if (mainCategory === 'Hair') {
+        const hairTerms = ['hair', 'spa', 'coloring', 'styling', 'treatment'];
+        return primaryCategory === 'hair' || 
+               hairTerms.some(term => category.includes(term)) ||
+               hairTerms.some(term => primaryCategory.includes(term));
+      }
+      
+      if (mainCategory === 'Skin') {
+        const skinTerms = ['skin', 'facial', 'treatment', 'care', 'removal', 'body', 'bleach', 'face', 'hydrafacial', 'spa', 'tan', 'cleanup', 'wax'];
+        return primaryCategory === 'skin' || 
+               skinTerms.some(term => category.includes(term)) ||
+               skinTerms.some(term => primaryCategory.includes(term));
+      }
+      
+      return primaryCategory === mainCategory.toLowerCase();
+    });
+    
+    return categoryBestSellers
+      .sort((a, b) => (b.bookingCount || 0) - (a.bookingCount || 0))
+      .slice(0, 10);
+  }, [allServices]);
+
+  // Get bestseller services for each main category
+  const bestsellerCategories = MAIN_CATEGORIES.map(category => ({
+    name: category,
+    services: getBestsellerServicesByMainCategory(category),
+    icon: getCategoryIcon(category)
+  })).filter(category => category.services.length > 0);
+
+  // Helper function to get icon for each main category
+  function getCategoryIcon(category: string) {
+    switch(category.toLowerCase()) {
+      case 'bridal': return '👰';
+      case 'makeup': return '💄';
+      case 'skin': return '✨';
+      case 'hair': return '💇‍♀️';
+      case 'nails': return '💅';
+      default: return '🌟';
+    }
+  }
 
   const getCategoryImage = useCallback((category: string) => {
     if (category === 'All') return '/images/all-services.jpg';
@@ -92,70 +240,54 @@ const ClientHomePage = ({ allServices, trendingServices }: ClientHomePageProps) 
     return firstService?.image || '/images/placeholder.jpg';
   }, [allServices]);
 
-  useEffect(() => {
-    setCurrentServiceIndex(0);
-    setVisibleServiceIndices(new Set([0]));
-  }, [selectedCategory]);
-
-  const updateVisibleServices = useCallback(() => {
-    if (!serviceScrollRef.current) return;
-
-    const container = serviceScrollRef.current;
-    const containerRect = container.getBoundingClientRect();
-    const services = container.children;
-    const newVisibleIndices = new Set<number>();
-
-    for (let i = 0; i < services.length; i++) {
-      const serviceRect = services[i].getBoundingClientRect();
-      const isVisible = 
-        serviceRect.left >= containerRect.left && 
-        serviceRect.right <= containerRect.right;
-      
-      if (isVisible) {
-        newVisibleIndices.add(i);
-      }
+  // Category data with images and descriptions
+  const HORIZONTAL_CATEGORIES = [
+    {
+      id: 'bridal',
+      title: 'Bridal Makeup',
+      description: 'Complete bridal packages for your special day',
+      image: '/images/makeup/complete_bridal_package.webp',
+      icon: '👰',
+      color: 'from-pink-500 to-rose-600',
+      link: '/makeup?category=bridal'
+    },
+    {
+      id: 'makeup',
+      title: 'Makeup Services',
+      description: 'Perfect Makeup to glow on your day',
+      image: '/images/makeup/bridal_HDLook.webp',
+      icon: '✨',
+      color: 'from-purple-500 to-pink-600',
+      link: '/makeup'
+    },
+    {
+      id: 'hair',
+      title: 'Hair Treatments',
+      description: 'Hair spa, coloring & styling',
+      image: '/images/hair/smoothening.webp',
+      icon: '💇‍♀️',
+      color: 'from-amber-500 to-orange-600',
+      link: '/hair'
+    },
+    {
+      id: 'skin',
+      title: 'Skin Care',
+      description: 'Advanced skin treatments & facials',
+      image: '/images/skin/hydrafacial.webp',
+      icon: '💆‍♀️',
+      color: 'from-blue-500 to-cyan-600',
+      link: '/skin'
+    },
+    {
+      id: 'nails',
+      title: 'Nail Art',
+      description: 'Manicure, pedicure & nail extensions',
+      image: '/images/nails/bridal_luxury_nail.webp',
+      icon: '💅',
+      color: 'from-red-500 to-pink-600',
+      link: '/nails'
     }
-
-    if (newVisibleIndices.size > 0) {
-      const indices = Array.from(newVisibleIndices);
-      const centeredIndex = indices.reduce((prev, curr) => {
-        const prevRect = services[prev].getBoundingClientRect();
-        const currRect = services[curr].getBoundingClientRect();
-        const prevCenter = Math.abs(prevRect.left + prevRect.right - containerRect.left - containerRect.right) / 2;
-        const currCenter = Math.abs(currRect.left + currRect.right - containerRect.left - containerRect.right) / 2;
-        return currCenter < prevCenter ? curr : prev;
-      }, indices[0]);
-      
-      setCurrentServiceIndex(centeredIndex);
-    }
-
-    setVisibleServiceIndices(newVisibleIndices);
-  }, []);
-
-  useEffect(() => {
-    const container = serviceScrollRef.current;
-    if (!container) return;
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            const index = parseInt(entry.target.getAttribute('data-index') || '0');
-            setVisibleServiceIndices(prev => new Set([...prev, index]));
-          }
-        });
-      },
-      {
-        root: container,
-        threshold: 0.5
-      }
-    );
-
-    const serviceElements = container.querySelectorAll('[data-index]');
-    serviceElements.forEach(element => observer.observe(element));
-
-    return () => observer.disconnect();
-  }, [filteredServices.length]);
+  ];
 
   const toggleFavorite = useCallback((serviceId: string) => {
     setFavorites(prev => {
@@ -167,16 +299,6 @@ const ClientHomePage = ({ allServices, trendingServices }: ClientHomePageProps) 
       }
       return newFavorites;
     });
-  }, []);
-
-  const scrollToService = useCallback((index: number) => {
-    if (serviceScrollRef.current && serviceScrollRef.current.children[index]) {
-      serviceScrollRef.current.children[index].scrollIntoView({
-        behavior: 'smooth',
-        inline: 'center'
-      });
-      setCurrentServiceIndex(index);
-    }
   }, []);
 
   const proceedToBooking = useCallback(() => {
@@ -191,332 +313,888 @@ const ClientHomePage = ({ allServices, trendingServices }: ClientHomePageProps) 
     addToCart(service);
   }, [addToCart]);
 
-  useEffect(() => {
-    const container = serviceScrollRef.current;
-    if (!container) return;
+  const handleServiceClick = useCallback((service: Service) => {
+    if (service.url) {
+      router.push(service.url);
+    } else {
+      setSelectedService(service);
+      setShowServiceDetail(true);
+    }
+  }, [router]);
 
-    const handleScroll = () => {
-      requestAnimationFrame(updateVisibleServices);
-    };
+  const navigateToCategory = useCallback((categoryLink: string) => {
+    router.push(categoryLink);
+  }, [router]);
 
-    container.addEventListener('scroll', handleScroll);
-    return () => container.removeEventListener('scroll', handleScroll);
-  }, [updateVisibleServices]);
+  const navigateToBrowseCategory = useCallback((category: string) => {
+    if (category === 'All') {
+      router.push('/');
+    } else {
+      const categoryId = category.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+      router.push(`/${categoryId}`);
+    }
+  }, [router]);
+
+  const scrollToServices = useCallback(() => {
+    serviceScrollRef.current?.scrollIntoView({ behavior: 'smooth' });
+  }, []);
 
   if (bookingStep === 'booking') {
     return <BookingFlow onBack={() => setBookingStep('browsing')} />;
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-pink-50 via-white to-purple-50">
-      {/* SEO Header - Hidden but crawlable */}
-      <header className="sr-only">
-        <h1>Best Ladies Beauty Parlour in {seoData.business.address.locality}, Patna | {seoData.business.name}</h1>
-        <p>
-          Premium beauty services including bridal makeup, hair treatments, skin care, and nail art 
-          in {seoData.business.address.locality}, Patna. Rated {seoData.business.rating}⭐ 
-          with {seoData.business.totalReviews}+ happy clients.
-        </p>
-        <address>
-          {seoData.business.address.street}, {seoData.business.address.locality}, 
-          {seoData.business.address.city}, {seoData.business.address.state} - {seoData.business.address.pincode}
-        </address>
-        <p>Phone: <a href={`tel:${seoData.business.contact.phone}`}>{seoData.business.contact.phone}</a></p>
-      </header>
-
-      <main className="max-w-7xl mx-auto px-4 py-6 pb-24 md:pb-8">
+    <div className={`
+      min-h-screen 
+      bg-gradient-to-br from-pink-50 via-white to-purple-50 
+      safe-area-inset
+      overflow-x-hidden
+      w-full
+      ${isLandscape ? 'landscape-mode' : ''}
+    `}>
+      <main className={`
+        max-w-7xl 
+        mx-auto 
+        px-4 
+        py-6 
+        ${isMobile ? (isLandscape ? 'pb-28' : 'pb-32') : 'pb-8'}
+        safe-area-inset
+        w-full
+        overflow-x-hidden
+        scroll-padding
+      `}>
         
-        {/* Trending Services Banner */}
-        <section className="bg-gradient-to-r from-yellow-50 via-pink-50 to-purple-50 rounded-2xl p-4 mb-6 flex flex-col border border-pink-200">
-          <h2 className="sr-only">
-            {selectedCategory !== 'All' 
-              ? `${selectedCategory} Services in ${seoData.business.address.locality}` 
-              : `All Ladies Salon Services in ${seoData.business.address.locality}, Patna`}
-          </h2>
-          
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-gradient-to-br from-pink-500 to-rose-500 rounded-full flex items-center justify-center">
-                <TrendingUp className="w-5 h-5 text-white" />
+        {/* TRENDING SERVICES BANNER WITH HORIZONTAL SCROLLING */}
+        {hasTrendingServices && (
+          <section className={`
+            bg-gradient-to-r from-yellow-50 via-pink-50 to-purple-50 
+            rounded-2xl 
+            p-4 
+            mb-6 
+            border 
+            border-pink-200
+            w-full
+            ${isLandscape ? 'py-3' : ''}
+          `}>
+            <h2 className="sr-only">
+              Trending Beauty Services in Patna
+            </h2>
+            
+            <div className="flex items-center justify-between mb-4">
+              <div className="flex items-center gap-3">
+                <div className={`
+                  ${isMobile && isLandscape ? 'w-8 h-8' : 'w-10 h-10'}
+                  bg-gradient-to-br from-pink-500 to-rose-500 
+                  rounded-full 
+                  flex 
+                  items-center 
+                  justify-center
+                  flex-shrink-0
+                  animate-pulse
+                `}>
+                  <TrendingUp className={`
+                    ${isMobile && isLandscape ? 'w-4 h-4' : 'w-5 h-5'} 
+                    text-white
+                  `} />
+                </div>
+                <div>
+                  <h3 className={`
+                    font-bold 
+                    text-gray-900 
+                    ${isMobile ? (isLandscape ? 'text-sm' : 'text-base') : 'text-lg'}
+                  `}>
+                    Trending Services
+                  </h3>
+                  <p className={`
+                    ${isLandscape ? 'text-[10px]' : 'text-xs'} 
+                    text-gray-600
+                  `}>
+                    Most booked {trendingCount} services this week
+                  </p>
+                </div>
               </div>
-              <div>
-                <h3 className="font-bold text-gray-900 text-sm sm:text-base">
-                  Ladies Salon {selectedCategory !== 'All' ? selectedCategory : ''} Services
-                </h3>
-                <p className="text-xs text-gray-600">
-                  Most booked {filteredServices.length} services this week
-                </p>
+              <div className="flex items-center gap-2">
+                <span className="bg-white text-pink-600 text-xs font-bold px-3 py-1 rounded-full border border-pink-200">
+                  {trendingCount} Trending
+                </span>
+                <button
+                  onClick={() => router.push('/trending')}
+                  className="hidden md:flex items-center text-pink-600 text-sm font-medium hover:underline"
+                >
+                  View All
+                  <ArrowRight className="w-4 h-4 ml-1" />
+                </button>
               </div>
             </div>
             
-            <div className="bg-black/70 text-white text-xs font-medium px-2 py-1 rounded-full hidden sm:block">
-              {currentServiceIndex + 1}/{filteredServices.length}
-            </div>
-            <div className="bg-black/70 text-white text-[10px] font-medium px-1.5 py-0.5 rounded-full sm:hidden">
-              {currentServiceIndex + 1}/{filteredServices.length}
-            </div>
-          </div>
-          
-          {/* Instagram-like dot indicators */}
-          {filteredServices.length > 0 && (
-            <div className="flex justify-center items-center gap-[6px] mt-3">
-              {filteredServices.slice(0, 20).map((_, index) => (
-                <span
-                  key={index}
-                  onClick={() => scrollToService(index)}
+            {/* HORIZONTAL SCROLLING TRENDING SERVICES */}
+            <div 
+              ref={trendingScrollRef}
+              className={`
+                flex 
+                ${isMobile ? 'overflow-x-auto space-x-4' : 'overflow-hidden'} 
+                pb-3 
+                mb-4 
+                ${isMobile ? 'scrollbar-hide' : ''}
+                ${!isMobile ? 'relative' : ''}
+              `}
+              style={{
+                WebkitOverflowScrolling: 'touch',
+                scrollbarWidth: 'none',
+                msOverflowStyle: 'none'
+              }}
+            >
+              {trendingServices.map((service) => (
+                <div 
+                  key={service.id} 
                   className={`
-                    block cursor-pointer rounded-full
-                    transition-all duration-200
-                    ${currentServiceIndex === index ? 'bg-pink-600' : 'bg-gray-300'}
-                    ${currentServiceIndex === index ? 'w-2 h-2' : 'w-1.5 h-1.5'}
+                    ${isMobile ? 'flex-shrink-0' : 'flex-shrink-0'}
+                    ${isLandscape ? 'min-w-[160px]' : isMobile ? 'min-w-[200px]' : 'min-w-[220px]'}
+                    ${isLandscape ? 'max-w-[160px]' : isMobile ? 'max-w-[200px]' : 'max-w-[220px]'}
+                    bg-white 
+                    rounded-xl 
+                    ${isLandscape ? 'p-2' : isMobile ? 'p-3' : 'p-3'}
+                    border 
+                    border-pink-100 
+                    shadow-sm
+                    hover:shadow-md
+                    transition-all 
+                    duration-300
+                    flex 
+                    flex-col
+                    cursor-pointer
+                    group
+                    ${!isMobile ? 'hover:scale-[1.02]' : ''}
                   `}
-                  aria-label={`Go to service ${index + 1}`}
-                />
-              ))}
-            </div>
-          )}
-        </section>
-
-        {/* Services Grid - Semantic HTML for SEO */}
-        <section aria-label="Trending beauty services">
-          <div
-            ref={serviceScrollRef}
-            className="flex sm:grid sm:grid-cols-2 lg:grid-cols-4 gap-4 overflow-x-auto sm:overflow-visible scrollbar-hide snap-x snap-mandatory pb-4"
-            onScroll={updateVisibleServices}
-            role="list"
-          >
-            {filteredServices.map((service, index) => (
-              <article 
-                key={service.id} 
-                data-index={index}
-                className="snap-start min-w-[280px] sm:min-w-0"
-                itemScope
-                itemType="https://schema.org/Service"
-                role="listitem"
-              >
-                <meta itemProp="name" content={service.title} />
-                <meta itemProp="description" content={service.shortDescription} />
-                <meta itemProp="image" content={service.image} />
-                <div itemProp="offers" itemScope itemType="https://schema.org/Offer">
-                  <meta itemProp="price" content={service.price.toString()} />
-                  <meta itemProp="priceCurrency" content="INR" />
-                  <meta itemProp="availability" content="https://schema.org/InStock" />
+                  onClick={() => handleServiceClick(service)}
+                  aria-label={`View ${service.title}`}
+                >
+                  {/* Service Image */}
+                  <div className={`
+                    relative 
+                    ${isLandscape ? 'h-24' : isMobile ? 'h-32' : 'h-36'} 
+                    w-full 
+                    rounded-lg 
+                    overflow-hidden 
+                    mb-2
+                    group-hover:shadow-inner
+                  `}>
+                    <Image
+                      src={service.image || '/images/placeholder.jpg'}
+                      alt={service.title}
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-300"
+                      sizes={isMobile ? "200px" : "220px"}
+                      priority={true}
+                    />
+                    {/* Best Seller Badge */}
+                    {service.isBestSeller && (
+                      <div className="absolute top-2 left-2 z-10">
+                        <span className="bg-gradient-to-r from-yellow-500 to-orange-500 text-white text-xs font-bold px-2 py-1 rounded-full shadow-md flex items-center gap-1">
+                          <Star className="w-3 h-3 fill-white" />
+                          Best Seller
+                        </span>
+                      </div>
+                    )}
+                    {/* Rating Badge */}
+                    <div className="absolute bottom-2 right-2 bg-black/70 backdrop-blur-sm text-white text-xs font-bold px-2 py-1 rounded-full flex items-center gap-1">
+                      <Star className="w-3 h-3 fill-yellow-400 text-yellow-400" />
+                      <span>{service.rating?.toFixed(1) || '4.5'}</span>
+                    </div>
+                  </div>
+                  
+                  {/* Service Info */}
+                  <div className="flex-1 flex flex-col">
+                    <h4 className={`
+                      font-semibold 
+                      text-gray-800 
+                      ${isLandscape ? 'text-xs' : isMobile ? 'text-sm' : 'text-sm'}
+                      line-clamp-2 
+                      mb-1
+                      group-hover:text-pink-600
+                      transition-colors
+                    `}>
+                      {service.title}
+                    </h4>
+                    
+                    <p className={`
+                      text-gray-600 
+                      ${isLandscape ? 'text-[10px]' : 'text-xs'}
+                      line-clamp-2 
+                      mb-2
+                    `}>
+                      {service.shortDescription || service.description?.substring(0, 60)}...
+                    </p>
+                    
+                    <div className="flex items-center justify-between mt-auto">
+                      <div className="flex flex-col">
+                        <span className={`
+                          font-bold 
+                          text-pink-600 
+                          ${isLandscape ? 'text-sm' : 'text-base'}
+                        `}>
+                          ₹{service.price}
+                        </span>
+                        {service.originalPrice && service.originalPrice > service.price && (
+                          <span className={`
+                            text-gray-400 
+                            ${isLandscape ? 'text-[10px]' : 'text-xs'}
+                            line-through
+                          `}>
+                            ₹{service.originalPrice}
+                          </span>
+                        )}
+                      </div>
+                      
+                      <div className={`
+                        ${isLandscape ? 'text-[10px]' : 'text-xs'} 
+                        text-gray-500
+                        flex items-center gap-1
+                      `}>
+                        <Clock className={isLandscape ? 'w-3 h-3' : 'w-3 h-3'} />
+                        <span>{service.durationText || `${service.duration || 60} min`}</span>
+                      </div>
+                    </div>
+                    
+                    {/* Quick Action Button */}
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleAddToCart(service);
+                      }}
+                      className={`
+                        w-full 
+                        mt-2 
+                        ${isLandscape ? 'py-1.5 text-xs' : isMobile ? 'py-2 text-sm' : 'py-2 text-sm'}
+                        bg-gradient-to-r from-pink-500 to-rose-500 
+                        text-white 
+                        font-medium 
+                        rounded-lg 
+                        hover:from-pink-600 hover:to-rose-600
+                        active:from-pink-700 active:to-rose-700
+                        transition-all 
+                        duration-200
+                        shadow-sm hover:shadow-md
+                        flex items-center justify-center gap-1
+                      `}
+                    >
+                      <span>Add to Cart</span>
+                      <Heart className="w-4 h-4" />
+                    </button>
+                  </div>
                 </div>
-                
-                <ServiceCard
-                  service={service}
-                  isFavorite={favorites.has(service.id)}
-                  onToggleFavorite={() => toggleFavorite(service.id)}
-                  onAddToCart={() => handleAddToCart(service)}
-                  onViewDetails={() => {
-                    setSelectedService(service);
-                    setShowServiceDetail(true);
-                  }}
-                />
-              </article>
-            ))}
-          </div>
-
-          {filteredServices.length === 0 && (
-            <div className="text-center py-12 bg-white rounded-2xl shadow-md">
-              <div className="text-6xl mb-4">🔍</div>
-              <h3 className="text-xl font-medium text-gray-600 mb-2">No services found</h3>
-              <p className="text-gray-500">Try selecting a different category</p>
+              ))}
+              
+              {/* View All Trending Button */}
+              <div className={`
+                ${isMobile ? 'flex-shrink-0' : 'flex-shrink-0'}
+                ${isLandscape ? 'min-w-[140px]' : isMobile ? 'min-w-[160px]' : 'min-w-[180px]'}
+                bg-gradient-to-br from-pink-100 to-purple-100 
+                rounded-xl 
+                ${isLandscape ? 'p-3' : isMobile ? 'p-4' : 'p-4'}
+                border-2 
+                border-dashed 
+                border-pink-200 
+                flex 
+                flex-col 
+                items-center 
+                justify-center
+                text-center
+                cursor-pointer
+                hover:from-pink-200 hover:to-purple-200
+                hover:border-pink-300
+                transition-all duration-300
+                group
+              `}
+              onClick={() => router.push('/trending')}
+              >
+                <div className={`
+                  ${isLandscape ? 'text-3xl' : isMobile ? 'text-4xl' : 'text-4xl'} 
+                  mb-2
+                  group-hover:scale-110 transition-transform duration-300
+                `}>
+                  🔥
+                </div>
+                <p className={`
+                  font-bold 
+                  ${isLandscape ? 'text-sm' : isMobile ? 'text-base' : 'text-base'}
+                  text-gray-800
+                `}>
+                  View All
+                </p>
+                <p className={`
+                  ${isLandscape ? 'text-[10px]' : 'text-xs'} 
+                  text-gray-600 
+                  mt-1
+                `}>
+                  {trendingCount}+ services
+                </p>
+                <ArrowRight className={`
+                  ${isLandscape ? 'w-5 h-5' : 'w-5 h-5'} 
+                  text-pink-600 
+                  mt-2
+                  group-hover:translate-x-1 transition-transform duration-300
+                `} />
+              </div>
             </div>
-          )}
-        </section>
+            
+            {/* VISIT US & CALL US SECTION */}
+            <div className={`
+              grid 
+              ${isMobile ? 'grid-cols-1' : 'grid-cols-2'} 
+              ${isMobile ? (isLandscape ? 'gap-2' : 'gap-3') : 'gap-3'} 
+              ${isLandscape ? 'mt-2' : 'mt-4'}
+            `}>
+              {/* Visit Us Card */}
+              <div className={`
+                bg-white 
+                rounded-xl 
+                ${isMobile ? (isLandscape ? 'p-2' : 'p-3') : 'p-3'}
+                flex 
+                items-center 
+                justify-between 
+                border 
+                border-pink-100 
+                shadow-sm
+                hover:shadow-md
+                transition-all 
+                duration-300
+              `}>
+                <div className="flex items-center gap-2 flex-1 min-w-0">
+                  <div className={`
+                    ${isMobile ? (isLandscape ? 'w-6 h-6' : 'w-8 h-8') : 'w-8 h-8'} 
+                    bg-pink-100 
+                    rounded-full 
+                    flex 
+                    items-center 
+                    justify-center 
+                    flex-shrink-0
+                  `}>
+                    <MapPin className={`
+                      ${isMobile ? (isLandscape ? 'w-3 h-3' : 'w-4 h-4') : 'w-4 h-4'} 
+                      text-pink-600
+                    `} />
+                  </div>
+                  <div className="min-w-0 flex-1">
+                    <p className={`
+                      font-medium 
+                      text-gray-700
+                      ${isMobile ? (isLandscape ? 'text-xs' : 'text-sm') : 'text-sm'}
+                      truncate
+                    `}>
+                      Visit Us
+                    </p>
+                    <p className={`
+                      font-medium 
+                      text-gray-700 
+                      ${isMobile ? (isLandscape ? 'text-[10px]' : 'text-xs') : 'text-xs'}
+                      truncate
+                    `}>
+                      Near Bhootnath Metro Station, Patna
+                    </p>
+                  </div>
+                </div>
+                <a
+                  href="https://maps.google.com/?q=Kritika+Ladies+Beauty+Parlour+Patna"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`
+                    text-pink-600 
+                    font-medium 
+                    ${isMobile ? (isLandscape ? 'text-xs' : 'text-sm') : 'text-sm'}
+                    hover:underline
+                    whitespace-nowrap
+                    ml-2
+                  `}
+                >
+                  {isMobile && !isLandscape ? '→' : 'Get Directions →'}
+                </a>
+              </div>
 
-        {/* Browse Services Grid - SEO Optimized */}
-        <section className="mb-8" aria-label="Browse all beauty services">
-          <h2 className="text-xl font-bold text-gray-800 mb-4 text-center flex items-center justify-center">
-            <Zap className="mr-2 text-pink-600" />
-            Browse All Services
+              {/* Call Us Card */}
+              <div className={`
+                bg-white 
+                rounded-xl 
+                ${isMobile ? (isLandscape ? 'p-2' : 'p-3') : 'p-3'}
+                flex 
+                items-center 
+                justify-between 
+                border 
+                border-pink-100 
+                shadow-sm
+                hover:shadow-md
+                transition-all 
+                duration-300
+              `}>
+                <div className="flex items-center gap-2 flex-1 min-w-0">
+                  <div className={`
+                    ${isMobile ? (isLandscape ? 'w-6 h-6' : 'w-8 h-8') : 'w-8 h-8'} 
+                    bg-pink-100 
+                    rounded-full 
+                    flex 
+                    items-center 
+                    justify-center 
+                    flex-shrink-0
+                  `}>
+                    <Phone className={`
+                      ${isMobile ? (isLandscape ? 'w-3 h-3' : 'w-4 h-4') : 'w-4 h-4'} 
+                      text-pink-600
+                    `} />
+                  </div>
+                  <div className="min-w-0 flex-1">
+                    <p className={`
+                      font-medium 
+                      text-gray-700
+                      ${isMobile ? (isLandscape ? 'text-xs' : 'text-sm') : 'text-sm'}
+                      truncate
+                    `}>
+                      Call Us
+                    </p>
+                    <a
+                      href="tel:+919650461390"
+                      className={`
+                        text-gray-500 
+                        ${isMobile ? (isLandscape ? 'text-[10px]' : 'text-xs') : 'text-xs'}
+                        truncate
+                        block
+                        hover:text-pink-600
+                        transition-colors
+                        duration-200
+                      `}
+                    >
+                      +91-9650461390
+                    </a>
+                  </div>
+                </div>
+                <div className="flex flex-col items-end">
+                  <p className={`
+                    text-gray-500 
+                    ${isMobile ? (isLandscape ? 'text-[10px]' : 'text-xs') : 'text-xs'}
+                    whitespace-nowrap
+                  `}>
+                    {isMobile && !isLandscape ? '9-8' : '9AM-8PM'}
+                  </p>
+                  <div className="flex items-center gap-1 mt-1">
+                    <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                    <span className="text-[10px] text-green-600 font-medium">Open Now</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        )}
+
+        {/* Horizontal Categories with Know More */}
+        <section className="mb-8" aria-label="Main beauty service categories">
+          <h2 className="sr-only">
+            Beauty Service Categories
           </h2>
           
-          <nav aria-label="Beauty service categories">
-            <div className="grid grid-cols-4 sm:grid-cols-6 gap-2 sm:gap-3">
-              {serviceCategories.map((category) => {
-                const categoryServices = allServices.filter(s => 
-                  category === 'All' ? true : s.category === category
-                );
-                
-                return (
-                  <button
-                    key={category}
-                    onClick={() => {
-                      setSelectedCategory(category);
-                      if (serviceScrollRef.current) {
-                        serviceScrollRef.current.scrollLeft = 0;
-                      }
-                    }}
-                    className="cursor-pointer transition-all duration-300 aspect-square hover:scale-105"
-                    aria-label={`View ${category} services - ${categoryServices.length} available`}
-                    aria-pressed={selectedCategory === category}
-                  >
-                    <div className={`h-full rounded-xl p-2 text-center transition-all duration-300 flex flex-col items-center justify-center ${
-                      selectedCategory === category 
-                        ? 'bg-gradient-to-br from-pink-500 to-purple-600 text-white shadow-lg' 
-                        : 'bg-white text-gray-700 shadow-md hover:shadow-lg border border-pink-100'
-                    }`}>
-                      <div className="w-8 h-8 md:w-10 md:h-10 mx-auto mb-1 rounded-full overflow-hidden border border-white/20">
-                        <Image 
-                          src={getCategoryImage(category)} 
-                          alt={`${category} beauty services in ${seoData.business.address.locality}`}
-                          width={40}
-                          height={40}
-                          className="w-full h-full object-cover"
-                          loading="lazy"
-                        />
-                      </div>
-                      <p className="font-medium text-xs leading-tight truncate w-full">{category}</p>
-                      <p className="text-[10px] opacity-75 mt-0.5">
-                        {categoryServices.length} services
+          <div className={`
+            ${isMobile ? 'grid grid-cols-1 gap-3' : 'flex flex-wrap justify-center gap-3'}
+          `}>
+            {HORIZONTAL_CATEGORIES.map((category) => (
+              <div
+                key={category.id}
+                className={`
+                  ${isMobile ? '' : 'flex-1 min-w-[320px] max-w-[240px]'}
+                  bg-gradient-to-br ${category.color} 
+                  rounded-xl 
+                  overflow-hidden 
+                  shadow-lg 
+                  hover:shadow-xl 
+                  transition-all 
+                  duration-300 
+                  transform 
+                  hover:-translate-y-1
+                  ${isLandscape ? 'h-full' : ''}
+                `}
+              >
+                <div className="p-5 text-white">
+                  <div className="flex items-start justify-between mb-3">
+                    <div>
+                      <h3 className={`font-bold ${isLandscape ? 'text-lg' : 'text-xl'}`}>
+                        {category.title}
+                      </h3>
+                      <p className="text-white/80 text-sm mt-1">
+                        {category.description}
                       </p>
                     </div>
+                  </div>
+                  
+                  <div className="relative h-40 rounded-lg overflow-hidden mb-4 border-2 border-white/20">
+                    <Image
+                      src={category.image}
+                      alt={`${category.title} services`}
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 768px) 280px, (max-width: 1024px) 200px, 250px"
+                      loading="lazy"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
+                  </div>
+                  
+                  <button
+                    onClick={() => navigateToCategory(category.link)}
+                    className={`
+                      w-full 
+                      bg-white 
+                      text-gray-800 
+                      font-semibold 
+                      py-2.5 
+                      px-4 
+                      rounded-lg 
+                      flex 
+                      items-center 
+                      justify-center 
+                      gap-2 
+                      hover:bg-gray-50 
+                      active:bg-gray-100 
+                      transition-colors 
+                      duration-200
+                      ${isLandscape ? 'py-2 text-sm' : ''}
+                    `}
+                    aria-label={`Explore ${category.title} services`}
+                  >
+                    <span>Know More</span>
+                    <ArrowRight className="w-4 h-4" />
                   </button>
-                );
-              })}
-            </div>
-          </nav>
+                </div>
+              </div>
+            ))}
+          </div>
         </section>
+
+        {/* Bestseller Categories */}
+        {bestsellerCategories.map((categoryData, categoryIndex) => (
+          <section key={categoryData.name} className="mb-8" aria-label={`Bestseller ${categoryData.name} Services`}>
+            <div className="flex items-center justify-between mb-4">
+              <h2 className={`
+                ${isLandscape ? 'text-lg' : 'text-xl'} 
+                font-bold 
+                text-gray-800 
+                mb-4 
+                flex 
+                items-center
+              `}>
+                <span className="mr-2 text-2xl">{categoryData.icon}</span>
+                {categoryData.name === 'Bridal' ? 'Bestsellers Bridal Services' : `Top ${categoryData.name} Services`}
+              </h2>
+
+              {categoryData.name === 'Bridal' && (
+                <div className="flex items-center text-pink-600">
+                  <Heart className="w-16 h-16 mr-1" />
+                  <span className="text-sm font-medium">Perfect for Weddings</span>
+                </div>
+              )}
+            </div>
+            
+            {/* Special styling for Bridal category */}
+            {categoryData.name === 'Bridal' && (
+              <div className="mb-4 bg-gradient-to-r from-pink-50 to-rose-50 rounded-xl p-4 border border-pink-200">
+                <p className="text-sm text-gray-700">
+                  ✨ Complete bridal packages including makeup, hair, skin treatments, and nail services for your special day.
+                </p>
+              </div>
+            )}
+            
+            <div className={`
+              ${isMobile ? 'flex overflow-x-auto space-x-4 pb-4 scrollbar-hide' : 'grid grid-cols-2 lg:grid-cols-4 gap-4'}
+            `}>
+              {categoryData.services.map((service) => (
+                <article 
+                  key={service.id}
+                  className={`
+                    ${isMobile ? 'min-w-[280px]' : ''}
+                    ${isLandscape ? 'h-full' : ''}
+                    ${categoryData.name === 'Bridal' ? 'border-2 border-pink-200 rounded-xl overflow-hidden' : ''}
+                  `}
+                  itemScope
+                  itemType="https://schema.org/Service"
+                >
+                  <meta itemProp="name" content={service.title} />
+                  <meta itemProp="description" content={service.shortDescription} />
+                  <meta itemProp="image" content={service.image} />
+                  <div itemProp="offers" itemScope itemType="https://schema.org/Offer">
+                    <meta itemProp="price" content={service.price.toString()} />
+                    <meta itemProp="priceCurrency" content="INR" />
+                    <meta itemProp="availability" content="https://schema.org/InStock" />
+                  </div>
+                  
+                  <ServiceCard
+                    service={service}
+                    isFavorite={favorites.has(service.id)}
+                    onToggleFavorite={() => toggleFavorite(service.id)}
+                    onAddToCart={() => handleAddToCart(service)}
+                    onViewDetails={() => {
+                      setSelectedService(service);
+                      setShowServiceDetail(true);
+                    }}
+                    variant={isLandscape ? 'compact' : 'detailed'}
+                    showBestSellerBadge={service.isBestSeller === true}
+                  />
+                </article>
+              ))}
+            </div>
+            
+            {categoryData.services.length === 0 && (
+              <div className="text-center py-8 bg-gray-50 rounded-xl">
+                <p className="text-gray-500">No bestseller services found in {categoryData.name} category</p>
+              </div>
+            )}
+
+            {/* Special call-to-action for Bridal */}
+            {categoryData.name === 'Bridal' && categoryData.services.length > 0 && (
+              <div className="mt-4 text-center">
+                <button
+                  onClick={() => navigateToCategory('/makeup?category=bridal')}
+                  className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-pink-600 to-rose-600 text-white font-medium rounded-lg hover:shadow-lg transition-all duration-300"
+                >
+                  <Heart className="w-4 h-4 mr-2" />
+                  View All Bridal Services
+                </button>
+              </div>
+            )}
+          </section>
+        ))}
 
         {/* Interactive Tools */}
         <section className="mb-8" aria-label="Beauty consultation tools">
-          <h2 className="text-xl font-bold text-gray-800 mb-4 text-center flex items-center justify-center">
+          <h2 className={`
+            ${isLandscape ? 'text-lg' : 'text-xl'} 
+            font-bold 
+            text-gray-800 
+            mb-4 
+            text-center 
+            flex 
+            items-center 
+            justify-center
+          `}>
             <Zap className="mr-2 text-pink-600" />
             Discover Your Perfect Look
           </h2>
-          <div className="grid grid-cols-2 gap-3">
+          <div className={`
+            grid 
+            ${isLandscape ? 'grid-cols-2 gap-2' : 'grid-cols-2 gap-3'}
+          `}>
             <button
               onClick={() => setShowBeautyQuiz(true)}
-              className="bg-gradient-to-br from-pink-50 to-purple-100 p-4 rounded-xl hover:shadow-xl transition-all duration-300 flex flex-col items-center text-center border-2 border-pink-200"
+              className="
+                bg-gradient-to-br from-pink-50 to-purple-100 
+                p-4 
+                rounded-xl 
+                hover:shadow-xl 
+                transition-all 
+                duration-300 
+                flex 
+                flex-col 
+                items-center 
+                text-center 
+                border-2 
+                border-pink-200
+                touch-target
+                ${isLandscape ? 'p-3' : ''}
+              "
               aria-label="Take our beauty profile quiz"
             >
               <div className="text-3xl mb-2">💫</div>
-              <h3 className="text-base font-bold text-purple-800">Beauty Profile Quiz</h3>
-              <p className="text-gray-600 text-xs mt-1">Find perfect services tailored for you!</p>
-              <span className="mt-3 bg-white text-pink-600 font-semibold py-1.5 px-3 rounded-full text-xs border border-pink-300">
+              <h3 className={`
+                ${isLandscape ? 'text-sm' : 'text-base'} 
+                font-bold 
+                text-purple-800
+              `}>
+                Beauty Profile Quiz
+              </h3>
+              <p className={`
+                text-gray-600 
+                ${isLandscape ? 'text-xs' : 'text-xs mt-1'}
+              `}>
+                Find perfect services tailored for you!
+              </p>
+              <span className={`
+                mt-3 
+                bg-white 
+                text-pink-600 
+                font-semibold 
+                py-1.5 
+                px-3 
+                rounded-full 
+                ${isLandscape ? 'text-xs' : 'text-xs'} 
+                border 
+                border-pink-300
+              `}>
                 Start Quiz
               </span>
             </button>
             <button
               onClick={() => setShowSkinAnalysis(true)}
-              className="bg-gradient-to-br from-purple-50 to-pink-100 p-4 rounded-xl hover:shadow-xl transition-all duration-300 flex flex-col items-center text-center border-2 border-purple-200"
+              className="
+                bg-gradient-to-br from-purple-50 to-pink-100 
+                p-4 
+                rounded-xl 
+                hover:shadow-xl 
+                transition-all 
+                duration-300 
+                flex 
+                flex-col 
+                items-center 
+                text-center 
+                border-2 
+                border-purple-200
+                touch-target
+                ${isLandscape ? 'p-3' : ''}
+              "
               aria-label="Get AI skin analysis"
             >
               <div className="text-3xl mb-2">✨</div>
-              <h3 className="text-base font-bold text-purple-800">AI Skin Analysis</h3>
-              <p className="text-gray-600 text-xs mt-1">Get personalized skin care advice.</p>
-              <span className="mt-3 bg-white text-purple-600 font-semibold py-1.5 px-3 rounded-full text-xs border border-purple-300">
+              <h3 className={`
+                ${isLandscape ? 'text-sm' : 'text-base'} 
+                font-bold 
+                text-purple-800
+              `}>
+                AI Skin Analysis
+              </h3>
+              <p className={`
+                text-gray-600 
+                ${isLandscape ? 'text-xs' : 'text-xs mt-1'}
+              `}>
+                Get personalized skin care advice.
+              </p>
+              <span className={`
+                mt-3 
+                bg-white 
+                text-purple-600 
+                font-semibold 
+                py-1.5 
+                px-3 
+                rounded-full 
+                ${isLandscape ? 'text-xs' : 'text-xs'} 
+                border 
+                border-purple-300
+              `}>
                 Analyze Skin
               </span>
             </button>
           </div>
         </section>
 
-        {/* Trust Signals Banner - SEO Rich */}
-        <section className="bg-gradient-to-r from-pink-100 via-purple-100 to-rose-100 rounded-2xl p-4 mb-6 border-2 border-pink-200">
+        {/* Why Choose Us Banner */}
+        <section className="
+          bg-gradient-to-r from-pink-100 via-purple-100 to-rose-100 
+          rounded-2xl 
+          p-6 
+          mb-6 
+          border-2 
+          border-pink-200
+        ">
+          <h2 className={`
+            ${isLandscape ? 'text-lg' : 'text-xl'} 
+            font-bold 
+            text-gray-800 
+            mb-6 
+            text-center
+          `}>
+            Why Choose Kritika Ladies Beauty Parlour?
+          </h2>
+          
           <div className="grid grid-cols-3 gap-4 text-center">
             <div className="flex flex-col items-center">
-              <Award className="w-8 h-8 text-pink-600 mb-2" />
-              <div className="text-2xl font-bold text-gray-900">{seoData.business.rating}⭐</div>
-              <div className="text-xs text-gray-600">{seoData.business.totalReviews.toLocaleString()}+ Reviews</div>
+              <Sparkles className={`
+                ${isLandscape ? 'w-6 h-6' : 'w-8 h-8'} 
+                text-purple-600 
+                mb-2
+              `} />
+              <div className={`
+                ${isLandscape ? 'text-xl' : 'text-2xl'} 
+                font-bold 
+                text-gray-900
+              `}>
+                {allServices.length}+
+              </div>
+              <div className={`
+                ${isLandscape ? 'text-[10px]' : 'text-xs'} 
+                text-gray-600
+              `}>
+                Services
+              </div>
+            </div>
+            <div className="flex flex-col items-center" itemProp="aggregateRating" itemScope itemType="https://schema.org/AggregateRating">
+              <Award className={`
+                ${isLandscape ? 'w-6 h-6' : 'w-8 h-8'} 
+                text-pink-600 
+                mb-2
+              `} />
+              <div className={`
+                ${isLandscape ? 'text-xl' : 'text-2xl'} 
+                font-bold 
+                text-gray-900
+              `}>
+                <span itemProp="ratingValue">4.8</span>
+              </div>
+              <div className={`
+                ${isLandscape ? 'text-[10px]' : 'text-xs'} 
+                text-gray-600
+              `}>
+                ⭐ <span itemProp="reviewCount">5000+</span> Reviews
+              </div>
             </div>
             <div className="flex flex-col items-center">
-              <Sparkles className="w-8 h-8 text-purple-600 mb-2" />
-              <div className="text-2xl font-bold text-gray-900">{allServices.length}+</div>
-              <div className="text-xs text-gray-600">Beauty Services</div>
-            </div>
-            <div className="flex flex-col items-center">
-              <Clock className="w-8 h-8 text-rose-600 mb-2" />
-              <div className="text-sm font-bold text-gray-900">Open Now</div>
-              <div className="text-xs text-gray-600">{seoData.business.workingHours.weekdays}</div>
+              <Users className={`
+                ${isLandscape ? 'w-6 h-6' : 'w-8 h-8'} 
+                text-rose-600 
+                mb-2
+              `} />
+              <div className={`
+                ${isLandscape ? 'text-xl' : 'text-2xl'} 
+                font-bold 
+                text-gray-900
+              `}>
+                5000+
+              </div>
+              <div className={`
+                ${isLandscape ? 'text-[10px]' : 'text-xs'} 
+                text-gray-600
+              `}>
+                Happy Clients
+              </div>
             </div>
           </div>
-        </section>
-
-        {/* Location & Contact - Rich Schema */}
-        <section 
-          className="bg-white rounded-2xl p-6 shadow-md mb-6"
-          itemScope
-          itemType="https://schema.org/LocalBusiness"
-        >
-          <meta itemProp="name" content={seoData.business.name} />
-          <meta itemProp="image" content={`${seoData.business.contact.website}/logo.png`} />
           
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
-            <div className="flex items-start gap-3" itemProp="address" itemScope itemType="https://schema.org/PostalAddress">
-              <div className="w-10 h-10 bg-pink-100 rounded-full flex items-center justify-center flex-shrink-0">
-                <MapPin className="w-5 h-5 text-pink-600" />
-              </div>
-              <div>
-                <h3 className="font-bold text-gray-900 mb-1">Visit Us</h3>
-                <p className="text-gray-600 text-sm">
-                  <span itemProp="streetAddress">{seoData.business.address.street}, {seoData.business.address.locality}</span>,{' '}
-                  <span itemProp="addressLocality">{seoData.business.address.city}</span>,{' '}
-                  <span itemProp="addressRegion">{seoData.business.address.state}</span>{' '}
-                  <span itemProp="postalCode">{seoData.business.address.pincode}</span>
-                </p>
-                <a
-                  href={seoData.localSEOOptimization.localCitations.googleMaps}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-pink-600 text-sm font-medium mt-2 inline-block hover:underline"
-                  itemProp="hasMap"
-                >
-                  Get Directions →
-                </a>
-              </div>
-            </div>
-
-            <div className="flex items-start gap-3">
-              <div className="w-10 h-10 bg-pink-100 rounded-full flex items-center justify-center flex-shrink-0">
-                <Phone className="w-5 h-5 text-pink-600" />
-              </div>
-              <div>
-                <h3 className="font-bold text-gray-900 mb-1">Call Us</h3>
-                <a
-                  href={`tel:${seoData.business.contact.phone}`}
-                  className="text-gray-600 text-sm hover:text-pink-600 block"
-                  itemProp="telephone"
-                >
-                  {seoData.business.contact.phone}
-                </a>
-                <p className="text-xs text-gray-500 mt-1">
-                  <time itemProp="openingHours">{seoData.business.workingHours.weekdays}</time>
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div className="pt-6 border-t border-pink-100">
-            <h3 className="font-bold text-gray-900 mb-4 text-center">
-              Why Choose {seoData.business.name}?
-            </h3>
-            <div className="grid grid-cols-3 gap-4">
-              <div className="text-center">
-                <div className="text-2xl font-bold text-pink-600 mb-1">{allServices.length}+</div>
-                <div className="text-xs text-gray-600">Services</div>
-              </div>
-              <div className="text-center" itemProp="aggregateRating" itemScope itemType="https://schema.org/AggregateRating">
-                <div className="text-2xl font-bold text-pink-600 mb-1">
-                  <span itemProp="ratingValue">{seoData.business.rating}</span>
-                </div>
-                <div className="text-xs text-gray-600">
-                  ⭐ <span itemProp="reviewCount">{seoData.business.totalReviews}+</span> Reviews
-                </div>
-              </div>
-              <div className="text-center">
-                <div className="text-2xl font-bold text-pink-600 mb-1">5000+</div>
-                <div className="text-xs text-gray-600">Happy Clients</div>
-              </div>
+          {/* Open Now Badge */}
+          <div className="mt-6 text-center">
+            <div className="
+              inline-flex 
+              items-center 
+              gap-2 
+              bg-white 
+              text-green-600 
+              font-bold 
+              ${isLandscape ? 'text-xs px-3 py-1.5' : 'text-sm px-4 py-2'} 
+              rounded-full 
+              border 
+              border-green-200
+              shadow-sm
+            ">
+              <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+              <span>Open Now</span>
+              <span className="text-gray-600 font-normal">
+                9:00 AM - 8:00 PM
+              </span>
             </div>
           </div>
         </section>
 
         {/* Testimonials */}
         <section className="mb-6" aria-label="Customer testimonials">
-          <h2 className="text-xl font-bold text-gray-800 mb-4 text-center">Glow-ups & Stories</h2>
+          <h2 className={`
+            ${isLandscape ? 'text-lg' : 'text-xl'} 
+            font-bold 
+            text-gray-800 
+            mb-4 
+            text-center
+          `}>
+            Glow-ups & Stories
+          </h2>
           <div className="flex overflow-x-auto space-x-4 pb-4 scrollbar-hide">
             <TestimonialCard 
               name="Priya S." 
@@ -537,13 +1215,42 @@ const ClientHomePage = ({ allServices, trendingServices }: ClientHomePageProps) 
         </section>
 
         {/* Promotional Banner */}
-        <section className="bg-gradient-to-r from-pink-100 to-purple-100 rounded-xl p-6 text-center border-2 border-pink-200">
-          <div className="inline-flex items-center bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-full mb-2">
+        <section className="
+          bg-gradient-to-r from-pink-100 to-purple-100 
+          rounded-xl 
+          p-6 
+          text-center 
+          border-2 
+          border-pink-200
+        ">
+          <div className="
+            inline-flex 
+            items-center 
+            bg-red-500 
+            text-white 
+            text-xs 
+            font-bold 
+            px-2 
+            py-1 
+            rounded-full 
+            mb-2
+          ">
             <Zap className="mr-1" />
             SPECIAL OFFER
           </div>
-          <h3 className="text-lg font-bold text-gray-800">30% OFF On All Bridal Packages</h3>
-          <p className="text-gray-600 text-sm mt-1">Book your trial now and save big!</p>
+          <h3 className={`
+            ${isLandscape ? 'text-base' : 'text-lg'} 
+            font-bold 
+            text-gray-800
+          `}>
+            30% OFF On All Bridal Packages
+          </h3>
+          <p className={`
+            text-gray-600 
+            ${isLandscape ? 'text-xs' : 'text-sm mt-1'}
+          `}>
+            Book your trial now and save big!
+          </p>
         </section>
       </main>
 

@@ -396,7 +396,7 @@ const BookingFlow = ({ onBack }: BookingFlowProps) => {
                   <div key={item.id} className="flex gap-3 p-3 bg-gray-50 rounded-lg">
                     <div className="relative w-16 h-16 rounded-lg overflow-hidden flex-shrink-0">
                       <Image
-                        src={item.image}
+                        src={item.image|| 'Service image'}
                         alt={item.title}
                         fill
                         className="object-cover"
