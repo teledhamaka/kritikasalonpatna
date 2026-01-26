@@ -2,7 +2,7 @@
 // FILE: app/api/auth/password-reset/reset/route.ts
 // Reset password with verified OTP
 // ============================================================================
-
+export const dynamic = 'force-dynamic';
 import { NextRequest, NextResponse } from 'next/server';
 import { findUserByEmail } from '@/lib/db/users';
 import { hashPassword } from '@/lib/auth/password-auth';

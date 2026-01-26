@@ -11,22 +11,20 @@ import {
 } from 'react-icons/fi';
 import { supabase } from '../lib/supabase';
 import Image from 'next/image';
-import { 
-  FaceMesh, 
-  Results as FaceMeshResults,
-  FACEMESH_TESSELATION,
-  FACEMESH_RIGHT_EYE,
-  FACEMESH_LEFT_EYE,
-  FACEMESH_LIPS,
-  FACEMESH_FACE_OVAL 
-} from '@mediapipe/face_mesh';
-import { Camera } from '@mediapipe/camera_utils';
 
 // Import your JSON files
 const makeupServices = require('../../public/makeup_services.json');
 const hairServices = require('../../public/hair_services.json');
 const nailServices = require('../../public/nail_services.json');
 const skinServices = require('../../public/skin_services.json');
+
+// Declare MediaPipe types (will be loaded from CDN)
+declare global {
+  interface Window {
+    FaceMesh: any;
+    Camera: any;
+  }
+}
 
 interface SkinFeature {
   id: string;
@@ -141,21 +139,60 @@ export default function AISkinAnalysis({ onClose }: { onClose: () => void }) {
   const [tempAge, setTempAge] = useState<number | null>(null);
   const [tempSkinType, setTempSkinType] = useState<string>('');
   const [tempHairType, setTempHairType] = useState<string>('');
+  const [mediaPipeLoaded, setMediaPipeLoaded] = useState(false);
   
   const videoRef = useRef<HTMLVideoElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const galleryInputRef = useRef<HTMLInputElement>(null);
-  const faceMeshRef = useRef<FaceMesh | null>(null);
+  const faceMeshRef = useRef<any>(null);
+  const cameraRef = useRef<any>(null);
 
   useEffect(() => {
     // Try to fetch user profile, but don't require it
     checkUserProfile();
+    loadMediaPipeScripts();
+    
     return () => {
+      if (cameraRef.current) {
+        cameraRef.current.stop?.();
+      }
       if (faceMeshRef.current) {
-        faceMeshRef.current.close();
+        faceMeshRef.current.close?.();
       }
     };
   }, []);
+
+  const loadMediaPipeScripts = () => {
+    // Check if scripts are already loaded
+    if (window.FaceMesh && window.Camera) {
+      setMediaPipeLoaded(true);
+      return;
+    }
+
+    // Load FaceMesh script
+    const faceMeshScript = document.createElement('script');
+    faceMeshScript.src = 'https://cdn.jsdelivr.net/npm/@mediapipe/face_mesh/face_mesh.js';
+    faceMeshScript.crossOrigin = 'anonymous';
+    
+    // Load Camera Utils script
+    const cameraScript = document.createElement('script');
+    cameraScript.src = 'https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js';
+    cameraScript.crossOrigin = 'anonymous';
+
+    let scriptsLoaded = 0;
+    const onScriptLoad = () => {
+      scriptsLoaded++;
+      if (scriptsLoaded === 2) {
+        setMediaPipeLoaded(true);
+      }
+    };
+
+    faceMeshScript.onload = onScriptLoad;
+    cameraScript.onload = onScriptLoad;
+
+    document.body.appendChild(faceMeshScript);
+    document.body.appendChild(cameraScript);
+  };
 
   const checkUserProfile = async () => {
     try {
@@ -225,8 +262,10 @@ export default function AISkinAnalysis({ onClose }: { onClose: () => void }) {
   };
 
   const initializeFaceMesh = () => {
-    const faceMesh = new FaceMesh({
-      locateFile: (file) => {
+    if (!window.FaceMesh) return null;
+
+    const faceMesh = new window.FaceMesh({
+      locateFile: (file: string) => {
         return `https://cdn.jsdelivr.net/npm/@mediapipe/face_mesh/${file}`;
       }
     });
@@ -238,57 +277,45 @@ export default function AISkinAnalysis({ onClose }: { onClose: () => void }) {
       minTrackingConfidence: 0.5
     });
 
-    faceMesh.onResults(onFaceMeshResults);
+    faceMesh.onResults((results: any) => {
+      if (!canvasRef.current || !results.multiFaceLandmarks?.[0]) return;
+      
+      const canvas = canvasRef.current;
+      const ctx = canvas.getContext('2d');
+      if (!ctx) return;
+
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      
+      // Simple face detection indicator
+      if (results.multiFaceLandmarks && results.multiFaceLandmarks.length > 0) {
+        ctx.strokeStyle = '#C0C0C070';
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        // Draw a simple rectangle around detected face area
+        ctx.rect(50, 50, canvas.width - 100, canvas.height - 100);
+        ctx.stroke();
+      }
+    });
+
     faceMeshRef.current = faceMesh;
     return faceMesh;
   };
 
-  const onFaceMeshResults = (results: FaceMeshResults) => {
-    if (!canvasRef.current || !results.multiFaceLandmarks?.[0]) return;
-    
-    const canvas = canvasRef.current;
-    const ctx = canvas.getContext('2d');
-    if (!ctx) return;
-
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    
-    // Draw face mesh for visualization
-    if (results.multiFaceLandmarks) {
-      for (const landmarks of results.multiFaceLandmarks) {
-        // Draw facial contours (simplified)
-        drawConnectors(ctx, landmarks, FACEMESH_TESSELATION, { color: '#C0C0C070', lineWidth: 1 });
-      }
-    }
-  };
-
-  const drawConnectors = (
-    ctx: CanvasRenderingContext2D,
-    points: any,
-    connectors: any,
-    options: { color: string; lineWidth: number }
-  ) => {
-    ctx.strokeStyle = options.color;
-    ctx.lineWidth = options.lineWidth;
-    ctx.beginPath();
-    
-    connectors.forEach(([start, end]: [number, number]) => {
-      if (points[start] && points[end]) {
-        ctx.moveTo(points[start].x * ctx.canvas.width, points[start].y * ctx.canvas.height);
-        ctx.lineTo(points[end].x * ctx.canvas.height, points[end].y * ctx.canvas.height);
-      }
-    });
-    
-    ctx.stroke();
-  };
-
   const startCamera = () => {
+    if (!mediaPipeLoaded) {
+      alert('Camera utilities are still loading. Please wait a moment and try again.');
+      return;
+    }
+
     setShowCamera(true);
     setTimeout(() => {
-      if (videoRef.current) {
+      if (videoRef.current && window.Camera) {
         const faceMesh = initializeFaceMesh();
-        const camera = new Camera(videoRef.current, {
+        if (!faceMesh) return;
+
+        const camera = new window.Camera(videoRef.current, {
           onFrame: async () => {
-            if (videoRef.current) {
+            if (videoRef.current && faceMesh) {
               await faceMesh.send({ image: videoRef.current });
             }
           },
@@ -296,6 +323,7 @@ export default function AISkinAnalysis({ onClose }: { onClose: () => void }) {
           height: 480
         });
         camera.start();
+        cameraRef.current = camera;
       }
     }, 100);
   };
@@ -320,6 +348,12 @@ export default function AISkinAnalysis({ onClose }: { onClose: () => void }) {
   const handlePhotoCaptured = (photoData: string) => {
     setSelectedImage(photoData);
     setShowCamera(false);
+    
+    // Stop camera
+    if (cameraRef.current) {
+      cameraRef.current.stop?.();
+    }
+    
     setAnalysisStatus('📸 Photo captured! Analyzing...');
     
     // Check if we have age info

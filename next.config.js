@@ -1,11 +1,13 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  turbopack: {},
+  
   reactStrictMode: true,
-  eslint: {
-    // Warning: This allows production builds to successfully complete 
-    // even if your project has ESLint errors.
-    ignoreDuringBuilds: true,
-  },
+  // eslint: {
+  //   // Warning: This allows production builds to successfully complete 
+  //   // even if your project has ESLint errors.
+  //   ignoreDuringBuilds: true,
+  // },
 
   // Enable SWC minification (faster than Terser)
   // swcMinify: true,
@@ -19,11 +21,24 @@ const nextConfig = {
     // ✅ ADD this new, secure configuration:
     remotePatterns: [
       {
-        protocol: 'http', // Use 'http' for localhost during development
+        protocol: 'https',
+        hostname: 'kritikasalonpatna.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'www.kritikasalonpatna.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'images.unsplash.com',
+      },
+      {
+        protocol: 'https',
         hostname: 'googleusercontent.com',
+      },
         // Next.js requires protocol and hostname
         // Optionally, you can add port: '3000' if you access it via localhost:3000
-      },
+        
     ],
     
     unoptimized: true, // For static export
@@ -31,11 +46,11 @@ const nextConfig = {
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
     minimumCacheTTL: 60 * 60 * 24 * 365, // 1 year
-    domains: [
-      'kritikasalonpatna.com',
-      'www.kritikasalonpatna.com',
-      'images.unsplash.com', // If using Unsplash
-    ],
+    // domains: [
+    //   'kritikasalonpatna.com',
+    //   'www.kritikasalonpatna.com',
+    //   'images.unsplash.com', // If using Unsplash
+    // ],
     dangerouslyAllowSVG: true,
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
   },
@@ -154,57 +169,57 @@ const nextConfig = {
   },
 
   // Webpack optimizations
-  webpack: (config, { dev, isServer }) => {
-    // Optimize for production
-    if (!dev && !isServer) {
-      // Split chunks for better caching
-      config.optimization = {
-        ...config.optimization,
-        moduleIds: 'deterministic',
-        runtimeChunk: 'single',
-        splitChunks: {
-          chunks: 'all',
-          cacheGroups: {
-            default: false,
-            vendors: false,
-            framework: {
-              name: 'framework',
-              chunks: 'all',
-              test: /[\\/]node_modules[\\/](react|react-dom|scheduler|prop-types|use-subscription)[\\/]/,
-              priority: 40,
-              enforce: true,
-            },
-            lib: {
-              test: /[\\/]node_modules[\\/]/,
-              name(module) {
-                const packageName = module.context.match(
-                  /[\\/]node_modules[\\/](.*?)([\\/]|$)/
-                )?.[1]
-                return `npm.${packageName?.replace('@', '')}`
-              },
-              priority: 30,
-              minChunks: 1,
-              reuseExistingChunk: true,
-            },
-            commons: {
-              name: 'commons',
-              minChunks: 2,
-              priority: 20,
-            },
-            shared: {
-              name: 'shared',
-              minChunks: 2,
-              priority: 10,
-              reuseExistingChunk: true,
-              enforce: true,
-            },
-          },
-        },
-      }
-    }
+  // webpack: (config, { dev, isServer }) => {
+  //   // Optimize for production
+  //   if (!dev && !isServer) {
+  //     // Split chunks for better caching
+  //     config.optimization = {
+  //       ...config.optimization,
+  //       moduleIds: 'deterministic',
+  //       runtimeChunk: 'single',
+  //       splitChunks: {
+  //         chunks: 'all',
+  //         cacheGroups: {
+  //           default: false,
+  //           vendors: false,
+  //           framework: {
+  //             name: 'framework',
+  //             chunks: 'all',
+  //             test: /[\\/]node_modules[\\/](react|react-dom|scheduler|prop-types|use-subscription)[\\/]/,
+  //             priority: 40,
+  //             enforce: true,
+  //           },
+  //           lib: {
+  //             test: /[\\/]node_modules[\\/]/,
+  //             name(module) {
+  //               const packageName = module.context.match(
+  //                 /[\\/]node_modules[\\/](.*?)([\\/]|$)/
+  //               )?.[1]
+  //               return `npm.${packageName?.replace('@', '')}`
+  //             },
+  //             priority: 30,
+  //             minChunks: 1,
+  //             reuseExistingChunk: true,
+  //           },
+  //           commons: {
+  //             name: 'commons',
+  //             minChunks: 2,
+  //             priority: 20,
+  //           },
+  //           shared: {
+  //             name: 'shared',
+  //             minChunks: 2,
+  //             priority: 10,
+  //             reuseExistingChunk: true,
+  //             enforce: true,
+  //           },
+  //         },
+  //       },
+  //     }
+  //   }
 
-    return config
-  },
+  //   return config
+  // },
 
   // Experimental features for better performance
   experimental: {

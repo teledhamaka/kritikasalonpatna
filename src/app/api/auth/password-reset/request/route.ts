@@ -2,7 +2,7 @@
 // FILE: app/api/auth/password-reset/request/route.ts
 // Request password reset (send OTP)
 // ============================================================================
-
+export const dynamic = 'force-dynamic';
 import { NextRequest, NextResponse } from 'next/server';
 import { findUserByEmail } from '@/lib/db/users';
 import { createServerSupabaseClient } from '@/lib/supabase-server';
