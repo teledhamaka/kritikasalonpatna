@@ -12,25 +12,13 @@ if (!supabaseUrl || !supabaseAnonKey) {
 // Regular client for general use (client-side safe)
 export const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
-// Admin client for server-side admin operations
-export const supabaseAdmin = createClient(supabaseUrl, supabaseAnonKey, {
+// Admin client for server-side admin operations (bypasses RLS)
+export const supabaseAdmin = createClient(supabaseUrl, supabaseServiceKey, {
   auth: {
     autoRefreshToken: false,
     persistSession: false,
   },
 });
-
-// export const supabase = createClient(supabaseUrl, supabaseAnonKey, {
-//   auth: {
-//     autoRefreshToken: true,
-//     persistSession: true,
-//   },
-//   realtime: {
-//     params: {
-//       eventsPerSecond: 10,
-//     },
-//   },
-// });
 
 // Re-export the Service type from the types file
 export type { MakeupService } from '../types/service';

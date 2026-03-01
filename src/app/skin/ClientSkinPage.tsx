@@ -1,22 +1,19 @@
-// kritika/src/app/skin/ClientSkinPage.tsx - SEO OPTIMIZED VERSION
+// app/skin/ClientSkinPage.tsx
 "use client";
 
 import { useState, useRef, useCallback, useEffect } from 'react';
 import Image from 'next/image';
 import dynamic from 'next/dynamic';
-import { MapPin, Sparkles, Zap, Phone, Clock, Star, Award } from 'lucide-react';
+import { ArrowRight, Star } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 
 import { Service } from '../../types/service';
 import { useAuth } from '../../context/AuthContext';
 import { useBooking } from '../../context/BookingContext';
 import ServiceSkeleton from '../../components/ServiceSkeleton';
 
-// Import SEO data
-import seoData from '../../../public/seo.json';
-
-// Lazy load components
+// Lazy load heavy components
 const ServiceCard = dynamic(() => import('../../components/ServiceCard'), {
-  ssr: false,
   loading: () => <ServiceSkeleton />
 });
 
@@ -32,9 +29,7 @@ const SkinAnalysis = dynamic(() => import('../../components/SkinAnalysis'), {
   ssr: false
 });
 
-const TestimonialCard = dynamic(() => import('../../components/TestimonialCard'), {
-  ssr: false
-});
+const TestimonialCard = dynamic(() => import('../../components/TestimonialCard'));
 
 const LoginModal = dynamic(() => import('../../components/LoginModal'), {
   ssr: false
@@ -44,13 +39,9 @@ const BookingFlow = dynamic(() => import('../../components/booking/BookingFlow')
   ssr: false
 });
 
-const MobileBottomNav = dynamic(() => import('../../components/MobileBottomNav'), {
-  ssr: false
-});
+const MobileBottomNav = dynamic(() => import('../../components/MobileBottomNav'));
 
-const FloatingCart = dynamic(() => import('../../components/FloatingCart'), {
-  ssr: false
-});
+const FloatingCart = dynamic(() => import('../../components/FloatingCart'));
 
 interface ClientSkinPageProps {
   allServices: Service[];
@@ -58,6 +49,7 @@ interface ClientSkinPageProps {
 }
 
 const ClientSkinPage = ({ allServices, trendingServices }: ClientSkinPageProps) => {
+  const router = useRouter();
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
   const [favorites, setFavorites] = useState<Set<string>>(new Set());
   const [selectedService, setSelectedService] = useState<Service | null>(null);
@@ -67,15 +59,54 @@ const ClientSkinPage = ({ allServices, trendingServices }: ClientSkinPageProps) 
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [bookingStep, setBookingStep] = useState<'browsing' | 'booking'>('browsing');
   const [activeFaq, setActiveFaq] = useState<number | null>(null);
-  const [currentServiceIndex, setCurrentServiceIndex] = useState<number>(0);
-  const [visibleServiceIndices, setVisibleServiceIndices] = useState<Set<number>>(new Set([0]));
+  const [isMobile, setIsMobile] = useState<boolean>(false);
+  const [isLandscape, setIsLandscape] = useState<boolean>(false);
 
   const serviceScrollRef = useRef<HTMLDivElement>(null);
+  const trendingScrollRef = useRef<HTMLDivElement>(null);
   const { isLoggedIn } = useAuth();
   const { addToCart } = useBooking();
 
-  const serviceCategories = ['All', ...Array.from(new Set(allServices.map(service => service.category)))];
+  // Get trending services count
+  const trendingCount = trendingServices?.length || 0;
+  const hasTrendingServices = trendingCount > 0;
 
+  // Get unique categories
+  const serviceCategories = [
+    'All',
+    ...Array.from(new Set(allServices.map(service => service.category || '').filter(Boolean)))
+  ];
+
+  // Viewport detection useEffect - same as makeup page
+  useEffect(() => {
+    let timeoutId: NodeJS.Timeout | null = null;
+
+    const updateViewport = () => {
+      const isMob = window.innerWidth < 768;
+      setIsMobile(isMob);
+      setIsLandscape(window.innerWidth > window.innerHeight);
+    };
+
+    const handleResize = () => {
+      if (timeoutId) clearTimeout(timeoutId);
+      timeoutId = setTimeout(() => {
+        updateViewport();
+      }, 150);
+    };
+
+    updateViewport();
+
+    window.addEventListener('resize', handleResize);
+    window.addEventListener('orientationchange', handleResize);
+
+    return () => {
+      if (timeoutId) clearTimeout(timeoutId);
+      window.removeEventListener('resize', handleResize);
+      window.removeEventListener('orientationchange', handleResize);
+    };
+  }, []);
+
+  // Filter services by selected category
   const getFilteredServices = useCallback(() => {
     if (selectedCategory === 'All') return allServices;
     return allServices.filter(service => service.category === selectedCategory);
@@ -83,76 +114,54 @@ const ClientSkinPage = ({ allServices, trendingServices }: ClientSkinPageProps) 
 
   const filteredServices = getFilteredServices();
 
-  const getCategoryImage = useCallback((category: string) => {
-    if (category === 'All') return '/images/all-services.jpg';
-    const firstService = allServices.find(s => s.category === category);
-    return firstService?.image || '/images/placeholder.jpg';
-  }, [allServices]);
-
-  useEffect(() => {
-    setCurrentServiceIndex(0);
-    setVisibleServiceIndices(new Set([0]));
-  }, [selectedCategory]);
-
-  const updateVisibleServices = useCallback(() => {
-    if (!serviceScrollRef.current) return;
-
-    const container = serviceScrollRef.current;
-    const containerRect = container.getBoundingClientRect();
-    const services = container.children;
-    const newVisibleIndices = new Set<number>();
-
-    for (let i = 0; i < services.length; i++) {
-      const serviceRect = services[i].getBoundingClientRect();
-      const isVisible = 
-        serviceRect.left >= containerRect.left && 
-        serviceRect.right <= containerRect.right;
-      
-      if (isVisible) {
-        newVisibleIndices.add(i);
-      }
+  // Skin subcategories
+  const SKIN_SUBCATEGORIES = [
+    {
+      id: 'hair-removal-services',
+      title: 'Hair Removal Services',
+      description: 'Hair removal (waxing & threading)',
+      image: '/images/skin/arm_leg_wax.webp',
+      icon: '🪒',
+      color: 'from-amber-500 to-orange-600',
+      targetCategory: 'Hair Removal Services'
+    },
+    {
+      id: 'skin-treatments',
+      title: 'Skin Treatments',
+      description: 'Acne, anti-aging & skin concerns',
+      image: '/images/skin/acne_cleanup.webp',
+      icon: '✨',
+      color: 'from-purple-500 to-pink-600',
+      targetCategory: 'Skin Treatments'
+    },
+    {
+      id: 'facial-treatments',
+      title: 'Facial Treatments',
+      description: 'Hydrafacial, diamond facial & more',
+      image: '/images/skin/hydrafacial.webp',
+      icon: '💆‍♀️',
+      color: 'from-green-500 to-emerald-600',
+      targetCategory: 'Facial Treatments'
+    },
+    {
+      id: 'skin-brightening-pigmentation',
+      title: 'Skin Brightening',
+      description: 'Glow treatments for radiant skin',
+      image: '/images/skin/pigmentation_treatment.webp',
+      icon: '🌟',
+      color: 'from-rose-500 to-pink-600',
+      targetCategory: 'Skin Brightening & Pigmentation'
+    },
+    {
+      id: 'body-care-wellness',
+      title: 'Body Care & Wellness',
+      description: 'Body polish, wraps & wellness treatments',
+      image: '/images/skin/kesar_body_polish.webp',
+      icon: '🌸',
+      color: 'from-teal-500 to-cyan-600',
+      targetCategory: 'Body Care & Wellness'
     }
-
-    if (newVisibleIndices.size > 0) {
-      const indices = Array.from(newVisibleIndices);
-      const centeredIndex = indices.reduce((prev, curr) => {
-        const prevRect = services[prev].getBoundingClientRect();
-        const currRect = services[curr].getBoundingClientRect();
-        const prevCenter = Math.abs(prevRect.left + prevRect.right - containerRect.left - containerRect.right) / 2;
-        const currCenter = Math.abs(currRect.left + currRect.right - containerRect.left - containerRect.right) / 2;
-        return currCenter < prevCenter ? curr : prev;
-      }, indices[0]);
-      
-      setCurrentServiceIndex(centeredIndex);
-    }
-
-    setVisibleServiceIndices(newVisibleIndices);
-  }, []);
-
-  useEffect(() => {
-    const container = serviceScrollRef.current;
-    if (!container) return;
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            const index = parseInt(entry.target.getAttribute('data-index') || '0');
-            setVisibleServiceIndices(prev => new Set([...prev, index]));
-          }
-        });
-      },
-      {
-        root: container,
-        threshold: 0.5
-      }
-    );
-
-    const serviceElements = container.querySelectorAll('[data-index]');
-    serviceElements.forEach(element => observer.observe(element));
-
-    return () => observer.disconnect();
-  }, [filteredServices.length]);
+  ];
 
   const toggleFavorite = useCallback((serviceId: string) => {
     setFavorites(prev => {
@@ -164,16 +173,6 @@ const ClientSkinPage = ({ allServices, trendingServices }: ClientSkinPageProps) 
       }
       return newFavorites;
     });
-  }, []);
-
-  const scrollToService = useCallback((index: number) => {
-    if (serviceScrollRef.current && serviceScrollRef.current.children[index]) {
-      serviceScrollRef.current.children[index].scrollIntoView({
-        behavior: 'smooth',
-        inline: 'center'
-      });
-      setCurrentServiceIndex(index);
-    }
   }, []);
 
   const proceedToBooking = useCallback(() => {
@@ -188,115 +187,269 @@ const ClientSkinPage = ({ allServices, trendingServices }: ClientSkinPageProps) 
     addToCart(service);
   }, [addToCart]);
 
-  useEffect(() => {
-    const container = serviceScrollRef.current;
-    if (!container) return;
+  const handleServiceClick = useCallback((service: Service) => {
+    if (service.url) {
+      router.push(service.url);
+    } else {
+      setSelectedService(service);
+      setShowServiceDetail(true);
+    }
+  }, [router]);
 
-    const handleScroll = () => {
-      requestAnimationFrame(updateVisibleServices);
-    };
-
-    container.addEventListener('scroll', handleScroll);
-    return () => container.removeEventListener('scroll', handleScroll);
-  }, [updateVisibleServices]);
+  const navigateToCategory = useCallback((category: string) => {
+    setSelectedCategory(category);
+    if (serviceScrollRef.current) {
+      serviceScrollRef.current.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  }, []);
 
   if (bookingStep === 'booking') {
     return <BookingFlow onBack={() => setBookingStep('browsing')} />;
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-50 via-white to-emerald-50">
-      {/* SEO Header - Hidden but crawlable */}
-      <header className="sr-only">
-        <h1>Best Skin Treatment & Facial Services in {seoData.business.address.locality}, Patna | {seoData.business.name}</h1>
-        <p>
-          Professional skin care services including Hydrafacial, Diamond Facial, D-Tan treatment, 
-          waxing, threading, and body care in {seoData.business.address.locality}, Patna. 
-          Rated {seoData.business.rating}⭐ with {seoData.business.totalReviews}+ happy clients.
-        </p>
-        <address>
-          {seoData.business.address.street}, {seoData.business.address.locality}, 
-          {seoData.business.address.city}, {seoData.business.address.state} - {seoData.business.address.pincode}
-        </address>
-        <p>Phone: <a href={`tel:${seoData.business.contact.phone}`}>{seoData.business.contact.phone}</a></p>
-      </header>
+    <div className={`
+      min-h-screen 
+      bg-gradient-to-br from-green-50 via-white to-pink-50 
+      safe-area-inset
+      overflow-x-hidden
+      w-full
+      ${isLandscape ? 'landscape-mode' : ''}
+    `}>
+      <main className={`
+        max-w-7xl 
+        mx-auto 
+        px-4 
+        py-6 
+        ${isMobile ? (isLandscape ? 'pb-28' : 'pb-32') : 'pb-8'}
+        safe-area-inset
+        w-full
+        overflow-x-hidden
+        scroll-padding
+      `}>
 
-      <main className="max-w-7xl mx-auto px-4 py-6 pb-24 md:pb-8">
-                
-        {/* Category Services Banner */}
-        <section className="bg-gradient-to-r from-green-50 via-emerald-50 to-teal-50 rounded-2xl p-4 mb-6 flex flex-col border border-green-200">
-          <h2 className="sr-only">
-            {selectedCategory !== 'All' 
-              ? `${selectedCategory} Services in ${seoData.business.address.locality}` 
-              : `All Skin Care Services in ${seoData.business.address.locality}, Patna`}
-          </h2>
-          
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-gradient-to-br from-green-500 to-emerald-500 rounded-full flex items-center justify-center">
-                <Sparkles className="w-5 h-5 text-white" />
+        {/* ✅ TRENDING SKIN SERVICES — Lightweight Pill Scroller */}
+        {hasTrendingServices && (
+          <section className={`
+            bg-gradient-to-r from-green-50 via-pink-50 to-emerald-50
+            rounded-2xl 
+            px-4 py-3
+            mb-6 
+            border 
+            border-green-200
+            w-full
+          `}>
+            <h2 className="sr-only">Trending Skin Services in Patna</h2>
+
+            {/* Header row */}
+            <div className="flex items-center justify-between mb-3">
+              <div className="flex items-center gap-2">
+                <span className="text-base">🔥</span>
+                <span className={`font-bold text-gray-900 ${isLandscape ? 'text-sm' : 'text-base'}`}>
+                  Trending Skin
+                </span>
+                <span className="bg-green-500 text-white text-[10px] font-bold px-2 py-0.5 rounded-full">
+                  {trendingCount}
+                </span>
               </div>
-              <div>
-                <h3 className="font-bold text-gray-900 text-sm sm:text-base">
-                  {selectedCategory !== 'All' ? `${selectedCategory} Services` : 'All Skin Services'}
-                </h3>
-                <p className="text-xs text-gray-600">
-                  {filteredServices.length} professional services available
-                </p>
-              </div>
+              <button
+                onClick={() => router.push('/skin#all')}
+                className="flex items-center text-green-600 text-xs font-semibold hover:underline gap-1"
+              >
+                View All <ArrowRight className="w-3 h-3" />
+              </button>
             </div>
-            
-            <div className="bg-black/70 text-white text-xs font-medium px-2 py-1 rounded-full hidden sm:block">
-              {currentServiceIndex + 1}/{filteredServices.length}
-            </div>
-            <div className="bg-black/70 text-white text-[10px] font-medium px-1.5 py-0.5 rounded-full sm:hidden">
-              {currentServiceIndex + 1}/{filteredServices.length}
-            </div>
-          </div>
-          
-          {/* Instagram-like dot indicators */}
-          {filteredServices.length > 0 && (
-            <div className="flex justify-center items-center gap-[6px] mt-3">
-              {filteredServices.slice(0, 20).map((_, index) => (
-                <span
-                  key={index}
-                  onClick={() => scrollToService(index)}
+
+            {/* Pill chip scroller */}
+            <div
+              ref={trendingScrollRef}
+              className="flex overflow-x-auto gap-2 pb-1 scrollbar-hide"
+              style={{ WebkitOverflowScrolling: 'touch' }}
+            >
+              {trendingServices.map((service) => (
+                <button
+                  key={service.id}
+                  onClick={() => handleServiceClick(service)}
                   className={`
-                    block cursor-pointer rounded-full
+                    flex-shrink-0 flex items-center gap-2
+                    bg-white border border-green-200
+                    hover:border-green-400 hover:bg-green-50
+                    active:scale-95
+                    rounded-full
+                    ${isLandscape ? 'px-3 py-1.5' : 'px-4 py-2'}
+                    shadow-sm hover:shadow-md
                     transition-all duration-200
-                    ${currentServiceIndex === index
-                      ? 'bg-green-600'
-                      : 'bg-gray-300'}
-                    ${currentServiceIndex === index
-                      ? 'w-2 h-2'
-                      : 'w-1.5 h-1.5'}
-                    sm:${currentServiceIndex === index
-                      ? 'w-2 h-2'
-                      : 'w-1.5 h-1.5'}
+                    group
                   `}
-                  aria-label={`Go to service ${index + 1}`}
-                />
+                  aria-label={`View ${service.title} — ₹${service.price}`}
+                >
+                  <span className="text-xs">✨</span>
+                  <span className={`font-semibold text-gray-800 group-hover:text-green-700 whitespace-nowrap ${isLandscape ? 'text-xs' : 'text-sm'}`}>
+                    {service.title}
+                  </span>
+                  <span className={`text-green-600 font-bold whitespace-nowrap ${isLandscape ? 'text-xs' : 'text-sm'}`}>
+                    ₹{service.price}
+                  </span>
+                  {service.isBestSeller && (
+                    <Star className="w-3 h-3 fill-yellow-400 text-yellow-400 flex-shrink-0" />
+                  )}
+                </button>
               ))}
+              {/* View all pill */}
+              <button
+                onClick={() => router.push('/skin#all')}
+                className={`
+                  flex-shrink-0 flex items-center gap-1
+                  bg-gradient-to-r from-green-500 to-emerald-500 text-white
+                  rounded-full font-semibold shadow-sm
+                  hover:from-green-600 hover:to-emerald-600 hover:shadow-md
+                  transition-all duration-200
+                  ${isLandscape ? 'px-3 py-1.5 text-xs' : 'px-4 py-2 text-sm'}
+                `}
+              >
+                All {trendingCount}+ <ArrowRight className="w-3 h-3" />
+              </button>
             </div>
-          )}
+          </section>
+        )}
+
+        {/* Skin Subcategories */}
+        <section className="mb-8" aria-label="Skin service categories">
+          <h2 className={`
+            ${isLandscape ? 'text-lg' : 'text-xl'} 
+            font-bold text-gray-800 mb-4 text-center
+          `}>
+            💆‍♀️ Skin Categories
+          </h2>
+
+          <div className={`
+            ${isMobile ? 'grid grid-cols-2 gap-3' : 'flex flex-wrap justify-center gap-3'}
+          `}>
+            {SKIN_SUBCATEGORIES.map((category) => (
+              <div
+                key={category.id}
+                className={`
+                  ${isMobile ? '' : 'flex-1 min-w-[240px] max-w-[280px]'}
+                  bg-gradient-to-br ${category.color} 
+                  rounded-xl 
+                  overflow-hidden 
+                  shadow-lg 
+                  hover:shadow-xl 
+                  transition-all 
+                  duration-300 
+                  transform 
+                  hover:-translate-y-1
+                  ${isLandscape ? 'h-full' : ''}
+                `}
+              >
+                <div className="p-5 text-white">
+                  <div className="flex items-start justify-between mb-3">
+                    <div>
+                      <h3 className={`font-bold ${isLandscape ? 'text-lg' : 'text-xl'}`}>
+                        {category.title}
+                      </h3>
+                      <p className="text-white/80 text-sm mt-1">
+                        {category.description}
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="relative h-40 rounded-lg overflow-hidden mb-4 border-2 border-white/20">
+                    <Image
+                      src={category.image}
+                      alt={`${category.title} services`}
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 768px) 280px, (max-width: 1024px) 200px, 250px"
+                      loading="lazy"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
+                  </div>
+
+                  <button
+                    onClick={() => navigateToCategory(category.targetCategory)}
+                    className={`
+                      w-full 
+                      bg-white 
+                      text-gray-800 
+                      font-semibold 
+                      py-2.5 
+                      px-4 
+                      rounded-lg 
+                      flex 
+                      items-center 
+                      justify-center 
+                      gap-2 
+                      hover:bg-gray-50 
+                      active:bg-gray-100 
+                      transition-colors 
+                      duration-200
+                      ${isLandscape ? 'py-2 text-sm' : ''}
+                    `}
+                    aria-label={`Browse ${category.title} services`}
+                  >
+                    <span>Browse Services</span>
+                    <ArrowRight className="w-4 h-4" />
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
         </section>
 
-        {/* Services Grid - Semantic HTML for SEO */}
-        <section aria-label="Skin care services list">
-          <div
-            ref={serviceScrollRef}
-            className="flex sm:grid sm:grid-cols-2 lg:grid-cols-4 gap-4 overflow-x-auto sm:overflow-visible scrollbar-hide snap-x snap-mandatory pb-4"
-            onScroll={updateVisibleServices}
-            role="list"
-          >
-            {filteredServices.map((service, index) => (
-              <article 
-                key={service.id} 
-                data-index={index}
-                className="snap-start min-w-[280px] sm:min-w-0"
+        {/* Category Filter Buttons */}
+        <section className="mb-6" aria-label="Filter skin services by category">
+          <div className={`
+            ${isMobile ? 'flex overflow-x-auto space-x-2 pb-2' : 'flex flex-wrap justify-center gap-2'}
+          `}>
+            {serviceCategories.map((category) => {
+              const categoryServices = allServices.filter(s =>
+                category === 'All' ? true : s.category === category
+              );
+
+              return (
+                <button
+                  key={category}
+                  onClick={() => setSelectedCategory(category)}
+                  className={`
+                    ${isMobile ? 'flex-shrink-0' : ''}
+                    px-4 
+                    py-2 
+                    rounded-full 
+                    font-medium 
+                    transition-all 
+                    duration-200
+                    ${selectedCategory === category
+                      ? 'bg-gradient-to-r from-green-500 to-emerald-500 text-white shadow-lg'
+                      : 'bg-white text-gray-700 hover:bg-gray-50 border border-green-100'
+                    }
+                    ${isLandscape ? 'text-xs px-3 py-1.5' : isMobile ? 'text-sm' : 'text-sm'}
+                  `}
+                  aria-label={`Show ${category} skin services - ${categoryServices.length} available`}
+                  aria-pressed={selectedCategory === category}
+                >
+                  {category} ({categoryServices.length})
+                </button>
+              );
+            })}
+          </div>
+        </section>
+
+        {/* Services Grid */}
+        <section ref={serviceScrollRef} id="all" aria-label={`${selectedCategory} skin services`}>
+          <div className={`
+            grid gap-4
+            grid-cols-2
+            ${!isMobile ? 'lg:grid-cols-3 xl:grid-cols-4' : ''}
+          `}>
+            {filteredServices.map((service) => (
+              <article
+                key={service.id}
+                className={`
+                  ${isLandscape ? 'h-full' : ''}
+                `}
                 itemScope
                 itemType="https://schema.org/Service"
-                role="listitem"
               >
                 <meta itemProp="name" content={service.title} />
                 <meta itemProp="description" content={service.shortDescription} />
@@ -306,7 +459,7 @@ const ClientSkinPage = ({ allServices, trendingServices }: ClientSkinPageProps) 
                   <meta itemProp="priceCurrency" content="INR" />
                   <meta itemProp="availability" content="https://schema.org/InStock" />
                 </div>
-                
+
                 <ServiceCard
                   service={service}
                   isFavorite={favorites.has(service.id)}
@@ -316,6 +469,8 @@ const ClientSkinPage = ({ allServices, trendingServices }: ClientSkinPageProps) 
                     setSelectedService(service);
                     setShowServiceDetail(true);
                   }}
+                  variant={isLandscape ? 'compact' : 'detailed'}
+                  showBestSellerBadge={service.isBestSeller === true}
                 />
               </article>
             ))}
@@ -330,228 +485,228 @@ const ClientSkinPage = ({ allServices, trendingServices }: ClientSkinPageProps) 
           )}
         </section>
 
-        {/* Browse Categories - SEO Optimized */}
-        <section className="mb-8" aria-label="Browse skin care categories">
-          <h2 className="text-xl font-bold text-gray-800 mb-4 text-center flex items-center justify-center">
-            <Zap className="mr-2 text-green-600" />
-            Browse Skin Categories
-          </h2>
-          
-          <nav aria-label="Skin care service categories">
-            <div className="grid grid-cols-4 sm:grid-cols-6 gap-2 sm:gap-3">
-              {serviceCategories.map((category) => {
-                const categoryServices = allServices.filter(s => 
-                  category === 'All' ? true : s.category === category
-                );
-                
-                return (
-                  <button
-                    key={category}
-                    onClick={() => {
-                      setSelectedCategory(category|| 'Skin');
-                      if (serviceScrollRef.current) {
-                        serviceScrollRef.current.scrollLeft = 0;
-                      }
-                    }}
-                    className="cursor-pointer transition-all duration-300 aspect-square hover:scale-105"
-                    aria-label={`View ${category} services - ${categoryServices.length} available`}
-                    aria-pressed={selectedCategory === category}
-                  >
-                    <div className={`h-full rounded-xl p-2 text-center transition-all duration-300 flex flex-col items-center justify-center ${
-                      selectedCategory === category 
-                        ? 'bg-gradient-to-br from-green-500 to-emerald-600 text-white shadow-lg' 
-                        : 'bg-white text-gray-700 shadow-md hover:shadow-lg border border-green-100'
-                    }`}>
-                      <div className="w-8 h-8 md:w-10 md:h-10 mx-auto mb-1 rounded-full overflow-hidden border border-white/20">
-                        <Image 
-                          src={getCategoryImage(category|| 'Skin')} 
-                          alt={`${category} skin care services in ${seoData.business.address.locality}`}
-                          width={40}
-                          height={40}
-                          className="w-full h-full object-cover"
-                          loading="lazy"
-                        />
-                      </div>
-                      <p className="font-medium text-xs leading-tight truncate w-full">{category}</p>
-                      <p className="text-[10px] opacity-75 mt-0.5">
-                        {categoryServices.length} services
-                      </p>
-                    </div>
-                  </button>
-                );
-              })}
-            </div>
-          </nav>
-        </section>
-
         {/* Interactive Tools */}
-        <section className="mb-8" aria-label="Skin care consultation tools">
-          <h2 className="text-xl font-bold text-gray-800 mb-4 text-center flex items-center justify-center">
-            <Zap className="mr-2 text-green-600" />
-            Discover Your Perfect Skin Care
+        <section className="mb-8" aria-label="Skin consultation tools">
+          <h2 className={`
+            ${isLandscape ? 'text-lg' : 'text-xl'} 
+            font-bold text-gray-800 mb-4 text-center
+          `}>
+            💫 Discover Your Perfect Skin Care
           </h2>
-          <div className="grid grid-cols-2 gap-3">
+          <div className={`
+            grid 
+            ${isLandscape ? 'grid-cols-2 gap-2' : 'grid-cols-2 gap-3'}
+          `}>
             <button
               onClick={() => setShowBeautyQuiz(true)}
-              className="bg-gradient-to-br from-green-50 to-emerald-100 p-4 rounded-xl hover:shadow-xl transition-all duration-300 flex flex-col items-center text-center border-2 border-green-200"
+              className="
+                bg-gradient-to-br from-green-50 to-emerald-100 
+                p-4 
+                rounded-xl 
+                hover:shadow-xl 
+                transition-all 
+                duration-300 
+                flex 
+                flex-col 
+                items-center 
+                text-center 
+                border-2 
+                border-green-200
+                touch-target
+                ${isLandscape ? 'p-3' : ''}
+              "
               aria-label="Take our skin care quiz"
             >
               <div className="text-3xl mb-2">💆‍♀️</div>
-              <h3 className="text-base font-bold text-emerald-800">Skin Care Quiz</h3>
-              <p className="text-gray-600 text-xs mt-1">Find perfect treatments for you!</p>
-              <span className="mt-3 bg-white text-green-600 font-semibold py-1.5 px-3 rounded-full text-xs border border-green-300">
+              <h3 className={`
+                ${isLandscape ? 'text-sm' : 'text-base'} 
+                font-bold 
+                text-emerald-800
+              `}>
+                Skin Care Quiz
+              </h3>
+              <p className={`
+                text-gray-600 
+                ${isLandscape ? 'text-xs' : 'text-xs mt-1'}
+              `}>
+                Find perfect skin treatments tailored for you!
+              </p>
+              <span className={`
+                mt-3 
+                bg-white 
+                text-green-600 
+                font-semibold 
+                py-1.5 
+                px-3 
+                rounded-full 
+                ${isLandscape ? 'text-xs' : 'text-xs'} 
+                border 
+                border-green-300
+              `}>
                 Start Quiz
               </span>
             </button>
             <button
               onClick={() => setShowSkinAnalysis(true)}
-              className="bg-gradient-to-br from-emerald-50 to-green-100 p-4 rounded-xl hover:shadow-xl transition-all duration-300 flex flex-col items-center text-center border-2 border-emerald-200"
+              className="
+                bg-gradient-to-br from-emerald-50 to-green-100 
+                p-4 
+                rounded-xl 
+                hover:shadow-xl 
+                transition-all 
+                duration-300 
+                flex 
+                flex-col 
+                items-center 
+                text-center 
+                border-2 
+                border-emerald-200
+                touch-target
+                ${isLandscape ? 'p-3' : ''}
+              "
               aria-label="Analyze your skin"
             >
-              <div className="text-3xl mb-2">🔬</div>
-              <h3 className="text-base font-bold text-emerald-800">Skin Analysis</h3>
-              <p className="text-gray-600 text-xs mt-1">Get personalized skin advice.</p>
-              <span className="mt-3 bg-white text-emerald-600 font-semibold py-1.5 px-3 rounded-full text-xs border border-emerald-300">
+              <div className="text-3xl mb-2">🔍</div>
+              <h3 className={`
+                ${isLandscape ? 'text-sm' : 'text-base'} 
+                font-bold 
+                text-emerald-800
+              `}>
+                Skin Analysis
+              </h3>
+              <p className={`
+                text-gray-600 
+                ${isLandscape ? 'text-xs' : 'text-xs mt-1'}
+              `}>
+                Get personalized skin care advice.
+              </p>
+              <span className={`
+                mt-3 
+                bg-white 
+                text-emerald-600 
+                font-semibold 
+                py-1.5 
+                px-3 
+                rounded-full 
+                ${isLandscape ? 'text-xs' : 'text-xs'} 
+                border 
+                border-emerald-300
+              `}>
                 Analyze Skin
               </span>
             </button>
           </div>
         </section>
 
-        {/* Trust Signals Banner - SEO Rich */}
-        <section className="bg-gradient-to-r from-green-100 via-emerald-100 to-teal-100 rounded-2xl p-4 mb-6 border-2 border-green-200">
+        {/* Why Choose Us — emotion-first, soft feminine style */}
+        <section className="bg-gradient-to-r from-green-50 via-pink-50 to-emerald-50 rounded-2xl p-6 mb-6 border border-green-200">
+          <h2 className={`${isLandscape ? 'text-lg' : 'text-xl'} font-bold text-gray-800 mb-6 text-center`}>
+            Why Clients Choose Kritika Salon ✨
+          </h2>
+
           <div className="grid grid-cols-3 gap-4 text-center">
             <div className="flex flex-col items-center">
-              <Award className="w-8 h-8 text-green-600 mb-2" />
-              <div className="text-2xl font-bold text-gray-900" itemProp="ratingValue">
-                {seoData.business.rating}⭐
+              <div className={`${isLandscape ? 'text-2xl' : 'text-3xl'} mb-1`}>💆‍♀️</div>
+              <div className={`${isLandscape ? 'text-xl' : 'text-2xl'} font-bold text-gray-900`}>
+                {allServices.length}+
               </div>
-              <div className="text-xs text-gray-600" itemProp="ratingCount">
-                {seoData.business.totalReviews.toLocaleString()}+ Reviews
+              <div className={`${isLandscape ? 'text-[10px]' : 'text-xs'} text-gray-500`}>
+                Skin Services
+              </div>
+            </div>
+            <div className="flex flex-col items-center" itemProp="aggregateRating" itemScope itemType="https://schema.org/AggregateRating">
+              <div className={`${isLandscape ? 'text-2xl' : 'text-3xl'} mb-1`}>⭐</div>
+              <div className={`${isLandscape ? 'text-xl' : 'text-2xl'} font-bold text-gray-900`}>
+                <span itemProp="ratingValue">4.8</span>
+              </div>
+              <div className={`${isLandscape ? 'text-[10px]' : 'text-xs'} text-gray-500`}>
+                <span itemProp="reviewCount">1800+</span> Reviews
               </div>
             </div>
             <div className="flex flex-col items-center">
-              <Sparkles className="w-8 h-8 text-emerald-600 mb-2" />
-              <div className="text-2xl font-bold text-gray-900">{allServices.length}+</div>
-              <div className="text-xs text-gray-600">Skin Services</div>
-            </div>
-            <div className="flex flex-col items-center">
-              <Clock className="w-8 h-8 text-teal-600 mb-2" />
-              <div className="text-sm font-bold text-gray-900">Open Now</div>
-              <div className="text-xs text-gray-600">{seoData.business.workingHours.weekdays}</div>
-            </div>
-          </div>
-        </section>
-
-        {/* Location & Contact - Rich Schema */}
-        <section 
-          className="bg-white rounded-2xl p-6 shadow-md mb-6"
-          itemScope
-          itemType="https://schema.org/LocalBusiness"
-        >
-          <meta itemProp="name" content={seoData.business.name} />
-          <meta itemProp="image" content={`${seoData.business.contact.website}/logo.png`} />
-          
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
-            <div className="flex items-start gap-3" itemProp="address" itemScope itemType="https://schema.org/PostalAddress">
-              <div className="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0">
-                <MapPin className="w-5 h-5 text-green-600" />
-              </div>
-              <div>
-                <h3 className="font-bold text-gray-900 mb-1">Visit Us</h3>
-                <p className="text-gray-600 text-sm">
-                  <span itemProp="streetAddress">{seoData.business.address.street}, {seoData.business.address.locality}</span>,{' '}
-                  <span itemProp="addressLocality">{seoData.business.address.city}</span>,{' '}
-                  <span itemProp="addressRegion">{seoData.business.address.state}</span>{' '}
-                  <span itemProp="postalCode">{seoData.business.address.pincode}</span>
-                </p>
-                <a
-                  href={seoData.localSEOOptimization.localCitations.googleMaps}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-green-600 text-sm font-medium mt-2 inline-block hover:underline"
-                  itemProp="hasMap"
-                >
-                  Get Directions →
-                </a>
-              </div>
-            </div>
-
-            <div className="flex items-start gap-3">
-              <div className="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0">
-                <Phone className="w-5 h-5 text-green-600" />
-              </div>
-              <div>
-                <h3 className="font-bold text-gray-900 mb-1">Call Us</h3>
-                <a
-                  href={`tel:${seoData.business.contact.phone}`}
-                  className="text-gray-600 text-sm hover:text-green-600 block"
-                  itemProp="telephone"
-                >
-                  {seoData.business.contact.phone}
-                </a>
-                <p className="text-xs text-gray-500 mt-1">
-                  <time itemProp="openingHours">{seoData.business.workingHours.weekdays}</time>
-                </p>
-              </div>
+              <div className={`${isLandscape ? 'text-2xl' : 'text-3xl'} mb-1`}>👤</div>
+              <div className={`${isLandscape ? 'text-xl' : 'text-2xl'} font-bold text-gray-900`}>1800+</div>
+              <div className={`${isLandscape ? 'text-[10px]' : 'text-xs'} text-gray-500`}>Happy Clients</div>
             </div>
           </div>
 
-          <div className="pt-6 border-t border-green-100">
-            <h3 className="font-bold text-gray-900 mb-4 text-center">
-              Why Choose {seoData.business.name}?
-            </h3>
-            <div className="grid grid-cols-3 gap-4">
-              <div className="text-center">
-                <div className="text-2xl font-bold text-green-600 mb-1">1800+</div>
-                <div className="text-xs text-gray-600">Happy Clients</div>
-              </div>
-              <div className="text-center" itemProp="aggregateRating" itemScope itemType="https://schema.org/AggregateRating">
-                <div className="text-2xl font-bold text-green-600 mb-1">
-                  <span itemProp="ratingValue">{seoData.business.rating}</span>
-                </div>
-                <div className="text-xs text-gray-600">
-                  ⭐ <span itemProp="reviewCount">{seoData.business.totalReviews}+</span> Reviews
-                </div>
-              </div>
-              <div className="text-center">
-                <div className="text-2xl font-bold text-green-600 mb-1">{allServices.length}+</div>
-                <div className="text-xs text-gray-600">Skin Services</div>
-              </div>
+          {/* Open Now Badge */}
+          <div className="mt-6 text-center">
+            <div className={`
+              inline-flex items-center gap-2
+              bg-white text-green-600 font-bold
+              ${isLandscape ? 'text-xs px-3 py-1.5' : 'text-sm px-4 py-2'}
+              rounded-full border border-green-200 shadow-sm
+            `}>
+              <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+              <span>Open Now</span>
+              <span className="text-gray-600 font-normal">9:00 AM - 8:00 PM</span>
             </div>
           </div>
         </section>
 
         {/* Testimonials */}
         <section className="mb-6" aria-label="Customer testimonials">
-          <h2 className="text-xl font-bold text-gray-800 mb-4 text-center">Skin Transformations</h2>
+          <h2 className={`
+            ${isLandscape ? 'text-lg' : 'text-xl'} 
+            font-bold 
+            text-gray-800 
+            mb-4 
+            text-center
+          `}>
+            Skin Transformations
+          </h2>
           <div className="flex overflow-x-auto space-x-4 pb-4 scrollbar-hide">
-            <TestimonialCard 
-              name="Priya S." 
-              text="My skin has never looked better! The hydrafacial treatment is pure magic. Glowing and confident!" 
-              image="/images/skin/hydrafacial.webp" 
+            <TestimonialCard
+              name="Priya S."
+              text="My skin has never looked better! The diamond facial is pure magic. Feeling so confident!"
+              image="/images/skin/hydrafacial.webp"
             />
-            <TestimonialCard 
-              name="Ananya R." 
-              text="The diamond facial was stunning! Everyone complimented my skin - it looked so natural yet glamorous." 
-              image="/images/skin/diamond_facial.webp" 
+            <TestimonialCard
+              name="Ananya R."
+              text="The laser hair removal treatment made me feel like an absolute diva! Flawless work."
+              image="/images/skin/laser_hair_removal.webp"
             />
-            <TestimonialCard 
-              name="Maya T." 
-              text="Best skin treatments in Patna! The attention to detail and hygiene standards are top-notch." 
-              image="/images/skin/basic_facial.webp" 
+            <TestimonialCard
+              name="Maya T."
+              text="Best skin treatment in town. My damaged skin is now glowing and full of life. Highly recommend!"
+              image="/images/skin/diamond_facial.webp"
             />
           </div>
         </section>
 
         {/* Promotional Banner */}
-        <section className="bg-gradient-to-r from-green-100 to-emerald-100 rounded-xl p-6 text-center border-2 border-green-200">
-          <div className="inline-flex items-center bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-full mb-2">
-            <Zap className="mr-1" />
-            SPECIAL OFFER
+        <section className="
+          bg-gradient-to-r from-green-100 via-pink-100 to-emerald-100
+          rounded-2xl p-6 text-center
+          border border-green-200
+          mb-6
+        ">
+          <div className={`
+            inline-flex items-center gap-1.5
+            bg-green-500 text-white
+            text-xs font-bold px-3 py-1.5
+            rounded-full mb-3
+          `}>
+            <span>✨</span>
+            <span>FLASH SALE</span>
           </div>
-          <h3 className="text-lg font-bold text-gray-800">35% OFF On Diamond Facials</h3>
-          <p className="text-gray-600 text-sm mt-1">Transform and rejuvenate your skin!</p>
+          <h3 className={`${isLandscape ? 'text-base' : 'text-lg'} font-bold text-gray-800 mb-1`}>
+            35% OFF on All Diamond Facials
+          </h3>
+          <p className={`text-gray-500 ${isLandscape ? 'text-xs' : 'text-sm'} mb-4`}>
+            Transform, rejuvenate, and save! ✨
+          </p>
+          <button
+            onClick={() => {
+              const el = document.getElementById('all');
+              el?.scrollIntoView({ behavior: 'smooth' });
+              setSelectedCategory('Facial Treatment');
+            }}
+            className="inline-flex items-center gap-2 bg-gradient-to-r from-green-500 to-emerald-500 text-white text-sm font-bold px-5 py-2.5 rounded-full shadow-sm hover:shadow-md hover:from-green-600 hover:to-emerald-600 transition-all"
+          >
+            Explore Facial Treatments <ArrowRight className="w-4 h-4" />
+          </button>
         </section>
       </main>
 
@@ -569,7 +724,7 @@ const ClientSkinPage = ({ allServices, trendingServices }: ClientSkinPageProps) 
 
       {showBeautyQuiz && <BeautyQuiz onClose={() => setShowBeautyQuiz(false)} />}
       {showSkinAnalysis && <SkinAnalysis onClose={() => setShowSkinAnalysis(false)} />}
-      
+
       <LoginModal
         isOpen={showLoginModal}
         onClose={() => setShowLoginModal(false)}

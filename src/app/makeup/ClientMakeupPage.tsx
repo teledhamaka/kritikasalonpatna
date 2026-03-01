@@ -4,7 +4,7 @@
 import { useState, useRef, useCallback, useEffect } from 'react';
 import Image from 'next/image';
 import dynamic from 'next/dynamic';
-import { MapPin, Sparkles, Zap, Phone, Clock, Award, TrendingUp, Users, Heart, ArrowRight, Star } from 'lucide-react';
+import { ArrowRight, Star } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 
 import { Service } from '../../types/service';
@@ -61,7 +61,6 @@ const ClientMakeupPage = ({ allServices, trendingServices }: ClientMakeupPagePro
   const [activeFaq, setActiveFaq] = useState<number | null>(null);
   const [isMobile, setIsMobile] = useState<boolean>(false);
   const [isLandscape, setIsLandscape] = useState<boolean>(false);
-  const [autoScroll, setAutoScroll] = useState<boolean>(true);
 
   const serviceScrollRef = useRef<HTMLDivElement>(null);
   const trendingScrollRef = useRef<HTMLDivElement>(null);
@@ -108,55 +107,7 @@ const ClientMakeupPage = ({ allServices, trendingServices }: ClientMakeupPagePro
     };
   }, []);
 
-  // Auto-scroll trending services on desktop - SAME AS HOME PAGE
-  useEffect(() => {
-    if (!trendingScrollRef.current || !autoScroll || isMobile || trendingCount < 3) return;
-    
-    const scrollContainer = trendingScrollRef.current;
-    let scrollInterval: NodeJS.Timeout;
-    let scrollDirection = 1;
-    let scrollPosition = 0;
-    
-    const startScrolling = () => {
-      scrollInterval = setInterval(() => {
-        if (!scrollContainer) return;
-        
-        const containerWidth = scrollContainer.clientWidth;
-        const contentWidth = scrollContainer.scrollWidth;
-        const maxScroll = contentWidth - containerWidth;
-        
-        if (scrollPosition >= maxScroll - 10) {
-          scrollDirection = -1;
-        } else if (scrollPosition <= 10) {
-          scrollDirection = 1;
-        }
-        
-        scrollPosition += scrollDirection * 0.5;
-        scrollContainer.scrollLeft = scrollPosition;
-      }, 20);
-    };
-    
-    const stopScrolling = () => {
-      clearInterval(scrollInterval);
-    };
-    
-    startScrolling();
-    
-    scrollContainer.addEventListener('mouseenter', () => {
-      setAutoScroll(false);
-      stopScrolling();
-    });
-    
-    scrollContainer.addEventListener('mouseleave', () => {
-      setAutoScroll(true);
-    });
-    
-    return () => {
-      stopScrolling();
-      scrollContainer.removeEventListener('mouseenter', () => {});
-      scrollContainer.removeEventListener('mouseleave', () => {});
-    };
-  }, [trendingCount, isMobile, autoScroll]);
+  // Auto-scroll removed — replaced with lightweight pill scroller (no JS scroll needed)
 
   // Filter services by selected category
   const getFilteredServices = useCallback(() => {
@@ -166,14 +117,7 @@ const ClientMakeupPage = ({ allServices, trendingServices }: ClientMakeupPagePro
 
   const filteredServices = getFilteredServices();
 
-  // Get category image - SAME PATTERN AS HOME PAGE
-  const getCategoryImage = useCallback((category: string) => {
-    if (category === 'All') return '/images/all-services.jpg';
-    const firstService = allServices.find(s => s.category === category);
-    return firstService?.image || '/images/placeholder.jpg';
-  }, [allServices]);
-
-  // Makeup subcategories for horizontal display - SIMILAR TO HOME PAGE
+  // Makeup subcategories for horizontal display
   const MAKEUP_SUBCATEGORIES = [
     {
       id: 'bridal',
@@ -192,20 +136,36 @@ const ClientMakeupPage = ({ allServices, trendingServices }: ClientMakeupPagePro
       color: 'from-purple-500 to-pink-600'
     },
     {
+    id: 'reception',
+    title: 'Reception Makeup',
+    description: 'Glamorous reception styles',
+    image: '/images/makeup/reception_airbrush.webp',
+    icon: '✨',
+    color: 'from-amber-500 to-red-600'
+    },
+    {
+      id: 'camera-ready',
+      title: 'Camera Ready Makeup',
+      description: 'Camera-ready makeup',
+      image: '/images/makeup/hd_makeup.webp',
+      icon: '📸',
+      color: 'from-blue-500 to-cyan-600'
+    },
+    {
       id: 'party',
       title: 'Party Makeup',
       description: 'Evening & party looks',
       image: '/images/makeup/bridal_makeup.webp',
       icon: '🎉',
       color: 'from-amber-500 to-orange-600'
-    },
+    },    
     {
-      id: 'hd',
-      title: 'HD Makeup',
-      description: 'Camera-ready makeup',
-      image: '/images/makeup/hd_makeup.webp',
-      icon: '📸',
-      color: 'from-blue-500 to-cyan-600'
+    id: 'bridal-packages',
+    title: 'Bridal Packages',
+    description: 'Exclusive bridal package deals',
+    image: '/images/makeup/classic_bridal.webp',
+    icon: '💎',
+    color: 'from-rose-500 to-pink-600'
     }
   ];
 
@@ -274,232 +234,98 @@ const ClientMakeupPage = ({ allServices, trendingServices }: ClientMakeupPagePro
         scroll-padding
       `}>
         
-        {/* TRENDING MAKEUP SERVICES BANNER - SIMILAR TO HOME PAGE */}
+        {/* ✅ TRENDING MAKEUP SERVICES — Lightweight Pill Scroller (matches homepage) */}
         {hasTrendingServices && (
           <section className={`
-            bg-gradient-to-r from-yellow-50 via-pink-50 to-purple-50 
+            bg-gradient-to-r from-rose-50 via-pink-50 to-fuchsia-50
             rounded-2xl 
-            p-4 
+            px-4 py-3
             mb-6 
             border 
             border-pink-200
             w-full
-            ${isLandscape ? 'py-3' : ''}
           `}>
-            <h2 className="sr-only">
-              Trending Makeup Services
-            </h2>
-            
-            <div className="flex items-center justify-between mb-4">
-              <div className="flex items-center gap-3">
-                <div className={`
-                  ${isMobile && isLandscape ? 'w-8 h-8' : 'w-10 h-10'}
-                  bg-gradient-to-br from-pink-500 to-rose-500 
-                  rounded-full 
-                  flex 
-                  items-center 
-                  justify-center
-                  flex-shrink-0
-                  animate-pulse
-                `}>
-                  <TrendingUp className={`
-                    ${isMobile && isLandscape ? 'w-4 h-4' : 'w-5 h-5'} 
-                    text-white
-                  `} />
-                </div>
-                <div>
-                  <h3 className={`
-                    font-bold 
-                    text-gray-900 
-                    ${isMobile ? (isLandscape ? 'text-sm' : 'text-base') : 'text-lg'}
-                  `}>
-                    Trending Makeup Services
-                  </h3>
-                  <p className={`
-                    ${isLandscape ? 'text-[10px]' : 'text-xs'} 
-                    text-gray-600
-                  `}>
-                    Most booked {trendingCount} makeup services
-                  </p>
-                </div>
+            <h2 className="sr-only">Trending Makeup Services in Patna</h2>
+
+            {/* Header row */}
+            <div className="flex items-center justify-between mb-3">
+              <div className="flex items-center gap-2">
+                <span className="text-base">🔥</span>
+                <span className={`font-bold text-gray-900 ${isLandscape ? 'text-sm' : 'text-base'}`}>
+                  Trending Makeup
+                </span>
+                <span className="bg-pink-500 text-white text-[10px] font-bold px-2 py-0.5 rounded-full">
+                  {trendingCount}
+                </span>
               </div>
+              <button
+                onClick={() => router.push('/makeup#all')}
+                className="flex items-center text-pink-600 text-xs font-semibold hover:underline gap-1"
+              >
+                View All <ArrowRight className="w-3 h-3" />
+              </button>
             </div>
-            
-            {/* HORIZONTAL SCROLLING TRENDING SERVICES - SAME AS HOME PAGE */}
-            <div 
+
+            {/* Pill chip scroller — zero image weight, instant render */}
+            <div
               ref={trendingScrollRef}
-              className={`
-                flex 
-                ${isMobile ? 'overflow-x-auto space-x-4' : 'overflow-hidden'} 
-                pb-3 
-                mb-4 
-                ${isMobile ? 'scrollbar-hide' : ''}
-                ${!isMobile ? 'relative' : ''}
-              `}
-              style={{
-                WebkitOverflowScrolling: 'touch',
-                scrollbarWidth: 'none',
-                msOverflowStyle: 'none'
-              }}
+              className="flex overflow-x-auto gap-2 pb-1 scrollbar-hide"
+              style={{ WebkitOverflowScrolling: 'touch' }}
             >
               {trendingServices.map((service) => (
-                <div 
-                  key={service.id} 
-                  className={`
-                    ${isMobile ? 'flex-shrink-0' : 'flex-shrink-0'}
-                    ${isLandscape ? 'min-w-[160px]' : isMobile ? 'min-w-[200px]' : 'min-w-[220px]'}
-                    ${isLandscape ? 'max-w-[160px]' : isMobile ? 'max-w-[200px]' : 'max-w-[220px]'}
-                    bg-white 
-                    rounded-xl 
-                    ${isLandscape ? 'p-2' : isMobile ? 'p-3' : 'p-3'}
-                    border 
-                    border-pink-100 
-                    shadow-sm
-                    hover:shadow-md
-                    transition-all 
-                    duration-300
-                    flex 
-                    flex-col
-                    cursor-pointer
-                    group
-                    ${!isMobile ? 'hover:scale-[1.02]' : ''}
-                  `}
+                <button
+                  key={service.id}
                   onClick={() => handleServiceClick(service)}
-                  aria-label={`View ${service.title}`}
+                  className={`
+                    flex-shrink-0 flex items-center gap-2
+                    bg-white border border-pink-200
+                    hover:border-pink-400 hover:bg-pink-50
+                    active:scale-95
+                    rounded-full
+                    ${isLandscape ? 'px-3 py-1.5' : 'px-4 py-2'}
+                    shadow-sm hover:shadow-md
+                    transition-all duration-200
+                    group
+                  `}
+                  aria-label={`View ${service.title} — ₹${service.price}`}
                 >
-                  {/* Service Image */}
-                  <div className={`
-                    relative 
-                    ${isLandscape ? 'h-24' : isMobile ? 'h-32' : 'h-36'} 
-                    w-full 
-                    rounded-lg 
-                    overflow-hidden 
-                    mb-2
-                    group-hover:shadow-inner
-                  `}>
-                    <Image
-                      src={service.image || '/images/placeholder.jpg'}
-                      alt={service.title}
-                      fill
-                      className="object-cover group-hover:scale-105 transition-transform duration-300"
-                      sizes={isMobile ? "200px" : "220px"}
-                      priority={true}
-                    />
-                    {/* Best Seller Badge */}
-                    {service.isBestSeller && (
-                      <div className="absolute top-2 left-2 z-10">
-                        <span className="bg-gradient-to-r from-yellow-500 to-orange-500 text-white text-xs font-bold px-2 py-1 rounded-full shadow-md flex items-center gap-1">
-                          <Star className="w-3 h-3 fill-white" />
-                          Best Seller
-                        </span>
-                      </div>
-                    )}
-                    {/* Rating Badge */}
-                    <div className="absolute bottom-2 right-2 bg-black/70 backdrop-blur-sm text-white text-xs font-bold px-2 py-1 rounded-full flex items-center gap-1">
-                      <Star className="w-3 h-3 fill-yellow-400 text-yellow-400" />
-                      <span>{service.rating?.toFixed(1) || '4.5'}</span>
-                    </div>
-                  </div>
-                  
-                  {/* Service Info */}
-                  <div className="flex-1 flex flex-col">
-                    <h4 className={`
-                      font-semibold 
-                      text-gray-800 
-                      ${isLandscape ? 'text-xs' : isMobile ? 'text-sm' : 'text-sm'}
-                      line-clamp-2 
-                      mb-1
-                      group-hover:text-pink-600
-                      transition-colors
-                    `}>
-                      {service.title}
-                    </h4>
-                    
-                    <p className={`
-                      text-gray-600 
-                      ${isLandscape ? 'text-[10px]' : 'text-xs'}
-                      line-clamp-2 
-                      mb-2
-                    `}>
-                      {service.shortDescription || service.description?.substring(0, 60)}...
-                    </p>
-                    
-                    <div className="flex items-center justify-between mt-auto">
-                      <div className="flex flex-col">
-                        <span className={`
-                          font-bold 
-                          text-pink-600 
-                          ${isLandscape ? 'text-sm' : 'text-base'}
-                        `}>
-                          ₹{service.price}
-                        </span>
-                        {service.originalPrice && service.originalPrice > service.price && (
-                          <span className={`
-                            text-gray-400 
-                            ${isLandscape ? 'text-[10px]' : 'text-xs'}
-                            line-through
-                          `}>
-                            ₹{service.originalPrice}
-                          </span>
-                        )}
-                      </div>
-                      
-                      <div className={`
-                        ${isLandscape ? 'text-[10px]' : 'text-xs'} 
-                        text-gray-500
-                        flex items-center gap-1
-                      `}>
-                        <Clock className={isLandscape ? 'w-3 h-3' : 'w-3 h-3'} />
-                        <span>{service.durationText || `${service.duration || 60} min`}</span>
-                      </div>
-                    </div>
-                    
-                    {/* Quick Action Button */}
-                    <button
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        handleAddToCart(service);
-                      }}
-                      className={`
-                        w-full 
-                        mt-2 
-                        ${isLandscape ? 'py-1.5 text-xs' : isMobile ? 'py-2 text-sm' : 'py-2 text-sm'}
-                        bg-gradient-to-r from-pink-500 to-rose-500 
-                        text-white 
-                        font-medium 
-                        rounded-lg 
-                        hover:from-pink-600 hover:to-rose-600
-                        active:from-pink-700 active:to-rose-700
-                        transition-all 
-                        duration-200
-                        shadow-sm hover:shadow-md
-                        flex items-center justify-center gap-1
-                      `}
-                    >
-                      <span>Add to Cart</span>
-                      <Heart className="w-4 h-4" />
-                    </button>
-                  </div>
-                </div>
+                  <span className="text-xs">💄</span>
+                  <span className={`font-semibold text-gray-800 group-hover:text-pink-700 whitespace-nowrap ${isLandscape ? 'text-xs' : 'text-sm'}`}>
+                    {service.title}
+                  </span>
+                  <span className={`text-pink-600 font-bold whitespace-nowrap ${isLandscape ? 'text-xs' : 'text-sm'}`}>
+                    ₹{service.price}
+                  </span>
+                  {service.isBestSeller && (
+                    <Star className="w-3 h-3 fill-yellow-400 text-yellow-400 flex-shrink-0" />
+                  )}
+                </button>
               ))}
+              {/* View all pill */}
+              <button
+                onClick={() => router.push('/makeup#all')}
+                className={`
+                  flex-shrink-0 flex items-center gap-1
+                  bg-gradient-to-r from-pink-500 to-rose-500 text-white
+                  rounded-full font-semibold shadow-sm
+                  hover:from-pink-600 hover:to-rose-600 hover:shadow-md
+                  transition-all duration-200
+                  ${isLandscape ? 'px-3 py-1.5 text-xs' : 'px-4 py-2 text-sm'}
+                `}
+              >
+                All {trendingCount}+ <ArrowRight className="w-3 h-3" />
+              </button>
             </div>
           </section>
         )}
 
-        {/* Makeup Subcategories - SIMILAR TO HOME PAGE */}
+        {/* Makeup Subcategories */}
         <section className="mb-8" aria-label="Makeup service categories">
           <h2 className={`
             ${isLandscape ? 'text-lg' : 'text-xl'} 
-            font-bold 
-            text-gray-800 
-            mb-4 
-            text-center 
-            flex 
-            items-center 
-            justify-center
+            font-bold text-gray-800 mb-4 text-center
           `}>
-            <Zap className="mr-2 text-pink-600" />
-            Makeup Categories
+            💄 Makeup Categories
           </h2>
           
           <div className={`
@@ -616,13 +442,12 @@ const ClientMakeupPage = ({ allServices, trendingServices }: ClientMakeupPagePro
         </section>
 
         {/* Services Grid */}
-        <section aria-label={`${selectedCategory} makeup services`}>
-          <div
-            ref={serviceScrollRef}
-            className={`
-              ${isMobile ? 'grid grid-cols-1 gap-4' : 'grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4'}
-            `}
-          >
+        <section ref={serviceScrollRef} id="all" aria-label={`${selectedCategory} makeup services`}>
+          <div className={`
+            grid gap-4
+            grid-cols-2
+            ${!isMobile ? 'lg:grid-cols-3 xl:grid-cols-4' : ''}
+          `}>
             {filteredServices.map((service) => (
               <article 
                 key={service.id}
@@ -666,20 +491,13 @@ const ClientMakeupPage = ({ allServices, trendingServices }: ClientMakeupPagePro
           )}
         </section>
 
-        {/* Interactive Tools - SAME AS HOME PAGE */}
+        {/* Interactive Tools */}
         <section className="mb-8" aria-label="Makeup consultation tools">
           <h2 className={`
             ${isLandscape ? 'text-lg' : 'text-xl'} 
-            font-bold 
-            text-gray-800 
-            mb-4 
-            text-center 
-            flex 
-            items-center 
-            justify-center
+            font-bold text-gray-800 mb-4 text-center
           `}>
-            <Zap className="mr-2 text-pink-600" />
-            Discover Your Perfect Look
+            💫 Discover Your Perfect Look
           </h2>
           <div className={`
             grid 
@@ -786,108 +604,49 @@ const ClientMakeupPage = ({ allServices, trendingServices }: ClientMakeupPagePro
           </div>
         </section>
 
-        {/* Why Choose Us Banner - SIMILAR TO HOME PAGE */}
-        <section className="
-          bg-gradient-to-r from-pink-100 via-purple-100 to-rose-100 
-          rounded-2xl 
-          p-6 
-          mb-6 
-          border-2 
-          border-pink-200
-        ">
-          <h2 className={`
-            ${isLandscape ? 'text-lg' : 'text-xl'} 
-            font-bold 
-            text-gray-800 
-            mb-6 
-            text-center
-          `}>
-            Why Choose Our Makeup Services?
+        {/* Why Choose Us — emotion-first, soft feminine style */}
+        <section className="bg-gradient-to-r from-rose-50 via-pink-50 to-fuchsia-50 rounded-2xl p-6 mb-6 border border-pink-200">
+          <h2 className={`${isLandscape ? 'text-lg' : 'text-xl'} font-bold text-gray-800 mb-6 text-center`}>
+            Why Brides Choose Kritika Salon ✨
           </h2>
           
           <div className="grid grid-cols-3 gap-4 text-center">
             <div className="flex flex-col items-center">
-              <Sparkles className={`
-                ${isLandscape ? 'w-6 h-6' : 'w-8 h-8'} 
-                text-purple-600 
-                mb-2
-              `} />
-              <div className={`
-                ${isLandscape ? 'text-xl' : 'text-2xl'} 
-                font-bold 
-                text-gray-900
-              `}>
+              <div className={`${isLandscape ? 'text-2xl' : 'text-3xl'} mb-1`}>💄</div>
+              <div className={`${isLandscape ? 'text-xl' : 'text-2xl'} font-bold text-gray-900`}>
                 {allServices.length}+
               </div>
-              <div className={`
-                ${isLandscape ? 'text-[10px]' : 'text-xs'} 
-                text-gray-600
-              `}>
+              <div className={`${isLandscape ? 'text-[10px]' : 'text-xs'} text-gray-500`}>
                 Makeup Services
               </div>
             </div>
             <div className="flex flex-col items-center" itemProp="aggregateRating" itemScope itemType="https://schema.org/AggregateRating">
-              <Award className={`
-                ${isLandscape ? 'w-6 h-6' : 'w-8 h-8'} 
-                text-pink-600 
-                mb-2
-              `} />
-              <div className={`
-                ${isLandscape ? 'text-xl' : 'text-2xl'} 
-                font-bold 
-                text-gray-900
-              `}>
+              <div className={`${isLandscape ? 'text-2xl' : 'text-3xl'} mb-1`}>⭐</div>
+              <div className={`${isLandscape ? 'text-xl' : 'text-2xl'} font-bold text-gray-900`}>
                 <span itemProp="ratingValue">4.8</span>
               </div>
-              <div className={`
-                ${isLandscape ? 'text-[10px]' : 'text-xs'} 
-                text-gray-600
-              `}>
-                ⭐ <span itemProp="reviewCount">1000+</span> Reviews
+              <div className={`${isLandscape ? 'text-[10px]' : 'text-xs'} text-gray-500`}>
+                <span itemProp="reviewCount">1000+</span> Reviews
               </div>
             </div>
             <div className="flex flex-col items-center">
-              <Users className={`
-                ${isLandscape ? 'w-6 h-6' : 'w-8 h-8'} 
-                text-rose-600 
-                mb-2
-              `} />
-              <div className={`
-                ${isLandscape ? 'text-xl' : 'text-2xl'} 
-                font-bold 
-                text-gray-900
-              `}>
-                1000+
-              </div>
-              <div className={`
-                ${isLandscape ? 'text-[10px]' : 'text-xs'} 
-                text-gray-600
-              `}>
-                Happy Brides
-              </div>
+              <div className={`${isLandscape ? 'text-2xl' : 'text-3xl'} mb-1`}>👰</div>
+              <div className={`${isLandscape ? 'text-xl' : 'text-2xl'} font-bold text-gray-900`}>1000+</div>
+              <div className={`${isLandscape ? 'text-[10px]' : 'text-xs'} text-gray-500`}>Happy Brides</div>
             </div>
           </div>
           
           {/* Open Now Badge */}
           <div className="mt-6 text-center">
-            <div className="
-              inline-flex 
-              items-center 
-              gap-2 
-              bg-white 
-              text-green-600 
-              font-bold 
-              ${isLandscape ? 'text-xs px-3 py-1.5' : 'text-sm px-4 py-2'} 
-              rounded-full 
-              border 
-              border-green-200
-              shadow-sm
-            ">
+            <div className={`
+              inline-flex items-center gap-2
+              bg-white text-green-600 font-bold
+              ${isLandscape ? 'text-xs px-3 py-1.5' : 'text-sm px-4 py-2'}
+              rounded-full border border-green-200 shadow-sm
+            `}>
               <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
               <span>Open Now</span>
-              <span className="text-gray-600 font-normal">
-                9:00 AM - 8:00 PM
-              </span>
+              <span className="text-gray-600 font-normal">9:00 AM - 8:00 PM</span>
             </div>
           </div>
         </section>
@@ -922,43 +681,38 @@ const ClientMakeupPage = ({ allServices, trendingServices }: ClientMakeupPagePro
           </div>
         </section>
 
-        {/* Promotional Banner */}
+        {/* Promotional Banner — soft luxury style matching homepage */}
         <section className="
-          bg-gradient-to-r from-pink-100 to-purple-100 
-          rounded-xl 
-          p-6 
-          text-center 
-          border-2 
-          border-pink-200
+          bg-gradient-to-r from-rose-50 via-pink-50 to-fuchsia-50
+          rounded-2xl p-6 text-center
+          border border-pink-200
+          mb-6
         ">
-          <div className="
-            inline-flex 
-            items-center 
-            bg-red-500 
-            text-white 
-            text-xs 
-            font-bold 
-            px-2 
-            py-1 
-            rounded-full 
-            mb-2
-          ">
-            <Zap className="mr-1" />
-            BRIDAL SPECIAL
+          <div className={`
+            inline-flex items-center gap-1.5
+            bg-rose-500 text-white
+            text-xs font-bold px-3 py-1.5
+            rounded-full mb-3
+          `}>
+            <span>✨</span>
+            <span>BRIDAL SEASON SPECIAL</span>
           </div>
-          <h3 className={`
-            ${isLandscape ? 'text-base' : 'text-lg'} 
-            font-bold 
-            text-gray-800
-          `}>
-            20% OFF On Bridal Makeup Packages
+          <h3 className={`${isLandscape ? 'text-base' : 'text-lg'} font-bold text-gray-800 mb-1`}>
+            20% OFF on All Bridal Makeup Packages
           </h3>
-          <p className={`
-            text-gray-600 
-            ${isLandscape ? 'text-xs' : 'text-sm mt-1'}
-          `}>
-            Book your trial now and save big!
+          <p className={`text-gray-500 ${isLandscape ? 'text-xs' : 'text-sm'} mb-4`}>
+            Book your trial session and lock in the savings ✨
           </p>
+          <button
+            onClick={() => {
+              const el = document.getElementById('all');
+              el?.scrollIntoView({ behavior: 'smooth' });
+              setSelectedCategory('Bridal');
+            }}
+            className="inline-flex items-center gap-2 bg-gradient-to-r from-rose-500 to-pink-500 text-white text-sm font-bold px-5 py-2.5 rounded-full shadow-sm hover:shadow-md hover:from-rose-600 hover:to-pink-600 transition-all"
+          >
+            Explore Bridal Packages <ArrowRight className="w-4 h-4" />
+          </button>
         </section>
       </main>
 

@@ -48,7 +48,7 @@ export default function FloatingCart({ onProceedToBooking }: FloatingCartProps) 
 
   const handleProceedToBooking = () => {
     if (!isLoggedIn) {
-      router.push('/login')
+      router.push('/cart')
       return
     }
     onProceedToBooking()

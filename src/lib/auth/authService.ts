@@ -83,66 +83,54 @@ export class AuthService {
   }
 
   // Google OAuth Login
+  // 
+  
   static async loginWithGoogle(googleIdToken: string) {
-    try {
-      // Verify Google token and get user info
-      const googleUser = await this.verifyGoogleToken(googleIdToken);
+  try {
+    // Use Supabase's built‑in ID token sign‑in
+    const { data, error } = await supabase.auth.signInWithIdToken({
+      provider: 'google',
+      token: googleIdToken,
+    });
 
-      if (!googleUser.email_verified) {
-        throw new Error('Google email not verified');
-      }
+    if (error) throw error;
+    if (!data.user) throw new Error('Login failed');
 
-      // Check if user exists in Supabase profiles
-      const { data: profile } = await supabaseAdmin
-        .from('profiles')
-        .select('*')
-        .eq('email', googleUser.email)
-        .single();
+    const userId = data.user.id;
+    const email = data.user.email!;
 
-      let userId: string;
+    // Check if a profile already exists (using admin client to bypass RLS)
+    const { data: existingProfile } = await supabaseAdmin
+      .from('profiles')
+      .select('id')
+      .eq('id', userId)
+      .single();
 
-      if (!profile) {
-        // Create new user in Supabase Auth using admin client
-        const { data: newAuthUser, error: createError } = await supabaseAdmin.auth.admin.createUser({
-          email: googleUser.email,
-          email_confirm: true,
-          user_metadata: {
-            full_name: googleUser.name,
-            avatar_url: googleUser.picture,
-            provider: 'google',
-          },
-        });
-
-        if (createError) {
-          console.error('Supabase admin createUser error:', createError);
-          throw createError;
-        }
-        
-        if (!newAuthUser.user) throw new Error('Failed to create user');
-
-        userId = newAuthUser.user.id;
-
-        // Create profile using admin client
-        await this.createProfile(userId, googleUser.email, {
-          full_name: googleUser.name,
-          first_name: googleUser.given_name,
-          last_name: googleUser.family_name,
-          profile_image_url: googleUser.picture,
-          signup_method: 'google',
-        });
-      } else {
-        userId = profile.id;
-      }
-
-      // Generate custom token
-      const token = this.generateToken(userId, googleUser.email);
-
-      return { userId, email: googleUser.email, token };
-    } catch (error) {
-      console.error('Google login error:', error);
-      throw error;
+    // If no profile, create one (still using admin client for simplicity)
+    if (!existingProfile) {
+      // Extract user info from the Google token (you can also get it from data.user.user_metadata)
+      const googleUser = await this.verifyGoogleToken(googleIdToken); // optional, or use data.user.user_metadata
+      await this.createProfile(userId, email, {
+        full_name: googleUser?.name || data.user.user_metadata?.full_name,
+        first_name: googleUser?.given_name || data.user.user_metadata?.given_name,
+        last_name: googleUser?.family_name || data.user.user_metadata?.family_name,
+        profile_image_url: googleUser?.picture || data.user.user_metadata?.avatar_url,
+        signup_method: 'google',
+      });
+    } else {
+      // Update login stats later, so no need to do anything here
     }
+
+    // Generate your custom JWT (if you still need it)
+    const token = this.generateToken(userId, email);
+
+    return { userId, email, token };
+  } catch (error) {
+    console.error('Google login error:', error);
+    throw error;
   }
+}
+
 
   // Create user profile
   static async createProfile(userId: string, email: string, userData: any) {

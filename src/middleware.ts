@@ -13,7 +13,7 @@ export async function middleware(request: NextRequest) {
   const sessionData = await sessionResponse.json();
   
   // Protected routes
-  const protectedPaths = ['/profile', '/book', '/appointments', '/favorites'];
+  const protectedPaths = ['/profile', '/appointments', '/favorites'];
   const isProtectedPath = protectedPaths.some(path => 
     request.nextUrl.pathname.startsWith(path)
   );

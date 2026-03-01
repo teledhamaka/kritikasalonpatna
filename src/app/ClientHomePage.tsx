@@ -111,55 +111,7 @@ const ClientHomePage = ({ allServices, trendingServices }: ClientHomePageProps) 
     };
   }, []);
 
-  // Auto-scroll trending services on desktop
-  useEffect(() => {
-    if (!trendingScrollRef.current || !autoScroll || isMobile || trendingCount < 3) return;
-    
-    const scrollContainer = trendingScrollRef.current;
-    let scrollInterval: NodeJS.Timeout;
-    let scrollDirection = 1; // 1 for forward, -1 for backward
-    let scrollPosition = 0;
-    
-    const startScrolling = () => {
-      scrollInterval = setInterval(() => {
-        if (!scrollContainer) return;
-        
-        const containerWidth = scrollContainer.clientWidth;
-        const contentWidth = scrollContainer.scrollWidth;
-        const maxScroll = contentWidth - containerWidth;
-        
-        if (scrollPosition >= maxScroll - 10) {
-          scrollDirection = -1;
-        } else if (scrollPosition <= 10) {
-          scrollDirection = 1;
-        }
-        
-        scrollPosition += scrollDirection * 0.5; // Adjust speed
-        scrollContainer.scrollLeft = scrollPosition;
-      }, 20);
-    };
-    
-    const stopScrolling = () => {
-      clearInterval(scrollInterval);
-    };
-    
-    startScrolling();
-    
-    scrollContainer.addEventListener('mouseenter', () => {
-      setAutoScroll(false);
-      stopScrolling();
-    });
-    
-    scrollContainer.addEventListener('mouseleave', () => {
-      setAutoScroll(true);
-    });
-    
-    return () => {
-      stopScrolling();
-      scrollContainer.removeEventListener('mouseenter', () => {});
-      scrollContainer.removeEventListener('mouseleave', () => {});
-    };
-  }, [trendingCount, isMobile, autoScroll]);
+  // Auto-scroll removed — pill scroller is touch-friendly and needs no JS scroll
 
   // Get bestseller services by main category
   const getBestsellerServicesByMainCategory = useCallback((mainCategory: string): Service[] => {
@@ -364,280 +316,104 @@ const ClientHomePage = ({ allServices, trendingServices }: ClientHomePageProps) 
         scroll-padding
       `}>
         
-        {/* TRENDING SERVICES BANNER WITH HORIZONTAL SCROLLING */}
+        {/* ✅ TRENDING SERVICES — Lightweight Pill Scroller (replaces heavy ServiceCard banner) */}
         {hasTrendingServices && (
           <section className={`
-            bg-gradient-to-r from-yellow-50 via-pink-50 to-purple-50 
+            bg-gradient-to-r from-rose-50 via-pink-50 to-fuchsia-50
             rounded-2xl 
-            p-4 
+            px-4 py-3
             mb-6 
             border 
             border-pink-200
             w-full
-            ${isLandscape ? 'py-3' : ''}
           `}>
-            <h2 className="sr-only">
-              Trending Beauty Services in Patna
-            </h2>
-            
-            <div className="flex items-center justify-between mb-4">
-              <div className="flex items-center gap-3">
-                <div className={`
-                  ${isMobile && isLandscape ? 'w-8 h-8' : 'w-10 h-10'}
-                  bg-gradient-to-br from-pink-500 to-rose-500 
-                  rounded-full 
-                  flex 
-                  items-center 
-                  justify-center
-                  flex-shrink-0
-                  animate-pulse
-                `}>
-                  <TrendingUp className={`
-                    ${isMobile && isLandscape ? 'w-4 h-4' : 'w-5 h-5'} 
-                    text-white
-                  `} />
-                </div>
-                <div>
-                  <h3 className={`
-                    font-bold 
-                    text-gray-900 
-                    ${isMobile ? (isLandscape ? 'text-sm' : 'text-base') : 'text-lg'}
-                  `}>
-                    Trending Services
-                  </h3>
-                  <p className={`
-                    ${isLandscape ? 'text-[10px]' : 'text-xs'} 
-                    text-gray-600
-                  `}>
-                    Most booked {trendingCount} services this week
-                  </p>
-                </div>
-              </div>
+            <h2 className="sr-only">Trending Beauty Services in Patna</h2>
+
+            {/* Header row */}
+            <div className="flex items-center justify-between mb-3">
               <div className="flex items-center gap-2">
-                <span className="bg-white text-pink-600 text-xs font-bold px-3 py-1 rounded-full border border-pink-200">
-                  {trendingCount} Trending
+                <span className="text-base">🔥</span>
+                <span className={`font-bold text-gray-900 ${isLandscape ? 'text-sm' : 'text-base'}`}>
+                  Trending Now
                 </span>
-                <button
-                  onClick={() => router.push('/trending')}
-                  className="hidden md:flex items-center text-pink-600 text-sm font-medium hover:underline"
-                >
-                  View All
-                  <ArrowRight className="w-4 h-4 ml-1" />
-                </button>
+                <span className="bg-pink-500 text-white text-[10px] font-bold px-2 py-0.5 rounded-full">
+                  {trendingCount}
+                </span>
               </div>
+              <button
+                onClick={() => router.push('/trending')}
+                className="flex items-center text-pink-600 text-xs font-semibold hover:underline gap-1"
+              >
+                View All <ArrowRight className="w-3 h-3" />
+              </button>
             </div>
-            
-            {/* HORIZONTAL SCROLLING TRENDING SERVICES */}
-            <div 
+
+            {/* Pill chip scroller — zero image weight, instant render */}
+            <div
               ref={trendingScrollRef}
-              className={`
-                flex 
-                ${isMobile ? 'overflow-x-auto space-x-4' : 'overflow-hidden'} 
-                pb-3 
-                mb-4 
-                ${isMobile ? 'scrollbar-hide' : ''}
-                ${!isMobile ? 'relative' : ''}
-              `}
-              style={{
-                WebkitOverflowScrolling: 'touch',
-                scrollbarWidth: 'none',
-                msOverflowStyle: 'none'
-              }}
+              className="flex overflow-x-auto gap-2 pb-1 scrollbar-hide"
+              style={{ WebkitOverflowScrolling: 'touch' }}
             >
               {trendingServices.map((service) => (
-                <div 
-                  key={service.id} 
-                  className={`
-                    ${isMobile ? 'flex-shrink-0' : 'flex-shrink-0'}
-                    ${isLandscape ? 'min-w-[160px]' : isMobile ? 'min-w-[200px]' : 'min-w-[220px]'}
-                    ${isLandscape ? 'max-w-[160px]' : isMobile ? 'max-w-[200px]' : 'max-w-[220px]'}
-                    bg-white 
-                    rounded-xl 
-                    ${isLandscape ? 'p-2' : isMobile ? 'p-3' : 'p-3'}
-                    border 
-                    border-pink-100 
-                    shadow-sm
-                    hover:shadow-md
-                    transition-all 
-                    duration-300
-                    flex 
-                    flex-col
-                    cursor-pointer
-                    group
-                    ${!isMobile ? 'hover:scale-[1.02]' : ''}
-                  `}
+                <button
+                  key={service.id}
                   onClick={() => handleServiceClick(service)}
-                  aria-label={`View ${service.title}`}
+                  className={`
+                    flex-shrink-0
+                    flex items-center gap-2
+                    bg-white
+                    border border-pink-200
+                    hover:border-pink-400 hover:bg-pink-50
+                    active:scale-95
+                    rounded-full
+                    ${isLandscape ? 'px-3 py-1.5' : 'px-4 py-2'}
+                    shadow-sm hover:shadow-md
+                    transition-all duration-200
+                    group
+                  `}
+                  aria-label={`View ${service.title} — ₹${service.price}`}
                 >
-                  {/* Service Image */}
-                  <div className={`
-                    relative 
-                    ${isLandscape ? 'h-24' : isMobile ? 'h-32' : 'h-36'} 
-                    w-full 
-                    rounded-lg 
-                    overflow-hidden 
-                    mb-2
-                    group-hover:shadow-inner
-                  `}>
-                    <Image
-                      src={service.image || '/images/placeholder.jpg'}
-                      alt={service.title}
-                      fill
-                      className="object-cover group-hover:scale-105 transition-transform duration-300"
-                      sizes={isMobile ? "200px" : "220px"}
-                      priority={true}
-                    />
-                    {/* Best Seller Badge */}
-                    {service.isBestSeller && (
-                      <div className="absolute top-2 left-2 z-10">
-                        <span className="bg-gradient-to-r from-yellow-500 to-orange-500 text-white text-xs font-bold px-2 py-1 rounded-full shadow-md flex items-center gap-1">
-                          <Star className="w-3 h-3 fill-white" />
-                          Best Seller
-                        </span>
-                      </div>
-                    )}
-                    {/* Rating Badge */}
-                    <div className="absolute bottom-2 right-2 bg-black/70 backdrop-blur-sm text-white text-xs font-bold px-2 py-1 rounded-full flex items-center gap-1">
-                      <Star className="w-3 h-3 fill-yellow-400 text-yellow-400" />
-                      <span>{service.rating?.toFixed(1) || '4.5'}</span>
-                    </div>
-                  </div>
+                  {/* Category emoji dot */}
+                  <span className="text-xs">{getCategoryIcon(service.primaryCategory || service.category || '')}</span>
                   
-                  {/* Service Info */}
-                  <div className="flex-1 flex flex-col">
-                    <h4 className={`
-                      font-semibold 
-                      text-gray-800 
-                      ${isLandscape ? 'text-xs' : isMobile ? 'text-sm' : 'text-sm'}
-                      line-clamp-2 
-                      mb-1
-                      group-hover:text-pink-600
-                      transition-colors
-                    `}>
-                      {service.title}
-                    </h4>
-                    
-                    <p className={`
-                      text-gray-600 
-                      ${isLandscape ? 'text-[10px]' : 'text-xs'}
-                      line-clamp-2 
-                      mb-2
-                    `}>
-                      {service.shortDescription || service.description?.substring(0, 60)}...
-                    </p>
-                    
-                    <div className="flex items-center justify-between mt-auto">
-                      <div className="flex flex-col">
-                        <span className={`
-                          font-bold 
-                          text-pink-600 
-                          ${isLandscape ? 'text-sm' : 'text-base'}
-                        `}>
-                          ₹{service.price}
-                        </span>
-                        {service.originalPrice && service.originalPrice > service.price && (
-                          <span className={`
-                            text-gray-400 
-                            ${isLandscape ? 'text-[10px]' : 'text-xs'}
-                            line-through
-                          `}>
-                            ₹{service.originalPrice}
-                          </span>
-                        )}
-                      </div>
-                      
-                      <div className={`
-                        ${isLandscape ? 'text-[10px]' : 'text-xs'} 
-                        text-gray-500
-                        flex items-center gap-1
-                      `}>
-                        <Clock className={isLandscape ? 'w-3 h-3' : 'w-3 h-3'} />
-                        <span>{service.durationText || `${service.duration || 60} min`}</span>
-                      </div>
-                    </div>
-                    
-                    {/* Quick Action Button */}
-                    <button
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        handleAddToCart(service);
-                      }}
-                      className={`
-                        w-full 
-                        mt-2 
-                        ${isLandscape ? 'py-1.5 text-xs' : isMobile ? 'py-2 text-sm' : 'py-2 text-sm'}
-                        bg-gradient-to-r from-pink-500 to-rose-500 
-                        text-white 
-                        font-medium 
-                        rounded-lg 
-                        hover:from-pink-600 hover:to-rose-600
-                        active:from-pink-700 active:to-rose-700
-                        transition-all 
-                        duration-200
-                        shadow-sm hover:shadow-md
-                        flex items-center justify-center gap-1
-                      `}
-                    >
-                      <span>Add to Cart</span>
-                      <Heart className="w-4 h-4" />
-                    </button>
-                  </div>
-                </div>
+                  {/* Service name */}
+                  <span className={`font-semibold text-gray-800 group-hover:text-pink-700 whitespace-nowrap ${isLandscape ? 'text-xs' : 'text-sm'}`}>
+                    {service.title}
+                  </span>
+
+                  {/* Price */}
+                  <span className={`text-pink-600 font-bold whitespace-nowrap ${isLandscape ? 'text-xs' : 'text-sm'}`}>
+                    ₹{service.price}
+                  </span>
+
+                  {/* Best seller dot */}
+                  {service.isBestSeller && (
+                    <Star className="w-3 h-3 fill-yellow-400 text-yellow-400 flex-shrink-0" />
+                  )}
+                </button>
               ))}
-              
-              {/* View All Trending Button */}
-              <div className={`
-                ${isMobile ? 'flex-shrink-0' : 'flex-shrink-0'}
-                ${isLandscape ? 'min-w-[140px]' : isMobile ? 'min-w-[160px]' : 'min-w-[180px]'}
-                bg-gradient-to-br from-pink-100 to-purple-100 
-                rounded-xl 
-                ${isLandscape ? 'p-3' : isMobile ? 'p-4' : 'p-4'}
-                border-2 
-                border-dashed 
-                border-pink-200 
-                flex 
-                flex-col 
-                items-center 
-                justify-center
-                text-center
-                cursor-pointer
-                hover:from-pink-200 hover:to-purple-200
-                hover:border-pink-300
-                transition-all duration-300
-                group
-              `}
-              onClick={() => router.push('/trending')}
+
+              {/* View all pill */}
+              <button
+                onClick={() => router.push('/trending')}
+                className={`
+                  flex-shrink-0
+                  flex items-center gap-1
+                  bg-gradient-to-r from-pink-500 to-rose-500
+                  text-white
+                  rounded-full
+                  ${isLandscape ? 'px-3 py-1.5 text-xs' : 'px-4 py-2 text-sm'}
+                  font-semibold
+                  shadow-sm hover:shadow-md hover:from-pink-600 hover:to-rose-600
+                  transition-all duration-200
+                `}
               >
-                <div className={`
-                  ${isLandscape ? 'text-3xl' : isMobile ? 'text-4xl' : 'text-4xl'} 
-                  mb-2
-                  group-hover:scale-110 transition-transform duration-300
-                `}>
-                  🔥
-                </div>
-                <p className={`
-                  font-bold 
-                  ${isLandscape ? 'text-sm' : isMobile ? 'text-base' : 'text-base'}
-                  text-gray-800
-                `}>
-                  View All
-                </p>
-                <p className={`
-                  ${isLandscape ? 'text-[10px]' : 'text-xs'} 
-                  text-gray-600 
-                  mt-1
-                `}>
-                  {trendingCount}+ services
-                </p>
-                <ArrowRight className={`
-                  ${isLandscape ? 'w-5 h-5' : 'w-5 h-5'} 
-                  text-pink-600 
-                  mt-2
-                  group-hover:translate-x-1 transition-transform duration-300
-                `} />
-              </div>
+                All {trendingCount}+ <ArrowRight className="w-3 h-3" />
+              </button>
             </div>
-            
+          </section>
+        )}
+           <section className="mb-8" aria-label="Contact and location information for Kritika Ladies Beauty Parlour"> 
             {/* VISIT US & CALL US SECTION */}
             <div className={`
               grid 
@@ -782,7 +558,6 @@ const ClientHomePage = ({ allServices, trendingServices }: ClientHomePageProps) 
               </div>
             </div>
           </section>
-        )}
 
         {/* Horizontal Categories with Know More */}
         <section className="mb-8" aria-label="Main beauty service categories">

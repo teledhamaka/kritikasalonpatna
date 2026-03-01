@@ -1,22 +1,19 @@
-// app/nail/ClientNailPage.tsx - SEO OPTIMIZED VERSION
+// app/nail/ClientNailPage.tsx
 "use client";
 
 import { useState, useRef, useCallback, useEffect } from 'react';
 import Image from 'next/image';
 import dynamic from 'next/dynamic';
-import { MapPin, Sparkles, Zap, Phone, Clock, Star, Award, Scissors, Heart } from 'lucide-react';
+import { ArrowRight, Star } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 
 import { Service } from '../../types/service';
 import { useAuth } from '../../context/AuthContext';
 import { useBooking } from '../../context/BookingContext';
 import ServiceSkeleton from '../../components/ServiceSkeleton';
 
-// Import SEO data
-import seoData from '../../../public/seo.json';
-
-// Lazy load components
+// Lazy load heavy components
 const ServiceCard = dynamic(() => import('../../components/ServiceCard'), {
-  ssr: false,
   loading: () => <ServiceSkeleton />
 });
 
@@ -32,9 +29,7 @@ const SkinAnalysis = dynamic(() => import('../../components/SkinAnalysis'), {
   ssr: false
 });
 
-const TestimonialCard = dynamic(() => import('../../components/TestimonialCard'), {
-  ssr: false
-});
+const TestimonialCard = dynamic(() => import('../../components/TestimonialCard'));
 
 const LoginModal = dynamic(() => import('../../components/LoginModal'), {
   ssr: false
@@ -44,13 +39,9 @@ const BookingFlow = dynamic(() => import('../../components/booking/BookingFlow')
   ssr: false
 });
 
-const MobileBottomNav = dynamic(() => import('../../components/MobileBottomNav'), {
-  ssr: false
-});
+const MobileBottomNav = dynamic(() => import('../../components/MobileBottomNav'));
 
-const FloatingCart = dynamic(() => import('../../components/FloatingCart'), {
-  ssr: false
-});
+const FloatingCart = dynamic(() => import('../../components/FloatingCart'));
 
 interface ClientNailPageProps {
   allServices: Service[];
@@ -58,6 +49,7 @@ interface ClientNailPageProps {
 }
 
 const ClientNailPage = ({ allServices, trendingServices }: ClientNailPageProps) => {
+  const router = useRouter();
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
   const [favorites, setFavorites] = useState<Set<string>>(new Set());
   const [selectedService, setSelectedService] = useState<Service | null>(null);
@@ -67,15 +59,54 @@ const ClientNailPage = ({ allServices, trendingServices }: ClientNailPageProps) 
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [bookingStep, setBookingStep] = useState<'browsing' | 'booking'>('browsing');
   const [activeFaq, setActiveFaq] = useState<number | null>(null);
-  const [currentServiceIndex, setCurrentServiceIndex] = useState<number>(0);
-  const [visibleServiceIndices, setVisibleServiceIndices] = useState<Set<number>>(new Set([0]));
+  const [isMobile, setIsMobile] = useState<boolean>(false);
+  const [isLandscape, setIsLandscape] = useState<boolean>(false);
 
   const serviceScrollRef = useRef<HTMLDivElement>(null);
+  const trendingScrollRef = useRef<HTMLDivElement>(null);
   const { isLoggedIn } = useAuth();
   const { addToCart } = useBooking();
 
-  const serviceCategories = ['All', ...Array.from(new Set(allServices.map(service => service.category)))];
+  // Get trending services count
+  const trendingCount = trendingServices?.length || 0;
+  const hasTrendingServices = trendingCount > 0;
 
+  // Get unique categories
+  const serviceCategories = [
+    'All',
+    ...Array.from(new Set(allServices.map(service => service.category || '').filter(Boolean)))
+  ];
+
+  // Viewport detection useEffect - same as makeup page
+  useEffect(() => {
+    let timeoutId: NodeJS.Timeout | null = null;
+
+    const updateViewport = () => {
+      const isMob = window.innerWidth < 768;
+      setIsMobile(isMob);
+      setIsLandscape(window.innerWidth > window.innerHeight);
+    };
+
+    const handleResize = () => {
+      if (timeoutId) clearTimeout(timeoutId);
+      timeoutId = setTimeout(() => {
+        updateViewport();
+      }, 150);
+    };
+
+    updateViewport();
+
+    window.addEventListener('resize', handleResize);
+    window.addEventListener('orientationchange', handleResize);
+
+    return () => {
+      if (timeoutId) clearTimeout(timeoutId);
+      window.removeEventListener('resize', handleResize);
+      window.removeEventListener('orientationchange', handleResize);
+    };
+  }, []);
+
+  // Filter services by selected category
   const getFilteredServices = useCallback(() => {
     if (selectedCategory === 'All') return allServices;
     return allServices.filter(service => service.category === selectedCategory);
@@ -83,59 +114,36 @@ const ClientNailPage = ({ allServices, trendingServices }: ClientNailPageProps) 
 
   const filteredServices = getFilteredServices();
 
-  const getCategoryImage = useCallback((category: string) => {
-    if (category === 'All') return '/images/all-services.jpg';
-    const firstService = allServices.find(s => s.category === category);
-    return firstService?.image || '/images/placeholder.jpg';
-  }, [allServices]);
-
-  // Calculate nail service statistics
-  const nailStats = {
-    totalServices: allServices.length,
-    totalBookings: allServices.reduce((sum, s) => sum + (s.bookingCount || 0), 0),
-    totalReviews: allServices.reduce((sum, s) => sum + (s.reviewCount || 0), 0),
-    avgRating: (allServices.reduce((sum, s) => sum + (s.rating || 0), 0) / allServices.length).toFixed(1)
-  };
-
-  useEffect(() => {
-    setCurrentServiceIndex(0);
-    setVisibleServiceIndices(new Set([0]));
-  }, [selectedCategory]);
-
-  const updateVisibleServices = useCallback(() => {
-    if (!serviceScrollRef.current) return;
-
-    const container = serviceScrollRef.current;
-    const containerRect = container.getBoundingClientRect();
-    const services = container.children;
-    const newVisibleIndices = new Set<number>();
-
-    for (let i = 0; i < services.length; i++) {
-      const serviceRect = services[i].getBoundingClientRect();
-      const isVisible = 
-        serviceRect.left >= containerRect.left && 
-        serviceRect.right <= containerRect.right;
-      
-      if (isVisible) {
-        newVisibleIndices.add(i);
-      }
+  // Nail subcategories for horizontal display
+  const NAIL_SUBCATEGORIES = [
+    {
+      id: 'nail-art',
+      title: 'Nail Art',
+      description: 'Creative & trendy designs',
+      image: '/images/nails/nail_art.webp',
+      icon: '🎨',
+      color: 'from-pink-500 to-rose-600',
+      targetCategory: 'Nail Art'
+    },
+    {
+      id: 'manicure',
+      title: 'Manicure',
+      description: 'Classic & spa manicures',
+      image: '/images/nails/gel_manicure.webp',
+      icon: '💅',
+      color: 'from-purple-500 to-pink-600',
+      targetCategory: 'Manicure'
+    },
+    {
+      id: 'pedicure',
+      title: 'Pedicure',
+      description: 'Relaxing foot treatments',
+      image: '/images/nails/luxury_pedicure.webp',
+      icon: '🦶',
+      color: 'from-amber-500 to-orange-600',
+      targetCategory: 'Pedicure'
     }
-
-    if (newVisibleIndices.size > 0) {
-      const indices = Array.from(newVisibleIndices);
-      const centeredIndex = indices.reduce((prev, curr) => {
-        const prevRect = services[prev].getBoundingClientRect();
-        const currRect = services[curr].getBoundingClientRect();
-        const prevCenter = Math.abs(prevRect.left + prevRect.right - containerRect.left - containerRect.right) / 2;
-        const currCenter = Math.abs(currRect.left + currRect.right - containerRect.left - containerRect.right) / 2;
-        return currCenter < prevCenter ? curr : prev;
-      }, indices[0]);
-      
-      setCurrentServiceIndex(centeredIndex);
-    }
-
-    setVisibleServiceIndices(newVisibleIndices);
-  }, []);
+  ];
 
   const toggleFavorite = useCallback((serviceId: string) => {
     setFavorites(prev => {
@@ -147,16 +155,6 @@ const ClientNailPage = ({ allServices, trendingServices }: ClientNailPageProps) 
       }
       return newFavorites;
     });
-  }, []);
-
-  const scrollToService = useCallback((index: number) => {
-    if (serviceScrollRef.current && serviceScrollRef.current.children[index]) {
-      serviceScrollRef.current.children[index].scrollIntoView({
-        behavior: 'smooth',
-        inline: 'center'
-      });
-      setCurrentServiceIndex(index);
-    }
   }, []);
 
   const proceedToBooking = useCallback(() => {
@@ -171,98 +169,269 @@ const ClientNailPage = ({ allServices, trendingServices }: ClientNailPageProps) 
     addToCart(service);
   }, [addToCart]);
 
+  const handleServiceClick = useCallback((service: Service) => {
+    if (service.url) {
+      router.push(service.url);
+    } else {
+      setSelectedService(service);
+      setShowServiceDetail(true);
+    }
+  }, [router]);
+
+  const navigateToCategory = useCallback((category: string) => {
+    setSelectedCategory(category);
+    if (serviceScrollRef.current) {
+      serviceScrollRef.current.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  }, []);
+
   if (bookingStep === 'booking') {
     return <BookingFlow onBack={() => setBookingStep('browsing')} />;
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-orange-50 via-white to-pink-50">
-      {/* SEO Header - Hidden but crawlable */}
-      <header className="sr-only">
-        <h1>Best Nail Art & Manicure Services in {seoData.business.address.locality}, Patna | {seoData.business.name}</h1>
-        <p>
-          Professional nail services including bridal nails, gel manicures, nail extensions, 
-          pedicures, and nail art in {seoData.business.address.locality}, Patna. 
-          Rated {seoData.business.rating}⭐ with {seoData.business.totalReviews}+ happy clients.
-        </p>
-      </header>
+    <div className={`
+      min-h-screen 
+      bg-gradient-to-br from-orange-50 via-white to-pink-50 
+      safe-area-inset
+      overflow-x-hidden
+      w-full
+      ${isLandscape ? 'landscape-mode' : ''}
+    `}>
+      <main className={`
+        max-w-7xl 
+        mx-auto 
+        px-4 
+        py-6 
+        ${isMobile ? (isLandscape ? 'pb-28' : 'pb-32') : 'pb-8'}
+        safe-area-inset
+        w-full
+        overflow-x-hidden
+        scroll-padding
+      `}>
 
-      <main className="max-w-7xl mx-auto px-4 py-6 pb-24 md:pb-8">
-        
-        {/* Category Services Banner */}
-        <section className="bg-gradient-to-r from-orange-50 via-pink-50 to-rose-50 rounded-2xl p-4 mb-6 flex flex-col border border-orange-200">
-          <h2 className="sr-only">
-            {selectedCategory !== 'All' 
-              ? `${selectedCategory} Services in ${seoData.business.address.locality}` 
-              : `All Nail Services in ${seoData.business.address.locality}, Patna`}
-          </h2>
-          
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-gradient-to-br from-orange-500 to-pink-500 rounded-full flex items-center justify-center">
-                <Sparkles className="w-5 h-5 text-white" />
+        {/* ✅ TRENDING NAIL SERVICES — Lightweight Pill Scroller (matches homepage) */}
+        {hasTrendingServices && (
+          <section className={`
+            bg-gradient-to-r from-orange-50 via-pink-50 to-rose-50
+            rounded-2xl 
+            px-4 py-3
+            mb-6 
+            border 
+            border-orange-200
+            w-full
+          `}>
+            <h2 className="sr-only">Trending Nail Services in Patna</h2>
+
+            {/* Header row */}
+            <div className="flex items-center justify-between mb-3">
+              <div className="flex items-center gap-2">
+                <span className="text-base">🔥</span>
+                <span className={`font-bold text-gray-900 ${isLandscape ? 'text-sm' : 'text-base'}`}>
+                  Trending Nails
+                </span>
+                <span className="bg-orange-500 text-white text-[10px] font-bold px-2 py-0.5 rounded-full">
+                  {trendingCount}
+                </span>
               </div>
-              <div>
-                <h3 className="font-bold text-gray-900 text-sm sm:text-base">
-                  {selectedCategory !== 'All' ? `${selectedCategory} Services` : 'All Nail Services'}
-                </h3>
-                <p className="text-xs text-gray-600">
-                  {filteredServices.length} professional nail services available
-                </p>
-              </div>
+              <button
+                onClick={() => router.push('/nail#all')}
+                className="flex items-center text-orange-600 text-xs font-semibold hover:underline gap-1"
+              >
+                View All <ArrowRight className="w-3 h-3" />
+              </button>
             </div>
-            
-            <div className="bg-black/70 text-white text-xs font-medium px-2 py-1 rounded-full hidden sm:block">
-              {currentServiceIndex + 1}/{filteredServices.length}
-            </div>
-            <div className="bg-black/70 text-white text-[10px] font-medium px-1.5 py-0.5 rounded-full sm:hidden">
-              {currentServiceIndex + 1}/{filteredServices.length}
-            </div>
-          </div>
-          
-          {/* Instagram-like dot indicators */}
-          {filteredServices.length > 0 && (
-            <div className="flex justify-center items-center gap-[6px] mt-3">
-              {filteredServices.slice(0, 20).map((_, index) => (
-                <span
-                  key={index}
-                  onClick={() => scrollToService(index)}
+
+            {/* Pill chip scroller */}
+            <div
+              ref={trendingScrollRef}
+              className="flex overflow-x-auto gap-2 pb-1 scrollbar-hide"
+              style={{ WebkitOverflowScrolling: 'touch' }}
+            >
+              {trendingServices.map((service) => (
+                <button
+                  key={service.id}
+                  onClick={() => handleServiceClick(service)}
                   className={`
-                    block cursor-pointer rounded-full
+                    flex-shrink-0 flex items-center gap-2
+                    bg-white border border-orange-200
+                    hover:border-orange-400 hover:bg-orange-50
+                    active:scale-95
+                    rounded-full
+                    ${isLandscape ? 'px-3 py-1.5' : 'px-4 py-2'}
+                    shadow-sm hover:shadow-md
                     transition-all duration-200
-                    ${currentServiceIndex === index
-                      ? 'bg-pink-600'
-                      : 'bg-gray-300'}
-                    ${currentServiceIndex === index
-                      ? 'w-2 h-2'
-                      : 'w-1.5 h-1.5'}
-                    sm:${currentServiceIndex === index
-                      ? 'w-2 h-2'
-                      : 'w-1.5 h-1.5'}
+                    group
                   `}
-                  aria-label={`Go to service ${index + 1}`}
-                />
+                  aria-label={`View ${service.title} — ₹${service.price}`}
+                >
+                  <span className="text-xs">💅</span>
+                  <span className={`font-semibold text-gray-800 group-hover:text-orange-700 whitespace-nowrap ${isLandscape ? 'text-xs' : 'text-sm'}`}>
+                    {service.title}
+                  </span>
+                  <span className={`text-orange-600 font-bold whitespace-nowrap ${isLandscape ? 'text-xs' : 'text-sm'}`}>
+                    ₹{service.price}
+                  </span>
+                  {service.isBestSeller && (
+                    <Star className="w-3 h-3 fill-yellow-400 text-yellow-400 flex-shrink-0" />
+                  )}
+                </button>
               ))}
+              {/* View all pill */}
+              <button
+                onClick={() => router.push('/nail#all')}
+                className={`
+                  flex-shrink-0 flex items-center gap-1
+                  bg-gradient-to-r from-orange-500 to-pink-500 text-white
+                  rounded-full font-semibold shadow-sm
+                  hover:from-orange-600 hover:to-pink-600 hover:shadow-md
+                  transition-all duration-200
+                  ${isLandscape ? 'px-3 py-1.5 text-xs' : 'px-4 py-2 text-sm'}
+                `}
+              >
+                All {trendingCount}+ <ArrowRight className="w-3 h-3" />
+              </button>
             </div>
-          )}
+          </section>
+        )}
+
+        {/* Nail Subcategories */}
+        <section className="mb-8" aria-label="Nail service categories">
+          <h2 className={`
+            ${isLandscape ? 'text-lg' : 'text-xl'} 
+            font-bold text-gray-800 mb-4 text-center
+          `}>
+            💅 Nail Categories
+          </h2>
+
+          <div className={`
+            ${isMobile ? 'grid grid-cols-2 gap-3' : 'flex flex-wrap justify-center gap-3'}
+          `}>
+            {NAIL_SUBCATEGORIES.map((category) => (
+              <div
+                key={category.id}
+                className={`
+                  ${isMobile ? '' : 'flex-1 min-w-[240px] max-w-[280px]'}
+                  bg-gradient-to-br ${category.color} 
+                  rounded-xl 
+                  overflow-hidden 
+                  shadow-lg 
+                  hover:shadow-xl 
+                  transition-all 
+                  duration-300 
+                  transform 
+                  hover:-translate-y-1
+                  ${isLandscape ? 'h-full' : ''}
+                `}
+              >
+                <div className="p-5 text-white">
+                  <div className="flex items-start justify-between mb-3">
+                    <div>
+                      <h3 className={`font-bold ${isLandscape ? 'text-lg' : 'text-xl'}`}>
+                        {category.title}
+                      </h3>
+                      <p className="text-white/80 text-sm mt-1">
+                        {category.description}
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="relative h-40 rounded-lg overflow-hidden mb-4 border-2 border-white/20">
+                    <Image
+                      src={category.image}
+                      alt={`${category.title} services`}
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 768px) 280px, (max-width: 1024px) 200px, 250px"
+                      loading="lazy"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
+                  </div>
+
+                  <button
+                    onClick={() => navigateToCategory(category.title)}
+                    className={`
+                      w-full 
+                      bg-white 
+                      text-gray-800 
+                      font-semibold 
+                      py-2.5 
+                      px-4 
+                      rounded-lg 
+                      flex 
+                      items-center 
+                      justify-center 
+                      gap-2 
+                      hover:bg-gray-50 
+                      active:bg-gray-100 
+                      transition-colors 
+                      duration-200
+                      ${isLandscape ? 'py-2 text-sm' : ''}
+                    `}
+                    aria-label={`Browse ${category.title} services`}
+                  >
+                    <span>Browse Services</span>
+                    <ArrowRight className="w-4 h-4" />
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
         </section>
 
-        {/* Services Grid - Semantic HTML for SEO */}
-        <section aria-label="Nail services list">
-          <div
-            ref={serviceScrollRef}
-            className="flex sm:grid sm:grid-cols-2 lg:grid-cols-4 gap-4 overflow-x-auto sm:overflow-visible scrollbar-hide snap-x snap-mandatory pb-4"
-            onScroll={updateVisibleServices}
-            role="list"
-          >
-            {filteredServices.map((service, index) => (
-              <article 
-                key={service.id} 
-                data-index={index}
-                className="snap-start min-w-[280px] sm:min-w-0"
+        {/* Category Filter Buttons */}
+        <section className="mb-6" aria-label="Filter nail services by category">
+          <div className={`
+            ${isMobile ? 'flex overflow-x-auto space-x-2 pb-2' : 'flex flex-wrap justify-center gap-2'}
+          `}>
+            {serviceCategories.map((category) => {
+              const categoryServices = allServices.filter(s =>
+                category === 'All' ? true : s.category === category
+              );
+
+              return (
+                <button
+                  key={category}
+                  onClick={() => setSelectedCategory(category)}
+                  className={`
+                    ${isMobile ? 'flex-shrink-0' : ''}
+                    px-4 
+                    py-2 
+                    rounded-full 
+                    font-medium 
+                    transition-all 
+                    duration-200
+                    ${selectedCategory === category
+                      ? 'bg-gradient-to-r from-orange-500 to-pink-500 text-white shadow-lg'
+                      : 'bg-white text-gray-700 hover:bg-gray-50 border border-orange-100'
+                    }
+                    ${isLandscape ? 'text-xs px-3 py-1.5' : isMobile ? 'text-sm' : 'text-sm'}
+                  `}
+                  aria-label={`Show ${category} nail services - ${categoryServices.length} available`}
+                  aria-pressed={selectedCategory === category}
+                >
+                  {category} ({categoryServices.length})
+                </button>
+              );
+            })}
+          </div>
+        </section>
+
+        {/* Services Grid */}
+        <section ref={serviceScrollRef} id="all" aria-label={`${selectedCategory} nail services`}>
+          <div className={`
+            grid gap-4
+            grid-cols-2
+            ${!isMobile ? 'lg:grid-cols-3 xl:grid-cols-4' : ''}
+          `}>
+            {filteredServices.map((service) => (
+              <article
+                key={service.id}
+                className={`
+                  ${isLandscape ? 'h-full' : ''}
+                `}
                 itemScope
                 itemType="https://schema.org/Service"
-                role="listitem"
               >
                 <meta itemProp="name" content={service.title} />
                 <meta itemProp="description" content={service.shortDescription} />
@@ -272,7 +441,7 @@ const ClientNailPage = ({ allServices, trendingServices }: ClientNailPageProps) 
                   <meta itemProp="priceCurrency" content="INR" />
                   <meta itemProp="availability" content="https://schema.org/InStock" />
                 </div>
-                
+
                 <ServiceCard
                   service={service}
                   isFavorite={favorites.has(service.id)}
@@ -282,6 +451,8 @@ const ClientNailPage = ({ allServices, trendingServices }: ClientNailPageProps) 
                     setSelectedService(service);
                     setShowServiceDetail(true);
                   }}
+                  variant={isLandscape ? 'compact' : 'detailed'}
+                  showBestSellerBadge={service.isBestSeller === true}
                 />
               </article>
             ))}
@@ -296,234 +467,232 @@ const ClientNailPage = ({ allServices, trendingServices }: ClientNailPageProps) 
           )}
         </section>
 
-        {/* Browse Categories - SEO Optimized */}
-        <section className="mb-8" aria-label="Browse nail categories">
-          <h2 className="text-xl font-bold text-gray-800 mb-4 text-center flex items-center justify-center">
-            <Zap className="mr-2 text-orange-600" />
-            Browse Nail Categories
-          </h2>
-          
-          <nav aria-label="Nail service categories">
-            <div className="grid grid-cols-4 sm:grid-cols-6 gap-2 sm:gap-3">
-              {serviceCategories.map((category) => {
-                const categoryServices = allServices.filter(s => 
-                  category === 'All' ? true : s.category === category
-                );
-                
-                return (
-                  <button
-                    key={category}
-                    onClick={() => {
-                      setSelectedCategory(category || 'Nails');
-                      if (serviceScrollRef.current) {
-                        serviceScrollRef.current.scrollLeft = 0;
-                      }
-                    }}
-                    className="cursor-pointer transition-all duration-300 aspect-square hover:scale-105"
-                    aria-label={`View ${category} nail services - ${categoryServices.length} available`}
-                    aria-pressed={selectedCategory === category}
-                  >
-                    <div className={`h-full rounded-xl p-2 text-center transition-all duration-300 flex flex-col items-center justify-center ${
-                      selectedCategory === category 
-                        ? 'bg-gradient-to-br from-orange-500 to-pink-600 text-white shadow-lg' 
-                        : 'bg-white text-gray-700 shadow-md hover:shadow-lg border border-orange-100'
-                    }`}>
-                      <div className="w-8 h-8 md:w-10 md:h-10 mx-auto mb-1 rounded-full overflow-hidden border border-white/20">
-                        <Image 
-                          src={getCategoryImage(category|| 'Nails')} 
-                          alt={`${category} nail services in ${seoData.business.address.locality}`}
-                          width={40}
-                          height={40}
-                          className="w-full h-full object-cover"
-                          loading="lazy"
-                        />
-                      </div>
-                      <p className="font-medium text-xs leading-tight truncate w-full">{category}</p>
-                      <p className="text-[10px] opacity-75 mt-0.5">
-                        {categoryServices.length} services
-                      </p>
-                    </div>
-                  </button>
-                );
-              })}
-            </div>
-          </nav>
-        </section>
-
         {/* Interactive Tools */}
         <section className="mb-8" aria-label="Nail consultation tools">
-          <h2 className="text-xl font-bold text-gray-800 mb-4 text-center flex items-center justify-center">
-            <Zap className="mr-2 text-orange-600" />
-            Discover Your Perfect Nail Style
+          <h2 className={`
+            ${isLandscape ? 'text-lg' : 'text-xl'} 
+            font-bold text-gray-800 mb-4 text-center
+          `}>
+            💫 Discover Your Perfect Nail Style
           </h2>
-          <div className="grid grid-cols-2 gap-3">
+          <div className={`
+            grid 
+            ${isLandscape ? 'grid-cols-2 gap-2' : 'grid-cols-2 gap-3'}
+          `}>
             <button
               onClick={() => setShowBeautyQuiz(true)}
-              className="bg-gradient-to-br from-orange-50 to-pink-100 p-4 rounded-xl hover:shadow-xl transition-all duration-300 flex flex-col items-center text-center border-2 border-orange-200"
+              className="
+                bg-gradient-to-br from-orange-50 to-pink-100 
+                p-4 
+                rounded-xl 
+                hover:shadow-xl 
+                transition-all 
+                duration-300 
+                flex 
+                flex-col 
+                items-center 
+                text-center 
+                border-2 
+                border-orange-200
+                touch-target
+                ${isLandscape ? 'p-3' : ''}
+              "
               aria-label="Take our nail style quiz"
             >
               <div className="text-3xl mb-2">💅</div>
-              <h3 className="text-base font-bold text-pink-800">Nail Style Quiz</h3>
-              <p className="text-gray-600 text-xs mt-1">Find perfect nail designs tailored for you!</p>
-              <span className="mt-3 bg-white text-orange-600 font-semibold py-1.5 px-3 rounded-full text-xs border border-orange-300">
+              <h3 className={`
+                ${isLandscape ? 'text-sm' : 'text-base'} 
+                font-bold 
+                text-orange-800
+              `}>
+                Nail Style Quiz
+              </h3>
+              <p className={`
+                text-gray-600 
+                ${isLandscape ? 'text-xs' : 'text-xs mt-1'}
+              `}>
+                Find your perfect nail design!
+              </p>
+              <span className={`
+                mt-3 
+                bg-white 
+                text-orange-600 
+                font-semibold 
+                py-1.5 
+                px-3 
+                rounded-full 
+                ${isLandscape ? 'text-xs' : 'text-xs'} 
+                border 
+                border-orange-300
+              `}>
                 Start Quiz
               </span>
             </button>
             <button
               onClick={() => setShowSkinAnalysis(true)}
-              className="bg-gradient-to-br from-pink-50 to-orange-100 p-4 rounded-xl hover:shadow-xl transition-all duration-300 flex flex-col items-center text-center border-2 border-pink-200"
+              className="
+                bg-gradient-to-br from-pink-50 to-orange-100 
+                p-4 
+                rounded-xl 
+                hover:shadow-xl 
+                transition-all 
+                duration-300 
+                flex 
+                flex-col 
+                items-center 
+                text-center 
+                border-2 
+                border-pink-200
+                touch-target
+                ${isLandscape ? 'p-3' : ''}
+              "
               aria-label="Analyze your nail health"
             >
               <div className="text-3xl mb-2">🔍</div>
-              <h3 className="text-base font-bold text-pink-800">Nail Health Analysis</h3>
-              <p className="text-gray-600 text-xs mt-1">Get personalized nail care advice.</p>
-              <span className="mt-3 bg-white text-pink-600 font-semibold py-1.5 px-3 rounded-full text-xs border border-pink-300">
+              <h3 className={`
+                ${isLandscape ? 'text-sm' : 'text-base'} 
+                font-bold 
+                text-pink-800
+              `}>
+                Nail Health Analysis
+              </h3>
+              <p className={`
+                text-gray-600 
+                ${isLandscape ? 'text-xs' : 'text-xs mt-1'}
+              `}>
+                Get personalized nail care advice.
+              </p>
+              <span className={`
+                mt-3 
+                bg-white 
+                text-pink-600 
+                font-semibold 
+                py-1.5 
+                px-3 
+                rounded-full 
+                ${isLandscape ? 'text-xs' : 'text-xs'} 
+                border 
+                border-pink-300
+              `}>
                 Analyze Nails
               </span>
             </button>
           </div>
         </section>
 
-        {/* Trust Signals Banner */}
-        <section className="bg-gradient-to-r from-orange-100 via-pink-100 to-rose-100 rounded-2xl p-4 mb-6 border-2 border-orange-200">
+        {/* Why Choose Us — emotion-first, soft feminine style */}
+        <section className="bg-gradient-to-r from-orange-50 via-pink-50 to-rose-50 rounded-2xl p-6 mb-6 border border-orange-200">
+          <h2 className={`${isLandscape ? 'text-lg' : 'text-xl'} font-bold text-gray-800 mb-6 text-center`}>
+            Why Clients Choose Kritika Salon ✨
+          </h2>
+
           <div className="grid grid-cols-3 gap-4 text-center">
             <div className="flex flex-col items-center">
-              <Award className="w-8 h-8 text-orange-600 mb-2" />
-              <div className="text-2xl font-bold text-gray-900" itemProp="ratingValue">
-                {nailStats.avgRating}⭐
+              <div className={`${isLandscape ? 'text-2xl' : 'text-3xl'} mb-1`}>💅</div>
+              <div className={`${isLandscape ? 'text-xl' : 'text-2xl'} font-bold text-gray-900`}>
+                {allServices.length}+
               </div>
-              <div className="text-xs text-gray-600" itemProp="ratingCount">
-                {nailStats.totalReviews.toLocaleString()}+ Reviews
+              <div className={`${isLandscape ? 'text-[10px]' : 'text-xs'} text-gray-500`}>
+                Nail Services
+              </div>
+            </div>
+            <div className="flex flex-col items-center" itemProp="aggregateRating" itemScope itemType="https://schema.org/AggregateRating">
+              <div className={`${isLandscape ? 'text-2xl' : 'text-3xl'} mb-1`}>⭐</div>
+              <div className={`${isLandscape ? 'text-xl' : 'text-2xl'} font-bold text-gray-900`}>
+                <span itemProp="ratingValue">4.7</span>
+              </div>
+              <div className={`${isLandscape ? 'text-[10px]' : 'text-xs'} text-gray-500`}>
+                <span itemProp="reviewCount">1500+</span> Reviews
               </div>
             </div>
             <div className="flex flex-col items-center">
-              <Scissors className="w-8 h-8 text-pink-600 mb-2" />
-              <div className="text-2xl font-bold text-gray-900">{nailStats.totalServices}+</div>
-              <div className="text-xs text-gray-600">Nail Services</div>
+              <div className={`${isLandscape ? 'text-2xl' : 'text-3xl'} mb-1`}>👤</div>
+              <div className={`${isLandscape ? 'text-xl' : 'text-2xl'} font-bold text-gray-900`}>1500+</div>
+              <div className={`${isLandscape ? 'text-[10px]' : 'text-xs'} text-gray-500`}>Happy Clients</div>
             </div>
-            <div className="flex flex-col items-center">
-              <Clock className="w-8 h-8 text-rose-600 mb-2" />
-              <div className="text-sm font-bold text-gray-900">Open Now</div>
-              <div className="text-xs text-gray-600">{seoData.business.workingHours.weekdays}</div>
+          </div>
+
+          {/* Open Now Badge */}
+          <div className="mt-6 text-center">
+            <div className={`
+              inline-flex items-center gap-2
+              bg-white text-green-600 font-bold
+              ${isLandscape ? 'text-xs px-3 py-1.5' : 'text-sm px-4 py-2'}
+              rounded-full border border-green-200 shadow-sm
+            `}>
+              <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+              <span>Open Now</span>
+              <span className="text-gray-600 font-normal">9:00 AM - 8:00 PM</span>
             </div>
           </div>
         </section>
 
-        {/* Location & Contact - Rich Schema */}
-        <section 
-          className="bg-white rounded-2xl p-6 shadow-md mb-6"
-          itemScope
-          itemType="https://schema.org/LocalBusiness"
-        >
-          <meta itemProp="name" content={seoData.business.name} />
-          <meta itemProp="image" content={`${seoData.business.contact.website}/logo.png`} />
-          
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
-            <div className="flex items-start gap-3" itemProp="address" itemScope itemType="https://schema.org/PostalAddress">
-              <div className="w-10 h-10 bg-orange-100 rounded-full flex items-center justify-center flex-shrink-0">
-                <MapPin className="w-5 h-5 text-orange-600" />
-              </div>
-              <div>
-                <h3 className="font-bold text-gray-900 mb-1">Visit Our Nail Studio</h3>
-                <p className="text-gray-600 text-sm">
-                  <span itemProp="streetAddress">{seoData.business.address.street}, {seoData.business.address.locality}</span>,{' '}
-                  <span itemProp="addressLocality">{seoData.business.address.city}</span>,{' '}
-                  <span itemProp="addressRegion">{seoData.business.address.state}</span>{' '}
-                  <span itemProp="postalCode">{seoData.business.address.pincode}</span>
-                </p>
-                <a
-                  href={seoData.localSEOOptimization.localCitations.googleMaps}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-orange-600 text-sm font-medium mt-2 inline-block hover:underline"
-                  itemProp="hasMap"
-                >
-                  Get Directions →
-                </a>
-              </div>
-            </div>
-
-            <div className="flex items-start gap-3">
-              <div className="w-10 h-10 bg-orange-100 rounded-full flex items-center justify-center flex-shrink-0">
-                <Phone className="w-5 h-5 text-orange-600" />
-              </div>
-              <div>
-                <h3 className="font-bold text-gray-900 mb-1">Call for Nail Appointment</h3>
-                <a
-                  href={`tel:${seoData.business.contact.phone}`}
-                  className="text-gray-600 text-sm hover:text-orange-600 block"
-                  itemProp="telephone"
-                >
-                  {seoData.business.contact.phone}
-                </a>
-                <p className="text-xs text-gray-500 mt-1">
-                  <time itemProp="openingHours">{seoData.business.workingHours.weekdays}</time>
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div className="pt-6 border-t border-orange-100">
-            <h3 className="font-bold text-gray-900 mb-4 text-center">
-              Why Choose Our Nail Services?
-            </h3>
-            <div className="grid grid-cols-3 gap-4">
-              <div className="text-center">
-                <div className="text-2xl font-bold text-orange-600 mb-1">
-                  {nailStats.totalBookings.toLocaleString()}+
-                </div>
-                <div className="text-xs text-gray-600">Nail Appointments</div>
-              </div>
-              <div className="text-center" itemProp="aggregateRating" itemScope itemType="https://schema.org/AggregateRating">
-                <div className="text-2xl font-bold text-orange-600 mb-1">
-                  <span itemProp="ratingValue">{nailStats.avgRating}</span>
-                </div>
-                <div className="text-xs text-gray-600">
-                  ⭐ <span itemProp="reviewCount">{nailStats.totalReviews.toLocaleString()}+</span> Reviews
-                </div>
-              </div>
-              <div className="text-center">
-                <div className="text-2xl font-bold text-orange-600 mb-1">{nailStats.totalServices}+</div>
-                <div className="text-xs text-gray-600">Nail Services</div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Testimonials */}
-        <section className="mb-6" aria-label="Customer testimonials for nail services">
-          <h2 className="text-xl font-bold text-gray-800 mb-4 text-center">Nail Transformations</h2>
+        {/* Testimonials - SIMILAR TO HOME PAGE */}
+        <section className="mb-6" aria-label="Customer testimonials">
+          <h2 className={`
+            ${isLandscape ? 'text-lg' : 'text-xl'} 
+            font-bold 
+            text-gray-800 
+            mb-4 
+            text-center
+          `}>
+            Nail Transformations
+          </h2>
           <div className="flex overflow-x-auto space-x-4 pb-4 scrollbar-hide">
-            <TestimonialCard 
-              name="Priya S." 
-              text="My gel manicure lasted for weeks without chipping! The nail art was absolutely stunning!" 
-              image="/images/nails/gel_manicure.webp" 
+            <TestimonialCard
+              name="Priya S."
+              text="My gel manicure lasted for weeks without chipping! The nail art was absolutely stunning!"
+              image="/images/nails/gel_manicure.webp"
             />
-            <TestimonialCard 
-              name="Ananya R." 
-              text="The pedicure was so relaxing and my feet have never felt better. Highly recommend!" 
-              image="/images/nails/luxury_pedicure.webp" 
+            <TestimonialCard
+              name="Ananya R."
+              text="The pedicure was so relaxing and my feet have never felt better. Highly recommend!"
+              image="/images/nails/luxury_pedicure.webp"
             />
-            <TestimonialCard 
-              name="Maya T." 
-              text="The 3D nail art I got for my wedding was breathtaking! Everyone complimented my nails!" 
-              image="/images/nails/nail_art.webp" 
+            <TestimonialCard
+              name="Maya T."
+              text="The 3D nail art I got for my wedding was breathtaking! Everyone complimented my nails!"
+              image="/images/nails/nail_art.webp"
             />
           </div>
         </section>
 
         {/* Promotional Banner */}
-        <section className="bg-gradient-to-r from-orange-100 to-pink-100 rounded-xl p-6 text-center border-2 border-orange-200">
-          <div className="inline-flex items-center bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-full mb-2">
-            <Zap className="mr-1" />
-            BRIDAL NAIL SPECIAL
+        <section className="
+          bg-gradient-to-r from-orange-100 via-pink-100 to-rose-100
+          rounded-2xl p-6 text-center
+          border border-orange-200
+          mb-6
+        ">
+          <div className={`
+            inline-flex items-center gap-1.5
+            bg-orange-500 text-white
+            text-xs font-bold px-3 py-1.5
+            rounded-full mb-3
+          `}>
+            <span>✨</span>
+            <span>FLASH SALE</span>
           </div>
-          <h3 className="text-lg font-bold text-gray-800">25% OFF On Bridal Nail Packages</h3>
-          <p className="text-gray-600 text-sm mt-1">Book your trial now for perfect wedding nails!</p>
+          <h3 className={`${isLandscape ? 'text-base' : 'text-lg'} font-bold text-gray-800 mb-1`}>
+            30% OFF on All Gel Manicures
+          </h3>
+          <p className={`text-gray-500 ${isLandscape ? 'text-xs' : 'text-sm'} mb-4`}>
+            Transform, rejuvenate, and save! ✨
+          </p>
+          <button
+            onClick={() => {
+              const el = document.getElementById('all');
+              el?.scrollIntoView({ behavior: 'smooth' });
+              setSelectedCategory('Manicure');
+            }}
+            className="inline-flex items-center gap-2 bg-gradient-to-r from-orange-500 to-pink-500 text-white text-sm font-bold px-5 py-2.5 rounded-full shadow-sm hover:shadow-md hover:from-orange-600 hover:to-pink-600 transition-all"
+          >
+            Explore Manicures <ArrowRight className="w-4 h-4" />
+          </button>
         </section>
       </main>
 
-      {/* Modals & Components */}
+      {/* Modals & Components - SAME AS MAKEUP PAGE */}
       {selectedService && showServiceDetail && (
         <ServiceDetailModal
           service={selectedService}
@@ -537,7 +706,7 @@ const ClientNailPage = ({ allServices, trendingServices }: ClientNailPageProps) 
 
       {showBeautyQuiz && <BeautyQuiz onClose={() => setShowBeautyQuiz(false)} />}
       {showSkinAnalysis && <SkinAnalysis onClose={() => setShowSkinAnalysis(false)} />}
-      
+
       <LoginModal
         isOpen={showLoginModal}
         onClose={() => setShowLoginModal(false)}

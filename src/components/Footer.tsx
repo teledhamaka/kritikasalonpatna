@@ -82,12 +82,6 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/profile" className="text-gray-600 hover:text-rose-600 transition-colors text-sm flex items-center group">
-                  <span className="w-1 h-1 bg-gradient-to-r from-rose-500 to-pink-600 rounded-full mr-2 group-hover:w-2 transition-all"></span>
-                  My Profile
-                </Link>
-              </li>
-              <li>
                 <Link href="/blog" className="text-gray-600 hover:text-rose-600 transition-colors text-sm flex items-center group">
                   <span className="w-1 h-1 bg-gradient-to-r from-rose-500 to-pink-600 rounded-full mr-2 group-hover:w-2 transition-all"></span>
                   Beauty Blog
@@ -150,7 +144,7 @@ export default function Footer() {
 
             {/* Book Button */}
             <Link
-              href="/contact"
+              href="/cart"
               className="inline-block w-full text-center bg-gradient-to-r from-rose-500 to-pink-600 text-white px-6 py-3 rounded-xl font-medium hover:from-rose-600 hover:to-pink-700 transition-all shadow-md hover:shadow-lg text-sm"
             >
               Book Appointment

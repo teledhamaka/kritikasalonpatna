@@ -42,10 +42,10 @@ const BookingFlow = ({ onBack }: BookingFlowProps) => {
 
   // Stylist options
   const stylists = [
-    { id: 'any', name: 'Any Available Stylist', specialty: 'All Services' },
-    { id: 'priya', name: 'Priya Sharma', specialty: 'Bridal Specialist' },
-    { id: 'neha', name: 'Neha Singh', specialty: 'HD Makeup Expert' },
-    { id: 'riya', name: 'Riya Kumari', specialty: 'Airbrush Specialist' }
+    { id: 'any', name: 'Lakme Professional', specialty: 'All Services' },
+    // { id: 'priya', name: 'Priya Sharma', specialty: 'Bridal Specialist' },
+    // { id: 'neha', name: 'Neha Singh', specialty: 'HD Makeup Expert' },
+    // { id: 'riya', name: 'Riya Kumari', specialty: 'Airbrush Specialist' }
   ];
 
   const handleNext = () => {
@@ -396,7 +396,7 @@ const BookingFlow = ({ onBack }: BookingFlowProps) => {
                   <div key={item.id} className="flex gap-3 p-3 bg-gray-50 rounded-lg">
                     <div className="relative w-16 h-16 rounded-lg overflow-hidden flex-shrink-0">
                       <Image
-                        src={item.image|| 'Service image'}
+                        src={item.image || '/placeholder.jpg'}
                         alt={item.title}
                         fill
                         className="object-cover"
