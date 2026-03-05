@@ -1,7 +1,7 @@
 // ==========================================
 // FILE: lib/auth/authService.ts
 // ==========================================
-import { supabase, supabaseAdmin } from '@/lib/supabase'; // UPDATED IMPORT
+import { supabase, supabaseAdmin } from '@/lib/supabase';
 import jwt from 'jsonwebtoken';
 
 const JWT_SECRET = process.env.JWT_SECRET!;
@@ -32,6 +32,14 @@ export class AuthService {
     }
   }
 
+  // --- Helper to safely get the admin client ---
+  private static getAdminClient() {
+    if (!supabaseAdmin) {
+      throw new Error('Supabase admin client not available. Check SERVICE_ROLE_KEY.');
+    }
+    return supabaseAdmin;
+  }
+
   // Email/Password Login
   static async loginWithEmail(email: string, password: string) {
     const { data, error } = await supabase.auth.signInWithPassword({
@@ -42,7 +50,6 @@ export class AuthService {
     if (error) throw error;
     if (!data.user) throw new Error('Login failed');
 
-    // Generate custom token
     const token = this.generateToken(data.user.id, data.user.email!);
 
     return {
@@ -70,7 +77,6 @@ export class AuthService {
     if (error) throw error;
     if (!data.user) throw new Error('Signup failed');
 
-    // Create profile
     await this.createProfile(data.user.id, email, userData);
 
     const token = this.generateToken(data.user.id, data.user.email!);
@@ -83,54 +89,47 @@ export class AuthService {
   }
 
   // Google OAuth Login
-  // 
-  
   static async loginWithGoogle(googleIdToken: string) {
-  try {
-    // Use Supabase's built‑in ID token sign‑in
-    const { data, error } = await supabase.auth.signInWithIdToken({
-      provider: 'google',
-      token: googleIdToken,
-    });
-
-    if (error) throw error;
-    if (!data.user) throw new Error('Login failed');
-
-    const userId = data.user.id;
-    const email = data.user.email!;
-
-    // Check if a profile already exists (using admin client to bypass RLS)
-    const { data: existingProfile } = await supabaseAdmin
-      .from('profiles')
-      .select('id')
-      .eq('id', userId)
-      .single();
-
-    // If no profile, create one (still using admin client for simplicity)
-    if (!existingProfile) {
-      // Extract user info from the Google token (you can also get it from data.user.user_metadata)
-      const googleUser = await this.verifyGoogleToken(googleIdToken); // optional, or use data.user.user_metadata
-      await this.createProfile(userId, email, {
-        full_name: googleUser?.name || data.user.user_metadata?.full_name,
-        first_name: googleUser?.given_name || data.user.user_metadata?.given_name,
-        last_name: googleUser?.family_name || data.user.user_metadata?.family_name,
-        profile_image_url: googleUser?.picture || data.user.user_metadata?.avatar_url,
-        signup_method: 'google',
+    try {
+      const { data, error } = await supabase.auth.signInWithIdToken({
+        provider: 'google',
+        token: googleIdToken,
       });
-    } else {
-      // Update login stats later, so no need to do anything here
+
+      if (error) throw error;
+      if (!data.user) throw new Error('Login failed');
+
+      const userId = data.user.id;
+      const email = data.user.email!;
+
+      // Use the safe admin client
+      const admin = this.getAdminClient();
+
+      const { data: existingProfile } = await admin
+        .from('profiles')
+        .select('id')
+        .eq('id', userId)
+        .single();
+
+      if (!existingProfile) {
+        const googleUser = await this.verifyGoogleToken(googleIdToken);
+        await this.createProfile(userId, email, {
+          full_name: googleUser?.name || data.user.user_metadata?.full_name,
+          first_name: googleUser?.given_name || data.user.user_metadata?.given_name,
+          last_name: googleUser?.family_name || data.user.user_metadata?.family_name,
+          profile_image_url: googleUser?.picture || data.user.user_metadata?.avatar_url,
+          signup_method: 'google',
+        });
+      }
+
+      const token = this.generateToken(userId, email);
+
+      return { userId, email, token };
+    } catch (error) {
+      console.error('Google login error:', error);
+      throw error;
     }
-
-    // Generate your custom JWT (if you still need it)
-    const token = this.generateToken(userId, email);
-
-    return { userId, email, token };
-  } catch (error) {
-    console.error('Google login error:', error);
-    throw error;
   }
-}
-
 
   // Create user profile
   static async createProfile(userId: string, email: string, userData: any) {
@@ -160,8 +159,9 @@ export class AuthService {
         updated_at: new Date().toISOString(),
       };
 
-      // Use admin client to create profile
-      const { error } = await supabaseAdmin
+      const admin = this.getAdminClient();
+
+      const { error } = await admin
         .from('profiles')
         .upsert(profileData, { onConflict: 'id' });
 
@@ -208,7 +208,8 @@ export class AuthService {
 
   // Get user profile
   static async getProfile(userId: string) {
-    const { data, error } = await supabaseAdmin
+    const admin = this.getAdminClient();
+    const { data, error } = await admin
       .from('profiles')
       .select('*')
       .eq('id', userId)
@@ -220,7 +221,8 @@ export class AuthService {
 
   // Update user profile
   static async updateProfile(userId: string, updates: any) {
-    const { data, error } = await supabaseAdmin
+    const admin = this.getAdminClient();
+    const { data, error } = await admin
       .from('profiles')
       .update({
         ...updates,
@@ -236,13 +238,15 @@ export class AuthService {
 
   // Update login stats
   static async updateLoginStats(userId: string) {
-    const { data: profile } = await supabaseAdmin
+    const admin = this.getAdminClient();
+
+    const { data: profile } = await admin
       .from('profiles')
       .select('login_count')
       .eq('id', userId)
       .single();
 
-    await supabaseAdmin
+    await admin
       .from('profiles')
       .update({
         login_count: (profile?.login_count || 0) + 1,
