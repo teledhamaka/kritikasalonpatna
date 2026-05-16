@@ -1,7 +1,7 @@
 // src/app/layout.tsx - PWA REMOVED (no friction for ladies customers)
 import type { Metadata, Viewport } from 'next';
 import { Inter } from 'next/font/google';
-import 'globals';
+import './globals.css';
 import Image from 'next/image';
 import Script from 'next/script';
 import Navbar from '@/components/Navbar';
