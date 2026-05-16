@@ -131,9 +131,9 @@ export default function ProfilePage() {
         phone: formData.phone,
         birthday: formData.birthday,
         anniversary_date: formData.anniversary_date,
-        marital_status: formData.marital_status,
-        skin_type: formData.skin_type,
-        hair_type: formData.hair_type,
+        // marital_status: formData.marital_status,
+        // skin_type: formData.skin_type,
+        // hair_type: formData.hair_type,
       });
 
       // if (updateError) {

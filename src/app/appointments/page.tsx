@@ -3,8 +3,8 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FiArrowLeft, FiCalendar, FiClock, FiUser, FiStar, FiMoreVertical, FiX, FiDownload, FiShare2,
-  FiCheckCircle, FiXCircle, FiAlertCircle, FiSearch, FiLoader } from 'react-icons/fi';
+import { ArrowLeft, Calendar, Clock, User, Star, MoreVertical, X, Download, Share2,
+  CheckCircle, XCircle, AlertCircle, Search, Loader } from 'lucide-react';
 import Image from 'next/image';
 import { useAuth } from '../../context/AuthContext';
 import { supabase } from '../../lib/supabase';
@@ -52,7 +52,9 @@ type FilterType = 'all' | 'upcoming' | 'completed' | 'cancelled';
 
 export default function AppointmentsPage() {
   const router = useRouter();
-  const { user, isLoggedIn } = useAuth();
+  const auth = useAuth();
+  const user = (auth as any).user;
+  const isLoggedIn = (auth as any).isLoggedIn;
   const [appointments, setAppointments] = useState<Appointment[]>([]);
   const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState<FilterType>('all');
@@ -166,17 +168,17 @@ export default function AppointmentsPage() {
   const getStatusConfig = (status: string) => {
     switch (status) {
       case 'scheduled':
-        return { color: 'bg-blue-100 text-blue-700', icon: FiClock, label: 'Scheduled' };
+        return { color: 'bg-blue-100 text-blue-700', icon: Clock, label: 'Scheduled' };
       case 'confirmed':
-        return { color: 'bg-green-100 text-green-700', icon: FiCheckCircle, label: 'Confirmed' };
+        return { color: 'bg-green-100 text-green-700', icon: CheckCircle, label: 'Confirmed' };
       case 'completed':
-        return { color: 'bg-purple-100 text-purple-700', icon: FiCheckCircle, label: 'Completed' };
+        return { color: 'bg-purple-100 text-purple-700', icon: CheckCircle, label: 'Completed' };
       case 'cancelled':
-        return { color: 'bg-red-100 text-red-700', icon: FiXCircle, label: 'Cancelled' };
+        return { color: 'bg-red-100 text-red-700', icon: XCircle, label: 'Cancelled' };
       case 'in_progress':
-        return { color: 'bg-yellow-100 text-yellow-700', icon: FiClock, label: 'In Progress' };
+        return { color: 'bg-yellow-100 text-yellow-700', icon: Clock, label: 'In Progress' };
       default:
-        return { color: 'bg-gray-100 text-gray-700', icon: FiAlertCircle, label: status };
+        return { color: 'bg-gray-100 text-gray-700', icon: AlertCircle, label: status };
     }
   };
 
@@ -216,7 +218,7 @@ export default function AppointmentsPage() {
   if (loading) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-pink-50 via-white to-purple-50 flex items-center justify-center">
-        <FiLoader className="w-8 h-8 text-pink-500 animate-spin" />
+        <Loader className="w-8 h-8 text-pink-500 animate-spin" />
       </div>
     );
   }
@@ -231,7 +233,7 @@ export default function AppointmentsPage() {
               onClick={() => router.back()}
               className="p-2 rounded-full hover:bg-pink-100 mr-2"
             >
-              <FiArrowLeft className="w-5 h-5 text-gray-700" />
+              <ArrowLeft className="w-5 h-5 text-gray-700" />
             </button>
             <div>
               <h1 className="text-2xl font-bold text-gray-800">My Appointments</h1>
@@ -280,7 +282,7 @@ export default function AppointmentsPage() {
             </div>
 
             <div className="relative flex-1">
-              <FiSearch className="absolute left-3 top-3 w-5 h-5 text-gray-400" />
+              <Search className="absolute left-3 top-3 w-5 h-5 text-gray-400" />
               <input
                 type="text"
                 placeholder="Search by stylist, service, or ID..."
@@ -295,7 +297,7 @@ export default function AppointmentsPage() {
         {/* Appointments List */}
         {filteredAppointments.length === 0 ? (
           <div className="bg-white rounded-2xl p-12 shadow-sm border border-pink-100 text-center">
-            <FiCalendar className="w-16 h-16 text-gray-400 mx-auto mb-4" />
+            <Calendar className="w-16 h-16 text-gray-400 mx-auto mb-4" />
             <h3 className="text-xl font-semibold text-gray-800 mb-2">No Appointments Found</h3>
             <p className="text-gray-600 mb-6">
               {filter === 'all' 
@@ -335,7 +337,7 @@ export default function AppointmentsPage() {
                               className="w-12 h-12 rounded-full object-cover"
                             />
                           ) : (
-                            <FiUser className="w-6 h-6" />
+                            <User className="w-6 h-6" />
                           )}
                         </div>
                         <div>
@@ -343,7 +345,7 @@ export default function AppointmentsPage() {
                             {appointment.stylist?.full_name || 'Stylist'}
                           </h3>
                           <div className="flex items-center text-sm text-gray-600">
-                            <FiCalendar className="w-4 h-4 mr-1" />
+                            <Calendar className="w-4 h-4 mr-1" />
                             {formatDate(appointment.appointment_date)} at {formatTime(appointment.start_time)}
                           </div>
                         </div>
@@ -361,7 +363,7 @@ export default function AppointmentsPage() {
                           }}
                           className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
                         >
-                          <FiMoreVertical className="w-5 h-5 text-gray-600" />
+                          <MoreVertical className="w-5 h-5 text-gray-600" />
                         </button>
                       </div>
                     </div>
@@ -382,7 +384,7 @@ export default function AppointmentsPage() {
                     <div className="flex justify-between items-center pt-4 border-t border-gray-100">
                       <div className="flex items-center space-x-4 text-sm text-gray-600">
                         <div className="flex items-center">
-                          <FiClock className="w-4 h-4 mr-1" />
+                          <Clock className="w-4 h-4 mr-1" />
                           {appointment.total_duration} mins
                         </div>
                         <div className="font-semibold text-gray-800">
@@ -396,7 +398,7 @@ export default function AppointmentsPage() {
                             onClick={() => router.push(`/appointments/${appointment.id}/review`)}
                             className="px-4 py-2 bg-yellow-100 text-yellow-700 rounded-lg hover:bg-yellow-200 transition-colors text-sm font-medium flex items-center"
                           >
-                            <FiStar className="w-4 h-4 mr-1" />
+                            <Star className="w-4 h-4 mr-1" />
                             Add Review
                           </button>
                         )}
@@ -462,7 +464,7 @@ export default function AppointmentsPage() {
                     onClick={() => setShowDetailsModal(false)}
                     className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
                   >
-                    <FiX className="w-6 h-6 text-gray-600" />
+                    <X className="w-6 h-6 text-gray-600" />
                   </button>
                 </div>
 
@@ -501,7 +503,7 @@ export default function AppointmentsPage() {
                               className="w-12 h-12 rounded-full object-cover"
                             />
                           ) : (
-                            <FiUser className="w-6 h-6" />
+                            <User className="w-6 h-6" />
                           )}
                         </div>
                         <div>
@@ -509,7 +511,7 @@ export default function AppointmentsPage() {
                             {selectedAppointment.stylist.full_name}
                           </div>
                           <div className="flex items-center text-sm text-gray-600">
-                            <FiStar className="w-4 h-4 text-yellow-400 fill-current mr-1" />
+                            <Star className="w-4 h-4 text-yellow-400 fill-current mr-1" />
                             {selectedAppointment.stylist.rating.toFixed(1)}
                           </div>
                         </div>
@@ -575,11 +577,11 @@ export default function AppointmentsPage() {
 
                   <div className="flex gap-3 pt-4 border-t border-gray-200">
                     <button className="flex-1 px-4 py-3 bg-pink-100 text-pink-700 rounded-lg hover:bg-pink-200 transition-colors font-medium flex items-center justify-center">
-                      <FiDownload className="w-4 h-4 mr-2" />
+                      <Download className="w-4 h-4 mr-2" />
                       Download Invoice
                     </button>
                     <button className="flex-1 px-4 py-3 bg-purple-100 text-purple-700 rounded-lg hover:bg-purple-200 transition-colors font-medium flex items-center justify-center">
-                      <FiShare2 className="w-4 h-4 mr-2" />
+                      <Share2 className="w-4 h-4 mr-2" />
                       Share
                     </button>
                   </div>
@@ -606,7 +608,7 @@ export default function AppointmentsPage() {
               >
                 <div className="text-center mb-6">
                   <div className="w-12 h-12 mx-auto bg-red-100 rounded-full flex items-center justify-center mb-4">
-                    <FiXCircle className="w-6 h-6 text-red-600" />
+                    <XCircle className="w-6 h-6 text-red-600" />
                   </div>
                   <h3 className="text-lg font-semibold text-gray-900 mb-2">
                     Cancel Appointment?
@@ -648,7 +650,7 @@ export default function AppointmentsPage() {
                   >
                     {cancelling ? (
                       <>
-                        <FiLoader className="animate-spin mr-2 w-4 h-4" />
+                        <Loader className="animate-spin mr-2 w-4 h-4" />
                         Cancelling...
                       </>
                     ) : (

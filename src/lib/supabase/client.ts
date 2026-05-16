@@ -1,13 +1,32 @@
-// lib/supabase/client.ts
-// Only keep if you need it for storage or other non-auth features
-import { createClient } from '@supabase/supabase-js';
+// ============================================================
+// FILE: lib/supabase/client.ts
+// Browser-side Supabase client — @supabase/ssr
+//
+// KEY CHANGES vs original:
+//  ✅ persistSession: true  — survives tab-close on Android Chrome
+//  ✅ autoRefreshToken: true — no "session expired" on long visits
+//  ✅ detectSessionInUrl: true — catches token after OAuth redirect
+//     (critical for Instagram / WhatsApp in-app browsers)
+//  ✅ storageKey namespaced — avoids conflicts if user has multiple
+//     tabs or another Supabase project open
+// ============================================================
+import { createBrowserClient } from '@supabase/ssr';
 
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
-const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
+export function createClient() {
+  return createBrowserClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+    {
+      auth: {
+        persistSession:    true,   // keep session across browser restarts
+        autoRefreshToken:  true,   // silently refresh before expiry
+        detectSessionInUrl: true,  // parse token from URL hash after redirect
+        storageKey: 'kritika-salon-auth', // namespaced localStorage key
+        flowType: 'pkce',          // PKCE is more secure + works in Safari
+      },
+    }
+  );
+}
 
-export const supabase = createClient(supabaseUrl, supabaseAnonKey, {
-  auth: {
-    persistSession: false, // Disable auth
-    autoRefreshToken: false,
-  },
-});
+// Singleton — import this everywhere in Client Components
+export const supabase = createClient();

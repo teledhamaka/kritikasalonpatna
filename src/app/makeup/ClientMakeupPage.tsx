@@ -3,8 +3,9 @@
 
 import { useState, useRef, useCallback, useEffect } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import dynamic from 'next/dynamic';
-import { ArrowRight, Star } from 'lucide-react';
+import { ArrowRight, Star, Clock, TrendingUp, Heart } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 
 import { Service } from '../../types/service';
@@ -64,6 +65,7 @@ const ClientMakeupPage = ({ allServices, trendingServices }: ClientMakeupPagePro
 
   const serviceScrollRef = useRef<HTMLDivElement>(null);
   const trendingScrollRef = useRef<HTMLDivElement>(null);
+  const prefersReducedMotion = useRef(false);
   const { isLoggedIn } = useAuth();
   const { addToCart } = useBooking();
 
@@ -107,7 +109,56 @@ const ClientMakeupPage = ({ allServices, trendingServices }: ClientMakeupPagePro
     };
   }, []);
 
-  // Auto-scroll removed — replaced with lightweight pill scroller (no JS scroll needed)
+  // ─── Reduced motion listener ────────────────────────────────────────────────
+  useEffect(() => {
+    const media = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const update = () => { prefersReducedMotion.current = media.matches; };
+    update();
+    media.addEventListener('change', update);
+    return () => media.removeEventListener('change', update);
+  }, []);
+
+  // ─── rAF auto-scroll for trending (desktop only) ────────────────────────────
+  useEffect(() => {
+    const el = trendingScrollRef.current;
+    if (!el || isMobile || trendingCount < 3 || prefersReducedMotion.current) return;
+    let rafId: number;
+    let direction = 1;
+    let position = el.scrollLeft;
+    let isPaused = false;
+    let lastTs = 0;
+    const SPEED = 40;
+    const tick = (ts: number) => {
+      const delta = lastTs ? Math.min(ts - lastTs, 64) : 0;
+      lastTs = ts;
+      if (!isPaused) {
+        const max = el.scrollWidth - el.clientWidth;
+        if (position >= max - 10) direction = -1;
+        else if (position <= 10) direction = 1;
+        position += direction * (SPEED * delta / 1000);
+        el.scrollLeft = position;
+      }
+      rafId = requestAnimationFrame(tick);
+    };
+    const onEnter = () => { isPaused = true; };
+    const onLeave = () => { isPaused = false; };
+    rafId = requestAnimationFrame(tick);
+    el.addEventListener('mouseenter', onEnter);
+    el.addEventListener('mouseleave', onLeave);
+    return () => {
+      cancelAnimationFrame(rafId);
+      el.removeEventListener('mouseenter', onEnter);
+      el.removeEventListener('mouseleave', onLeave);
+    };
+  }, [trendingCount, isMobile]);
+
+  // ─── Helper: canonical service URL ─────────────────────────────────────────
+  const getServiceUrl = useCallback((service: Service): string => {
+    if (service.url) return service.url;
+    const category = (service.primaryCategory || service.category || 'makeup').toLowerCase();
+    const slug = service.slug || service.id;
+    return `/${category}/${slug}`;
+  }, []);
 
   // Filter services by selected category
   const getFilteredServices = useCallback(() => {
@@ -118,54 +169,51 @@ const ClientMakeupPage = ({ allServices, trendingServices }: ClientMakeupPagePro
   const filteredServices = getFilteredServices();
 
   // Makeup subcategories for horizontal display
-  const MAKEUP_SUBCATEGORIES = [
+  const MAKEUP_SUBCATEGORIES = [    
     {
-      id: 'bridal',
+      id: 'bridal-makeup',
       title: 'Bridal Makeup',
       description: 'Complete bridal packages',
       image: '/images/makeup/complete_bridal_package.webp',
       icon: '👰',
-      color: 'from-pink-500 to-rose-600'
-    },
+      color: 'from-pink-500 to-rose-600',
+      targetCategory: 'Bridal Makeup'
+    },    
     {
-      id: 'engagement',
-      title: 'Engagement',
+      id: 'special-occassions',
+      title: 'Special Occassions',
       description: 'Pre-wedding makeup',
       image: '/images/makeup/bridal_HDLook.webp',
       icon: '💍',
-      color: 'from-purple-500 to-pink-600'
+      color: 'from-purple-500 to-pink-600',
+      targetCategory: 'Special Occassions'
     },
     {
-    id: 'reception',
-    title: 'Reception Makeup',
+    id: 'quick-makeup',
+    title: 'Quick Makeup',
     description: 'Glamorous reception styles',
     image: '/images/makeup/reception_airbrush.webp',
     icon: '✨',
-    color: 'from-amber-500 to-red-600'
+    color: 'from-amber-500 to-red-600',
+    targetCategory: 'Quick Makeup'
     },
     {
-      id: 'camera-ready',
+      id: 'camera-ready-makeup',
       title: 'Camera Ready Makeup',
       description: 'Camera-ready makeup',
       image: '/images/makeup/hd_makeup.webp',
       icon: '📸',
-      color: 'from-blue-500 to-cyan-600'
+      color: 'from-blue-500 to-cyan-600',
+      targetCategory: 'Camera Ready Makeup'
     },
-    {
-      id: 'party',
-      title: 'Party Makeup',
-      description: 'Evening & party looks',
-      image: '/images/makeup/bridal_makeup.webp',
-      icon: '🎉',
-      color: 'from-amber-500 to-orange-600'
-    },    
     {
     id: 'bridal-packages',
     title: 'Bridal Packages',
     description: 'Exclusive bridal package deals',
     image: '/images/makeup/classic_bridal.webp',
     icon: '💎',
-    color: 'from-rose-500 to-pink-600'
+    color: 'from-rose-500 to-pink-600',
+    targetCategory: 'Bridal Packages'
     }
   ];
 
@@ -234,87 +282,103 @@ const ClientMakeupPage = ({ allServices, trendingServices }: ClientMakeupPagePro
         scroll-padding
       `}>
         
-        {/* ✅ TRENDING MAKEUP SERVICES — Lightweight Pill Scroller (matches homepage) */}
+        {/* ✅ TRENDING MAKEUP SERVICES — Full Image Card Scroller (matches HomePage) */}
         {hasTrendingServices && (
-          <section className={`
-            bg-gradient-to-r from-rose-50 via-pink-50 to-fuchsia-50
-            rounded-2xl 
-            px-4 py-3
-            mb-6 
-            border 
-            border-pink-200
-            w-full
-          `}>
-            <h2 className="sr-only">Trending Makeup Services in Patna</h2>
-
-            {/* Header row */}
-            <div className="flex items-center justify-between mb-3">
-              <div className="flex items-center gap-2">
-                <span className="text-base">🔥</span>
-                <span className={`font-bold text-gray-900 ${isLandscape ? 'text-sm' : 'text-base'}`}>
-                  Trending Makeup
-                </span>
-                <span className="bg-pink-500 text-white text-[10px] font-bold px-2 py-0.5 rounded-full">
-                  {trendingCount}
-                </span>
+          <section className="bg-gradient-to-r from-rose-50 via-pink-50 to-fuchsia-50 rounded-2xl p-4 mb-6 border border-pink-200">
+            <div className="flex items-center justify-between mb-4">
+              <div className="flex items-center gap-3">
+                <div className="bg-gradient-to-br from-pink-500 to-rose-500 rounded-full w-10 h-10 flex items-center justify-center animate-pulse">
+                  <TrendingUp className="w-5 h-5 text-white" />
+                </div>
+                <div>
+                  <h2 className={`font-bold text-gray-900 ${isLandscape ? 'text-base' : 'text-lg'}`}>Trending Makeup Services</h2>
+                  <p className="text-xs text-gray-600">Most booked {trendingCount} services this week</p>
+                </div>
               </div>
-              <button
-                onClick={() => router.push('/makeup#all')}
-                className="flex items-center text-pink-600 text-xs font-semibold hover:underline gap-1"
-              >
-                View All <ArrowRight className="w-3 h-3" />
-              </button>
+              <div className="flex items-center gap-2">
+                <span className="bg-white text-pink-600 text-xs font-bold px-3 py-1 rounded-full border border-pink-200">
+                  {trendingCount} Trending
+                </span>
+                <button onClick={() => router.push('/makeup#all')} className="hidden md:flex items-center text-pink-600 text-sm font-medium hover:underline">
+                  View All <ArrowRight className="w-4 h-4 ml-1" />
+                </button>
+              </div>
             </div>
 
-            {/* Pill chip scroller — zero image weight, instant render */}
+            {/* Horizontal image card scroll */}
             <div
               ref={trendingScrollRef}
-              className="flex overflow-x-auto gap-2 pb-1 scrollbar-hide"
-              style={{ WebkitOverflowScrolling: 'touch' }}
+              className={`flex pb-3 mb-2 ${isMobile ? 'overflow-x-auto space-x-4 scrollbar-hide' : 'overflow-hidden space-x-4'}`}
+              style={{ WebkitOverflowScrolling: 'touch', scrollbarWidth: 'none', msOverflowStyle: 'none', overscrollBehaviorX: 'contain' } as React.CSSProperties}
             >
-              {trendingServices.map((service) => (
-                <button
+              {trendingServices.map((service, idx) => (
+                <Link
                   key={service.id}
-                  onClick={() => handleServiceClick(service)}
-                  className={`
-                    flex-shrink-0 flex items-center gap-2
-                    bg-white border border-pink-200
-                    hover:border-pink-400 hover:bg-pink-50
-                    active:scale-95
-                    rounded-full
-                    ${isLandscape ? 'px-3 py-1.5' : 'px-4 py-2'}
-                    shadow-sm hover:shadow-md
-                    transition-all duration-200
-                    group
-                  `}
-                  aria-label={`View ${service.title} — ₹${service.price}`}
+                  href={getServiceUrl(service)}
+                  className={`flex-shrink-0 bg-white rounded-xl border border-pink-100 shadow-sm hover:shadow-md transition-shadow duration-200 group transform-gpu will-change-transform ${
+                    isMobile ? 'min-w-[200px] max-w-[200px] p-3' : 'min-w-[220px] max-w-[220px] p-3 hover:scale-[1.02]'
+                  }`}
                 >
-                  <span className="text-xs">💄</span>
-                  <span className={`font-semibold text-gray-800 group-hover:text-pink-700 whitespace-nowrap ${isLandscape ? 'text-xs' : 'text-sm'}`}>
-                    {service.title}
-                  </span>
-                  <span className={`text-pink-600 font-bold whitespace-nowrap ${isLandscape ? 'text-xs' : 'text-sm'}`}>
-                    ₹{service.price}
-                  </span>
-                  {service.isBestSeller && (
-                    <Star className="w-3 h-3 fill-yellow-400 text-yellow-400 flex-shrink-0" />
-                  )}
-                </button>
+                  <div className="relative aspect-[4/5] w-full rounded-lg overflow-hidden mb-2">
+                    <Image
+                      src={service.image || '/images/placeholder.jpg'}
+                      alt={service.title}
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-300"
+                      sizes="(max-width: 768px) 200px, 220px"
+                      priority={idx === 0}
+                    />
+                    {service.isBestSeller && (
+                      <span className="absolute top-2 left-2 z-10 bg-gradient-to-r from-yellow-500 to-orange-500 text-white text-xs font-bold px-2 py-1 rounded-full shadow-md flex items-center gap-1">
+                        <Star className="w-3 h-3 fill-white" /> Best
+                      </span>
+                    )}
+                    <span className="absolute bottom-2 right-2 bg-black/70 backdrop-blur-sm text-white text-xs font-bold px-2 py-1 rounded-full flex items-center gap-1">
+                      <Star className="w-3 h-3 fill-yellow-400 text-yellow-400" /> {service.rating?.toFixed(1) || '4.5'}
+                    </span>
+                  </div>
+                  <div className="flex-1 flex flex-col">
+                    <h3 className="font-semibold text-gray-800 text-sm line-clamp-2 mb-1 group-hover:text-pink-600 transition-colors">
+                      {service.title}
+                    </h3>
+                    <p className="text-gray-600 text-xs line-clamp-2 mb-2">
+                      {service.shortDescription || service.description?.substring(0, 60)}…
+                    </p>
+                    <div className="flex items-center justify-between mt-auto">
+                      <div className="flex flex-col">
+                        <span className="font-bold text-pink-600 text-base">₹{service.price}</span>
+                        {service.originalPrice && service.originalPrice > service.price && (
+                          <span className="text-gray-400 text-xs line-through">₹{service.originalPrice}</span>
+                        )}
+                      </div>
+                      <div className="text-xs text-gray-500 flex items-center gap-1">
+                        <Clock className="w-3 h-3" /> {service.durationText || `${service.duration || 60} min`}
+                      </div>
+                    </div>
+                    <button
+                      onClick={(e) => { e.preventDefault(); addToCart(service); }}
+                      className="w-full mt-2 py-2 text-sm bg-gradient-to-r from-pink-500 to-rose-500 text-white font-medium rounded-lg hover:from-pink-600 hover:to-rose-600 transition-colors duration-150 shadow-sm flex items-center justify-center gap-1"
+                    >
+                      Add to Cart <Heart className="w-4 h-4" />
+                    </button>
+                  </div>
+                </Link>
               ))}
-              {/* View all pill */}
-              <button
+              {/* View All card */}
+              <div
+                className={`flex-shrink-0 bg-gradient-to-br from-pink-100 to-rose-100 rounded-xl border-2 border-dashed border-pink-200 flex flex-col items-center justify-center text-center cursor-pointer hover:from-pink-200 hover:to-rose-200 transition-colors duration-200 group transform-gpu ${
+                  isMobile ? 'min-w-[160px] p-4' : 'min-w-[180px] p-4'
+                }`}
                 onClick={() => router.push('/makeup#all')}
-                className={`
-                  flex-shrink-0 flex items-center gap-1
-                  bg-gradient-to-r from-pink-500 to-rose-500 text-white
-                  rounded-full font-semibold shadow-sm
-                  hover:from-pink-600 hover:to-rose-600 hover:shadow-md
-                  transition-all duration-200
-                  ${isLandscape ? 'px-3 py-1.5 text-xs' : 'px-4 py-2 text-sm'}
-                `}
+                role="button"
+                tabIndex={0}
+                onKeyDown={e => e.key === 'Enter' && router.push('/makeup#all')}
               >
-                All {trendingCount}+ <ArrowRight className="w-3 h-3" />
-              </button>
+                <span className="text-4xl mb-2 group-hover:scale-110 transition-transform">💄</span>
+                <p className="font-bold text-gray-800 text-base">View All</p>
+                <p className="text-xs text-gray-600 mt-1">{trendingCount}+ services</p>
+                <ArrowRight className="w-5 h-5 text-pink-600 mt-2 group-hover:translate-x-1 transition-transform" />
+              </div>
             </div>
           </section>
         )}
@@ -373,7 +437,7 @@ const ClientMakeupPage = ({ allServices, trendingServices }: ClientMakeupPagePro
                   </div>
                   
                   <button
-                    onClick={() => navigateToCategory(category.title.split(' ')[0])}
+                    onClick={() => navigateToCategory(category.targetCategory)}
                     className={`
                       w-full 
                       bg-white 

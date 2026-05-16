@@ -1,15 +1,15 @@
-// src/app/layout.tsx - COMPLETE FIXED VERSION
+// src/app/layout.tsx - PWA REMOVED (no friction for ladies customers)
 import type { Metadata, Viewport } from 'next';
 import { Inter } from 'next/font/google';
-import './globals.css';
+import 'globals';
 import Image from 'next/image';
 import Script from 'next/script';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import WhatsAppFloating from '../components/WhatsAppFloating';
 import { Providers } from './providers';
 import { Analytics } from '@vercel/analytics/next';
 import { SpeedInsights } from '@vercel/speed-insights/next';
+import GlobalFloatingUI from '@/components/GlobalFloatingUI';
 
 // Import SEO data
 import seoData from '../../public/seo.json';
@@ -20,7 +20,7 @@ const inter = Inter({
   preload: true
 });
 
-// Generate dynamic metadata from seo.json
+// ─── Metadata (PWA fields removed) ─────────────────────────────────────────
 export const metadata: Metadata = {
   title: {
     default: `${seoData.business.name} - ${seoData.business.tagline}`,
@@ -45,7 +45,7 @@ export const metadata: Metadata = {
     canonical: '/',
   },
   
-  manifest: '/manifest.json',
+  // REMOVED: manifest: '/manifest.json',
   
   openGraph: {
     type: 'website',
@@ -86,45 +86,16 @@ export const metadata: Metadata = {
   
   verification: {
     google: 'Uj54YUbFFcOLdeffGXlZMH35yYC-N6HyO9Wdoxj_DXA',
-    // yandex: 'your-yandex-verification-code',
-    // other: {
-    //   'facebook-domain-verification': 'your-fb-verification-code'
-    // }
   },
   
+  // Simplified icons – only a basic favicon, no PWA touch icons
   icons: {
-    icon: [
-      { url: '/icons/icon-16x16.png', sizes: '16x16', type: 'image/png' },
-      { url: '/icons/icon-32x32.png', sizes: '32x32', type: 'image/png' },
-      { url: '/icons/icon-96x96.png', sizes: '96x96', type: 'image/png' },
-      { url: '/icons/icon-128x128.png', sizes: '128x128', type: 'image/png' },
-      { url: '/icons/icon-192x192.png', sizes: '192x192', type: 'image/png' },
-      { url: '/icons/icon-512x512.png', sizes: '512x512', type: 'image/png' },
-    ],
-    shortcut: [
-      { url: '/icons/icon-96x96.png', sizes: '96x96', type: 'image/png' }
-    ],
-    apple: [
-      { url: '/icons/icon-152x152.png', sizes: '152x152', type: 'image/png' },
-      { url: '/icons/icon-180x180.png', sizes: '180x180', type: 'image/png' },
-    ],
-    other: [
-      {
-        rel: 'apple-touch-icon-precomposed',
-        url: '/icons/icon-152x152.png',
-      },
-    ]
+    icon: '/favicon.ico',  // simple fallback
   },
 
-  appleWebApp: {
-    capable: true,
-    statusBarStyle: 'black-translucent',
-    title: seoData.business.name
-  },
-  
-  applicationName: seoData.business.name,
+  // REMOVED: appleWebApp, formatDetection (telephone detection kept? optional)
   formatDetection: {
-    telephone: false
+    telephone: false,  // keep to avoid auto-linking numbers
   },
   
   other: {
@@ -137,20 +108,18 @@ export const metadata: Metadata = {
   }
 };
 
+// ─── Viewport (basic only, no PWA theme color override) ─────────────────────
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
   maximumScale: 5,
   userScalable: true,
-  themeColor: [
-    { media: '(prefers-color-scheme: light)', color: '#ec4899' },
-    { media: '(prefers-color-scheme: dark)', color: '#ec4899' }
-  ],
+  // keep theme color for browser UI (optional but harmless)
+  themeColor: '#ec4899',
   colorScheme: 'light',
-  viewportFit: 'cover'
 };
 
-// Generate organization schema from seo.json
+// ─── Organization Schema (unchanged) ────────────────────────────────────────
 const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "BeautySalon",
@@ -226,48 +195,20 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth h-full">      
       <head>
-        {/* Essential PWA Meta Tags */}
-        <meta name="application-name" content={seoData.business.name} />
-        <meta name="apple-mobile-web-app-capable" content="yes" />
-        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-        <meta name="apple-mobile-web-app-title" content={seoData.business.name} />
-        <meta name="format-detection" content="telephone=no" />
-        <meta name="mobile-web-app-capable" content="yes" />
-        <meta name="msapplication-TileColor" content="#ec4899" />
+        {/* REMOVED all PWA meta tags and splash screens */}
+
+        {/* Basic SEO / responsive */}
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, user-scalable=yes" />
         <meta name="theme-color" content="#ec4899" />
-
-        {/* Apple Touch Icons */}
-        <link rel="apple-touch-icon" href="/icons/icon-152x152.png" />
-        <link rel="apple-touch-icon" sizes="152x152" href="/icons/icon-152x152.png" />
-        <link rel="apple-touch-icon" sizes="180x180" href="/icons/icon-180x180.png" />
-
-        {/* iOS Splash Screens */}
-        <link 
-          rel="apple-touch-startup-image" 
-          href="/splash/iphone5_splash.png" 
-          media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)" 
-        />
-        <link 
-          rel="apple-touch-startup-image" 
-          href="/splash/iphone6_splash.png" 
-          media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2)" 
-        />
-        <link 
-          rel="apple-touch-startup-image" 
-          href="/splash/iphonex_splash.png" 
-          media="(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3)" 
-        />
-
+        
         {/* Preconnect for performance */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="https://www.google-analytics.com" />
         
-        {/* Favicon */}
-        <link rel="icon" type="image/png" sizes="32x32" href="/icons/icon-32x32.png" />
-        <link rel="icon" type="image/png" sizes="16x16" href="/icons/icon-16x16.png" />
-        <link rel="shortcut icon" href="/icons/icon-96x96.png" />
-
+        {/* Simple favicon */}
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+        
         {/* Organization Schema */}
         <script
           type="application/ld+json"
@@ -276,7 +217,7 @@ export default function RootLayout({
           }}
         />
 
-        {/* Preload critical CSS */}
+        {/* Critical CSS for safe area / overflow */}
         <style dangerouslySetInnerHTML={{
           __html: `
             .safe-area-inset {
@@ -317,22 +258,21 @@ export default function RootLayout({
         </a>
         
         <Providers>
-          <Navbar />
-          <div className="flex flex-col min-h-screen">
-            <main 
-              id="main-content" 
-              className="
-                grow 
-                w-full 
-                min-h-[calc(100vh-200px)] 
-                relative
-                overflow-x-hidden
-              "
-            >
+          {/* Fixed navbar (works on desktop & mobile) */}
+          <header className="fixed top-0 left-0 right-0 z-[100] bg-white/95 backdrop-blur-md border-b border-pink-100">
+            <Navbar />
+          </header>
+
+          {/* Top padding equals navbar height */}
+          <div className="flex flex-col min-h-screen pt-[72px] md:pt-[80px]">
+            <main id="main-content" className="grow w-full relative overflow-x-hidden">
               {children}
             </main>
             <Footer />
           </div>
+
+          {/* Global floating UI – appears on every page */}
+          <GlobalFloatingUI />
         </Providers>
 
         {/* Analytics */}
@@ -353,7 +293,7 @@ export default function RootLayout({
           `}
         </Script>
         
-        {/* Facebook Pixel */}
+        {/* Facebook Pixel (optional – keep or remove as needed) */}
         <Script id="facebook-pixel" strategy="afterInteractive">
           {`
             !function(f,b,e,v,n,t,s)
@@ -377,9 +317,6 @@ export default function RootLayout({
             alt=""
           />
         </noscript>
-        
-        {/* WhatsApp Floating Button */}
-        <WhatsAppFloating />
       </body>
     </html>
   );

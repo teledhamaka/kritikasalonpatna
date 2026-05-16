@@ -1,18 +1,23 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-
-  images: {
-    remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: 'www.facebook.com',
-        pathname: '/tr/**', // Matches the Facebook Pixel tracking path
-      },
-    ],
-  },
   /* config options here */
-  
+  // Your existing config
+  // eslint: {
+  //   ignoreDuringBuilds: true,
+  // },
+  async rewrites() {
+    return [
+      {
+        source: "/near-bhootnath-metro/:slug",
+        destination: "/bhootnath-road/:slug?from=metro",
+      },
+      {
+        source: "/near-nmch/:slug",
+        destination: "/bhootnath-road/:slug?from=nmch",
+      },
+    ];
+  },
   typescript: {
     ignoreBuildErrors: true,
   },

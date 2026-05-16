@@ -1,323 +1,302 @@
-// ==========================================
-// FILE: app/login/LoginClient.tsx (Client Component - NEW FILE)
-// ==========================================
-"use client";
+'use client';
+
+// ============================================================
+// FILE: app/login/LoginClient.tsx
+//
+// KEY CHANGES vs original:
+//   ✅ googleLoading from AuthContext → shows "Opening Google…"
+//      INSTANTLY when user taps (before redirect happens)
+//   ✅ Inline error toasts — no more ?error= in URL redirect
+//      → user stays on screen, sees friendly message
+//   ✅ msg param (not error) → human-readable source strings
+//      'cancelled' | 'google_failed' | 'link_expired'
+//   ✅ Google button shows animated state immediately on tap
+//   ✅ "Remember me" not shown — Supabase persists by default
+//   ✅ No email-first flow — Google is primary CTA (matches India mobile UX)
+//   ✅ Disabled state on email form while Google redirect is in flight
+// ============================================================
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { motion } from 'framer-motion';
-import { 
-  Eye, EyeOff, Mail, Lock, X, ArrowLeft, Heart, 
-  AlertCircle, Check, Loader, Facebook, Instagram 
-} from 'lucide-react';
+import { Eye, EyeOff, Mail, Lock, ArrowLeft, X, Sparkles } from 'lucide-react';
 import { FcGoogle } from 'react-icons/fc';
 import { useAuth } from '@/context/AuthContext';
+import { useToast } from '@/components/ui/Toast';
+
+// Human-readable messages for msg= params set by callback route
+const MSG_MAP: Record<string, string> = {
+  cancelled:    'Google sign-in was cancelled. Tap to try again 💕',
+  google_failed:'Google sign-in failed. Try again or use email.',
+  link_expired: 'That link has expired. Please request a new one.',
+};
 
 export default function LoginClient() {
-  const router = useRouter();
-  const searchParams = useSearchParams();
-  const { signIn, signInWithGoogle, isLoggedIn } = useAuth();
-  
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const router        = useRouter();
+  const searchParams  = useSearchParams();
+  const {
+    signIn, signInWithGoogle,
+    isLoggedIn, isInitializing,
+    loading, googleLoading,
+  } = useAuth();
+  const { success } = useToast();
+
+  const [email,        setEmail]        = useState('');
+  const [password,     setPassword]     = useState('');
   const [showPassword, setShowPassword] = useState(false);
-  const [loginMethod, setLoginMethod] = useState<'email' | 'mobile'>('email');
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState('');
-  const [success, setSuccess] = useState('');
+  const [formLoading,  setFormLoading]  = useState(false);
+  const [error,        setError]        = useState('');
 
-  // Check for OAuth errors in URL
+  // Show human-readable message from callback route
   useEffect(() => {
-    const errorParam = searchParams.get('error');
-    if (errorParam) {
-      switch (errorParam) {
-        case 'access_denied':
-          setError('Google sign-in was cancelled.');
-          break;
-        case 'auth_failed':
-          setError('Authentication failed. Please try again.');
-          break;
-        default:
-          setError('An error occurred during sign-in.');
-      }
+    const msg = searchParams.get('msg');
+    if (msg && MSG_MAP[msg]) {
+      setError(MSG_MAP[msg]);
+      window.history.replaceState({}, '', '/login');
     }
+  }, [searchParams]);
 
-    const loginSuccess = searchParams.get('login');
-    if (loginSuccess === 'success') {
-      setSuccess('Successfully logged in with Google!');
-      setTimeout(() => router.push('/'), 1500);
-    }
-  }, [searchParams, router]);
-
-  // Redirect if already logged in
+  // Redirect once session is confirmed
   useEffect(() => {
-    if (isLoggedIn) {
-      router.push('/');
+    if (!isInitializing && isLoggedIn) {
+      const redirect = searchParams.get('redirect') ?? '/';
+      router.replace(redirect);
     }
-  }, [isLoggedIn, router]);
+  }, [isLoggedIn, isInitializing, router, searchParams]);
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
-    setLoading(true);
+    if (!email.trim() || !password) return;
     setError('');
-    setSuccess('');
-
+    setFormLoading(true);
     try {
-      if (!email.trim() || !password.trim()) {
-        throw new Error('Please enter both your email and password.');
-      }
-
-      const { error: loginError, user } = await signIn(email.trim(), password);
-
-      if (loginError) {
-        setError(loginError);
-        return;
-      }
-
-      if (user) {
-        setSuccess('Login successful! Redirecting...');
-        setTimeout(() => router.push('/'), 1500);
-      }
-    } catch (err: unknown) {
-      console.error('Login error:', err);
-      const errorMessage = err instanceof Error ? err.message : 'Login failed. Please try again.';
-      setError(errorMessage);
+      const { error: loginError } = await signIn(email.trim(), password);
+      if (loginError) { setError(loginError); return; }
+      success('Welcome back! 💕');
     } finally {
-      setLoading(false);
+      setFormLoading(false);
     }
   };
 
-  const handleGoogleLogin = () => {
+  const handleGoogle = async () => {
     setError('');
-    setLoading(true);
-    signInWithGoogle();
+    const { error: googleErr } = await signInWithGoogle();
+    // If signInWithGoogle returns an error (rare — usually means
+    // popup blocked or network fail), show inline — don't redirect
+    if (googleErr) setError(googleErr);
+    // Otherwise: googleLoading stays true, page redirects to Google
   };
 
+  // Show nothing while restoring session — avoids flash of login form
+  // for users who are already logged in
+  if (isInitializing) {
+    return (
+      <div className="min-h-screen bg-cream flex items-center justify-center">
+        <div className="w-8 h-8 border-2 border-rose-brand/30 border-t-rose-brand
+          rounded-full animate-spin" />
+      </div>
+    );
+  }
+
+  // Any form interaction is blocked while Google redirect is in-flight
+  const isRedirecting = googleLoading;
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-pink-50 via-white to-purple-50 flex items-center justify-center p-4">
-      <div className="max-w-md w-full">
+    <div className="min-h-screen bg-cream flex items-center justify-center p-4">
+      <div className="w-full max-w-sm">
+
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="bg-white rounded-2xl shadow-xl overflow-hidden border border-pink-100"
+          transition={{ duration: 0.3 }}
+          className="bg-white rounded-3xl shadow-brand-lg
+            border border-[rgba(184,102,122,0.1)] overflow-hidden"
         >
-          <div className="bg-gradient-to-r from-pink-500 to-purple-600 p-6 text-center relative">
-            <Link 
-              href="/" 
-              className="absolute left-4 top-4 text-white hover:text-pink-200 transition-colors"
-              title="Go Back"
-            >
-              <ArrowLeft className="w-6 h-6" />
+          {/* Header */}
+          <div className="relative bg-gradient-to-br from-plum to-plum-mid p-7 text-center">
+            <Link href="/" aria-label="Back to home"
+              className="absolute left-4 top-4 text-white/60 hover:text-white transition-colors">
+              <ArrowLeft className="w-5 h-5" />
             </Link>
-            <button
-              onClick={() => router.push('/')}
-              className="absolute right-4 top-4 bg-white/20 hover:bg-white/30 text-white rounded-full p-1 transition-all duration-200 backdrop-blur-sm"
-              title="Skip to Home"
-            >
-              <X className="w-4 h-4" />
+            <button onClick={() => router.push('/')} aria-label="Skip"
+              className="absolute right-4 top-4 text-white/60 hover:text-white transition-colors">
+              <X className="w-5 h-5" />
             </button>
-            <div className="flex justify-center mb-2">
-              <span className="text-4xl">💅</span>
+
+            <div className="w-14 h-14 mx-auto rounded-full bg-white/10 border border-white/20
+              flex items-center justify-center mb-4">
+              <span className="text-2xl">💄</span>
             </div>
-            <h1 className="text-3xl font-bold text-white">Welcome Back!</h1>
-            <p className="text-pink-100 mt-2">Sign in to continue your beauty journey</p>
+            <h1 className="font-serif text-2xl text-white">Welcome back</h1>
+            <p className="text-[12px] text-white/60 mt-1">Your beauty journey continues ✨</p>
           </div>
-          
-          <div className="p-6">
+
+          {/* Body */}
+          <div className="p-6 space-y-4">
+
+            {/* ── Google CTA — PRIMARY ───────────────────────────────
+                Always shown first. India mobile users expect Google
+                to be the first and easiest option.
+                Shows animated state instantly on tap. ──────────── */}
+            <button
+              onClick={handleGoogle}
+              disabled={isRedirecting || formLoading}
+              className="relative w-full flex items-center justify-center gap-3 py-3.5
+                rounded-xl bg-cream border border-[rgba(184,102,122,0.2)]
+                text-[13px] text-plum font-medium
+                hover:border-rose-brand hover:bg-blush
+                active:scale-[0.99] transition-all duration-200
+                disabled:opacity-60 overflow-hidden"
+            >
+              {/* Shimmer overlay while redirecting */}
+              {isRedirecting && (
+                <motion.div
+                  className="absolute inset-0 bg-gradient-to-r
+                    from-transparent via-white/40 to-transparent"
+                  animate={{ x: ['-100%', '100%'] }}
+                  transition={{ repeat: Infinity, duration: 1, ease: 'linear' }}
+                />
+              )}
+              {isRedirecting ? (
+                <>
+                  <div className="w-4 h-4 border-2 border-plum/30 border-t-plum
+                    rounded-full animate-spin" />
+                  Opening Google…
+                </>
+              ) : (
+                <>
+                  <FcGoogle className="w-5 h-5 flex-shrink-0" />
+                  Continue with Google
+                </>
+              )}
+            </button>
+
+            {/* Inline error — replaces ?error= redirect approach */}
             {error && (
-              <motion.div 
-                initial={{ opacity: 0, y: -10 }}
+              <motion.div
+                initial={{ opacity: 0, y: -4 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="mb-4 p-3 bg-red-50 border border-red-200 text-red-700 rounded-lg flex items-center"
+                className="flex items-start gap-2 p-3 rounded-xl
+                  bg-[#FFF0F3] border border-[rgba(155,35,53,0.2)]"
               >
-                <AlertCircle className="w-5 h-5 mr-2 shrink-0" />
-                <span className="text-sm">{error}</span>
+                <span className="text-sm mt-0.5">💔</span>
+                <p className="text-[12px] text-[#9B2335] leading-relaxed">{error}</p>
               </motion.div>
             )}
 
-            {success && (
-              <motion.div 
-                initial={{ opacity: 0, y: -10 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="mb-4 p-3 bg-green-50 border border-green-200 text-green-700 rounded-lg flex items-center"
-              >
-                <Check className="w-5 h-5 mr-2 shrink-0" />
-                <span className="text-sm">{success}</span>
-              </motion.div>
-            )}
-
-            <div className="flex bg-pink-50 rounded-lg p-1 mb-6">
-              <button
-                onClick={() => setLoginMethod('email')}
-                className={`flex-1 py-2 text-center rounded-md transition-colors ${
-                  loginMethod === 'email' 
-                    ? 'bg-white shadow-sm text-pink-600 font-medium' 
-                    : 'text-gray-600 hover:text-pink-500'
-                }`}
-              >
-                Email
-              </button>
-              <button
-                onClick={() => setLoginMethod('mobile')}
-                className={`flex-1 py-2 text-center rounded-md transition-colors ${
-                  loginMethod === 'mobile' 
-                    ? 'bg-white shadow-sm text-pink-600 font-medium' 
-                    : 'text-gray-600 hover:text-pink-500'
-                }`}
-              >
-                Mobile
-              </button>
-            </div>
-
-            {loginMethod === 'email' ? (
-              <form onSubmit={handleLogin} className="space-y-4">
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
-                  <div className="relative">
-                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                      <Mail className="h-5 w-5 text-pink-400" />
-                    </div>
-                    <input
-                      type="email"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      required
-                      className="block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-pink-500 transition-colors"
-                      placeholder="your.email@example.com"
-                    />
-                  </div>
-                </div>
-                
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Password</label>
-                  <div className="relative">
-                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                      <Lock className="h-5 w-5 text-pink-400" />
-                    </div>
-                    <input
-                      type={showPassword ? "text" : "password"}
-                      value={password}
-                      onChange={(e) => setPassword(e.target.value)}
-                      required
-                      className="block w-full pl-10 pr-10 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-pink-500 transition-colors"
-                      placeholder="Your password"
-                    />
-                    <button
-                      type="button"
-                      className="absolute inset-y-0 right-0 pr-3 flex items-center"
-                      onClick={() => setShowPassword(!showPassword)}
-                    >
-                      {showPassword ? (
-                        <EyeOff className="h-5 w-5 text-pink-400 hover:text-pink-600 transition-colors" />
-                      ) : (
-                        <Eye className="h-5 w-5 text-pink-400 hover:text-pink-600 transition-colors" />
-                      )}
-                    </button>
-                  </div>
-                </div>
-                
-                <div className="flex items-center justify-between">
-                  <div></div>
-                  <div className="text-sm">
-                    <Link 
-                      href="/forgot-password"
-                      className="font-medium text-pink-600 hover:text-pink-500"
-                    >
-                      Forgot password?
-                    </Link>
-                  </div>
-                </div>
-                
-                <button
-                  type="submit"
-                  disabled={loading}
-                  className="w-full flex items-center justify-center bg-gradient-to-r from-pink-500 to-purple-600 text-white py-3 px-4 rounded-lg hover:from-pink-600 hover:to-purple-700 transition-all font-medium disabled:opacity-70 disabled:cursor-not-allowed"
-                >
-                  {loading && <Loader className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" />}
-                  {loading ? 'Signing In...' : 'Sign In'}
-                </button>
-              </form>
-            ) : (
-              <div className="space-y-4">
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Mobile Number</label>
-                  <div className="relative">
-                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                      <span className="text-gray-500">+91</span>
-                    </div>
-                    <input
-                      type="tel"
-                      className="block w-full pl-12 pr-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-pink-500 transition-colors"
-                      placeholder="9876543210"
-                    />
-                  </div>
-                </div>
-                <button
-                  className="w-full bg-gradient-to-r from-pink-500 to-purple-600 text-white py-3 px-4 rounded-lg hover:from-pink-600 hover:to-purple-700 transition-all font-medium"
-                >
-                  Send OTP
-                </button>
-              </div>
-            )}
-            
-            <div className="relative my-6">
+            {/* Divider */}
+            <div className="relative">
               <div className="absolute inset-0 flex items-center">
-                <div className="w-full border-t border-gray-300"></div>
+                <div className="w-full border-t border-[rgba(184,102,122,0.12)]" />
               </div>
-              <div className="relative flex justify-center text-sm">
-                <span className="px-2 bg-white text-gray-500">Or sign in with</span>
+              <div className="relative flex justify-center">
+                <span className="px-3 bg-white text-[11px] text-plum-light">
+                  or sign in with email
+                </span>
               </div>
             </div>
-            
-            <div className="grid grid-cols-3 gap-3">
-              <button 
-                onClick={handleGoogleLogin}
-                disabled={loading}
-                className="bg-white border border-gray-300 rounded-lg py-2 px-4 flex items-center justify-center hover:bg-gray-50 transition-colors disabled:opacity-50"
+
+            {/* ── Email form ──────────────────────────────────────── */}
+            <form onSubmit={handleLogin} className="space-y-3.5">
+              <div>
+                <label className="inp-label">Email</label>
+                <div className="relative">
+                  <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2
+                    w-4 h-4 text-rose-brand/50" />
+                  <input
+                    type="email"
+                    value={email}
+                    onChange={e => { setEmail(e.target.value); setError(''); }}
+                    disabled={isRedirecting}
+                    required
+                    placeholder="yourname@email.com"
+                    autoComplete="email"
+                    inputMode="email"
+                    className="inp pl-10 disabled:opacity-50"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <div className="flex items-center justify-between mb-1.5">
+                  <label className="inp-label" style={{ margin: 0 }}>Password</label>
+                  <Link href="/forgot-password"
+                    className="text-[11px] text-rose-brand hover:text-rose-deep transition-colors">
+                    Forgot?
+                  </Link>
+                </div>
+                <div className="relative">
+                  <Lock className="absolute left-3.5 top-1/2 -translate-y-1/2
+                    w-4 h-4 text-rose-brand/50" />
+                  <input
+                    type={showPassword ? 'text' : 'password'}
+                    value={password}
+                    onChange={e => { setPassword(e.target.value); setError(''); }}
+                    disabled={isRedirecting}
+                    required
+                    placeholder="Your password"
+                    autoComplete="current-password"
+                    className="inp pl-10 pr-11 disabled:opacity-50"
+                  />
+                  <button type="button"
+                    onClick={() => setShowPassword(s => !s)}
+                    className="absolute right-3.5 top-1/2 -translate-y-1/2
+                      text-plum-light hover:text-plum transition-colors">
+                    {showPassword
+                      ? <EyeOff className="w-4 h-4" />
+                      : <Eye className="w-4 h-4" />}
+                  </button>
+                </div>
+              </div>
+
+              <button
+                type="submit"
+                disabled={formLoading || isRedirecting || !email || !password}
+                className="w-full py-3 rounded-pill bg-plum text-gold font-medium
+                  text-[13px] tracking-wide hover:bg-plum-mid active:scale-[0.99]
+                  transition-all duration-200 disabled:opacity-50
+                  flex items-center justify-center gap-2"
               >
-                <FcGoogle className="h-5 w-5" />
+                {formLoading ? (
+                  <>
+                    <span className="w-4 h-4 border-2 border-gold/30 border-t-gold
+                      rounded-full animate-spin" />
+                    Signing in…
+                  </>
+                ) : 'Sign In 💕'}
               </button>
-              
-              <button 
-                className="bg-blue-600 text-white rounded-lg py-2 px-4 flex items-center justify-center hover:bg-blue-700 transition-colors"
-              >
-                <Facebook className="h-5 w-5" />
-              </button>
-              
-              <button className="bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-lg py-2 px-4 flex items-center justify-center hover:from-purple-700 hover:to-pink-700 transition-colors">
-                <Instagram className="h-5 w-5" />
-              </button>
-            </div>
-            
-            <div className="mt-6 text-center">
-              <p className="text-gray-600">
-                New to our salon?{' '}
-                <Link href="/signup" className="font-medium text-pink-600 hover:text-pink-500">
-                  Create an account
-                </Link>
-              </p>
-            </div>
+            </form>
+
+            <p className="text-center text-[12px] text-plum-light">
+              New here?{' '}
+              <Link href="/signup"
+                className="text-rose-brand font-medium hover:text-rose-deep transition-colors">
+                Create your account
+              </Link>
+            </p>
           </div>
         </motion.div>
-        
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
+
+        {/* Trust badge */}
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          className="mt-6 bg-white rounded-2xl shadow-xl p-4 border border-pink-100"
+          transition={{ delay: 0.2 }}
+          className="mt-4 bg-white rounded-2xl shadow-brand-sm
+            border border-[rgba(184,102,122,0.1)] p-4 flex items-center gap-3"
         >
-          <div className="flex items-center">
-            <div className="bg-pink-100 p-3 rounded-full mr-3">
-              <Heart className="h-6 w-6 text-pink-600" />
+          <Sparkles className="w-6 h-6 text-rose-brand flex-shrink-0" />
+          <div>
+            <div className="text-[12px] font-medium text-plum">
+              Patna's most loved parlour 🌸
             </div>
-            <div>
-              <h3 className="font-medium text-gray-800">Exclusive member benefits</h3>
-              <p className="text-sm text-gray-600">Access special offers and booking history.</p>
+            <div className="text-[11px] text-plum-light">
+              Trusted by 2,000+ women · Est. 2018
             </div>
           </div>
         </motion.div>
+
       </div>
     </div>
   );

@@ -58,7 +58,7 @@ interface Reward {
 
 export default function LoyaltyPage() {
   const router = useRouter();
-  const { user, profile, isLoggedIn, refreshProfile } = useAuth();
+  const { profile, isLoggedIn, refreshProfile } = useAuth();
   const [loading, setLoading] = useState(true);
   const [activeTab, setActiveTab] = useState<'overview' | 'tiers' | 'rewards' | 'transactions' | 'referrals'>('overview');
   const [tiers, setTiers] = useState<LoyaltyTier[]>([]);
@@ -116,7 +116,7 @@ export default function LoyaltyPage() {
   }, [isLoggedIn]);
 
   const fetchLoyaltyData = async () => {
-    if (!user) return;
+    if (!profile) return;
 
     setLoading(true);
     try {
@@ -130,7 +130,7 @@ export default function LoyaltyPage() {
         setTiers(tiersData);
         
         // Determine current and next tier
-        const userPoints = profile?.loyalty_points || 0;
+        const userPoints = profile.loyalty_points || 0;
         const current = tiersData.find(t => 
           userPoints >= t.min_points && (t.max_points === null || userPoints <= t.max_points)
         );
@@ -144,7 +144,7 @@ export default function LoyaltyPage() {
       const { data: transactionsData } = await supabase
         .from('loyalty_transactions')
         .select('*')
-        .eq('user_id', user.id)
+        .eq('user_id', profile.id)
         .order('created_at', { ascending: false })
         .limit(50);
 
@@ -156,7 +156,7 @@ export default function LoyaltyPage() {
       const { data: referralsData } = await supabase
         .from('referrals')
         .select('*')
-        .eq('referrer_user_id', user.id)
+        .eq('referrer_user_id', profile.id)
         .order('created_at', { ascending: false });
 
       if (referralsData) {
@@ -176,7 +176,7 @@ export default function LoyaltyPage() {
   };
 
   const createReferralCode = async () => {
-    if (!user || !profile) return;
+    if (!profile) return;
 
     try {
       const { data, error } = await supabase.rpc('generate_referral_code');
@@ -185,7 +185,7 @@ export default function LoyaltyPage() {
         const { error: insertError } = await supabase
           .from('referrals')
           .insert({
-            referrer_user_id: user.id,
+            referrer_user_id: profile.id,
             referral_code: data,
             status: 'pending'
           });
@@ -231,14 +231,14 @@ export default function LoyaltyPage() {
   };
 
   const handleRedeemReward = async (reward: Reward) => {
-    if (!user || !profile || profile.loyalty_points < reward.points_required) return;
+    if (!profile || profile.loyalty_points < reward.points_required) return;
 
     setRedeeming(reward.id);
     try {
       const { error } = await supabase
         .from('reward_redemptions')
         .insert({
-          user_id: user.id,
+          user_id: profile.id,
           reward_type: 'discount',
           reward_name: reward.name,
           points_redeemed: reward.points_required,
@@ -255,13 +255,13 @@ export default function LoyaltyPage() {
             loyalty_points: profile.loyalty_points - reward.points_required,
             updated_at: new Date().toISOString()
           })
-          .eq('id', user.id);
+          .eq('id', profile.id);
 
         // Create transaction
         await supabase
           .from('loyalty_transactions')
           .insert({
-            user_id: user.id,
+            user_id: profile.id,
             transaction_type: 'redeemed',
             points: -reward.points_required,
             description: `Redeemed: ${reward.name}`,
@@ -386,7 +386,7 @@ export default function LoyaltyPage() {
               <div className="text-xs text-white opacity-90">Total Bookings</div>
             </div>
             <div className="bg-white bg-opacity-10 backdrop-blur-sm p-4 text-center">
-              <div className="text-2xl font-bold text-white">{profile?.total_referrals || 0}</div>
+              {/* <div className="text-2xl font-bold text-white">{profile?.total_referrals || 0}</div> */}
               <div className="text-xs text-white opacity-90">Referrals</div>
             </div>
             <div className="bg-white bg-opacity-10 backdrop-blur-sm p-4 text-center">

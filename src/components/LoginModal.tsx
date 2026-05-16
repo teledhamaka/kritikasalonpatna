@@ -2,7 +2,8 @@
 "use client";
 
 import { useState, useEffect } from 'react';
-import { FiX, FiUser, FiMail, FiLock, FiPhone, FiCalendar, FiHeart, FiHome, FiEye, FiEyeOff, FiGift, FiStar, FiCheck } from 'react-icons/fi';
+import { X, User, Mail, Lock, Phone, Calendar, Heart, Home, Eye, 
+  EyeOff, Gift, Star, Check } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 
 interface LoginModalProps {
@@ -13,21 +14,21 @@ interface LoginModalProps {
 }
 
 // This interface should match your 'profiles' table columns exactly
-// interface UserProfile {
-//   id?: string;
-//   full_name: string;
-//   email: string;
-//   birthday: string;
-//   phone: string;
-//   enable_period_tracker: boolean;
-//   anniversary_date?: string;
-//   age?: number;
-//   theme_style?: string;
-//   login_count?: number;
-//   last_login_at?: string;
-//   created_at?: string;
-//   updated_at?: string;
-// }
+interface UserProfile {
+  id?: string;
+  full_name: string;
+  email: string;
+  birthday: string;
+  phone: string;
+  enable_period_tracker: boolean;
+  anniversary_date?: string;
+  age?: number;
+  theme_style?: string;
+  login_count?: number;
+  last_login_at?: string;
+  created_at?: string;
+  updated_at?: string;
+}
 
 const LoginModal = ({ isOpen, onClose, onLoginSuccess, onSkipToHome }: LoginModalProps) => {
   const [isLogin, setIsLogin] = useState(true);
@@ -142,18 +143,16 @@ const LoginModal = ({ isOpen, onClose, onLoginSuccess, onSkipToHome }: LoginModa
             return;
           }
 
-          // Create user profile data
-          const userData = {
-            full_name: name,
-            phone: phone,
-            birthday: birthday,
-            anniversary_date: anniversaryDate || undefined,
-            enable_period_tracker: enablePeriodTracker,
-            age: age,
-            theme_style: 'pink',
-          };
+          const nameParts = name.trim().split(' ').filter(Boolean);
+          const firstName = nameParts[0] ?? '';
+          const lastName = nameParts.slice(1).join(' ');
 
-          const result = await signUp(email);
+          const result = await signUp({
+            email,
+            password,
+            firstName,
+            lastName,
+          });
 
           if (result.error) {
             setError(result.error);
@@ -230,10 +229,10 @@ const LoginModal = ({ isOpen, onClose, onLoginSuccess, onSkipToHome }: LoginModa
             <div className="text-6xl mb-4">🎉</div>
             <h3 className="text-2xl font-bold text-pink-600 mb-2">Welcome Bonus!</h3>
             <p className="text-gray-700 mb-4">
-              Congratulations! You&apos;ve earned a 20% discount on your first service!
+              Congratulations! You've earned a 20% discount on your first service!
             </p>
             <div className="inline-flex items-center bg-pink-100 text-pink-800 px-4 py-2 rounded-full">
-              <FiGift className="mr-2" />
+              <Gift className="mr-2" />
               <span className="font-semibold">Code: WELCOME20</span>
             </div>
           </div>
@@ -246,7 +245,7 @@ const LoginModal = ({ isOpen, onClose, onLoginSuccess, onSkipToHome }: LoginModa
           <div className="bg-white rounded-2xl p-6 max-w-sm mx-4">
             <div className="text-center">
               <div className="w-16 h-16 bg-pink-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <FiHeart className="w-8 h-8 text-pink-500" />
+                <Heart className="w-8 h-8 text-pink-500" />
               </div>
               <h3 className="text-xl font-bold text-gray-800 mb-2">Age Restriction</h3>
               <p className="text-gray-600 mb-4">
@@ -271,7 +270,7 @@ const LoginModal = ({ isOpen, onClose, onLoginSuccess, onSkipToHome }: LoginModa
             onClick={onClose}
             className="text-gray-500 hover:text-gray-700 p-1 transition-colors"
           >
-            <FiX className="w-6 h-6" />
+            <X className="w-6 h-6" />
           </button>
           {onSkipToHome && (
             <button
@@ -279,7 +278,7 @@ const LoginModal = ({ isOpen, onClose, onLoginSuccess, onSkipToHome }: LoginModa
               className="flex items-center text-pink-600 hover:text-pink-700 font-medium transition-colors"
             >
               Skip to Home
-              <FiHome className="w-4 h-4 ml-1" />
+              <Home className="w-4 h-4 ml-1" />
             </button>
           )}
         </div>
@@ -287,7 +286,7 @@ const LoginModal = ({ isOpen, onClose, onLoginSuccess, onSkipToHome }: LoginModa
         <div className="p-6">
           <div className="text-center mb-6">
             <div className="w-16 h-16 bg-gradient-to-r from-pink-400 to-purple-500 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
-              <FiHeart className="w-8 h-8 text-white animate-pulse" />
+              <Heart className="w-8 h-8 text-white animate-pulse" />
             </div>
             <h2 className="text-2xl font-bold text-gray-800">
               {isLogin ? 'Welcome Back, Beautiful!' : 'Join Our Beauty Family'}
@@ -310,7 +309,7 @@ const LoginModal = ({ isOpen, onClose, onLoginSuccess, onSkipToHome }: LoginModa
 
           {error && (
             <div className="bg-red-50 border border-red-200 text-red-700 p-3 rounded-lg mb-4 flex items-center">
-              <FiHeart className="w-4 h-4 mr-2 flex-shrink-0" />
+              <Heart className="w-4 h-4 mr-2 flex-shrink-0" />
               <span className="text-sm">{error}</span>
             </div>
           )}
@@ -320,7 +319,7 @@ const LoginModal = ({ isOpen, onClose, onLoginSuccess, onSkipToHome }: LoginModa
             {isLogin && (
               <>
                 <div className="relative">
-                  <FiMail className="absolute left-3 top-3.5 text-gray-400" />
+                  <Mail className="absolute left-3 top-3.5 text-gray-400" />
                   <input
                     type="email"
                     placeholder="Your email address"
@@ -331,13 +330,13 @@ const LoginModal = ({ isOpen, onClose, onLoginSuccess, onSkipToHome }: LoginModa
                   />
                   {email && (
                     <div className="absolute right-3 top-3.5">
-                      {isEmailValid ? <FiCheck className="text-green-500" /> : <div className="w-2 h-2 bg-red-400 rounded-full"></div>}
+                      {isEmailValid ? <Check className="text-green-500" /> : <div className="w-2 h-2 bg-red-400 rounded-full"></div>}
                     </div>
                   )}
                 </div>
 
                 <div className="relative">
-                  <FiLock className="absolute left-3 top-3.5 text-gray-400" />
+                  <Lock className="absolute left-3 top-3.5 text-gray-400" />
                   <input
                     type={showPassword ? "text" : "password"}
                     placeholder="Your password"
@@ -351,7 +350,7 @@ const LoginModal = ({ isOpen, onClose, onLoginSuccess, onSkipToHome }: LoginModa
                     onClick={() => setShowPassword(!showPassword)}
                     className="absolute right-3 top-3 text-gray-400 hover:text-gray-600 transition-colors p-1"
                   >
-                    {showPassword ? <FiEyeOff /> : <FiEye />}
+                    {showPassword ? <EyeOff /> : <Eye />}
                   </button>
                 </div>
               </>
@@ -361,7 +360,7 @@ const LoginModal = ({ isOpen, onClose, onLoginSuccess, onSkipToHome }: LoginModa
             {!isLogin && formStep === 1 && (
               <>
                 <div className="relative">
-                  <FiUser className="absolute left-3 top-3.5 text-gray-400" />
+                  <User className="absolute left-3 top-3.5 text-gray-400" />
                   <input
                     type="text"
                     placeholder="Your beautiful name"
@@ -372,7 +371,7 @@ const LoginModal = ({ isOpen, onClose, onLoginSuccess, onSkipToHome }: LoginModa
                   />
                 </div>
                 <div className="relative">
-                  <FiMail className="absolute left-3 top-3.5 text-gray-400" />
+                  <Mail className="absolute left-3 top-3.5 text-gray-400" />
                   <input
                     type="email"
                     placeholder="Your email address"
@@ -383,12 +382,12 @@ const LoginModal = ({ isOpen, onClose, onLoginSuccess, onSkipToHome }: LoginModa
                   />
                   {email && (
                     <div className="absolute right-3 top-3.5">
-                      {isEmailValid ? <FiCheck className="text-green-500" /> : <div className="w-2 h-2 bg-red-400 rounded-full"></div>}
+                      {isEmailValid ? <Check className="text-green-500" /> : <div className="w-2 h-2 bg-red-400 rounded-full"></div>}
                     </div>
                   )}
                 </div>
                 <div className="relative">
-                  <FiLock className="absolute left-3 top-3.5 text-gray-400" />
+                  <Lock className="absolute left-3 top-3.5 text-gray-400" />
                   <input
                     type={showPassword ? "text" : "password"}
                     placeholder="Create a secure password"
@@ -402,7 +401,7 @@ const LoginModal = ({ isOpen, onClose, onLoginSuccess, onSkipToHome }: LoginModa
                     onClick={() => setShowPassword(!showPassword)}
                     className="absolute right-3 top-3 text-gray-400 hover:text-gray-600 transition-colors p-1"
                   >
-                    {showPassword ? <FiEyeOff /> : <FiEye />}
+                    {showPassword ? <EyeOff /> : <Eye />}
                   </button>
                 </div>
 
@@ -429,7 +428,7 @@ const LoginModal = ({ isOpen, onClose, onLoginSuccess, onSkipToHome }: LoginModa
             {!isLogin && formStep === 2 && (
               <>
                 <div className="relative">
-                  <FiPhone className="absolute left-3 top-3.5 text-gray-400" />
+                  <Phone className="absolute left-3 top-3.5 text-gray-400" />
                   <input
                     type="tel"
                     placeholder="Your phone number"
@@ -440,7 +439,7 @@ const LoginModal = ({ isOpen, onClose, onLoginSuccess, onSkipToHome }: LoginModa
                   />
                 </div>
                 <div className="relative">
-                  <FiCalendar className="absolute left-3 top-3.5 text-gray-400" />
+                  <Calendar className="absolute left-3 top-3.5 text-gray-400" />
                   <input
                     type="date"
                     value={birthday}
@@ -450,7 +449,7 @@ const LoginModal = ({ isOpen, onClose, onLoginSuccess, onSkipToHome }: LoginModa
                   />
                 </div>
                 <div className="relative">
-                  <FiCalendar className="absolute left-3 top-3.5 text-gray-400" />
+                  <Calendar className="absolute left-3 top-3.5 text-gray-400" />
                   <input
                     type="date"
                     value={anniversaryDate}
@@ -470,7 +469,7 @@ const LoginModal = ({ isOpen, onClose, onLoginSuccess, onSkipToHome }: LoginModa
                     />
                     <div>
                       <label htmlFor="periodTracker" className="text-sm font-medium text-gray-700 flex items-center">
-                        <FiHeart className="w-4 h-4 text-pink-500 mr-1.5" />
+                        <Heart className="w-4 h-4 text-pink-500 mr-1.5" />
                         Personalized Beauty Calendar
                       </label>
                       <p className="text-xs text-gray-600 mt-1">
@@ -518,7 +517,7 @@ const LoginModal = ({ isOpen, onClose, onLoginSuccess, onSkipToHome }: LoginModa
         
         <div className="bg-gradient-to-r from-yellow-50 to-pink-50 p-3 text-center border-t">
           <div className="flex items-center justify-center text-xs text-gray-600">
-            <FiStar className="w-3 h-3 mr-1.5 text-yellow-500" />
+            <Star className="w-3 h-3 mr-1.5 text-yellow-500" />
             <span className="font-medium">Beauty Tip:</span>
             <span className="ml-1">Drink water for glowing skin!</span>
           </div>

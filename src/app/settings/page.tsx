@@ -40,7 +40,7 @@ interface NotificationUpdateError {
 
 export default function SettingsPage() {
   const router = useRouter();
-  const { user, profile, signOut, isLoggedIn } = useAuth();
+  const { profile, signOut, isLoggedIn } = useAuth();
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [activeSection, setActiveSection] = useState<string>('account');
@@ -91,7 +91,7 @@ export default function SettingsPage() {
   }, [isLoggedIn]);
 
   const fetchSettings = async () => {
-    if (!user) return;
+    if (!profile) return;
 
     setLoading(true);
     try {
@@ -99,7 +99,7 @@ export default function SettingsPage() {
       const { data: notifData } = await supabase
         .from('notification_preferences')
         .select('*')
-        .eq('user_id', user.id)
+        .eq('user_id', profile.id)
         .single();
 
       if (notifData) {
@@ -110,7 +110,7 @@ export default function SettingsPage() {
       const { data: addressData } = await supabase
         .from('addresses')
         .select('*')
-        .eq('user_id', user.id)
+        .eq('user_id', profile.id)
         .order('is_default', { ascending: false });
 
       if (addressData) {
@@ -121,7 +121,7 @@ export default function SettingsPage() {
       const { data: prefsData } = await supabase
         .from('user_preferences')
         .select('*')
-        .eq('user_id', user.id);
+        .eq('user_id', profile.id);
 
       if (prefsData) {
         prefsData.forEach((pref) => {
@@ -175,14 +175,14 @@ export default function SettingsPage() {
   };
 
   const handleSaveNotificationPrefs = async () => {
-    if (!user) return;
+    if (!profile) return;
 
     setSaving(true);
     try {
       const { error } = await supabase
         .from('notification_preferences')
         .upsert({
-          user_id: user.id,
+          user_id: profile.id,
           ...notificationPrefs,
           updated_at: new Date().toISOString()
         });
@@ -198,14 +198,14 @@ export default function SettingsPage() {
   };
 
   const handleSavePrivacySettings = async () => {
-    if (!user) return;
+    if (!profile) return;
 
     setSaving(true);
     try {
       const { error } = await supabase
         .from('user_preferences')
         .upsert({
-          user_id: user.id,
+          user_id: profile.id,
           preference_key: 'privacy_settings',
           preference_value: privacySettings,
           updated_at: new Date().toISOString()
@@ -239,14 +239,14 @@ export default function SettingsPage() {
   };
 
   const handleSetDefaultAddress = async (addressId: string) => {
-    if (!user) return;
+    if (!profile) return;
 
     try {
       // Remove default from all addresses
       await supabase
         .from('addresses')
         .update({ is_default: false })
-        .eq('user_id', user.id);
+        .eq('user_id', profile.id);
 
       // Set new default
       const { error } = await supabase
@@ -263,11 +263,12 @@ export default function SettingsPage() {
   };
 
   const handleDeleteAccount = async () => {
+    if (!profile) return;
     if (!confirm('Are you absolutely sure? This action cannot be undone!')) return;
 
     try {
       // Delete user data
-      await supabase.from('profiles').delete().eq('id', user!.id);
+      await supabase.from('profiles').delete().eq('id', profile.id);
       
       // Sign out
       await signOut();

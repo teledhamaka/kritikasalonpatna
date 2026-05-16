@@ -1,302 +1,658 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* =======================================================
+   KRITIKA LADIES BEAUTY PARLOUR — PATNA PREMIUM EDITION
+   Elegant • Feminine • Luxury • Fast • Local SEO Friendly
+   ======================================================= */
+
+/* ---------------- BASE LAYER ---------------- */
+@layer base {
+  :root {
+    /* Brand palette */
+    --background: #fffafc;
+    --foreground: #2d1b24;
+
+    --rose-50: #fff1f7;
+    --rose-100: #ffe4ee;
+    --rose-200: #ffcde1;
+    --rose-300: #ffabd0;
+    --rose-400: #f472b6;
+    --rose-500: #ec4899;
+    --rose-600: #db2777;
+    --rose-700: #be185d;
+
+    --purple-100: #f3e8ff;
+    --purple-500: #a855f7;
+    --gold-100: #fff7d6;
+    --gold-300: #f6d365;
+    --peach-100: #fff2eb;
+
+    /* Shadows */
+    --shadow-soft: 0 8px 24px rgba(236, 72, 153, 0.08);
+    --shadow-card: 0 14px 36px rgba(236, 72, 153, 0.14);
+    --shadow-button: 0 8px 22px rgba(236, 72, 153, 0.25);
+
+    /* Radius */
+    --radius-lg: 1rem;
+    --radius-xl: 1.5rem;
+    --radius-2xl: 2rem;
+  }
+
+  * {
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 80px;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    font-family: var(--font-inter), system-ui, -apple-system, sans-serif;
+    background:
+      radial-gradient(circle at 10% 20%, #fff7fa, transparent 30%),
+      radial-gradient(circle at 90% 10%, #fff0f7, transparent 25%),
+      linear-gradient(to bottom, #fffafc, #fff7fb);
+    color: var(--foreground);
+    min-height: 100vh;
+    line-height: 1.65;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-playfair), serif;
+    letter-spacing: -0.02em;
+    font-weight: 600;
+  }
+
+  ::selection {
+    background: rgba(236, 72, 153, 0.22);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--rose-500);
+    outline-offset: 2px;
+    border-radius: 8px;
+  }
+
+  img {
+    user-select: none;
+  }
 }
 
-/* Mobile-first optimizations */
+/* ---------------- COMPONENTS LAYER ---------------- */
+@layer components {
+  /* Hero section */
+  .beauty-hero {
+    background: linear-gradient(135deg, rgba(255,255,255,0.85), rgba(255,240,247,0.9)),
+                radial-gradient(circle at top right, #ffdce9, transparent 35%);
+    border-radius: 2rem;
+    border: 1px solid #ffe0eb;
+    box-shadow: var(--shadow-card);
+  }
+
+  /* Local badge */
+  .badge-patna {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    border-radius: 9999px;
+    padding: 0.25rem 1rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, #ffd7e7, #fff1f7);
+    color: #831843;
+  }
+  .badge-patna::before {
+    content: "📍";
+  }
+
+  /* Area chip (Patna neighbourhoods) */
+  .area-chip {
+    border-radius: 9999px;
+    padding: 0.25rem 0.75rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    background: #fff0f6;
+    color: #9d174d;
+    border: 1px solid #ffd4e6;
+    transition: all 0.2s;
+  }
+  .area-chip:hover {
+    background: #ffe4ef;
+    transform: translateY(-1px);
+  }
+
+  /* Bridal premium card */
+  .bridal-card {
+    background: linear-gradient(145deg, white, #fff7fb);
+    border-radius: 1.75rem;
+    border-left: 6px solid var(--rose-500);
+    box-shadow: var(--shadow-soft);
+    transition: all 0.25s ease;
+  }
+  .bridal-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-card);
+  }
+
+  /* Wedding ribbon */
+  .bridal-ribbon {
+    position: absolute;
+    top: 0.75rem;
+    left: 0;
+    padding: 0.25rem 1rem;
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: white;
+    background: linear-gradient(135deg, #ec4899, #be185d);
+    border-radius: 0 9999px 9999px 0;
+  }
+
+  /* Offer sticker */
+  .offer-sticker {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    border-radius: 9999px;
+    padding: 0.25rem 0.75rem;
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: white;
+    background: linear-gradient(135deg, #f6d365, #fda085);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+  }
+
+  /* Urgency badge */
+  .urgency-badge {
+    background: #fecaca;
+    padding: 0.25rem 0.5rem;
+    border-radius: 9999px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: #991b1b;
+    animation: pulse 2s infinite;
+  }
+
+  /* General beauty card */
+  .beauty-card {
+    background: linear-gradient(180deg, #ffffff, #fffafc);
+    border-radius: 1.5rem;
+    border: 1px solid #ffe4ee;
+    box-shadow: var(--shadow-soft);
+    transition: all 0.25s ease;
+    will-change: transform;
+  }
+  .beauty-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-card);
+  }
+
+  /* Price rows */
+  .service-price-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.75rem 0;
+    border-bottom: 1px dashed #ffd9e6;
+  }
+  .price-old {
+    text-decoration: line-through;
+    color: #9ca3af;
+    font-size: 0.875rem;
+  }
+  .price-new {
+    font-weight: 700;
+    color: var(--rose-600);
+  }
+
+  /* Premium glass price card */
+  .price-glass-card {
+    border-radius: 1.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    background: rgba(255, 255, 255, 0.72);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    box-shadow: 0 10px 24px rgba(236, 72, 153, 0.08);
+    transition: all 0.25s ease;
+  }
+  .price-glass-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 14px 28px rgba(236, 72, 153, 0.14);
+  }
+
+  /* Buttons */
+  .btn-primary {
+    display: inline-block;
+    border-radius: 1rem;
+    padding: 0.75rem 1.25rem;
+    font-weight: 600;
+    color: white;
+    background: linear-gradient(135deg, var(--rose-500), var(--rose-600));
+    box-shadow: 0 8px 22px rgba(236, 72, 153, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.2) inset;
+    transition: all 0.25s ease;
+    cursor: pointer;
+  }
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.04);
+    box-shadow: 0 12px 30px rgba(236, 72, 153, 0.32), 0 0 18px rgba(236, 72, 153, 0.22);
+  }
+  .btn-primary:active {
+    transform: translateY(-1px) scale(0.97);
+  }
+
+  .btn-secondary {
+    display: inline-block;
+    border-radius: 1rem;
+    padding: 0.75rem 1.25rem;
+    font-weight: 600;
+    background: white;
+    color: var(--rose-600);
+    border: 1px solid #ffd7e7;
+    transition: all 0.25s ease;
+  }
+  .btn-secondary:hover {
+    background: #fff0f8;
+  }
+
+  /* Loading button state */
+  .btn-loading {
+    pointer-events: none;
+    opacity: 0.8;
+    position: relative;
+    color: transparent !important;
+  }
+  .btn-loading::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+    border: 2px solid white;
+    border-top-color: transparent;
+    animation: spin 0.8s linear infinite;
+    transform: translate(-50%, -50%);
+  }
+
+  /* Testimonial card */
+  .testimonial-card {
+    border-radius: 1.5rem;
+    background: white;
+    padding: 1.25rem;
+    border: 1px solid #ffe7ef;
+    box-shadow: var(--shadow-soft);
+  }
+  .avatar-circle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 9999px;
+    font-weight: 700;
+    background: linear-gradient(135deg, #ffdbe9, #f3e8ff);
+    color: #9d174d;
+  }
+  .stars {
+    color: #f59e0b;
+    letter-spacing: 2px;
+  }
+
+  /* Trust strip */
+  .trust-strip {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    font-size: 0.75rem;
+  }
+
+  /* Festival / Seasonal highlight (Patna weddings, Chhath, Diwali) */
+  .festive-banner,
+  .seasonal-highlight {
+    border-radius: 1rem;
+    padding: 1rem;
+    text-align: center;
+    font-size: 0.875rem;
+    font-weight: 600;
+    background: linear-gradient(135deg, #fff1f2, #fff7ed);
+    border: 1px solid #ffd8e6;
+    border-left: 6px solid #f59e0b;
+    color: #92400e;
+  }
+
+  /* Glass effect */
+  .glass-effect {
+    background: rgba(255, 255, 255, 0.72);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 220, 233, 0.5);
+  }
+
+  /* Floating action buttons - Z-index 50 */
+  .fab-whatsapp,
+  .fab-call {
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 9999px;
+    color: white;
+    z-index: 50;
+    transition: all 0.25s ease;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  }
+  .fab-whatsapp {
+    width: 58px;
+    height: 58px;
+    right: 22px;
+    bottom: 22px;
+    background: #25d366;
+    animation: whatsappPulse 2s infinite;
+  }
+  .fab-call {
+    width: 52px;
+    height: 52px;
+    right: 92px;
+    bottom: 25px;
+    background: var(--rose-500);
+  }
+  .fab-whatsapp:hover,
+  .fab-call:hover {
+    transform: scale(1.08);
+  }
+
+  /* Mobile bottom CTA bar */
+  .mobile-cta-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: white;
+    display: flex;
+    gap: 0.75rem;
+    padding: 0.75rem;
+    z-index: 60;
+    box-shadow: 0 -4px 20px rgba(0,0,0,0.08);
+    border-top: 1px solid #ffe0eb;
+  }
+
+  /* Before/After image hover */
+  .before-after-card {
+    overflow: hidden;
+    border-radius: 1rem;
+  }
+  .before-after-card img {
+    transition: transform 0.4s ease;
+  }
+  .before-after-card:hover img {
+    transform: scale(1.08);
+  }
+
+  /* Hero soft float animation */
+  .hero-soft-float {
+    animation: heroFloat 5s ease-in-out infinite;
+  }
+}
+
+/* ---------------- UTILITIES LAYER ---------------- */
+@layer utilities {
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  .section-spacing {
+    margin-bottom: 3rem;
+  }
+
+  .gradient-text {
+    background: linear-gradient(to right, #ec4899, #a855f7);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .skeleton {
+    background: linear-gradient(90deg, #ffe9f3 25%, #ffd9ea 50%, #ffe9f3 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.4s infinite;
+  }
+
+  .touch-target {
+    min-width: 44px;
+    min-height: 44px;
+  }
+}
+
+/* ---------------- SERVICE CONTENT (blog-style local description) ---------------- */
+.service-content {
+  font-family: inherit;
+  color: #374151;
+  line-height: 1.8;
+}
+
+.service-content p {
+  margin: 0 0 14px;
+  font-size: 14px;
+  color: #374151;
+  line-height: 1.8;
+}
+
+.service-content h3 {
+  font-size: 15px;
+  font-weight: 700;
+  color: #9f1239;  /* rose-700 */
+  margin: 20px 0 10px;
+  letter-spacing: 0.01em;
+}
+
+.service-content a {
+  color: #e11d48;
+  text-decoration: none;
+}
+.service-content a:hover {
+  text-decoration: underline;
+}
+
+.service-content ul,
+.service-content ol {
+  padding-left: 20px;
+  margin: 0 0 14px;
+}
+
+.service-content li {
+  font-size: 13px;
+  color: #374151;
+  line-height: 1.7;
+  margin-bottom: 5px;
+}
+
+.service-content strong {
+  color: #111827;
+  font-weight: 700;
+}
+
+.service-content div[style*="✦"] {
+  margin: 24px 0;
+}
+
+/* Smooth reveal for content blocks */
+.service-content > * {
+  animation: fadeInUp 0.3s ease both;
+}
+
+/* ---------------- KEYFRAMES ---------------- */
+@keyframes shimmer {
+  from { background-position: 200% 0; }
+  to { background-position: -200% 0; }
+}
+
+@keyframes spin {
+  0% { transform: translate(-50%, -50%) rotate(0deg); }
+  100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+@keyframes pulse {
+  50% { transform: scale(1.08); }
+}
+
+@keyframes whatsappPulse {
+  0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5); }
+  70% { box-shadow: 0 0 0 14px rgba(37, 211, 102, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+}
+
+@keyframes heroFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-3px); }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ---------------- MOBILE ADAPTATIONS ---------------- */
 @media (max-width: 768px) {
   html, body {
     max-width: 100%;
     overflow-x: hidden;
-    height: 100%;
-    width: 100%;
-    position: relative;
   }
-  
-  /* Prevent horizontal scroll */
-  * {
-    max-width: 100vw;
+
+  .section-spacing {
+    margin-bottom: 2rem;
   }
-  
-  /* Improve tap targets */
-  .touch-target {
-    min-height: 44px;
+
+  .fab-call {
+    right: 82px;
+    width: 48px;
+    height: 48px;
+    bottom: 25px;
+  }
+  .fab-whatsapp {
+    width: 52px;
+    height: 52px;
+    bottom: 22px;
+  }
+
+  button, a {
     min-width: 44px;
+    min-height: 44px;
   }
-  
-  /* Prevent zoom on input focus */
-  input, select, textarea {
-    font-size: 16px !important;
+  input, textarea, select {
+    font-size: 16px;
   }
-}
 
-/* Safe Area Insets for Modern Mobile Browsers */
-.safe-area-inset {
-  padding-left: env(safe-area-inset-left, 0px);
-  padding-right: env(safe-area-inset-right, 0px);
-  padding-bottom: env(safe-area-inset-bottom, 0px);
-  padding-top: env(safe-area-inset-top, 0px);
-}
-
-.pb-safe {
-  padding-bottom: env(safe-area-inset-bottom, 1rem);
-}
-
-/* Fix for mobile viewport height issues */
-@supports (-webkit-touch-callout: none) {
-  .min-h-screen {
-    min-height: -webkit-fill-available;
-  }
-  
-  .h-screen {
-    height: -webkit-fill-available;
+  .mobile-cta-bar {
+    padding: 0.5rem;
   }
 }
 
-/* Landscape Mode Specific Fixes */
-@media (max-width: 768px) and (orientation: landscape) {
-  /* Reduce vertical spacing in landscape */
-  .py-6 {
-    padding-top: 0.5rem !important;
-    padding-bottom: 0.5rem !important;
+/* ---------------- SAFE AREA (NOTCH) SUPPORT ---------------- */
+@supports (padding-bottom: env(safe-area-inset-bottom)) {
+  .fab-whatsapp {
+    bottom: calc(22px + env(safe-area-inset-bottom));
   }
-  
-  /* Make service cards more compact */
-  .min-w-\[280px\] {
-    min-width: 240px;
+  .fab-call {
+    bottom: calc(25px + env(safe-area-inset-bottom));
   }
-  
-  /* Adjust font sizes for landscape */
-  .text-lg {
-    font-size: 1rem !important;
-  }
-  
-  .text-xl {
-    font-size: 1.125rem !important;
+  .mobile-cta-bar {
+    padding-bottom: calc(0.75rem + env(safe-area-inset-bottom));
   }
 }
 
-/* Portrait Mode Specific */
-@media (max-width: 768px) and (orientation: portrait) {
-  /* Ensure proper spacing in portrait */
-  .pb-32 {
-    padding-bottom: 8rem !important;
-  }
-}
-
-/* Prevent content from hiding behind fixed elements */
-.scroll-padding {
-  scroll-padding-bottom: 80px;
-}
-
-@media (orientation: landscape) {
-  .scroll-padding {
-    scroll-padding-bottom: 60px;
-  }
-}
-
-/* Smooth scrolling */
-html {
-  scroll-behavior: smooth;
-  scroll-padding-top: 80px;
-}
-
-/* Hide scrollbar but keep functionality */
-.scrollbar-hide {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
-
-.scrollbar-hide::-webkit-scrollbar {
-  display: none;
-}
-
-/* Performance animations */
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-@keyframes slideUp {
-  from { transform: translateY(20px); opacity: 0; }
-  to { transform: translateY(0); opacity: 1; }
-}
-
-.fade-in {
-  animation: fadeIn 0.3s ease-out;
-}
-
-.slide-up {
-  animation: slideUp 0.4s ease-out;
-}
-
-/* Loading skeleton */
-.skeleton {
-  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
-  background-size: 200% 100%;
-  animation: loading 1.5s infinite;
-}
-
-@keyframes loading {
-  0% { background-position: 200% 0; }
-  100% { background-position: -200% 0; }
-}
-
-/* Modern glass effect */
-.glass-effect {
-  background: rgba(255, 255, 255, 0.7);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-/* Button hover effects */
-.btn-hover-effect {
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.btn-hover-effect:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 25px -5px rgba(236, 72, 153, 0.3);
-}
-
-/* Custom scrollbar for desktop */
-@media (min-width: 768px) {
-  ::-webkit-scrollbar {
-    width: 8px;
-  }
-  
-  ::-webkit-scrollbar-track {
-    background: #f1f1f1;
-    border-radius: 4px;
-  }
-  
-  ::-webkit-scrollbar-thumb {
-    background: linear-gradient(to bottom, #ec4899, #db2777);
-    border-radius: 4px;
-  }
-  
-  ::-webkit-scrollbar-thumb:hover {
-    background: linear-gradient(to bottom, #db2777, #be185d);
-  }
-}
-
-/* Print styles */
-@media print {
-  .no-print {
-    display: none !important;
-  }
-  
-  .print-break {
-    page-break-before: always;
-  }
-}
-
-/* Reduced motion */
+/* ---------------- REDUCED MOTION PREFERENCE ---------------- */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
   *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
+    animation: none !important;
+    transition: none !important;
     scroll-behavior: auto !important;
   }
+  .fab-whatsapp {
+    animation: none !important;
+  }
+  .hero-soft-float {
+    animation: none !important;
+  }
+  .service-content > * {
+    animation: none !important;
+  }
 }
 
-/* Dark mode support */
+/* ---------------- DARK MODE PREFERENCE ---------------- */
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #140d11;
+    --foreground: #fff4f8;
   }
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
-  line-height: 1.6;
-  overflow-x: hidden;
-  width: 100%;
-}
-
-/* Focus styles for accessibility */
-:focus-visible {
-  outline: 2px solid #ec4899;
-  outline-offset: 2px;
-  border-radius: 4px;
-}
-
-/* Selection color */
-::selection {
-  background-color: rgba(236, 72, 153, 0.3);
-  color: inherit;
-}
-
-/* WhatsApp Floating Animations */
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-5px); }
-}
-
-.animate-float {
-  animation: float 3s ease-in-out infinite;
-}
-
-/* Custom scrollbar for quick actions */
-.scrollbar-whatsapp::-webkit-scrollbar {
-  width: 4px;
-}
-
-.scrollbar-whatsapp::-webkit-scrollbar-track {
-  background: #fce7f3;
-  border-radius: 4px;
-}
-
-.scrollbar-whatsapp::-webkit-scrollbar-thumb {
-  background: #ec4899;
-  border-radius: 4px;
-}
-
-.scrollbar-whatsapp::-webkit-scrollbar-thumb:hover {
-  background: #db2777;
-}
-
-/* Ladies Salon Specific Mobile Styles */
-.service-card-mobile {
-  width: 100%;
-  max-width: 100%;
-  margin: 0 auto;
-}
-
-@media (max-width: 768px) {
-  /* Ensure images don't overflow */
-  img {
-    max-width: 100%;
-    height: auto;
+  body {
+    background:
+      radial-gradient(circle at top right, rgba(190, 24, 93, 0.12), transparent 40%),
+      #140d11;
   }
-  
-  /* Fix for fixed elements in landscape */
-  .fixed {
-    position: fixed;
-    z-index: 9999;
+  .beauty-card,
+  .testimonial-card,
+  .bridal-card,
+  .price-glass-card {
+    background: #241820;
+    border-color: #4a2c39;
   }
-  
-  /* Better spacing for service categories */
-  .grid-cols-3 > * {
-    width: 100%;
-    min-width: 0;
+  .btn-secondary {
+    background: #2a1e24;
+    border-color: #4a2c39;
+    color: #ffd1e5;
   }
-}
-
-/* Fix for iOS Safari 100vh issue */
-@supports (-webkit-touch-callout: none) {
-  .min-h-screen {
-    min-height: 100vh;
-    min-height: -webkit-fill-available;
-    min-height: fill-available;
+  .area-chip {
+    background: #2e1e26;
+    color: #ffc0d0;
+    border-color: #5a3a48;
+  }
+  .badge-patna {
+    background: #3a1f2b;
+    color: #ffc0d0;
+  }
+  .beauty-hero {
+    background: linear-gradient(135deg, rgba(30, 20, 26, 0.9), rgba(20, 12, 16, 0.95));
+  }
+  .glass-effect {
+    background: rgba(20, 12, 16, 0.8);
+  }
+  .festive-banner,
+  .seasonal-highlight {
+    background: #2b1f24;
+    border-color: #5a3a48;
+    color: #fbc4d4;
+  }
+  .mobile-cta-bar {
+    background: #1f1620;
+    border-top-color: #4a2c39;
+  }
+  .trust-strip {
+    color: #e2c6d4;
+  }
+  .service-content {
+    color: #e5e7eb;
+  }
+  .service-content p,
+  .service-content li {
+    color: #d1d5db;
+  }
+  .service-content h3 {
+    color: #fb7185;
+  }
+  .service-content strong {
+    color: #f9fafb;
   }
 }

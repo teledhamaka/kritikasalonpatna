@@ -9,7 +9,7 @@ import { useAuth } from '@/context/AuthContext';
 
 export default function AuthCallbackPage() {
   const router = useRouter();
-  const { user } = useAuth();
+  useAuth();
   const [status, setStatus] = useState<'loading' | 'success' | 'error'>('loading');
   const [message, setMessage] = useState('Connecting your account...');
 

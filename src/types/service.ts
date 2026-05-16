@@ -1,156 +1,41 @@
-// types/service.ts
+/**
+ * types/service.ts
+ *
+ * This file is the frontend-facing type layer.
+ * It re-exports the canonical Service (and related types) from types/index.ts
+ * so every component imports from ONE place and TS never complains about
+ * missing DB columns (booking_count, rating_average, rating_count, etc.).
+ *
+ * Rule: add new DB columns to types/index.ts ONLY.
+ *       Add frontend-only helpers/aliases here.
+ */
 
-// Unified Service interface that matches both contexts
-export interface Service {
-  id: string;
-  name: string;
-  title: string;
-  slug?: string;
-  description?: string;
-  detailed_description?: string;
-  shortDescription?: string;
-  logo?: string;
-  
-  // Media
-  image?: string;
-  imageUrl?: string;
-  image_url?: string;
+// ─── Re-export everything from index so callers can import either file ────────
+export type {
+  Service,
+  CartItem,
+  BookingItem,
+  Stylist,
+  TimeSlot,
+  Appointment,
+  Booking,
+  BookingSlot,
+  Address,
+  Personalization,
+  ServiceCategory,
+  Profile,
+  User,
+} from './index';
 
-  // Category & routing - FIXED
-  category?: string; // legacy support (optional)
-  categorySlug?: string;
-  primaryCategory: 'makeup' | 'skin' | 'hair' | 'nails';
-  eventCategory?: string; // e.g. "bridal", "party", "engagement"
-  url: string; // CRITICAL: Added for internal linking + SEO
-  
-  // Pricing
-  price: number;
-  base_price: number;
-  originalPrice: number;
-  original_price?: number;
-  discounted_price?: number;
-  priceCurrency?: string;
-  discountPercentage?: number;
-  
-  // Service details
-  duration: number;
-  duration_minutes: number;
-  durationText?: string; // ADDED: For display (e.g. "2-3 hours")
-  
-  // Popularity flags
-  isTrending?: boolean;
-  is_trending?: boolean;
-  is_popular?: boolean;
-  isPopular?: boolean;
-  is_signature?: boolean;
-  isBestSeller?: boolean;
-  trending?: boolean; // Added for backward compatibility
-    
-  // Service metadata
-  category_id?: string;
-  category_name?: string;
-  requires_consultation?: boolean;
-  suitable_for?: string[];
-  suitableFor?: string[];
-  tags?: string[];
-  active?: boolean;
-  viral?: boolean; // Added for viral services
-  
-  // Content fields - FIXED
-  keyIngredients?: string[]; // ADDED: Was missing
-  key_ingredients?: string[];
-  benefits?: string[];
-  precautions?: string;
-  aftercare?: string;
-  
-  // Review and rating - ENHANCED
-  rating?: number;
-  reviews?: number;
-  reviewCount?: number;
-  reviewSource?: string; // ADDED: Schema + legal safety
-  bookingCount?: number;
-  
-  // SEO - ADDED
-  seoKeywords?: string[];
-  
-  // Audience & intent - FIXED
-  idealFor?: string[]; // FIXED: Now array
-  targetAudience?: string[]; // FIXED: Now array
-  
-  // Inclusions - ADDED
-  whatsIncluded?: string[];
-  whatsNotIncluded?: string[];
-  
-  // Availability
-  availability?: {
-    days: string[];
-    times: string[];
-  };
-  requirements?: string[];
-  
-  // FAQs - STRONGLY TYPED
-  faqs?: {
-    question: string;
-    answer: string;
-  }[];
-  
-  // Add-ons - STRONGLY TYPED
-  addOns?: {
-    name: string;
-    price: number;
-  }[];
-  
-  // Geography - STRONGLY TYPED
-  serviceArea?: {
-    city: string;
-    region: string;
-    country: string;
-    radiusKm?: number;
-  };
-  
-  provider?: {
-    name: string;
-    address: string;
-    phone?: string;
-    googleMapsUrl?: string;
-  };
-  
-  geo?: {
-    lat: number;
-    lng: number;
-  };
-  
-  nearbyLandmarks?: string[];
-  
-  // Navigation and deals
-  link?: string;
-  deal?: string;
-  serviceType?: 'makeup' | 'skin' | 'hair' | 'nails' | 'viral';
-  service_type?: 'makeup' | 'skin' | 'hair' | 'nails' | 'viral';
-  
-  // Meta / ops - ADDED
-  seasonalTags?: string[];
-  processingTime?: string; // ADDED: e.g. "Same day booking available"
-  cancellationPolicy?: string;
-  
-  // Timestamps
-  created_at?: string;
-  updated_at?: string;
-}
+export { getEffectivePrice } from './index';
 
-// BookingItem interface for cart functionality
-export interface BookingItem extends Service {
-  quantity: number;
-  selected_stylist_id?: string;
-  stylist_name?: string;
-  customizations?: Record<string, unknown>;
-  notes?: string;
-  selectedDate?: string;
-  selectedTime?: string;
-  specialInstructions?: string;
-}
+// ─── Import the canonical Service for use inside this file ───────────────────
+import type { Service } from './index';
 
-// Base database service type (from Supabase)
+// ============================================
+// Base DB service type (raw Supabase row)
+// ============================================
+
 export interface BaseService {
   id: string;
   name: string;
@@ -164,6 +49,8 @@ export interface BaseService {
   original_price?: number;
   discounted_price?: number;
   is_trending: boolean;
+  is_popular?: boolean;
+  is_signature?: boolean;
   duration_minutes: number;
   duration?: number;
   key_ingredients?: string[];
@@ -173,263 +60,37 @@ export interface BaseService {
   category_id?: string;
   category_name?: string;
   image_url?: string;
-  is_popular?: boolean;
-  is_signature?: boolean;
   requires_consultation?: boolean;
   suitable_for?: string[];
   tags?: string[];
   active: boolean;
-  faqs?: Array<{
-    question: string;
-    answer: string;
-  }>;
+  /** DB columns — always present on Supabase rows */
+  booking_count: number;
+  rating_average: number;
+  rating_count: number;
+  faqs?: Array<{ question: string; answer: string }>;
   created_at: string;
   updated_at: string;
 }
 
-// Enhanced Stylist interface with all required fields
-export interface Stylist {
-  id: string;
-  name?: string;
-  full_name: string;
-  specialties: string[];
-  specialty?: string; // Added for single specialty display
-  experience_years: number;
-  experience?: string; // Added for backward compatibility like "8 years"
-  bio?: string;
-  about?: string; // Added for detailed bio
-  rating: number;
-  total_reviews: number;
-  profile_image_url?: string;
-  image?: string;
-  working_days: number[];
-  start_time: string;
-  end_time: string;
-  is_active: boolean;
-  is_featured: boolean;
-  available_times?: string[];
-  
-  // Enhanced fields for components
-  price?: number; // Service fee for this stylist
-  totalBookings?: number;
-  badges?: string[];
-  isVerified?: boolean;
-  isTrending?: boolean;
-  availableToday?: boolean;
-  responseTime?: string;
-}
+// Specific service variants (extend BaseService for narrowing if needed)
+export interface MakeupService extends BaseService { service_type?: 'makeup'; }
+export interface SkinService   extends BaseService { service_type?: 'skin'; }
+export interface HairService   extends BaseService { service_type?: 'hair'; }
+export interface NailService   extends BaseService { service_type?: 'nails'; }
+export interface ViralService  extends BaseService { service_type?: 'viral'; }
 
-// TimeSlot interface for booking with all required fields
-export interface TimeSlot {
-  id: string | number;
-  date: string;
-  time: string;
-  stylist_id: string;
-  available: boolean;
-  duration_minutes: number;
-  period?: string; // morning, afternoon, evening
-  popular?: boolean;
-}
+export type DatabaseService =
+  | MakeupService
+  | SkinService
+  | HairService
+  | NailService
+  | ViralService;
 
-// Specific service types that extend BaseService
-export interface MakeupService extends BaseService {
-  service_type?: 'makeup';
-}
+// ============================================
+// Filter & sort types
+// ============================================
 
-export interface SkinService extends BaseService {
-  service_type?: 'skin';
-}
-
-export interface HairService extends BaseService {
-  service_type?: 'hair';
-}
-
-export interface NailService extends BaseService {
-  service_type?: 'nails';
-}
-
-export interface ViralService extends BaseService {
-  service_type?: 'viral';
-}
-
-// Generic database service type
-export type DatabaseService = MakeupService | SkinService | HairService | NailService | ViralService;
-
-// Transform database service to unified service format
-export const transformServiceForComponent = (
-  service: DatabaseService | Record<string, unknown>,
-  serviceType: 'makeup' | 'skin' | 'hair' | 'nails' | 'viral' = 'makeup'
-): Service => {
-  const s = service as any; // Internal cast to avoid breaking property access
-  return {
-    id: s.id,
-    name: s.name || s.title,
-    title: s.title || s.name,
-    slug: s.slug,
-    description: s.description,
-    detailed_description: s.detailed_description,
-    shortDescription: s.shortDescription,
-    category: s.category,
-    category_id: s.category_id,
-    category_name: s.category_name,
-    categorySlug: s.categorySlug,
-    
-    // FIXED: New taxonomy fields
-    primaryCategory: s.primaryCategory || serviceType,
-    eventCategory: s.eventCategory,
-    url: s.url || `/${serviceType}/${s.slug || s.id}`,
-    
-    image: s.image || s.image_url,
-    imageUrl: s.image || s.image_url,
-    image_url: s.image_url || s.image,
-    
-    price: s.price || s.base_price,
-    base_price: s.base_price || s.price,
-    originalPrice: s.original_price || s.originalPrice,
-    original_price: s.original_price,
-    discounted_price: s.discounted_price,
-    priceCurrency: s.priceCurrency,
-    discountPercentage: s.discountPercentage,
-    
-    duration: s.duration || s.duration_minutes,
-    duration_minutes: s.duration_minutes || s.duration,
-    durationText: s.durationText,
-    
-    isTrending: s.is_trending || s.isTrending || s.trending,
-    is_trending: s.is_trending || s.isTrending || s.trending,
-    trending: s.trending || s.is_trending || s.isTrending,
-    is_popular: s.is_popular || s.isPopular,
-    isPopular: s.isPopular || s.is_popular,
-    is_signature: s.is_signature,
-    isBestSeller: s.isBestSeller,
-    active: s.active !== false,
-    viral: s.viral,
-    
-    keyIngredients: s.key_ingredients || s.keyIngredients,
-    key_ingredients: s.key_ingredients || s.keyIngredients,
-    benefits: s.benefits,
-    precautions: s.precautions,
-    aftercare: s.aftercare,
-    
-    requires_consultation: s.requires_consultation,
-    suitable_for: s.suitable_for || s.suitableFor,
-    suitableFor: s.suitableFor || s.suitable_for,
-    tags: s.tags,
-    rating: s.rating,
-    reviews: s.reviews,
-    reviewCount: s.reviewCount || s.reviews,
-    reviewSource: s.reviewSource,
-    bookingCount: s.bookingCount,
-    
-    seoKeywords: s.seoKeywords,
-    idealFor: s.idealFor,
-    targetAudience: s.targetAudience,
-    whatsIncluded: s.whatsIncluded,
-    whatsNotIncluded: s.whatsNotIncluded,
-    
-    availability: s.availability,
-    requirements: s.requirements,
-    faqs: s.faqs || [],
-    
-    addOns: s.addOns,
-    serviceArea: s.serviceArea,
-    provider: s.provider,
-    geo: s.geo,
-    nearbyLandmarks: s.nearbyLandmarks,
-    
-    link: s.link || s.url || `/${serviceType}/service/${s.id}`,
-    deal: s.deal || (s.original_price && s.original_price > (s.price || s.base_price)
-      ? `Save ₹${s.original_price - (s.price || s.base_price)}` 
-      : undefined),
-    serviceType,
-    service_type: s.service_type || serviceType,
-    
-    seasonalTags: s.seasonalTags,
-    processingTime: s.processingTime,
-    cancellationPolicy: s.cancellationPolicy,
-    
-    created_at: s.created_at,
-    updated_at: s.updated_at,
-  };
-};
-
-// Transform JSON data to Service format (for static data)
-export const transformJSONToService = (data: Record<string, unknown>): Service => {
-  const d = data as any; // Internal cast to avoid breaking property access
-  return {
-    id: d.id,
-    name: d.name || d.title,
-    title: d.title || d.name,
-    slug: d.slug,
-    description: d.description,
-    detailed_description: d.detailed_description,
-    shortDescription: d.shortDescription,
-    category: d.category,
-    categorySlug: d.categorySlug,
-    
-    // FIXED: New taxonomy fields
-    primaryCategory: d.primaryCategory,
-    eventCategory: d.eventCategory,
-    url: d.url,
-    
-    image: d.image,
-    imageUrl: d.image,
-    price: d.price,
-    base_price: d.price,
-    originalPrice: d.originalPrice,
-    discounted_price: d.discountedPrice,
-    priceCurrency: d.priceCurrency,
-    discountPercentage: d.discountPercentage,
-    
-    duration: d.duration,
-    duration_minutes: d.duration,
-    durationText: d.durationText,
-    
-    isTrending: d.isTrending || d.trending,
-    is_trending: d.isTrending || d.trending,
-    trending: d.trending || d.isTrending,
-    isPopular: d.isPopular,
-    isBestSeller: d.isBestSeller,
-    active: true,
-    viral: d.viral,
-    
-    keyIngredients: d.keyIngredients,
-    benefits: d.benefits,
-    precautions: d.precautions,
-    aftercare: d.aftercare,
-    suitable_for: d.suitableFor,
-    suitableFor: d.suitableFor,
-    rating: d.rating,
-    reviews: d.reviews,
-    reviewCount: d.reviewCount || d.reviews,
-    reviewSource: d.reviewSource,
-    bookingCount: d.bookingCount,
-    
-    seoKeywords: d.seoKeywords,
-    idealFor: d.idealFor,
-    targetAudience: d.targetAudience,
-    whatsIncluded: d.whatsIncluded,
-    whatsNotIncluded: d.whatsNotIncluded,
-    
-    faqs: d.faqs || [],
-    addOns: d.addOns,
-    serviceArea: d.serviceArea,
-    provider: d.provider,
-    geo: d.geo,
-    nearbyLandmarks: d.nearbyLandmarks,
-    
-    link: d.link || d.url,
-    deal: d.deal,
-    serviceType: d.serviceType,
-    service_type: d.serviceType || d.service_type,
-    
-    seasonalTags: d.seasonalTags,
-    processingTime: d.processingTime,
-    cancellationPolicy: d.cancellationPolicy,
-  };
-};
-
-// Filter types
 export interface ServiceFilters {
   category?: string;
   minPrice?: number;
@@ -438,23 +99,21 @@ export interface ServiceFilters {
   trending?: boolean;
   search?: string;
   serviceType?: 'makeup' | 'skin' | 'hair' | 'nails' | 'viral';
-  eventCategory?: string; // ADDED: For filtering by event type
+  eventCategory?: string;
 }
 
-// Sort options
-export type SortOption = 
-  | 'price_asc' 
-  | 'price_desc' 
-  | 'duration_asc' 
-  | 'duration_desc' 
-  | 'trending' 
+export type SortOption =
+  | 'price_asc'
+  | 'price_desc'
+  | 'duration_asc'
+  | 'duration_desc'
+  | 'trending'
   | 'newest'
   | 'title_asc'
   | 'title_desc'
   | 'name_asc'
   | 'name_desc';
 
-// Generic service response
 export interface ServiceResponse<T extends DatabaseService> {
   data: T[];
   error?: string;
@@ -463,7 +122,6 @@ export interface ServiceResponse<T extends DatabaseService> {
   limit?: number;
 }
 
-// Hook return type for service hooks
 export interface UseServiceReturn {
   services: Service[];
   loading: boolean;
@@ -471,27 +129,243 @@ export interface UseServiceReturn {
   refetch: () => void;
 }
 
-// Appointment interface
-export interface Appointment {
-  id: string;
-  user_id: string;
-  service_id: string;
-  stylist_id: string;
-  date: string;
-  time: string;
-  status: 'scheduled' | 'confirmed' | 'completed' | 'cancelled' | 'no_show';
-  total_amount: number;
-  special_instructions?: string;
-  rating?: number;
-  review?: string;
-  created_at: string;
-  updated_at: string;
-}
+// ============================================
+// Transform helpers
+// ============================================
 
-// Booking slot interface
-export interface BookingSlot {
-  date: string;
-  time: string;
-  available: boolean;
-  stylist_id?: string;
-}
+/**
+ * Transforms a raw Supabase / DatabaseService row into the unified Service type.
+ * All DB columns (booking_count, rating_average, rating_count) are mapped here.
+ */
+export const transformServiceForComponent = (
+  service: DatabaseService | Record<string, unknown>,
+  serviceType: 'makeup' | 'skin' | 'hair' | 'nails' | 'viral' = 'makeup',
+): Service => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const s = service as any;
+
+  const effectivePrice: number = s.price ?? s.base_price ?? 0;
+  const effectiveOriginal: number = s.original_price ?? s.originalPrice ?? effectivePrice;
+
+  return {
+    // ── Identity ────────────────────────────────────────────
+    id: s.id,
+    name: s.name ?? s.title,
+    title: s.title ?? s.name ?? null,
+    slug: s.slug,
+
+    // ── Category & routing ──────────────────────────────────
+    category_id: s.category_id ?? null,
+    category: s.category ?? null,
+    category_name: s.category_name,
+    categorySlug: s.categorySlug,
+    service_type: s.service_type ?? serviceType,
+    primaryCategory: s.primaryCategory ?? serviceType,
+    eventCategory: s.eventCategory,
+    url: s.url ?? `/${serviceType}/${s.slug ?? s.id}`,
+
+    // ── Content ─────────────────────────────────────────────
+    description: s.description ?? '',
+    detailed_description: s.detailed_description ?? null,
+    shortDescription: s.shortDescription,
+
+    // ── Media ───────────────────────────────────────────────
+    image: s.image ?? s.image_url ?? null,
+    image_url: s.image_url ?? s.image ?? null,
+    imageUrl: s.image ?? s.image_url,
+
+    // ── Pricing ─────────────────────────────────────────────
+    base_price: s.base_price ?? 0,
+    price: effectivePrice,
+    original_price: effectiveOriginal,
+    originalPrice: effectiveOriginal,
+    discounted_price: s.discounted_price ?? null,
+    priceCurrency: s.priceCurrency,
+    discountPercentage: s.discountPercentage,
+    deal: s.deal ?? (effectiveOriginal > effectivePrice
+      ? `Save ₹${effectiveOriginal - effectivePrice}`
+      : undefined),
+
+    // ── Duration ────────────────────────────────────────────
+    duration_minutes: s.duration_minutes ?? s.duration ?? 60,
+    duration: s.duration ?? s.duration_minutes ?? 60,
+    durationText: s.durationText,
+
+    // ── Ingredients & benefits ──────────────────────────────
+    key_ingredients: s.key_ingredients ?? s.keyIngredients ?? null,
+    keyIngredients: s.keyIngredients ?? s.key_ingredients,
+    benefits: s.benefits ?? null,
+    precautions: s.precautions ?? null,
+    aftercare: s.aftercare ?? null,
+
+    // ── Suitability ─────────────────────────────────────────
+    suitable_for: s.suitable_for ?? s.suitableFor ?? null,
+    suitableFor: s.suitableFor ?? s.suitable_for,
+    tags: s.tags ?? null,
+
+    // ── Popularity flags ────────────────────────────────────
+    is_trending: s.is_trending ?? s.isTrending ?? s.trending ?? false,
+    isTrending: s.isTrending ?? s.is_trending ?? s.trending,
+    trending: s.trending ?? s.is_trending ?? s.isTrending,
+    is_popular: s.is_popular ?? s.isPopular ?? false,
+    isPopular: s.isPopular ?? s.is_popular,
+    is_signature: s.is_signature ?? false,
+    isBestSeller: s.isBestSeller ?? false,
+    viral: s.viral,
+
+    // ── Ratings & bookings (DB columns — always mapped) ─────
+    booking_count: s.booking_count ?? s.bookingCount ?? 0,
+    rating_average: s.rating_average ?? s.rating ?? 0,
+    rating_count: s.rating_count ?? s.rating_count ?? s.reviews ?? s.reviewCount ?? 0,
+    // Frontend aliases
+    bookingCount: s.bookingCount ?? s.booking_count ?? 0,
+    rating: s.rating ?? s.rating_average ?? 0,
+    reviews: s.reviews ?? s.rating_count ?? 0,
+    reviewCount: s.reviewCount ?? s.rating_count ?? s.reviews ?? 0,
+    reviewSource: s.reviewSource,
+
+    // ── Operational ─────────────────────────────────────────
+    requires_consultation: s.requires_consultation ?? false,
+    active: s.active !== false,
+
+    // ── FAQs ────────────────────────────────────────────────
+    faqs: s.faqs ?? [],
+
+    // ── SEO ─────────────────────────────────────────────────
+    seoKeywords: s.seoKeywords,
+
+    // ── Audience & intent ───────────────────────────────────
+    idealFor: s.idealFor,
+    targetAudience: s.targetAudience,
+
+    // ── Inclusions ──────────────────────────────────────────
+    whatsIncluded: s.whatsIncluded,
+    whatsNotIncluded: s.whatsNotIncluded,
+
+    // ── Availability ────────────────────────────────────────
+    availability: s.availability,
+    requirements: s.requirements,
+
+    // ── Add-ons ─────────────────────────────────────────────
+    addOns: s.addOns,
+
+    // ── Geography ───────────────────────────────────────────
+    serviceArea: s.serviceArea,
+    provider: s.provider,
+    geo: s.geo,
+    nearbyLandmarks: s.nearbyLandmarks,
+
+    // ── Meta / ops ──────────────────────────────────────────
+    seasonalTags: s.seasonalTags,
+    processingTime: s.processingTime,
+    cancellationPolicy: s.cancellationPolicy,
+    link: s.link ?? s.url ?? `/${serviceType}/service/${s.id}`,
+
+    // ── Timestamps ──────────────────────────────────────────
+    created_at: s.created_at ?? '',
+    updated_at: s.updated_at ?? '',
+  };
+};
+
+/**
+ * Transforms a static JSON object (e.g. hardcoded data files) into the
+ * unified Service type. Assumes camelCase source fields.
+ */
+export const transformJSONToService = (data: Record<string, unknown>): Service => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const d = data as any;
+
+  const effectivePrice: number = d.price ?? d.base_price ?? 0;
+  const effectiveOriginal: number = d.originalPrice ?? d.original_price ?? effectivePrice;
+
+  return {
+    id: d.id,
+    name: d.name ?? d.title,
+    title: d.title ?? d.name ?? null,
+    slug: d.slug,
+    description: d.description ?? '',
+    detailed_description: d.detailed_description ?? null,
+    shortDescription: d.shortDescription,
+
+    category_id: d.category_id ?? null,
+    category: d.category ?? null,
+    category_name: d.category_name,
+    categorySlug: d.categorySlug,
+    service_type: d.serviceType ?? d.service_type ?? 'makeup',
+    primaryCategory: d.primaryCategory,
+    eventCategory: d.eventCategory,
+    url: d.url,
+
+    image: d.image ?? null,
+    image_url: d.image ?? null,
+    imageUrl: d.image,
+
+    base_price: d.price ?? d.base_price ?? 0,
+    price: effectivePrice,
+    original_price: effectiveOriginal,
+    originalPrice: effectiveOriginal,
+    discounted_price: d.discountedPrice ?? d.discounted_price ?? null,
+    priceCurrency: d.priceCurrency,
+    discountPercentage: d.discountPercentage,
+    deal: d.deal,
+
+    duration_minutes: d.duration ?? d.duration_minutes ?? 60,
+    duration: d.duration ?? d.duration_minutes ?? 60,
+    durationText: d.durationText,
+
+    key_ingredients: d.keyIngredients ?? d.key_ingredients ?? null,
+    keyIngredients: d.keyIngredients ?? d.key_ingredients,
+    benefits: d.benefits ?? null,
+    precautions: d.precautions ?? null,
+    aftercare: d.aftercare ?? null,
+
+    suitable_for: d.suitableFor ?? d.suitable_for ?? null,
+    suitableFor: d.suitableFor ?? d.suitable_for,
+    tags: d.tags ?? null,
+
+    is_trending: d.isTrending ?? d.trending ?? false,
+    isTrending: d.isTrending ?? d.trending,
+    trending: d.trending ?? d.isTrending,
+    is_popular: d.isPopular ?? false,
+    isPopular: d.isPopular,
+    is_signature: d.is_signature ?? false,
+    isBestSeller: d.isBestSeller ?? false,
+    viral: d.viral,
+
+    // DB columns — default to 0 for static JSON sources
+    booking_count: d.booking_count ?? d.bookingCount ?? 0,
+    rating_average: d.rating_average ?? d.rating ?? 0,
+    rating_count: d.rating_count ?? d.reviews ?? d.reviewCount ?? 0,
+    bookingCount: d.bookingCount ?? d.booking_count ?? 0,
+    rating: d.rating ?? d.rating_average ?? 0,
+    reviews: d.reviews ?? d.rating_count ?? 0,
+    reviewCount: d.reviewCount ?? d.reviews ?? 0,
+    reviewSource: d.reviewSource,
+
+    requires_consultation: d.requires_consultation ?? false,
+    active: d.active !== false,
+    faqs: d.faqs ?? [],
+
+    seoKeywords: d.seoKeywords,
+    idealFor: d.idealFor,
+    targetAudience: d.targetAudience,
+    whatsIncluded: d.whatsIncluded,
+    whatsNotIncluded: d.whatsNotIncluded,
+
+    availability: d.availability,
+    requirements: d.requirements,
+    addOns: d.addOns,
+    serviceArea: d.serviceArea,
+    provider: d.provider,
+    geo: d.geo,
+    nearbyLandmarks: d.nearbyLandmarks,
+
+    seasonalTags: d.seasonalTags,
+    processingTime: d.processingTime,
+    cancellationPolicy: d.cancellationPolicy,
+    link: d.link ?? d.url,
+
+    created_at: d.created_at ?? '',
+    updated_at: d.updated_at ?? '',
+  };
+};

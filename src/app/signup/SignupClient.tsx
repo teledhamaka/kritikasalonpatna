@@ -1,638 +1,373 @@
-// ==========================================
-// FILE: app/signup/SignupClient.tsx (Client Component - NEW FILE)
-// ==========================================
-"use client";
+'use client';
+
+// ============================================================
+// FILE: app/signup/SignupClient.tsx
+//
+// PHILOSOPHY CHANGE (most important):
+//   OLD: 2-step form collecting name + email + password +
+//        mobile + DOB + marital status + anniversary
+//   NEW: Single step — name + email + password. DONE.
+//
+//   Everything else is collected PROGRESSIVELY:
+//     • Phone     → during first booking ("for reminders")
+//     • DOB       → after first login ("unlock birthday offers")
+//     • Anniversary → during bridal promotions
+//
+//   WHY THIS CONVERTS BETTER FOR SALON AUDIENCE:
+//   Instagram-generation users abandon long forms instantly.
+//   A 2-step form on mobile with 7+ fields will lose 60-80%
+//   of signups. Google-first is even better (zero fields).
+//   The minimal email form is only for users who actively
+//   choose NOT to use Google.
+//
+// KEY CHANGES vs original:
+//   ✅ Single step only (no step 2 upfront)
+//   ✅ Google is primary CTA with instant loading state
+//   ✅ Password: min 6 chars, no complexity enforcement
+//      (we are a salon, not a bank)
+//   ✅ DOB and marital status REMOVED from signup
+//      (collected via progressive profiling hooks after booking)
+//   ✅ Inline errors (no redirect)
+//   ✅ After signup: welcome toast → automatic redirect (no verify wall)
+// ============================================================
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { motion } from 'framer-motion';
-import { 
-  Eye, EyeOff, Mail, Lock, Phone, User as UserIcon, 
-  ArrowLeft, Calendar, Heart, X, AlertCircle, Check, 
-  Loader, Facebook, Instagram 
+import {
+  Eye, EyeOff, Mail, Lock, User as UserIcon, X, ArrowLeft,
 } from 'lucide-react';
 import { FcGoogle } from 'react-icons/fc';
 import { useAuth } from '@/context/AuthContext';
+import { useToast } from '@/components/ui/Toast';
+
+// Simple password strength — 3 levels, no complexity gatekeeping
+function pwStrength(pw: string): 0 | 1 | 2 | 3 {
+  if (pw.length < 6) return 0;
+  let s = 0;
+  if (pw.length >= 8)       s++;
+  if (/[A-Z]/.test(pw))     s++;
+  if (/[0-9!@#$]/.test(pw)) s++;
+  return Math.min(s, 3) as 0 | 1 | 2 | 3;
+}
+
+const STRENGTH_LABEL = ['Too short', 'Okay', 'Good', 'Strong 🔒'];
+const STRENGTH_COLOR = ['bg-[#9B2335]', 'bg-gold', 'bg-rose-brand', 'bg-[#2D7A4F]'];
+const STRENGTH_TEXT  = ['text-[#9B2335]', 'text-gold-deep', 'text-rose-brand', 'text-[#2D7A4F]'];
 
 export default function SignupClient() {
-  const router = useRouter();
-  const searchParams = useSearchParams();
-  const { signUp, signInWithGoogle, isLoggedIn } = useAuth();
-  
-  const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    email: '',
-    mobile: '',
-    password: '',
-    confirmPassword: '',
-    dob: '',
-    maritalStatus: 'single',
-    anniversaryDate: ''
-  });
-  const [showPassword, setShowPassword] = useState(false);
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-  const [signupMethod, setSignupMethod] = useState<'email' | 'mobile'>('email');
-  const [step, setStep] = useState(1);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState('');
-  const [success, setSuccess] = useState('');
-  const [passwordStrength, setPasswordStrength] = useState(0);
+  const router        = useRouter();
+  const searchParams  = useSearchParams();
+  const { signUp, signInWithGoogle, isLoggedIn, isInitializing,
+          loading, googleLoading } = useAuth();
+  const { success } = useToast();
 
-  // Check for OAuth errors or success
-  useEffect(() => {
-    const errorParam = searchParams.get('error');
-    if (errorParam) {
-      setError('Authentication failed. Please try again.');
-    }
+  const [firstName,    setFirstName]    = useState('');
+  const [email,        setEmail]        = useState('');
+  const [password,     setPassword]     = useState('');
+  const [showPw,       setShowPw]       = useState(false);
+  const [error,        setError]        = useState('');
 
-    const loginSuccess = searchParams.get('login');
-    if (loginSuccess === 'success') {
-      setSuccess('Successfully signed up with Google!');
-      setTimeout(() => router.push('/'), 1500);
-    }
-  }, [searchParams, router]);
+  const strength = pwStrength(password);
 
   // Redirect if already logged in
   useEffect(() => {
-    if (isLoggedIn) {
-      router.push('/');
-    }
-  }, [isLoggedIn, router]);
+    if (!isInitializing && isLoggedIn) router.replace('/');
+  }, [isLoggedIn, isInitializing, router]);
 
-  // Password strength checker
+  // Handle error from /auth/callback (Google failed)
   useEffect(() => {
-    const password = formData.password;
-    let strength = 0;
-    if (password.length >= 8) strength++;
-    if (/[A-Z]/.test(password)) strength++;
-    if (/[a-z]/.test(password)) strength++;
-    if (/[0-9]/.test(password)) strength++;
-    if (/[^A-Za-z0-9]/.test(password)) strength++;
-    setPasswordStrength(strength);
-  }, [formData.password]);
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
-    setError('');
-  };
-
-  const isStep1DataComplete = 
-    formData.firstName.trim() && 
-    formData.lastName.trim() && 
-    formData.email.trim() && 
-    formData.password.length >= 6 && 
-    formData.password === formData.confirmPassword;
-
-  const calculateAge = (dob: string) => {
-    const birthDate = new Date(dob);
-    const today = new Date();
-    let age = today.getFullYear() - birthDate.getFullYear();
-    const monthDiff = today.getMonth() - birthDate.getMonth();
-    if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
-      age--;
+    const msg = searchParams.get('msg');
+    if (msg === 'google_failed') {
+      setError('Google sign-up failed. Please try again or use email.');
+      window.history.replaceState({}, '', '/signup');
     }
-    return age;
-  };
+  }, [searchParams]);
 
-  const handleContinueToStep2 = () => {
+  const handleGoogle = async () => {
     setError('');
-    if (!formData.firstName.trim()) return setError('First name is required');
-    if (!formData.lastName.trim()) return setError('Last name is required');
-    if (!/\S+@\S+\.\S+/.test(formData.email)) return setError('Please enter a valid email address');
-    if (formData.password.length < 6) return setError('Password must be at least 6 characters long');
-    if (formData.password !== formData.confirmPassword) return setError('Passwords do not match');
-    setStep(2);
-  };
-
-  const handleGoogleSignup = () => {
-    setError('');
-    setLoading(true);
-    signInWithGoogle();
+    const { error: googleErr } = await signInWithGoogle();
+    if (googleErr) setError(googleErr);
+    // Otherwise redirect is in-flight — googleLoading handles UX
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setLoading(true);
+    const name = firstName.trim();
+    if (!name)                   return setError('Tell us your name 💕');
+    if (!/\S+@\S+\.\S+/.test(email)) return setError('Enter a valid email address.');
+    if (password.length < 6)     return setError('Password must be at least 6 characters.');
+
     setError('');
-    setSuccess('');
+    const { error: signupErr } = await signUp({
+      email:     email.trim(),
+      password,
+      firstName: name,
+    });
 
-    try {
-      if (formData.dob) {
-        const age = calculateAge(formData.dob);
-        if (age < 13) {
-          setError('You must be at least 13 years old to create an account.');
-          setLoading(false);
-          return;
-        }
+    if (signupErr) {
+      if (signupErr.includes('already registered')) {
+        setError('This email is already registered. Try signing in 💕');
       } else {
-        throw new Error('Date of birth is required.');
+        setError(signupErr);
       }
-
-      const signupData = {
-        email: formData.email.trim(),
-        password: formData.password,
-        firstName: formData.firstName.trim(),
-        lastName: formData.lastName.trim(),
-        mobile: formData.mobile.trim(),
-        dob: formData.dob,
-        maritalStatus: formData.maritalStatus,
-        anniversaryDate: formData.anniversaryDate,
-      };
-
-      const { error: signupError, user } = await signUp(signupData);
-
-      if (signupError) {
-        setError(signupError);
-        return;
-      }
-
-      if (user) {
-        setSuccess('Account created successfully! Redirecting...');
-        setTimeout(() => router.push('/'), 2000);
-      }
-    } catch (error: unknown) {
-      console.error('Signup process error:', error);
-      const errorMessage = error instanceof Error 
-        ? error.message 
-        : 'An unknown error occurred during signup.';
-      setError(errorMessage);
-    } finally {
-      setLoading(false);
+      return;
     }
+
+    // onAuthStateChange fires → isLoggedIn becomes true → useEffect redirects
+    success('Welcome to Kritika Salon! 🌸');
   };
 
-  const getPasswordStrengthColor = () => {
-    if (passwordStrength <= 2) return 'bg-red-500';
-    if (passwordStrength <= 3) return 'bg-yellow-500';
-    return 'bg-green-500';
-  };
+  if (isInitializing) {
+    return (
+      <div className="min-h-screen bg-cream flex items-center justify-center">
+        <div className="w-8 h-8 border-2 border-rose-brand/30 border-t-rose-brand
+          rounded-full animate-spin" />
+      </div>
+    );
+  }
 
-  const getPasswordStrengthText = () => {
-    if (passwordStrength <= 2) return 'Weak';
-    if (passwordStrength <= 3) return 'Medium';
-    return 'Strong';
-  };
+  const isRedirecting = googleLoading;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-pink-50 via-white to-purple-50 flex items-center justify-center p-4">
-      <div className="max-w-md w-full">
+    <div className="min-h-screen bg-cream flex items-center justify-center p-4 py-8">
+      <div className="w-full max-w-sm">
+
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="bg-white rounded-2xl shadow-xl overflow-hidden border border-pink-100"
+          className="bg-white rounded-3xl shadow-brand-lg
+            border border-[rgba(184,102,122,0.1)] overflow-hidden"
         >
-          <div className="bg-gradient-to-r from-pink-500 to-purple-600 p-6 text-center relative">
-            <Link 
-              href="/login" 
-              className="absolute left-4 top-4 text-white hover:text-pink-200 transition-colors"
-              title="Go to Login"
-            >
-              <ArrowLeft className="w-6 h-6" />
-            </Link>
-            <button
-              onClick={() => router.push('/')}
-              className="absolute right-4 top-4 bg-white/20 hover:bg-white/30 text-white rounded-full p-1 transition-all duration-200 backdrop-blur-sm"
-              title="Skip to Home"
-            >
-              <X className="w-4 h-4" />
+          {/* Header */}
+          <div className="relative bg-gradient-to-br from-plum to-plum-mid p-7 text-center">
+            <button onClick={() => router.push('/login')}
+              className="absolute left-4 top-4 text-white/60 hover:text-white transition-colors">
+              <ArrowLeft className="w-5 h-5" />
             </button>
-            <div className="flex justify-center mb-2">
-              <span className="text-4xl">💄</span>
+            <button onClick={() => router.push('/')}
+              className="absolute right-4 top-4 text-white/60 hover:text-white transition-colors">
+              <X className="w-5 h-5" />
+            </button>
+
+            <div className="w-14 h-14 mx-auto rounded-full bg-white/10 border border-white/20
+              flex items-center justify-center mb-4">
+              <span className="text-2xl">💅</span>
             </div>
-            <h1 className="text-3xl font-bold text-white">Create Account</h1>
-            <p className="text-pink-100 mt-2">Join our beauty community</p>
-            
-            <div className="flex justify-center mt-4">
-              <div className="flex space-x-2">
-                <div className={`w-3 h-3 rounded-full transition-colors ${step >= 1 ? 'bg-white' : 'bg-white/30'}`}></div>
-                <div className={`w-3 h-3 rounded-full transition-colors ${step >= 2 ? 'bg-white' : 'bg-white/30'}`}></div>
+            <h1 className="font-serif text-2xl text-white">Join the club</h1>
+            <p className="text-[12px] text-white/60 mt-1">
+              Patna's favourite beauty community 🌸
+            </p>
+          </div>
+
+          <div className="p-6 space-y-4">
+
+            {/* ── Google CTA — PRIMARY ────────────────────────────── */}
+            <button
+              onClick={handleGoogle}
+              disabled={isRedirecting || loading}
+              className="relative w-full flex items-center justify-center gap-3 py-3.5
+                rounded-xl bg-cream border border-[rgba(184,102,122,0.2)]
+                text-[13px] text-plum font-medium
+                hover:border-rose-brand hover:bg-blush
+                active:scale-[0.99] transition-all duration-200
+                disabled:opacity-60 overflow-hidden"
+            >
+              {isRedirecting && (
+                <motion.div
+                  className="absolute inset-0 bg-gradient-to-r
+                    from-transparent via-white/40 to-transparent"
+                  animate={{ x: ['-100%', '100%'] }}
+                  transition={{ repeat: Infinity, duration: 1, ease: 'linear' }}
+                />
+              )}
+              {isRedirecting ? (
+                <>
+                  <div className="w-4 h-4 border-2 border-plum/30 border-t-plum
+                    rounded-full animate-spin" />
+                  Opening Google…
+                </>
+              ) : (
+                <>
+                  <FcGoogle className="w-5 h-5 flex-shrink-0" />
+                  Sign up with Google
+                </>
+              )}
+            </button>
+
+            {/* Inline error */}
+            {error && (
+              <motion.div
+                initial={{ opacity: 0, y: -4 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="flex items-start gap-2 p-3 rounded-xl
+                  bg-[#FFF0F3] border border-[rgba(155,35,53,0.2)]"
+              >
+                <span className="text-sm mt-0.5">💔</span>
+                <p className="text-[12px] text-[#9B2335] leading-relaxed">{error}</p>
+              </motion.div>
+            )}
+
+            {/* Divider */}
+            <div className="relative">
+              <div className="absolute inset-0 flex items-center">
+                <div className="w-full border-t border-[rgba(184,102,122,0.12)]" />
+              </div>
+              <div className="relative flex justify-center">
+                <span className="px-3 bg-white text-[11px] text-plum-light">
+                  or with email
+                </span>
               </div>
             </div>
-          </div>
-          
-          <div className="p-6">
-            {error && (
-              <motion.div 
-                initial={{ opacity: 0, y: -10 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="mb-4 p-3 bg-red-50 border border-red-200 text-red-700 rounded-lg flex items-center"
-              >
-                <AlertCircle className="w-5 h-5 mr-2 shrink-0" />
-                <span className="text-sm">{error}</span>
-              </motion.div>
-            )}
 
-            {success && (
-              <motion.div 
-                initial={{ opacity: 0, y: -10 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="mb-4 p-3 bg-green-50 border border-green-200 text-green-700 rounded-lg flex items-center"
-              >
-                <Check className="w-5 h-5 mr-2 shrink-0" />
-                <span className="text-sm">{success}</span>
-              </motion.div>
-            )}
+            {/* ── Minimal form — just 3 fields ───────────────────── */}
+            <form onSubmit={handleSubmit} className="space-y-3.5">
 
-            {step === 1 ? (
-              <>
-                <div className="flex bg-pink-50 rounded-lg p-1 mb-6">
-                  <button
-                    onClick={() => setSignupMethod('email')}
-                    className={`flex-1 py-2 text-center rounded-md transition-colors ${
-                      signupMethod === 'email' 
-                        ? 'bg-white shadow-sm text-pink-600 font-medium' 
-                        : 'text-gray-600 hover:text-pink-500'
-                    }`}
-                  >
-                    Email
-                  </button>
-                  <button
-                    onClick={() => setSignupMethod('mobile')}
-                    className={`flex-1 py-2 text-center rounded-md transition-colors ${
-                      signupMethod === 'mobile' 
-                        ? 'bg-white shadow-sm text-pink-600 font-medium' 
-                        : 'text-gray-600 hover:text-pink-500'
-                    }`}
-                  >
-                    Mobile
+              {/* First name only — last name is optional (collected later) */}
+              <div>
+                <label className="inp-label">Your First Name *</label>
+                <div className="relative">
+                  <UserIcon className="absolute left-3.5 top-1/2 -translate-y-1/2
+                    w-4 h-4 text-rose-brand/50" />
+                  <input
+                    type="text"
+                    value={firstName}
+                    onChange={e => { setFirstName(e.target.value); setError(''); }}
+                    disabled={isRedirecting}
+                    required
+                    placeholder="Priya"
+                    autoComplete="given-name"
+                    className="inp pl-10"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label className="inp-label">Email *</label>
+                <div className="relative">
+                  <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2
+                    w-4 h-4 text-rose-brand/50" />
+                  <input
+                    type="email"
+                    value={email}
+                    onChange={e => { setEmail(e.target.value); setError(''); }}
+                    disabled={isRedirecting}
+                    required
+                    placeholder="yourname@email.com"
+                    autoComplete="email"
+                    inputMode="email"
+                    className="inp pl-10"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label className="inp-label">Password *</label>
+                <div className="relative">
+                  <Lock className="absolute left-3.5 top-1/2 -translate-y-1/2
+                    w-4 h-4 text-rose-brand/50" />
+                  <input
+                    type={showPw ? 'text' : 'password'}
+                    value={password}
+                    onChange={e => { setPassword(e.target.value); setError(''); }}
+                    disabled={isRedirecting}
+                    required
+                    placeholder="Min 6 characters"
+                    autoComplete="new-password"
+                    className="inp pl-10 pr-11"
+                  />
+                  <button type="button" onClick={() => setShowPw(s => !s)}
+                    className="absolute right-3.5 top-1/2 -translate-y-1/2
+                      text-plum-light hover:text-plum transition-colors">
+                    {showPw ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                   </button>
                 </div>
-
-                {signupMethod === 'email' ? (
-                  <div className="space-y-4">
-                    <div className="grid grid-cols-2 gap-4">
-                      <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-1">
-                          First Name <span className="text-red-500">*</span>
-                        </label>
-                        <div className="relative">
-                          <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                            <UserIcon className="h-5 w-5 text-pink-400" />
-                          </div>
-                          <input
-                            type="text"
-                            name="firstName"
-                            value={formData.firstName}
-                            onChange={handleInputChange}
-                            required
-                            className="block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-pink-500 transition-colors"
-                            placeholder="First name"
-                          />
-                        </div>
-                      </div>
-                      <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-1">
-                          Last Name <span className="text-red-500">*</span>
-                        </label>
-                        <input
-                          type="text"
-                          name="lastName"
-                          value={formData.lastName}
-                          onChange={handleInputChange}
-                          required
-                          className="block w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-pink-500 transition-colors"
-                          placeholder="Last name"
-                        />
-                      </div>
+                {/* Strength indicator — visible, not gatekeeping */}
+                {password && (
+                  <div className="mt-1.5">
+                    <div className="flex gap-1 mb-1">
+                      {[1, 2, 3].map(i => (
+                        <div key={i} className={`h-1 flex-1 rounded-full transition-colors
+                          ${strength >= i
+                            ? STRENGTH_COLOR[strength]
+                            : 'bg-[rgba(184,102,122,0.12)]'
+                          }`} />
+                      ))}
                     </div>
-                    
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">
-                        Email <span className="text-red-500">*</span>
-                      </label>
-                      <div className="relative">
-                        <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                          <Mail className="h-5 w-5 text-pink-400" />
-                        </div>
-                        <input
-                          type="email"
-                          name="email"
-                          value={formData.email}
-                          onChange={handleInputChange}
-                          required
-                          className="block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-pink-500 transition-colors"
-                          placeholder="your.email@example.com"
-                        />
-                      </div>
-                    </div>
-
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">
-                        Mobile Number (Optional)
-                      </label>
-                      <div className="relative">
-                        <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                          <Phone className="h-5 w-5 text-pink-400" />
-                        </div>
-                        <input
-                          type="tel"
-                          name="mobile"
-                          value={formData.mobile}
-                          onChange={handleInputChange}
-                          className="block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-pink-500 transition-colors"
-                          placeholder="+91 9876543210"
-                        />
-                      </div>
-                    </div>
-                    
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">
-                        Password <span className="text-red-500">*</span>
-                      </label>
-                      <div className="relative">
-                        <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                          <Lock className="h-5 w-5 text-pink-400" />
-                        </div>
-                        <input
-                          type={showPassword ? "text" : "password"}
-                          name="password"
-                          value={formData.password}
-                          onChange={handleInputChange}
-                          required
-                          minLength={6}
-                          className="block w-full pl-10 pr-10 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-pink-500 transition-colors"
-                          placeholder="Create a password (min 6 characters)"
-                        />
-                        <button
-                          type="button"
-                          className="absolute inset-y-0 right-0 pr-3 flex items-center"
-                          onClick={() => setShowPassword(!showPassword)}
-                        >
-                          {showPassword ? (
-                            <EyeOff className="h-5 w-5 text-pink-400 hover:text-pink-600 transition-colors" />
-                          ) : (
-                            <Eye className="h-5 w-5 text-pink-400 hover:text-pink-600 transition-colors" />
-                          )}
-                        </button>
-                      </div>
-                      {formData.password && (
-                        <div className="mt-2">
-                          <div className="flex items-center justify-between text-xs">
-                            <span className="text-gray-500">Password strength:</span>
-                            <span className={`font-medium ${
-                              passwordStrength <= 2 ? 'text-red-500' : 
-                              passwordStrength <= 3 ? 'text-yellow-500' : 'text-green-500'
-                            }`}>
-                              {getPasswordStrengthText()}
-                            </span>
-                          </div>
-                          <div className="w-full bg-gray-200 rounded-full h-1 mt-1">
-                            <div 
-                              className={`h-1 rounded-full transition-all ${getPasswordStrengthColor()}`}
-                              style={{ width: `${(passwordStrength / 5) * 100}%` }}
-                            ></div>
-                          </div>
-                        </div>
-                      )}
-                    </div>
-                    
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">
-                        Confirm Password <span className="text-red-500">*</span>
-                      </label>
-                      <div className="relative">
-                        <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                          <Lock className="h-5 w-5 text-pink-400" />
-                        </div>
-                        <input
-                          type={showConfirmPassword ? "text" : "password"}
-                          name="confirmPassword"
-                          value={formData.confirmPassword}
-                          onChange={handleInputChange}
-                          required
-                          className="block w-full pl-10 pr-10 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-pink-500 transition-colors"
-                          placeholder="Confirm your password"
-                        />
-                        <button
-                          type="button"
-                          className="absolute inset-y-0 right-0 pr-3 flex items-center"
-                          onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                        >
-                          {showConfirmPassword ? (
-                            <EyeOff className="h-5 w-5 text-pink-400 hover:text-pink-600 transition-colors" />
-                          ) : (
-                            <Eye className="h-5 w-5 text-pink-400 hover:text-pink-600 transition-colors" />
-                          )}
-                        </button>
-                      </div>
-                      {formData.confirmPassword && formData.password && (
-                        <div className="flex items-center mt-1">
-                          {formData.password === formData.confirmPassword ? (
-                            <div className="flex items-center text-green-600 text-xs">
-                              <Check className="w-3 h-3 mr-1" />
-                              Passwords match
-                            </div>
-                          ) : (
-                            <div className="flex items-center text-red-500 text-xs">
-                              <X className="w-3 h-3 mr-1" />
-                              Passwords don&apos;t match
-                            </div>
-                          )}
-                        </div>
-                      )}
-                    </div>
-                    
-                    <button
-                      type="button"
-                      onClick={handleContinueToStep2}
-                      disabled={!isStep1DataComplete}
-                      className="w-full bg-gradient-to-r from-pink-500 to-purple-600 text-white py-3 px-4 rounded-lg hover:from-pink-600 hover:to-purple-700 transition-all font-medium disabled:opacity-50 disabled:cursor-not-allowed"
-                    >
-                      Continue
-                    </button>
-                  </div>
-                ) : (
-                  <div className="space-y-4">
-                    <div className="text-center text-gray-500 py-8">
-                      Mobile OTP signup coming soon...
-                    </div>
+                    <span className={`text-[10px] ${STRENGTH_TEXT[strength]}`}>
+                      {STRENGTH_LABEL[strength]}
+                    </span>
                   </div>
                 )}
-                
-                <div className="relative my-6">
-                  <div className="absolute inset-0 flex items-center">
-                    <div className="w-full border-t border-gray-300"></div>
-                  </div>
-                  <div className="relative flex justify-center text-sm">
-                    <span className="px-2 bg-white text-gray-500">Or continue with</span>
-                  </div>
-                </div>
-                
-                <div className="grid grid-cols-3 gap-3">
-                  <button 
-                    onClick={handleGoogleSignup}
-                    disabled={loading}
-                    className="bg-white border border-gray-300 rounded-lg py-2 px-4 flex items-center justify-center hover:bg-gray-50 transition-colors disabled:opacity-50"
-                  >
-                    {loading ? (
-                      <Loader className="h-5 w-5 animate-spin" />
-                    ) : (
-                      <FcGoogle className="h-5 w-5" />
-                    )}
-                  </button>
-                  <button className="bg-blue-600 text-white rounded-lg py-2 px-4 flex items-center justify-center hover:bg-blue-700 transition-colors">
-                    <Facebook className="h-5 w-5" />
-                  </button>
-                  <button className="bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-lg py-2 px-4 flex items-center justify-center hover:from-purple-700 hover:to-pink-700 transition-colors">
-                    <Instagram className="h-5 w-5" />
-                  </button>
-                </div>
-                
-                <div className="mt-6 text-center">
-                  <p className="text-gray-600">
-                    Already have an account?{' '}
-                    <Link href="/login" className="font-medium text-pink-600 hover:text-pink-500">
-                      Sign in
-                    </Link>
-                  </p>
-                </div>
-              </>
-            ) : (
-              <form onSubmit={handleSubmit} className="space-y-4">
-                <div className="text-center mb-6">
-                  <h3 className="text-lg font-medium text-gray-800">Personal Details</h3>
-                  <p className="text-sm text-gray-600 mt-1">Help us personalize your experience</p>
-                </div>
-                
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
-                    Date of Birth <span className="text-red-500">*</span>
-                  </label>
-                  <div className="relative">
-                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                      <Calendar className="h-5 w-5 text-pink-400" />
-                    </div>
-                    <input
-                      type="date"
-                      name="dob"
-                      value={formData.dob}
-                      onChange={handleInputChange}
-                      className="block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-pink-500 transition-colors"
-                      required
-                      max={new Date().toISOString().split('T')[0]}
-                    />
-                  </div>
-                  <p className="text-xs text-pink-600 mt-1">
-                    🎂 We&apos;ll send you special birthday offers! (Must be 13+ to register)
-                  </p>
-                </div>
-                
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Marital Status</label>
-                  <select
-                    name="maritalStatus"
-                    value={formData.maritalStatus}
-                    onChange={handleInputChange}
-                    className="block w-full py-3 px-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-pink-500 transition-colors"
-                  >
-                    <option value="single">Single</option>
-                    <option value="married">Married</option>
-                    <option value="engaged">Engaged</option>
-                    <option value="other">Other</option>
-                  </select>
-                </div>
-                
-                {(formData.maritalStatus === 'married' || formData.maritalStatus === 'engaged') && (
-                  <motion.div
-                    initial={{ opacity: 0, height: 0 }}
-                    animate={{ opacity: 1, height: 'auto' }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
-                      {formData.maritalStatus === 'married' ? 'Anniversary Date' : 'Engagement Date'}
-                    </label>
-                    <div className="relative">
-                      <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                        <Heart className="h-5 w-5 text-pink-400" />
-                      </div>
-                      <input
-                        type="date"
-                        name="anniversaryDate"
-                        value={formData.anniversaryDate}
-                        onChange={handleInputChange}
-                        className="block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-pink-500 transition-colors"
-                        max={new Date().toISOString().split('T')[0]}
-                      />
-                    </div>
-                    <p className="text-xs text-pink-600 mt-1">
-                      💍 We&apos;ll help you celebrate with special offers!
-                    </p>
-                  </motion.div>
-                )}
-                
-                <div className="flex space-x-4 pt-4">
-                  <button
-                    type="button"
-                    onClick={() => setStep(1)}
-                    className="flex-1 bg-gray-100 text-gray-700 py-3 px-4 rounded-lg hover:bg-gray-200 transition-all font-medium"
-                  >
-                    Back
-                  </button>
-                  <button
-                    type="submit"
-                    disabled={loading}
-                    className="flex-1 bg-gradient-to-r from-pink-500 to-purple-600 text-white py-3 px-4 rounded-lg hover:from-pink-600 hover:to-purple-700 transition-all font-medium disabled:opacity-50 disabled:cursor-not-allowed"
-                  >
-                    {loading ? (
-                      <>
-                        <Loader className="animate-spin inline mr-2" />
-                        Creating Account...
-                      </>
-                    ) : (
-                      'Create Account'
-                    )}
-                  </button>
-                </div>
-                
-                <p className="text-xs text-gray-500 text-center mt-4">
-                  By creating an account, you agree to our{' '}
-                  <Link href="/terms" className="text-pink-600 hover:text-pink-500">Terms of Service</Link>
-                  {' '}and{' '}
-                  <Link href="/privacy" className="text-pink-600 hover:text-pink-500">Privacy Policy</Link>
-                </p>
-              </form>
-            )}
+              </div>
+
+              <button
+                type="submit"
+                disabled={loading || isRedirecting}
+                className="w-full py-3 rounded-pill bg-rose-brand text-white
+                  font-medium text-[13px] tracking-wide hover:bg-rose-deep
+                  active:scale-[0.99] transition-all duration-200 disabled:opacity-60
+                  flex items-center justify-center gap-2"
+              >
+                {loading ? (
+                  <>
+                    <span className="w-4 h-4 border-2 border-white/30 border-t-white
+                      rounded-full animate-spin" />
+                    Creating account…
+                  </>
+                ) : 'Create My Account 🌸'}
+              </button>
+            </form>
+
+            {/* Progress hint — sets expectation for progressive profiling */}
+            <div className="flex items-center gap-2 p-3 rounded-xl bg-blush
+              border border-[rgba(184,102,122,0.15)]">
+              <span className="text-base">🎁</span>
+              <p className="text-[11px] text-plum-mid leading-relaxed">
+                Add birthday & phone after signup to unlock birthday surprises
+                and booking reminders!
+              </p>
+            </div>
+
+            <p className="text-center text-[12px] text-plum-light">
+              Already have an account?{' '}
+              <Link href="/login"
+                className="text-rose-brand font-medium hover:text-rose-deep">
+                Sign in
+              </Link>
+            </p>
+
+            <p className="text-[10px] text-plum-light text-center">
+              By joining, you agree to our{' '}
+              <Link href="/terms" className="text-rose-brand hover:underline">Terms</Link>
+              {' & '}
+              <Link href="/privacy" className="text-rose-brand hover:underline">Privacy</Link>
+            </p>
           </div>
         </motion.div>
-        
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          className="mt-6 bg-white rounded-2xl shadow-xl p-4 border border-pink-100"
-        >
-          <div className="flex items-center">
-            <div className="bg-pink-100 p-3 rounded-full mr-3">
-              <Heart className="h-6 w-6 text-pink-600" />
-            </div>
-            <div>
-              <h3 className="font-medium text-gray-800">Personalized beauty experience</h3>
-              <p className="text-sm text-gray-600">Get recommendations based on your preferences</p>
-            </div>
-          </div>
-        </motion.div>
-        
+
+        {/* Benefits nudge */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.4 }}
-          className="mt-4 grid grid-cols-2 gap-4"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.2 }}
+          className="mt-4 grid grid-cols-3 gap-3"
         >
-          <div className="bg-white rounded-lg p-3 shadow-md border border-pink-50">
-            <div className="text-pink-600 text-lg mb-1">💅</div>
-            <h4 className="text-sm font-medium text-gray-800">Beauty Tips</h4>
-            <p className="text-xs text-gray-600">Daily care routines</p>
-          </div>
-          <div className="bg-white rounded-lg p-3 shadow-md border border-pink-50">
-            <div className="text-pink-600 text-lg mb-1">🎁</div>
-            <h4 className="text-sm font-medium text-gray-800">Special Offers</h4>
-            <p className="text-xs text-gray-600">Birthday & anniversary deals</p>
-          </div>
+          {[
+            { icon: '🎁', label: 'Birthday offers' },
+            { icon: '💎', label: 'Loyalty rewards' },
+            { icon: '📅', label: 'Easy booking' },
+          ].map(({ icon, label }) => (
+            <div key={label}
+              className="bg-white rounded-xl p-3 text-center shadow-brand-sm
+                border border-[rgba(184,102,122,0.1)]">
+              <div className="text-xl mb-1">{icon}</div>
+              <div className="text-[10px] text-plum-mid font-medium">{label}</div>
+            </div>
+          ))}
         </motion.div>
+
       </div>
     </div>
   );

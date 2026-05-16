@@ -1,4 +1,9 @@
-// types/index.ts
+// types/index.ts - Complete type definitions (Single Source of Truth)
+
+// ============================================
+// Blog Types
+// ============================================
+
 export interface BlogPost {
   slug: string;
   title: string;
@@ -14,6 +19,20 @@ export interface BlogPost {
   content?: string;
 }
 
+// ============================================
+// Legacy / Scan Types
+// ============================================
+
+export interface BeautyScanResult {
+  date: string;
+  image: string;
+  analysis: {
+    skinScore: number;
+    primaryConcern: string;
+    recommendedServices: string[];
+  };
+}
+
 export interface ClientProfile {
   id: string;
   name: string;
@@ -24,41 +43,6 @@ export interface ClientProfile {
   previousServices: string[];
   beautyScanHistory: BeautyScanResult[];
 }
-
-export interface BeautyScanResult {
-  date: string;
-  image?: string; // Base64 thumbnail
-  analysis: {
-    skinScore: number;
-    primaryConcern: string;
-    recommendedServices: string[];
-  };
-}
-
-export interface SalonService {
-  id: string;
-  name: string;
-  category: 'makeup' | 'skin' | 'hair' | 'nail';
-  duration: number; // minutes
-  price: number;
-  description: string;
-  suitableFor?: string[];
-  contraindications?: string[];
-}
-
-export interface Product {
-  id: string;
-  name: string;
-  brand: string;
-  category: string;
-  price: number;
-  size: string;
-  ingredients: string[];
-  skinTypes: string[];
-  imageUrl: string;
-}
-
-// types/index.ts - Complete type definitions for the beauty salon booking system
 
 // ============================================
 // User & Profile Types
@@ -98,7 +82,9 @@ export interface Profile {
   last_login_at: string | null;
   membership_tier?: 'basic' | 'premium' | 'vip';
   created_at: string;
-  updated_at: string;
+  preferred_stylist?: string;
+  preferred_category?: string;
+  updated_at?: string;
 }
 
 // ============================================
@@ -140,45 +126,155 @@ export interface ServiceCategory {
   updated_at: string;
 }
 
+/**
+ * Core Service interface — DB-aligned (snake_case) with all frontend fields included.
+ * This is the single source of truth. types/service.ts extends this.
+ */
 export interface Service {
+  // ── Identity ──────────────────────────────────────────────
   id: string;
   name: string;
-  title: string | null;
+  title: string;
+  slug?: string;
+
+  // ── Category & routing ────────────────────────────────────
   category_id: string | null;
   category: string | null;
-  service_type: 'makeup' | 'skin' | 'hair' | 'nail' | 'spa' | 'other';
+  category_name?: string;
+  categorySlug?: string;
+  service_type: 'makeup' | 'skin' | 'hair' | 'nails' | 'viral';
+  /** Frontend taxonomy primary category */
+  primaryCategory?: 'makeup' | 'skin' | 'hair' | 'nails' | 'combo';
+  /** e.g. "bridal", "party", "engagement" */
+  eventCategory?: string;
+  /** Canonical URL for internal linking + SEO */
+  url?: string;
+
+  // ── Content ───────────────────────────────────────────────
   description: string;
   detailed_description: string | null;
-  image: string | null;
+  shortDescription?: string;
+
+  // ── Media ─────────────────────────────────────────────────
+  image: string;
   image_url: string | null;
+  /** Alias used by frontend components */
+  imageUrl?: string;
+
+  // ── Pricing ───────────────────────────────────────────────
   base_price: number;
-  price: number | null;
+  price: number;
   original_price: number | null;
   discounted_price: number | null;
+  /** Alias used by frontend components */
+  originalPrice?: number;
+  priceCurrency?: string;
+  discountPercentage?: number;
+  deal?: string;
+
+  // ── Duration ──────────────────────────────────────────────
   duration_minutes: number;
-  duration: number | null;
+  /** Alias used by frontend components */
+  duration?: number;
+  /** Human-readable e.g. "2–3 hours" */
+  durationText?: string;
+
+  // ── Ingredients & benefits ────────────────────────────────
   key_ingredients: string[] | null;
+  /** Alias used by frontend components */
+  keyIngredients?: string[];
   benefits: string[] | null;
-  suitable_for: string[] | null;
-  tags: string[] | null;
   precautions: string | null;
   aftercare: string | null;
+
+  // ── Suitability ───────────────────────────────────────────
+  suitable_for: string[] | null;
+  /** Alias used by frontend components */
+  suitableFor?: string[];
+  tags: string[] | null;
+
+  // ── Popularity flags ──────────────────────────────────────
   is_trending: boolean;
   is_popular: boolean;
   is_signature: boolean;
-  requires_consultation: boolean;
-  active: boolean;
-  faqs: Array<{ question: string; answer: string; }> | null; // ✅ FIXED
+  isBestSeller?: boolean;
+  /** Alias used by frontend components */
+  isTrending?: boolean;
+  isPopular?: boolean;
+  /** Backward-compat alias */
+  trending?: boolean;
+  viral?: boolean;
+
+  // ── Ratings & bookings (DB columns) ──────────────────────
   booking_count: number;
   rating_average: number;
   rating_count: number;
+  /** Frontend alias for booking_count */
+  bookingCount?: number;
+  /** Frontend alias for rating_average */
+  rating?: number;
+  /** Frontend alias for rating_count */
+  reviews?: number;
+  reviewCount?: number;
+  reviewSource?: string;
+
+  // ── Operational ───────────────────────────────────────────
+  requires_consultation: boolean;
+  active: boolean;
+
+  // ── FAQs ──────────────────────────────────────────────────
+  faqs: { question: string; answer: string }[] | null;
+
+  // ── SEO ───────────────────────────────────────────────────
+  seoKeywords?: string[];
+
+  // ── Audience & intent ─────────────────────────────────────
+  idealFor?: string[];
+  targetAudience?: string[];
+
+  // ── Inclusions ────────────────────────────────────────────
+  whatsIncluded?: string[];
+  whatsNotIncluded?: string[];
+
+  // ── Availability ──────────────────────────────────────────
+  availability?: { days: string[]; times: string[] };
+  requirements?: string[];
+
+  // ── Add-ons ───────────────────────────────────────────────
+  addOns?: { name: string; price: number }[];
+
+  // ── Geography ─────────────────────────────────────────────
+  serviceArea?: { city: string; region: string; country: string; radiusKm?: number };
+  provider?: { name: string; address: string; phone?: string; googleMapsUrl?: string };
+  geo?: { lat: number; lng: number };
+  nearbyLandmarks?: string[];
+
+  // ── Meta / ops ────────────────────────────────────────────
+  seasonalTags?: string[];
+  processingTime?: string;
+  cancellationPolicy?: string;
+  link?: string;
+
+  // ── Timestamps ────────────────────────────────────────────
   created_at: string;
   updated_at: string;
 }
 
+// ── Helper ──────────────────────────────────────────────────────────────────
+
+export function getEffectivePrice(service: Pick<Service, 'base_price' | 'discounted_price'>) {
+  return service.discounted_price ?? service.base_price;
+}
+
+// ── Cart / Booking item ──────────────────────────────────────────────────────
+
+export interface CartItem extends Service {
+  quantity: number;
+}
+
 export interface BookingItem extends Service {
   quantity: number;
-  customizations?: Record<string, unknown>; // ✅ FIXED
+  customizations?: Record<string, unknown>;
   notes?: string;
 }
 
@@ -189,12 +285,20 @@ export interface BookingItem extends Service {
 export interface Stylist {
   id: string;
   full_name: string;
+  /** Alias used by frontend components */
+  name?: string;
   email: string | null;
   phone: string | null;
   specialties: string[];
+  /** Single specialty for display */
+  specialty?: string;
   experience_years: number;
+  /** e.g. "8 years" — backward compat */
+  experience?: string;
   bio: string | null;
+  about?: string;
   profile_image_url: string | null;
+  image?: string;
   rating: number;
   total_reviews: number;
   total_appointments: number;
@@ -204,7 +308,7 @@ export interface Stylist {
   social_media_handle: string | null;
   featured_in: string[];
   awards: string[];
-  working_days: number[]; // 0-6 (Sunday-Saturday)
+  working_days: number[];
   start_time: string;
   end_time: string;
   music_preferences: string[];
@@ -216,6 +320,14 @@ export interface Stylist {
   is_active: boolean;
   is_featured: boolean;
   is_verified: boolean;
+  available_times?: string[];
+  price?: number;
+  totalBookings?: number;
+  badges?: string[];
+  isVerified?: boolean;
+  isTrending?: boolean;
+  availableToday?: boolean;
+  responseTime?: string;
   created_at: string;
   updated_at: string;
 }
@@ -225,7 +337,7 @@ export interface Stylist {
 // ============================================
 
 export interface TimeSlot {
-  id: string;
+  id: string | number;
   date: string;
   time: string;
   stylist_id: string;
@@ -283,7 +395,7 @@ export interface AppointmentService {
   unit_price: number;
   discount_amount: number;
   total_price: number;
-  customizations: Record<string, unknown> | null; // ✅ FIXED
+  customizations: Record<string, unknown> | null;
   notes: string | null;
   created_at: string;
 }
@@ -298,13 +410,20 @@ export interface Booking {
   address_id: string | null;
   address: string | null;
   total_price: number;
-  services: BookingItem[]; // ✅ FIXED
+  services: unknown;
   customer_name: string;
   customer_phone: string;
   payment_method: string;
   status: 'Upcoming' | 'Completed' | 'Cancelled';
   created_at: string;
   updated_at: string;
+}
+
+export interface BookingSlot {
+  date: string;
+  time: string;
+  available: boolean;
+  stylist_id?: string;
 }
 
 // ============================================
@@ -321,7 +440,7 @@ export interface Payment {
   payment_method: 'credit_card' | 'phonepe' | 'google_pay' | 'paytm' | 'cash' | 'other';
   payment_status: 'pending' | 'processing' | 'completed' | 'failed' | 'refunded' | 'cancelled';
   transaction_id: string | null;
-  gateway_response: Record<string, unknown> | null; // ✅ FIXED
+  gateway_response: unknown;
   service_total: number;
   stylist_fee: number;
   discount_amount: number;
@@ -414,7 +533,7 @@ export interface Notification {
 }
 
 // ============================================
-// Favorite Types
+// Favorite / Preference Types
 // ============================================
 
 export interface UserFavorite {
@@ -424,15 +543,11 @@ export interface UserFavorite {
   created_at: string;
 }
 
-// ============================================
-// Preference Types
-// ============================================
-
 export interface UserPreference {
   id: string;
   user_id: string;
   preference_key: string;
-  preference_value: unknown; // ✅ FIXED
+  preference_value: unknown;
   created_at: string;
   updated_at: string;
 }
@@ -540,8 +655,7 @@ export interface BookingContextType {
   subtotal: number;
   taxAmount: number;
   totalAmount: number;
-  
-  // Methods
+
   addToCart: (service: Service) => void;
   removeFromCart: (serviceId: string) => void;
   updateQuantity: (serviceId: string, quantity: number) => void;
@@ -576,3 +690,6 @@ export interface SortConfig {
 export type BookingStatus = Appointment['status'];
 export type PaymentStatus = Payment['payment_status'];
 export type PaymentMethod = Payment['payment_method'];
+
+// Legacy named export kept for any existing imports
+export type { Service as SalonService };

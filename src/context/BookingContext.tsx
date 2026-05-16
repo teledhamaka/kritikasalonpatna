@@ -1,549 +1,478 @@
-// context/BookingContext.tsx
 'use client';
 
-import React, { createContext, useContext, useReducer, useEffect, ReactNode, useMemo, useCallback } from 'react';
+// ============================================================
+// FILE: context/BookingContext.tsx
+//
+// TYPESCRIPT FIXES in this version:
+//
+// FIX 1 (error 1128 — line 300): Syntax error in toggleFavorite
+//   Root cause: mixed `{ }` block body with `)` closing paren
+//     ❌ await withRetry(async () => {
+//          await isFav ? ... : ...
+//        );          ← should be }) not )
+//   Fix: switch to expression body (no braces needed for single expression):
+//     ✅ await withRetry(() =>
+//          isFav ? ... : ...
+//        );
+//
+// FIX 2 (errors 2339 — lines 360, 386): Missing `await` before withRetry
+//   ❌ const { data: appt, error: apptErr } = withRetry(...)
+//      TypeScript: destructuring a Promise<T>, not T
+//   ✅ const { data: appt, error: apptErr } = await withRetry(...)
+//
+// FIX 3 (error 2339 — line 425): `.catch()` on `PromiseLike`
+//   Root cause: withRetry(fn).catch() — TypeScript infers return
+//   of fn as PromiseLike<T> (Supabase builders) → withRetry result
+//   may not carry .catch() in some inference paths
+//   Fix: wrap fire-and-forget calls in void + try-catch inside async IIFE
+//     ✅ void (async () => { try { await withRetry(...) } catch {} })();
+//
+// FIX 4: Removed `async` and `await` from inside withRetry fn arg
+//   fn is () => PromiseLike<T> — Supabase builder is already PromiseLike
+//   Adding `async () => await` adds an extra Promise wrapper unnecessarily
+// ============================================================
+
+import React, {
+  createContext, useContext, useReducer, useEffect,
+  useMemo, useCallback, useRef, ReactNode,
+} from 'react';
 import { useAuth } from './AuthContext';
-//import { supabase } from '../lib/supabase';
 import { supabase } from '@/lib/supabase/client';
-import { Service } from '../types/service';
+import { getEffectivePrice } from '@/types';
+import {
+  withRetry,
+  normalizePhone,
+  generateBookingId,
+} from '@/lib/utils/booking';
+import type { Service, CartItem, Address } from '@/types';
 
-// BookingItem extends Service with quantity
-export interface BookingItem extends Service {
-  quantity: number;
-}
-
-interface Address {
-  id: string;
-  user_id: string;
-  flat: string | null;
-  colony: string;
-  locality: string;
-  landmark: string | null;
-  city: string;
-  pincode: string;
-  latitude: number | null;
-  longitude: number | null;
-  full_address: string | null;
-  is_default: boolean;
-  address_type: 'home' | 'work' | 'other';
-  delivery_instructions: string | null;
-  is_active: boolean;
-  created_at: string;
-  updated_at: string;
-}
-
+// ── State ─────────────────────────────────────────────────────
 interface BookingState {
-  cart: BookingItem[];
+  cart:      CartItem[];
   favorites: string[];
-  loading: boolean;
   addresses: Address[];
+  loading:   boolean;
 }
 
-type BookingAction =
-  | { type: 'ADD_TO_CART'; payload: Service }
+const initialState: BookingState = {
+  cart: [], favorites: [], addresses: [], loading: false,
+};
+
+type Action =
+  | { type: 'SET_CART';         payload: CartItem[] }
+  | { type: 'ADD_TO_CART';      payload: Service }
   | { type: 'REMOVE_FROM_CART'; payload: string }
-  | { type: 'UPDATE_QUANTITY'; payload: { id: string; quantity: number } }
+  | { type: 'UPDATE_QUANTITY';  payload: { id: string; quantity: number } }
   | { type: 'CLEAR_CART' }
-  | { type: 'ADD_TO_FAVORITES'; payload: string }
-  | { type: 'REMOVE_FROM_FAVORITES'; payload: string }
-  | { type: 'SET_LOADING'; payload: boolean }
-  | { type: 'SET_ADDRESSES'; payload: Address[] }
-  | { type: 'LOAD_PERSISTED_STATE'; payload: Partial<BookingState> };
+  | { type: 'SET_FAVORITES';    payload: string[] }
+  | { type: 'ADD_FAVORITE';     payload: string }
+  | { type: 'REMOVE_FAVORITE';  payload: string }
+  | { type: 'SET_ADDRESSES';    payload: Address[] }
+  | { type: 'SET_LOADING';      payload: boolean };
+
+function reducer(state: BookingState, action: Action): BookingState {
+  switch (action.type) {
+    case 'SET_CART': return { ...state, cart: action.payload };
+    case 'ADD_TO_CART': {
+      const ex = state.cart.find(i => i.id === action.payload.id);
+      if (ex) {
+        return {
+          ...state,
+          cart: state.cart.map(i =>
+            i.id === action.payload.id ? { ...i, quantity: i.quantity + 1 } : i
+          ),
+        };
+      }
+      return { ...state, cart: [...state.cart, { ...action.payload, quantity: 1 }] };
+    }
+    case 'REMOVE_FROM_CART':
+      return { ...state, cart: state.cart.filter(i => i.id !== action.payload) };
+    case 'UPDATE_QUANTITY':
+      if (action.payload.quantity <= 0) {
+        return { ...state, cart: state.cart.filter(i => i.id !== action.payload.id) };
+      }
+      return {
+        ...state,
+        cart: state.cart.map(i =>
+          i.id === action.payload.id ? { ...i, quantity: action.payload.quantity } : i
+        ),
+      };
+    case 'CLEAR_CART':    return { ...state, cart: [] };
+    case 'SET_FAVORITES': return { ...state, favorites: action.payload };
+    case 'ADD_FAVORITE':
+      return state.favorites.includes(action.payload)
+        ? state
+        : { ...state, favorites: [...state.favorites, action.payload] };
+    case 'REMOVE_FAVORITE':
+      return { ...state, favorites: state.favorites.filter(id => id !== action.payload) };
+    case 'SET_ADDRESSES': return { ...state, addresses: action.payload };
+    case 'SET_LOADING':   return { ...state, loading: action.payload };
+    default: return state;
+  }
+}
+
+// ── Context types ─────────────────────────────────────────────
+export interface BookingFormData {
+  date:                string;
+  time:                string;
+  name?:               string;
+  phone?:              string;
+  address:             string;
+  stylist:             string;
+  specialInstructions: string;
+  paymentMethod:       string;
+}
+
+interface BookingResult { success: boolean; bookingId?: string; error?: string; }
+
+interface ProfileDefaults {
+  name:          string;
+  phone:         string;
+  needsPhone:    boolean;
+  needsBirthday: boolean;
+}
 
 interface BookingContextType extends BookingState {
-  addToCart: (service: Service) => void;
-  removeFromCart: (serviceId: string) => void;
-  updateQuantity: (serviceId: string, quantity: number) => void;
-  clearCart: () => void;
-  addToFavorites: (serviceId: string) => Promise<void>;
-  removeFromFavorites: (serviceId: string) => Promise<void>;
-  toggleFavorite: (serviceId: string) => Promise<void>;
-  isFavorite: (serviceId: string) => boolean;
+  addToCart:         (service: Service) => void;
+  removeFromCart:    (id: string) => void;
+  updateQuantity:    (id: string, quantity: number) => void;
+  clearCart:         () => void;
+  toggleFavorite:    (id: string) => Promise<void>;
+  isFavorite:        (id: string) => boolean;
   loadUserFavorites: () => Promise<void>;
-  fetchAddresses: () => Promise<void>;
-  createBooking: (bookingData: {
-    date: string;
-    time: string;
-    name: string;
-    phone: string;
-    address: string;
-    stylist: string;
-    specialInstructions: string;
-    paymentMethod: string;
-  }) => Promise<{ success: boolean; bookingId?: string; error?: string }>;
-  getTotalAmount: () => number;
-  getSubtotal: () => number;
-  getTaxAmount: () => number;
-  cartItemCount: number;
-  totalDuration: number;
+  fetchAddresses:    () => Promise<void>;
+  createBooking:     (data: BookingFormData) => Promise<BookingResult>;
+  getSubtotal:       () => number;
+  getTaxAmount:      () => number;
+  getTotalAmount:    () => number;
+  cartItemCount:     number;
+  totalDuration:     number;
+  profileDefaults:   ProfileDefaults;
 }
 
 const BookingContext = createContext<BookingContextType | undefined>(undefined);
 
-const initialState: BookingState = {
-  cart: [],
-  favorites: [],
-  loading: false,
-  addresses: [],
-};
+// ── Provider ──────────────────────────────────────────────────
+export function BookingProvider({ children }: { children: ReactNode }) {
+  const [state, dispatch] = useReducer(reducer, initialState);
+  const { profile } = useAuth();
 
-function bookingReducer(state: BookingState, action: BookingAction): BookingState {
-  switch (action.type) {
-    case 'ADD_TO_CART': {
-      const existingItem = state.cart.find(item => item.id === action.payload.id);
-      
-      if (existingItem) {
-        return {
-          ...state,
-          cart: state.cart.map(item =>
-            item.id === action.payload.id
-              ? { ...item, quantity: item.quantity + 1 }
-              : item
-          ),
-        };
-      }
+  const bookingInProgress = useRef(false);
+  const pendingFavorites  = useRef(new Set<string>());
 
-      // Convert Service to BookingItem by adding quantity
-      const bookingItem: BookingItem = {
-        ...action.payload,
-        quantity: 1
-      };
-
-      return {
-        ...state,
-        cart: [...state.cart, bookingItem],
-      };
-    }
-
-    case 'REMOVE_FROM_CART':
-      return {
-        ...state,
-        cart: state.cart.filter(item => item.id !== action.payload),
-      };
-
-    case 'UPDATE_QUANTITY': {
-      if (action.payload.quantity <= 0) {
-        return {
-          ...state,
-          cart: state.cart.filter(item => item.id !== action.payload.id),
-        };
-      }
-
-      return {
-        ...state,
-        cart: state.cart.map(item =>
-          item.id === action.payload.id
-            ? { ...item, quantity: action.payload.quantity }
-            : item
-        ),
-      };
-    }
-
-    case 'CLEAR_CART':
-      return {
-        ...state,
-        cart: [],
-      };
-
-    case 'ADD_TO_FAVORITES':
-      return {
-        ...state,
-        favorites: [...state.favorites, action.payload],
-      };
-
-    case 'REMOVE_FROM_FAVORITES':
-      return {
-        ...state,
-        favorites: state.favorites.filter(id => id !== action.payload),
-      };
-
-    case 'SET_LOADING':
-      return {
-        ...state,
-        loading: action.payload,
-      };
-
-    case 'SET_ADDRESSES':
-      return {
-        ...state,
-        addresses: action.payload,
-      };
-
-    case 'LOAD_PERSISTED_STATE':
-      return {
-        ...state,
-        ...action.payload,
-      };
-
-    default:
-      return state;
-  }
-}
-
-interface BookingProviderProps {
-  children: ReactNode;
-}
-
-export const BookingProvider: React.FC<BookingProviderProps> = ({ children }) => {
-  const [state, dispatch] = useReducer(bookingReducer, initialState);
-  const { user, profile } = useAuth();
-
-  // Load cart and favorites from localStorage on mount
+  // ── Cart restore ──────────────────────────────────────────
   useEffect(() => {
-    const savedCart = localStorage.getItem('salon-cart');
-    const savedFavorites = localStorage.getItem('salon-favorites');
-    
-    if (savedCart) {
-      try {
-        const cart = JSON.parse(savedCart);
-        dispatch({ type: 'LOAD_PERSISTED_STATE', payload: { cart } });
-      } catch (e) {
-        console.error('Error loading cart:', e);
-      }
-    }
-    
-    if (savedFavorites) {
-      try {
-        const favorites = JSON.parse(savedFavorites);
-        dispatch({ type: 'LOAD_PERSISTED_STATE', payload: { favorites } });
-      } catch (e) {
-        console.error('Error loading favorites:', e);
-      }
-    }
-  }, []);
-
-  // Save cart to localStorage
-  useEffect(() => {
-    localStorage.setItem('salon-cart', JSON.stringify(state.cart));
-  }, [state.cart]);
-
-  // Save favorites to localStorage
-  useEffect(() => {
-    localStorage.setItem('salon-favorites', JSON.stringify(state.favorites));
-  }, [state.favorites]);
-
-  // Load user data on auth
-  useEffect(() => {
-    if (user) {
-      loadUserFavorites();
-      fetchAddresses();
-    }
-  }, [user?.id]);
-
-  const cartItemCount = useMemo(() => {
-    return state.cart.reduce((count, item) => count + item.quantity, 0);
-  }, [state.cart]);
-
-  const getSubtotal = useCallback(() => {
-    return state.cart.reduce((total, item) => {
-      const price = item.discounted_price || item.price || item.base_price || 0;
-      return total + (price * item.quantity);
-    }, 0);
-  }, [state.cart]);
-  
-  const totalDuration = useMemo(() => {
-    return state.cart.reduce((duration, item) => {
-      const itemDuration = item.duration_minutes || item.duration || 60;
-      return duration + (itemDuration * item.quantity);
-    }, 0);
-  }, [state.cart]);
-
-  const getTaxAmount = useCallback(() => {
-    const subtotal = getSubtotal();
-    return Math.round(subtotal * 0.18); // 18% GST
-  }, [getSubtotal]);
-
-  const getTotalAmount = useCallback(() => {
-    const subtotal = getSubtotal();
-    const tax = getTaxAmount();
-    return Math.round(subtotal + tax);
-  }, [getSubtotal, getTaxAmount]);
-
-  const addToCart = useCallback((service: Service) => {
-    dispatch({ type: 'ADD_TO_CART', payload: service });
-  }, []);
-
-  const removeFromCart = useCallback((serviceId: string) => {
-    dispatch({ type: 'REMOVE_FROM_CART', payload: serviceId });
-  }, []);
-
-  const updateQuantity = useCallback((serviceId: string, quantity: number) => {
-    dispatch({ type: 'UPDATE_QUANTITY', payload: { id: serviceId, quantity } });
-  }, []);
-
-  const clearCart = useCallback(() => {
-    dispatch({ type: 'CLEAR_CART' });
-  }, []);
-
-  const loadUserFavorites = useCallback(async () => {
-    if (!user) return;
-
     try {
-      const { data, error } = await supabase
-        .from('user_favorites')
-        .select('service_id')
-        .eq('user_id', user.id);
-
-      if (!error && data) {
-        const favorites = data.map(fav => fav.service_id);
-        dispatch({ type: 'LOAD_PERSISTED_STATE', payload: { favorites } });
+      const raw = localStorage.getItem('kr-cart');
+      if (!raw) return;
+      const items: CartItem[] = JSON.parse(raw);
+      if (Array.isArray(items) && items.length > 0) {
+        dispatch({ type: 'SET_CART', payload: items });
       }
-    } catch (error) {
-      console.error('Error loading user favorites:', error);
-    }
-  }, [user?.id]);
+    } catch {}
+  }, []);
 
-  const addToFavorites = useCallback(async (serviceId: string) => {
-    if (state.favorites.includes(serviceId)) return;
+  useEffect(() => {
+    try { localStorage.setItem('kr-cart', JSON.stringify(state.cart)); }
+    catch {}
+  }, [state.cart]);
 
-    dispatch({ type: 'ADD_TO_FAVORITES', payload: serviceId });
-
-    if (user) {
-      try {
-        await supabase
-          .from('user_favorites')
-          .insert({ user_id: user.id, service_id: serviceId });
-      } catch (error) {
-        console.error('Error saving favorite:', error);
-      }
-    }
-  }, [state.favorites, user]);
-
-  const removeFromFavorites = useCallback(async (serviceId: string) => {
-    dispatch({ type: 'REMOVE_FROM_FAVORITES', payload: serviceId });
-
-    if (user) {
-      try {
-        await supabase
-          .from('user_favorites')
-          .delete()
-          .eq('user_id', user.id)
-          .eq('service_id', serviceId);
-      } catch (error) {
-        console.error('Error removing favorite:', error);
-      }
-    }
-  }, [user]);
-
-  const toggleFavorite = useCallback(async (serviceId: string) => {
-    if (state.favorites.includes(serviceId)) {
-      await removeFromFavorites(serviceId);
+  // ── On login: migrate + deduplicate + load addresses ──────
+  useEffect(() => {
+    if (profile?.id) {
+      Promise.all([
+        migrateGuestFavorites(),
+        deduplicateCart(),
+        fetchAddresses(),
+      ]);
     } else {
-      await addToFavorites(serviceId);
+      try {
+        const raw = localStorage.getItem('kr-fav-guest');
+        if (raw) dispatch({ type: 'SET_FAVORITES', payload: JSON.parse(raw) });
+      } catch {}
     }
-  }, [state.favorites, addToFavorites, removeFromFavorites]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [profile?.id]);
 
-  const isFavorite = useCallback((serviceId: string) => {
-    return state.favorites.includes(serviceId);
-  }, [state.favorites]);
+  // Persist guest favorites
+  useEffect(() => {
+    if (!profile?.id) {
+      try { localStorage.setItem('kr-fav-guest', JSON.stringify(state.favorites)); }
+      catch {}
+    }
+  }, [state.favorites, profile?.id]);
 
-  const fetchAddresses = useCallback(async () => {
-    if (!user) return;
-
+  // ── Guest favorites migration ─────────────────────────────
+  const migrateGuestFavorites = useCallback(async () => {
+    if (!profile?.id) return;
     try {
-      const { data, error } = await supabase
-        .from('addresses')
-        .select('*')
-        .eq('user_id', user.id)
-        .eq('is_active', true)
-        .order('is_default', { ascending: false })
-        .order('created_at', { ascending: false });
-
-      if (!error && data) {
-        dispatch({ type: 'SET_ADDRESSES', payload: data });
+      const raw = localStorage.getItem('kr-fav-guest');
+      const guestFavs: string[] = raw ? JSON.parse(raw) : [];
+      if (guestFavs.length > 0) {
+        await withRetry(() =>
+          supabase
+            .from('user_favorites')
+            .upsert(
+              guestFavs.map(serviceId => ({
+                user_id: profile.id, service_id: serviceId,
+              })),
+              { onConflict: 'user_id,service_id', ignoreDuplicates: true }
+            )
+        );
+        localStorage.removeItem('kr-fav-guest');
       }
-    } catch (error) {
-      console.error('Error fetching addresses:', error);
+      await loadUserFavorites();
+    } catch {
+      await loadUserFavorites();
     }
-  }, [user?.id]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [profile?.id]);
 
-  const createBooking = useCallback(async (bookingData: {
-    date: string;
-    time: string;
-    name: string;
-    phone: string;
-    address: string;
-    stylist: string;
-    specialInstructions: string;
-    paymentMethod: string;
-  }): Promise<{ success: boolean; bookingId?: string; error?: string }> => {
-    if (!user) {
-      return { 
-        success: false, 
-        error: 'User not authenticated' 
-      };
+  // ── Deduplicate cart on login ─────────────────────────────
+  const deduplicateCart = useCallback(async () => {
+    if (state.cart.length === 0) return;
+    const seen  = new Set<string>();
+    const clean = state.cart.filter(item => {
+      if (seen.has(item.id)) return false;
+      seen.add(item.id);
+      return true;
+    });
+    if (clean.length !== state.cart.length) {
+      dispatch({ type: 'SET_CART', payload: clean });
+    }
+  }, [state.cart]);
+
+  // ── Computed ──────────────────────────────────────────────
+  const cartItemCount = useMemo(
+    () => state.cart.reduce((n, i) => n + i.quantity, 0), [state.cart]
+  );
+  const totalDuration = useMemo(
+    () => state.cart.reduce((d, i) => d + (i.duration_minutes ?? 60) * i.quantity, 0),
+    [state.cart]
+  );
+  const getSubtotal    = useCallback(
+    () => state.cart.reduce((s, i) => s + getEffectivePrice(i) * i.quantity, 0),
+    [state.cart]
+  );
+  const getTaxAmount   = useCallback(() => Math.round(getSubtotal() * 0.18), [getSubtotal]);
+  const getTotalAmount = useCallback(() => getSubtotal() + getTaxAmount(), [getSubtotal, getTaxAmount]);
+
+  const profileDefaults = useMemo<ProfileDefaults>(() => ({
+    name:          profile?.full_name ?? profile?.first_name ?? '',
+    phone:         profile?.phone     ?? '',
+    needsPhone:    !profile?.phone,
+    needsBirthday: !profile?.birthday,
+  }), [profile]);
+
+  // ── Cart actions ──────────────────────────────────────────
+  const addToCart      = useCallback((s: Service) => dispatch({ type: 'ADD_TO_CART', payload: s }), []);
+  const removeFromCart = useCallback((id: string) => dispatch({ type: 'REMOVE_FROM_CART', payload: id }), []);
+  const updateQuantity = useCallback((id: string, qty: number) =>
+    dispatch({ type: 'UPDATE_QUANTITY', payload: { id, quantity: qty } }), []);
+  const clearCart      = useCallback(() => dispatch({ type: 'CLEAR_CART' }), []);
+
+  // ── Favorites ─────────────────────────────────────────────
+  const loadUserFavorites = useCallback(async () => {
+    if (!profile?.id) return;
+    try {
+      const { data } = await supabase
+        .from('user_favorites').select('service_id').eq('user_id', profile.id);
+      if (data) dispatch({ type: 'SET_FAVORITES', payload: data.map(r => r.service_id) });
+    } catch {}
+  }, [profile?.id]);
+
+  // FIX 1: toggleFavorite — fixed syntax error (line 300)
+  // The original had withRetry(async () => { await ternary ); — mismatched braces.
+  // Correct form: withRetry(() => ternary) — expression body, no braces needed.
+  const toggleFavorite = useCallback(async (serviceId: string) => {
+    if (pendingFavorites.current.has(serviceId)) return;
+
+    const isFav = state.favorites.includes(serviceId);
+    pendingFavorites.current.add(serviceId);
+    dispatch({ type: isFav ? 'REMOVE_FAVORITE' : 'ADD_FAVORITE', payload: serviceId });
+
+    if (profile?.id) {
+      try {
+        // ✅ FIX 1: clean expression body — no braces, no stray paren
+        await withRetry(() =>
+          isFav
+            ? supabase.from('user_favorites').delete()
+                .eq('user_id', profile.id).eq('service_id', serviceId)
+            : supabase.from('user_favorites')
+                .insert({ user_id: profile.id, service_id: serviceId })
+        );
+      } catch {
+        // All retries failed — rollback optimistic update
+        dispatch({ type: isFav ? 'ADD_FAVORITE' : 'REMOVE_FAVORITE', payload: serviceId });
+      } finally {
+        pendingFavorites.current.delete(serviceId);
+      }
+    } else {
+      pendingFavorites.current.delete(serviceId);
+    }
+  }, [state.favorites, profile?.id]);
+
+  const isFavorite = useCallback(
+    (id: string) => state.favorites.includes(id), [state.favorites]
+  );
+
+  // ── Addresses ─────────────────────────────────────────────
+  const fetchAddresses = useCallback(async () => {
+    if (!profile?.id) return;
+    try {
+      const { data } = await supabase
+        .from('addresses').select('*')
+        .eq('user_id', profile.id).eq('is_active', true)
+        .order('is_default', { ascending: false });
+      if (data) dispatch({ type: 'SET_ADDRESSES', payload: data });
+    } catch {}
+  }, [profile?.id]);
+
+  // ── Create booking ────────────────────────────────────────
+  const createBooking = useCallback(async (
+    data: BookingFormData
+  ): Promise<BookingResult> => {
+    if (!profile?.id)            return { success: false, error: 'Please sign in to book.' };
+    if (state.cart.length === 0) return { success: false, error: 'Your cart is empty.' };
+    if (bookingInProgress.current) {
+      return { success: false, error: 'Booking in progress. Please wait…' };
     }
 
-    if (state.cart.length === 0) {
-      return {
-        success: false,
-        error: 'Cart is empty'
-      };
-    }
-
+    bookingInProgress.current = true;
     dispatch({ type: 'SET_LOADING', payload: true });
 
     try {
-      const subtotal = getSubtotal();
-      const taxAmount = getTaxAmount();
+      const subtotal    = getSubtotal();
+      const taxAmount   = getTaxAmount();
       const totalAmount = getTotalAmount();
+      const bookingId   = generateBookingId();
 
-      // Calculate end time
-      const startDateTime = new Date(`${bookingData.date}T${bookingData.time}`);
-      const endDateTime = new Date(startDateTime.getTime() + totalDuration * 60000);
-      const endTime = endDateTime.toTimeString().slice(0, 5);
+      const rawPhone      = data.phone?.trim() || profileDefaults.phone || '';
+      const customerPhone = rawPhone ? normalizePhone(rawPhone) : '';
+      const customerName  = data.name?.trim() || profileDefaults.name || 'Guest';
 
-      // Generate booking ID
-      const bookingId = `BK${Date.now().toString().slice(-8)}`;
+      const startDT = new Date(`${data.date}T${data.time}`);
+      const endTime = new Date(startDT.getTime() + totalDuration * 60000)
+        .toTimeString().slice(0, 5);
 
-      // Create appointment in Supabase
-      const { data: appointment, error: appointmentError } = await supabase
-        .from('appointments')
-        .insert({
-          user_id: user.id,
-          stylist_id: bookingData.stylist !== 'any' ? bookingData.stylist : null,
-          appointment_date: bookingData.date,
-          start_time: bookingData.time,
-          end_time: endTime,
-          total_duration: totalDuration,
-          subtotal: subtotal,
-          tax_amount: taxAmount,
-          discount_amount: 0,
-          tip_amount: 0,
-          total_amount: totalAmount,
-          special_instructions: bookingData.specialInstructions || null,
-          status: 'scheduled',
-          payment_status: bookingData.paymentMethod === 'pay_online' ? 'pending' : 'pending',
-        })
-        .select()
-        .single();
+      // ✅ FIX 2: await withRetry — line 360 fix
+      const { data: appt, error: apptErr } = await withRetry(() =>
+        supabase
+          .from('appointments')
+          .insert({
+            user_id:              profile.id,
+            stylist_id:           data.stylist !== 'any' ? data.stylist : null,
+            appointment_date:     data.date,
+            start_time:           data.time,
+            end_time:             endTime,
+            total_duration:       totalDuration,
+            subtotal,
+            tax_amount:           taxAmount,
+            total_amount:         totalAmount,
+            discount_amount:      0,
+            tip_amount:           0,
+            special_instructions: data.specialInstructions || null,
+            status:               'scheduled',
+            payment_status:       'pending',
+          })
+          .select()
+          .single()
+      );
 
-      if (appointmentError) {
-        console.error('Appointment creation error:', appointmentError);
-        throw new Error('Failed to create appointment');
+      if (apptErr) throw new Error('Couldn\'t create appointment. Please try again.');
+
+      // ✅ FIX 2: await withRetry — line 386 fix
+      const { error: bookingErr } = await withRetry(() =>
+        supabase
+          .from('bookings')
+          .insert({
+            user_id:        profile.id,
+            booking_id:     bookingId,
+            date:           data.date,
+            time:           data.time,
+            stylist_name:   data.stylist !== 'any' ? data.stylist : 'Any Available Stylist',
+            address:        data.address,
+            total_price:    totalAmount,
+            services:       state.cart.map(i => ({
+              id: i.id, name: i.name,
+              price: getEffectivePrice(i), quantity: i.quantity,
+            })),
+            customer_name:  customerName,
+            customer_phone: customerPhone,
+            payment_method: data.paymentMethod,
+            status:         'upcoming',
+          })
+      );
+
+      if (bookingErr) {
+        await supabase.from('appointments').delete().eq('id', appt.id);
+        throw new Error('Couldn\'t save booking. Please try again.');
       }
 
-      // Get stylist name
-      let stylistName = 'Any Available Stylist';
-      if (bookingData.stylist !== 'any') {
-        const stylistMap: Record<string, string> = {
-          'priya': 'Priya Sharma',
-          'neha': 'Neha Singh',
-          'riya': 'Riya Kumari'
-        };
-        stylistName = stylistMap[bookingData.stylist] || bookingData.stylist;
+      // Line items — fire-and-forget (non-critical)
+      // ✅ void async IIFE — avoids .catch() on PromiseLike (error 2339)
+      // Supabase builders return PromiseLike which only has .then(), not .catch()
+      void (async () => {
+        try {
+          await supabase.from('appointment_services').insert(
+            state.cart.map(item => ({
+              appointment_id:  appt.id,
+              service_id:      item.id,
+              quantity:        item.quantity,
+              unit_price:      item.base_price,
+              discount_amount: item.discounted_price
+                ? (item.base_price - item.discounted_price) * item.quantity : 0,
+              total_price:     getEffectivePrice(item) * item.quantity,
+            }))
+          );
+        } catch {}
+      })();
+
+      // ✅ FIX 3: fire-and-forget withRetry without .catch() on PromiseLike
+      // Use void + async IIFE — avoids the PromiseLike.catch() error
+      if (!profile.phone && customerPhone) {
+        void (async () => {
+          try {
+            await withRetry(() =>
+              supabase
+                .from('profiles')
+                .update({ phone: customerPhone, updated_at: new Date().toISOString() })
+                .eq('id', profile.id)
+            );
+          } catch {}
+        })();
       }
 
-      // Create booking record
-      const { data: booking, error: bookingError } = await supabase
-        .from('bookings')
-        .insert({
-          user_id: user.id,
-          booking_id: bookingId,
-          date: bookingData.date,
-          time: bookingData.time,
-          stylist_name: stylistName,
-          address: bookingData.address,
-          total_price: totalAmount,
-          services: state.cart.map(item => ({
-            id: item.id,
-            name: item.title || item.name,
-            price: item.discounted_price || item.price || item.base_price || 0,
-            quantity: item.quantity,
-          })),
-          customer_name: bookingData.name,
-          customer_phone: bookingData.phone,
-          payment_method: bookingData.paymentMethod,
-          status: 'Upcoming',
-        })
-        .select()
-        .single();
-
-      if (bookingError) {
-        console.error('Booking creation error:', bookingError);
-        // Try to delete the appointment if booking fails
-        await supabase.from('appointments').delete().eq('id', appointment.id);
-        throw new Error('Failed to create booking');
-      }
-
-      // Create appointment services
-      const appointmentServices = state.cart.map(item => {
-        const basePrice = item.base_price || item.price || 0;
-        const finalPrice = item.discounted_price || item.price || basePrice;
-        const discountAmount = item.discounted_price ? (basePrice - finalPrice) * item.quantity : 0;
-        const totalPrice = finalPrice * item.quantity;
-
-        return {
-          appointment_id: appointment.id,
-          service_id: item.id,
-          quantity: item.quantity,
-          unit_price: basePrice,
-          discount_amount: discountAmount,
-          total_price: totalPrice,
-        };
-      });
-
-      const { error: servicesError } = await supabase
-        .from('appointment_services')
-        .insert(appointmentServices);
-
-      if (servicesError) {
-        console.error('Services creation error:', servicesError);
-        // Continue anyway - this is not critical
-      }
-
-      // Clear cart on success
       dispatch({ type: 'CLEAR_CART' });
+      return { success: true, bookingId };
 
-      return { 
-        success: true, 
-        bookingId: bookingId,
-      };
-    } catch (error: any) {
-      console.error('Error creating booking:', error);
-      return { 
-        success: false, 
-        error: error.message || 'Failed to create booking' 
-      };
+    } catch (err: any) {
+      return { success: false, error: err.message ?? 'Booking failed. Please try again.' };
     } finally {
+      bookingInProgress.current = false;
       dispatch({ type: 'SET_LOADING', payload: false });
     }
-  }, [user, state.cart, totalDuration, getSubtotal, getTaxAmount, getTotalAmount]);
+  }, [
+    profile?.id, profile?.phone,
+    state.cart, totalDuration,
+    profileDefaults, getSubtotal, getTaxAmount, getTotalAmount,
+  ]);
 
   const value: BookingContextType = {
     ...state,
-    addToCart,
-    removeFromCart,
-    updateQuantity,
-    clearCart,
-    addToFavorites,
-    removeFromFavorites,
-    toggleFavorite,
-    isFavorite,
-    loadUserFavorites,
-    fetchAddresses,
-    createBooking,
-    getTotalAmount,
-    getSubtotal,
-    getTaxAmount,
-    cartItemCount,
-    totalDuration,
+    addToCart, removeFromCart, updateQuantity, clearCart,
+    toggleFavorite, isFavorite, loadUserFavorites, fetchAddresses,
+    createBooking, getSubtotal, getTaxAmount, getTotalAmount,
+    cartItemCount, totalDuration, profileDefaults,
   };
 
-  return (
-    <BookingContext.Provider value={value}>
-      {children}
-    </BookingContext.Provider>
-  );
-};
+  return <BookingContext.Provider value={value}>{children}</BookingContext.Provider>;
+}
 
-export const useBooking = () => {
-  const context = useContext(BookingContext);
-  if (context === undefined) {
-    throw new Error('useBooking must be used within a BookingProvider');
-  }
-  return context;
-};
+export function useBooking(): BookingContextType {
+  const ctx = useContext(BookingContext);
+  if (!ctx) throw new Error('useBooking must be used within BookingProvider');
+  return ctx;
+}
 
 export { BookingContext };
-export type { Address };

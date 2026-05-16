@@ -148,7 +148,7 @@ const ServiceDetailModal = ({
       "@type": "Product",
       "name": service.title,
       "description": service.description || service.shortDescription || "",
-      "serviceType": service.category,
+      "serviceType": service.category || "Beauty Service",
       "image": service.image,
       "brand": {
         "@type": "BeautySalon",
