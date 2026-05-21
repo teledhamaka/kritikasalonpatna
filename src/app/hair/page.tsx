@@ -99,7 +99,6 @@ export const metadata: Metadata = {
 
 // FIXED: Enhanced service offers - limited to top 20
 const generateServiceOffers = () => {
-  // FIXED: Sort by booking count and limit to top 20
   return hairServices
     .sort((a: any, b: any) => (b.bookingCount || 0) - (a.bookingCount || 0))
     .slice(0, 20)
@@ -114,10 +113,8 @@ const generateServiceOffers = () => {
           "@type": "BeautySalon",
           "name": seoData.business.name
         },
-        // FIXED: Using primaryCategory if available
         "category": service.primaryCategory || service.category,
         "serviceType": service.eventCategory || service.primaryCategory || service.category,
-        // FIXED: Only add ratings if legitimate
         "aggregateRating": service.rating && service.reviewCount && service.reviewCount >= 5 ? {
           "@type": "AggregateRating",
           "ratingValue": service.rating.toString(),
@@ -127,7 +124,6 @@ const generateServiceOffers = () => {
       "price": service.price.toString(),
       "priceCurrency": "INR",
       "availability": "https://schema.org/InStock",
-      // FIXED: Correct URL generation
       "url": service.url 
         ? `${seoData.business.contact.website}${service.url}`
         : `${seoData.business.contact.website}/hair/service/${service.slug || service.id}`
@@ -151,7 +147,6 @@ const hairStructuredData = {
       "priceRange": "₹₹-₹₹₹",
       "address": {
         "@type": "PostalAddress",
-        // FIXED: Using city instead of locality
         "streetAddress": seoData.business.address.street,
         "addressLocality": seoData.business.address.city,
         "addressRegion": seoData.business.address.state,
@@ -185,7 +180,6 @@ const hairStructuredData = {
         "worstRating": "1"
       },
       "makesOffer": generateServiceOffers(),
-      // FIXED: Simplified to City
       "areaServed": {
         "@type": "City",
         "name": "Patna"
@@ -243,9 +237,7 @@ const hairStructuredData = {
   ]
 };
 
-// FIXED: Generate concise FAQ
 const generateFAQSchema = () => {
-  // Get top 5 service FAQs
   const serviceFAQs = hairServices
     .flatMap((service: any) => service.faqs || [])
     .slice(0, 5)
@@ -254,7 +246,6 @@ const generateFAQSchema = () => {
       "name": faq.question,
       "acceptedAnswer": {
         "@type": "Answer",
-        // FIXED: Escape quotes
         "text": faq.answer.replace(/"/g, '\\"')
       }
     }));
@@ -265,7 +256,6 @@ const generateFAQSchema = () => {
       "name": `Where is ${seoData.business.name} located?`,
       "acceptedAnswer": {
         "@type": "Answer",
-        // FIXED: Using city field
         "text": `We are located at ${seoData.business.address.street}, ${seoData.business.address.city} - ${seoData.business.address.pincode}.`
       }
     },
@@ -286,17 +276,15 @@ const generateFAQSchema = () => {
   };
 };
 
-// Get all services from JSON
 const getAllServices = (): Service[] => {
-  return hairServices as Service[];
+  return hairServices as unknown as Service[];
 };
 
-// Get trending services (bestsellers)
 const getTrendingServices = (allServices: Service[]): Service[] => {
   return allServices
     .filter(service => service.isBestSeller === true)
     .sort((a, b) => (b.bookingCount || 0) - (a.bookingCount || 0))
-    .slice(0, 15); // Limit to top 15 trending services
+    .slice(0, 15);
 };
 
 export default function HairPage() {
@@ -305,15 +293,12 @@ export default function HairPage() {
 
   return (
     <>
-      {/* Primary Structured Data */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(hairStructuredData)
         }}
       />
-
-      {/* FAQ Structured Data */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -321,7 +306,6 @@ export default function HairPage() {
         }}
       />
 
-      {/* FIXED: Minimal SEO-friendly content */}
       <div className="sr-only" aria-hidden="true">
         <h1>{PAGE_TITLE}</h1>
         <p>{generateDescription()}</p>

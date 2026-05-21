@@ -131,6 +131,7 @@ export interface ServiceCategory {
  * This is the single source of truth. types/service.ts extends this.
  */
 export interface Service {
+  isHomepage?: boolean;
   // ── Identity ──────────────────────────────────────────────
   id: string;
   name: string;

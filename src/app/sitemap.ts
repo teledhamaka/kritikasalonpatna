@@ -1,161 +1,116 @@
-// kritika/src/app/sitemap.ts - COMPREHENSIVE SITEMAP
-import { MetadataRoute } from 'next'
-import seoData from '../../public/seo.json'
+import { MetadataRoute } from 'next';
+import { createServerClient } from '@/lib/supabase/server';
+import { getAllServiceSlugs }  from '@/lib/services/service-mapper';
+import { getAllLocationSlugs } from '@/lib/services/location-mapper';
 
-// Import service data
-import makeupServices from '../../public/makeup_services.json'
-import hairServices from '../../public/hair_services.json'
-import nailServices from '../../public/nail_services.json'
-import skinServices from '../../public/skin_services.json'
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const baseUrl  = 'https://kritikasalonpatna.com';
+  const BUILD_NOW = new Date(); // Single unified timestamp for build execution consistency
 
-export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = seoData.business.contact.website
-  const currentDate = new Date().toISOString()
-
-  // Static pages
+  // ── Static Pages Index ───────────────────────────────────────────────────
   const staticPages: MetadataRoute.Sitemap = [
-    {
-      url: baseUrl,
-      lastModified: currentDate,
-      changeFrequency: 'daily',
-      priority: 1.0,
-    },
-    {
-      url: `${baseUrl}/about`,
-      lastModified: currentDate,
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/contact`,
-      lastModified: currentDate,
-      changeFrequency: 'monthly',
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/blog`,
-      lastModified: currentDate,
-      changeFrequency: 'weekly',
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/appointments`,
-      lastModified: currentDate,
-      changeFrequency: 'daily',
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/profile`,
-      lastModified: currentDate,
-      changeFrequency: 'weekly',
-      priority: 0.7,
-    },
-    {
-      url: `${baseUrl}/privacy`,
-      lastModified: currentDate,
-      changeFrequency: 'yearly',
-      priority: 0.3,
-    },
-    {
-      url: `${baseUrl}/terms`,
-      lastModified: currentDate,
-      changeFrequency: 'yearly',
-      priority: 0.3,
-    },
-  ]
+    { url: baseUrl,                 lastModified: BUILD_NOW, changeFrequency: 'daily',   priority: 1.0 },
+    { url: `${baseUrl}/trending`,   lastModified: BUILD_NOW, changeFrequency: 'daily',   priority: 0.9 },
+    { url: `${baseUrl}/blog`,       lastModified: BUILD_NOW, changeFrequency: 'daily',   priority: 0.9 },
+    { url: `${baseUrl}/nails`,      lastModified: BUILD_NOW, changeFrequency: 'weekly',  priority: 0.9 },
+    { url: `${baseUrl}/makeup`,     lastModified: BUILD_NOW, changeFrequency: 'weekly',  priority: 0.9 },
+    { url: `${baseUrl}/skin`,       lastModified: BUILD_NOW, changeFrequency: 'weekly',  priority: 0.9 },
+    { url: `${baseUrl}/hair`,       lastModified: BUILD_NOW, changeFrequency: 'weekly',  priority: 0.9 },
+    { url: `${baseUrl}/combo`,      lastModified: BUILD_NOW, changeFrequency: 'weekly',  priority: 0.9 },
+    { url: `${baseUrl}/booking`,    lastModified: BUILD_NOW, changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${baseUrl}/about`,      lastModified: BUILD_NOW, changeFrequency: 'monthly', priority: 0.7 },
+    { url: `${baseUrl}/contact`,    lastModified: BUILD_NOW, changeFrequency: 'monthly', priority: 0.7 },
+    { url: `${baseUrl}/gallery`,    lastModified: BUILD_NOW, changeFrequency: 'weekly',  priority: 0.7 },
+  ];
 
-  // Service category pages
-  const categoryPages: MetadataRoute.Sitemap = [
-    {
-      url: `${baseUrl}/makeup`,
-      lastModified: currentDate,
-      changeFrequency: 'weekly',
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/hair`,
-      lastModified: currentDate,
-      changeFrequency: 'weekly',
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/skin`,
-      lastModified: currentDate,
-      changeFrequency: 'weekly',
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/nails`,
-      lastModified: currentDate,
-      changeFrequency: 'weekly',
-      priority: 0.9,
-    },
-  ]
+  // ── Dynamic Service Slugs ────────────────────────────────────────────────
+  let servicePages: MetadataRoute.Sitemap = [];
+  try {
+    servicePages = getAllServiceSlugs().map(slug => ({
+      url:              `${baseUrl}/service/${slug}`,
+      lastModified:     BUILD_NOW,
+      changeFrequency:  'weekly' as const,
+      priority:         0.8,
+    }));
+  } catch (e) {
+    console.error('Sitemap Execution: Service slugs fetch safely caught:', e);
+  }
 
-  // Individual service pages
-  const allServices = [
-    ...makeupServices,
-    ...hairServices,
-    ...nailServices,
-    ...skinServices,
-  ]
+  // ── Dynamic Location Slugs ───────────────────────────────────────────────
+  let locationPages: MetadataRoute.Sitemap = [];
+  try {
+    locationPages = getAllLocationSlugs().map(slug => ({
+      url:              `${baseUrl}/location/${slug}`,
+      lastModified:     BUILD_NOW,
+      changeFrequency:  'weekly' as const,
+      priority:         0.9,
+    }));
+  } catch (e) {
+    console.error('Sitemap Execution: Location slugs fetch safely caught:', e);
+  }
 
-  const servicePages: MetadataRoute.Sitemap = allServices.map((service: any) => ({
-    url: `${baseUrl}/service/${service.slug || service.id}`,
-    lastModified: currentDate,
-    changeFrequency: 'weekly' as const,
-    priority: service.isTrending || service.isBestSeller ? 0.9 : 0.8,
-  }))
+  // ── Dynamic Blog Posts Index ─────────────────────────────────────────────
+  let blogPages: MetadataRoute.Sitemap = [];
+  try {
+    const supabase = await createServerClient();
+    const { data: posts } = await supabase
+      .from('blog_posts')
+      .select('slug, updated_at, published_at')
+      .eq('status', 'published')
+      .order('published_at', { ascending: false });
 
-  // Location-based pages
-  const locationPages: MetadataRoute.Sitemap = []
+    blogPages = (posts || []).map(post => ({
+      url:              `${baseUrl}/blog/${post.slug}`,
+      lastModified:     new Date(post.updated_at || post.published_at),
+      changeFrequency:  'weekly' as const,
+      priority:         0.8,
+    }));
+  } catch (e) {
+    console.error('Sitemap Execution: Published blog posts fetch safely caught:', e);
+  }
 
-  // Generate location pages for each landmark
-  const landmarks = [
-    ...seoData.nearbyLandmarks.educational,
-    ...seoData.nearbyLandmarks.healthcare,
-    ...seoData.nearbyLandmarks.commercial,
-    ...seoData.nearbyLandmarks.transport,
-    ...seoData.nearbyLandmarks.residential,
-    ...seoData.nearbyLandmarks.nearbyAreas,
-  ]
+  // ── Dynamic Blog Categories Index ────────────────────────────────────────
+  let categoryPages: MetadataRoute.Sitemap = [];
+  try {
+    const supabase = await createServerClient();
+    const { data: blogCategories } = await supabase
+      .from('categories')
+      .select('slug, updated_at');
 
-  landmarks.forEach((landmark: any) => {
-    const slug = landmark.name
-      .toLowerCase()
-      .replace(/[^a-z0-9]+/g, '-')
-      .replace(/^-+|-+$/g, '')
+    categoryPages = (blogCategories || []).map(cat => ({
+      url:              `${baseUrl}/blog/category/${cat.slug}`,
+      lastModified:     new Date(cat.updated_at || BUILD_NOW),
+      changeFrequency:  'weekly' as const,
+      priority:         0.7,
+    }));
+  } catch (e) {
+    console.error('Sitemap Execution: Blog categories fetch safely caught:', e);
+  }
 
-    locationPages.push({
-      url: `${baseUrl}/location/${slug}`,
-      lastModified: currentDate,
-      changeFrequency: 'monthly',
-      priority: 0.7,
-    })
-  })
+  // ── Dynamic Authors Index ────────────────────────────────────────────────
+  let authorPages: MetadataRoute.Sitemap = [];
+  try {
+    const supabase = await createServerClient();
+    const { data: authors } = await supabase
+      .from('authors')
+      .select('slug, updated_at');
 
-  // Service + Location combo pages (high-value)
-  const comboPages: MetadataRoute.Sitemap = []
-  const primaryServices = ['bridal-makeup', 'hair-spa', 'facial', 'nail-art']
-  const primaryLocations = ['kankarbagh', 'bhootnath-road', 'zero-mile', 'medanta-hospital']
+    authorPages = (authors || []).map(author => ({
+      url:              `${baseUrl}/blog/author/${author.slug}`,
+      lastModified:     new Date(author.updated_at || BUILD_NOW),
+      changeFrequency:  'weekly' as const,
+      priority:         0.6,
+    }));
+  } catch (e) {
+    console.error('Sitemap Execution: Authors engine fetch safely caught:', e);
+  }
 
-  primaryServices.forEach(service => {
-    primaryLocations.forEach(location => {
-      comboPages.push({
-        url: `${baseUrl}/${service}-near-${location}`,
-        lastModified: currentDate,
-        changeFrequency: 'weekly',
-        priority: 0.85,
-      })
-    })
-  })
-
-  // Combine all pages
   return [
     ...staticPages,
-    ...categoryPages,
     ...servicePages,
     ...locationPages,
-    ...comboPages,
-  ]
+    ...blogPages,
+    ...categoryPages,
+    ...authorPages,
+  ];
 }

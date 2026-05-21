@@ -1,47 +1,44 @@
-// kritika/src/app/makeup/page.tsx - UPDATED TO MATCH HOME PAGE PATTERNS
+// app/makeup/page.tsx - SEPARATED SERVER COMPONENT WITH FULL SEO & SCHEMA
 import { Metadata } from 'next';
 import ClientMakeupPage from './ClientMakeupPage';
 import { Service } from '../../types/service';
-import makeupServices from '../../../public/makeup_services.json';
+import makeupServices from '../../../public/makeup_services.json'; // Make sure this JSON exists
 import seoData from '../../../public/seo.json';
 
-// FIXED: Generate limited keywords (top 60)
+// Generate optimized keywords tailored for makeup services (limited to top 60)
 const generateMakeupKeywords = () => {
-  const seoKeywords = seoData.seo.serviceSpecificKeywords.bridalServices || [];
+  const seoKeywords = seoData.seo.serviceSpecificKeywords.makeupServices || [];
   const locationKeywords = seoData.seo.locationBasedKeywords.ultraLocal || [];
   const serviceKeywords = makeupServices.flatMap((service: any) => service.seoKeywords || []);
   
-  // FIXED: Limit to top 60 keywords
   return [...new Set([...seoKeywords, ...locationKeywords, ...serviceKeywords])].slice(0, 60);
 };
 
 const MAKEUP_KEYWORDS = generateMakeupKeywords();
 
-// FIXED: Generate description using city field
+// Generate dynamic hyper-local description
 const generateDescription = () => {
   const serviceCount = makeupServices.length;
   const categories = [...new Set(makeupServices.map((s: any) => s.category))];
   const minPrice = Math.min(...makeupServices.map((s: any) => s.price));
   const maxPrice = Math.max(...makeupServices.map((s: any) => s.price));
   
-  return `⭐${seoData.business.rating} Rated Expert Makeup Services in ${seoData.business.address.city}. ${serviceCount}+ Services including ${categories.slice(0, 3).join(', ')}. Prices from ₹${minPrice} to ₹${maxPrice}. ${seoData.business.totalReviews}+ Happy Clients. Book: ${seoData.business.contact.phone}`;
+  return `⭐${seoData.business.rating} Rated Premium Makeup Artists in ${seoData.business.address.city}. ${serviceCount}+ Luxury Packages including ${categories.slice(0, 3).join(', ')}. Prices from ₹${minPrice} to ₹${maxPrice}. ${seoData.business.totalReviews}+ Bridal Transformations. Book: ${seoData.business.contact.phone}`;
 };
 
-// FIXED: Using city instead of locality
-const PAGE_TITLE = `Best Bridal Makeup Artist in ${seoData.business.address.city} | HD, Airbrush & Party Makeup | ${seoData.business.name}`;
+const PAGE_TITLE = `Best Bridal Makeup Artist & Party Makeovers in ${seoData.business.address.city} | HD, Airbrush | ${seoData.business.name}`;
 
 export const metadata: Metadata = {
   title: PAGE_TITLE,
   description: generateDescription(),
-  
   keywords: MAKEUP_KEYWORDS.join(', '),
 
   openGraph: {
-    title: `Expert Bridal Makeup Artist ${seoData.business.address.city} | ${seoData.business.name}`,
+    title: `Luxury Bridal & Party Makeup ${seoData.business.address.city} | ${seoData.business.name}`,
     description: generateDescription(),
     images: [
       {
-        url: `${seoData.business.contact.website}/images/makeup/bridal-makeup-patna-kritika.jpg`,
+        url: `${seoData.business.contact.website}/images/makeup/bridal-makeup-transformation-patna.jpg`,
         width: 1200,
         height: 630,
         alt: `Best Bridal Makeup Artist in ${seoData.business.address.city} - ${seoData.business.name}`
@@ -55,10 +52,9 @@ export const metadata: Metadata = {
 
   twitter: {
     card: "summary_large_image",
-    title: `Best Bridal Makeup Artist ${seoData.business.address.city} | ${seoData.business.name}`,
+    title: `Premium Makeup Studio ${seoData.business.address.city} | ${seoData.business.name}`,
     description: generateDescription(),
     images: [`${seoData.business.contact.website}/images/makeup/makeup-twitter-card.jpg`],
-    // FIXED: Proper Twitter handle format
     creator: `@${seoData.business.socialMedia.instagram.replace('@', '')}`
   },
 
@@ -88,7 +84,7 @@ export const metadata: Metadata = {
     'geo.position': `${seoData.business.coordinates.latitude};${seoData.business.coordinates.longitude}`,
     'ICBM': `${seoData.business.coordinates.latitude}, ${seoData.business.coordinates.longitude}`,
     'rating': seoData.business.rating.toString(),
-    'service-category': 'Bridal Makeup & Wedding Makeup Services',
+    'service-category': 'Bridal Makeup, Party Makeup, Airbrush Makeup, Engagement Makeover',
     'business-hours': seoData.business.workingHours.weekdays,
     'price-range': '₹₹-₹₹₹'
   },
@@ -98,9 +94,8 @@ export const metadata: Metadata = {
   }
 };
 
-// FIXED: Enhanced service offers - limited to top 20
+// Generate high-value markup service listings for JSON-LD (capped at top 20 to preserve document weight)
 const generateServiceOffers = () => {
-  // FIXED: Sort by booking count and limit to top 20
   return makeupServices
     .sort((a: any, b: any) => (b.bookingCount || 0) - (a.bookingCount || 0))
     .slice(0, 20)
@@ -115,10 +110,8 @@ const generateServiceOffers = () => {
           "@type": "BeautySalon",
           "name": seoData.business.name
         },
-        // FIXED: Using primaryCategory if available
         "category": service.primaryCategory || service.category,
         "serviceType": service.eventCategory || service.primaryCategory || service.category,
-        // FIXED: Only add ratings if legitimate
         "aggregateRating": service.rating && service.reviewCount && service.reviewCount >= 5 ? {
           "@type": "AggregateRating",
           "ratingValue": service.rating.toString(),
@@ -128,10 +121,9 @@ const generateServiceOffers = () => {
       "price": service.price.toString(),
       "priceCurrency": "INR",
       "availability": "https://schema.org/InStock",
-      // FIXED: Correct URL generation
       "url": service.url 
         ? `${seoData.business.contact.website}${service.url}`
-        : `${seoData.business.contact.website}/makeup/${service.slug || service.id}`
+        : `${seoData.business.contact.website}/makeup/service/${service.slug || service.id}`
     }));
 };
 
@@ -152,7 +144,6 @@ const makeupStructuredData = {
       "priceRange": "₹₹-₹₹₹",
       "address": {
         "@type": "PostalAddress",
-        // FIXED: Using city instead of locality
         "streetAddress": seoData.business.address.street,
         "addressLocality": seoData.business.address.city,
         "addressRegion": seoData.business.address.state,
@@ -186,7 +177,6 @@ const makeupStructuredData = {
         "worstRating": "1"
       },
       "makesOffer": generateServiceOffers(),
-      // FIXED: Simplified to City
       "areaServed": {
         "@type": "City",
         "name": "Patna"
@@ -219,7 +209,7 @@ const makeupStructuredData = {
       },
       "primaryImageOfPage": {
         "@type": "ImageObject",
-        "url": `${seoData.business.contact.website}/images/makeup/bridal-makeup-hero.jpg`
+        "url": `${seoData.business.contact.website}/images/makeup/makeup-hero-banner.jpg`
       },
       "datePublished": "2024-01-01T00:00:00+05:30",
       "dateModified": new Date().toISOString()
@@ -244,9 +234,7 @@ const makeupStructuredData = {
   ]
 };
 
-// FIXED: Generate concise FAQ
 const generateFAQSchema = () => {
-  // Get top 5 service FAQs
   const serviceFAQs = makeupServices
     .flatMap((service: any) => service.faqs || [])
     .slice(0, 5)
@@ -255,7 +243,6 @@ const generateFAQSchema = () => {
       "name": faq.question,
       "acceptedAnswer": {
         "@type": "Answer",
-        // FIXED: Escape quotes
         "text": faq.answer.replace(/"/g, '\\"')
       }
     }));
@@ -263,19 +250,18 @@ const generateFAQSchema = () => {
   const generalFAQs = [
     {
       "@type": "Question",
-      "name": `Where is ${seoData.business.name} located?`,
+      "name": `Do you offer on-venue bridal makeup services near ${seoData.business.address.city}?`,
       "acceptedAnswer": {
         "@type": "Answer",
-        // FIXED: Using city field
-        "text": `We are located at ${seoData.business.address.street}, ${seoData.business.address.city} - ${seoData.business.address.pincode}.`
+        "text": `Yes! ${seoData.business.name} offers premium on-venue and destination bridal makeup services across ${seoData.business.address.city} and neighboring regions. Outstation travel and stay charges apply based on distance.`
       }
     },
     {
       "@type": "Question",
-      "name": "What makeup services do you offer?",
+      "name": "What is the difference between HD Makeup and Airbrush Makeup?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": `We offer ${makeupServices.length}+ makeup services including Bridal Makeup, HD Makeup, Airbrush Makeup, Party Makeup, Engagement Makeup, and Reception Makeup. Prices range from ₹${Math.min(...makeupServices.map((s: any) => s.price))} to ₹${Math.max(...makeupServices.map((s: any) => s.price))}.`
+        "text": "HD Makeup uses high-end, light-scattering microproducts applied with traditional brushes or blenders for a natural, camera-ready look. Airbrush Makeup utilizes a specialized spray gun system to layer a flawless, water-resistant, ultra-long-lasting mist ideal for high humidity and all-day wedding events."
       }
     }
   ];
@@ -287,17 +273,15 @@ const generateFAQSchema = () => {
   };
 };
 
-// Get all services from JSON
 const getAllServices = (): Service[] => {
-  return makeupServices as Service[];
+  return makeupServices as unknown as Service[];
 };
 
-// Get trending services (bestsellers)
 const getTrendingServices = (allServices: Service[]): Service[] => {
   return allServices
     .filter(service => service.isBestSeller === true)
     .sort((a, b) => (b.bookingCount || 0) - (a.bookingCount || 0))
-    .slice(0, 15); // Limit to top 15 trending services
+    .slice(0, 15);
 };
 
 export default function MakeupPage() {
@@ -306,15 +290,12 @@ export default function MakeupPage() {
 
   return (
     <>
-      {/* Primary Structured Data */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(makeupStructuredData)
         }}
       />
-
-      {/* FAQ Structured Data */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -322,7 +303,6 @@ export default function MakeupPage() {
         }}
       />
 
-      {/* FIXED: Minimal SEO-friendly content */}
       <div className="sr-only" aria-hidden="true">
         <h1>{PAGE_TITLE}</h1>
         <p>{generateDescription()}</p>

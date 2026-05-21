@@ -1,34 +1,32 @@
-// kritika/src/app/nail/page.tsx - UPDATED TO MATCH HOME PAGE PATTERNS
+// kritika/src/app/nail/page.tsx - SYNCHRONIZED WITH HAIR & MAKEUP MASTER PATTERNS
 import { Metadata } from 'next';
-import ClientNailPage from './ClientNailPage';
+import ClientNailsPage from './ClientNailPage';
 import { Service } from '../../types/service';
 import nailServices from '../../../public/nail_services.json';
 import seoData from '../../../public/seo.json';
 
-// FIXED: Generate limited keywords (top 60)
+// Generate limited keywords (top 60) matching Master System criteria
 const generateNailKeywords = () => {
-  const seoKeywords = seoData.seo.serviceSpecificKeywords.nailServices || [];
+  const nailSeoKeywords = seoData.seo.serviceSpecificKeywords.nailServices || [];
   const locationKeywords = seoData.seo.locationBasedKeywords.ultraLocal || [];
   const serviceKeywords = nailServices.flatMap((service: any) => service.seoKeywords || []);
   
-  // FIXED: Limit to top 60 keywords
-  return [...new Set([...seoKeywords, ...locationKeywords, ...serviceKeywords])].slice(0, 60);
+  return [...new Set([...nailSeoKeywords, ...locationKeywords, ...serviceKeywords])].slice(0, 60);
 };
 
 const NAIL_KEYWORDS = generateNailKeywords();
 
-// FIXED: Generate description using city field
+// Standardized structure logic avoiding locality fallback leaks
 const generateDescription = () => {
   const serviceCount = nailServices.length;
   const categories = [...new Set(nailServices.map((s: any) => s.category))];
   const minPrice = Math.min(...nailServices.map((s: any) => s.price));
   const maxPrice = Math.max(...nailServices.map((s: any) => s.price));
   
-  return `⭐${seoData.business.rating} Rated Professional Nail Services in ${seoData.business.address.city}. ${serviceCount}+ Services including ${categories.slice(0, 3).join(', ')}. Prices from ₹${minPrice} to ₹${maxPrice}. ${seoData.business.totalReviews}+ Happy Clients. Book: ${seoData.business.contact.phone}`;
+  return `⭐${seoData.business.rating} Rated Nail Art & Extension Studio in ${seoData.business.address.city}. ${serviceCount}+ Services including ${categories.slice(0, 3).join(', ')}. Prices from ₹${minPrice} to ₹${maxPrice}. ${seoData.business.totalReviews}+ Happy Clients. Book: ${seoData.business.contact.phone}`;
 };
 
-// FIXED: Using city instead of locality
-const PAGE_TITLE = `Best Nail Art & Manicure Pedicure in ${seoData.business.address.city} | Gel Nails, Bridal Nails | ${seoData.business.name}`;
+const PAGE_TITLE = `Best Nail Art, Extension & Manicure Salon in ${seoData.business.address.city} | ${seoData.business.name}`;
 
 export const metadata: Metadata = {
   title: PAGE_TITLE,
@@ -36,14 +34,14 @@ export const metadata: Metadata = {
   keywords: NAIL_KEYWORDS.join(', '),
 
   openGraph: {
-    title: `Expert Nail Services ${seoData.business.address.city} | ${seoData.business.name}`,
+    title: `Expert Nail Art & Extension Studio in ${seoData.business.address.city} | ${seoData.business.name}`,
     description: generateDescription(),
     images: [
       {
-        url: `${seoData.business.contact.website}/images/nails/bridal-nails-patna-kritika.jpg`,
+        url: `${seoData.business.contact.website}/images/nails/nail-salon-patna-kritika.jpg`,
         width: 1200,
         height: 630,
-        alt: `Best Nail Art & Manicure in ${seoData.business.address.city} - ${seoData.business.name}`
+        alt: `Best Nail Art & Extension Services in ${seoData.business.address.city} - ${seoData.business.name}`
       }
     ],
     type: "website",
@@ -54,10 +52,9 @@ export const metadata: Metadata = {
 
   twitter: {
     card: "summary_large_image",
-    title: `Best Nail Art Studio ${seoData.business.address.city} | ${seoData.business.name}`,
+    title: `Best Nail Art & Salon Services ${seoData.business.address.city} | ${seoData.business.name}`,
     description: generateDescription(),
-    images: [`${seoData.business.contact.website}/images/nails/nail-art-twitter-card.jpg`],
-    // FIXED: Proper Twitter handle format
+    images: [`${seoData.business.contact.website}/images/nails/nail-twitter-card.jpg`],
     creator: `@${seoData.business.socialMedia.instagram.replace('@', '')}`
   },
 
@@ -87,9 +84,9 @@ export const metadata: Metadata = {
     'geo.position': `${seoData.business.coordinates.latitude};${seoData.business.coordinates.longitude}`,
     'ICBM': `${seoData.business.coordinates.latitude}, ${seoData.business.coordinates.longitude}`,
     'rating': seoData.business.rating.toString(),
-    'service-category': 'Manicure, Pedicure, Nail Art, Gel Nails, Bridal Nails',
+    'service-category': 'Nail Art & Salon Services',
     'business-hours': seoData.business.workingHours.weekdays,
-    'price-range': '₹-₹₹₹'
+    'price-range': '₹₹-₹₹₹'
   },
 
   verification: {
@@ -97,9 +94,7 @@ export const metadata: Metadata = {
   }
 };
 
-// FIXED: Enhanced service offers - limited to top 20
 const generateServiceOffers = () => {
-  // FIXED: Sort by booking count and limit to top 20
   return nailServices
     .sort((a: any, b: any) => (b.bookingCount || 0) - (a.bookingCount || 0))
     .slice(0, 20)
@@ -114,10 +109,8 @@ const generateServiceOffers = () => {
           "@type": "BeautySalon",
           "name": seoData.business.name
         },
-        // FIXED: Using primaryCategory if available
         "category": service.primaryCategory || service.category,
         "serviceType": service.eventCategory || service.primaryCategory || service.category,
-        // FIXED: Only add ratings if legitimate
         "aggregateRating": service.rating && service.reviewCount && service.reviewCount >= 5 ? {
           "@type": "AggregateRating",
           "ratingValue": service.rating.toString(),
@@ -127,7 +120,6 @@ const generateServiceOffers = () => {
       "price": service.price.toString(),
       "priceCurrency": "INR",
       "availability": "https://schema.org/InStock",
-      // FIXED: Correct URL generation
       "url": service.url 
         ? `${seoData.business.contact.website}${service.url}`
         : `${seoData.business.contact.website}/nail/${service.slug || service.id}`
@@ -151,7 +143,6 @@ const nailStructuredData = {
       "priceRange": "₹₹-₹₹₹",
       "address": {
         "@type": "PostalAddress",
-        // FIXED: Using city instead of locality
         "streetAddress": seoData.business.address.street,
         "addressLocality": seoData.business.address.city,
         "addressRegion": seoData.business.address.state,
@@ -185,10 +176,9 @@ const nailStructuredData = {
         "worstRating": "1"
       },
       "makesOffer": generateServiceOffers(),
-      // FIXED: Simplified to City
       "areaServed": {
         "@type": "City",
-        "name": "Patna"
+        "name": seoData.business.address.city
       },
       "sameAs": [
         `https://instagram.com/${seoData.business.socialMedia.instagram}`,
@@ -218,7 +208,7 @@ const nailStructuredData = {
       },
       "primaryImageOfPage": {
         "@type": "ImageObject",
-        "url": `${seoData.business.contact.website}/images/nails/bridal-nails-hero.jpg`
+        "url": `${seoData.business.contact.website}/images/nails/nail-treatment-hero.jpg`
       },
       "datePublished": "2024-01-01T00:00:00+05:30",
       "dateModified": new Date().toISOString()
@@ -243,9 +233,7 @@ const nailStructuredData = {
   ]
 };
 
-// FIXED: Generate concise FAQ
 const generateFAQSchema = () => {
-  // Get top 5 service FAQs
   const serviceFAQs = nailServices
     .flatMap((service: any) => service.faqs || [])
     .slice(0, 5)
@@ -254,7 +242,6 @@ const generateFAQSchema = () => {
       "name": faq.question,
       "acceptedAnswer": {
         "@type": "Answer",
-        // FIXED: Escape quotes
         "text": faq.answer.replace(/"/g, '\\"')
       }
     }));
@@ -265,16 +252,15 @@ const generateFAQSchema = () => {
       "name": `Where is ${seoData.business.name} located?`,
       "acceptedAnswer": {
         "@type": "Answer",
-        // FIXED: Using city field
         "text": `We are located at ${seoData.business.address.street}, ${seoData.business.address.city} - ${seoData.business.address.pincode}.`
       }
     },
     {
       "@type": "Question",
-      "name": "What nail services do you offer?",
+      "name": "What nail extension and art services do you offer?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": `We offer ${nailServices.length}+ nail services including Manicure, Pedicure, Nail Art, Gel Nails, Acrylic Nails, Bridal Nails, and more. Prices range from ₹${Math.min(...nailServices.map((s: any) => s.price))} to ₹${Math.max(...nailServices.map((s: any) => s.price))}.`
+        "text": `We offer ${nailServices.length}+ specialized nail choices including Gel Extensions, Acrylic Overlays, Chrome Nail Art, Luxury Manicures & Pedicures. Prices range from ₹${Math.min(...nailServices.map((s: any) => s.price))} to ₹${Math.max(...nailServices.map((s: any) => s.price))}.`
       }
     }
   ];
@@ -286,17 +272,15 @@ const generateFAQSchema = () => {
   };
 };
 
-// Get all services from JSON
 const getAllServices = (): Service[] => {
-  return nailServices as Service[];
+  return nailServices as unknown as Service[];
 };
 
-// Get trending services (bestsellers)
 const getTrendingServices = (allServices: Service[]): Service[] => {
   return allServices
     .filter(service => service.isBestSeller === true)
     .sort((a, b) => (b.bookingCount || 0) - (a.bookingCount || 0))
-    .slice(0, 15); // Limit to top 15 trending services
+    .slice(0, 15);
 };
 
 export default function NailPage() {
@@ -305,15 +289,12 @@ export default function NailPage() {
 
   return (
     <>
-      {/* Primary Structured Data */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(nailStructuredData)
         }}
       />
-
-      {/* FAQ Structured Data */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -321,13 +302,12 @@ export default function NailPage() {
         }}
       />
 
-      {/* FIXED: Minimal SEO-friendly content */}
       <div className="sr-only" aria-hidden="true">
         <h1>{PAGE_TITLE}</h1>
         <p>{generateDescription()}</p>
       </div>
 
-      <ClientNailPage 
+      <ClientNailsPage 
         allServices={allServices}
         trendingServices={trendingServices}
       />

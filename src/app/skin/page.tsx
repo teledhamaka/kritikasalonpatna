@@ -1,41 +1,39 @@
-// kritika/src/app/skin/page.tsx - UPDATED TO MATCH HOME PAGE PATTERNS
+// kritika/src/app/skin/page.tsx
 import { Metadata } from 'next';
 import ClientSkinPage from './ClientSkinPage';
 import { Service } from '../../types/service';
 import skinServices from '../../../public/skin_services.json';
 import seoData from '../../../public/seo.json';
 
-// FIXED: Generate limited keywords (top 60)
-const generateSkinKeywords = () => {
+const generateSkinKeywords = (): string[] => {
   const skinSeoKeywords = seoData.seo.serviceSpecificKeywords.skinServices || [];
   const locationKeywords = seoData.seo.locationBasedKeywords.ultraLocal || [];
   const serviceKeywords = skinServices.flatMap((service: any) => service.seoKeywords || []);
   
-  // FIXED: Limit to top 60 keywords
   return [...new Set([...skinSeoKeywords, ...locationKeywords, ...serviceKeywords])].slice(0, 60);
 };
 
 const SKIN_KEYWORDS = generateSkinKeywords();
 
-// FIXED: Generate description using city field
-const generateDescription = () => {
+const generateDescription = (): string => {
   const serviceCount = skinServices.length;
+  if (serviceCount === 0) {
+    return `⭐${seoData.business.rating} Rated Expert Skin & Body Care Services in ${seoData.business.address.city} at ${seoData.business.name}.`;
+  }
   const categories = [...new Set(skinServices.map((s: any) => s.category))];
-  const minPrice = Math.min(...skinServices.map((s: any) => s.price));
-  const maxPrice = Math.max(...skinServices.map((s: any) => s.price));
+  const prices = skinServices.map((s: any) => s.price).filter((p) => typeof p === 'number');
+  const minPrice = prices.length ? Math.min(...prices) : 0;
+  const maxPrice = prices.length ? Math.max(...prices) : 0;
   
   return `⭐${seoData.business.rating} Rated Expert Skin & Body Care Services in ${seoData.business.address.city}. ${serviceCount}+ Services including ${categories.slice(0, 3).join(', ')}. Prices from ₹${minPrice} to ₹${maxPrice}. ${seoData.business.totalReviews}+ Happy Clients. Book: ${seoData.business.contact.phone}`;
 };
 
-// FIXED: Using city instead of locality
 const PAGE_TITLE = `Best Skin Treatment & Facial Services in ${seoData.business.address.city} | Hydrafacial, D-Tan & Body Care | ${seoData.business.name}`;
 
 export const metadata: Metadata = {
   title: PAGE_TITLE,
   description: generateDescription(),
-  
   keywords: SKIN_KEYWORDS.join(', '),
-
   openGraph: {
     title: `Expert Skin Treatment & Facial Services ${seoData.business.address.city} | ${seoData.business.name}`,
     description: generateDescription(),
@@ -52,16 +50,13 @@ export const metadata: Metadata = {
     siteName: seoData.business.name,
     url: `${seoData.business.contact.website}/skin`
   },
-
   twitter: {
     card: "summary_large_image",
     title: `Best Skin Treatment & Facial Services ${seoData.business.address.city} | ${seoData.business.name}`,
     description: generateDescription(),
     images: [`${seoData.business.contact.website}/images/skin/skin-twitter-card.jpg`],
-    // FIXED: Proper Twitter handle format
     creator: `@${seoData.business.socialMedia.instagram.replace('@', '')}`
   },
-
   alternates: {
     canonical: `${seoData.business.contact.website}/skin`,
     languages: {
@@ -69,7 +64,6 @@ export const metadata: Metadata = {
       'hi-IN': `${seoData.business.contact.website}/hi/skin`
     }
   },
-
   robots: {
     index: true,
     follow: true,
@@ -81,7 +75,6 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     }
   },
-
   other: {
     'geo.region': `IN-${seoData.business.address.state}`,
     'geo.placename': `${seoData.business.address.city}, ${seoData.business.address.state}`,
@@ -92,16 +85,13 @@ export const metadata: Metadata = {
     'business-hours': seoData.business.workingHours.weekdays,
     'price-range': '₹₹-₹₹₹'
   },
-
   verification: {
     google: 'Uj54YUbFFcOLdeffGXlZMH35yYC-N6HyO9Wdoxj_DXA',
   }
 };
 
-// FIXED: Enhanced service offers - limited to top 20
 const generateServiceOffers = () => {
-  // FIXED: Sort by booking count and limit to top 20
-  return skinServices
+  return [...skinServices]
     .sort((a: any, b: any) => (b.bookingCount || 0) - (a.bookingCount || 0))
     .slice(0, 20)
     .map((service: any) => ({
@@ -115,20 +105,19 @@ const generateServiceOffers = () => {
           "@type": "BeautySalon",
           "name": seoData.business.name
         },
-        // FIXED: Using primaryCategory if available
         "category": service.primaryCategory || service.category,
         "serviceType": service.eventCategory || service.primaryCategory || service.category,
-        // FIXED: Only add ratings if legitimate
-        "aggregateRating": service.rating && service.reviewCount && service.reviewCount >= 5 ? {
-          "@type": "AggregateRating",
-          "ratingValue": service.rating.toString(),
-          "reviewCount": service.reviewCount.toString()
-        } : undefined
+        ...(service.rating && service.reviewCount && service.reviewCount >= 5 ? {
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": service.rating.toString(),
+            "reviewCount": service.reviewCount.toString()
+          }
+        } : {})
       },
       "price": service.price.toString(),
       "priceCurrency": "INR",
       "availability": "https://schema.org/InStock",
-      // FIXED: Correct URL generation
       "url": service.url 
         ? `${seoData.business.contact.website}${service.url}`
         : `${seoData.business.contact.website}/skin/${service.slug || service.id}`
@@ -152,7 +141,6 @@ const skinStructuredData = {
       "priceRange": "₹₹-₹₹₹",
       "address": {
         "@type": "PostalAddress",
-        // FIXED: Using city instead of locality
         "streetAddress": seoData.business.address.street,
         "addressLocality": seoData.business.address.city,
         "addressRegion": seoData.business.address.state,
@@ -186,7 +174,6 @@ const skinStructuredData = {
         "worstRating": "1"
       },
       "makesOffer": generateServiceOffers(),
-      // FIXED: Simplified to City
       "areaServed": {
         "@type": "City",
         "name": "Patna"
@@ -244,9 +231,7 @@ const skinStructuredData = {
   ]
 };
 
-// FIXED: Generate concise FAQ
 const generateFAQSchema = () => {
-  // Get top 5 service FAQs
   const serviceFAQs = skinServices
     .flatMap((service: any) => service.faqs || [])
     .slice(0, 5)
@@ -255,10 +240,13 @@ const generateFAQSchema = () => {
       "name": faq.question,
       "acceptedAnswer": {
         "@type": "Answer",
-        // FIXED: Escape quotes
         "text": faq.answer.replace(/"/g, '\\"')
       }
     }));
+
+  const prices = skinServices.map((s: any) => s.price).filter((p) => typeof p === 'number');
+  const minPrice = prices.length ? Math.min(...prices) : 0;
+  const maxPrice = prices.length ? Math.max(...prices) : 0;
 
   const generalFAQs = [
     {
@@ -266,7 +254,6 @@ const generateFAQSchema = () => {
       "name": `Where is ${seoData.business.name} located?`,
       "acceptedAnswer": {
         "@type": "Answer",
-        // FIXED: Using city field
         "text": `We are located at ${seoData.business.address.street}, ${seoData.business.address.city} - ${seoData.business.address.pincode}.`
       }
     },
@@ -275,7 +262,7 @@ const generateFAQSchema = () => {
       "name": "What skin services do you offer?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": `We offer ${skinServices.length}+ skin services including Hydrafacial, Diamond Facial, D-Tan, Bleach, Waxing, Body Polishing, and more. Prices range from ₹${Math.min(...skinServices.map((s: any) => s.price))} to ₹${Math.max(...skinServices.map((s: any) => s.price))}.`
+        "text": `We offer ${skinServices.length}+ skin services including Hydrafacial, Diamond Facial, D-Tan, Bleach, Waxing, Body Polishing, and more. Prices range from ₹${minPrice} to ₹${maxPrice}.`
       }
     }
   ];
@@ -287,34 +274,21 @@ const generateFAQSchema = () => {
   };
 };
 
-// Get all services from JSON
-const getAllServices = (): Service[] => {
-  return skinServices as Service[];
-};
-
-// Get trending services (bestsellers)
-const getTrendingServices = (allServices: Service[]): Service[] => {
-  return allServices
+export default function SkinPage() {
+  const allServices = skinServices as unknown as Service[];
+  const trendingServices = allServices
     .filter(service => service.isBestSeller === true)
     .sort((a, b) => (b.bookingCount || 0) - (a.bookingCount || 0))
-    .slice(0, 15); // Limit to top 15 trending services
-};
-
-export default function SkinPage() {
-  const allServices = getAllServices();
-  const trendingServices = getTrendingServices(allServices);
+    .slice(0, 15);
 
   return (
     <>
-      {/* Primary Structured Data */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(skinStructuredData)
         }}
       />
-
-      {/* FAQ Structured Data */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -322,7 +296,6 @@ export default function SkinPage() {
         }}
       />
 
-      {/* FIXED: Minimal SEO-friendly content */}
       <div className="sr-only" aria-hidden="true">
         <h1>{PAGE_TITLE}</h1>
         <p>{generateDescription()}</p>

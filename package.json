@@ -48,7 +48,7 @@
     "@types/node": "^25.8.0",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "baseline-browser-mapping": "^2.10.20",
+    "baseline-browser-mapping": "^2.10.31",
     "eslint": "^9",
     "eslint-config-next": "15.5.5",
     "pwa-asset-generator": "^8.1.2",

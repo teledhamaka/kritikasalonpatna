@@ -1,9 +1,4 @@
-// components/ServiceCard.tsx — LEAN VERSION
-// Changes from original:
-// 1. "View Details" button → <Link> to /bhootnath-road/{service.slug} (SEO page)
-// 2. Schema removed — it lives on server-rendered [slug]/[serviceSlug]/page.tsx now
-// 3. Everything else (badges, booking, animations) — unchanged
-
+// components/ServiceCard.tsx — PRODUCTION OPTIMIZED
 "use client";
 
 import { motion } from 'framer-motion';
@@ -12,20 +7,19 @@ import { Service } from '../types/service';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
+import { getServiceUrl } from '../utils/serviceUrl';
 
 interface ServiceCardProps {
   service: Service;
   isFavorite: boolean;
   onToggleFavorite: () => void;
   onAddToCart: () => void;
-  onViewDetails?: () => void;        // kept for backward compat — no longer used for routing
+  onViewDetails?: () => void;
   variant?: 'compact' | 'detailed' | 'grid';
-  showBestSellerBadge?: boolean;
-  // NEW: which location to link to (default: bhootnath-road = main branch)
   locationSlug?: string;
+  priority?: boolean;
 }
 
-// ─── Smart badge logic — UNCHANGED from original ──────────────────────────────
 interface Badge {
   label: string;
   bg: string;
@@ -70,23 +64,12 @@ function getSocialProof(service: Service): string | null {
   return null;
 }
 
-// ─── Build the SEO page URL for this service ─────────────────────────────────
-// Uses service.slug (from Supabase) — falls back to service.id
-function getServicePageUrl(service: Service, locationSlug: string): string {
-  const slug = service.slug || service.id;
-  return `/${locationSlug}/${slug}`;
-}
-
-// ─── Component ────────────────────────────────────────────────────────────────
 const ServiceCard = ({
   service,
   isFavorite,
   onToggleFavorite,
   onAddToCart,
-  onViewDetails,          // no longer drives navigation — kept for compat
-  variant = 'detailed',
-  showBestSellerBadge,
-  locationSlug = 'bhootnath-road',  // default = main branch
+  priority = false,
 }: ServiceCardProps) => {
   const [imageLoading, setImageLoading] = useState(true);
 
@@ -97,85 +80,46 @@ const ServiceCard = ({
 
   const badge = getSmartBadge(service, discountPercentage);
   const socialProof = getSocialProof(service);
-
-  // The canonical SEO page for this service
-  const servicePageUrl = getServicePageUrl(service, locationSlug);
-
+  const servicePageUrl = getServiceUrl(service);
   const altText = `${service.title} at Kritika Ladies Parlour Patna`;
 
   return (
     <article
-      className="group relative bg-white rounded-3xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden border border-rose-50 hover:border-rose-100 flex flex-col"
-      itemScope
-      itemType="https://schema.org/Product"
+      className="group relative bg-white rounded-3xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden border border-rose-50 hover:border-rose-100 flex flex-col min-h-[420px]"
       data-service-id={service.id}
       data-category={service.category}
       data-location="Patna"
       data-price={service.price}
     >
-      {/* SR-only heading for accessibility + basic on-page SEO */}
-      <div className="sr-only">
-        <h2>{service.title} in Patna</h2>
-        <p>₹{service.price} | {service.durationText || `${service.duration} min`}</p>
-        <p>{service.shortDescription}</p>
-      </div>
-
-      {/* ── IMAGE BLOCK — clicking goes to SEO page ── */}
-      <Link
-        href={servicePageUrl}
-        className="relative aspect-[4/3] overflow-hidden block"
-        aria-label={`View full details for ${service.title}`}
-        prefetch={false}
-      >
-        <motion.div className="w-full h-full" whileTap={{ scale: 0.99 }}>
+      {/* ── IMAGE BLOCK ── */}
+      <div className="relative aspect-[4/3] overflow-hidden w-full isolation-auto">
+        <Link
+          href={servicePageUrl}
+          className="w-full h-full block relative"
+          aria-label={`View full details for ${service.title}`}
+          prefetch={false}
+        >
           <Image
             src={service.image || '/images/placeholder.jpg'}
             alt={altText}
             fill
-            className={`object-cover transition-transform duration-700 group-hover:scale-105 ${imageLoading ? 'opacity-0' : 'opacity-100'}`}
-            sizes="(max-width: 768px) 100vw, 50vw"
-            priority={service.isTrending || service.isBestSeller}
+            className={`object-cover transition-all duration-700 group-hover:scale-105 ${imageLoading ? 'scale-105 blur-md' : 'scale-100 blur-0'}`}
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            priority={priority || service.isTrending || service.isBestSeller}
             quality={85}
             onLoad={() => setImageLoading(false)}
-            itemProp="image"
           />
-          {imageLoading && (
-            <div className="absolute inset-0 bg-gradient-to-br from-rose-50 via-pink-50 to-fuchsia-50 animate-pulse" />
-          )}
+          
+          <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-300" />
 
-          {/* Hover veil */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-
-          {/* Smart badge */}
-          {badge && (
-            <span
-              className={`absolute top-3 left-3 text-xs font-bold px-2.5 py-1 rounded-full shadow-sm ${badge.bg} ${badge.text} ${badge.border ?? ''}`}
-              role="status"
-              aria-label={badge.label}
-            >
-              {badge.label}
-            </span>
-          )}
-
-          {/* Wishlist heart */}
-          <button
-            onClick={(e) => { e.preventDefault(); e.stopPropagation(); onToggleFavorite(); }}
-            className="absolute top-3 right-3 w-9 h-9 flex items-center justify-center bg-white/95 backdrop-blur-sm rounded-full shadow-md hover:scale-110 active:scale-95 transition-transform"
-            aria-label={isFavorite ? `Remove ${service.title} from wishlist` : `Save ${service.title} to wishlist`}
-            aria-pressed={isFavorite}
-          >
-            <Heart className={`w-4 h-4 transition-all duration-300 ${isFavorite ? 'fill-rose-500 text-rose-500 scale-110' : 'text-gray-400 hover:text-rose-400'}`} />
-          </button>
-
-          {/* Duration pill */}
-          <div className="absolute bottom-3 left-3 flex items-center gap-1 bg-black/50 backdrop-blur-sm text-white text-[11px] font-medium px-2.5 py-1 rounded-full">
+          {/* Absolute Overlays Tied to the Anchor Context */}
+          <div className="absolute bottom-3 left-3 flex items-center gap-1 bg-black/60 backdrop-blur-md text-white text-[11px] font-medium px-2.5 py-1 rounded-full pointer-events-none z-10">
             <Clock className="w-3 h-3" aria-hidden="true" />
             <time dateTime={`PT${service.duration}M`}>{service.durationText || `${service.duration} min`}</time>
           </div>
 
-          {/* Booking count */}
           {service.bookingCount && service.bookingCount >= 100 && (
-            <div className="absolute bottom-3 right-3 flex items-center gap-1 bg-black/50 backdrop-blur-sm text-white text-[11px] font-medium px-2.5 py-1 rounded-full">
+            <div className="absolute bottom-3 right-3 flex items-center gap-1 bg-black/60 backdrop-blur-md text-white text-[11px] font-medium px-2.5 py-1 rounded-full pointer-events-none z-10">
               <span aria-hidden="true">💖</span>
               <span>
                 {service.bookingCount >= 1000
@@ -184,37 +128,59 @@ const ServiceCard = ({
               </span>
             </div>
           )}
-        </motion.div>
-      </Link>
+        </Link>
+
+        {/* Wishlist Button: Completely isolated from the Link DOM chain */}
+        <button
+          onClick={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            onToggleFavorite();
+          }}
+          className="absolute top-3 right-3 w-9 h-9 flex items-center justify-center bg-white/90 backdrop-blur-md rounded-full shadow-md hover:bg-white transition-all duration-200 z-20 group/fav"
+          aria-label={isFavorite ? `Remove ${service.title} from wishlist` : `Save ${service.title} to wishlist`}
+          aria-pressed={isFavorite}
+        >
+          <Heart 
+            className={`w-4 h-4 transition-all duration-300 group-hover/fav:scale-110 ${
+              isFavorite 
+                ? 'fill-rose-500 text-rose-500' 
+                : 'text-gray-500 group-hover/fav:text-rose-500'
+            }`} 
+          />
+        </button>
+
+        {badge && (
+          <span
+            className={`absolute top-3 left-3 text-xs font-bold px-2.5 py-1 rounded-full shadow-sm select-none z-20 ${badge.bg} ${badge.text} ${badge.border ?? ''}`}
+            role="status"
+            aria-label={badge.label}
+          >
+            {badge.label}
+          </span>
+        )}
+      </div>
 
       {/* ── CONTENT BLOCK ── */}
       <div className="p-4 md:p-5 flex flex-col flex-1">
-
-        {/* Category label */}
-        <p className="text-[11px] uppercase tracking-widest font-medium text-rose-400 mb-1.5">
+        <p className="text-[11px] uppercase tracking-widest font-bold text-rose-400 mb-1.5">
           {service.primaryCategory || service.category}
         </p>
 
-        {/* Title — links to SEO page */}
-        <Link href={servicePageUrl} prefetch={false}>
-          <h3
-            className="font-semibold text-gray-900 text-base leading-snug line-clamp-2 mb-2 hover:text-rose-600 transition-colors"
-            itemProp="name"
-          >
+        <Link href={servicePageUrl} prefetch={false} className="focus:outline-none">
+          <h3 className="font-semibold text-gray-900 text-base leading-snug line-clamp-3 mb-2 hover:text-rose-600 transition-colors focus:underline decoration-rose-500 decoration-2">
             {service.title}
           </h3>
         </Link>
 
-        {/* Short description — 1 line only on card */}
         {(service.shortDescription || service.description) && (
-          <p className="text-gray-500 text-xs leading-relaxed line-clamp-1 mb-3">
+          <p className="text-gray-500 text-xs leading-relaxed line-clamp-2 mb-3">
             {service.shortDescription || service.description}
           </p>
         )}
 
-        {/* Star rating */}
         {service.rating && service.reviewCount && service.reviewCount >= 5 && (
-          <div className="flex items-center gap-1 mb-3" aria-label={`Rated ${service.rating} out of 5`}>
+          <div className="flex items-center gap-1 mb-3" aria-label={`Rated ${service.rating} out of 5 stars based on ${service.reviewCount} reviews`}>
             {[1, 2, 3, 4, 5].map((star) => (
               <Star
                 key={star}
@@ -222,71 +188,66 @@ const ServiceCard = ({
                 aria-hidden="true"
               />
             ))}
-            <span className="text-xs font-semibold text-gray-700 ml-0.5">{service.rating}</span>
+            <span className="text-xs font-bold text-gray-700 ml-0.5">{service.rating}</span>
             <span className="text-xs text-gray-400">({service.reviewCount})</span>
           </div>
         )}
 
-        {/* Key ingredients — max 3 */}
         {service.keyIngredients && service.keyIngredients.length > 0 && (
           <div className="flex flex-wrap gap-1.5 mb-3">
             {service.keyIngredients.slice(0, 3).map((item, idx) => (
-              <span key={idx} className="bg-rose-50 text-rose-600 text-[10px] font-medium px-2 py-0.5 rounded-full border border-rose-100">
+              <span key={idx} className="bg-rose-50/60 text-rose-600 text-[10px] font-semibold px-2 py-0.5 rounded-full border border-rose-100/70">
                 {item}
               </span>
             ))}
           </div>
         )}
 
-        {/* Price */}
         <div className="pt-3 border-t border-rose-50 mb-3 mt-auto">
           <div className="flex items-baseline gap-2 flex-wrap">
-            <span className="text-xl font-bold text-rose-600" itemProp="price" aria-label={`Price ₹${service.price}`}>
+            <span className="text-xl font-black text-rose-600" aria-label={`Price: ${service.price} Rupees`}>
               ₹{service.price}
             </span>
             {service.originalPrice && service.originalPrice > service.price && (
-              <span className="text-sm text-gray-400 line-through" aria-label={`Was ₹${service.originalPrice}`}>
+              <span className="text-sm text-gray-400 line-through font-medium" aria-label={`Original price was ${service.originalPrice} Rupees`}>
                 ₹{service.originalPrice}
               </span>
             )}
           </div>
           {discountPercentage > 0 && (
-            <p className="text-[11px] text-emerald-600 font-semibold mt-0.5">
-              You save ₹{service.originalPrice! - service.price} ({discountPercentage}% off)
+            <p className="text-[11px] text-emerald-600 font-bold mt-0.5">
+              Save ₹{service.originalPrice! - service.price} ({discountPercentage}% off)
             </p>
           )}
         </div>
 
-        {/* ── ACTION BUTTONS ── */}
         <div className="grid grid-cols-2 gap-2.5">
-          {/* View Details → navigates to SEO page */}
           <Link
             href={servicePageUrl}
             prefetch={false}
-            className="flex items-center justify-center gap-1.5 py-2.5 rounded-2xl border-2 border-rose-200 text-rose-600 text-sm font-semibold hover:bg-rose-50 hover:border-rose-300 active:scale-[0.98] transition-all focus:ring-2 focus:ring-rose-200 focus:outline-none"
-            aria-label={`View full details for ${service.title}`}
+            className="flex items-center justify-center gap-1 py-2.5 rounded-2xl border-2 border-rose-100 text-rose-600 text-sm font-bold hover:bg-rose-50 hover:border-rose-200 active:scale-[0.98] transition-all focus:ring-2 focus:ring-rose-300 focus:outline-none"
+            aria-label={`View full details and variations for ${service.title}`}
           >
-            View Details
+            Details
             <ChevronRight className="w-4 h-4" aria-hidden="true" />
           </Link>
 
-          {/* Book Now → existing booking flow, unchanged */}
-          <button
+          <motion.button
+            whileTap={{ scale: 0.97 }}
             onClick={(e) => { e.stopPropagation(); onAddToCart(); }}
-            className="flex items-center justify-center py-2.5 rounded-2xl bg-gradient-to-r from-rose-500 to-pink-500 text-white text-sm font-bold hover:from-rose-600 hover:to-pink-600 hover:shadow-md active:scale-[0.98] transition-all shadow-sm focus:ring-2 focus:ring-rose-300 focus:outline-none"
-            aria-label={`Book ${service.title} at Kritika Ladies Parlour Patna`}
+            className="flex items-center justify-center py-2.5 rounded-2xl bg-gradient-to-r from-rose-500 to-pink-500 text-white text-sm font-bold hover:from-rose-600 hover:to-pink-600 hover:shadow-md transition-all shadow-sm focus:ring-2 focus:ring-rose-400 focus:outline-none"
+            aria-label={`Book ${service.title} session now`}
             data-gtm="add-to-cart"
             data-service={service.title}
             data-price={service.price}
           >
-            Book Now →
-          </button>
+            Book Now
+          </motion.button>
         </div>
 
-        {/* Social proof line */}
         {socialProof && (
-          <p className="text-[11px] text-gray-400 mt-3 flex items-center gap-1.5">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 flex-shrink-0" aria-hidden="true" />
+          <p className="text-[11px] text-gray-500 font-medium mt-3 flex items-center gap-1.5">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 flex-shrink-0 animate-pulse" aria-hidden="true" />
             {socialProof}
           </p>
         )}
