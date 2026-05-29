@@ -40,15 +40,15 @@ export default function Footer() {
             <div className="mb-6">
               <h4 className="font-semibold text-gray-800 mb-3">Follow Us</h4>
               <div className="flex space-x-3">
-                <a href="https://instagram.com/kritikasalon" target="_blank" rel="noopener noreferrer" className="bg-gradient-to-r from-pink-100 to-purple-100 p-2 rounded-full shadow-sm text-pink-500 hover:text-pink-700 transition-all hover:shadow-md">
+                <a href="https://instagram.com/kritikasalonpatna" target="_blank" rel="noopener noreferrer" className="bg-gradient-to-r from-pink-100 to-purple-100 p-2 rounded-full shadow-sm text-pink-500 hover:text-pink-700 transition-all hover:shadow-md">
                   <Instagram className="w-5 h-5" />
                 </a>
-                <a href="https://facebook.com/kritikasalon" target="_blank" rel="noopener noreferrer" className="bg-gradient-to-r from-pink-100 to-purple-100 p-2 rounded-full shadow-sm text-pink-500 hover:text-pink-700 transition-all hover:shadow-md">
+                {/* <a href="https://facebook.com/kritikasalon" target="_blank" rel="noopener noreferrer" className="bg-gradient-to-r from-pink-100 to-purple-100 p-2 rounded-full shadow-sm text-pink-500 hover:text-pink-700 transition-all hover:shadow-md">
                   <Facebook className="w-5 h-5" />
                 </a>
                 <a href="https://youtube.com/@kritikasalon" target="_blank" rel="noopener noreferrer" className="bg-gradient-to-r from-pink-100 to-purple-100 p-2 rounded-full shadow-sm text-pink-500 hover:text-pink-700 transition-all hover:shadow-md">
-                  <Youtube className="w-5 h-5" />
-                </a>
+                  <Youtube className="w-5 h-5" /> */}
+                {/* </a> */}
               </div>
             </div>
           </div>
