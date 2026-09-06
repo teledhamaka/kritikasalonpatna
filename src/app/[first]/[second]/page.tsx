@@ -1,14 +1,53 @@
 // app/[first]/[second]/page.tsx
 import { Metadata } from 'next';
-import { notFound } from 'next/navigation';
+import { notFound, permanentRedirect } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
 import { createServerClient } from '@/lib/supabase/server';
 import { createStaticClient } from '@/lib/supabase/static-client';
 import { Phone, Star, Clock } from 'lucide-react';
 
+// Keep in sync with sitemap.ts / robots.ts.
+const SITE_URL = 'https://www.kritikasalonpatna.com';
+
 interface PageProps {
   params: Promise<{ first: string; second: string }>;
+}
+
+// Turns a human-readable category value ("Bridal Combo") into a URL-safe
+// segment ("bridal-combo"). Every place that builds or compares a category
+// URL must go through this — .toLowerCase() alone was leaving raw spaces
+// in the URL (e.g. /bridal%20combo/...), which browsers percent-encode
+// and which then never matches a plain `first.toLowerCase() !== ...`
+// comparison consistently, causing repeated redirect/refetch loops.
+function slugifyCategory(category?: string | null): string {
+  if (!category) return '';
+  return category
+    .toLowerCase()
+    .trim()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+}
+
+// Falls back to the numeric `duration` (minutes) column when `duration_text`
+// is null — e.g. for rows (like migrated combos) whose source data only had
+// a number, not a pre-formatted label. Never fabricates a value: if neither
+// column has real data, this returns null and the caller's existing `&&`
+// guard hides the stat entirely, same as before.
+function resolveDurationText(
+  durationText?: string | null,
+  durationMinutes?: number | null
+): string | null {
+  if (durationText) return durationText;
+  if (typeof durationMinutes === 'number' && durationMinutes > 0) {
+    if (durationMinutes >= 60) {
+      const hours = Math.floor(durationMinutes / 60);
+      const mins = durationMinutes % 60;
+      return mins > 0 ? `${hours}h ${mins}m` : `${hours}-hour session`;
+    }
+    return `${durationMinutes} minutes`;
+  }
+  return null;
 }
 
 // ─── Static generation (unchanged) ─────────────────────────────────────────
@@ -27,7 +66,7 @@ export async function generateStaticParams() {
     .eq('is_active', true);
   const categoryPairs = (services ?? [])
     .filter((s: any) => s.category)
-    .map((s: any) => ({ first: s.category.toLowerCase(), second: s.slug }));
+    .map((s: any) => ({ first: slugifyCategory(s.category), second: s.slug }));
   const allPairs = [...locationPairs, ...categoryPairs];
   const uniqueMap = new Map<string, { first: string; second: string }>();
   for (const pair of allPairs) {
@@ -39,51 +78,98 @@ export async function generateStaticParams() {
 
 export const revalidate = 86400;
 
-// ─── Metadata (unchanged) ──────────────────────────────────────────────────
+// ─── Metadata ───────────────────────────────────────────────────────────────
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { first, second: serviceSlug } = await params;
   const supabase = await createServerClient();
+
   const { data: location } = await supabase
     .from('locations')
-    .select('id, name')
+    .select('id, name, slug')
     .eq('slug', first)
     .single();
+
   const { data: service } = await supabase
     .from('services')
-    .select('id, title, short_description, image, category, seo_keywords')
+    .select('id, title, short_description, image, category, seo_keywords, slug')
     .eq('slug', serviceSlug)
     .single();
-  if (!service) return { title: 'Not Found' };
+
+  if (!service) {
+    return { title: 'Not Found', robots: { index: false, follow: false } };
+  }
+
+  // This service's ONE authoritative category URL. Whatever the requested
+  // "first" segment was (a real location, the real category, or any other
+  // string that still resolves here because generateStaticParams/dynamicParams
+  // doesn't reject it), every variant points its canonical tag at either its
+  // true location URL or this single category URL — never at itself when
+  // "itself" isn't the intended canonical. This is what stops
+  // /hair-treatment/x, /hair/x, /anything/x from being read as N separate
+  // duplicate pages by Google.
+  const categoryCanonical = `${SITE_URL}/${slugifyCategory(service.category)}/${service.slug}`;
+
   if (location) {
     const { data: junction } = await supabase
       .from('service_location_pages')
-      .select('meta_title, meta_description')
+      .select('meta_title, meta_description, canonical_url')
       .eq('location_id', location.id)
       .eq('service_id', service.id)
+      .eq('is_active', true)
       .single();
+
+    // location matched, but this location doesn't actually offer this
+    // service — don't present it as if it does.
+    if (!junction) {
+      return { title: 'Not Found', robots: { index: false, follow: false } };
+    }
+
+    const canonical = junction.canonical_url
+      ? `${SITE_URL}${junction.canonical_url.startsWith('/') ? '' : '/'}${junction.canonical_url}`
+      : `${SITE_URL}/${location.slug}/${service.slug}`;
+
+    const title = junction.meta_title || `${service.title} in ${location.name} | Kritika Salon`;
+    const description = junction.meta_description || service.short_description;
+
     return {
-      title: junction?.meta_title || `${service.title} in ${location.name} | Kritika Salon` ,
-      description: junction?.meta_description || service.short_description,
-      openGraph: { images: service.image ? [{ url: service.image }] : [] },
-    };
-  } else {
-    return {
-      title: `${service.title} in Patna | Best ${service.category} Service | Kritika Salon`,
-      description: `${service.short_description}. Professional beauty service in Patna with Lakme-certified experts, premium products, hygienic salon environment, and affordable pricing.`,
-      keywords: [
-        ...(service.seo_keywords || []),
-        `${service.title} in Patna`,
-        `best ${service.category} in Patna`,
-        `${service.title} near me`,
-        `Kritika Ladies Parlour Patna`
-      ],
+      title,
+      description,
+      alternates: { canonical },
+      robots: { index: true, follow: true },
       openGraph: {
-        title: `${service.title} in Patna | Kritika Salon`,
-        description: service.short_description,
+        type: 'website',
+        url: canonical,
+        title,
+        description,
         images: service.image ? [{ url: service.image }] : [],
       },
     };
   }
+
+  // No location match. Any first-segment that isn't the service's real
+  // category redirects (see the page component below) before this ever
+  // reaches a person or a crawler — so this metadata only actually needs
+  // to describe the one canonical URL.
+  return {
+    title: `${service.title} in Patna | Best ${service.category} Service | Kritika Salon`,
+    description: `${service.short_description}. Professional beauty service in Patna with Lakme-certified experts, premium products, hygienic salon environment, and affordable pricing.`,
+    keywords: [
+      ...(service.seo_keywords || []),
+      `${service.title} in Patna`,
+      `best ${service.category} in Patna`,
+      `${service.title} near me`,
+      `Kritika Ladies Parlour Patna`,
+    ],
+    alternates: { canonical: categoryCanonical },
+    robots: { index: true, follow: true },
+    openGraph: {
+      type: 'website',
+      url: categoryCanonical,
+      title: `${service.title} in Patna | Kritika Salon`,
+      description: service.short_description,
+      images: service.image ? [{ url: service.image }] : [],
+    },
+  };
 }
 
 // ─── Page Component ─────────────────────────────────────────────────────────
@@ -105,6 +191,20 @@ export default async function DynamicServicePage({ params }: PageProps) {
     .single();
 
   // ─────────────────────────────────────────────────────────────
+  // ALIAS CONSOLIDATION
+  // Any first-segment that isn't a real location AND isn't the service's
+  // real category (e.g. /hair-treatment/x when services.category is "hair")
+  // permanently redirects to the one canonical category URL. With traffic
+  // still under 1,000/month, this is the cheapest possible moment to collapse
+  // every duplicate alias into a single URL that can actually accumulate
+  // ranking signal — waiting until there's real traffic on the aliases only
+  // makes the eventual consolidation more disruptive, not less necessary.
+  // ─────────────────────────────────────────────────────────────
+  if (!location && first.toLowerCase() !== slugifyCategory(service.category)) {
+    permanentRedirect(`/${slugifyCategory(service.category)}/${service.slug}`);
+  }
+
+  // ─────────────────────────────────────────────────────────────
   // LOCATION-SPECIFIC PAGE VIEW
   // ─────────────────────────────────────────────────────────────
   if (location) {
@@ -113,7 +213,12 @@ export default async function DynamicServicePage({ params }: PageProps) {
       .select('*')
       .eq('service_id', service.id)
       .eq('location_id', location.id)
+      .eq('is_active', true)
       .single();
+
+    // This location doesn't actually offer this service — a real location
+    // slug isn't enough on its own to justify rendering the page.
+    if (!junction) notFound();
 
     const finalPrice = junction?.local_price ?? service.price;
     const savings = service.original_price ? service.original_price - finalPrice : 0;
@@ -121,8 +226,50 @@ export default async function DynamicServicePage({ params }: PageProps) {
     const highlights = junction?.local_highlights ?? [];
     const reviews = junction?.local_reviews ?? [];
 
+    const pageUrl = junction.canonical_url
+      ? `${SITE_URL}${junction.canonical_url.startsWith('/') ? '' : '/'}${junction.canonical_url}`
+      : `${SITE_URL}/${location.slug}/${service.slug}`;
+
+    const breadcrumbJsonLd = {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_URL },
+        { '@type': 'ListItem', position: 2, name: location.name, item: `${SITE_URL}/${location.slug}` },
+        { '@type': 'ListItem', position: 3, name: service.title, item: pageUrl },
+      ],
+    };
+
+    const serviceJsonLd = {
+      '@context': 'https://schema.org',
+      '@type': 'Service',
+      serviceType: service.title,
+      provider: {
+        '@type': 'BeautySalon',
+        name: 'Kritika Ladies Beauty Parlour',
+        url: SITE_URL,
+      },
+      areaServed: { '@type': 'Place', name: `${location.name}, Patna` },
+      offers: {
+        '@type': 'Offer',
+        price: finalPrice,
+        priceCurrency: 'INR',
+        url: pageUrl,
+      },
+      ...(service.rating ? {
+        aggregateRating: {
+          '@type': 'AggregateRating',
+          ratingValue: service.rating,
+          reviewCount: service.review_count || reviews.length || 1,
+        },
+      } : {}),
+    };
+
     return (
       <>
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }} />
+
         <div className="max-w-3xl mx-auto px-4 py-6 pb-40 md:pb-28">
           <nav className="text-sm text-gray-400 mb-5 flex items-center gap-1 flex-wrap font-serif italic">
             <Link href="/" className="hover:text-rose-500">Home</Link>
@@ -156,7 +303,12 @@ export default async function DynamicServicePage({ params }: PageProps) {
               <h1 className="text-2xl font-serif text-gray-900 leading-snug mb-2 font-medium">{service.title} in {location.name}, Patna</h1>
               {service.short_description && <p className="text-gray-500 font-serif font-light italic text-sm mb-5">{service.short_description}</p>}
               <div className="flex flex-wrap gap-4 text-sm text-gray-500 mb-5 border-b border-rose-50/50 pb-4">
-                {service.duration_text && <span className="flex items-center gap-1.5 font-serif italic"><Clock className="w-3.5 h-3.5 text-rose-300" /> {service.duration_text}</span>}
+                {(() => {
+                  const durationDisplay = resolveDurationText(service.duration_text, service.duration);
+                  return durationDisplay && (
+                    <span className="flex items-center gap-1.5 font-serif italic"><Clock className="w-3.5 h-3.5 text-rose-300" /> {durationDisplay}</span>
+                  );
+                })()}
                 {service.rating && <span className="flex items-center gap-1.5 font-serif italic"><Star className="w-3.5 h-3.5 fill-amber-400 text-amber-400" /> {service.rating} ({service.review_count} reviews)</span>}
               </div>
               <div className="flex items-baseline gap-3 mb-6">
@@ -202,6 +354,15 @@ export default async function DynamicServicePage({ params }: PageProps) {
               </div>
             </div>
           )}
+
+          {/* Cross-link to the blog: a service page linking out to relevant
+              how-to content is exactly the internal-linking pattern discussed
+              earlier for the blog — it should run in both directions. */}
+          <div className="text-center">
+            <Link href="/blog" className="text-sm text-rose-600 hover:text-rose-700 font-serif italic underline">
+              Read more hair &amp; beauty guides on our blog →
+            </Link>
+          </div>
         </div>
       </>
     );
@@ -212,13 +373,52 @@ export default async function DynamicServicePage({ params }: PageProps) {
   // ─────────────────────────────────────────────────────────────
   const finalPrice = service.price;
   const savings = service.original_price ? service.original_price - finalPrice : 0;
+  const canonicalUrl = `${SITE_URL}/${slugifyCategory(service.category)}/${service.slug}`;
+
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_URL },
+      { '@type': 'ListItem', position: 2, name: service.category, item: `${SITE_URL}/${slugifyCategory(service.category)}` },
+      { '@type': 'ListItem', position: 3, name: service.title, item: canonicalUrl },
+    ],
+  };
+
+  const serviceJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    serviceType: service.title,
+    provider: {
+      '@type': 'BeautySalon',
+      name: 'Kritika Ladies Beauty Parlour',
+      url: SITE_URL,
+    },
+    areaServed: { '@type': 'City', name: 'Patna' },
+    offers: {
+      '@type': 'Offer',
+      price: finalPrice,
+      priceCurrency: 'INR',
+      url: canonicalUrl,
+    },
+    ...(service.rating ? {
+      aggregateRating: {
+        '@type': 'AggregateRating',
+        ratingValue: service.rating,
+        reviewCount: service.review_count || 1,
+      },
+    } : {}),
+  };
 
   return (
     <div className="max-w-3xl mx-auto px-4 py-6 pb-40 md:pb-28">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }} />
+
       <nav className="text-sm text-gray-400 mb-5 flex items-center gap-1 flex-wrap font-serif italic">
         <Link href="/" className="hover:text-rose-500">Home</Link>
         <span className="text-gray-300">/</span>
-        <Link href={`/${first}`} className="hover:text-rose-500 capitalize">{first}</Link>
+        <Link href={`/${slugifyCategory(service.category)}`} className="hover:text-rose-500 capitalize">{service.category}</Link>
         <span className="text-gray-300">/</span>
         <span className="text-gray-600 font-normal not-italic">{service.title}</span>
       </nav>
@@ -252,7 +452,12 @@ export default async function DynamicServicePage({ params }: PageProps) {
           <h1 className="text-2xl font-serif text-gray-900 font-medium leading-snug mb-2">{service.title}</h1>
           {service.short_description && <p className="text-gray-500 font-serif font-light italic text-sm mb-5">{service.short_description}</p>}
           <div className="flex flex-wrap gap-4 text-sm text-gray-500 mb-5 border-b border-rose-50/50 pb-4">
-            {service.duration_text && <span className="flex items-center gap-1.5 font-serif italic"><Clock className="w-3.5 h-3.5 text-rose-300" /> {service.duration_text}</span>}
+            {(() => {
+              const durationDisplay = resolveDurationText(service.duration_text, service.duration);
+              return durationDisplay && (
+                <span className="flex items-center gap-1.5 font-serif italic"><Clock className="w-3.5 h-3.5 text-rose-300" /> {durationDisplay}</span>
+              );
+            })()}
             {service.rating && <span className="flex items-center gap-1.5 font-serif italic"><Star className="w-3.5 h-3.5 fill-amber-400 text-amber-400" /> {service.rating} ({service.review_count || 0} reviews)</span>}
             {service.booking_count && <span className="font-serif italic text-rose-400/90">🔖 {service.booking_count.toLocaleString()}+ sessions</span>}
           </div>
@@ -298,13 +503,19 @@ export default async function DynamicServicePage({ params }: PageProps) {
         />
       )}
 
-      {/* REFINED BOTTOM HERO CALLOUT — Replaced hard dark colors with a soft feminine touch */}
+      <div className="text-center mb-4">
+        <Link href="/blog" className="text-sm text-rose-600 hover:text-rose-700 font-serif italic underline">
+          Read more hair &amp; beauty guides on our blog →
+        </Link>
+      </div>
+
       <div className="bg-rose-50/60 border border-rose-100/80 rounded-2xl p-6 text-center mt-12 shadow-[0_2px_10px_-4px_rgba(254,242,242,0.5)]">
         <h2 className="text-xl font-serif font-medium text-rose-800 mb-2">Ready to glow? ✨</h2>
         <p className="text-sm font-serif italic text-gray-600 mb-6">Book your personalized {service.title} experience today at our Bhootnath Road branch – just 2 minutes away from the metro exit.</p>
         <div className="flex gap-4 justify-center">
           <a href="tel:+919650461390" className="bg-rose-600 hover:bg-rose-700 transition-colors text-white px-6 py-2.5 rounded-xl font-serif font-medium text-sm shadow-sm">📞 Call Now</a>
-          <Link href="/appointments" className="bg-white border border-rose-200 text-rose-700 hover:bg-rose-50/50 transition-colors px-6 py-2.5 rounded-xl font-serif font-medium text-sm shadow-xs">Book Online →</Link>
+          {/* was /appointments — every other CTA on the site uses /booking */}
+          <Link href="/booking" className="bg-white border border-rose-200 text-rose-700 hover:bg-rose-50/50 transition-colors px-6 py-2.5 rounded-xl font-serif font-medium text-sm shadow-xs">Book Online →</Link>
         </div>
       </div>
 

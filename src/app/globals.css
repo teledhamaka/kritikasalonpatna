@@ -1,4 +1,8 @@
 @import "tailwindcss";
+@import "./blog/blog.css";
+/* ↑ Adjust this relative path if globals.css and blog.css don't end up
+   in this exact relation in your final src/app tree — the important
+   part is that blog.css is imported exactly once, from here. */
 
 /* ==========================================================================
    KRITIKA LADIES BEAUTY PARLOUR — PREMIUM PATNA EDITION (GLOBALS)
@@ -32,6 +36,32 @@
     --radius-lg:  1rem;
     --radius-xl:  1.5rem;
     --radius-2xl: 2rem;
+
+    /* ─── Rich-content tokens ───────────────────────────────
+       Shared by .blog-content (blog.css) AND .service-content
+       (below) so blog articles and service pages (/hair,
+       /makeup, /bridal, /skin, /nails, /combo) read as one
+       consistent design system. Change a color here, not in
+       either component's rules. */
+    --content-text:            #3f3538;
+    --content-heading:         #34272b;
+    --content-subheading:      #5a4148;
+    --content-accent:          #c98f9e;
+    --content-accent-strong:   #b87586;
+    --content-link:            #a6536a;
+    --content-link-hover:      #7f3d51;
+    --content-link-underline:  rgba(166, 83, 106, 0.25);
+    --content-border:          #eadde0;
+    --content-border-soft:     #eee4e6;
+    --content-surface:         #fff9fa;
+    --content-shadow-sm:       0 6px 20px rgba(72, 42, 50, 0.045);
+    --content-shadow-md:       0 12px 30px rgba(72, 42, 50, 0.08);
+
+    /* Dark-mode variants (applied under prefers-color-scheme: dark) */
+    --content-text-dark:       #d1d5db;
+    --content-heading-dark:    #f472b6;
+    --content-surface-dark:    #1c1117;
+    --content-border-dark:     #3b2230;
   }
 
   html {
@@ -268,9 +298,11 @@
 }
 
 /* ─── DYNAMIC RICH TEXT SERVICE CONTENT WRAPPERS ─────────────────────────── */
+/* Used on /hair, /makeup, /bridal, /skin, /nails, /combo etc. Shares its
+   color tokens with .blog-content (blog.css) — see --content-* in :root. */
 .service-content { 
   font-family: inherit; 
-  color: #4b5563; 
+  color: var(--content-text); 
   line-height: 1.85; 
 }
 .service-content p { 
@@ -280,12 +312,12 @@
 .service-content h3 { 
   font-size: 18px; 
   font-weight: 700; 
-  color: #be185d; 
+  color: var(--content-link); 
   margin: 28px 0 12px; 
   letter-spacing: -0.01em; 
 }
 .service-content a { 
-  color: #db2777; 
+  color: var(--content-link); 
   text-decoration: none; 
   font-weight: 500;
 }
@@ -302,7 +334,7 @@
   margin-bottom: 6px; 
 }
 .service-content strong { 
-  color: #111827; 
+  color: var(--content-heading); 
   font-weight: 600; 
 }
 
@@ -399,9 +431,10 @@
     background: #190e14; 
     border-top-color: #3b2230; 
   }
-  .service-content { color: #d1d5db; }
+  .service-content { color: var(--content-text-dark); }
   .service-content p,
   .service-content li { color: #9ca3af; }
-  .service-content h3 { color: #f472b6; }
+  .service-content h3 { color: var(--content-heading-dark); }
   .service-content strong { color: #ffffff; }
 }
+

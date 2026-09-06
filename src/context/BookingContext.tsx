@@ -38,7 +38,6 @@ import React, {
 } from 'react';
 import { useAuth } from './AuthContext';
 import { supabase } from '@/lib/supabase/client';
-import { getEffectivePrice } from '@/types';
 import {
   withRetry,
   normalizePhone,
@@ -251,7 +250,10 @@ export function BookingProvider({ children }: { children: ReactNode }) {
     [state.cart]
   );
   const getSubtotal    = useCallback(
-    () => state.cart.reduce((s, i) => s + getEffectivePrice(i) * i.quantity, 0),
+    () => state.cart.reduce(
+      (s, i) => s + (Number(i.discounted_price || i.price || i.base_price) || 0) * i.quantity,
+      0
+    ),
     [state.cart]
   );
   const getTaxAmount   = useCallback(() => Math.round(getSubtotal() * 0.18), [getSubtotal]);
@@ -395,7 +397,8 @@ export function BookingProvider({ children }: { children: ReactNode }) {
             total_price:    totalAmount,
             services:       state.cart.map(i => ({
               id: i.id, name: i.name,
-              price: getEffectivePrice(i), quantity: i.quantity,
+              price: Number(i.discounted_price || i.price || i.base_price) || 0,
+              quantity: i.quantity,
             })),
             customer_name:  customerName,
             customer_phone: customerPhone,
@@ -422,7 +425,7 @@ export function BookingProvider({ children }: { children: ReactNode }) {
               unit_price:      item.base_price,
               discount_amount: item.discounted_price
                 ? (item.base_price - item.discounted_price) * item.quantity : 0,
-              total_price:     getEffectivePrice(item) * item.quantity,
+              total_price:     (Number(item.discounted_price || item.price || item.base_price) || 0) * item.quantity,
             }))
           );
         } catch {}

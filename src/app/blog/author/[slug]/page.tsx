@@ -1,272 +1,495 @@
-// ========================================
-// app/blog/author/[slug]/page.tsx - FIXED FOR BUILD
-// ========================================
+// src/app/blog/author/[slug]/page.tsx
 
-import { createClient } from '@supabase/supabase-js';
+import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import BlogCard from '@/components/blog/BlogCard';
-import { Award, Calendar } from 'lucide-react';
-import Image from 'next/image';
 import Link from 'next/link';
+import Image from 'next/image';
 
-export const revalidate = 3600;
+import {
+  Award,
+  Calendar,
+  ArrowLeft,
+} from 'lucide-react';
 
-interface AuthorPost {
-  id: string;
-  slug: string;
-  title: string;
-  excerpt: string;
-  cover_image: string;
-  read_time: number;
-  views: number;
-  likes: number;
-  published_at: string;
-  featured: boolean;
-  category: { name: string; color: string }; 
-  author: { name: string; avatar_url: string };
+import {
+  getAllPosts,
+} from '@/lib/blog';
+
+interface PageProps {
+  params: Promise<{
+    slug: string;
+  }>;
 }
 
-interface RawAuthorPost {
-  id: string;
-  slug: string;
-  title: string;
-  excerpt: string;
-  cover_image: string;
-  read_time: number;
-  views: number;
-  likes: number;
-  published_at: string;
-  featured: boolean;
-  category: Array<{ name: string; color: string }>;
-  author: Array<{ name: string; avatar_url: string }>;
-}
+export const dynamicParams = true;
 
-// Create a simple client for generateStaticParams (no cookies needed)
-function createStaticClient() {
-  return createClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+export async function generateStaticParams() {
+  const posts =
+    await getAllPosts();
+
+  const authors =
+    Array.from(
+      new Set(
+        posts.map(
+          (post) =>
+            post.author.id
+        )
+      )
+    );
+
+  return authors.map(
+    (slug) => ({
+      slug,
+    })
   );
 }
 
-async function getAuthorData(slug: string) {
-  // Use static client for data fetching
-  const supabase = createStaticClient();
+async function getAuthorPageData(
+  slug: string
+) {
+  const posts =
+    await getAllPosts();
 
-  const { data: author, error: authorError } = await supabase
-    .from('authors')
-    .select('*')
-    .eq('slug', slug)
-    .single();
+  const authorPosts =
+    posts.filter(
+      (post) =>
+        post.author.id ===
+        slug
+    );
 
-  if (authorError || !author) return null;
+  if (
+    authorPosts.length === 0
+  ) {
+    return null;
+  }
 
-  const { data: posts, error: postsError } = await supabase
-    .from('blog_posts')
-    .select(`
-      id, slug, title, excerpt, cover_image, read_time, views, likes,
-      published_at, featured,
-      category:categories!inner(name, color),
-      author:authors!inner(name, avatar_url)
-    `)
-    .eq('author_id', author.id)
-    .eq('status', 'published')
-    .order('published_at', { ascending: false });
+  const author =
+    authorPosts[0].author;
 
-  if (postsError) throw postsError;
+  const totalViews =
+    authorPosts.reduce(
+      (sum, post) =>
+        sum + (post.views || 0),
+      0
+    );
 
-  const transformedPosts = (posts || []).map((post: RawAuthorPost) => ({
-    ...post,
-    category: Array.isArray(post.category) ? post.category[0] : post.category,
-    author: Array.isArray(post.author) ? post.author[0] : post.author,
-  })) as AuthorPost[];
+  const totalLikes =
+    authorPosts.reduce(
+      (sum, post) =>
+        sum + (post.likes || 0),
+      0
+    );
 
-  const totalViews = transformedPosts.reduce((sum: number, post) => sum + (post.views || 0), 0);
-  const totalLikes = transformedPosts.reduce((sum: number, post) => sum + (post.likes || 0), 0);
-
-  return { 
-    author, 
-    posts: transformedPosts, 
-    stats: { totalViews, totalLikes, totalPosts: transformedPosts.length } 
+  return {
+    author,
+    posts: authorPosts,
+    stats: {
+      totalPosts:
+        authorPosts.length,
+      totalViews,
+      totalLikes,
+    },
   };
 }
 
-export async function generateStaticParams() {
-  // Use static client (no cookies) for build-time generation
-  const supabase = createStaticClient();
-  
-  const { data } = await supabase
-    .from('authors')
-    .select('slug');
-  
-  return (data || []).map((author: { slug: string }) => ({ 
-    slug: author.slug 
-  }));
-}
+export async function generateMetadata(
+  { params }: PageProps
+): Promise<Metadata> {
+  const { slug } =
+    await params;
 
-export async function generateMetadata({ 
-  params 
-}: { 
-  params: Promise<{ slug: string }> 
-}) {
-  const { slug } = await params;
-  const data = await getAuthorData(slug);
+  const data =
+    await getAuthorPageData(
+      slug
+    );
 
   if (!data) {
-    return { title: 'Author Not Found' };
+    return {
+      title:
+        'Author Not Found | Beauty Blog',
+      robots: {
+        index: false,
+        follow: false,
+      },
+    };
   }
 
   return {
-    title: `${data.author.name} - Beauty Expert`,
-    description: data.author.bio,
+    title: `${data.author.name} | Beauty Expert | Kritika Salon Patna`,
+
+    description:
+      data.author.bio,
+
+    alternates: {
+      canonical: `https://www.kritikasalonpatna.com/blog/author/${slug}`,
+    },
+
+    robots: {
+      index: true,
+      follow: true,
+    },
+
+    openGraph: {
+      title:
+        `${data.author.name} | Beauty Expert`,
+      description:
+        data.author.bio,
+      type: 'profile',
+      images: [
+        {
+          url:
+            data.author.avatar,
+          alt:
+            data.author.name,
+        },
+      ],
+    },
   };
 }
 
-export default async function AuthorPage({ 
-  params 
-}: { 
-  params: Promise<{ slug: string }> 
-}) {
-  const { slug } = await params;
-  const data = await getAuthorData(slug);
+export default async function AuthorPage({
+  params,
+}: PageProps) {
+  const { slug } =
+    await params;
+
+  const data =
+    await getAuthorPageData(
+      slug
+    );
 
   if (!data) {
     notFound();
   }
 
-  const { author, posts, stats } = data;
+  const {
+    author,
+    posts,
+    stats,
+  } = data;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-pink-50 via-purple-50 to-blue-50 py-12">
-      <div className="container mx-auto px-4">
-        
-        {/* Author Profile Card */}
-        <div className="bg-white rounded-3xl shadow-2xl overflow-hidden mb-12">
-          <div className="bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500 h-32"></div>
-          
-          <div className="px-8 pb-8">
-            <div className="flex flex-col md:flex-row items-start md:items-end gap-6 -mt-16">
-              
+    <main className="min-h-screen bg-gradient-to-br from-pink-50 via-purple-50 to-blue-50 py-12">
+      <div className="container mx-auto max-w-7xl px-4">
+
+        {/* Breadcrumb */}
+        <nav
+          aria-label="Breadcrumb"
+          className="mb-8 text-sm text-gray-600"
+        >
+          <div className="flex flex-wrap items-center gap-2">
+            <Link
+              href="/"
+              className="hover:text-pink-600"
+            >
+              Home
+            </Link>
+
+            <span>/</span>
+
+            <Link
+              href="/blog"
+              className="hover:text-pink-600"
+            >
+              Blog
+            </Link>
+
+            <span>/</span>
+
+            <span className="text-gray-900">
+              {author.name}
+            </span>
+          </div>
+        </nav>
+
+        {/* Author Profile */}
+        <section className="mb-12 overflow-hidden rounded-3xl bg-white shadow-2xl">
+
+          <div className="h-32 bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500" />
+
+          <div className="px-6 pb-8 sm:px-8">
+
+            <div className="-mt-16 flex flex-col gap-6 md:flex-row md:items-end">
+
               <Image
-                src={author.avatar_url || '/images/default-avatar.jpg'}
-                alt={author.name}
+                src={
+                  author.avatar ||
+                  '/images/default-avatar.jpg'
+                }
+                alt={
+                  author.name
+                }
                 width={128}
                 height={128}
-                className="w-32 h-32 rounded-full border-8 border-white shadow-xl object-cover"
-                onError={(e) => {
-                  (e.target as HTMLImageElement).src = '/images/default-avatar.jpg';
-                }}
+                className="h-32 w-32 rounded-full border-8 border-white object-cover shadow-xl"
               />
 
               <div className="flex-1">
-                <h1 className="text-4xl font-bold text-gray-900 mb-2">
+
+                <h1 className="mb-2 text-3xl font-bold text-gray-900 sm:text-4xl">
                   {author.name}
                 </h1>
-                <p className="text-lg text-gray-600 mb-4">{author.bio}</p>
 
-                {/* Expertise Tags */}
-                {author.expertise && author.expertise.length > 0 && (
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {author.expertise.map((skill: string) => (
-                      <span
-                        key={skill}
-                        className="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-sm font-medium"
-                      >
-                        {skill}
-                      </span>
-                    ))}
-                  </div>
-                )}
+                <p className="max-w-3xl text-base leading-7 text-gray-600 sm:text-lg">
+                  {author.bio}
+                </p>
 
-                {/* Stats */}
-                <div className="flex flex-wrap gap-6 text-sm">
-                  <div className="flex items-center gap-2">
-                    <Award className="text-pink-500" size={20} />
-                    <span className="font-semibold text-gray-900">{stats.totalPosts}</span>
-                    <span className="text-gray-600">Articles</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <Calendar className="text-purple-500" size={20} />
-                    <span className="font-semibold text-gray-900">{stats.totalViews.toLocaleString()}</span>
-                    <span className="text-gray-600">Views</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <span className="text-2xl">❤️</span>
-                    <span className="font-semibold text-gray-900">{stats.totalLikes}</span>
-                    <span className="text-gray-600">Likes</span>
-                  </div>
-                </div>
+                {author.expertise &&
+                  author.expertise.length >
+                    0 && (
+                    <div className="mt-4 flex flex-wrap gap-2">
+                      {author.expertise.map(
+                        (skill) => (
+                          <span
+                            key={
+                              skill
+                            }
+                            className="rounded-full bg-purple-100 px-3 py-1 text-sm font-medium text-purple-700"
+                          >
+                            {skill}
+                          </span>
+                        )
+                      )}
+                    </div>
+                  )}
+
               </div>
             </div>
 
-            {/* Certifications */}
-            {author.certifications && author.certifications.length > 0 && (
-              <div className="mt-6 pt-6 border-t border-gray-200">
-                <h3 className="text-lg font-bold text-gray-900 mb-3">Certifications</h3>
-                <ul className="space-y-2">
-                  {author.certifications.map((cert: string) => (
-                    <li key={cert} className="flex items-center gap-2 text-gray-700">
-                      <Award size={16} className="text-pink-500" />
-                      {cert}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )}
-          </div>
-        </div>
+            {/* Stats */}
+            <div className="mt-8 flex flex-wrap gap-6 border-t border-gray-200 pt-6">
 
-        {/* Author's Posts */}
-        <div className="mb-8">
-          <h2 className="text-3xl font-bold text-gray-900 mb-8">
-            Latest Articles by {author.name.split(' ')[0]}
-          </h2>
-          
-          {posts.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {posts.map((post: AuthorPost) => (
-                <BlogCard
-                  key={post.id}
-                  post={{
-                    slug: post.slug,
-                    title: post.title,
-                    excerpt: post.excerpt,
-                    coverImage: post.cover_image,
-                    category: post.category,
-                    author: {
-                      name: post.author.name,
-                      avatar: post.author.avatar_url,
-                    },
-                    readTime: post.read_time,
-                    views: post.views,
-                    likes: post.likes,
-                    publishedAt: post.published_at,
-                    featured: post.featured,
-                  }}
+              <div className="flex items-center gap-2">
+                <Award
+                  size={20}
+                  className="text-pink-500"
                 />
-              ))}
+
+                <span className="font-bold text-gray-900">
+                  {stats.totalPosts}
+                </span>
+
+                <span className="text-gray-600">
+                  Articles
+                </span>
+              </div>
+
+              <div className="flex items-center gap-2">
+                <Calendar
+                  size={20}
+                  className="text-purple-500"
+                />
+
+                <span className="font-bold text-gray-900">
+                  {stats.totalViews.toLocaleString(
+                    'en-IN'
+                  )}
+                </span>
+
+                <span className="text-gray-600">
+                  Views
+                </span>
+              </div>
+
+              <div className="flex items-center gap-2">
+                <span className="text-xl">
+                  ❤️
+                </span>
+
+                <span className="font-bold text-gray-900">
+                  {stats.totalLikes.toLocaleString(
+                    'en-IN'
+                  )}
+                </span>
+
+                <span className="text-gray-600">
+                  Likes
+                </span>
+              </div>
+
+            </div>
+
+            {/* Social Links */}
+            {author.socialLinks &&
+              Object.keys(
+                author.socialLinks
+              ).length > 0 && (
+                <div className="mt-6 flex flex-wrap gap-3">
+                  {author.socialLinks.twitter && (
+                    <a
+                      href={
+                        author.socialLinks.twitter
+                      }
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="rounded-full bg-gray-100 px-4 py-2 text-sm font-semibold text-gray-700 hover:bg-gray-200"
+                    >
+                      Twitter
+                    </a>
+                  )}
+
+                  {author.socialLinks.linkedin && (
+                    <a
+                      href={
+                        author.socialLinks.linkedin
+                      }
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="rounded-full bg-blue-50 px-4 py-2 text-sm font-semibold text-blue-700 hover:bg-blue-100"
+                    >
+                      LinkedIn
+                    </a>
+                  )}
+
+                  {author.socialLinks.instagram && (
+                    <a
+                      href={
+                        author.socialLinks.instagram
+                      }
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="rounded-full bg-pink-50 px-4 py-2 text-sm font-semibold text-pink-700 hover:bg-pink-100"
+                    >
+                      Instagram
+                    </a>
+                  )}
+                </div>
+              )}
+
+          </div>
+        </section>
+
+        {/* Articles */}
+        <section>
+
+          <div className="mb-8 flex items-center justify-between gap-4">
+            <h2 className="text-2xl font-bold text-gray-900 sm:text-3xl">
+              Latest Articles by{' '}
+              {
+                author.name.split(
+                  ' '
+                )[0]
+              }
+            </h2>
+          </div>
+
+          {posts.length >
+          0 ? (
+            <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+
+              {posts.map(
+                (post) => (
+                  <article
+                    key={
+                      post.slug
+                    }
+                    className="group overflow-hidden rounded-3xl bg-white shadow-lg transition hover:-translate-y-1 hover:shadow-2xl"
+                  >
+                    <Link
+                      href={`/blog/${post.slug}`}
+                    >
+                      <div className="relative h-56 overflow-hidden bg-gray-100">
+
+                        <img
+                          src={
+                            post.coverImage
+                          }
+                          alt={
+                            post.title
+                          }
+                          loading="lazy"
+                          className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+                        />
+
+                        {post.featured && (
+                          <span className="absolute left-4 top-4 rounded-full bg-pink-500 px-3 py-1 text-xs font-bold text-white">
+                            ⭐ Featured
+                          </span>
+                        )}
+
+                      </div>
+
+                      <div className="p-6">
+
+                        <div className="mb-3 flex items-center gap-2 text-xs text-gray-500">
+                          <span>
+                            {new Date(
+                              post.publishedAt
+                            ).toLocaleDateString(
+                              'en-IN',
+                              {
+                                day: 'numeric',
+                                month: 'short',
+                                year: 'numeric',
+                              }
+                            )}
+                          </span>
+
+                          <span>
+                            •
+                          </span>
+
+                          <span>
+                            {post.readTime}{' '}
+                            min read
+                          </span>
+                        </div>
+
+                        <h3 className="mb-3 line-clamp-2 text-xl font-bold text-gray-900 group-hover:text-pink-600">
+                          {
+                            post.title
+                          }
+                        </h3>
+
+                        <p className="line-clamp-3 text-sm leading-6 text-gray-600">
+                          {
+                            post.excerpt
+                          }
+                        </p>
+
+                        <div className="mt-5 font-semibold text-pink-600">
+                          Read Article →
+                        </div>
+
+                      </div>
+                    </Link>
+                  </article>
+                )
+              )}
+
             </div>
           ) : (
-            <div className="text-center py-20 bg-white rounded-3xl">
-              <div className="text-6xl mb-4">✍️</div>
-              <h3 className="text-2xl font-bold text-gray-700 mb-2">
+            <div className="rounded-3xl bg-white py-20 text-center shadow-lg">
+              <div className="mb-4 text-6xl">
+                ✍️
+              </div>
+
+              <h3 className="mb-2 text-2xl font-bold text-gray-700">
                 No posts yet
               </h3>
-              <p className="text-gray-500">Stay tuned for upcoming articles!</p>
+
+              <p className="text-gray-500">
+                Stay tuned for upcoming articles!
+              </p>
             </div>
           )}
-        </div>
 
-        {/* Back Link */}
-        <div className="text-center">
+        </section>
+
+        {/* Back */}
+        <div className="mt-12 text-center">
           <Link
             href="/blog"
-            className="inline-flex items-center gap-2 text-pink-600 hover:text-pink-700 font-semibold"
+            className="inline-flex items-center gap-2 font-semibold text-pink-600 hover:text-pink-700"
           >
-            ← Back to blog
+            <ArrowLeft
+              size={18}
+            />
+            Back to Blog
           </Link>
         </div>
+
       </div>
-    </div>
+    </main>
   );
 }

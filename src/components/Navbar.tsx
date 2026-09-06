@@ -1,100 +1,70 @@
-"use client";
+'use client';
 
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
-import { useState, useEffect, useRef } from 'react';
-import { User, Heart, ShoppingBag, Phone, Menu, X, ChevronDown, Settings, Calendar, 
-  LogOut, Star, Gift, Bell } from 'lucide-react';
-import { useAuth } from '../context/AuthContext';
-import { useBooking } from '../context/BookingContext';
+import { useEffect, useRef, useState } from 'react';
+import { Calendar, ChevronDown, Gift, LogOut, Menu, Phone, ShoppingBag, User, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
+import { useAuth } from '../context/AuthContext';
+import { useBooking } from '../context/BookingContext';
 
-const Navbar = () => {
+const navItems = [
+  { name: 'Home', path: '/' },
+  { name: 'Makeup', path: '/makeup' },
+  { name: 'Skin', path: '/skin' },
+  { name: 'Hair', path: '/hair' },
+  { name: 'Nails', path: '/nails' },
+  { name: 'Blog', path: '/blog' },
+];
+
+export default function Navbar() {
   const pathname = usePathname();
   const router = useRouter();
   const { profile, isLoggedIn, signOut, loading: authLoading } = useAuth();
-  const { cartItemCount, favorites } = useBooking();
+  const { cartItemCount } = useBooking();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [profileDropdownOpen, setProfileDropdownOpen] = useState(false);
-  const [showSignOutModal, setShowSignOutModal] = useState(false);
-  const [isClient, setIsClient] = useState(false);
+  const [profileOpen, setProfileOpen] = useState(false);
+  const [signOutOpen, setSignOutOpen] = useState(false);
+  const [clientReady, setClientReady] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
-  
-  const navItems = [
-    { name: 'Home', path: '/' },
-    { name: 'Makeup', path: '/makeup' },
-    { name: 'Skin', path: '/skin' },
-    { name: 'Hair', path: '/hair' },
-    { name: 'Nails', path: '/nails' },
-    { name: 'Blog', path: '/blog' },
-  ];
+
+  useEffect(() => setClientReady(true), []);
 
   useEffect(() => {
-    setIsClient(true);
-    // Check for successful auth redirect
-    const urlParams = new URLSearchParams(window.location.search);
-    if (urlParams.get('auth') === 'success' && isLoggedIn) {
-      // Remove the query param
-      router.replace('/profile');
-    }
-  }, [isLoggedIn, router]);
-
-  // Close dropdown when clicking outside
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
+    const close = (event: MouseEvent) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
-        setProfileDropdownOpen(false);
+        setProfileOpen(false);
       }
     };
-
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
+    document.addEventListener('mousedown', close);
+    return () => document.removeEventListener('mousedown', close);
   }, []);
 
+  const closeMobile = () => setMobileMenuOpen(false);
+
   const handleSignOut = async () => {
-    try {
-      await signOut();
-      setShowSignOutModal(false);
-      setProfileDropdownOpen(false);
-      router.push('/');
-    } catch (error) {
-      console.error('Error signing out:', error);
-    }
+    await signOut();
+    setSignOutOpen(false);
+    setProfileOpen(false);
+    closeMobile();
+    router.replace('/');
   };
 
-  const getInitials = (name: string) => {
-    return name
-      .split(' ')
-      .map(word => word.charAt(0))
-      .join('')
-      .toUpperCase()
-      .slice(0, 2);
-  };
+  const initials = (name: string) => name
+    .split(' ')
+    .filter(Boolean)
+    .map(part => part[0])
+    .join('')
+    .slice(0, 2)
+    .toUpperCase();
 
-  // Show loading state during initial auth check
-  if (!isClient || authLoading) {
+  if (!clientReady || authLoading) {
     return (
-      <nav className="bg-white shadow-md sticky top-0 z-50 w-full">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between h-16">
-            <div className="flex items-center">
-              <div className="text-2xl font-bold text-rose-500 flex items-center">
-                <div className="mr-2 relative w-8 h-8 md:w-10 md:h-10">
-                  <div className="w-6 h-6 md:w-8 md:h-8 lg:w-10 lg:h-10 bg-gray-200 rounded animate-pulse"></div>
-                </div>
-                <span className="bg-gradient-to-r from-rose-500 to-pink-600 bg-clip-text text-transparent">
-                  KRITIKA SALON
-                </span>
-              </div>
-            </div>
-            <div className="hidden md:flex items-center space-x-4">
-              <div className="w-20 h-8 bg-gray-200 rounded animate-pulse"></div>
-              <div className="w-20 h-8 bg-gray-200 rounded animate-pulse"></div>
-            </div>
-          </div>
+      <nav className="bg-white shadow-sm sticky top-0 z-50">
+        <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
+          <span className="font-bold text-rose-500">KRITIKA SALON</span>
+          <div className="w-24 h-8 bg-gray-100 rounded animate-pulse" />
         </div>
       </nav>
     );
@@ -102,455 +72,124 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className="bg-white shadow-md sticky top-0 z-50 w-full">
-        {/* Top announcement bar */}
-        <div className="bg-gradient-to-r from-pink-100 to-purple-100 text-pink-800 py-2 text-center text-sm">
-          <span className="inline-flex items-center">
-            <Gift className="mr-1 w-4 h-4" />
-            Get 20% off your first appointment! Book now.
-            <Gift className="ml-1 w-4 h-4" />
-          </span>
+      <nav className="bg-white shadow-sm sticky top-0 z-50 w-full">
+        <div className="bg-gradient-to-r from-pink-100 to-purple-100 text-pink-800 py-1.5 text-center text-xs">
+          <span className="inline-flex items-center gap-1"><Gift className="w-3.5 h-3.5" /> 20% off your first appointment — Book now</span>
         </div>
-        
+
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between h-16">
-            <div className="flex items-center">
-              <Link href="/" className="text-2xl font-bold text-rose-500 flex items-center">
-                <div className="mr-2 relative w-8 h-8 md:w-10 md:h-10">
-                  <Image
-                    src="/images/white_salon_icon.webp"
-                    alt="KRITIKA SALON"
-                    width={40}
-                    height={40}
-                    className="w-6 h-6 md:w-8 md:h-8 lg:w-10 lg:h-10 object-contain"
-                    priority
-                    onError={(e) => {
-                      e.currentTarget.src = '/images/white_salon_icon.png';
-                    }}
-                  />
-                </div>
-                <span className="bg-gradient-to-r from-rose-500 to-pink-600 bg-clip-text text-transparent">
-                  KRITIKA SALON
-                </span>
-              </Link>
-            </div>
-            
-            {/* Desktop Menu */}
-            <div className="hidden md:flex items-center space-x-6">
-              {navItems.map((item) => (
+          <div className="h-16 flex items-center justify-between">
+            <Link href="/" className="flex items-center font-bold text-xl md:text-2xl">
+              <Image
+                src="/images/white_salon_icon.webp"
+                alt="Kritika Salon"
+                width={40}
+                height={40}
+                className="w-8 h-8 mr-2 object-contain"
+              />
+              <span className="bg-gradient-to-r from-rose-500 to-pink-600 bg-clip-text text-transparent">KRITIKA SALON</span>
+            </Link>
+
+            <div className="hidden md:flex items-center gap-6">
+              {navItems.map(item => (
                 <Link
-                  key={item.name}
+                  key={item.path}
                   href={item.path}
-                  className={`${
-                    pathname === item.path
-                      ? 'text-rose-600 border-b-2 border-rose-500'
-                      : 'text-gray-700 hover:text-rose-500'
-                  } px-1 py-2 font-medium transition-colors text-sm`}
+                  className={pathname === item.path ? 'text-rose-600 font-medium border-b-2 border-rose-500 py-2 text-sm' : 'text-gray-700 hover:text-rose-500 font-medium py-2 text-sm'}
                 >
                   {item.name}
                 </Link>
               ))}
             </div>
-            
-            {/* Right side icons and buttons */}
-            <div className="hidden md:flex items-center space-x-4">
-              {/* Notifications (only show when logged in) */}
-              {isLoggedIn && (
-                <button 
-                  onClick={() => router.push('/notifications')}
-                  className="p-2 text-gray-600 hover:text-rose-500 transition-colors relative"
-                >
-                  <Bell className="w-5 h-5" />
-                  <span className="absolute -top-1 -right-1 bg-rose-500 text-white rounded-full w-4 h-4 flex items-center justify-center text-xs">2</span>
-                </button>
+
+            <div className="hidden md:flex items-center gap-3">
+              <button onClick={() => router.push('/cart')} className="relative p-2 text-gray-600 hover:text-rose-500" aria-label="My selection">
+                <ShoppingBag className="w-5 h-5" />
+                {cartItemCount > 0 && <span className="absolute -top-1 -right-1 bg-rose-500 text-white rounded-full min-w-4 h-4 px-1 flex items-center justify-center text-[10px]">{cartItemCount}</span>}
+              </button>
+
+              {isLoggedIn && profile ? (
+                <div className="relative" ref={dropdownRef}>
+                  <button onClick={() => setProfileOpen(v => !v)} className="flex items-center gap-2 px-2 py-1.5 rounded-lg hover:bg-pink-50">
+                    <div className="w-8 h-8 rounded-full bg-rose-500 text-white flex items-center justify-center text-xs font-medium overflow-hidden">
+                      {profile.profile_image_url ? <Image src={profile.profile_image_url} alt={profile.full_name || 'Profile'} width={32} height={32} className="w-full h-full object-cover" /> : initials(profile.full_name || profile.email)}
+                    </div>
+                    <span className="text-sm text-gray-700">{profile.first_name || profile.full_name?.split(' ')[0] || 'Profile'}</span>
+                    <ChevronDown className="w-4 h-4 text-gray-500" />
+                  </button>
+
+                  <AnimatePresence>
+                    {profileOpen && (
+                      <motion.div initial={{ opacity: 0, y: -6 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -6 }} className="absolute right-0 top-full mt-2 w-56 bg-white rounded-xl shadow-lg border border-pink-100 py-2">
+                        <div className="px-4 py-3 border-b border-pink-100">
+                          <div className="font-medium text-gray-900">{profile.full_name || 'Beauty Lover'}</div>
+                          <div className="text-xs text-gray-500 truncate">{profile.email}</div>
+                        </div>
+                        <Link href="/profile" onClick={() => setProfileOpen(false)} className="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-700 hover:bg-pink-50"><User className="w-4 h-4" /> My Profile</Link>
+                        <Link href="/appointments" onClick={() => setProfileOpen(false)} className="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-700 hover:bg-pink-50"><Calendar className="w-4 h-4" /> My Appointments</Link>
+                        <button onClick={() => setSignOutOpen(true)} className="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-red-600 hover:bg-red-50"><LogOut className="w-4 h-4" /> Sign Out</button>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              ) : (
+                <Link href="/login" className="text-sm font-medium text-rose-600 hover:text-rose-700">Sign In</Link>
               )}
 
-              {/* Favorites */}
-              <button 
-                onClick={() => router.push('/favorites')}
-                className="p-2 text-gray-600 hover:text-rose-500 transition-colors relative"
-              >
-                <Heart className="w-5 h-5" />
-                {favorites.length > 0 && (
-                  <span className="absolute -top-1 -right-1 bg-rose-500 text-white rounded-full w-4 h-4 flex items-center justify-center text-xs">
-                    {favorites.length}
-                  </span>
-                )}
+              <button onClick={() => router.push('/booking')} className="rounded-full bg-gradient-to-r from-rose-500 to-pink-600 text-white px-5 py-2.5 text-sm font-medium shadow-sm hover:shadow-md">
+                Book Appointment
               </button>
-              
-              {/* Cart */}
-              <button 
-                onClick={() => router.push('/cart')}
-                className="p-2 text-gray-600 hover:text-rose-500 transition-colors relative"
-              >
-                <ShoppingBag className="w-5 h-5" />
-                {cartItemCount > 0 && (
-                  <span className="absolute -top-1 -right-1 bg-rose-500 text-white rounded-full w-4 h-4 flex items-center justify-center text-xs">
-                    {cartItemCount}
-                  </span>
-                )}
-              </button>
-              
-              {/* User Profile */}
-              <div className="relative" ref={dropdownRef}>
-                {isLoggedIn && profile ? (
-                  <div className="flex items-center space-x-2">
-                    {/* User Avatar and Name */}
-                    <button 
-                      className="flex items-center space-x-2 text-gray-700 hover:text-rose-500 transition-colors p-2 rounded-lg hover:bg-pink-50"
-                      onClick={() => setProfileDropdownOpen(!profileDropdownOpen)}
-                    >
-                      <div className="w-8 h-8 bg-gradient-to-r from-pink-400 to-rose-500 text-white rounded-full flex items-center justify-center text-sm font-medium">
-                        {profile.profile_image_url ? (
-                          <Image 
-                            src={profile.profile_image_url} 
-                            alt={profile.full_name} 
-                            width={32}
-                            height={32}
-                            className="w-8 h-8 rounded-full object-cover"
-                          />
-                        ) : (
-                          getInitials(profile.full_name || profile.email)
-                        )}
-                      </div>
-                      <div className="text-left">
-                        <div className="text-sm font-medium">
-                          {profile.first_name || profile.full_name?.split(' ')[0] || 'User'}
-                        </div>
-                        <div className="text-xs text-gray-500">
-                          {profile.loyalty_points} points
-                        </div>
-                      </div>
-                      <ChevronDown className="w-4 h-4" />
-                    </button>
-                    
-                    {/* Dropdown Menu */}
-                    <AnimatePresence>
-                      {profileDropdownOpen && (
-                        <motion.div
-                          initial={{ opacity: 0, y: -10, scale: 0.95 }}
-                          animate={{ opacity: 1, y: 0, scale: 1 }}
-                          exit={{ opacity: 0, y: -10, scale: 0.95 }}
-                          transition={{ duration: 0.2 }}
-                          className="absolute right-0 top-full mt-2 w-72 bg-white rounded-xl shadow-lg py-2 z-50 border border-pink-100"
-                        >
-                          {/* Profile Header */}
-                          <div className="px-4 py-3 border-b border-pink-100">
-                            <div className="flex items-center space-x-3">
-                              <div className="w-12 h-12 bg-gradient-to-r from-pink-400 to-rose-500 text-white rounded-full flex items-center justify-center text-lg font-medium">
-                                {profile.profile_image_url ? (
-                                  <Image 
-                                    src={profile.profile_image_url} 
-                                    alt={profile.full_name}
-                                    width={48}
-                                    height={48}
-                                    className="w-12 h-12 rounded-full object-cover"
-                                  />
-                                ) : (
-                                  getInitials(profile.full_name || profile.email)
-                                )}
-                              </div>
-                              <div>
-                                <div className="font-medium text-gray-900">
-                                  {profile.full_name || 'Beauty Lover'}
-                                </div>
-                                <div className="text-sm text-gray-500">{profile.email}</div>
-                                <div className="flex items-center space-x-3 mt-1">
-                                  <span className="flex items-center text-xs text-pink-600">
-                                    <Star className="mr-1 w-3 h-3" />
-                                    {profile.loyalty_points} points
-                                  </span>
-                                  <span className="text-xs text-gray-500">
-                                    {profile.total_bookings} bookings
-                                  </span>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-
-                          {/* Menu Items */}
-                          <div className="py-1">
-                            <Link 
-                              href="/profile" 
-                              className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-pink-50 hover:text-rose-600"
-                              onClick={() => setProfileDropdownOpen(false)}
-                            >
-                              <User className="mr-3 w-4 h-4" />
-                              My Profile
-                            </Link>
-                            <Link 
-                              href="/appointments" 
-                              className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-pink-50 hover:text-rose-600"
-                              onClick={() => setProfileDropdownOpen(false)}
-                            >
-                              <Calendar className="mr-3 w-4 h-4" />
-                              My Appointments
-                            </Link>
-                            <Link 
-                              href="/favorites" 
-                              className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-pink-50 hover:text-rose-600"
-                              onClick={() => setProfileDropdownOpen(false)}
-                            >
-                              <Heart className="mr-3 w-4 h-4" />
-                              My Favorites
-                            </Link>
-                            <Link 
-                              href="/loyalty" 
-                              className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-pink-50 hover:text-rose-600"
-                              onClick={() => setProfileDropdownOpen(false)}
-                            >
-                              <Gift className="mr-3 w-4 h-4" />
-                              Loyalty Rewards
-                            </Link>
-                            <Link 
-                              href="/settings" 
-                              className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-pink-50 hover:text-rose-600"
-                              onClick={() => setProfileDropdownOpen(false)}
-                            >
-                              <Settings className="mr-3 w-4 h-4" />
-                              Settings
-                            </Link>
-                          </div>
-
-                          <div className="border-t border-pink-100 py-1">
-                            <button 
-                              className="flex items-center w-full px-4 py-2 text-sm text-red-600 hover:bg-red-50"
-                              onClick={() => setShowSignOutModal(true)}
-                            >
-                              <LogOut className="mr-3 w-4 h-4" />
-                              Sign Out
-                            </button>
-                          </div>
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
-                  </div>
-                ) : (
-                  <div className="flex items-center space-x-2">
-                    <Link 
-                      href="/login" 
-                      className="px-4 py-2 text-rose-600 hover:text-rose-700 font-medium transition-colors"
-                    >
-                      Sign In
-                    </Link>
-                    <Link 
-                      href="/signup" 
-                      className="px-4 py-2 bg-gradient-to-r from-rose-500 to-pink-600 text-white rounded-full hover:from-rose-600 hover:to-pink-700 transition-all font-medium"
-                    >
-                      Sign Up
-                    </Link>
-                  </div>
-                )}
-              </div>
             </div>
-            
-            {/* Mobile Menu Button */}
-            <div className="md:hidden flex items-center">
-              <button
-                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className="text-gray-700 hover:text-rose-500 p-2"
-              >
+
+            <div className="md:hidden flex items-center gap-2">
+              <button onClick={() => router.push('/cart')} className="relative p-2 text-gray-600" aria-label="My selection">
+                <ShoppingBag className="w-5 h-5" />
+                {cartItemCount > 0 && <span className="absolute -top-1 -right-1 bg-rose-500 text-white rounded-full min-w-4 h-4 px-1 flex items-center justify-center text-[10px]">{cartItemCount}</span>}
+              </button>
+              <button onClick={() => setMobileMenuOpen(v => !v)} className="p-2 text-gray-700" aria-label="Menu">
                 {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
               </button>
             </div>
           </div>
         </div>
-        
-        {/* Mobile Menu */}
+
         <AnimatePresence>
           {mobileMenuOpen && (
-            <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: 'auto' }}
-              exit={{ opacity: 0, height: 0 }}
-              className="md:hidden bg-white shadow-lg border-t border-pink-100 absolute top-full left-0 right-0 z-40"
-            >
-              <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                {navItems.map((item) => (
-                  <Link
-                    key={item.name}
-                    href={item.path}
-                    className={`${
-                      pathname === item.path
-                        ? 'bg-pink-50 text-rose-600'
-                        : 'text-gray-700 hover:bg-pink-50'
-                    } block px-3 py-2 rounded-md text-base font-medium`}
-                    onClick={() => setMobileMenuOpen(false)}
-                  >
-                    {item.name}
-                  </Link>
-                ))}
-                
-                <div className="border-t border-gray-200 pt-4 pb-3">
-                  {isLoggedIn && profile ? (
-                    <div className="flex items-center px-5 space-x-3">
-                      <div className="w-10 h-10 bg-gradient-to-r from-pink-400 to-rose-500 text-white rounded-full flex items-center justify-center text-sm font-medium">
-                        {profile.profile_image_url ? (
-                          <Image 
-                            src={profile.profile_image_url} 
-                            alt={profile.full_name}
-                            width={40}
-                            height={40}
-                            className="w-10 h-10 rounded-full object-cover"
-                          />
-                        ) : (
-                          getInitials(profile.full_name || profile.email)
-                        )}
-                      </div>
-                      <div>
-                        <div className="text-base font-medium text-gray-800">
-                          {profile.full_name || 'Beauty Lover'}
-                        </div>
-                        <div className="text-sm text-gray-500">
-                          {profile.loyalty_points} loyalty points
-                        </div>
-                      </div>
-                    </div>
-                  ) : null}
+            <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} exit={{ opacity: 0, height: 0 }} className="md:hidden bg-white border-t border-pink-100 shadow-lg">
+              <div className="px-4 py-3 space-y-1">
+                {navItems.map(item => <Link key={item.path} href={item.path} onClick={closeMobile} className="block px-3 py-2.5 rounded-lg text-gray-700 hover:bg-pink-50">{item.name}</Link>)}
 
-                  <div className="flex items-center justify-between px-5 space-x-4 mt-3">
-                    <div className="flex space-x-4">
-                      <button 
-                        onClick={() => {
-                          setMobileMenuOpen(false);
-                          router.push('/favorites');
-                        }}
-                        className="p-2 text-gray-600 relative"
-                      >
-                        <Heart className="w-5 h-5" />
-                        {favorites.length > 0 && (
-                          <span className="absolute -top-1 -right-1 bg-rose-500 text-white rounded-full w-4 h-4 flex items-center justify-center text-xs">
-                            {favorites.length}
-                          </span>
-                        )}
-                      </button>
-                      
-                      <button 
-                        onClick={() => {
-                          setMobileMenuOpen(false);
-                          router.push('/cart');
-                        }}
-                        className="p-2 text-gray-600 relative"
-                      >
-                        <ShoppingBag className="w-5 h-5" />
-                        {cartItemCount > 0 && (
-                          <span className="absolute -top-1 -right-1 bg-rose-500 text-white rounded-full w-4 h-4 flex items-center justify-center text-xs">
-                            {cartItemCount}
-                          </span>
-                        )}
-                      </button>
-                    </div>
+                <button onClick={() => { closeMobile(); router.push('/booking'); }} className="mt-3 w-full rounded-xl bg-gradient-to-r from-rose-500 to-pink-600 text-white py-3 font-medium flex items-center justify-center gap-2">
+                  <Calendar className="w-4 h-4" /> Book Appointment
+                </button>
 
-                    {!isLoggedIn && (
-                      <div className="flex space-x-2">
-                        <Link 
-                          href="/login" 
-                          className="px-3 py-1 text-rose-600 border border-rose-500 rounded-full text-sm"
-                          onClick={() => setMobileMenuOpen(false)}
-                        >
-                          Sign In
-                        </Link>
-                        <Link 
-                          href="/signup" 
-                          className="px-3 py-1 bg-rose-500 text-white rounded-full text-sm"
-                          onClick={() => setMobileMenuOpen(false)}
-                        >
-                          Sign Up
-                        </Link>
-                      </div>
-                    )}
+                {isLoggedIn ? (
+                  <div className="pt-3 mt-3 border-t border-gray-100 space-y-1">
+                    <Link href="/profile" onClick={closeMobile} className="block px-3 py-2.5 rounded-lg text-gray-700 hover:bg-pink-50">My Profile</Link>
+                    <Link href="/appointments" onClick={closeMobile} className="block px-3 py-2.5 rounded-lg text-gray-700 hover:bg-pink-50">My Appointments</Link>
+                    <button onClick={() => { closeMobile(); setSignOutOpen(true); }} className="w-full text-left px-3 py-2.5 rounded-lg text-red-600 hover:bg-red-50">Sign Out</button>
                   </div>
-                  
-                  <div className="mt-4 px-2">
-                    <button 
-                      onClick={() => {
-                        setMobileMenuOpen(false);
-                        router.push('/book');
-                      }}
-                      className="w-full bg-gradient-to-r from-rose-500 to-pink-600 text-white px-4 py-2 rounded-full hover:from-rose-600 hover:to-pink-700 transition-all font-medium flex items-center justify-center"
-                    >
-                      <Phone className="mr-2 w-4 h-4" />
-                      Book Appointment
-                    </button>
+                ) : (
+                  <div className="pt-3 mt-3 border-t border-gray-100 grid grid-cols-2 gap-2">
+                    <Link href="/login" onClick={closeMobile} className="text-center rounded-xl border border-rose-200 text-rose-600 py-2.5 font-medium">Sign In</Link>
+                    <Link href="/signup" onClick={closeMobile} className="text-center rounded-xl bg-rose-500 text-white py-2.5 font-medium">Sign Up</Link>
                   </div>
-
-                  {isLoggedIn && (
-                    <div className="mt-4 px-2 space-y-1">
-                      <Link 
-                        href="/profile" 
-                        className="flex items-center px-3 py-2 text-base font-medium text-gray-700 hover:bg-pink-50 rounded-md"
-                        onClick={() => setMobileMenuOpen(false)}
-                      >
-                        <User className="mr-3 w-5 h-5" />
-                        My Profile
-                      </Link>
-                      <Link 
-                        href="/appointments" 
-                        className="flex items-center px-3 py-2 text-base font-medium text-gray-700 hover:bg-pink-50 rounded-md"
-                        onClick={() => setMobileMenuOpen(false)}
-                      >
-                        <Calendar className="mr-3 w-5 h-5" />
-                        My Appointments
-                      </Link>
-                      <button 
-                        className="flex items-center w-full px-3 py-2 text-base font-medium text-red-600 hover:bg-red-50 rounded-md"
-                        onClick={() => {
-                          setMobileMenuOpen(false);
-                          setShowSignOutModal(true);
-                        }}
-                      >
-                        <LogOut className="mr-3 w-5 h-5" />
-                        Sign Out
-                      </button>
-                    </div>
-                  )}
-                </div>
+                )}
               </div>
             </motion.div>
           )}
         </AnimatePresence>
       </nav>
 
-      {/* Sign Out Confirmation Modal */}
       <AnimatePresence>
-        {showSignOutModal && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4"
-          >
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95, y: 20 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.95, y: 20 }}
-              className="bg-white rounded-2xl p-6 max-w-sm w-full shadow-xl"
-            >
-              <div className="text-center">
-                <div className="w-12 h-12 mx-auto bg-red-100 rounded-full flex items-center justify-center mb-4">
-                  <LogOut className="w-6 h-6 text-red-600" />
-                </div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                  Sign Out
-                </h3>
-                <p className="text-gray-600 mb-6">
-                  Are you sure you want to sign out of your account?
-                </p>
-                <div className="flex space-x-3">
-                  <button
-                    onClick={() => setShowSignOutModal(false)}
-                    className="flex-1 px-4 py-2 text-gray-700 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors"
-                  >
-                    Cancel
-                  </button>
-                  <button
-                    onClick={handleSignOut}
-                    disabled={authLoading}
-                    className="flex-1 px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors disabled:opacity-50"
-                  >
-                    {authLoading ? 'Signing out...' : 'Sign Out'}
-                  </button>
-                </div>
+        {signOutOpen && (
+          <motion.div className="fixed inset-0 z-[60] bg-black/40 flex items-center justify-center p-4" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+            <motion.div className="bg-white rounded-2xl p-6 w-full max-w-sm" initial={{ scale: 0.96 }} animate={{ scale: 1 }}>
+              <h2 className="font-semibold text-gray-900">Sign out?</h2>
+              <p className="mt-1 text-sm text-gray-500">You can sign in again anytime.</p>
+              <div className="mt-5 grid grid-cols-2 gap-3">
+                <button onClick={() => setSignOutOpen(false)} className="rounded-xl border border-gray-200 py-2.5 text-sm">Cancel</button>
+                <button onClick={handleSignOut} className="rounded-xl bg-red-500 text-white py-2.5 text-sm">Sign Out</button>
               </div>
             </motion.div>
           </motion.div>
@@ -558,6 +197,4 @@ const Navbar = () => {
       </AnimatePresence>
     </>
   );
-};
-
-export default Navbar;
+}

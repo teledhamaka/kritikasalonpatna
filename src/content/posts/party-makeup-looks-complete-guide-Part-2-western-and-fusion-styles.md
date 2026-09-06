@@ -1,473 +1,513 @@
-Party Makeup Guide 2025 Part 2: Western & Fusion Styles
-Welcome back, Party Queens!
+# Party Makeup Guide 2026 – Part 2: Western & Fusion Styles
 
-In Part 1, we mastered traditional looks for sarees and lehengas. Now, let's explore Western and fusion styles that blend contemporary elegance with Indian charm.
+Traditional saree और lehenga looks के बाद अब बात करते हैं **western और fusion party makeup** की।
 
-In This Part 2:
+Gown, western dress, Anarkali या Indo-Western outfit—हर look के साथ makeup की intensity और colour palette थोड़ी अलग हो सकती है।
 
-Gown के लिए Elegant Makeup
+इस guide का उद्देश्य कोई एक “perfect” makeup rule देना नहीं है। सही makeup वह है जो आपके **outfit, skin tone, face features, occasion, lighting और personal style** के साथ naturally work करे।
 
-Western Dress Party Look
+यह हमारे **4-part Party Makeup Guide 2026** का Part 2 है।
 
-अनारकली Suit Makeup
+## इस Part में क्या सीखेंगी?
 
-Indo-Western Fusion Look
+* Gown के साथ elegant makeup
+* Western dress के लिए modern party look
+* Anarkali के साथ soft glam makeup
+* Indo-Western outfits के लिए fusion makeup
+* Outfit और makeup colours को coordinate करने के आसान तरीके
 
-Quick Color Coordination Tips
+---
 
-Table of Contents
-Gown के लिए Elegant Makeup
+## Table of Contents
 
-Western Dress Party Look
+1. [Gown के लिए Elegant Makeup](#gown-makeup)
+2. [Western Dress Party Makeup](#western-makeup)
+3. [Anarkali Suit Makeup](#anarkali-makeup)
+4. [Indo-Western Fusion Makeup](#indo-western-makeup)
+5. [Color Coordination Guide](#color-guide)
+6. [What's Coming in Part 3](#whats-coming-in-part-3)
 
-अनारकली Suit Makeup
+---
 
-Indo-Western Fusion Look
+# Gown के लिए Elegant Makeup {#gown-makeup}
 
-Color Coordination Guide
+Gown अपने आप में elegant और statement-making outfit हो सकता है। इसलिए makeup को outfit से compete करने के बजाय उसके साथ balance करना अक्सर बेहतर लगता है।
 
-Gown के लिए Elegant Makeup - Western Sophistication {#gown-makeup}
-Gown means elegance, grace, और sophistication! Makeup भी उसी vibe का होना चाहिए।
+लेकिन इसका मतलब यह नहीं है कि gown के साथ makeup हमेशा minimal होना चाहिए। Evening gown के साथ defined eyes और bold lips भी बहुत खूबसूरत लग सकते हैं।
 
-Gown Makeup Philosophy:
-Gown के साथ makeup bohot refined और polished होना चाहिए:
+## Gown Makeup की Basic Approach
 
-Less is More approach
+आप इनमें से किसी direction को चुन सकती हैं:
 
-Dewy, glowing skin
+* Soft dewy base + neutral eyes + nude lips
+* Glowing base + defined eyes + bold red lips
+* Smokey eyes + soft nude lips
+* Soft eyes + berry/wine lips
 
-Neutral tones preferred
+### Base
 
-Subtle but impactful
+Gown look के लिए:
 
-Western makeup techniques
+* Lightweight से medium coverage base
+* Well-blended foundation
+* Natural या dewy-looking finish
+* जरूरत के अनुसार concealer
+* T-zone पर light powder
 
-Key Elements for Gown Makeup:
-Base: Light-medium coverage, dewy finish
-Eyes: Neutral, elegant (Nudes, browns, taupes)
-Lips: Bold या Nude (Statement feature)
-Overall: Western, refined, polished
+अच्छा option हो सकता है।
 
-Step-by-Step Gown Makeup:
-Glowing Base (15 minutes)
-Hydrating moisturizer generously
+अगर आपकी skin oily है, तो पूरी face पर बहुत ज्यादा dewy products लगाने के बजाय केवल strategic areas पर glow रखना बेहतर हो सकता है।
 
-Illuminating primer (glow-boosting)
+### Eyes
 
-Lightweight to medium coverage foundation
+Elegant gown makeup में neutral shades काफी versatile हैं:
 
-Luminous या dewy finish
+* Nude
+* Brown
+* Taupe
+* Bronze
+* Champagne
+* Soft plum
 
-Minimal concealer (only where needed)
+एक simple combination हो सकता है:
 
-Translucent powder केवल T-zone पर
+1. Light neutral transition shade
+2. Medium brown से crease definition
+3. Champagne या shimmer shade lid के centre पर
+4. Darker brown से outer corner definition
+5. Soft eyeliner
+6. Mascara या natural-looking lashes
 
-Sophisticated Eye Makeup (20 minutes)
-Eyeshadow:
+### Lips
 
-Neutral Palette: Nudes, browns, taupes
+Gown के साथ lips को statement feature बनाया जा सकता है।
 
-Light brown crease
+**Classic:** Red या deep red
 
-Medium brown outer corner
+**Soft:** Nude, dusty rose या mauve
 
-Champagne inner corner
+**Evening:** Wine, berry या burgundy
 
-Soft blending throughout
+> 💡 **Tip:** अगर gown और jewellery दोनों काफी dramatic हैं, तो softer lip और eye makeup पूरे look को अधिक balanced बना सकता है।
 
-Eyeliner Options:
+### Gown Makeup – Quick Summary
 
-Thin to medium winged liner
+| Element | Suggested Direction       |
+| ------- | ------------------------- |
+| Base    | Light–medium coverage     |
+| Finish  | Natural या dewy           |
+| Eyes    | Neutral, defined          |
+| Cheeks  | Soft sculpting + blush    |
+| Lips    | Nude, red, berry या mauve |
+| Overall | Elegant & polished        |
 
-Brown eyeliner for softer look
+**Best for:** Cocktail parties, receptions, formal events, dinners और evening celebrations.
 
-Tightline upper lash line
+**Typical makeup time:** लगभग 60–90 minutes, hairstyling और additional services के अनुसार।
 
-Lower lash line: Smoke with brown shadow या skip
+---
 
-Mascara & Lashes:
+# Western Dress Party Makeup {#western-makeup}
 
-Lengthening mascara - 2 coats
+Western dress के साथ makeup का style dress की design, neckline, colour और event के type के अनुसार बदल सकता है।
 
-Natural-looking false lashes (optional)
+Casual birthday party के लिए soft makeup काफी हो सकता है, जबकि nightclub या evening event में stronger eye या lip look अच्छा लग सकता है।
 
-Avoid heavy, dramatic lashes
+## Fresh & Modern Base
 
-Lips - Statement Feature (10 minutes)
-Lip Options for Gowns:
-Option 1: Bold Red - Classic gown look, perfect for black/navy gowns
-Option 2: Nude Sophistication - Mauve या dusty rose, versatile choice
-Option 3: Wine/Berry - Deep burgundy, perfect for evening gowns
+अगर आप natural-looking western makeup चाहती हैं:
 
-Application:
+* Lightweight foundation या skin tint
+* Spot concealing
+* Minimal powder
+* Soft blush
+* Subtle highlighter
 
-Lip scrub + balm
+से fresh-looking base बनाया जा सकता है।
 
-Lip liner natural या slightly overdraw
+### Eye Makeup Options
 
-Lipstick in satin या matte finish
+आप अपनी personal style के अनुसार choose कर सकती हैं:
 
-Optional light gloss center (dimension)
+**Soft & Natural**
 
-Gown Makeup Summary
-Element	Style	Finish
-Base	Light-medium	Dewy, glowing
-Contour	Subtle	Soft definition
-Eyes	Neutral, elegant	Sophisticated
-Lips	Bold या Nude	Statement feature
-Best For: Cocktail parties, Award functions, Formal events, Date nights
-Time Required: 60-75 minutes
-Professional Cost: ₹4,000 - ₹8,000 in Patna
+* Neutral eyeshadow
+* Thin eyeliner
+* Mascara
 
-Western Dress Party Look - Modern & Trendy {#western-makeup}
-Western casual या semi-formal parties के लिए contemporary makeup!
+**Classic Glam**
 
-Western Party Makeup Philosophy:
-Modern, effortless, Instagram-worthy look जो comfortable और stylish दोनों हो।
+* Brown smokey eyes
+* Defined eyeliner
+* Soft shimmer
+* Lashes
 
-Quick & Chic Western Makeup (30-40 minutes):
-Fresh, Natural Base (10 minutes)
-BB cream या tinted moisturizer
+**Edgy**
 
-Spot concealing only
+* Smudged liner
+* Deeper outer corner
+* Graphic liner या stronger eye detail
 
-Minimal powder (only T-zone)
+> 🌸 **Remember:** Graphic liner या dramatic eyes हर outfit के लिए जरूरी नहीं हैं। Simple makeup भी western outfit के साथ बहुत stylish लग सकता है।
 
-Cream blush for natural flush
+---
 
-Defined Eyes (15 minutes)
-Eyeshadow:
+## Western Party Lip Ideas
 
-Light brown crease
+### Casual Party
 
-Medium brown outer corner
+* Nude
+* Glossy pink
+* Peach
+* Mauve
+* Soft coral
 
-Champagne inner corner और lid center
+### Evening Party
 
-Soft, blended finish
+* Red
+* Berry
+* Wine
+* Brown nude
+* Deep rose
 
-Eyeliner Options:
+### Club/Night Out
 
-Thin winged liner (classic)
+अगर outfit relatively simple है, तो bold lip या stronger eye makeup को statement feature बनाया जा सकता है।
 
-Smudged liner (edgy look)
+---
 
-Graphic liner (bold statement)
+## Western Outfit & Makeup Coordination
 
-Tightline only (natural defined)
+| Outfit         | Makeup Direction                     |
+| -------------- | ------------------------------------ |
+| Black          | Red, berry, nude या metallic accents |
+| White          | Red, pink, coral या nude             |
+| Denim          | Nude, pink, mauve                    |
+| Bright colours | Neutral eyes + balanced lips         |
+| Pastels        | Peach, pink, rose या soft mauve      |
+| Metallic       | Neutral eyes + coordinated shimmer   |
 
-Lashes:
+ये fixed rules नहीं हैं। Skin tone, jewellery और personal preference के अनुसार colours बदल सकते हैं।
 
-Curl natural lashes
+### Western Makeup – Quick Summary
 
-Mascara - 2 coats
+| Element | Suggested Direction      |
+| ------- | ------------------------ |
+| Base    | Natural, lightweight     |
+| Eyes    | Soft defined या dramatic |
+| Cheeks  | Fresh blush              |
+| Lips    | Nude, pink, red, berry   |
+| Overall | Modern & polished        |
 
-Optional: Individual lashes corners में
+**Best for:** Birthday parties, dinners, casual gatherings, date nights और evening events.
 
-Glowing Skin (5 minutes)
-Liquid highlighter cheekbones पर
+**Typical makeup time:** लगभग 35–60 minutes, look की complexity के अनुसार।
 
-Nose bridge lightly
+---
 
-Cupid's bow
+# Anarkali Suit Makeup {#anarkali-makeup}
 
-Inner eye corners
+Anarkali एक versatile outfit है। इसे festive, traditional या contemporary styling के साथ पहना जा सकता है।
 
-Trendy Lips (5 minutes)
-2025 Trending Lip Colors:
-For Casual Parties: Nude, Glossy pink, Coral, Mauve
-For Club/Night Out: Bold red, Deep berry, Nude with gloss, Brown tones
+इसलिए Anarkali के साथ makeup हमेशा “soft” होना जरूरी नहीं है। Heavy embroidered Anarkali के साथ glam makeup और simple Anarkali के साथ minimal makeup दोनों अच्छे options हो सकते हैं।
 
-Western Outfit Color Coordination:
-Black Outfit: Any lip color works (experiment!)
-White Outfit: Bold lips (red, pink, coral)
-Denim: Nude या pink lips
-Bold Colors: Nude lips (let outfit shine)
-Pastels: Soft pink या peach lips
+## Soft Glam Anarkali Look
 
-Western Makeup Summary
-Element	Style	Products
-Base	Natural, dewy	BB cream, minimal powder
-Eyes	Defined but soft	Browns, mascara
-Cheeks	Natural flush	Cream blush, liquid highlight
-Lips	Trendy colors	Glossy या matte
-Best For: Birthday parties, Club nights, Casual gatherings, Date nights
-Time Required: 35-45 minutes
-Professional Cost: ₹2,500 - ₹4,000 in Patna
+अगर आप elegant और balanced look चाहती हैं:
 
-अनारकली Suit Makeup - Grace & Femininity {#anarkali-makeup}
-अनारकली suit के साथ soft, feminine makeup perfect है! Ye outfit graceful और romantic है, तो makeup भी उसी vibe का होना चाहिए।
+### Base
 
-अनारकली Makeup - Soft Glam Philosophy
-Characteristics:
+* Natural या medium coverage
+* Well-blended foundation
+* Soft blush
+* Light highlighting
+* जरूरत के अनुसार powder
 
-Soft और delicate colors
+### Eyes
 
-Pastel tones preferred
+Soft brown, mauve, bronze और champagne जैसे shades versatile हैं।
 
-Romantic, dreamy vibe
+एक simple combination:
 
-Traditional yet modern balance
+* Light base shade
+* Soft brown crease
+* Mauve या bronze outer corner
+* Champagne highlight
+* Defined eyeliner
+* Mascara
 
-Less dramatic, more elegant
+### Lips
 
-Key Elements for Anarkali Makeup:
-Base: Dewy, natural, light coverage
-Eyes: Soft, romantic (Pastels, soft browns)
-Lips: Glossy, natural (Pink, peach, nude)
-Cheeks: Soft flush (Pink, peach blush)
-Overall: Feminine, graceful, delicate
+Anarkali के साथ:
 
-Step-by-Step Anarkali Makeup:
-Soft, Flawless Base (12 minutes)
-Medium coverage foundation
+* Pink
+* Peach
+* Rose
+* Nude
+* Mauve
+* Soft berry
 
-Luminous finish preferred
+अच्छे options हो सकते हैं।
 
-Under eyes brighten करें
+---
 
-Light powder application
+## Anarkali Colour & Makeup Ideas
 
-Soft pink या peach blush
+| Anarkali Colour | Makeup Ideas               |
+| --------------- | -------------------------- |
+| Pink            | Rose, mauve, soft pink     |
+| Peach           | Peach, coral, warm nude    |
+| Blue            | Pink, mauve, neutral brown |
+| Green           | Peach, rose, bronze        |
+| Purple          | Mauve, berry, rose         |
+| Cream/Gold      | Peach, warm nude, red      |
 
-Romantic Eye Makeup (15 minutes)
-Eyeshadow - Soft & Pretty:
+> 💡 **Style Tip:** Outfit के exact colour को eyeshadow में copy करना जरूरी नहीं है। कभी-कभी complementary या neutral shades ज्यादा sophisticated लगते हैं।
 
-Base Shade: Light pink या peach (पूरी lid पर)
+### Anarkali Makeup – Quick Summary
 
-Crease Definition: Soft brown या mauve
+| Element | Suggested Direction      |
+| ------- | ------------------------ |
+| Base    | Natural to medium        |
+| Eyes    | Soft glam                |
+| Cheeks  | Pink/peach/rose          |
+| Lips    | Pink, peach, nude, mauve |
+| Overall | Graceful & polished      |
 
-Lid Color according to Anarkali:
+**Best for:** Family functions, festive celebrations, dinners, mehendi events और daytime celebrations.
 
-Pink Anarkali → Purple eyes
+**Typical makeup time:** लगभग 45–75 minutes, hairstyle और other services के अनुसार।
 
-Peach Anarkali → Gold eyes
+---
 
-Blue Anarkali → Silver/blue eyes
+# Indo-Western Fusion Makeup {#indo-western-makeup}
 
-Green Anarkali → Brown/copper eyes
+Indo-Western outfits में traditional और modern elements दोनों होते हैं—जैसे jacket-style lehenga, crop-top with ethnic skirt, saree gown, contemporary kurta sets या Indian fabrics के साथ western silhouettes।
 
-Highlight: Champagne या light pink
+इसलिए makeup में भी दोनों styles को balance किया जा सकता है।
 
-Eyeliner - Soft Wing:
+## Option 1: Traditional Eyes + Modern Lips
 
-Thin eyeliner upper lash line
+यह combination तब अच्छा हो सकता है जब outfit में Indian detailing ज्यादा हो।
 
-Small, delicate wing (not dramatic)
+**Eyes:**
 
-Brown eyeliner for softer look
+* Gold
+* Bronze
+* Copper
+* Defined eyeliner
+* Optional lashes
 
-Lower lash line को smoke करें slightly
+**Lips:**
 
-Mascara & Lashes:
+* Nude
+* Mauve
+* Dusty rose
+* Modern berry
 
-Brown या black mascara
+यह look traditional richness और contemporary styling को combine करता है।
 
-2 coats for volume
+---
 
-Natural-looking false lashes optional
+## Option 2: Modern Eyes + Traditional Lips
 
-Soft, Romantic Lips (8 minutes)
-अनारकली के साथ Best Lip Colors:
-Pink Anarkali: Light pink, Nude pink, Glossy finish
-Peach/Orange Anarkali: Coral, Peach tones, Nude shades
-Blue/Green Anarkali: Pink lips, Nude lips, Soft berry
-Pastel Colors: MLBB shades, Glossy finishes
+अगर outfit की silhouette western है लेकिन fabric या detailing Indian है, तो यह combination interesting हो सकता है।
 
-Application:
+**Eyes:**
 
-Lip balm first
+* Nude/brown tones
+* Soft wing
+* Defined lashes
 
-Lip liner optional (natural shade)
+**Lips:**
 
-Lipstick या lip tint
+* Classic red
+* Maroon
+* Deep rose
+* Berry
 
-Gloss layer (romantic finish)
+यह modern makeup को traditional colour element देता है।
 
-Pro Tip: अनारकली के साथ eyes को ज्यादा heavy नहीं करना चाहिए। Soft और romantic look best है!
+---
 
-अनारकली Makeup Summary
-Element	Style	Colors
-Base	Dewy, natural	Light coverage
-Eyes	Soft, romantic	Pastels, soft browns
-Lips	Glossy, natural	Pink, peach, nude
-Best For: Eid celebrations, Family functions, Mehendi ceremonies, Day weddings
-Time Required: 45-50 minutes
-Professional Cost: ₹3,000 - ₹5,000 in Patna
+## Option 3: Balanced Fusion Look
 
-Indo-Western Fusion Look - Best of Both Worlds {#indo-western-makeup}
-Indo-western outfit means आप traditional और modern दोनों elements mix कर रही हैं। Makeup में भी वही fusion approach लेनी चाहिए!
+अगर outfit itself बहुत experimental है, तो makeup को comparatively balanced रखना अच्छा option हो सकता है।
 
-Fusion Makeup Strategy - Mix & Match Magic
-Indo-western wear versatile होता है, तो makeup में भी creativity का scope बहुत है!
+### Eyes
 
-Indo-Western Makeup Options:
-Option 1: Traditional Eyes + Modern Lips
-When to Choose:
+* Medium-intensity eyeshadow
+* Matte crease + subtle shimmer
+* Defined but not overly dramatic liner
+* Mascara/lashes as preferred
 
-Indo-western lehenga
+### Lips
 
-Jacket style suits
+* Mauve
+* Dusty rose
+* Soft berry
+* Neutral pink
 
-Heavy jewelry के साथ
+### Face
 
-How to Execute:
+* Medium coverage
+* Soft contour
+* Natural-looking highlight
+* Blush
 
-Eyes: Gold/copper eyeshadow, heavy liner, false lashes
+> ✨ **Fusion Tip:** जब outfit में already कई statement elements हों, तो makeup को थोड़ा cleaner रखने से overall look ज्यादा sophisticated दिखाई दे सकता है।
 
-Lips: Nude, mauve, या modern berry shades
+---
 
-Face: Medium coverage, balanced look
+# Color Coordination Guide {#color-guide}
 
-Result: Traditional grandeur with contemporary elegance
+Makeup और outfit colours को coordinate करने का मतलब यह नहीं है कि lipstick और dress का exact same colour होना चाहिए।
 
-Option 2: Modern Eyes + Traditional Lips
-When to Choose:
+Colour harmony ज्यादा important है।
 
-Western silhouette with Indian fabric
+## Traditional Outfits
 
-Minimal jewelry
+Traditional outfits के साथ आप:
 
-Contemporary events
+* Jewellery के accent colour को eyeshadow में pick कर सकती हैं
+* Outfit के dominant colour के साथ lip tone coordinate कर सकती हैं
+* Complementary colours से contrast create कर सकती हैं
+* Neutral eye makeup से colourful outfit को highlight कर सकती हैं
 
-How to Execute:
+## Western Outfits
 
-Eyes: Nude/brown tones, soft wings, natural lashes
+Western outfit simple है तो makeup में stronger statement बनाया जा सकता है।
 
-Lips: Bold red, maroon, या traditional shades
+उदाहरण:
 
-Face: Dewy, glowing base
+**Black dress:** Red, berry, nude या metallic eye look
 
-Result: Modern sophistication with Indian touch
+**White dress:** Red, pink, coral या neutral makeup
 
-Option 3: Balanced Fusion Approach
-When to Choose:
+**Pastel outfit:** Soft pink, peach, rose या mauve
 
-True fusion outfits (equal traditional + modern)
+**Bright outfit:** Neutral eyes और balanced lips
 
-Unsure about heavy या subtle
+---
 
-Versatile occasions
+## Warm vs Cool Makeup Tones
 
-How to Execute:
+एक simple starting point:
 
-Eyes:
+| Outfit Tone      | Makeup Direction                      |
+| ---------------- | ------------------------------------- |
+| Red/Orange/Coral | Warm brown, bronze, peach, warm red   |
+| Pink/Rose        | Rose, mauve, pink, berry              |
+| Blue/Purple      | Mauve, plum, champagne, neutral brown |
+| Green            | Bronze, peach, rose, neutral brown    |
+| Black/White      | लगभग कोई भी balanced palette          |
 
-Medium intensity
+लेकिन skin undertone और jewellery को भी ध्यान में रखें।
 
-Mix matte और shimmer
+> 💡 **Important:** Colour matching कोई strict formula नहीं है। कभी-कभी deliberate contrast, जैसे blue outfit के साथ warm bronze eyes, बहुत खूबसूरत result दे सकता है।
 
-Neither too traditional nor too modern
+---
 
-Defined but not dramatic
+# Day Party vs Evening Party Makeup
 
-Lips:
+सिर्फ outfit ही नहीं, **event का time और lighting** भी makeup intensity को प्रभावित कर सकता है।
 
-Medium shades
+|         | Day Party         | Evening Party           |
+| ------- | ----------------- | ----------------------- |
+| Base    | Natural/light     | Natural से full         |
+| Eyes    | Soft defined      | Defined/glam            |
+| Shimmer | Subtle            | More noticeable         |
+| Lips    | Pink, peach, nude | Red, berry, wine, nude  |
+| Contour | Soft              | More defined if desired |
 
-Mauve, dusty rose, soft berry
+यह भी कोई strict rule नहीं है। Personal preference सबसे महत्वपूर्ण है।
 
-Satin finish (न matte, न glossy)
+---
 
-Face:
+# Common Mistakes to Avoid
 
-Balanced coverage
+### बहुत ज्यादा colour matching
 
-Medium contour और highlighting
+Dress का exact colour eyes और lips दोनों में repeat करने की जरूरत नहीं है।
 
-Natural yet polished
+### Outfit को ignore करना
 
-Result: Perfect balance of dono worlds
+Makeup और outfit अलग-अलग अच्छे दिख सकते हैं, लेकिन साथ में balanced नहीं लग सकते।
 
-Indo-Western Makeup Step-by-Step (Balanced Approach)
-Flawless Base (12 minutes)
-Primer (mattifying + pore-filling)
+### बहुत ज्यादा highlighter
 
-Medium coverage foundation
+Party lighting में excessive highlight photographs में unnecessarily shiny दिखाई दे सकता है।
 
-Strategic concealing
+### Foundation का गलत shade
 
-Setting with loose powder
+Face और neck के बीच noticeable colour difference से पूरा makeup unnatural लग सकता है।
 
-Medium contour और blush
+### Event से ठीक पहले नया skincare product
 
-Fusion Eyes (18 minutes)
-Traditional colors (gold/copper) with modern application
+नया product या treatment irritation पैदा कर सकता है। Wedding या important event से पहले unnecessary experiments avoid करना बेहतर है।
 
-या Modern colors (nudes) with traditional intensity
+### सिर्फ social media trends follow करना
 
-Mix matte crease + shimmer lid
+जो makeup किसी influencer पर अच्छा लगता है, वह जरूरी नहीं कि आपकी face shape, skin tone या outfit पर भी वैसा ही लगे।
 
-Classic wing with modern thickness
+---
 
-Medium drama false lashes
+# Part 2 Quick Checklist
 
-Fusion Lips (8 minutes)
-Mauve, dusty rose, soft berry shades
+Party से पहले अपने look को इस checklist से check करें:
 
-Satin finish preferred
+* [ ] Outfit final है
+* [ ] Jewellery selected है
+* [ ] Makeup colour palette decided है
+* [ ] Day/evening lighting consider की है
+* [ ] Foundation shade checked है
+* [ ] Eye और lip balance तय है
+* [ ] Hairstyle outfit के साथ coordinate है
+* [ ] Touch-up products ready हैं
 
-Natural lip liner
+---
 
-Buildable color intensity
+# What's Coming in Part 3? {#whats-coming-in-part-3}
 
-Fusion Makeup Pro Tips:
-Match makeup intensity to outfit balance
+अब तक हमने traditional, western और fusion outfits के साथ makeup ideas देखे।
 
-Consider the occasion and venue lighting
+**Part 3** में हम makeup colours और products को practical तरीके से समझेंगे।
 
-Don't be afraid to experiment
+### Part 3 में:
 
-Test the look in different lighting conditions
+* Complete colour coordination
+* Skin tone और undertone के अनुसार colour selection
+* Different budgets के लिए makeup products
+* Basic party makeup kit
+* Products खरीदते समय किन चीजों पर ध्यान दें
+* Patna में beauty shopping के practical tips
 
-Color Coordination Guide {#color-guide}
-Quick Color Matching Rules:
-For Traditional Outfits:
+👉 **[Part 3: Color Coordination & Budget-Friendly Makeup Products](/blog/party-makeup-guide-2026-part-3-color-products)**
 
-Match eyeshadow to outfit's accent colors
+---
 
-Coordinate lipstick with outfit's dominant color
+# Quick Action Tips 💕
 
-Use complementary colors for drama
+* अपने outfit की photo लेकर makeup colours plan करें
+* Event की lighting को ध्यान में रखें
+* Makeup को अपने personal style के अनुसार रखें
+* नया skincare product event से ठीक पहले try न करें
+* Heavy outfit के साथ makeup balance करें
+* Party bag में lipstick और compact जरूर रखें
+* सबसे जरूरी—ऐसा look चुनें जिसमें आप comfortable और confident महसूस करें
 
-For Western Outfits:
+अगर आप Patna में professional party makeup explore कर रही हैं, तो [Kritika Salon Patna की Makeup Services](/makeup) देख सकती हैं या [Appointment Book](/booking) कर सकती हैं।
 
-Let bold outfits shine with nude lips
+---
 
-Use neutral outfits as canvas for bold lips
+# Continue the Party Makeup Guide
 
-Match makeup intensity to outfit simplicity
+**Part 1:** [Traditional Party Makeup – Saree & Lehenga](/blog/party-makeup-guide-2026-part-1-traditional)
 
-Universal Rules:
+**Part 2:** Western & Fusion Party Makeup — *You are here*
 
-Warm outfits (reds, oranges) → Warm makeup tones
+**Part 3:** Color Coordination & Budget-Friendly Products
 
-Cool outfits (blues, purples) → Cool makeup tones
+**Part 4:** Complete Party Makeup Looks & Final Checklist
 
-Neutral outfits (black, white) → Any colors work!
-
-What's Coming in Part 3?
-In Part 3: Perfect Color Matching & Budget-Friendly Products, we'll cover:
-
-Complete Color Coordination Guide
-
-Product Recommendations (all budgets)
-
-Budget-wise makeup kits
-
-Where to shop in Patna
-
-Ready to master color theory and find perfect products? [Read Part 3 here](link-to-part-3)
-
-Quick Action Tips from Part 2:
-Practice the "less is more" approach for gown looks
-
-Experiment with fusion combinations before the event
-
-Save the color coordination guide for quick reference
-
-Missed Part 1? [Catch up on traditional makeup basics here](link-to-part-1)
-
-About This Series: This is Part 2 of 4 in our Complete Party Makeup Guide 2025. Each part builds on the previous one to give you comprehensive makeup knowledge for every occasion and outfit type.
-
-Next: Part 3 - Color Coordination & Budget-Friendly Products
+> 💕 **Beauty Note:** Makeup और salon services cosmetic purposes के लिए हैं और medical treatment का विकल्प नहीं हैं। अगर किसी cosmetic product से persistent irritation, allergy या अन्य skin concern होता है, तो उसका उपयोग रोककर qualified dermatologist से सलाह लें।

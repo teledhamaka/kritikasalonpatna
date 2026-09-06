@@ -1,0 +1,393 @@
+{
+  "version": 1,
+  "enabled": true,
+
+  "branding": {
+    "title": "Nail Art Quiz",
+    "subtitle": "Answer a few quick questions and discover your perfect nail look.",
+    "badge": "Personalised Nail Styling",
+    "resultTitle": "Your Nail Style",
+    "resultSubtitle": "Here is the nail look we think will suit you best."
+  },
+
+  "settings": {
+    "showProgress": true,
+    "allowBack": true,
+    "allowSkip": false,
+    "showResultSummary": true,
+    "maximumRecommendations": 4
+  },
+
+  "questions": [
+    {
+      "id": "occasion",
+      "question": "What are your nails for?",
+      "subtitle": "Choose the occasion you are dressing for.",
+      "icon": "✨",
+      "type": "single",
+      "required": true,
+      "preferenceKey": "occasionId",
+      "options": [
+        {
+          "id": "everyday",
+          "label": "Everyday",
+          "emoji": "🌸",
+          "keywords": ["everyday", "daily", "casual", "natural"]
+        },
+        {
+          "id": "office",
+          "label": "Office",
+          "emoji": "💼",
+          "keywords": ["office", "work", "professional", "formal"]
+        },
+        {
+          "id": "party",
+          "label": "Party",
+          "emoji": "🥂",
+          "keywords": ["party", "event", "celebration", "glam"]
+        },
+        {
+          "id": "wedding",
+          "label": "Wedding",
+          "emoji": "💍",
+          "keywords": ["wedding", "event", "celebration"]
+        },
+        {
+          "id": "bridal",
+          "label": "My Wedding / Bridal",
+          "emoji": "👰",
+          "keywords": ["bridal", "bride", "wedding", "lehenga"]
+        },
+        {
+          "id": "vacation",
+          "label": "Vacation",
+          "emoji": "🌴",
+          "keywords": ["vacation", "holiday", "summer", "travel", "beach"]
+        }
+      ]
+    },
+
+    {
+      "id": "outfit",
+      "question": "What are you wearing?",
+      "subtitle": "Your outfit helps us coordinate your nail look.",
+      "icon": "👗",
+      "type": "single",
+      "required": true,
+      "preferenceKey": "outfitId",
+      "options": [
+        {
+          "id": "saree",
+          "label": "Saree",
+          "emoji": "🥻",
+          "keywords": ["saree", "traditional", "ethnic", "wedding"]
+        },
+        {
+          "id": "lehenga",
+          "label": "Lehenga",
+          "emoji": "✨",
+          "keywords": ["lehenga", "bridal", "wedding", "embellished"]
+        },
+        {
+          "id": "western",
+          "label": "Western",
+          "emoji": "👗",
+          "keywords": ["western", "modern", "contemporary"]
+        },
+        {
+          "id": "office-wear",
+          "label": "Office Wear",
+          "emoji": "💼",
+          "keywords": ["office", "professional", "formal", "work"]
+        },
+        {
+          "id": "casual",
+          "label": "Casual",
+          "emoji": "👚",
+          "keywords": ["casual", "everyday", "natural"]
+        },
+        {
+          "id": "party-wear",
+          "label": "Party Wear",
+          "emoji": "💃",
+          "keywords": ["party", "glam", "event", "statement"]
+        }
+      ]
+    },
+
+    {
+      "id": "vibe",
+      "question": "What nail vibe feels most like you?",
+      "subtitle": "Pick the style you would love to see on your hands.",
+      "icon": "💫",
+      "type": "single",
+      "required": true,
+      "preferenceKey": "vibeId",
+      "options": [
+        {
+          "id": "minimal",
+          "label": "Clean & Minimal",
+          "emoji": "🤍",
+          "keywords": ["minimal", "simple", "clean", "natural"]
+        },
+        {
+          "id": "classic",
+          "label": "Classic",
+          "emoji": "✨",
+          "keywords": ["classic", "timeless", "french", "elegant"]
+        },
+        {
+          "id": "elegant",
+          "label": "Elegant",
+          "emoji": "💎",
+          "keywords": ["elegant", "sophisticated", "graceful", "refined"]
+        },
+        {
+          "id": "cute",
+          "label": "Cute & Playful",
+          "emoji": "🎀",
+          "keywords": ["cute", "playful", "fun", "sweet"]
+        },
+        {
+          "id": "glam",
+          "label": "Glam",
+          "emoji": "💫",
+          "keywords": ["glam", "glamorous", "sparkle", "party", "luxury"]
+        },
+        {
+          "id": "bold",
+          "label": "Bold",
+          "emoji": "🔥",
+          "keywords": ["bold", "statement", "dramatic", "colourful"]
+        },
+        {
+          "id": "luxury",
+          "label": "Luxury",
+          "emoji": "👑",
+          "keywords": ["luxury", "premium", "swarovski", "crystal", "jewel"]
+        }
+      ]
+    },
+
+    {
+      "id": "colour",
+      "question": "Which colour family attracts you?",
+      "subtitle": "Don't overthink it — choose the one you love.",
+      "icon": "🎨",
+      "type": "single",
+      "required": true,
+      "preferenceKey": "colourId",
+      "options": [
+        {
+          "id": "burgundy",
+          "label": "Burgundy",
+          "hex": "#800020",
+          "keywords": ["burgundy", "wine", "maroon", "berry", "deep red"]
+        },
+        {
+          "id": "cherry-red",
+          "label": "Cherry Red",
+          "hex": "#C1121F",
+          "keywords": ["red", "cherry", "scarlet", "crimson"]
+        },
+        {
+          "id": "coral",
+          "label": "Coral",
+          "hex": "#FF6F61",
+          "keywords": ["coral", "peach", "salmon"]
+        },
+        {
+          "id": "butter-yellow",
+          "label": "Butter Yellow",
+          "hex": "#F7E58B",
+          "keywords": ["yellow", "butter", "lemon", "gold"]
+        },
+        {
+          "id": "sage",
+          "label": "Sage",
+          "hex": "#9CAF88",
+          "keywords": ["sage", "green", "olive"]
+        },
+        {
+          "id": "teal",
+          "label": "Teal",
+          "hex": "#008C95",
+          "keywords": ["teal", "turquoise"]
+        },
+        {
+          "id": "cobalt",
+          "label": "Cobalt Blue",
+          "hex": "#0047AB",
+          "keywords": ["cobalt", "blue", "navy"]
+        },
+        {
+          "id": "lavender",
+          "label": "Lavender",
+          "hex": "#B57EDC",
+          "keywords": ["lavender", "purple", "violet"]
+        },
+        {
+          "id": "blush",
+          "label": "Blush Pink",
+          "hex": "#F4C2C2",
+          "keywords": ["blush", "pink", "rose", "baby pink"]
+        },
+        {
+          "id": "nude",
+          "label": "Nude",
+          "hex": "#C89F86",
+          "keywords": ["nude", "beige", "natural", "milky"]
+        },
+        {
+          "id": "cocoa",
+          "label": "Cocoa",
+          "hex": "#6F4E37",
+          "keywords": ["brown", "cocoa", "coffee", "chocolate"]
+        },
+        {
+          "id": "black",
+          "label": "Glossy Black",
+          "hex": "#111111",
+          "keywords": ["black", "onyx"]
+        }
+      ]
+    },
+
+    {
+      "id": "length",
+      "question": "How long do you like your nails?",
+      "subtitle": "Choose the length you normally prefer.",
+      "icon": "📏",
+      "type": "single",
+      "required": true,
+      "preferenceKey": "lengthId",
+      "options": [
+        {
+          "id": "short",
+          "label": "Short",
+          "emoji": "💅",
+          "keywords": ["short"]
+        },
+        {
+          "id": "medium",
+          "label": "Medium",
+          "emoji": "💅",
+          "keywords": ["medium"]
+        },
+        {
+          "id": "long",
+          "label": "Long",
+          "emoji": "💎",
+          "keywords": ["long", "extension", "extensions"]
+        }
+      ]
+    },
+
+    {
+      "id": "finish",
+      "question": "Which finish do you love?",
+      "subtitle": "The finish changes the personality of the whole look.",
+      "icon": "✨",
+      "type": "single",
+      "required": true,
+      "preferenceKey": "finishId",
+      "options": [
+        {
+          "id": "glossy",
+          "label": "Glossy",
+          "emoji": "✨",
+          "keywords": ["glossy", "high gloss", "shine", "gel"]
+        },
+        {
+          "id": "matte",
+          "label": "Matte",
+          "emoji": "🖤",
+          "keywords": ["matte"]
+        },
+        {
+          "id": "chrome",
+          "label": "Chrome",
+          "emoji": "🪞",
+          "keywords": ["chrome", "mirror", "metallic"]
+        },
+        {
+          "id": "shimmer",
+          "label": "Shimmer / Glitter",
+          "emoji": "🌟",
+          "keywords": ["shimmer", "glitter", "sparkle", "glittery"]
+        },
+        {
+          "id": "french",
+          "label": "French",
+          "emoji": "🤍",
+          "keywords": ["french", "french tip"]
+        },
+        {
+          "id": "natural",
+          "label": "Natural",
+          "emoji": "🌿",
+          "keywords": ["natural", "nude", "clean"]
+        }
+      ]
+    },
+
+    {
+      "id": "shape",
+      "question": "Which nail shape do you prefer?",
+      "subtitle": "If you are unsure, choose the one that looks closest to your favourite style.",
+      "icon": "💎",
+      "type": "single",
+      "required": true,
+      "preferenceKey": "shapeId",
+      "options": [
+        {
+          "id": "round",
+          "label": "Round",
+          "emoji": "◯",
+          "keywords": ["round"]
+        },
+        {
+          "id": "oval",
+          "label": "Oval",
+          "emoji": "🥚",
+          "keywords": ["oval"]
+        },
+        {
+          "id": "almond",
+          "label": "Almond",
+          "emoji": "💎",
+          "keywords": ["almond"]
+        },
+        {
+          "id": "square",
+          "label": "Square",
+          "emoji": "▢",
+          "keywords": ["square"]
+        },
+        {
+          "id": "coffin",
+          "label": "Coffin",
+          "emoji": "💅",
+          "keywords": ["coffin"]
+        }
+      ]
+    }
+  ],
+
+  "result": {
+    "showSelections": true,
+    "showHarmony": true,
+    "showRecommendedServices": true,
+    "showBookingButton": true,
+    "showRetakeButton": true,
+
+    "titles": {
+      "bridal": "Your Bridal Nail Look",
+      "glam": "Your Glam Nail Look",
+      "minimal": "Your Clean Nail Look",
+      "classic": "Your Classic Nail Look",
+      "bold": "Your Statement Nail Look",
+      "default": "Your Personalised Nail Look"
+    }
+  }
+}

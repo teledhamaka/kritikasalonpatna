@@ -1,5 +1,7 @@
 // ============================================================
-// FILE: middleware.ts  (root level — next to app/)
+// FILE: proxy.ts  (root level — next to app/)
+//
+// NEXT.JS 16 UPDATE: Migrated from middleware.ts to proxy.ts
 //
 // ISSUE 4 FIX: switched from getUser() to getSession()
 //
@@ -16,13 +18,8 @@
 //     • The middleware is only a routing guard, not a data gate
 //     • Supabase JWTs are signed — cookie tampering is detected
 //
-//   Rule: getSession() in middleware (speed)
+//   Rule: getSession() in proxy/middleware (speed)
 //         getUser() in API routes and Server Components (security)
-//
-// Other changes:
-//   ✅ /auth/callback and /auth-callback bypass (unchanged)
-//   ✅ /api/* excluded from matcher (handle own auth)
-//   ✅ msg= param for redirects (matches callback route convention)
 // ============================================================
 import { createServerClient } from '@supabase/ssr';
 import { NextResponse, type NextRequest } from 'next/server';
@@ -37,7 +34,8 @@ const AUTH_ROUTES = ['/login', '/signup', '/forgot-password'];
 // Must bypass — session cookie is being SET during this request
 const BYPASS = ['/auth/callback', '/auth-callback'];
 
-export async function middleware(request: NextRequest) {
+// Next.js 16 requires a default export or a named export function called "proxy"
+export default async function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
   if (BYPASS.some(p => pathname.startsWith(p))) {

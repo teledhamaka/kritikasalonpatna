@@ -50,7 +50,7 @@ interface AuthContextType {
   googleLoading:    boolean;
   signUp:           (data: SignUpData) => Promise<AuthResult>;
   signIn:           (email: string, password: string) => Promise<AuthResult>;
-  signInWithGoogle: () => Promise<{ error?: string }>;
+  signInWithGoogle: (next?: string) => Promise<{ error?: string }>;
   signOut:          () => Promise<void>;
   updateProfile:    (updates: Partial<Profile>) => Promise<{ error?: string }>;
   resetPassword:    (email: string) => Promise<{ error?: string }>;
@@ -98,8 +98,35 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       const { data, error } = await withRetry(() =>
         supabase.from('profiles').select('*').eq('id', userId).single()
       );
-      if (error) throw error;
-      setProfile(data as Profile);
+
+      if (error?.code === 'PGRST116') {
+        // Google/OAuth users may authenticate before a profile row exists.
+        // Create the minimal profile once, then use the same profile source
+        // for email and Google users.
+        const { data: { user } } = await supabase.auth.getUser();
+        const metadata = user?.user_metadata ?? {};
+        const firstName = metadata.first_name || metadata.given_name || '';
+        const lastName = metadata.last_name || metadata.family_name || '';
+        const fullName = metadata.full_name || [firstName, lastName].filter(Boolean).join(' ');
+
+        const { data: created, error: createError } = await withRetry(() =>
+          supabase.from('profiles').upsert({
+            id: userId,
+            email: user?.email ?? '',
+            first_name: firstName,
+            last_name: lastName,
+            full_name: fullName,
+          }, { onConflict: 'id' }).select('*').single()
+        );
+
+        if (createError) throw createError;
+        setProfile(created as Profile);
+      } else if (error) {
+        throw error;
+      } else {
+        setProfile(data as Profile);
+      }
+
       lastFetchedUserId.current = userId;
     } catch {
       setProfile(null);
@@ -202,13 +229,17 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }, []);
 
   // ── signInWithGoogle ──────────────────────────────────────
-  const signInWithGoogle = useCallback(async (): Promise<{ error?: string }> => {
+  const signInWithGoogle = useCallback(async (next = '/'): Promise<{ error?: string }> => {
     setGoogleLoading(true);
     try {
+      const safeNext = next.startsWith('/') && !next.startsWith('//') ? next : '/';
+      const callbackUrl = new URL('/auth/callback', window.location.origin);
+      callbackUrl.searchParams.set('next', safeNext);
+
       const { error } = await supabase.auth.signInWithOAuth({
         provider: 'google',
         options: {
-          redirectTo:  `${window.location.origin}/auth/callback`,
+          redirectTo: callbackUrl.toString(),
           queryParams: {
             access_type: 'offline',
             prompt:      'select_account',

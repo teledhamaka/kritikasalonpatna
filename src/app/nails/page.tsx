@@ -1,4 +1,4 @@
-// kritika/src/app/nail/page.tsx - SYNCHRONIZED WITH HAIR & MAKEUP MASTER PATTERNS
+// kritika/src/app/nails/page.tsx - SYNCHRONIZED WITH HAIR & MAKEUP MASTER PATTERNS
 import { Metadata } from 'next';
 import ClientNailsPage from './ClientNailPage';
 import { Service } from '../../types/service';
@@ -47,7 +47,7 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_IN",
     siteName: seoData.business.name,
-    url: `${seoData.business.contact.website}/nail`
+    url: `${seoData.business.contact.website}/nails`
   },
 
   twitter: {
@@ -59,10 +59,10 @@ export const metadata: Metadata = {
   },
 
   alternates: {
-    canonical: `${seoData.business.contact.website}/nail`,
+    canonical: `${seoData.business.contact.website}/nails`,
     languages: {
-      'en-IN': `${seoData.business.contact.website}/nail`,
-      'hi-IN': `${seoData.business.contact.website}/hi/nail`
+      'en-IN': `${seoData.business.contact.website}/nails`,
+      'hi-IN': `${seoData.business.contact.website}/hi/nails`
     }
   },
 
@@ -122,7 +122,7 @@ const generateServiceOffers = () => {
       "availability": "https://schema.org/InStock",
       "url": service.url 
         ? `${seoData.business.contact.website}${service.url}`
-        : `${seoData.business.contact.website}/nail/${service.slug || service.id}`
+        : `${seoData.business.contact.website}/nails/${service.slug || service.id}`
     }));
 };
 
@@ -196,8 +196,8 @@ const nailStructuredData = {
     },
     {
       "@type": "WebPage",
-      "@id": `${seoData.business.contact.website}/nail/#webpage`,
-      "url": `${seoData.business.contact.website}/nail`,
+      "@id": `${seoData.business.contact.website}/nails/#webpage`,
+      "url": `${seoData.business.contact.website}/nails`,
       "name": PAGE_TITLE,
       "description": generateDescription(),
       "isPartOf": {
@@ -226,7 +226,7 @@ const nailStructuredData = {
           "@type": "ListItem",
           "position": 2,
           "name": "Nail Services",
-          "item": `${seoData.business.contact.website}/nail`
+          "item": `${seoData.business.contact.website}/nails`
         }
       ]
     }
@@ -273,7 +273,7 @@ const generateFAQSchema = () => {
 };
 
 const getAllServices = (): Service[] => {
-  return nailServices as unknown as Service[];
+  return nailServices as Service[];
 };
 
 const getTrendingServices = (allServices: Service[]): Service[] => {

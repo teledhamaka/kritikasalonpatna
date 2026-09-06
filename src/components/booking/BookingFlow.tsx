@@ -1,468 +1,338 @@
-// kritika/src/components/booking/BookingFlow.tsx
-"use client";
+'use client';
 
-import { useState } from 'react';
-import { X, Calendar, Clock, User, Phone, MapPin, CreditCard, Check, ChevronLeft, Sparkles } from 'lucide-react';
+import { useEffect, useMemo, useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { Calendar, Check, ChevronLeft, Clock, MessageCircle, Phone, User, X } from 'lucide-react';
 import { useBooking } from '../../context/BookingContext';
 import { useAuth } from '../../context/AuthContext';
-import Image from 'next/image';
 
-interface BookingFlowProps {
-  onBack: () => void;
-}
-
-const BookingFlow = ({ onBack }: BookingFlowProps) => {
-  const [currentStep, setCurrentStep] = useState(1);
-  const { cart, removeFromCart, getTotalAmount } = useBooking();
-  const { profile } = useAuth();
-
-  // Form Data
-  const [formData, setFormData] = useState({
-    // Step 1: Date & Time
-    date: '',
-    time: '',
-    
-    // Step 2: Details
-    name: profile?.full_name || '',
-    phone: profile?.phone || '',
-    address: '',
-    stylist: 'any',
-    specialInstructions: '',
-    
-    // Step 3: Payment
-    paymentMethod: 'pay_at_salon'
-  });
-
-  // Available time slots
-  const timeSlots = [
-    '10:00 AM', '11:00 AM', '12:00 PM',
-    '01:00 PM', '02:00 PM', '03:00 PM',
-    '04:00 PM', '05:00 PM', '06:00 PM'
-  ];
-
-  // Stylist options
-  const stylists = [
-    { id: 'any', name: 'Lakme Professional', specialty: 'All Services' },
-    // { id: 'priya', name: 'Priya Sharma', specialty: 'Bridal Specialist' },
-    // { id: 'neha', name: 'Neha Singh', specialty: 'HD Makeup Expert' },
-    // { id: 'riya', name: 'Riya Kumari', specialty: 'Airbrush Specialist' }
-  ];
-
-  const handleNext = () => {
-    if (currentStep < 3) {
-      setCurrentStep(currentStep + 1);
-    }
-  };
-
-  const handleBack = () => {
-    if (currentStep > 1) {
-      setCurrentStep(currentStep - 1);
-    } else {
-      onBack();
-    }
-  };
-
-  const handleSubmit = async () => {
-    // Here you would call your booking API
-    console.log('Booking submitted:', {
-      cart,
-      ...formData,
-      totalAmount: getTotalAmount()
-    });
-    
-    // Show success message and redirect
-    alert('Booking confirmed! We will call you shortly to confirm.');
-    onBack();
-  };
-
-  const isStep1Valid = formData.date && formData.time;
-  const isStep2Valid = formData.name && formData.phone && formData.address;
-
-  return (
-    <div className="min-h-screen bg-gradient-to-br from-pink-50 via-white to-purple-50">
-      {/* Header */}
-      <div className="bg-gradient-to-r from-pink-500 to-rose-500 text-white sticky top-0 z-40 shadow-lg">
-        <div className="max-w-4xl mx-auto px-4 py-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <button onClick={handleBack} className="p-2 hover:bg-white/20 rounded-full transition-all">
-                <ChevronLeft className="w-5 h-5" />
-              </button>
-              <div>
-                <h1 className="text-lg font-bold">Complete Your Booking</h1>
-                <p className="text-xs text-pink-100">Step {currentStep} of 3</p>
-              </div>
-            </div>
-            <button onClick={onBack} className="p-2 hover:bg-white/20 rounded-full transition-all">
-              <X className="w-5 h-5" />
-            </button>
-          </div>
-        </div>
-      </div>
-
-      {/* Progress Bar */}
-      <div className="bg-white border-b border-pink-100 sticky top-[68px] z-30">
-        <div className="max-w-4xl mx-auto px-4 py-4">
-          <div className="flex items-center justify-between relative">
-            {/* Progress Line */}
-            <div className="absolute top-5 left-0 right-0 h-1 bg-gray-200">
-              <div 
-                className="h-full bg-gradient-to-r from-pink-500 to-rose-500 transition-all duration-500"
-                style={{ width: `${(currentStep - 1) * 50}%` }}
-              />
-            </div>
-
-            {/* Step Indicators */}
-            {[1, 2, 3].map((step) => (
-              <div key={step} className="relative flex flex-col items-center z-10">
-                <div className={`w-10 h-10 rounded-full flex items-center justify-center font-bold transition-all ${
-                  currentStep >= step
-                    ? 'bg-gradient-to-r from-pink-500 to-rose-500 text-white shadow-lg'
-                    : 'bg-white border-2 border-gray-300 text-gray-400'
-                }`}>
-                  {currentStep > step ? <Check className="w-5 h-5" /> : step}
-                </div>
-                <span className={`text-xs mt-2 font-medium ${
-                  currentStep >= step ? 'text-pink-600' : 'text-gray-400'
-                }`}>
-                  {step === 1 ? 'Date & Time' : step === 2 ? 'Details' : 'Payment'}
-                </span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      <div className="max-w-4xl mx-auto px-4 py-6">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          {/* Main Form */}
-          <div className="lg:col-span-2">
-            <div className="bg-white rounded-2xl shadow-lg p-6">
-              
-              {/* STEP 1: Date & Time */}
-              {currentStep === 1 && (
-                <div className="space-y-6">
-                  <div>
-                    <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
-                      <Calendar className="w-6 h-6 text-pink-600" />
-                      Select Date & Time
-                    </h2>
-                    <p className="text-sm text-gray-600 mb-6">Choose your preferred appointment slot</p>
-                  </div>
-
-                  {/* Date Selection */}
-                  <div>
-                    <label className="block text-sm font-semibold text-gray-900 mb-2">
-                      Select Date
-                    </label>
-                    <input
-                      type="date"
-                      value={formData.date}
-                      onChange={(e) => setFormData({ ...formData, date: e.target.value })}
-                      min={new Date().toISOString().split('T')[0]}
-                      className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-pink-500 focus:border-transparent transition-all"
-                    />
-                  </div>
-
-                  {/* Time Selection */}
-                  <div>
-                    <label className="block text-sm font-semibold text-gray-900 mb-2">
-                      Select Time Slot
-                    </label>
-                    <div className="grid grid-cols-3 gap-2">
-                      {timeSlots.map((time) => (
-                        <button
-                          key={time}
-                          onClick={() => setFormData({ ...formData, time })}
-                          className={`py-3 rounded-lg text-sm font-medium transition-all ${
-                            formData.time === time
-                              ? 'bg-gradient-to-r from-pink-500 to-rose-500 text-white shadow-md'
-                              : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                          }`}
-                        >
-                          {time}
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-
-                  <button
-                    onClick={handleNext}
-                    disabled={!isStep1Valid}
-                    className="w-full bg-gradient-to-r from-pink-500 to-rose-500 text-white py-3 rounded-xl font-semibold hover:from-pink-600 hover:to-rose-600 transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-lg"
-                  >
-                    Continue to Details
-                  </button>
-                </div>
-              )}
-
-              {/* STEP 2: Personal Details */}
-              {currentStep === 2 && (
-                <div className="space-y-6">
-                  <div>
-                    <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
-                      <User className="w-6 h-6 text-pink-600" />
-                      Your Details
-                    </h2>
-                    <p className="text-sm text-gray-600 mb-6">Tell us about yourself</p>
-                  </div>
-
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div>
-                      <label className="block text-sm font-semibold text-gray-900 mb-2">
-                        Full Name *
-                      </label>
-                      <input
-                        type="text"
-                        value={formData.name}
-                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                        placeholder="Enter your name"
-                        className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-pink-500 focus:border-transparent transition-all"
-                      />
-                    </div>
-
-                    <div>
-                      <label className="block text-sm font-semibold text-gray-900 mb-2">
-                        Phone Number *
-                      </label>
-                      <input
-                        type="tel"
-                        value={formData.phone}
-                        onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                        placeholder="+91 XXXXX XXXXX"
-                        className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-pink-500 focus:border-transparent transition-all"
-                      />
-                    </div>
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-semibold text-gray-900 mb-2">
-                      Address *
-                    </label>
-                    <textarea
-                      value={formData.address}
-                      onChange={(e) => setFormData({ ...formData, address: e.target.value })}
-                      placeholder="Enter your complete address"
-                      rows={3}
-                      className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-pink-500 focus:border-transparent transition-all"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-semibold text-gray-900 mb-2">
-                      Stylist Preference (Optional)
-                    </label>
-                    <select
-                      value={formData.stylist}
-                      onChange={(e) => setFormData({ ...formData, stylist: e.target.value })}
-                      className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-pink-500 focus:border-transparent transition-all"
-                    >
-                      {stylists.map((stylist) => (
-                        <option key={stylist.id} value={stylist.id}>
-                          {stylist.name} - {stylist.specialty}
-                        </option>
-                      ))}
-                    </select>
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-semibold text-gray-900 mb-2">
-                      Special Instructions (Optional)
-                    </label>
-                    <textarea
-                      value={formData.specialInstructions}
-                      onChange={(e) => setFormData({ ...formData, specialInstructions: e.target.value })}
-                      placeholder="Any allergies, preferences, or special requests?"
-                      rows={3}
-                      className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-pink-500 focus:border-transparent transition-all"
-                    />
-                  </div>
-
-                  <div className="flex gap-3">
-                    <button
-                      onClick={handleBack}
-                      className="flex-1 bg-gray-100 text-gray-700 py-3 rounded-xl font-semibold hover:bg-gray-200 transition-all"
-                    >
-                      Back
-                    </button>
-                    <button
-                      onClick={handleNext}
-                      disabled={!isStep2Valid}
-                      className="flex-1 bg-gradient-to-r from-pink-500 to-rose-500 text-white py-3 rounded-xl font-semibold hover:from-pink-600 hover:to-rose-600 transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-lg"
-                    >
-                      Continue to Payment
-                    </button>
-                  </div>
-                </div>
-              )}
-
-              {/* STEP 3: Payment */}
-              {currentStep === 3 && (
-                <div className="space-y-6">
-                  <div>
-                    <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
-                      <CreditCard className="w-6 h-6 text-pink-600" />
-                      Payment Method
-                    </h2>
-                    <p className="text-sm text-gray-600 mb-6">Choose how you'd like to pay</p>
-                  </div>
-
-                  <div className="space-y-3">
-                    <button
-                      onClick={() => setFormData({ ...formData, paymentMethod: 'pay_at_salon' })}
-                      className={`w-full p-4 border-2 rounded-xl text-left transition-all ${
-                        formData.paymentMethod === 'pay_at_salon'
-                          ? 'border-pink-500 bg-pink-50'
-                          : 'border-gray-200 hover:border-gray-300'
-                      }`}
-                    >
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-3">
-                          <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center ${
-                            formData.paymentMethod === 'pay_at_salon'
-                              ? 'border-pink-500 bg-pink-500'
-                              : 'border-gray-300'
-                          }`}>
-                            {formData.paymentMethod === 'pay_at_salon' && (
-                              <div className="w-3 h-3 bg-white rounded-full" />
-                            )}
-                          </div>
-                          <div>
-                            <p className="font-semibold text-gray-900">Pay at Salon</p>
-                            <p className="text-sm text-gray-600">Cash or UPI after service</p>
-                          </div>
-                        </div>
-                        <span className="text-green-600 font-semibold text-sm">Recommended</span>
-                      </div>
-                    </button>
-
-                    <button
-                      onClick={() => setFormData({ ...formData, paymentMethod: 'pay_online' })}
-                      className={`w-full p-4 border-2 rounded-xl text-left transition-all ${
-                        formData.paymentMethod === 'pay_online'
-                          ? 'border-pink-500 bg-pink-50'
-                          : 'border-gray-200 hover:border-gray-300'
-                      }`}
-                    >
-                      <div className="flex items-center gap-3">
-                        <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center ${
-                          formData.paymentMethod === 'pay_online'
-                            ? 'border-pink-500 bg-pink-500'
-                            : 'border-gray-300'
-                        }`}>
-                          {formData.paymentMethod === 'pay_online' && (
-                            <div className="w-3 h-3 bg-white rounded-full" />
-                          )}
-                        </div>
-                        <div>
-                          <p className="font-semibold text-gray-900">Pay Online Now</p>
-                          <p className="text-sm text-gray-600">Secure payment via Razorpay</p>
-                        </div>
-                      </div>
-                    </button>
-                  </div>
-
-                  <div className="flex gap-3 pt-4">
-                    <button
-                      onClick={handleBack}
-                      className="flex-1 bg-gray-100 text-gray-700 py-3 rounded-xl font-semibold hover:bg-gray-200 transition-all"
-                    >
-                      Back
-                    </button>
-                    <button
-                      onClick={handleSubmit}
-                      className="flex-1 bg-gradient-to-r from-pink-500 to-rose-500 text-white py-3 rounded-xl font-semibold hover:from-pink-600 hover:to-rose-600 transition-all shadow-lg flex items-center justify-center gap-2"
-                    >
-                      <Check className="w-5 h-5" />
-                      Confirm Booking
-                    </button>
-                  </div>
-                </div>
-              )}
-            </div>
-          </div>
-
-          {/* Order Summary Sidebar */}
-          <div className="lg:col-span-1">
-            <div className="bg-white rounded-2xl shadow-lg p-6 sticky top-32">
-              <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
-                <Sparkles className="w-5 h-5 text-pink-600" />
-                Order Summary
-              </h3>
-
-              {/* Services */}
-              <div className="space-y-3 mb-4 max-h-60 overflow-y-auto">
-                {cart.map((item) => (
-                  <div key={item.id} className="flex gap-3 p-3 bg-gray-50 rounded-lg">
-                    <div className="relative w-16 h-16 rounded-lg overflow-hidden flex-shrink-0">
-                      <Image
-                        src={item.image || '/placeholder.jpg'}
-                        alt={item.title}
-                        fill
-                        className="object-cover"
-                      />
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <p className="font-medium text-sm text-gray-900 line-clamp-2">
-                        {item.title.split('|')[0].trim()}
-                      </p>
-                      <p className="text-xs text-gray-600 mt-1">{item.durationText}</p>
-                      <p className="text-pink-600 font-bold text-sm mt-1">₹{item.price}</p>
-                    </div>
-                    <button
-                      onClick={() => removeFromCart(item.id)}
-                      className="text-gray-400 hover:text-red-500 transition-colors"
-                    >
-                      <X className="w-4 h-4" />
-                    </button>
-                  </div>
-                ))}
-              </div>
-
-              {/* Booking Details */}
-              {currentStep > 1 && formData.date && formData.time && (
-                <div className="space-y-2 mb-4 p-3 bg-pink-50 rounded-lg">
-                  <div className="flex items-center gap-2 text-sm">
-                    <Calendar className="w-4 h-4 text-pink-600" />
-                    <span className="text-gray-700">{new Date(formData.date).toLocaleDateString('en-IN', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</span>
-                  </div>
-                  <div className="flex items-center gap-2 text-sm">
-                    <Clock className="w-4 h-4 text-pink-600" />
-                    <span className="text-gray-700">{formData.time}</span>
-                  </div>
-                </div>
-              )}
-
-              {/* Total */}
-              <div className="border-t border-gray-200 pt-4">
-                <div className="flex justify-between items-center mb-2">
-                  <span className="text-gray-600">Subtotal</span>
-                  <span className="font-semibold">₹{getTotalAmount()}</span>
-                </div>
-                <div className="flex justify-between items-center mb-4">
-                  <span className="text-gray-600">GST (18%)</span>
-                  <span className="font-semibold">₹{Math.round(getTotalAmount() * 0.18)}</span>
-                </div>
-                <div className="flex justify-between items-center text-lg">
-                  <span className="font-bold text-gray-900">Total</span>
-                  <span className="font-bold text-pink-600">₹{Math.round(getTotalAmount() * 1.18)}</span>
-                </div>
-              </div>
-
-              {/* Contact */}
-              <div className="mt-4 p-3 bg-gradient-to-r from-pink-50 to-purple-50 rounded-lg">
-                <p className="text-xs text-gray-600 mb-2">Need help?</p>
-                <a href="tel:+919650461390" className="flex items-center gap-2 text-sm font-semibold text-pink-600 hover:text-pink-700">
-                  <Phone className="w-4 h-4" />
-                  +91 96504 61390
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
+type BookingDraft = {
+  date: string;
+  time: string;
+  name: string;
+  phone: string;
+  specialInstructions: string;
 };
 
-export default BookingFlow;
+const DRAFT_KEY = 'kr-booking-draft';
+
+const TIME_SLOTS = [
+  ['10:00', '10:00 AM'],
+  ['11:00', '11:00 AM'],
+  ['12:00', '12:00 PM'],
+  ['13:00', '1:00 PM'],
+  ['14:00', '2:00 PM'],
+  ['15:00', '3:00 PM'],
+  ['16:00', '4:00 PM'],
+  ['17:00', '5:00 PM'],
+  ['18:00', '6:00 PM'],
+] as const;
+
+interface BookingFlowProps {
+  onBack?: () => void;
+}
+
+function getToday() {
+  const now = new Date();
+  const offset = now.getTimezoneOffset();
+  return new Date(now.getTime() - offset * 60_000).toISOString().slice(0, 10);
+}
+
+export default function BookingFlow({ onBack }: BookingFlowProps) {
+  const router = useRouter();
+  const { cart, getSubtotal, getTaxAmount, getTotalAmount, totalDuration, createBooking, loading: bookingLoading, profileDefaults } = useBooking();
+  const { profile, isLoggedIn } = useAuth();
+
+  const [step, setStep] = useState<1 | 2>(1);
+  const [error, setError] = useState('');
+  const [saving, setSaving] = useState(false);
+  const [form, setForm] = useState<BookingDraft>({
+    date: '',
+    time: '',
+    name: profileDefaults.name,
+    phone: profileDefaults.phone,
+    specialInstructions: '',
+  });
+
+  useEffect(() => {
+    try {
+      const raw = localStorage.getItem(DRAFT_KEY);
+      if (raw) {
+        const draft = JSON.parse(raw) as Partial<BookingDraft>;
+        setForm(current => ({ ...current, ...draft }));
+      }
+    } catch {}
+  }, []);
+
+  useEffect(() => {
+    setForm(current => ({
+      ...current,
+      name: current.name || profileDefaults.name,
+      phone: current.phone || profileDefaults.phone,
+    }));
+  }, [profileDefaults.name, profileDefaults.phone]);
+
+  const subtotal = getSubtotal();
+  const tax = getTaxAmount();
+  const total = getTotalAmount();
+  const minDate = getToday();
+
+  const canContinue = Boolean(form.date && form.time);
+  const canConfirm = Boolean(form.name.trim() && form.phone.trim());
+
+  const serviceSummary = useMemo(
+    () => cart.map(item => `${item.name || item.title} × ${item.quantity}`).join(', '),
+    [cart]
+  );
+
+  const goBack = () => {
+    if (step === 2) setStep(1);
+    else if (onBack) onBack();
+    else router.push('/cart');
+  };
+
+  const saveDraftAndLogin = () => {
+    localStorage.setItem(DRAFT_KEY, JSON.stringify(form));
+    router.push('/login?redirect=/booking');
+  };
+
+  const handleConfirm = async () => {
+    setError('');
+
+    if (!form.name.trim()) {
+      setError('Please enter your name.');
+      return;
+    }
+    if (!form.phone.trim()) {
+      setError('Please enter your mobile number so we can confirm the appointment.');
+      return;
+    }
+
+    if (!isLoggedIn || !profile?.id) {
+      saveDraftAndLogin();
+      return;
+    }
+
+    setSaving(true);
+    try {
+      const result = await createBooking({
+        date: form.date,
+        time: form.time,
+        name: form.name.trim(),
+        phone: form.phone.trim(),
+        address: '',
+        stylist: 'any',
+        specialInstructions: form.specialInstructions.trim(),
+        paymentMethod: 'pay_at_salon',
+      });
+
+      if (!result.success) {
+        setError(result.error || 'We could not complete your booking. Please try again.');
+        return;
+      }
+
+      localStorage.removeItem(DRAFT_KEY);
+      router.replace(`/booking/success?bookingId=${encodeURIComponent(result.bookingId || '')}`);
+    } finally {
+      setSaving(false);
+    }
+  };
+
+  if (cart.length === 0) {
+    return (
+      <main className="min-h-screen bg-cream flex items-center justify-center p-4">
+        <div className="w-full max-w-md bg-white rounded-3xl shadow-brand-lg p-7 text-center">
+          <div className="text-4xl mb-4">💆‍♀️</div>
+          <h1 className="font-serif text-2xl text-plum">Choose a service first</h1>
+          <p className="mt-2 text-sm text-plum-light">Select one or more services and your appointment will be ready to book.</p>
+          <button onClick={() => router.push('/')} className="mt-6 w-full rounded-xl bg-plum text-white py-3 font-medium">
+            Explore Services
+          </button>
+        </div>
+      </main>
+    );
+  }
+
+  return (
+    <main className="min-h-screen bg-cream">
+      <header className="sticky top-0 z-40 bg-white/95 backdrop-blur border-b border-[rgba(184,102,122,0.12)]">
+        <div className="max-w-3xl mx-auto px-4 py-3 flex items-center justify-between">
+          <button onClick={goBack} className="p-2 -ml-2 text-plum-light hover:text-plum" aria-label="Go back">
+            <ChevronLeft className="w-5 h-5" />
+          </button>
+          <div className="text-center">
+            <h1 className="font-serif text-lg text-plum">Book Appointment</h1>
+            <p className="text-[11px] text-plum-light">{step === 1 ? 'Choose your time' : 'Almost done'}</p>
+          </div>
+          <button onClick={() => router.push('/')} className="p-2 -mr-2 text-plum-light hover:text-plum" aria-label="Close">
+            <X className="w-5 h-5" />
+          </button>
+        </div>
+      </header>
+
+      <div className="max-w-3xl mx-auto px-4 py-5 pb-10">
+        <div className="flex items-center gap-2 mb-5">
+          <div className={`h-1.5 flex-1 rounded-full ${step >= 1 ? 'bg-rose-brand' : 'bg-gray-200'}`} />
+          <div className={`h-1.5 flex-1 rounded-full ${step >= 2 ? 'bg-rose-brand' : 'bg-gray-200'}`} />
+        </div>
+
+        <div className="grid gap-5 lg:grid-cols-[1fr_300px]">
+          <section className="bg-white rounded-3xl shadow-brand-sm border border-[rgba(184,102,122,0.1)] p-5 sm:p-6">
+            {error && (
+              <div className="mb-5 rounded-xl bg-red-50 border border-red-100 p-3 text-sm text-red-700">{error}</div>
+            )}
+
+            {step === 1 ? (
+              <div>
+                <div className="flex items-center gap-3 mb-5">
+                  <div className="w-10 h-10 rounded-full bg-blush flex items-center justify-center">
+                    <Calendar className="w-5 h-5 text-rose-brand" />
+                  </div>
+                  <div>
+                    <h2 className="font-semibold text-plum">When would you like to visit?</h2>
+                    <p className="text-xs text-plum-light">Choose your preferred date and time.</p>
+                  </div>
+                </div>
+
+                <label className="block text-xs font-medium text-plum mb-2">Date</label>
+                <input
+                  type="date"
+                  min={minDate}
+                  value={form.date}
+                  onChange={e => setForm({ ...form, date: e.target.value, time: '' })}
+                  className="w-full rounded-xl border border-[rgba(184,102,122,0.2)] px-4 py-3 text-sm text-plum focus:outline-none focus:ring-2 focus:ring-rose-brand/30"
+                />
+
+                <div className="mt-5">
+                  <label className="block text-xs font-medium text-plum mb-2">Available time</label>
+                  <div className="grid grid-cols-3 gap-2">
+                    {TIME_SLOTS.map(([value, label]) => (
+                      <button
+                        key={value}
+                        type="button"
+                        disabled={!form.date}
+                        onClick={() => setForm({ ...form, time: value })}
+                        className={`rounded-xl py-3 text-sm font-medium transition-all ${
+                          form.time === value
+                            ? 'bg-plum text-white'
+                            : 'bg-blush text-plum hover:bg-rose-100'
+                        } disabled:opacity-40`}
+                      >
+                        {label}
+                      </button>
+                    ))}
+                  </div>
+                  <p className="mt-2 text-[11px] text-plum-light flex items-center gap-1">
+                    <Clock className="w-3 h-3" /> Final slot availability should be confirmed by the salon.
+                  </p>
+                </div>
+
+                <button
+                  type="button"
+                  disabled={!canContinue}
+                  onClick={() => { setError(''); setStep(2); }}
+                  className="mt-6 w-full rounded-xl bg-plum text-white py-3 font-medium disabled:opacity-40"
+                >
+                  Continue
+                </button>
+              </div>
+            ) : (
+              <div>
+                <div className="flex items-center gap-3 mb-5">
+                  <div className="w-10 h-10 rounded-full bg-blush flex items-center justify-center">
+                    <User className="w-5 h-5 text-rose-brand" />
+                  </div>
+                  <div>
+                    <h2 className="font-semibold text-plum">Your details</h2>
+                    <p className="text-xs text-plum-light">Only what we need to confirm your visit.</p>
+                  </div>
+                </div>
+
+                <div className="space-y-4">
+                  <div>
+                    <label className="block text-xs font-medium text-plum mb-2">Name *</label>
+                    <input
+                      type="text"
+                      value={form.name}
+                      onChange={e => setForm({ ...form, name: e.target.value })}
+                      placeholder="Your name"
+                      autoComplete="name"
+                      className="w-full rounded-xl border border-[rgba(184,102,122,0.2)] px-4 py-3 text-sm text-plum focus:outline-none focus:ring-2 focus:ring-rose-brand/30"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-xs font-medium text-plum mb-2">Mobile number *</label>
+                    <input
+                      type="tel"
+                      value={form.phone}
+                      onChange={e => setForm({ ...form, phone: e.target.value })}
+                      placeholder="10-digit mobile number"
+                      autoComplete="tel"
+                      inputMode="tel"
+                      className="w-full rounded-xl border border-[rgba(184,102,122,0.2)] px-4 py-3 text-sm text-plum focus:outline-none focus:ring-2 focus:ring-rose-brand/30"
+                    />
+                  </div>
+
+                  <details className="rounded-xl bg-blush px-4 py-3">
+                    <summary className="cursor-pointer text-xs font-medium text-plum">+ Add a note (optional)</summary>
+                    <textarea
+                      value={form.specialInstructions}
+                      onChange={e => setForm({ ...form, specialInstructions: e.target.value })}
+                      rows={3}
+                      placeholder="Anything we should know?"
+                      className="mt-3 w-full rounded-lg border border-[rgba(184,102,122,0.18)] px-3 py-2 text-sm bg-white"
+                    />
+                  </details>
+                </div>
+
+                {!isLoggedIn && (
+                  <div className="mt-5 rounded-xl bg-blush p-3 text-xs text-plum-mid">
+                    <strong>Almost there.</strong> We’ll ask you to sign in once, then return you here with your details saved.
+                  </div>
+                )}
+
+                <button
+                  type="button"
+                  disabled={!canConfirm || saving || bookingLoading}
+                  onClick={handleConfirm}
+                  className="mt-6 w-full rounded-xl bg-plum text-white py-3.5 font-medium disabled:opacity-40 flex items-center justify-center gap-2"
+                >
+                  {saving || bookingLoading ? 'Confirming…' : isLoggedIn ? 'Confirm Appointment' : 'Continue to Sign In'}
+                </button>
+
+                <p className="mt-3 text-center text-[11px] text-plum-light flex items-center justify-center gap-1">
+                  <MessageCircle className="w-3 h-3" /> We’ll call or WhatsApp to confirm.
+                </p>
+              </div>
+            )}
+          </section>
+
+          <aside className="h-fit bg-white rounded-3xl shadow-brand-sm border border-[rgba(184,102,122,0.1)] p-5 lg:sticky lg:top-24">
+            <h3 className="font-semibold text-plum">Your selection</h3>
+            <div className="mt-3 space-y-2">
+              {cart.map(item => (
+                <div key={item.id} className="flex justify-between gap-3 text-xs text-plum-mid">
+                  <span>{item.name || item.title} × {item.quantity}</span>
+                  <span className="font-medium whitespace-nowrap">₹{(Number(item.discounted_price ?? item.price ?? item.base_price ?? 0) * item.quantity).toFixed(0)}</span>
+                </div>
+              ))}
+            </div>
+            <div className="border-t border-gray-100 mt-4 pt-4 space-y-2 text-sm">
+              <div className="flex justify-between text-plum-light"><span>Subtotal</span><span>₹{subtotal.toFixed(0)}</span></div>
+              <div className="flex justify-between text-plum-light"><span>GST</span><span>₹{tax.toFixed(0)}</span></div>
+              <div className="flex justify-between font-semibold text-plum pt-2 border-t"><span>Total</span><span>₹{total.toFixed(0)}</span></div>
+            </div>
+            <div className="mt-4 text-[11px] text-plum-light">
+              <div>Duration: {totalDuration} min</div>
+              {form.date && form.time && <div className="mt-1">{form.date} · {TIME_SLOTS.find(([value]) => value === form.time)?.[1] || form.time}</div>}
+            </div>
+            <div className="mt-4 flex gap-2 text-[11px] text-plum-light">
+              <Phone className="w-3.5 h-3.5 text-rose-brand" /> +91 96504 61390
+            </div>
+          </aside>
+        </div>
+      </div>
+    </main>
+  );
+}

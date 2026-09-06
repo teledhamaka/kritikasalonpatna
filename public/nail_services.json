@@ -9,7 +9,7 @@
     "eventCategory": "maintenance",
     "image": "/images/nails/nail_cut_salon.webp",
     "description": "Precision nail trimming and shaping using sterilised tools at Parvati Nail Studio, Patna. Clean, neat daily grooming by Lakmé-certified expert near Bhootnath Road. Choose square, round, oval or almond shape.",
-    "shortDescription": "Precision nail cut and shaping for hands . Sterilised tools, Lakmé-certified.",
+    "shortDescription": "Precision nail cut and shaping for hands in Patna. Sterilised tools, Lakmé-certified.",
     "price": 199.0,
     "originalPrice": 250.0,
     "priceCurrency": "INR",
@@ -23,31 +23,99 @@
     "rating": 4.6,
     "reviewCount": 210,
     "bookingCount": 550,
-    "keyIngredients": ["Medical-grade clippers", "Crystal file", "Antibacterial spray", "Nail buffer"],
-    "benefits": ["Prevents nail breakage", "Maintains neat appearance", "Promotes healthy growth", "Quick service"],
+    "keyIngredients": [
+      "Medical-grade clippers",
+      "Crystal file",
+      "Antibacterial spray",
+      "Nail buffer"
+    ],
+    "benefits": [
+      "Prevents nail breakage",
+      "Maintains neat appearance",
+      "Promotes healthy growth",
+      "Quick service"
+    ],
     "precautions": "Notify if you have any nail conditions or recent injuries.",
     "aftercare": "Apply nail hardener if desired. Avoid harsh chemicals without gloves.",
     "faqs": [
-      {"question": "How often should I get nails cut and shaped?", "answer": "Every 2–3 weeks depending on growth rate."},
-      {"question": "Can men get this service?", "answer": "Yes, this is popular among male clients too."}
+      {
+        "question": "How often should I get nails cut and shaped?",
+        "answer": "Every 2–3 weeks depending on growth rate."
+      },
+      {
+        "question": "Can men get this service?",
+        "answer": "Yes, this is popular among male clients too."
+      }
     ],
-    "seoKeywords": ["nail cut patna", "nail shaping patna", "nail trimming Bhootnath road"],
-    "targetAudience": ["Men", "Women", "Daily grooming seekers"],
-    "idealFor": ["Quick maintenance", "Between manicures", "Office grooming"],
-    "whatsIncluded": ["Nail trimming", "Crystal file shaping", "Buffing", "Sanitization"],
-    "whatsNotIncluded": ["Polish", "Cuticle work", "Hand massage"],
+    "seoKeywords": [
+      "nail cut patna",
+      "nail shaping patna",
+      "nail trimming Bhootnath road"
+    ],
+    "targetAudience": [
+      "Men",
+      "Women",
+      "Daily grooming seekers"
+    ],
+    "idealFor": [
+      "Quick maintenance",
+      "Between manicures",
+      "Office grooming"
+    ],
+    "whatsIncluded": [
+      "Nail trimming",
+      "Crystal file shaping",
+      "Buffing",
+      "Sanitization"
+    ],
+    "whatsNotIncluded": [
+      "Polish",
+      "Cuticle work",
+      "Hand massage"
+    ],
     "addOns": [
-      {"name": "Cuticle Treatment", "price": 100},
-      {"name": "Basic Polish", "price": 80},
-      {"name": "Hand Massage", "price": 150}
+      {
+        "name": "Cuticle Treatment",
+        "price": 100
+      },
+      {
+        "name": "Basic Polish",
+        "price": 80
+      },
+      {
+        "name": "Hand Massage",
+        "price": 150
+      }
     ],
-    "serviceArea": {"city": "Patna", "region": "Bihar", "country": "India", "radiusKm": 20},
-    "provider": {"name": "Parvati Nail Studio at Kritika Ladies Beauty Parlour", "address": "Maurya Path, Bhootnath Road, Patna, Bihar 800026", "phone": "+91-9650461390", "googleMapsUrl": "https://maps.google.com/?cid=..."},
-    "geo": {"lat": 25.5873981, "lng": 85.1757259},
-    "nearbyLandmarks": ["Bhootnath Metro Station", "Zero Mile", "Patna Bypass", "Bazar Samiti", "Bhagwat Nagar", "NMCH"],
-    "url": "/nail-salon/nail-cut-shaping-hands-patna",
+    "serviceArea": {
+      "city": "Patna",
+      "region": "Bihar",
+      "country": "India",
+      "radiusKm": 20
+    },
+    "provider": {
+      "name": "Parvati Nail Studio at Kritika Ladies Beauty Parlour",
+      "address": "Maurya Path, Bhootnath Road, Patna, Bihar 800026",
+      "phone": "+91-9650461390",
+      "googleMapsUrl": "https://maps.google.com/?cid=..."
+    },
+    "geo": {
+      "lat": 25.5873981,
+      "lng": 85.1757259
+    },
+    "nearbyLandmarks": [
+      "Bhootnath Metro Station",
+      "Zero Mile",
+      "Patna Bypass",
+      "Bazar Samiti",
+      "Bhagwat Nagar",
+      "NMCH"
+    ],
+    "url": "/manicure/nail-cut-shaping-hands-patna",
     "reviewSource": "Client reviews",
-    "seasonalTags": ["Year-round"],
+    "seasonalTags": [
+      "Year-round"
+    ],
     "processingTime": "Walk-in welcome",
     "cancellationPolicy": "Free cancellation up to 3 hours before"
   },
@@ -61,7 +129,7 @@
     "eventCategory": "maintenance",
     "image": "/images/nails/nail_cut_salon.webp",
     "description": "Precision toenail trimming and filing using sterilised instruments. Orthopedic technique for clean, safe results. Antifungal spray application. Ideal for foot hygiene near Bhootnath Road, Patna.",
-    "shortDescription": "Toenail cut and file only – quick foot hygiene service .",
+    "shortDescription": "Toenail cut and file only – quick foot hygiene service in Patna.",
     "price": 199.0,
     "originalPrice": 250.0,
     "priceCurrency": "INR",
@@ -75,31 +143,99 @@
     "rating": 4.7,
     "reviewCount": 180,
     "bookingCount": 320,
-    "keyIngredients": ["Curved clippers", "Callus rasp", "Antifungal spray", "Medical-grade tools"],
-    "benefits": ["Prevents ingrown nails", "Reduces discomfort", "Improves foot hygiene"],
+    "keyIngredients": [
+      "Curved clippers",
+      "Callus rasp",
+      "Antifungal spray",
+      "Medical-grade tools"
+    ],
+    "benefits": [
+      "Prevents ingrown nails",
+      "Reduces discomfort",
+      "Improves foot hygiene"
+    ],
     "precautions": "Diabetic clients should consult doctor before service. No open wounds or infections.",
     "aftercare": "Wear breathable shoes. Apply foot powder if needed.",
     "faqs": [
-      {"question": "Is this service safe for diabetics?", "answer": "We use gentle techniques, but please consult your doctor first."},
-      {"question": "Can you fix ingrown toenails?", "answer": "We can trim carefully to prevent ingrowth, but severe cases require medical attention."}
+      {
+        "question": "Is this service safe for diabetics?",
+        "answer": "We use gentle techniques, but please consult your doctor first."
+      },
+      {
+        "question": "Can you fix ingrown toenails?",
+        "answer": "We can trim carefully to prevent ingrowth, but severe cases require medical attention."
+      }
     ],
-    "seoKeywords": ["toenail cutting patna", "foot nail file patna", "toenail care Bhootnath road"],
-    "targetAudience": ["Athletes", "Elderly", "Foot health conscious"],
-    "idealFor": ["Quick foot grooming", "Between pedicures", "Medical foot care"],
-    "whatsIncluded": ["Toenail trimming with orthopedic technique", "Callus smoothing", "Antifungal spray", "Basic foot inspection"],
-    "whatsNotIncluded": ["Foot soak", "Polish", "Foot massage"],
+    "seoKeywords": [
+      "toenail cutting patna",
+      "foot nail file patna",
+      "toenail care Bhootnath road"
+    ],
+    "targetAudience": [
+      "Athletes",
+      "Elderly",
+      "Foot health conscious"
+    ],
+    "idealFor": [
+      "Quick foot grooming",
+      "Between pedicures",
+      "Medical foot care"
+    ],
+    "whatsIncluded": [
+      "Toenail trimming with orthopedic technique",
+      "Callus smoothing",
+      "Antifungal spray",
+      "Basic foot inspection"
+    ],
+    "whatsNotIncluded": [
+      "Foot soak",
+      "Polish",
+      "Foot massage"
+    ],
     "addOns": [
-      {"name": "Antifungal Treatment", "price": 150},
-      {"name": "Basic Foot Soak", "price": 100},
-      {"name": "Toe Nail Polish", "price": 80}
+      {
+        "name": "Antifungal Treatment",
+        "price": 150
+      },
+      {
+        "name": "Basic Foot Soak",
+        "price": 100
+      },
+      {
+        "name": "Toe Nail Polish",
+        "price": 80
+      }
     ],
-    "serviceArea": {"city": "Patna", "region": "Bihar", "country": "India", "radiusKm": 20},
-    "provider": {"name": "Parvati Nail Studio at Kritika Ladies Beauty Parlour", "address": "Maurya Path, Bhootnath Road, Patna, Bihar 800026", "phone": "+91-9650461390", "googleMapsUrl": "https://maps.google.com/?cid=..."},
-    "geo": {"lat": 25.5873981, "lng": 85.1757259},
-    "nearbyLandmarks": ["Bhootnath Metro Station", "Zero Mile", "Patna Bypass", "Bazar Samiti", "Bhagwat Nagar", "NMCH"],
+    "serviceArea": {
+      "city": "Patna",
+      "region": "Bihar",
+      "country": "India",
+      "radiusKm": 20
+    },
+    "provider": {
+      "name": "Parvati Nail Studio at Kritika Ladies Beauty Parlour",
+      "address": "Maurya Path, Bhootnath Road, Patna, Bihar 800026",
+      "phone": "+91-9650461390",
+      "googleMapsUrl": "https://maps.google.com/?cid=..."
+    },
+    "geo": {
+      "lat": 25.5873981,
+      "lng": 85.1757259
+    },
+    "nearbyLandmarks": [
+      "Bhootnath Metro Station",
+      "Zero Mile",
+      "Patna Bypass",
+      "Bazar Samiti",
+      "Bhagwat Nagar",
+      "NMCH"
+    ],
     "url": "/pedicure/toenail-cut-file-feet-patna",
     "reviewSource": "Client reviews",
-    "seasonalTags": ["Year-round", "Summer special"],
+    "seasonalTags": [
+      "Year-round",
+      "Summer special"
+    ],
     "processingTime": "Walk-in welcome",
     "cancellationPolicy": "Free cancellation up to 3 hours before"
   },
@@ -113,7 +249,7 @@
     "eventCategory": "maintenance",
     "image": "/images/nails/nail_polish_hand.webp",
     "description": "Professional nail polish application for hands at Parvati Nail Studio, Patna. Base coat, 2 colour coats, quick-dry top coat. 100+ shades. Perfect for daily wear, college, office. Walk-in near Bhootnath Road.",
-    "shortDescription": "Quick, glossy nail polish for hands . 100+ colours.",
+    "shortDescription": "Quick, glossy nail polish for hands in Patna. 100+ colours.",
     "price": 199.0,
     "originalPrice": 250.0,
     "priceCurrency": "INR",
@@ -127,31 +263,100 @@
     "rating": 4.8,
     "reviewCount": 340,
     "bookingCount": 890,
-    "keyIngredients": ["5-free polish", "Quick-dry top coat", "Cuticle oil", "Base coat"],
-    "benefits": ["Chip-resistant finish", "Dries in 15 minutes", "Non-toxic formula"],
+    "keyIngredients": [
+      "5-free polish",
+      "Quick-dry top coat",
+      "Cuticle oil",
+      "Base coat"
+    ],
+    "benefits": [
+      "Chip-resistant finish",
+      "Dries in 15 minutes",
+      "Non-toxic formula"
+    ],
     "precautions": "Avoid water for 1 hour after service.",
     "aftercare": "Reapply top coat every 3 days for extended wear.",
     "faqs": [
-      {"question": "Can I upgrade to gel polish?", "answer": "Yes, gel polish upgrade available for +₹250."},
-      {"question": "How many colour options?", "answer": "Over 100 including seasonal trends."}
+      {
+        "question": "Can I upgrade to gel polish?",
+        "answer": "Yes, gel polish upgrade available for +₹250."
+      },
+      {
+        "question": "How many colour options?",
+        "answer": "Over 100 including seasonal trends."
+      }
     ],
-    "seoKeywords": ["nail polish patna", "hand polish patna", "nail colour near Bhootnath road"],
-    "targetAudience": ["Students", "Working women", "Quick service seekers"],
-    "idealFor": ["Daily wear", "Office", "College", "Touch-ups"],
-    "whatsIncluded": ["Base coat", "2 colour coats", "Quick-dry top coat", "Nail shaping", "Cuticle oil"],
-    "whatsNotIncluded": ["Gel polish", "Nail art", "Massage"],
+    "seoKeywords": [
+      "nail polish patna",
+      "hand polish patna",
+      "nail colour near Bhootnath road"
+    ],
+    "targetAudience": [
+      "Students",
+      "Working women",
+      "Quick service seekers"
+    ],
+    "idealFor": [
+      "Daily wear",
+      "Office",
+      "College",
+      "Touch-ups"
+    ],
+    "whatsIncluded": [
+      "Base coat",
+      "2 colour coats",
+      "Quick-dry top coat",
+      "Nail shaping",
+      "Cuticle oil"
+    ],
+    "whatsNotIncluded": [
+      "Gel polish",
+      "Nail art",
+      "Massage"
+    ],
     "addOns": [
-      {"name": "Gel Polish Upgrade", "price": 250},
-      {"name": "Quick-Dry Accelerator", "price": 50},
-      {"name": "OPI Brand Polish", "price": 200}
+      {
+        "name": "Gel Polish Upgrade",
+        "price": 250
+      },
+      {
+        "name": "Quick-Dry Accelerator",
+        "price": 50
+      },
+      {
+        "name": "OPI Brand Polish",
+        "price": 200
+      }
     ],
-    "serviceArea": {"city": "Patna", "region": "Bihar", "country": "India", "radiusKm": 20},
-    "provider": {"name": "Parvati Nail Studio at Kritika Ladies Beauty Parlour", "address": "Maurya Path, Bhootnath Road, Patna, Bihar 800026", "phone": "+91-9650461390", "googleMapsUrl": "https://maps.google.com/?cid=..."},
-    "geo": {"lat": 25.5873981, "lng": 85.1757259},
-    "nearbyLandmarks": ["Bhootnath Metro Station", "Zero Mile", "Patna Bypass", "Bazar Samiti", "Bhagwat Nagar", "NMCH"],
-    "url": "/nail-salon/nail-polish-hands-patna",
+    "serviceArea": {
+      "city": "Patna",
+      "region": "Bihar",
+      "country": "India",
+      "radiusKm": 20
+    },
+    "provider": {
+      "name": "Parvati Nail Studio at Kritika Ladies Beauty Parlour",
+      "address": "Maurya Path, Bhootnath Road, Patna, Bihar 800026",
+      "phone": "+91-9650461390",
+      "googleMapsUrl": "https://maps.google.com/?cid=..."
+    },
+    "geo": {
+      "lat": 25.5873981,
+      "lng": 85.1757259
+    },
+    "nearbyLandmarks": [
+      "Bhootnath Metro Station",
+      "Zero Mile",
+      "Patna Bypass",
+      "Bazar Samiti",
+      "Bhagwat Nagar",
+      "NMCH"
+    ],
+    "url": "/manicure/nail-polish-hands-patna",
     "reviewSource": "Client reviews",
-    "seasonalTags": ["Year-round"],
+    "seasonalTags": [
+      "Year-round"
+    ],
     "processingTime": "Walk-in welcome",
     "cancellationPolicy": "Free cancellation up to 3 hours before"
   },
@@ -179,31 +384,99 @@
     "rating": 4.7,
     "reviewCount": 220,
     "bookingCount": 410,
-    "keyIngredients": ["Antifungal base", "Breathable polish", "Tea tree oil", "Toe separators"],
-    "benefits": ["Helps maintain foot hygiene", "Lasts 3–4 weeks", "Safe for sensitive skin"],
+    "keyIngredients": [
+      "Antifungal base",
+      "Breathable polish",
+      "Tea tree oil",
+      "Toe separators"
+    ],
+    "benefits": [
+      "Helps maintain foot hygiene",
+      "Lasts 3–4 weeks",
+      "Safe for sensitive skin"
+    ],
     "precautions": "No open wounds or infections. Wear open shoes after service.",
     "aftercare": "Apply foot powder if prone to infections.",
     "faqs": [
-      {"question": "Can men get toe polish?", "answer": "Yes, clear or matte options available."},
-      {"question": "How long does toe polish last?", "answer": "Typically 3–4 weeks with proper care."}
+      {
+        "question": "Can men get toe polish?",
+        "answer": "Yes, clear or matte options available."
+      },
+      {
+        "question": "How long does toe polish last?",
+        "answer": "Typically 3–4 weeks with proper care."
+      }
     ],
-    "seoKeywords": ["toe nail polish patna", "foot polish patna", "toenail colour Bhootnath road"],
-    "targetAudience": ["Women", "Open footwear wearers", "Summer season"],
-    "idealFor": ["Sandals", "Beach vacations", "Quick touch-up"],
-    "whatsIncluded": ["Antifungal base coat", "Breathable polish", "Light foot massage", "Toe separators"],
-    "whatsNotIncluded": ["Foot soak", "Callus removal", "Full pedicure"],
+    "seoKeywords": [
+      "toe nail polish patna",
+      "foot polish patna",
+      "toenail colour Bhootnath road"
+    ],
+    "targetAudience": [
+      "Women",
+      "Open footwear wearers",
+      "Summer season"
+    ],
+    "idealFor": [
+      "Sandals",
+      "Beach vacations",
+      "Quick touch-up"
+    ],
+    "whatsIncluded": [
+      "Antifungal base coat",
+      "Breathable polish",
+      "Light foot massage",
+      "Toe separators"
+    ],
+    "whatsNotIncluded": [
+      "Foot soak",
+      "Callus removal",
+      "Full pedicure"
+    ],
     "addOns": [
-      {"name": "Basic Foot Soak", "price": 100},
-      {"name": "Callus Smoothing", "price": 150},
-      {"name": "Gel Polish Upgrade", "price": 250}
+      {
+        "name": "Basic Foot Soak",
+        "price": 100
+      },
+      {
+        "name": "Callus Smoothing",
+        "price": 150
+      },
+      {
+        "name": "Gel Polish Upgrade",
+        "price": 250
+      }
     ],
-    "serviceArea": {"city": "Patna", "region": "Bihar", "country": "India", "radiusKm": 20},
-    "provider": {"name": "Parvati Nail Studio at Kritika Ladies Beauty Parlour", "address": "Maurya Path, Bhootnath Road, Patna, Bihar 800026", "phone": "+91-9650461390", "googleMapsUrl": "https://maps.google.com/?cid=..."},
-    "geo": {"lat": 25.5873981, "lng": 85.1757259},
-    "nearbyLandmarks": ["Bhootnath Metro Station", "Zero Mile", "Patna Bypass", "Bazar Samiti", "Bhagwat Nagar", "NMCH"],
+    "serviceArea": {
+      "city": "Patna",
+      "region": "Bihar",
+      "country": "India",
+      "radiusKm": 20
+    },
+    "provider": {
+      "name": "Parvati Nail Studio at Kritika Ladies Beauty Parlour",
+      "address": "Maurya Path, Bhootnath Road, Patna, Bihar 800026",
+      "phone": "+91-9650461390",
+      "googleMapsUrl": "https://maps.google.com/?cid=..."
+    },
+    "geo": {
+      "lat": 25.5873981,
+      "lng": 85.1757259
+    },
+    "nearbyLandmarks": [
+      "Bhootnath Metro Station",
+      "Zero Mile",
+      "Patna Bypass",
+      "Bazar Samiti",
+      "Bhagwat Nagar",
+      "NMCH"
+    ],
     "url": "/pedicure/toe-nail-polish-patna",
     "reviewSource": "Client reviews",
-    "seasonalTags": ["Summer special", "Beach season"],
+    "seasonalTags": [
+      "Summer special",
+      "Beach season"
+    ],
     "processingTime": "Walk-in welcome",
     "cancellationPolicy": "Free cancellation up to 3 hours before"
   },
@@ -231,31 +504,100 @@
     "rating": 4.8,
     "reviewCount": 310,
     "bookingCount": 670,
-    "keyIngredients": ["Chip-resistant polish", "LED lamp", "Cuticle serum", "Quick-dry top coat"],
-    "benefits": ["Save 20% vs separate", "Smudge-proof finish", "Dries before leaving"],
+    "keyIngredients": [
+      "Chip-resistant polish",
+      "LED lamp",
+      "Cuticle serum",
+      "Quick-dry top coat"
+    ],
+    "benefits": [
+      "Save 20% vs separate",
+      "Smudge-proof finish",
+      "Dries before leaving"
+    ],
     "precautions": "Avoid tight shoes or bags that may smudge for 30 minutes.",
     "aftercare": "Apply cuticle oil regularly.",
     "faqs": [
-      {"question": "Can I choose different colours for hands and feet?", "answer": "Yes, matching or contrasting as you prefer."},
-      {"question": "Gel polish upgrade available?", "answer": "Yes, add ₹400 for gel combo."}
+      {
+        "question": "Can I choose different colours for hands and feet?",
+        "answer": "Yes, matching or contrasting as you prefer."
+      },
+      {
+        "question": "Gel polish upgrade available?",
+        "answer": "Yes, add ₹400 for gel combo."
+      }
     ],
-    "seoKeywords": ["nail polish combo patna", "hands feet polish patna", "combo nail service Bhootnath road"],
-    "targetAudience": ["Time-conscious clients", "Wedding guests", "Vacationers"],
-    "idealFor": ["Pre-vacation", "Weddings", "Parties"],
-    "whatsIncluded": ["Hand polish", "Foot polish", "Matching/contrast colours", "LED drying", "Cuticle serum"],
-    "whatsNotIncluded": ["Gel polish", "Nail art", "Hand/foot treatments"],
+    "seoKeywords": [
+      "nail polish combo patna",
+      "hands feet polish patna",
+      "combo nail service Bhootnath road"
+    ],
+    "targetAudience": [
+      "Time-conscious clients",
+      "Wedding guests",
+      "Vacationers"
+    ],
+    "idealFor": [
+      "Pre-vacation",
+      "Weddings",
+      "Parties"
+    ],
+    "whatsIncluded": [
+      "Hand polish",
+      "Foot polish",
+      "Matching/contrast colours",
+      "LED drying",
+      "Cuticle serum"
+    ],
+    "whatsNotIncluded": [
+      "Gel polish",
+      "Nail art",
+      "Hand/foot treatments"
+    ],
     "addOns": [
-      {"name": "Gel Polish Upgrade (Both)", "price": 400},
-      {"name": "Basic Nail Art (2 nails)", "price": 200},
-      {"name": "OPI Brand Upgrade", "price": 300}
+      {
+        "name": "Gel Polish Upgrade (Both)",
+        "price": 400
+      },
+      {
+        "name": "Basic Nail Art (2 nails)",
+        "price": 200
+      },
+      {
+        "name": "OPI Brand Upgrade",
+        "price": 300
+      }
     ],
-    "serviceArea": {"city": "Patna", "region": "Bihar", "country": "India", "radiusKm": 20},
-    "provider": {"name": "Parvati Nail Studio at Kritika Ladies Beauty Parlour", "address": "Maurya Path, Bhootnath Road, Patna, Bihar 800026", "phone": "+91-9650461390", "googleMapsUrl": "https://maps.google.com/?cid=..."},
-    "geo": {"lat": 25.5873981, "lng": 85.1757259},
-    "nearbyLandmarks": ["Bhootnath Metro Station", "Zero Mile", "Patna Bypass", "Bazar Samiti", "Bhagwat Nagar", "NMCH"],
+    "serviceArea": {
+      "city": "Patna",
+      "region": "Bihar",
+      "country": "India",
+      "radiusKm": 20
+    },
+    "provider": {
+      "name": "Parvati Nail Studio at Kritika Ladies Beauty Parlour",
+      "address": "Maurya Path, Bhootnath Road, Patna, Bihar 800026",
+      "phone": "+91-9650461390",
+      "googleMapsUrl": "https://maps.google.com/?cid=..."
+    },
+    "geo": {
+      "lat": 25.5873981,
+      "lng": 85.1757259
+    },
+    "nearbyLandmarks": [
+      "Bhootnath Metro Station",
+      "Zero Mile",
+      "Patna Bypass",
+      "Bazar Samiti",
+      "Bhagwat Nagar",
+      "NMCH"
+    ],
     "url": "/package/nail-polish-combo-patna",
     "reviewSource": "Client reviews",
-    "seasonalTags": ["Year-round", "Vacation special"],
+    "seasonalTags": [
+      "Year-round",
+      "Vacation special"
+    ],
     "processingTime": "Walk-in welcome",
     "cancellationPolicy": "Free cancellation up to 6 hours before"
   },
@@ -283,31 +625,98 @@
     "rating": 4.7,
     "reviewCount": 520,
     "bookingCount": 1250,
-    "keyIngredients": ["Cuticle remover", "Hydrating lotion", "Nail strengthener", "4-way buffer"],
-    "benefits": ["Improves nail health", "Prevents hangnails", "Maintains clean appearance"],
+    "keyIngredients": [
+      "Cuticle remover",
+      "Hydrating lotion",
+      "Nail strengthener",
+      "4-way buffer"
+    ],
+    "benefits": [
+      "Improves nail health",
+      "Prevents hangnails",
+      "Maintains clean appearance"
+    ],
     "precautions": "Notify any nail fungus or infections before service.",
     "aftercare": "Use nail strengthener regularly. Wear gloves for harsh chores.",
     "faqs": [
-      {"question": "Can I upgrade to gel polish?", "answer": "Yes, add ₹250 for gel polish upgrade."},
-      {"question": "Is this suitable for men?", "answer": "Yes, we offer a no-polish option for men."}
+      {
+        "question": "Can I upgrade to gel polish?",
+        "answer": "Yes, add ₹250 for gel polish upgrade."
+      },
+      {
+        "question": "Is this suitable for men?",
+        "answer": "Yes, we offer a no-polish option for men."
+      }
     ],
-    "seoKeywords": ["basic manicure patna", "manicure near Bhootnath road", "affordable manicure Patna"],
-    "targetAudience": ["Regular grooming", "Office professionals", "Students"],
-    "idealFor": ["Weekly maintenance", "Pre-event touch-up"],
-    "whatsIncluded": ["Nail shaping", "Cuticle care", "Buffing", "Hand massage", "Basic polish"],
-    "whatsNotIncluded": ["Gel polish", "Nail art", "Paraffin treatment"],
+    "seoKeywords": [
+      "basic manicure patna",
+      "manicure near Bhootnath road",
+      "affordable manicure Patna"
+    ],
+    "targetAudience": [
+      "Regular grooming",
+      "Office professionals",
+      "Students"
+    ],
+    "idealFor": [
+      "Weekly maintenance",
+      "Pre-event touch-up"
+    ],
+    "whatsIncluded": [
+      "Nail shaping",
+      "Cuticle care",
+      "Buffing",
+      "Hand massage",
+      "Basic polish"
+    ],
+    "whatsNotIncluded": [
+      "Gel polish",
+      "Nail art",
+      "Paraffin treatment"
+    ],
     "addOns": [
-      {"name": "Gel Polish", "price": 250},
-      {"name": "Basic Nail Art (2 nails)", "price": 150},
-      {"name": "Cuticle Oil Take-home", "price": 150}
+      {
+        "name": "Gel Polish",
+        "price": 250
+      },
+      {
+        "name": "Basic Nail Art (2 nails)",
+        "price": 150
+      },
+      {
+        "name": "Cuticle Oil Take-home",
+        "price": 150
+      }
     ],
-    "serviceArea": {"city": "Patna", "region": "Bihar", "country": "India", "radiusKm": 20},
-    "provider": {"name": "Parvati Nail Studio at Kritika Ladies Beauty Parlour", "address": "Maurya Path, Bhootnath Road, Patna, Bihar 800026", "phone": "+91-9650461390", "googleMapsUrl": "https://maps.google.com/?cid=..."},
-    "geo": {"lat": 25.5873981, "lng": 85.1757259},
-    "nearbyLandmarks": ["Bhootnath Metro Station", "Zero Mile", "Patna Bypass", "Bazar Samiti", "Bhagwat Nagar", "NMCH"],
+    "serviceArea": {
+      "city": "Patna",
+      "region": "Bihar",
+      "country": "India",
+      "radiusKm": 20
+    },
+    "provider": {
+      "name": "Parvati Nail Studio at Kritika Ladies Beauty Parlour",
+      "address": "Maurya Path, Bhootnath Road, Patna, Bihar 800026",
+      "phone": "+91-9650461390",
+      "googleMapsUrl": "https://maps.google.com/?cid=..."
+    },
+    "geo": {
+      "lat": 25.5873981,
+      "lng": 85.1757259
+    },
+    "nearbyLandmarks": [
+      "Bhootnath Metro Station",
+      "Zero Mile",
+      "Patna Bypass",
+      "Bazar Samiti",
+      "Bhagwat Nagar",
+      "NMCH"
+    ],
     "url": "/manicure/basic-manicure-patna",
     "reviewSource": "Client reviews",
-    "seasonalTags": ["Year-round"],
+    "seasonalTags": [
+      "Year-round"
+    ],
     "processingTime": "Walk-in welcome",
     "cancellationPolicy": "Free cancellation up to 6 hours before"
   },
@@ -335,31 +744,100 @@
     "rating": 4.8,
     "reviewCount": 480,
     "bookingCount": 980,
-    "keyIngredients": ["Epsom salt", "Foot scrub", "Callus smoother", "Antifungal spray"],
-    "benefits": ["Reduces foot odor", "Prevents dry skin", "Promotes relaxation"],
+    "keyIngredients": [
+      "Epsom salt",
+      "Foot scrub",
+      "Callus smoother",
+      "Antifungal spray"
+    ],
+    "benefits": [
+      "Reduces foot odor",
+      "Prevents dry skin",
+      "Promotes relaxation"
+    ],
     "precautions": "Inform about diabetes or circulation issues.",
     "aftercare": "Use foot cream nightly. Wear cotton socks.",
     "faqs": [
-      {"question": "Can I upgrade to gel polish?", "answer": "Yes, add ₹300 for gel pedicure polish."},
-      {"question": "Is callus removal included?", "answer": "Light callus smoothing is included; heavy callus may need extra."}
+      {
+        "question": "Can I upgrade to gel polish?",
+        "answer": "Yes, add ₹300 for gel pedicure polish."
+      },
+      {
+        "question": "Is callus removal included?",
+        "answer": "Light callus smoothing is included; heavy callus may need extra."
+      }
     ],
-    "seoKeywords": ["basic pedicure patna", "foot care Bhootnath road", "pedicure near Zero Mile"],
-    "targetAudience": ["Women", "Men", "Foot care enthusiasts"],
-    "idealFor": ["Pre-sandal season", "Regular foot hygiene"],
-    "whatsIncluded": ["Foot soak", "Nail shaping", "Cuticle care", "Exfoliation", "Light massage", "Polish"],
-    "whatsNotIncluded": ["Heavy callus removal", "Gel polish", "Extended massage"],
+    "seoKeywords": [
+      "basic pedicure patna",
+      "foot care Bhootnath road",
+      "pedicure near Zero Mile"
+    ],
+    "targetAudience": [
+      "Women",
+      "Men",
+      "Foot care enthusiasts"
+    ],
+    "idealFor": [
+      "Pre-sandal season",
+      "Regular foot hygiene"
+    ],
+    "whatsIncluded": [
+      "Foot soak",
+      "Nail shaping",
+      "Cuticle care",
+      "Exfoliation",
+      "Light massage",
+      "Polish"
+    ],
+    "whatsNotIncluded": [
+      "Heavy callus removal",
+      "Gel polish",
+      "Extended massage"
+    ],
     "addOns": [
-      {"name": "Gel Polish Upgrade", "price": 300},
-      {"name": "Extended Foot Massage", "price": 200},
-      {"name": "Paraffin Wax Treatment", "price": 300}
+      {
+        "name": "Gel Polish Upgrade",
+        "price": 300
+      },
+      {
+        "name": "Extended Foot Massage",
+        "price": 200
+      },
+      {
+        "name": "Paraffin Wax Treatment",
+        "price": 300
+      }
     ],
-    "serviceArea": {"city": "Patna", "region": "Bihar", "country": "India", "radiusKm": 20},
-    "provider": {"name": "Parvati Nail Studio at Kritika Ladies Beauty Parlour", "address": "Maurya Path, Bhootnath Road, Patna, Bihar 800026", "phone": "+91-9650461390", "googleMapsUrl": "https://maps.google.com/?cid=..."},
-    "geo": {"lat": 25.5873981, "lng": 85.1757259},
-    "nearbyLandmarks": ["Bhootnath Metro Station", "Zero Mile", "Patna Bypass", "Bazar Samiti", "Bhagwat Nagar", "NMCH"],
+    "serviceArea": {
+      "city": "Patna",
+      "region": "Bihar",
+      "country": "India",
+      "radiusKm": 20
+    },
+    "provider": {
+      "name": "Parvati Nail Studio at Kritika Ladies Beauty Parlour",
+      "address": "Maurya Path, Bhootnath Road, Patna, Bihar 800026",
+      "phone": "+91-9650461390",
+      "googleMapsUrl": "https://maps.google.com/?cid=..."
+    },
+    "geo": {
+      "lat": 25.5873981,
+      "lng": 85.1757259
+    },
+    "nearbyLandmarks": [
+      "Bhootnath Metro Station",
+      "Zero Mile",
+      "Patna Bypass",
+      "Bazar Samiti",
+      "Bhagwat Nagar",
+      "NMCH"
+    ],
     "url": "/pedicure/basic-pedicure-patna",
     "reviewSource": "Client reviews",
-    "seasonalTags": ["Summer special", "Year-round"],
+    "seasonalTags": [
+      "Summer special",
+      "Year-round"
+    ],
     "processingTime": "Walk-in welcome",
     "cancellationPolicy": "Free cancellation up to 6 hours before"
   },
@@ -387,31 +865,101 @@
     "rating": 4.8,
     "reviewCount": 390,
     "bookingCount": 720,
-    "keyIngredients": ["Tea tree polish", "Pumice stone", "Peppermint oil", "Antimicrobial base"],
-    "benefits": ["Helps prevent fungal issues", "Softens heels", "Improves circulation", "Elegant look"],
+    "keyIngredients": [
+      "Tea tree polish",
+      "Pumice stone",
+      "Peppermint oil",
+      "Antimicrobial base"
+    ],
+    "benefits": [
+      "Helps prevent fungal issues",
+      "Softens heels",
+      "Improves circulation",
+      "Elegant look"
+    ],
     "precautions": "No recent foot injuries. Diabetic clients consult doctor.",
     "aftercare": "Wear open shoes when possible. Apply foot cream nightly.",
     "faqs": [
-      {"question": "Can men get French pedicure?", "answer": "Yes, clear or natural finish options available."},
-      {"question": "Is callus removal included?", "answer": "Basic callus smoothing is included."}
+      {
+        "question": "Can men get French pedicure?",
+        "answer": "Yes, clear or natural finish options available."
+      },
+      {
+        "question": "Is callus removal included?",
+        "answer": "Basic callus smoothing is included."
+      }
     ],
-    "seoKeywords": ["french pedicure patna", "elegant toes Bhootnath road", "pedicure near Zero Mile"],
-    "targetAudience": ["Women", "Sandal wearers", "Brides"],
-    "idealFor": ["Summer", "Beach vacations", "Weddings"],
-    "whatsIncluded": ["French tip application", "Callus smoothing", "Foot scrub", "Calf massage", "Antimicrobial base"],
-    "whatsNotIncluded": ["Gel polish", "Paraffin treatment", "Toe nail art"],
+    "seoKeywords": [
+      "french pedicure patna",
+      "elegant toes Bhootnath road",
+      "pedicure near Zero Mile"
+    ],
+    "targetAudience": [
+      "Women",
+      "Sandal wearers",
+      "Brides"
+    ],
+    "idealFor": [
+      "Summer",
+      "Beach vacations",
+      "Weddings"
+    ],
+    "whatsIncluded": [
+      "French tip application",
+      "Callus smoothing",
+      "Foot scrub",
+      "Calf massage",
+      "Antimicrobial base"
+    ],
+    "whatsNotIncluded": [
+      "Gel polish",
+      "Paraffin treatment",
+      "Toe nail art"
+    ],
     "addOns": [
-      {"name": "Gel French Pedicure", "price": 300},
-      {"name": "Paraffin Wax Treatment", "price": 300},
-      {"name": "Swarovski Accent On Toes", "price": 200}
+      {
+        "name": "Gel French Pedicure",
+        "price": 300
+      },
+      {
+        "name": "Paraffin Wax Treatment",
+        "price": 300
+      },
+      {
+        "name": "Swarovski Accent On Toes",
+        "price": 200
+      }
     ],
-    "serviceArea": {"city": "Patna", "region": "Bihar", "country": "India", "radiusKm": 20},
-    "provider": {"name": "Parvati Nail Studio at Kritika Ladies Beauty Parlour", "address": "Maurya Path, Bhootnath Road, Patna, Bihar 800026", "phone": "+91-9650461390", "googleMapsUrl": "https://maps.google.com/?cid=..."},
-    "geo": {"lat": 25.5873981, "lng": 85.1757259},
-    "nearbyLandmarks": ["Bhootnath Metro Station", "Zero Mile", "Patna Bypass", "Bazar Samiti", "Bhagwat Nagar", "NMCH"],
+    "serviceArea": {
+      "city": "Patna",
+      "region": "Bihar",
+      "country": "India",
+      "radiusKm": 20
+    },
+    "provider": {
+      "name": "Parvati Nail Studio at Kritika Ladies Beauty Parlour",
+      "address": "Maurya Path, Bhootnath Road, Patna, Bihar 800026",
+      "phone": "+91-9650461390",
+      "googleMapsUrl": "https://maps.google.com/?cid=..."
+    },
+    "geo": {
+      "lat": 25.5873981,
+      "lng": 85.1757259
+    },
+    "nearbyLandmarks": [
+      "Bhootnath Metro Station",
+      "Zero Mile",
+      "Patna Bypass",
+      "Bazar Samiti",
+      "Bhagwat Nagar",
+      "NMCH"
+    ],
     "url": "/pedicure/french-pedicure-patna",
     "reviewSource": "Client reviews",
-    "seasonalTags": ["Summer special", "Beach season"],
+    "seasonalTags": [
+      "Summer special",
+      "Beach season"
+    ],
     "processingTime": "Walk-in welcome, booking recommended",
     "cancellationPolicy": "Free cancellation up to 6 hours before"
   },
@@ -439,31 +987,100 @@
     "rating": 4.7,
     "reviewCount": 280,
     "bookingCount": 540,
-    "keyIngredients": ["Non-yellowing top coat", "Cuticle oil", "Almond milk soak", "Precision tip guides"],
-    "benefits": ["Makes nails appear longer", "Lasts 5–7 days", "Professional finish"],
+    "keyIngredients": [
+      "Non-yellowing top coat",
+      "Cuticle oil",
+      "Almond milk soak",
+      "Precision tip guides"
+    ],
+    "benefits": [
+      "Makes nails appear longer",
+      "Lasts 5–7 days",
+      "Professional finish"
+    ],
     "precautions": "Avoid water for 2 hours after service.",
     "aftercare": "Apply top coat every 2 days to extend wear.",
     "faqs": [
-      {"question": "How long does it last?", "answer": "With regular polish, about 5–7 days. Upgrade to gel for 2–3 weeks."},
-      {"question": "Can I add glitter or design?", "answer": "Yes, add ₹150 for glitter French or ₹200 for design accent."}
+      {
+        "question": "How long does it last?",
+        "answer": "With regular polish, about 5–7 days. Upgrade to gel for 2–3 weeks."
+      },
+      {
+        "question": "Can I add glitter or design?",
+        "answer": "Yes, add ₹150 for glitter French or ₹200 for design accent."
+      }
     ],
-    "seoKeywords": ["classic french manicure patna", "french tips regular polish", "elegant nails Bhootnath road"],
-    "targetAudience": ["Office professionals", "Brides", "Classic style lovers"],
-    "idealFor": ["Work", "Weddings", "Formal events"],
-    "whatsIncluded": ["Precision French tip", "Natural pink base", "Cuticle grooming", "Almond milk soak", "Top coat"],
-    "whatsNotIncluded": ["Gel polish", "Nail art", "Nail extensions"],
+    "seoKeywords": [
+      "classic french manicure patna",
+      "french tips regular polish",
+      "elegant nails Bhootnath road"
+    ],
+    "targetAudience": [
+      "Office professionals",
+      "Brides",
+      "Classic style lovers"
+    ],
+    "idealFor": [
+      "Work",
+      "Weddings",
+      "Formal events"
+    ],
+    "whatsIncluded": [
+      "Precision French tip",
+      "Natural pink base",
+      "Cuticle grooming",
+      "Almond milk soak",
+      "Top coat"
+    ],
+    "whatsNotIncluded": [
+      "Gel polish",
+      "Nail art",
+      "Nail extensions"
+    ],
     "addOns": [
-      {"name": "Gel Upgrade", "price": 300},
-      {"name": "Glitter French Tips", "price": 150},
-      {"name": "Reverse French Design", "price": 200}
+      {
+        "name": "Gel Upgrade",
+        "price": 300
+      },
+      {
+        "name": "Glitter French Tips",
+        "price": 150
+      },
+      {
+        "name": "Reverse French Design",
+        "price": 200
+      }
     ],
-    "serviceArea": {"city": "Patna", "region": "Bihar", "country": "India", "radiusKm": 20},
-    "provider": {"name": "Parvati Nail Studio at Kritika Ladies Beauty Parlour", "address": "Maurya Path, Bhootnath Road, Patna, Bihar 800026", "phone": "+91-9650461390", "googleMapsUrl": "https://maps.google.com/?cid=..."},
-    "geo": {"lat": 25.5873981, "lng": 85.1757259},
-    "nearbyLandmarks": ["Bhootnath Metro Station", "Zero Mile", "Patna Bypass", "Bazar Samiti", "Bhagwat Nagar", "NMCH"],
+    "serviceArea": {
+      "city": "Patna",
+      "region": "Bihar",
+      "country": "India",
+      "radiusKm": 20
+    },
+    "provider": {
+      "name": "Parvati Nail Studio at Kritika Ladies Beauty Parlour",
+      "address": "Maurya Path, Bhootnath Road, Patna, Bihar 800026",
+      "phone": "+91-9650461390",
+      "googleMapsUrl": "https://maps.google.com/?cid=..."
+    },
+    "geo": {
+      "lat": 25.5873981,
+      "lng": 85.1757259
+    },
+    "nearbyLandmarks": [
+      "Bhootnath Metro Station",
+      "Zero Mile",
+      "Patna Bypass",
+      "Bazar Samiti",
+      "Bhagwat Nagar",
+      "NMCH"
+    ],
     "url": "/manicure/classic-french-manicure-regular-patna",
     "reviewSource": "Client reviews",
-    "seasonalTags": ["Year-round", "Wedding season"],
+    "seasonalTags": [
+      "Year-round",
+      "Wedding season"
+    ],
     "processingTime": "Walk-in welcome",
     "cancellationPolicy": "Free cancellation up to 6 hours before"
   },
@@ -491,31 +1108,102 @@
     "rating": 4.9,
     "reviewCount": 420,
     "bookingCount": 890,
-    "keyIngredients": ["LED gel polish", "Non-yellowing top coat", "Almond milk soak", "Precision guides"],
-    "benefits": ["Lasts through events", "No drying time", "Glossy finish", "Strengthens nails"],
+    "keyIngredients": [
+      "LED gel polish",
+      "Non-yellowing top coat",
+      "Almond milk soak",
+      "Precision guides"
+    ],
+    "benefits": [
+      "Lasts through events",
+      "No drying time",
+      "Glossy finish",
+      "Strengthens nails"
+    ],
     "precautions": "Avoid water exposure for 2 hours. No recent cuticle cutting.",
     "aftercare": "Apply cuticle oil daily. Wear gloves for chores.",
     "faqs": [
-      {"question": "How long does gel French last?", "answer": "2–3 weeks with proper care."},
-      {"question": "Can I remove it myself?", "answer": "We recommend professional removal to avoid damage (₹300)."}
+      {
+        "question": "How long does gel French last?",
+        "answer": "2–3 weeks with proper care."
+      },
+      {
+        "question": "Can I remove it myself?",
+        "answer": "We recommend professional removal to avoid damage (₹300)."
+      }
     ],
-    "seoKeywords": ["french gel manicure patna", "gel french tips patna", "long lasting french Bhootnath road"],
-    "targetAudience": ["Brides", "Professionals", "Event attendees"],
-    "idealFor": ["Weddings", "Honeymoon", "Office", "Travel"],
-    "whatsIncluded": ["LED gel application", "Precision French tip", "Natural pink base", "Cuticle grooming", "Almond milk soak"],
-    "whatsNotIncluded": ["Nail art", "Nail extensions", "Nail jewelry"],
+    "seoKeywords": [
+      "french gel manicure patna",
+      "gel french tips patna",
+      "long lasting french Bhootnath road"
+    ],
+    "targetAudience": [
+      "Brides",
+      "Professionals",
+      "Event attendees"
+    ],
+    "idealFor": [
+      "Weddings",
+      "Honeymoon",
+      "Office",
+      "Travel"
+    ],
+    "whatsIncluded": [
+      "LED gel application",
+      "Precision French tip",
+      "Natural pink base",
+      "Cuticle grooming",
+      "Almond milk soak"
+    ],
+    "whatsNotIncluded": [
+      "Nail art",
+      "Nail extensions",
+      "Nail jewelry"
+    ],
     "addOns": [
-      {"name": "OPI Gel Polish", "price": 200},
-      {"name": "CND Shellac Upgrade", "price": 300},
-      {"name": "Glitter French Accent", "price": 150}
+      {
+        "name": "OPI Gel Polish",
+        "price": 200
+      },
+      {
+        "name": "CND Shellac Upgrade",
+        "price": 300
+      },
+      {
+        "name": "Glitter French Accent",
+        "price": 150
+      }
     ],
-    "serviceArea": {"city": "Patna", "region": "Bihar", "country": "India", "radiusKm": 20},
-    "provider": {"name": "Parvati Nail Studio at Kritika Ladies Beauty Parlour", "address": "Maurya Path, Bhootnath Road, Patna, Bihar 800026", "phone": "+91-9650461390", "googleMapsUrl": "https://maps.google.com/?cid=..."},
-    "geo": {"lat": 25.5873981, "lng": 85.1757259},
-    "nearbyLandmarks": ["Bhootnath Metro Station", "Zero Mile", "Patna Bypass", "Bazar Samiti", "Bhagwat Nagar", "NMCH"],
+    "serviceArea": {
+      "city": "Patna",
+      "region": "Bihar",
+      "country": "India",
+      "radiusKm": 20
+    },
+    "provider": {
+      "name": "Parvati Nail Studio at Kritika Ladies Beauty Parlour",
+      "address": "Maurya Path, Bhootnath Road, Patna, Bihar 800026",
+      "phone": "+91-9650461390",
+      "googleMapsUrl": "https://maps.google.com/?cid=..."
+    },
+    "geo": {
+      "lat": 25.5873981,
+      "lng": 85.1757259
+    },
+    "nearbyLandmarks": [
+      "Bhootnath Metro Station",
+      "Zero Mile",
+      "Patna Bypass",
+      "Bazar Samiti",
+      "Bhagwat Nagar",
+      "NMCH"
+    ],
     "url": "/manicure/french-gel-manicure-patna",
     "reviewSource": "Client reviews",
-    "seasonalTags": ["Wedding season", "Year-round"],
+    "seasonalTags": [
+      "Wedding season",
+      "Year-round"
+    ],
     "processingTime": "Booking recommended",
     "cancellationPolicy": "Free cancellation up to 12 hours before"
   },
@@ -543,37 +1231,106 @@
     "rating": 4.9,
     "reviewCount": 310,
     "bookingCount": 560,
-    "keyIngredients": ["Paraffin wax", "Heated stones", "Collagen polish", "Diamond dust buffer"],
-    "benefits": ["Deeply moisturizes", "Relieves tired hands", "Adds natural shine", "Promotes relaxation"],
+    "keyIngredients": [
+      "Paraffin wax",
+      "Heated stones",
+      "Collagen polish",
+      "Diamond dust buffer"
+    ],
+    "benefits": [
+      "Deeply moisturizes",
+      "Relieves tired hands",
+      "Adds natural shine",
+      "Promotes relaxation"
+    ],
     "precautions": "Inform about skin conditions or open wounds. Not recommended during pregnancy (consult doctor).",
     "aftercare": "Sleep with cotton gloves for better absorption. Apply cuticle cream regularly.",
     "faqs": [
-      {"question": "Is this good for very dry hands?", "answer": "Yes, paraffin therapy is excellent for deep hydration."},
-      {"question": "Can I add nail art?", "answer": "Basic designs included; premium art extra ₹200."}
+      {
+        "question": "Is this good for very dry hands?",
+        "answer": "Yes, paraffin therapy is excellent for deep hydration."
+      },
+      {
+        "question": "Can I add nail art?",
+        "answer": "Basic designs included; premium art extra ₹200."
+      }
     ],
-    "seoKeywords": ["luxury manicure patna", "paraffin manicure Bhootnath road", "spa manicure Patna"],
-    "targetAudience": ["Brides", "Luxury seekers", "Pre-event clients"],
-    "idealFor": ["Pre-wedding", "Gift treatment", "Hand rejuvenation"],
-    "whatsIncluded": ["Paraffin wax dip", "Hot stone massage", "Diamond buffing", "Collagen polish", "Cuticle treatment"],
-    "whatsNotIncluded": ["Nail extensions", "Gel polish"],
+    "seoKeywords": [
+      "luxury manicure patna",
+      "paraffin manicure Bhootnath road",
+      "spa manicure Patna"
+    ],
+    "targetAudience": [
+      "Brides",
+      "Luxury seekers",
+      "Pre-event clients"
+    ],
+    "idealFor": [
+      "Pre-wedding",
+      "Gift treatment",
+      "Hand rejuvenation"
+    ],
+    "whatsIncluded": [
+      "Paraffin wax dip",
+      "Hot stone massage",
+      "Diamond buffing",
+      "Collagen polish",
+      "Cuticle treatment"
+    ],
+    "whatsNotIncluded": [
+      "Nail extensions",
+      "Gel polish"
+    ],
     "addOns": [
-      {"name": "Gel Polish Upgrade", "price": 250},
-      {"name": "Hand Mask Treatment", "price": 300},
-      {"name": "Premium Nail Art", "price": 400}
+      {
+        "name": "Gel Polish Upgrade",
+        "price": 250
+      },
+      {
+        "name": "Hand Mask Treatment",
+        "price": 300
+      },
+      {
+        "name": "Premium Nail Art",
+        "price": 400
+      }
     ],
-    "serviceArea": {"city": "Patna", "region": "Bihar", "country": "India", "radiusKm": 20},
-    "provider": {"name": "Parvati Nail Studio at Kritika Ladies Beauty Parlour", "address": "Maurya Path, Bhootnath Road, Patna, Bihar 800026", "phone": "+91-9650461390", "googleMapsUrl": "https://maps.google.com/?cid=..."},
-    "geo": {"lat": 25.5873981, "lng": 85.1757259},
-    "nearbyLandmarks": ["Bhootnath Metro Station", "Zero Mile", "Patna Bypass", "Bazar Samiti", "Bhagwat Nagar", "NMCH"],
+    "serviceArea": {
+      "city": "Patna",
+      "region": "Bihar",
+      "country": "India",
+      "radiusKm": 20
+    },
+    "provider": {
+      "name": "Parvati Nail Studio at Kritika Ladies Beauty Parlour",
+      "address": "Maurya Path, Bhootnath Road, Patna, Bihar 800026",
+      "phone": "+91-9650461390",
+      "googleMapsUrl": "https://maps.google.com/?cid=..."
+    },
+    "geo": {
+      "lat": 25.5873981,
+      "lng": 85.1757259
+    },
+    "nearbyLandmarks": [
+      "Bhootnath Metro Station",
+      "Zero Mile",
+      "Patna Bypass",
+      "Bazar Samiti",
+      "Bhagwat Nagar",
+      "NMCH"
+    ],
     "url": "/manicure/luxury-spa-manicure-patna",
     "reviewSource": "Client reviews",
-    "seasonalTags": ["Winter special", "Bridal season"],
+    "seasonalTags": [
+      "Winter special",
+      "Bridal season"
+    ],
     "processingTime": "Booking recommended",
     "cancellationPolicy": "Free cancellation up to 12 hours before"
   },
   {
     "id": "luxury-spa-pedicure-patna",
-    "title": "Luxury Spa Pedicure | Callus Care & Paraff",
+    "title": "Luxury Spa Pedicure | Callus Care & Paraffin Patna",
     "slug": "luxury-spa-pedicure-patna",
     "category": "Pedicure",
     "categorySlug": "pedicure",
@@ -595,31 +1352,100 @@
     "rating": 4.9,
     "reviewCount": 290,
     "bookingCount": 480,
-    "keyIngredients": ["Volcanic foot scrub", "Paraffin wax", "Calf massage oil", "Antimicrobial base"],
-    "benefits": ["Softens cracked heels", "Improves circulation", "Deeply hydrates", "Prepares feet for open footwear"],
+    "keyIngredients": [
+      "Volcanic foot scrub",
+      "Paraffin wax",
+      "Calf massage oil",
+      "Antimicrobial base"
+    ],
+    "benefits": [
+      "Softens cracked heels",
+      "Improves circulation",
+      "Deeply hydrates",
+      "Prepares feet for open footwear"
+    ],
     "precautions": "Diabetic clients consult doctor. No open wounds.",
     "aftercare": "Apply foot cream nightly. Wear cotton socks.",
     "faqs": [
-      {"question": "How often should I get this?", "answer": "Every 4–6 weeks for maintenance."},
-      {"question": "Is it good for rough heels?", "answer": "Yes, paraffin and callus smoothing are very effective."}
+      {
+        "question": "How often should I get this?",
+        "answer": "Every 4–6 weeks for maintenance."
+      },
+      {
+        "question": "Is it good for rough heels?",
+        "answer": "Yes, paraffin and callus smoothing are very effective."
+      }
     ],
-    "seoKeywords": ["luxury pedicure patna", "spa pedicure Bhootnath road", "paraffin pedicure Patna"],
-    "targetAudience": ["Brides", "Luxury clients", "Foot care enthusiasts"],
-    "idealFor": ["Pre-wedding", "Summer", "Gift treatment"],
-    "whatsIncluded": ["Foot scrub", "Callus smoothing", "Paraffin wrap", "Extended calf massage", "Antifungal base coat"],
-    "whatsNotIncluded": ["Gel polish", "Toe nail art"],
+    "seoKeywords": [
+      "luxury pedicure patna",
+      "spa pedicure Bhootnath road",
+      "paraffin pedicure Patna"
+    ],
+    "targetAudience": [
+      "Brides",
+      "Luxury clients",
+      "Foot care enthusiasts"
+    ],
+    "idealFor": [
+      "Pre-wedding",
+      "Summer",
+      "Gift treatment"
+    ],
+    "whatsIncluded": [
+      "Foot scrub",
+      "Callus smoothing",
+      "Paraffin wrap",
+      "Extended calf massage",
+      "Antifungal base coat"
+    ],
+    "whatsNotIncluded": [
+      "Gel polish",
+      "Toe nail art"
+    ],
     "addOns": [
-      {"name": "Gel Polish Upgrade", "price": 300},
-      {"name": "Toe Nail Art", "price": 250},
-      {"name": "Swarovski Toe Accents", "price": 300}
+      {
+        "name": "Gel Polish Upgrade",
+        "price": 300
+      },
+      {
+        "name": "Toe Nail Art",
+        "price": 250
+      },
+      {
+        "name": "Swarovski Toe Accents",
+        "price": 300
+      }
     ],
-    "serviceArea": {"city": "Patna", "region": "Bihar", "country": "India", "radiusKm": 20},
-    "provider": {"name": "Parvati Nail Studio at Kritika Ladies Beauty Parlour", "address": "Maurya Path, Bhootnath Road, Patna, Bihar 800026", "phone": "+91-9650461390", "googleMapsUrl": "https://maps.google.com/?cid=..."},
-    "geo": {"lat": 25.5873981, "lng": 85.1757259},
-    "nearbyLandmarks": ["Bhootnath Metro Station", "Zero Mile", "Patna Bypass", "Bazar Samiti", "Bhagwat Nagar", "NMCH"],
+    "serviceArea": {
+      "city": "Patna",
+      "region": "Bihar",
+      "country": "India",
+      "radiusKm": 20
+    },
+    "provider": {
+      "name": "Parvati Nail Studio at Kritika Ladies Beauty Parlour",
+      "address": "Maurya Path, Bhootnath Road, Patna, Bihar 800026",
+      "phone": "+91-9650461390",
+      "googleMapsUrl": "https://maps.google.com/?cid=..."
+    },
+    "geo": {
+      "lat": 25.5873981,
+      "lng": 85.1757259
+    },
+    "nearbyLandmarks": [
+      "Bhootnath Metro Station",
+      "Zero Mile",
+      "Patna Bypass",
+      "Bazar Samiti",
+      "Bhagwat Nagar",
+      "NMCH"
+    ],
     "url": "/pedicure/luxury-spa-pedicure-patna",
     "reviewSource": "Client reviews",
-    "seasonalTags": ["Summer special", "Bridal season"],
+    "seasonalTags": [
+      "Summer special",
+      "Bridal season"
+    ],
     "processingTime": "Booking recommended",
     "cancellationPolicy": "Free cancellation up to 12 hours before"
   },
@@ -647,31 +1473,98 @@
     "rating": 4.7,
     "reviewCount": 340,
     "bookingCount": 780,
-    "keyIngredients": ["Acrylic paints", "Fine detail brushes", "Top coat", "Nail gems (optional)"],
-    "benefits": ["Personalized look", "Instagram-worthy", "Affordable upgrade"],
+    "keyIngredients": [
+      "Acrylic paints",
+      "Fine detail brushes",
+      "Top coat",
+      "Nail gems (optional)"
+    ],
+    "benefits": [
+      "Personalized look",
+      "Instagram-worthy",
+      "Affordable upgrade"
+    ],
     "precautions": "Allergy test for adhesive gems. Avoid water for 1 hour.",
     "aftercare": "Apply top coat every 3 days to preserve design.",
     "faqs": [
-      {"question": "Can I choose any design?", "answer": "Yes, from our catalog or bring a simple reference."},
-      {"question": "Does this work on short nails?", "answer": "Yes, we specialize in mini-canvas designs."}
+      {
+        "question": "Can I choose any design?",
+        "answer": "Yes, from our catalog or bring a simple reference."
+      },
+      {
+        "question": "Does this work on short nails?",
+        "answer": "Yes, we specialize in mini-canvas designs."
+      }
     ],
-    "seoKeywords": ["basic nail art patna", "accent nail design Bhootnath road", "simple nail art Patna"],
-    "targetAudience": ["Students", "Budget-conscious", "First-timers"],
-    "idealFor": ["Parties", "Festivals", "Everyday style"],
-    "whatsIncluded": ["Design on 1–2 nails", "Hand-painted details", "Top coat"],
-    "whatsNotIncluded": ["Full set art", "3D art", "Premium crystals"],
+    "seoKeywords": [
+      "basic nail art patna",
+      "accent nail design Bhootnath road",
+      "simple nail art Patna"
+    ],
+    "targetAudience": [
+      "Students",
+      "Budget-conscious",
+      "First-timers"
+    ],
+    "idealFor": [
+      "Parties",
+      "Festivals",
+      "Everyday style"
+    ],
+    "whatsIncluded": [
+      "Design on 1–2 nails",
+      "Hand-painted details",
+      "Top coat"
+    ],
+    "whatsNotIncluded": [
+      "Full set art",
+      "3D art",
+      "Premium crystals"
+    ],
     "addOns": [
-      {"name": "Additional Accent Nails", "price": 100},
-      {"name": "Nail Gems", "price": 100},
-      {"name": "French Tip with Design", "price": 150}
+      {
+        "name": "Additional Accent Nails",
+        "price": 100
+      },
+      {
+        "name": "Nail Gems",
+        "price": 100
+      },
+      {
+        "name": "French Tip with Design",
+        "price": 150
+      }
     ],
-    "serviceArea": {"city": "Patna", "region": "Bihar", "country": "India", "radiusKm": 20},
-    "provider": {"name": "Parvati Nail Studio at Kritika Ladies Beauty Parlour", "address": "Maurya Path, Bhootnath Road, Patna, Bihar 800026", "phone": "+91-9650461390", "googleMapsUrl": "https://maps.google.com/?cid=..."},
-    "geo": {"lat": 25.5873981, "lng": 85.1757259},
-    "nearbyLandmarks": ["Bhootnath Metro Station", "Zero Mile", "Patna Bypass", "Bazar Samiti", "Bhagwat Nagar", "NMCH"],
+    "serviceArea": {
+      "city": "Patna",
+      "region": "Bihar",
+      "country": "India",
+      "radiusKm": 20
+    },
+    "provider": {
+      "name": "Parvati Nail Studio at Kritika Ladies Beauty Parlour",
+      "address": "Maurya Path, Bhootnath Road, Patna, Bihar 800026",
+      "phone": "+91-9650461390",
+      "googleMapsUrl": "https://maps.google.com/?cid=..."
+    },
+    "geo": {
+      "lat": 25.5873981,
+      "lng": 85.1757259
+    },
+    "nearbyLandmarks": [
+      "Bhootnath Metro Station",
+      "Zero Mile",
+      "Patna Bypass",
+      "Bazar Samiti",
+      "Bhagwat Nagar",
+      "NMCH"
+    ],
     "url": "/nail-art/basic-accent-nail-art-patna",
     "reviewSource": "Client reviews",
-    "seasonalTags": ["Year-round", "Festival specials"],
+    "seasonalTags": [
+      "Year-round",
+      "Festival specials"
+    ],
     "processingTime": "Walk-in welcome",
     "cancellationPolicy": "Free cancellation up to 3 hours before"
   },
@@ -699,32 +1592,103 @@
     "rating": 4.9,
     "reviewCount": 510,
     "bookingCount": 1120,
-    "keyIngredients": ["Acrylic paints", "Chrome powder", "Fine brushes", "Nail gems"],
-    "benefits": ["Unique self-expression", "Photo-ready", "Matches any outfit"],
+    "keyIngredients": [
+      "Acrylic paints",
+      "Chrome powder",
+      "Fine brushes",
+      "Nail gems"
+    ],
+    "benefits": [
+      "Unique self-expression",
+      "Photo-ready",
+      "Matches any outfit"
+    ],
     "precautions": "Bring reference photo for best results. Avoid water for 2 hours.",
     "aftercare": "Avoid picking at designs. Apply top coat every 5 days.",
     "faqs": [
-      {"question": "Can you do complex character art?", "answer": "Yes, for detailed portraits add ₹300 extra."},
-      {"question": "How long does it last?", "answer": "2–3 weeks with proper top coat care."}
+      {
+        "question": "Can you do complex character art?",
+        "answer": "Yes, for detailed portraits add ₹300 extra."
+      },
+      {
+        "question": "How long does it last?",
+        "answer": "2–3 weeks with proper top coat care."
+      }
     ],
-    "seoKeywords": ["full set nail art patna", "instagram nail designs Patna", "custom nail art Bhootnath road"],
-    "targetAudience": ["Influencers", "Brides", "Fashion-forward"],
-    "idealFor": ["Parties", "Weddings", "Photoshoots"],
-    "whatsIncluded": ["Design on all 10 nails", "Hand-painted details", "Top coat", "Consultation"],
-    "whatsNotIncluded": ["3D art", "Premium crystals", "Nail extensions"],
+    "seoKeywords": [
+      "full set nail art patna",
+      "instagram nail designs Patna",
+      "custom nail art Bhootnath road"
+    ],
+    "targetAudience": [
+      "Influencers",
+      "Brides",
+      "Fashion-forward"
+    ],
+    "idealFor": [
+      "Parties",
+      "Weddings",
+      "Photoshoots"
+    ],
+    "whatsIncluded": [
+      "Design on all 10 nails",
+      "Hand-painted details",
+      "Top coat",
+      "Consultation"
+    ],
+    "whatsNotIncluded": [
+      "3D art",
+      "Premium crystals",
+      "Nail extensions"
+    ],
     "addOns": [
-      {"name": "3D Art (per nail)", "price": 100},
-      {"name": "Swarovski Crystals (per nail)", "price": 100},
-      {"name": "24k Gold Foil", "price": 300},
-      {"name": "OPI Base/Top Coat", "price": 200}
+      {
+        "name": "3D Art (per nail)",
+        "price": 100
+      },
+      {
+        "name": "Swarovski Crystals (per nail)",
+        "price": 100
+      },
+      {
+        "name": "24k Gold Foil",
+        "price": 300
+      },
+      {
+        "name": "OPI Base/Top Coat",
+        "price": 200
+      }
     ],
-    "serviceArea": {"city": "Patna", "region": "Bihar", "country": "India", "radiusKm": 20},
-    "provider": {"name": "Parvati Nail Studio at Kritika Ladies Beauty Parlour", "address": "Maurya Path, Bhootnath Road, Patna, Bihar 800026", "phone": "+91-9650461390", "googleMapsUrl": "https://maps.google.com/?cid=..."},
-    "geo": {"lat": 25.5873981, "lng": 85.1757259},
-    "nearbyLandmarks": ["Bhootnath Metro Station", "Zero Mile", "Patna Bypass", "Bazar Samiti", "Bhagwat Nagar", "NMCH"],
+    "serviceArea": {
+      "city": "Patna",
+      "region": "Bihar",
+      "country": "India",
+      "radiusKm": 20
+    },
+    "provider": {
+      "name": "Parvati Nail Studio at Kritika Ladies Beauty Parlour",
+      "address": "Maurya Path, Bhootnath Road, Patna, Bihar 800026",
+      "phone": "+91-9650461390",
+      "googleMapsUrl": "https://maps.google.com/?cid=..."
+    },
+    "geo": {
+      "lat": 25.5873981,
+      "lng": 85.1757259
+    },
+    "nearbyLandmarks": [
+      "Bhootnath Metro Station",
+      "Zero Mile",
+      "Patna Bypass",
+      "Bazar Samiti",
+      "Bhagwat Nagar",
+      "NMCH"
+    ],
     "url": "/nail-art/full-set-nail-art-patna",
     "reviewSource": "Client reviews",
-    "seasonalTags": ["Festival specials", "Wedding season"],
+    "seasonalTags": [
+      "Festival specials",
+      "Wedding season"
+    ],
     "processingTime": "Booking recommended",
     "cancellationPolicy": "Free cancellation up to 12 hours before"
   },
@@ -752,31 +1716,98 @@
     "rating": 4.9,
     "reviewCount": 380,
     "bookingCount": 690,
-    "keyIngredients": ["Chrome powder", "Ombre sponge", "Mirror pigment", "Gel base"],
-    "benefits": ["Viral Instagram look", "High shine", "Long-lasting"],
+    "keyIngredients": [
+      "Chrome powder",
+      "Ombre sponge",
+      "Mirror pigment",
+      "Gel base"
+    ],
+    "benefits": [
+      "Viral Instagram look",
+      "High shine",
+      "Long-lasting"
+    ],
     "precautions": "Requires gel base – not suitable for natural nails without strengthening.",
     "aftercare": "Avoid acetone-based removers.",
     "faqs": [
-      {"question": "Can I do chrome on natural nails?", "answer": "Yes, with a gel base coat for adhesion."},
-      {"question": "How long does it take?", "answer": "About 45 minutes."}
+      {
+        "question": "Can I do chrome on natural nails?",
+        "answer": "Yes, with a gel base coat for adhesion."
+      },
+      {
+        "question": "How long does it take?",
+        "answer": "About 45 minutes."
+      }
     ],
-    "seoKeywords": ["chrome nails patna", "ombre nails Bhootnath road", "mirror finish Patna"],
-    "targetAudience": ["Trend followers", "Brides", "Instagram users"],
-    "idealFor": ["Parties", "Weddings", "Festivals"],
-    "whatsIncluded": ["Chrome/ombre/mirror application", "Gel base", "Top coat", "Shaping"],
-    "whatsNotIncluded": ["Nail extensions", "3D art"],
+    "seoKeywords": [
+      "chrome nails patna",
+      "ombre nails Bhootnath road",
+      "mirror finish Patna"
+    ],
+    "targetAudience": [
+      "Trend followers",
+      "Brides",
+      "Instagram users"
+    ],
+    "idealFor": [
+      "Parties",
+      "Weddings",
+      "Festivals"
+    ],
+    "whatsIncluded": [
+      "Chrome/ombre/mirror application",
+      "Gel base",
+      "Top coat",
+      "Shaping"
+    ],
+    "whatsNotIncluded": [
+      "Nail extensions",
+      "3D art"
+    ],
     "addOns": [
-      {"name": "Swarovski Crystal Accents", "price": 300},
-      {"name": "Magnetic Cat Eye Effect", "price": 200},
-      {"name": "Matte Top Coat", "price": 150}
+      {
+        "name": "Swarovski Crystal Accents",
+        "price": 300
+      },
+      {
+        "name": "Magnetic Cat Eye Effect",
+        "price": 200
+      },
+      {
+        "name": "Matte Top Coat",
+        "price": 150
+      }
     ],
-    "serviceArea": {"city": "Patna", "region": "Bihar", "country": "India", "radiusKm": 20},
-    "provider": {"name": "Parvati Nail Studio at Kritika Ladies Beauty Parlour", "address": "Maurya Path, Bhootnath Road, Patna, Bihar 800026", "phone": "+91-9650461390", "googleMapsUrl": "https://maps.google.com/?cid=..."},
-    "geo": {"lat": 25.5873981, "lng": 85.1757259},
-    "nearbyLandmarks": ["Bhootnath Metro Station", "Zero Mile", "Patna Bypass", "Bazar Samiti", "Bhagwat Nagar", "NMCH"],
+    "serviceArea": {
+      "city": "Patna",
+      "region": "Bihar",
+      "country": "India",
+      "radiusKm": 20
+    },
+    "provider": {
+      "name": "Parvati Nail Studio at Kritika Ladies Beauty Parlour",
+      "address": "Maurya Path, Bhootnath Road, Patna, Bihar 800026",
+      "phone": "+91-9650461390",
+      "googleMapsUrl": "https://maps.google.com/?cid=..."
+    },
+    "geo": {
+      "lat": 25.5873981,
+      "lng": 85.1757259
+    },
+    "nearbyLandmarks": [
+      "Bhootnath Metro Station",
+      "Zero Mile",
+      "Patna Bypass",
+      "Bazar Samiti",
+      "Bhagwat Nagar",
+      "NMCH"
+    ],
     "url": "/nail-art/chrome-ombre-mirror-nails-patna",
     "reviewSource": "Client reviews",
-    "seasonalTags": ["Trending", "Wedding season"],
+    "seasonalTags": [
+      "Trending",
+      "Wedding season"
+    ],
     "processingTime": "Booking recommended",
     "cancellationPolicy": "Free cancellation up to 12 hours before"
   },
@@ -804,31 +1835,98 @@
     "rating": 4.8,
     "reviewCount": 240,
     "bookingCount": 410,
-    "keyIngredients": ["Magnetic gel polish", "Magnet tool", "Gel base/top", "Cat eye pigments"],
-    "benefits": ["Hypnotic effect", "Instagram viral", "Unique finish"],
+    "keyIngredients": [
+      "Magnetic gel polish",
+      "Magnet tool",
+      "Gel base/top",
+      "Cat eye pigments"
+    ],
+    "benefits": [
+      "Hypnotic effect",
+      "Instagram viral",
+      "Unique finish"
+    ],
     "precautions": "Avoid water for 2 hours. Use magnetic tool carefully.",
     "aftercare": "Apply top coat after 5 days for longevity.",
     "faqs": [
-      {"question": "Does it work on short nails?", "answer": "Yes, the effect is visible on any length."},
-      {"question": "Can I combine with other art?", "answer": "Yes, accent nails can be different."}
+      {
+        "question": "Does it work on short nails?",
+        "answer": "Yes, the effect is visible on any length."
+      },
+      {
+        "question": "Can I combine with other art?",
+        "answer": "Yes, accent nails can be different."
+      }
     ],
-    "seoKeywords": ["cat eye nails patna", "magnetic nails Bhootnath road", "viral nail trend Patna"],
-    "targetAudience": ["Gen-Z", "Trend followers", "Instagram users"],
-    "idealFor": ["Parties", "Reels", "Everyday statement"],
-    "whatsIncluded": ["Magnetic gel application", "Cat eye effect", "Gel top coat", "Shaping"],
-    "whatsNotIncluded": ["Nail extensions", "Additional nail art"],
+    "seoKeywords": [
+      "cat eye nails patna",
+      "magnetic nails Bhootnath road",
+      "viral nail trend Patna"
+    ],
+    "targetAudience": [
+      "Gen-Z",
+      "Trend followers",
+      "Instagram users"
+    ],
+    "idealFor": [
+      "Parties",
+      "Reels",
+      "Everyday statement"
+    ],
+    "whatsIncluded": [
+      "Magnetic gel application",
+      "Cat eye effect",
+      "Gel top coat",
+      "Shaping"
+    ],
+    "whatsNotIncluded": [
+      "Nail extensions",
+      "Additional nail art"
+    ],
     "addOns": [
-      {"name": "Chrome Accent Nail", "price": 100},
-      {"name": "Swarovski Crystal", "price": 100},
-      {"name": "Matte Top Coat", "price": 150}
+      {
+        "name": "Chrome Accent Nail",
+        "price": 100
+      },
+      {
+        "name": "Swarovski Crystal",
+        "price": 100
+      },
+      {
+        "name": "Matte Top Coat",
+        "price": 150
+      }
     ],
-    "serviceArea": {"city": "Patna", "region": "Bihar", "country": "India", "radiusKm": 20},
-    "provider": {"name": "Parvati Nail Studio at Kritika Ladies Beauty Parlour", "address": "Maurya Path, Bhootnath Road, Patna, Bihar 800026", "phone": "+91-9650461390", "googleMapsUrl": "https://maps.google.com/?cid=..."},
-    "geo": {"lat": 25.5873981, "lng": 85.1757259},
-    "nearbyLandmarks": ["Bhootnath Metro Station", "Zero Mile", "Patna Bypass", "Bazar Samiti", "Bhagwat Nagar", "NMCH"],
+    "serviceArea": {
+      "city": "Patna",
+      "region": "Bihar",
+      "country": "India",
+      "radiusKm": 20
+    },
+    "provider": {
+      "name": "Parvati Nail Studio at Kritika Ladies Beauty Parlour",
+      "address": "Maurya Path, Bhootnath Road, Patna, Bihar 800026",
+      "phone": "+91-9650461390",
+      "googleMapsUrl": "https://maps.google.com/?cid=..."
+    },
+    "geo": {
+      "lat": 25.5873981,
+      "lng": 85.1757259
+    },
+    "nearbyLandmarks": [
+      "Bhootnath Metro Station",
+      "Zero Mile",
+      "Patna Bypass",
+      "Bazar Samiti",
+      "Bhagwat Nagar",
+      "NMCH"
+    ],
     "url": "/nail-art/cat-eye-magnetic-nails-patna",
     "reviewSource": "Client reviews",
-    "seasonalTags": ["Trending", "Year-round"],
+    "seasonalTags": [
+      "Trending",
+      "Year-round"
+    ],
     "processingTime": "Booking recommended",
     "cancellationPolicy": "Free cancellation up to 12 hours before"
   },
@@ -856,31 +1954,97 @@
     "rating": 4.8,
     "reviewCount": 190,
     "bookingCount": 280,
-    "keyIngredients": ["Airbrush pigments", "Sponge gradient", "Gel base", "Matte/gloss top coat"],
-    "benefits": ["Subtle elegance", "Matches any outfit", "Photogenic"],
+    "keyIngredients": [
+      "Airbrush pigments",
+      "Sponge gradient",
+      "Gel base",
+      "Matte/gloss top coat"
+    ],
+    "benefits": [
+      "Subtle elegance",
+      "Matches any outfit",
+      "Photogenic"
+    ],
     "precautions": "Best on light to medium skin tones; dark colours can be adjusted.",
     "aftercare": "Avoid harsh chemicals.",
     "faqs": [
-      {"question": "Can I choose any colour for the aura?", "answer": "Yes, custom colour combinations available."},
-      {"question": "Does it work on dark skin?", "answer": "Yes, with vibrant centre colours."}
+      {
+        "question": "Can I choose any colour for the aura?",
+        "answer": "Yes, custom colour combinations available."
+      },
+      {
+        "question": "Does it work on dark skin?",
+        "answer": "Yes, with vibrant centre colours."
+      }
     ],
-    "seoKeywords": ["aura nails patna", "soft glow nails Bhootnath road", "gradient nails Patna"],
-    "targetAudience": ["Minimalists", "Professionals", "Brides"],
-    "idealFor": ["Office", "Wedding guest", "Daily wear"],
-    "whatsIncluded": ["Aura gradient application", "Gel top coat", "Shaping"],
-    "whatsNotIncluded": ["Nail art details", "Extensions"],
+    "seoKeywords": [
+      "aura nails patna",
+      "soft glow nails Bhootnath road",
+      "gradient nails Patna"
+    ],
+    "targetAudience": [
+      "Minimalists",
+      "Professionals",
+      "Brides"
+    ],
+    "idealFor": [
+      "Office",
+      "Wedding guest",
+      "Daily wear"
+    ],
+    "whatsIncluded": [
+      "Aura gradient application",
+      "Gel top coat",
+      "Shaping"
+    ],
+    "whatsNotIncluded": [
+      "Nail art details",
+      "Extensions"
+    ],
     "addOns": [
-      {"name": "Glitter Edge", "price": 150},
-      {"name": "Matte Finish", "price": 100},
-      {"name": "Swarovski Centre Stone", "price": 200}
+      {
+        "name": "Glitter Edge",
+        "price": 150
+      },
+      {
+        "name": "Matte Finish",
+        "price": 100
+      },
+      {
+        "name": "Swarovski Centre Stone",
+        "price": 200
+      }
     ],
-    "serviceArea": {"city": "Patna", "region": "Bihar", "country": "India", "radiusKm": 20},
-    "provider": {"name": "Parvati Nail Studio at Kritika Ladies Beauty Parlour", "address": "Maurya Path, Bhootnath Road, Patna, Bihar 800026", "phone": "+91-9650461390", "googleMapsUrl": "https://maps.google.com/?cid=..."},
-    "geo": {"lat": 25.5873981, "lng": 85.1757259},
-    "nearbyLandmarks": ["Bhootnath Metro Station", "Zero Mile", "Patna Bypass", "Bazar Samiti", "Bhagwat Nagar", "NMCH"],
+    "serviceArea": {
+      "city": "Patna",
+      "region": "Bihar",
+      "country": "India",
+      "radiusKm": 20
+    },
+    "provider": {
+      "name": "Parvati Nail Studio at Kritika Ladies Beauty Parlour",
+      "address": "Maurya Path, Bhootnath Road, Patna, Bihar 800026",
+      "phone": "+91-9650461390",
+      "googleMapsUrl": "https://maps.google.com/?cid=..."
+    },
+    "geo": {
+      "lat": 25.5873981,
+      "lng": 85.1757259
+    },
+    "nearbyLandmarks": [
+      "Bhootnath Metro Station",
+      "Zero Mile",
+      "Patna Bypass",
+      "Bazar Samiti",
+      "Bhagwat Nagar",
+      "NMCH"
+    ],
     "url": "/nail-art/aura-nails-patna",
     "reviewSource": "Client reviews",
-    "seasonalTags": ["Year-round", "Minimal trend"],
+    "seasonalTags": [
+      "Year-round",
+      "Minimal trend"
+    ],
     "processingTime": "Booking recommended",
     "cancellationPolicy": "Free cancellation up to 12 hours before"
   },
@@ -908,31 +2072,98 @@
     "rating": 4.9,
     "reviewCount": 210,
     "bookingCount": 350,
-    "keyIngredients": ["Chrome pearl powder", "Sheer gel base", "High-shine top coat", "Cuticle oil"],
-    "benefits": ["Ultra-glossy", "Celebrity look", "Universally flattering"],
+    "keyIngredients": [
+      "Chrome pearl powder",
+      "Sheer gel base",
+      "High-shine top coat",
+      "Cuticle oil"
+    ],
+    "benefits": [
+      "Ultra-glossy",
+      "Celebrity look",
+      "Universally flattering"
+    ],
     "precautions": "Requires smooth nail surface. Avoid water for 1 hour.",
     "aftercare": "Reapply top coat weekly for sustained shine.",
     "faqs": [
-      {"question": "Is this the exact Hailey Bieber style?", "answer": "Yes, we match the pearl-chrome effect."},
-      {"question": "Can I add a coloured tip?", "answer": "Yes, add ₹150 for French glazed style."}
+      {
+        "question": "Is this the exact Hailey Bieber style?",
+        "answer": "Yes, we match the pearl-chrome effect."
+      },
+      {
+        "question": "Can I add a coloured tip?",
+        "answer": "Yes, add ₹150 for French glazed style."
+      }
     ],
-    "seoKeywords": ["glazed donut nails patna", "hailey bieber nails Patna", "pearly nails Bhootnath road"],
-    "targetAudience": ["Celebrity trend followers", "Brides", "Minimalists"],
-    "idealFor": ["Daily wear", "Weddings", "Events"],
-    "whatsIncluded": ["Pearl chrome application", "Sheer base", "High-gloss top coat", "Shaping"],
-    "whatsNotIncluded": ["Nail extensions", "Additional nail art"],
+    "seoKeywords": [
+      "glazed donut nails patna",
+      "hailey bieber nails Patna",
+      "pearly nails Bhootnath road"
+    ],
+    "targetAudience": [
+      "Celebrity trend followers",
+      "Brides",
+      "Minimalists"
+    ],
+    "idealFor": [
+      "Daily wear",
+      "Weddings",
+      "Events"
+    ],
+    "whatsIncluded": [
+      "Pearl chrome application",
+      "Sheer base",
+      "High-gloss top coat",
+      "Shaping"
+    ],
+    "whatsNotIncluded": [
+      "Nail extensions",
+      "Additional nail art"
+    ],
     "addOns": [
-      {"name": "French Glazed Tip", "price": 150},
-      {"name": "Chrome Accent Nail", "price": 100},
-      {"name": "Rhinestone Edge", "price": 200}
+      {
+        "name": "French Glazed Tip",
+        "price": 150
+      },
+      {
+        "name": "Chrome Accent Nail",
+        "price": 100
+      },
+      {
+        "name": "Rhinestone Edge",
+        "price": 200
+      }
     ],
-    "serviceArea": {"city": "Patna", "region": "Bihar", "country": "India", "radiusKm": 20},
-    "provider": {"name": "Parvati Nail Studio at Kritika Ladies Beauty Parlour", "address": "Maurya Path, Bhootnath Road, Patna, Bihar 800026", "phone": "+91-9650461390", "googleMapsUrl": "https://maps.google.com/?cid=..."},
-    "geo": {"lat": 25.5873981, "lng": 85.1757259},
-    "nearbyLandmarks": ["Bhootnath Metro Station", "Zero Mile", "Patna Bypass", "Bazar Samiti", "Bhagwat Nagar", "NMCH"],
+    "serviceArea": {
+      "city": "Patna",
+      "region": "Bihar",
+      "country": "India",
+      "radiusKm": 20
+    },
+    "provider": {
+      "name": "Parvati Nail Studio at Kritika Ladies Beauty Parlour",
+      "address": "Maurya Path, Bhootnath Road, Patna, Bihar 800026",
+      "phone": "+91-9650461390",
+      "googleMapsUrl": "https://maps.google.com/?cid=..."
+    },
+    "geo": {
+      "lat": 25.5873981,
+      "lng": 85.1757259
+    },
+    "nearbyLandmarks": [
+      "Bhootnath Metro Station",
+      "Zero Mile",
+      "Patna Bypass",
+      "Bazar Samiti",
+      "Bhagwat Nagar",
+      "NMCH"
+    ],
     "url": "/nail-art/glazed-donut-nails-patna",
     "reviewSource": "Client reviews",
-    "seasonalTags": ["Trending", "Year-round"],
+    "seasonalTags": [
+      "Trending",
+      "Year-round"
+    ],
     "processingTime": "Booking recommended",
     "cancellationPolicy": "Free cancellation up to 12 hours before"
   },
@@ -960,32 +2191,104 @@
     "rating": 4.8,
     "reviewCount": 460,
     "bookingCount": 890,
-    "keyIngredients": ["Odor-free acrylic", "Nail forms", "Professional primer", "High-gloss top coat"],
-    "benefits": ["Instant length", "Very durable", "Custom shapes", "Lasts 3–4 weeks"],
+    "keyIngredients": [
+      "Odor-free acrylic",
+      "Nail forms",
+      "Professional primer",
+      "High-gloss top coat"
+    ],
+    "benefits": [
+      "Instant length",
+      "Very durable",
+      "Custom shapes",
+      "Lasts 3–4 weeks"
+    ],
     "precautions": "Not for severe nail biters. Avoid water for 24 hours.",
     "aftercare": "Use cuticle oil daily. Avoid using nails as tools.",
     "faqs": [
-      {"question": "How often do I need fills?", "answer": "Every 2–3 weeks."},
-      {"question": "Can I remove them at home?", "answer": "We recommend professional removal (₹300) to avoid damage."}
+      {
+        "question": "How often do I need fills?",
+        "answer": "Every 2–3 weeks."
+      },
+      {
+        "question": "Can I remove them at home?",
+        "answer": "We recommend professional removal (₹300) to avoid damage."
+      }
     ],
-    "seoKeywords": ["acrylic nails patna", "nail extensions Bhootnath road", "coffin nails Patna"],
-    "targetAudience": ["Fashion enthusiasts", "Brides", "Event attendees"],
-    "idealFor": ["Weddings", "Parties", "Long-lasting wear"],
-    "whatsIncluded": ["Acrylic application", "Shape customization", "Basic polish", "Sanitization"],
-    "whatsNotIncluded": ["Nail art", "French tips", "Gel polish"],
+    "seoKeywords": [
+      "acrylic nails patna",
+      "nail extensions Bhootnath road",
+      "coffin nails Patna"
+    ],
+    "targetAudience": [
+      "Fashion enthusiasts",
+      "Brides",
+      "Event attendees"
+    ],
+    "idealFor": [
+      "Weddings",
+      "Parties",
+      "Long-lasting wear"
+    ],
+    "whatsIncluded": [
+      "Acrylic application",
+      "Shape customization",
+      "Basic polish",
+      "Sanitization"
+    ],
+    "whatsNotIncluded": [
+      "Nail art",
+      "French tips",
+      "Gel polish"
+    ],
     "addOns": [
-      {"name": "Gel Polish", "price": 300},
-      {"name": "Nail Art Design", "price": 500},
-      {"name": "Swarovski Crystals", "price": 500},
-      {"name": "French Tip", "price": 300}
+      {
+        "name": "Gel Polish",
+        "price": 300
+      },
+      {
+        "name": "Nail Art Design",
+        "price": 500
+      },
+      {
+        "name": "Swarovski Crystals",
+        "price": 500
+      },
+      {
+        "name": "French Tip",
+        "price": 300
+      }
     ],
-    "serviceArea": {"city": "Patna", "region": "Bihar", "country": "India", "radiusKm": 20},
-    "provider": {"name": "Parvati Nail Studio at Kritika Ladies Beauty Parlour", "address": "Maurya Path, Bhootnath Road, Patna, Bihar 800026", "phone": "+91-9650461390", "googleMapsUrl": "https://maps.google.com/?cid=..."},
-    "geo": {"lat": 25.5873981, "lng": 85.1757259},
-    "nearbyLandmarks": ["Bhootnath Metro Station", "Zero Mile", "Patna Bypass", "Bazar Samiti", "Bhagwat Nagar", "NMCH"],
+    "serviceArea": {
+      "city": "Patna",
+      "region": "Bihar",
+      "country": "India",
+      "radiusKm": 20
+    },
+    "provider": {
+      "name": "Parvati Nail Studio at Kritika Ladies Beauty Parlour",
+      "address": "Maurya Path, Bhootnath Road, Patna, Bihar 800026",
+      "phone": "+91-9650461390",
+      "googleMapsUrl": "https://maps.google.com/?cid=..."
+    },
+    "geo": {
+      "lat": 25.5873981,
+      "lng": 85.1757259
+    },
+    "nearbyLandmarks": [
+      "Bhootnath Metro Station",
+      "Zero Mile",
+      "Patna Bypass",
+      "Bazar Samiti",
+      "Bhagwat Nagar",
+      "NMCH"
+    ],
     "url": "/nail-salon/acrylic-nail-extensions-patna",
     "reviewSource": "Client reviews",
-    "seasonalTags": ["Year-round", "Wedding season"],
+    "seasonalTags": [
+      "Year-round",
+      "Wedding season"
+    ],
     "processingTime": "Booking required",
     "cancellationPolicy": "Free cancellation up to 24 hours before"
   },
@@ -1013,32 +2316,103 @@
     "rating": 4.9,
     "reviewCount": 380,
     "bookingCount": 670,
-    "keyIngredients": ["LED builder gel", "Nail forms", "Flexible gel", "High-gloss top coat"],
-    "benefits": ["Natural appearance", "Comfortable", "No odor", "lasts 3 weeks+"],
+    "keyIngredients": [
+      "LED builder gel",
+      "Nail forms",
+      "Flexible gel",
+      "High-gloss top coat"
+    ],
+    "benefits": [
+      "Natural appearance",
+      "Comfortable",
+      "No odor",
+      "lasts 3 weeks+"
+    ],
     "precautions": "Avoid water for 24 hours. Not for severe nail biters.",
     "aftercare": "Use cuticle oil. Wear gloves for chores.",
     "faqs": [
-      {"question": "Acrylic vs gel – which is better?", "answer": "Gel is more flexible and natural; acrylic is stronger for very long lengths."},
-      {"question": "Can I get fills?", "answer": "Yes, fills every 3 weeks at ₹699."}
+      {
+        "question": "Acrylic vs gel – which is better?",
+        "answer": "Gel is more flexible and natural; acrylic is stronger for very long lengths."
+      },
+      {
+        "question": "Can I get fills?",
+        "answer": "Yes, fills every 3 weeks at ₹699."
+      }
     ],
-    "seoKeywords": ["gel nail extensions patna", "lightweight nails Bhootnath road", "natural extensions Patna"],
-    "targetAudience": ["Professionals", "Brides", "Daily wear clients"],
-    "idealFor": ["Office", "Everyday", "Special events"],
-    "whatsIncluded": ["Gel extension application", "Shape customization", "Basic polish", "Sanitization"],
-    "whatsNotIncluded": ["Nail art", "French tips", "Gel polish upgrade"],
+    "seoKeywords": [
+      "gel nail extensions patna",
+      "lightweight nails Bhootnath road",
+      "natural extensions Patna"
+    ],
+    "targetAudience": [
+      "Professionals",
+      "Brides",
+      "Daily wear clients"
+    ],
+    "idealFor": [
+      "Office",
+      "Everyday",
+      "Special events"
+    ],
+    "whatsIncluded": [
+      "Gel extension application",
+      "Shape customization",
+      "Basic polish",
+      "Sanitization"
+    ],
+    "whatsNotIncluded": [
+      "Nail art",
+      "French tips",
+      "Gel polish upgrade"
+    ],
     "addOns": [
-      {"name": "Gel Polish Upgrade", "price": 300},
-      {"name": "Nail Art", "price": 500},
-      {"name": "OPI Gel Color", "price": 400},
-      {"name": "Swarovski Accent", "price": 500}
+      {
+        "name": "Gel Polish Upgrade",
+        "price": 300
+      },
+      {
+        "name": "Nail Art",
+        "price": 500
+      },
+      {
+        "name": "OPI Gel Color",
+        "price": 400
+      },
+      {
+        "name": "Swarovski Accent",
+        "price": 500
+      }
     ],
-    "serviceArea": {"city": "Patna", "region": "Bihar", "country": "India", "radiusKm": 20},
-    "provider": {"name": "Parvati Nail Studio at Kritika Ladies Beauty Parlour", "address": "Maurya Path, Bhootnath Road, Patna, Bihar 800026", "phone": "+91-9650461390", "googleMapsUrl": "https://maps.google.com/?cid=..."},
-    "geo": {"lat": 25.5873981, "lng": 85.1757259},
-    "nearbyLandmarks": ["Bhootnath Metro Station", "Zero Mile", "Patna Bypass", "Bazar Samiti", "Bhagwat Nagar", "NMCH"],
+    "serviceArea": {
+      "city": "Patna",
+      "region": "Bihar",
+      "country": "India",
+      "radiusKm": 20
+    },
+    "provider": {
+      "name": "Parvati Nail Studio at Kritika Ladies Beauty Parlour",
+      "address": "Maurya Path, Bhootnath Road, Patna, Bihar 800026",
+      "phone": "+91-9650461390",
+      "googleMapsUrl": "https://maps.google.com/?cid=..."
+    },
+    "geo": {
+      "lat": 25.5873981,
+      "lng": 85.1757259
+    },
+    "nearbyLandmarks": [
+      "Bhootnath Metro Station",
+      "Zero Mile",
+      "Patna Bypass",
+      "Bazar Samiti",
+      "Bhagwat Nagar",
+      "NMCH"
+    ],
     "url": "/nail-salon/gel-nail-extensions-patna",
     "reviewSource": "Client reviews",
-    "seasonalTags": ["Year-round"],
+    "seasonalTags": [
+      "Year-round"
+    ],
     "processingTime": "Booking required",
     "cancellationPolicy": "Free cancellation up to 24 hours before"
   },
@@ -1046,8 +2420,8 @@
     "id": "biab-builder-gel-nails-patna",
     "title": "BIAB Builder Gel Nails | Strengthening Care Patna",
     "slug": "biab-builder-gel-nails-patna",
-    "category": "Nail Art",
-    "categorySlug": "nail-art",
+    "category": "Nail Salon",
+    "categorySlug": "nail-salon",
     "primaryCategory": "nails",
     "eventCategory": "maintenance",
     "image": "/images/nails/nail_extension.webp",
@@ -1066,31 +2440,100 @@
     "rating": 4.9,
     "reviewCount": 250,
     "bookingCount": 410,
-    "keyIngredients": ["BIAB gel", "LED lamp", "Nail primer", "Strengthening base"],
-    "benefits": ["Strengthens weak nails", "Promotes natural growth", "Lightweight", "Lasts 3–4 weeks"],
+    "keyIngredients": [
+      "BIAB gel",
+      "LED lamp",
+      "Nail primer",
+      "Strengthening base"
+    ],
+    "benefits": [
+      "Strengthens weak nails",
+      "Promotes natural growth",
+      "Lightweight",
+      "Lasts 3–4 weeks"
+    ],
     "precautions": "Patch test recommended for adhesive allergies.",
     "aftercare": "Apply cuticle oil daily. Don't peel off.",
     "faqs": [
-      {"question": "Can I get colour over BIAB?", "answer": "Yes, gel polish or regular polish can be applied."},
-      {"question": "How is it different from gel extensions?", "answer": "BIAB is an overlay on your natural nail; extensions add length."}
+      {
+        "question": "Can I get colour over BIAB?",
+        "answer": "Yes, gel polish or regular polish can be applied."
+      },
+      {
+        "question": "How is it different from gel extensions?",
+        "answer": "BIAB is an overlay on your natural nail; extensions add length."
+      }
     ],
-    "seoKeywords": ["BIAB nails patna", "builder gel Patna", "nail strengthening Bhootnath road"],
-    "targetAudience": ["Weak nail sufferers", "Metro returnees", "Health-conscious"],
-    "idealFor": ["Nail repair", "Growth phase", "Natural look"],
-    "whatsIncluded": ["Nail preparation", "BIAB application", "LED curing", "Shaping", "Top coat"],
-    "whatsNotIncluded": ["Extensions", "Nail art"],
+    "seoKeywords": [
+      "BIAB nails patna",
+      "builder gel Patna",
+      "nail strengthening Bhootnath road"
+    ],
+    "targetAudience": [
+      "Weak nail sufferers",
+      "Metro returnees",
+      "Health-conscious"
+    ],
+    "idealFor": [
+      "Nail repair",
+      "Growth phase",
+      "Natural look"
+    ],
+    "whatsIncluded": [
+      "Nail preparation",
+      "BIAB application",
+      "LED curing",
+      "Shaping",
+      "Top coat"
+    ],
+    "whatsNotIncluded": [
+      "Extensions",
+      "Nail art"
+    ],
     "addOns": [
-      {"name": "Gel Polish Colour", "price": 300},
-      {"name": "French BIAB", "price": 400},
-      {"name": "Nail Art Design", "price": 500}
+      {
+        "name": "Gel Polish Colour",
+        "price": 300
+      },
+      {
+        "name": "French BIAB",
+        "price": 400
+      },
+      {
+        "name": "Nail Art Design",
+        "price": 500
+      }
     ],
-    "serviceArea": {"city": "Patna", "region": "Bihar", "country": "India", "radiusKm": 20},
-    "provider": {"name": "Parvati Nail Studio at Kritika Ladies Beauty Parlour", "address": "Maurya Path, Bhootnath Road, Patna, Bihar 800026", "phone": "+91-9650461390", "googleMapsUrl": "https://maps.google.com/?cid=..."},
-    "geo": {"lat": 25.5873981, "lng": 85.1757259},
-    "nearbyLandmarks": ["Bhootnath Metro Station", "Zero Mile", "Patna Bypass", "Bazar Samiti", "Bhagwat Nagar", "NMCH"],
+    "serviceArea": {
+      "city": "Patna",
+      "region": "Bihar",
+      "country": "India",
+      "radiusKm": 20
+    },
+    "provider": {
+      "name": "Parvati Nail Studio at Kritika Ladies Beauty Parlour",
+      "address": "Maurya Path, Bhootnath Road, Patna, Bihar 800026",
+      "phone": "+91-9650461390",
+      "googleMapsUrl": "https://maps.google.com/?cid=..."
+    },
+    "geo": {
+      "lat": 25.5873981,
+      "lng": 85.1757259
+    },
+    "nearbyLandmarks": [
+      "Bhootnath Metro Station",
+      "Zero Mile",
+      "Patna Bypass",
+      "Bazar Samiti",
+      "Bhagwat Nagar",
+      "NMCH"
+    ],
     "url": "/nail-salon/biab-builder-gel-nails-patna",
     "reviewSource": "Client reviews",
-    "seasonalTags": ["Trending", "Year-round"],
+    "seasonalTags": [
+      "Trending",
+      "Year-round"
+    ],
     "processingTime": "Booking required",
     "cancellationPolicy": "Free cancellation up to 24 hours before"
   },
@@ -1118,30 +2561,92 @@
     "rating": 4.9,
     "reviewCount": 190,
     "bookingCount": 310,
-    "keyIngredients": ["Design catalog", "AI analysis tool", "Colour swatches", "Sample embellishments"],
-    "benefits": ["No surprises on wedding day", "Worry-free design", "Coordinate with entire look"],
+    "keyIngredients": [
+      "Design catalog",
+      "AI analysis tool",
+      "Colour swatches",
+      "Sample embellishments"
+    ],
+    "benefits": [
+      "No surprises on wedding day",
+      "Worry-free design",
+      "Coordinate with entire look"
+    ],
     "precautions": "Book 1–2 weeks before wedding. Bring inspiration photos.",
     "aftercare": "Follow aftercare instructions given during trial.",
     "faqs": [
-      {"question": "Is the trial cost adjustable against final service?", "answer": "Yes, trial fee is adjusted when you book final bridal package."},
-      {"question": "Can I bring my bridal party?", "answer": "Yes, group consultations available (call for pricing)."}
+      {
+        "question": "Is the trial cost adjustable against final service?",
+        "answer": "Yes, trial fee is adjusted when you book final bridal package."
+      },
+      {
+        "question": "Can I bring my bridal party?",
+        "answer": "Yes, group consultations available (call for pricing)."
+      }
     ],
-    "seoKeywords": ["bridal nail trial patna", "wedding nail consultation Bhootnath road", "bridal nail design Patna"],
-    "targetAudience": ["Brides", "Engaged couples"],
-    "idealFor": ["Pre-wedding planning", "Custom designs"],
-    "whatsIncluded": ["Design consultation", "Shape & colour selection", "Trial application (one nail)", "AI analysis"],
-    "whatsNotIncluded": ["Full set application", "Final bridal service"],
+    "seoKeywords": [
+      "bridal nail trial patna",
+      "wedding nail consultation Bhootnath road",
+      "bridal nail design Patna"
+    ],
+    "targetAudience": [
+      "Brides",
+      "Engaged couples"
+    ],
+    "idealFor": [
+      "Pre-wedding planning",
+      "Custom designs"
+    ],
+    "whatsIncluded": [
+      "Design consultation",
+      "Shape & colour selection",
+      "Trial application (one nail)",
+      "AI analysis"
+    ],
+    "whatsNotIncluded": [
+      "Full set application",
+      "Final bridal service"
+    ],
     "addOns": [
-      {"name": "Full Trial Set (all nails)", "price": 500},
-      {"name": "Matching Toe Trial", "price": 300}
+      {
+        "name": "Full Trial Set (all nails)",
+        "price": 500
+      },
+      {
+        "name": "Matching Toe Trial",
+        "price": 300
+      }
     ],
-    "serviceArea": {"city": "Patna", "region": "Bihar", "country": "India", "radiusKm": 20},
-    "provider": {"name": "Parvati Nail Studio at Kritika Ladies Beauty Parlour", "address": "Maurya Path, Bhootnath Road, Patna, Bihar 800026", "phone": "+91-9650461390", "googleMapsUrl": "https://maps.google.com/?cid=..."},
-    "geo": {"lat": 25.5873981, "lng": 85.1757259},
-    "nearbyLandmarks": ["Bhootnath Metro Station", "Zero Mile", "Patna Bypass", "Bazar Samiti", "Bhagwat Nagar", "NMCH"],
+    "serviceArea": {
+      "city": "Patna",
+      "region": "Bihar",
+      "country": "India",
+      "radiusKm": 20
+    },
+    "provider": {
+      "name": "Parvati Nail Studio at Kritika Ladies Beauty Parlour",
+      "address": "Maurya Path, Bhootnath Road, Patna, Bihar 800026",
+      "phone": "+91-9650461390",
+      "googleMapsUrl": "https://maps.google.com/?cid=..."
+    },
+    "geo": {
+      "lat": 25.5873981,
+      "lng": 85.1757259
+    },
+    "nearbyLandmarks": [
+      "Bhootnath Metro Station",
+      "Zero Mile",
+      "Patna Bypass",
+      "Bazar Samiti",
+      "Bhagwat Nagar",
+      "NMCH"
+    ],
     "url": "/bridal-nails/bridal-nail-trial-consultation-patna",
     "reviewSource": "Client reviews",
-    "seasonalTags": ["Wedding season", "Bridal preparation"],
+    "seasonalTags": [
+      "Wedding season",
+      "Bridal preparation"
+    ],
     "processingTime": "Book 1–2 weeks in advance",
     "cancellationPolicy": "Free cancellation up to 48 hours before"
   },
@@ -1166,34 +2671,101 @@
     "isHomepage": false,
     "duration": 120,
     "durationText": "2 hours",
-    "rating": 4.8,
+    "rating": 5.0,
     "reviewCount": 140,
     "bookingCount": 210,
-    "keyIngredients": ["Swarovski crystals", "Chrome powder", "3D gel", "24k gold foil (optional)"],
-    "benefits": ["Photo-ready", "Lasts through ceremonies", "Custom design", "Cohesive look"],
+    "keyIngredients": [
+      "Swarovski crystals",
+      "Chrome powder",
+      "3D gel",
+      "24k gold foil (optional)"
+    ],
+    "benefits": [
+      "Photo-ready",
+      "Lasts through ceremonies",
+      "Custom design",
+      "Cohesive look"
+    ],
     "precautions": "Patch test for adhesive allergens. Avoid water for 24 hours.",
     "aftercare": "Apply cuticle oil daily. Avoid acetone. Free emergency repair within 72 hours.",
     "faqs": [
-      {"question": "Can I match my jewelry?", "answer": "Yes, we design around your jewellery."},
-      {"question": "Do you offer hand-painted portraits?", "answer": "Yes, for an additional ₹500."}
+      {
+        "question": "Can I match my jewelry?",
+        "answer": "Yes, we design around your jewellery."
+      },
+      {
+        "question": "Do you offer hand-painted portraits?",
+        "answer": "Yes, for an additional ₹500."
+      }
     ],
-    "seoKeywords": ["luxury bridal nail art patna", "swarovski bridal nails Bhootnath road", "wedding nail art Patna"],
-    "targetAudience": ["Brides", "Bridal parties"],
-    "idealFor": ["Wedding day", "Reception", "Photoshoot"],
-    "whatsIncluded": ["Custom design", "Swarovski crystals", "Chrome finish", "Trial session", "Emergency repair"],
-    "whatsNotIncluded": ["Toe nail art", "Follow-up fills"],
+    "seoKeywords": [
+      "luxury bridal nail art patna",
+      "swarovski bridal nails Bhootnath road",
+      "wedding nail art Patna"
+    ],
+    "targetAudience": [
+      "Brides",
+      "Bridal parties"
+    ],
+    "idealFor": [
+      "Wedding day",
+      "Reception",
+      "Photoshoot"
+    ],
+    "whatsIncluded": [
+      "Custom design",
+      "Swarovski crystals",
+      "Chrome finish",
+      "Trial session",
+      "Emergency repair"
+    ],
+    "whatsNotIncluded": [
+      "Toe nail art",
+      "Follow-up fills"
+    ],
     "addOns": [
-      {"name": "Matching Toe Nail Art", "price": 800},
-      {"name": "Nail Jewelry Setting", "price": 500},
-      {"name": "Express Removal Service", "price": 300}
+      {
+        "name": "Matching Toe Nail Art",
+        "price": 800
+      },
+      {
+        "name": "Nail Jewelry Setting",
+        "price": 500
+      },
+      {
+        "name": "Express Removal Service",
+        "price": 300
+      }
     ],
-    "serviceArea": {"city": "Patna", "region": "Bihar", "country": "India", "radiusKm": 20},
-    "provider": {"name": "Parvati Nail Studio at Kritika Ladies Beauty Parlour", "address": "Maurya Path, Bhootnath Road, Patna, Bihar 800026", "phone": "+91-9650461390", "googleMapsUrl": "https://maps.google.com/?cid=..."},
-    "geo": {"lat": 25.5873981, "lng": 85.1757259},
-    "nearbyLandmarks": ["Bhootnath Metro Station", "Zero Mile", "Patna Bypass", "Bazar Samiti", "Bhagwat Nagar", "NMCH"],
+    "serviceArea": {
+      "city": "Patna",
+      "region": "Bihar",
+      "country": "India",
+      "radiusKm": 20
+    },
+    "provider": {
+      "name": "Parvati Nail Studio at Kritika Ladies Beauty Parlour",
+      "address": "Maurya Path, Bhootnath Road, Patna, Bihar 800026",
+      "phone": "+91-9650461390",
+      "googleMapsUrl": "https://maps.google.com/?cid=..."
+    },
+    "geo": {
+      "lat": 25.5873981,
+      "lng": 85.1757259
+    },
+    "nearbyLandmarks": [
+      "Bhootnath Metro Station",
+      "Zero Mile",
+      "Patna Bypass",
+      "Bazar Samiti",
+      "Bhagwat Nagar",
+      "NMCH"
+    ],
     "url": "/bridal-nails/luxury-bridal-nail-art-patna",
     "reviewSource": "Client reviews",
-    "seasonalTags": ["Wedding season"],
+    "seasonalTags": [
+      "Wedding season"
+    ],
     "processingTime": "Book 1 month in advance",
     "cancellationPolicy": "Free cancellation up to 72 hours before"
   },
@@ -1218,34 +2790,102 @@
     "isHomepage": true,
     "duration": 180,
     "durationText": "3 hours",
-    "rating": 4.8,
+    "rating": 5.0,
     "reviewCount": 95,
     "bookingCount": 120,
-    "keyIngredients": ["Swarovski crystals", "Builder gel/acrylic", "Chrome powder", "24k gold leaf"],
-    "benefits": ["One-stop solution", "Match all outfits", "Durable for honeymoon", "Stress-free"],
+    "keyIngredients": [
+      "Swarovski crystals",
+      "Builder gel/acrylic",
+      "Chrome powder",
+      "24k gold leaf"
+    ],
+    "benefits": [
+      "One-stop solution",
+      "Match all outfits",
+      "Durable for honeymoon",
+      "Stress-free"
+    ],
     "precautions": "Patch test required. Book at least 1 month before wedding.",
     "aftercare": "Detailed aftercare sheet provided. Free emergency repair within 72 hours.",
     "faqs": [
-      {"question": "Can I get matching nails for bridesmaids?", "answer": "Yes, group packages available (call for quote)."},
-      {"question": "Do you offer home service for bridal?", "answer": "Yes, for Patna area, additional ₹500 travel fee."}
+      {
+        "question": "Can I get matching nails for bridesmaids?",
+        "answer": "Yes, group packages available (call for quote)."
+      },
+      {
+        "question": "Do you offer home service for bridal?",
+        "answer": "Yes, for Patna area, additional ₹500 travel fee."
+      }
     ],
-    "seoKeywords": ["bridal nail extensions package patna", "complete bridal nails Bhootnath road", "wedding nails package Patna"],
-    "targetAudience": ["Brides", "Destination wedding brides"],
-    "idealFor": ["Full wedding week", "Honeymoon", "Photography"],
-    "whatsIncluded": ["Nail extensions (acrylic/gel)", "Custom nail art", "Swarovski crystals", "Chrome finish", "Trial session", "Emergency repair"],
-    "whatsNotIncluded": ["Toe nail art", "Nail removal"],
+    "seoKeywords": [
+      "bridal nail extensions package patna",
+      "complete bridal nails Bhootnath road",
+      "wedding nails package Patna"
+    ],
+    "targetAudience": [
+      "Brides",
+      "Destination wedding brides"
+    ],
+    "idealFor": [
+      "Full wedding week",
+      "Honeymoon",
+      "Photography"
+    ],
+    "whatsIncluded": [
+      "Nail extensions (acrylic/gel)",
+      "Custom nail art",
+      "Swarovski crystals",
+      "Chrome finish",
+      "Trial session",
+      "Emergency repair"
+    ],
+    "whatsNotIncluded": [
+      "Toe nail art",
+      "Nail removal"
+    ],
     "addOns": [
-      {"name": "Toe Nail Art Matching", "price": 800},
-      {"name": "Nail Jewelry", "price": 500},
-      {"name": "Home Service", "price": 500}
+      {
+        "name": "Toe Nail Art Matching",
+        "price": 800
+      },
+      {
+        "name": "Nail Jewelry",
+        "price": 500
+      },
+      {
+        "name": "Home Service",
+        "price": 500
+      }
     ],
-    "serviceArea": {"city": "Patna", "region": "Bihar", "country": "India", "radiusKm": 20},
-    "provider": {"name": "Parvati Nail Studio at Kritika Ladies Beauty Parlour", "address": "Maurya Path, Bhootnath Road, Patna, Bihar 800026", "phone": "+91-9650461390", "googleMapsUrl": "https://maps.google.com/?cid=..."},
-    "geo": {"lat": 25.5873981, "lng": 85.1757259},
-    "nearbyLandmarks": ["Bhootnath Metro Station", "Zero Mile", "Patna Bypass", "Bazar Samiti", "Bhagwat Nagar", "NMCH"],
+    "serviceArea": {
+      "city": "Patna",
+      "region": "Bihar",
+      "country": "India",
+      "radiusKm": 20
+    },
+    "provider": {
+      "name": "Parvati Nail Studio at Kritika Ladies Beauty Parlour",
+      "address": "Maurya Path, Bhootnath Road, Patna, Bihar 800026",
+      "phone": "+91-9650461390",
+      "googleMapsUrl": "https://maps.google.com/?cid=..."
+    },
+    "geo": {
+      "lat": 25.5873981,
+      "lng": 85.1757259
+    },
+    "nearbyLandmarks": [
+      "Bhootnath Metro Station",
+      "Zero Mile",
+      "Patna Bypass",
+      "Bazar Samiti",
+      "Bhagwat Nagar",
+      "NMCH"
+    ],
     "url": "/bridal-nails/bridal-nail-extensions-package-patna",
     "reviewSource": "Client reviews",
-    "seasonalTags": ["Wedding season"],
+    "seasonalTags": [
+      "Wedding season"
+    ],
     "processingTime": "Book 1–2 months in advance",
     "cancellationPolicy": "Free cancellation up to 7 days before"
   },
@@ -1273,27 +2913,79 @@
     "rating": 4.8,
     "reviewCount": 85,
     "bookingCount": 340,
-    "keyIngredients": ["AI algorithm", "Computer vision", "Style database"],
-    "benefits": ["Personalised suggestions", "Try before you book", "Saves time"],
+    "keyIngredients": [
+      "AI algorithm",
+      "Computer vision",
+      "Style database"
+    ],
+    "benefits": [
+      "Personalised suggestions",
+      "Try before you book",
+      "Saves time"
+    ],
     "precautions": "Tool provides suggestions only – final choice yours.",
     "aftercare": "Use recommendations to book in-salon service.",
     "faqs": [
-      {"question": "Is the AI analysis free?", "answer": "Basic analysis is free. Premium report with detailed customisation is ₹299."},
-      {"question": "Can I book service directly after analysis?", "answer": "Yes, the tool provides a direct booking link."}
+      {
+        "question": "Is the AI analysis free?",
+        "answer": "Basic analysis is free. Premium report with detailed customisation is ₹299."
+      },
+      {
+        "question": "Can I book service directly after analysis?",
+        "answer": "Yes, the tool provides a direct booking link."
+      }
     ],
-    "seoKeywords": ["ai nail analysis patna", "virtual nail try on Patna", "nail style recommendation Bhootnath road"],
-    "targetAudience": ["Tech-savvy", "Brides", "Indecisive clients"],
-    "idealFor": ["Pre-booking planning", "Design inspiration"],
-    "whatsIncluded": ["Free basic AI report", "Option to upgrade to premium"],
-    "whatsNotIncluded": ["In-salon service cost"],
+    "seoKeywords": [
+      "ai nail analysis patna",
+      "virtual nail try on Patna",
+      "nail style recommendation Bhootnath road"
+    ],
+    "targetAudience": [
+      "Tech-savvy",
+      "Brides",
+      "Indecisive clients"
+    ],
+    "idealFor": [
+      "Pre-booking planning",
+      "Design inspiration"
+    ],
+    "whatsIncluded": [
+      "Free basic AI report",
+      "Option to upgrade to premium"
+    ],
+    "whatsNotIncluded": [
+      "In-salon service cost"
+    ],
     "addOns": [],
-    "serviceArea": {"city": "Patna", "region": "Bihar", "country": "India", "radiusKm": 20},
-    "provider": {"name": "Parvati Nail Studio at Kritika Ladies Beauty Parlour", "address": "Maurya Path, Bhootnath Road, Patna, Bihar 800026", "phone": "+91-9650461390", "googleMapsUrl": "https://maps.google.com/?cid=..."},
-    "geo": {"lat": 25.5873981, "lng": 85.1757259},
-    "nearbyLandmarks": ["Bhootnath Metro Station", "Zero Mile", "Patna Bypass", "Bazar Samiti", "Bhagwat Nagar", "NMCH"],
+    "serviceArea": {
+      "city": "Patna",
+      "region": "Bihar",
+      "country": "India",
+      "radiusKm": 20
+    },
+    "provider": {
+      "name": "Parvati Nail Studio at Kritika Ladies Beauty Parlour",
+      "address": "Maurya Path, Bhootnath Road, Patna, Bihar 800026",
+      "phone": "+91-9650461390",
+      "googleMapsUrl": "https://maps.google.com/?cid=..."
+    },
+    "geo": {
+      "lat": 25.5873981,
+      "lng": 85.1757259
+    },
+    "nearbyLandmarks": [
+      "Bhootnath Metro Station",
+      "Zero Mile",
+      "Patna Bypass",
+      "Bazar Samiti",
+      "Bhagwat Nagar",
+      "NMCH"
+    ],
     "url": "/technology/ai-nail-analysis-patna",
     "reviewSource": "Client reviews",
-    "seasonalTags": ["Year-round"],
+    "seasonalTags": [
+      "Year-round"
+    ],
     "processingTime": "Instant online",
     "cancellationPolicy": "N/A"
   }

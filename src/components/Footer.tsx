@@ -82,15 +82,39 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
+                <Link href="/bridal" className="text-gray-600 hover:text-rose-600 transition-colors text-sm flex items-center group">
+                  <span className="w-1 h-1 bg-gradient-to-r from-rose-500 to-pink-600 rounded-full mr-2 group-hover:w-2 transition-all"></span>
+                  Bridal Packages
+                </Link>
+              </li>
+              <li>
+                <Link href="/combo" className="text-gray-600 hover:text-rose-600 transition-colors text-sm flex items-center group">
+                  <span className="w-1 h-1 bg-gradient-to-r from-rose-500 to-pink-600 rounded-full mr-2 group-hover:w-2 transition-all"></span>
+                  Combo Offers
+                </Link>
+              </li>
+              <li>
                 <Link href="/blog" className="text-gray-600 hover:text-rose-600 transition-colors text-sm flex items-center group">
                   <span className="w-1 h-1 bg-gradient-to-r from-rose-500 to-pink-600 rounded-full mr-2 group-hover:w-2 transition-all"></span>
                   Beauty Blog
                 </Link>
               </li>
               <li>
+                <Link href="/gallery" className="text-gray-600 hover:text-rose-600 transition-colors text-sm flex items-center group">
+                  <span className="w-1 h-1 bg-gradient-to-r from-rose-500 to-pink-600 rounded-full mr-2 group-hover:w-2 transition-all"></span>
+                  Gallery
+                </Link>
+              </li>
+              <li>
                 <Link href="/about" className="text-gray-600 hover:text-rose-600 transition-colors text-sm flex items-center group">
                   <span className="w-1 h-1 bg-gradient-to-r from-rose-500 to-pink-600 rounded-full mr-2 group-hover:w-2 transition-all"></span>
                   About Us
+                </Link>
+              </li>
+              <li>
+                <Link href="/contact" className="text-gray-600 hover:text-rose-600 transition-colors text-sm flex items-center group">
+                  <span className="w-1 h-1 bg-gradient-to-r from-rose-500 to-pink-600 rounded-full mr-2 group-hover:w-2 transition-all"></span>
+                  Contact
                 </Link>
               </li>
             </ul>
@@ -142,9 +166,10 @@ export default function Footer() {
               </div>
             </div>
 
-            {/* Book Button */}
+            {/* Book Button — was pointing to /cart, inconsistent with every
+                other CTA on the site (which uses /booking) */}
             <Link
-              href="/cart"
+              href="/booking"
               className="inline-block w-full text-center bg-gradient-to-r from-rose-500 to-pink-600 text-white px-6 py-3 rounded-xl font-medium hover:from-rose-600 hover:to-pink-700 transition-all shadow-md hover:shadow-lg text-sm"
             >
               Book Appointment

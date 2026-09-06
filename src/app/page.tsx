@@ -21,7 +21,7 @@ const ALL_SERVICES: Service[] = [
   ...nailServices,
   ...skinServices,
   ...comboServices,
-] as unknown as Service[];
+] as Service[];
 
 const HOMEPAGE_SERVICES  = ALL_SERVICES.filter(s => s.isHomepage === true);
 const TOTAL_HOMEPAGE_SERVICES = HOMEPAGE_SERVICES.length;
@@ -266,8 +266,10 @@ const generateRichServiceOffer = (service: Service) => {
       ...(service.rating && service.reviewCount && service.reviewCount >= 5 && {
         aggregateRating: {
           '@type':      'AggregateRating',
-          ratingValue:  service.rating.toString(),
-          reviewCount:  service.reviewCount.toString(),
+          ratingValue:  (seoData.business.rating || 0).toString(),
+          reviewCount:  (seoData.business.totalReviews || 0).toString(),
+          bestRating:   '5',
+          worstRating:  '1',
         },
       }),
     },

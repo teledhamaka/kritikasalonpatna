@@ -24,6 +24,9 @@ const nextConfig: NextConfig = {
   // Add this to fix the multiple lockfiles warning
   turbopack: {
     root: __dirname,
+    resolveAlias: {
+        // not a direct fix, but can help
+      },
   },
 };
 

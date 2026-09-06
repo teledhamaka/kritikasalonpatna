@@ -71,10 +71,15 @@ export default function SignupClient() {
 
   const strength = pwStrength(password);
 
+  const getRedirect = () => {
+    const value = searchParams.get('redirect');
+    return value && value.startsWith('/') && !value.startsWith('//') ? value : '/';
+  };
+
   // Redirect if already logged in
   useEffect(() => {
-    if (!isInitializing && isLoggedIn) router.replace('/');
-  }, [isLoggedIn, isInitializing, router]);
+    if (!isInitializing && isLoggedIn) router.replace(getRedirect());
+  }, [isLoggedIn, isInitializing, router, searchParams]);
 
   // Handle error from /auth/callback (Google failed)
   useEffect(() => {
@@ -87,7 +92,7 @@ export default function SignupClient() {
 
   const handleGoogle = async () => {
     setError('');
-    const { error: googleErr } = await signInWithGoogle();
+    const { error: googleErr } = await signInWithGoogle(getRedirect());
     if (googleErr) setError(googleErr);
     // Otherwise redirect is in-flight — googleLoading handles UX
   };
@@ -117,6 +122,7 @@ export default function SignupClient() {
 
     // onAuthStateChange fires → isLoggedIn becomes true → useEffect redirects
     success('Welcome to Kritika Salon! 🌸');
+    router.replace(getRedirect());
   };
 
   if (isInitializing) {

@@ -1,0 +1,674 @@
+{
+  "version": 1,
+  "enabled": true,
+
+  "branding": {
+    "title": "Nail Look Studio",
+    "subtitle": "Find the nail look that matches your colour, outfit, occasion and vibe.",
+    "badge": "Personalised Nail Styling",
+    "resultTitle": "My Nail Look",
+    "resultSubtitle": "Your personalised nail style recommendations"
+  },
+
+  "tools": {
+    "colourWheel": {
+      "enabled": true,
+      "title": "Colour Wheel",
+      "subtitle": "Start with your favourite colour",
+      "icon": "🎨"
+    },
+
+    "quiz": {
+      "enabled": true,
+      "title": "Nail Art Quiz",
+      "subtitle": "Tell us your style",
+      "icon": "💅"
+    },
+
+    "aiAnalysis": {
+      "enabled": true,
+      "title": "AI Nail Analysis",
+      "subtitle": "Upload a nail photo",
+      "icon": "✨"
+    }
+  },
+
+  "colours": [
+    {
+      "id": "burgundy",
+      "name": "Burgundy",
+      "hex": "#800020",
+      "family": "Red",
+      "description": "Rich, elegant and perfect for evening or bridal looks.",
+      "keywords": [
+        "burgundy",
+        "wine",
+        "maroon",
+        "berry",
+        "deep red"
+      ]
+    },
+    {
+      "id": "cherry-red",
+      "name": "Cherry Red",
+      "hex": "#C1121F",
+      "family": "Red",
+      "description": "Confident, classic and instantly eye-catching.",
+      "keywords": [
+        "red",
+        "cherry",
+        "scarlet",
+        "crimson"
+      ]
+    },
+    {
+      "id": "coral",
+      "name": "Coral",
+      "hex": "#FF6F61",
+      "family": "Coral",
+      "description": "Fresh and playful with a warm summer feel.",
+      "keywords": [
+        "coral",
+        "peach",
+        "salmon"
+      ]
+    },
+    {
+      "id": "butter-yellow",
+      "name": "Butter Yellow",
+      "hex": "#F7E58B",
+      "family": "Yellow",
+      "description": "Soft, cheerful and contemporary.",
+      "keywords": [
+        "yellow",
+        "butter",
+        "lemon",
+        "gold"
+      ]
+    },
+    {
+      "id": "sage",
+      "name": "Sage",
+      "hex": "#9CAF88",
+      "family": "Green",
+      "description": "Muted, sophisticated and modern.",
+      "keywords": [
+        "sage",
+        "green",
+        "olive"
+      ]
+    },
+    {
+      "id": "teal",
+      "name": "Teal",
+      "hex": "#008C95",
+      "family": "Teal",
+      "description": "A jewel-like colour for a distinctive look.",
+      "keywords": [
+        "teal",
+        "turquoise"
+      ]
+    },
+    {
+      "id": "cobalt",
+      "name": "Cobalt Blue",
+      "hex": "#0047AB",
+      "family": "Blue",
+      "description": "Bold, glamorous and excellent for statement nails.",
+      "keywords": [
+        "cobalt",
+        "blue",
+        "navy"
+      ]
+    },
+    {
+      "id": "lavender",
+      "name": "Lavender",
+      "hex": "#B57EDC",
+      "family": "Purple",
+      "description": "Soft, feminine and contemporary.",
+      "keywords": [
+        "lavender",
+        "purple",
+        "violet"
+      ]
+    },
+    {
+      "id": "blush",
+      "name": "Blush Pink",
+      "hex": "#F4C2C2",
+      "family": "Pink",
+      "description": "Romantic, delicate and easy to wear.",
+      "keywords": [
+        "blush",
+        "pink",
+        "rose",
+        "baby pink"
+      ]
+    },
+    {
+      "id": "nude",
+      "name": "Nude",
+      "hex": "#C89F86",
+      "family": "Nude",
+      "description": "Minimal, polished and ideal for everyday elegance.",
+      "keywords": [
+        "nude",
+        "beige",
+        "natural",
+        "milky"
+      ]
+    },
+    {
+      "id": "cocoa",
+      "name": "Cocoa",
+      "hex": "#6F4E37",
+      "family": "Brown",
+      "description": "Warm, sophisticated and luxurious.",
+      "keywords": [
+        "brown",
+        "cocoa",
+        "coffee",
+        "chocolate"
+      ]
+    },
+    {
+      "id": "black",
+      "name": "Glossy Black",
+      "hex": "#111111",
+      "family": "Black",
+      "description": "Dramatic, sleek and fashion-forward.",
+      "keywords": [
+        "black",
+        "onyx"
+      ]
+    }
+  ],
+
+  "occasions": [
+    {
+      "id": "everyday",
+      "label": "Everyday",
+      "emoji": "🌸",
+      "keywords": [
+        "everyday",
+        "daily",
+        "casual",
+        "natural"
+      ]
+    },
+    {
+      "id": "office",
+      "label": "Office",
+      "emoji": "💼",
+      "keywords": [
+        "office",
+        "work",
+        "professional",
+        "formal"
+      ]
+    },
+    {
+      "id": "party",
+      "label": "Party",
+      "emoji": "🥂",
+      "keywords": [
+        "party",
+        "event",
+        "celebration",
+        "glam"
+      ]
+    },
+    {
+      "id": "wedding",
+      "label": "Wedding",
+      "emoji": "💍",
+      "keywords": [
+        "wedding",
+        "event",
+        "celebration"
+      ]
+    },
+    {
+      "id": "bridal",
+      "label": "Bridal",
+      "emoji": "👰",
+      "keywords": [
+        "bridal",
+        "bride",
+        "wedding",
+        "lehenga"
+      ]
+    },
+    {
+      "id": "vacation",
+      "label": "Vacation",
+      "emoji": "🌴",
+      "keywords": [
+        "vacation",
+        "holiday",
+        "summer",
+        "travel",
+        "beach"
+      ]
+    }
+  ],
+
+  "outfits": [
+    {
+      "id": "saree",
+      "label": "Saree",
+      "emoji": "🥻",
+      "keywords": [
+        "saree",
+        "traditional",
+        "ethnic",
+        "wedding"
+      ]
+    },
+    {
+      "id": "lehenga",
+      "label": "Lehenga",
+      "emoji": "✨",
+      "keywords": [
+        "lehenga",
+        "bridal",
+        "wedding",
+        "embellished"
+      ]
+    },
+    {
+      "id": "western",
+      "label": "Western",
+      "emoji": "👗",
+      "keywords": [
+        "western",
+        "modern",
+        "contemporary"
+      ]
+    },
+    {
+      "id": "office-wear",
+      "label": "Office Wear",
+      "emoji": "💼",
+      "keywords": [
+        "office",
+        "professional",
+        "formal",
+        "work"
+      ]
+    },
+    {
+      "id": "casual",
+      "label": "Casual",
+      "emoji": "👚",
+      "keywords": [
+        "casual",
+        "everyday",
+        "natural"
+      ]
+    },
+    {
+      "id": "party-wear",
+      "label": "Party Wear",
+      "emoji": "💃",
+      "keywords": [
+        "party",
+        "glam",
+        "event",
+        "statement"
+      ]
+    }
+  ],
+
+  "vibes": [
+    {
+      "id": "minimal",
+      "label": "Minimal",
+      "emoji": "🤍",
+      "keywords": [
+        "minimal",
+        "simple",
+        "clean",
+        "natural"
+      ]
+    },
+    {
+      "id": "classic",
+      "label": "Classic",
+      "emoji": "✨",
+      "keywords": [
+        "classic",
+        "timeless",
+        "french",
+        "elegant"
+      ]
+    },
+    {
+      "id": "elegant",
+      "label": "Elegant",
+      "emoji": "💎",
+      "keywords": [
+        "elegant",
+        "sophisticated",
+        "graceful",
+        "refined"
+      ]
+    },
+    {
+      "id": "cute",
+      "label": "Cute",
+      "emoji": "🎀",
+      "keywords": [
+        "cute",
+        "playful",
+        "fun",
+        "sweet"
+      ]
+    },
+    {
+      "id": "glam",
+      "label": "Glam",
+      "emoji": "💫",
+      "keywords": [
+        "glam",
+        "glamorous",
+        "sparkle",
+        "party",
+        "luxury"
+      ]
+    },
+    {
+      "id": "bold",
+      "label": "Bold",
+      "emoji": "🔥",
+      "keywords": [
+        "bold",
+        "statement",
+        "dramatic",
+        "colourful"
+      ]
+    },
+    {
+      "id": "luxury",
+      "label": "Luxury",
+      "emoji": "👑",
+      "keywords": [
+        "luxury",
+        "premium",
+        "swarovski",
+        "crystal",
+        "jewel"
+      ]
+    }
+  ],
+
+  "lengths": [
+    {
+      "id": "short",
+      "label": "Short",
+      "keywords": [
+        "short"
+      ]
+    },
+    {
+      "id": "medium",
+      "label": "Medium",
+      "keywords": [
+        "medium"
+      ]
+    },
+    {
+      "id": "long",
+      "label": "Long",
+      "keywords": [
+        "long",
+        "extension",
+        "extensions"
+      ]
+    }
+  ],
+
+  "finishes": [
+    {
+      "id": "glossy",
+      "label": "Glossy",
+      "emoji": "✨",
+      "keywords": [
+        "glossy",
+        "high gloss",
+        "shine",
+        "gel"
+      ]
+    },
+    {
+      "id": "matte",
+      "label": "Matte",
+      "emoji": "🖤",
+      "keywords": [
+        "matte"
+      ]
+    },
+    {
+      "id": "chrome",
+      "label": "Chrome",
+      "emoji": "🪞",
+      "keywords": [
+        "chrome",
+        "mirror",
+        "metallic"
+      ]
+    },
+    {
+      "id": "shimmer",
+      "label": "Shimmer",
+      "emoji": "🌟",
+      "keywords": [
+        "shimmer",
+        "glitter",
+        "sparkle",
+        "glittery"
+      ]
+    },
+    {
+      "id": "french",
+      "label": "French",
+      "emoji": "🤍",
+      "keywords": [
+        "french",
+        "french tip"
+      ]
+    },
+    {
+      "id": "natural",
+      "label": "Natural",
+      "emoji": "🌿",
+      "keywords": [
+        "natural",
+        "nude",
+        "clean"
+      ]
+    }
+  ],
+
+  "shapes": [
+    {
+      "id": "round",
+      "label": "Round",
+      "keywords": [
+        "round"
+      ]
+    },
+    {
+      "id": "oval",
+      "label": "Oval",
+      "keywords": [
+        "oval"
+      ]
+    },
+    {
+      "id": "almond",
+      "label": "Almond",
+      "keywords": [
+        "almond"
+      ]
+    },
+    {
+      "id": "square",
+      "label": "Square",
+      "keywords": [
+        "square"
+      ]
+    },
+    {
+      "id": "coffin",
+      "label": "Coffin",
+      "keywords": [
+        "coffin"
+      ]
+    }
+  ],
+
+  "harmonies": [
+    {
+      "id": "monochromatic",
+      "label": "Monochromatic",
+      "description": "Different shades of the same colour family."
+    },
+    {
+      "id": "analogous",
+      "label": "Analogous",
+      "description": "Colours sitting next to each other on the colour wheel."
+    },
+    {
+      "id": "complementary",
+      "label": "Complementary",
+      "description": "A high-contrast colour pairing."
+    },
+    {
+      "id": "split-complementary",
+      "label": "Split Complementary",
+      "description": "Contrast with a softer accent."
+    },
+    {
+      "id": "triadic",
+      "label": "Triadic",
+      "description": "Three balanced colour families."
+    }
+  ],
+
+  "scoring": {
+    "occasion": 9,
+    "outfit": 5,
+    "vibe": 8,
+    "finish": 8,
+    "length": 4,
+    "shape": 3,
+    "colourFamily": 5,
+    "exactColour": 7,
+    "compatibleColour": 3,
+    "bestSeller": 3,
+    "trending": 2,
+    "popular": 2,
+    "rating": 2,
+    "bookingCount": 2
+  },
+
+  "colourHarmonyFamilies": {
+    "Red": [
+      "Red",
+      "Pink",
+      "Coral",
+      "Nude"
+    ],
+    "Coral": [
+      "Coral",
+      "Red",
+      "Yellow",
+      "Pink"
+    ],
+    "Yellow": [
+      "Yellow",
+      "Green",
+      "Coral",
+      "Blue"
+    ],
+    "Green": [
+      "Green",
+      "Teal",
+      "Yellow",
+      "Nude"
+    ],
+    "Teal": [
+      "Teal",
+      "Green",
+      "Blue",
+      "Coral"
+    ],
+    "Blue": [
+      "Blue",
+      "Teal",
+      "Purple",
+      "Yellow"
+    ],
+    "Purple": [
+      "Purple",
+      "Blue",
+      "Pink",
+      "Yellow"
+    ],
+    "Pink": [
+      "Pink",
+      "Red",
+      "Purple",
+      "Nude"
+    ],
+    "Nude": [
+      "Nude",
+      "Pink",
+      "Brown",
+      "Red"
+    ],
+    "Brown": [
+      "Brown",
+      "Nude",
+      "Red",
+      "Yellow"
+    ],
+    "Black": [
+      "Black",
+      "White",
+      "Red"
+    ],
+    "White": [
+      "White",
+      "Nude",
+      "Pink",
+      "Black"
+    ]
+  },
+
+  "recommendation": {
+    "minimumScore": 3,
+    "maximumResults": 4,
+    "excludeCategories": [
+      "Pedicure"
+    ],
+    "excludeServiceIds": [
+      "ai-nail-analysis-patna"
+    ]
+  },
+
+  "aiAnalysis": {
+    "enabled": true,
+    "endpoint": "/api/ai-nail-analysis",
+    "maxFileSizeMB": 8,
+    "acceptedTypes": [
+      "image/jpeg",
+      "image/png",
+      "image/webp"
+    ],
+    "maxRecommendations": 3,
+    "disclaimer": "AI suggestions are for style discovery only. Your final nail design and service choice are always yours."
+  }
+}

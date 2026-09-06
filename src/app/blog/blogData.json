@@ -1,592 +1,290 @@
 {
   "posts": [
     {
-      "slug": "party-makeup-looks-different-dress-ke-hisab-se-makeup-patna",
-      "filePath": "./src/content/posts/party-makeup-looks-complete-guide.md",
+      "slug": "baal-girna-kaise-roken-hair-fall-control-tips",
+      "filePath": "./src/content/posts/hair-fall-control-kaise-kare.md",
       "metadata": {
-        "title": "Party Makeup Looks - Different Dress Ke Hisab Se Perfect Makeup Guide 2025",
-        "excerpt": "Saree, lehenga, gown, western wear - हर dress के लिए perfect party makeup कैसे करें? Step-by-step guide with trending looks, products, और Patna की best makeup services। Complete tutorial हिंदी में।",
-        "date": "2025-10-18",
-        "coverImage": "/blog/party-makeup-looks-different-outfits.webp",
-        "category": "makeup",
-        "author": "neelamSharma",
+        "title": "Baal Girna Kaise Roken - 15 Aasaan Gharelu Nuskhe Hair Fall Rokne Ke Liye",
+        "excerpt": "Baal girna rok sakte hain aasaan gharelu tarike se. Jaaniye kaise pyaaz, methi, amla aur tel se baal mazboot banaye. Patna ki ladies ke liye simple Hindi tips.",
+        "date": "2025-11-05",
+        "coverImage": "/images/blog/hair-fall-control-treatment.webp",
+        "category": "hair-care",
+        "author": "parvatikumari",
         "tags": [
-          "party makeup",
-          "makeup tutorial",
-          "saree makeup",
-          "lehenga makeup",
-          "gown makeup",
-          "western dress makeup",
-          "makeup artist patna",
-          "party look",
-          "festive makeup",
-          "wedding guest makeup"
+          "baal girna kaise roken",
+          "hair fall rokne ke gharelu nuskhe",
+          "baal girne ka ilaj ghar par",
+          "hair fall treatment hindi",
+          "baal badhane ke tarike",
+          "patna beauty tips"
         ],
         "featured": true,
-        "readTime": 14,
-        "seo": {
-          "keywords": [
-            "party makeup looks",
-            "different dress ke liye makeup",
-            "saree ke sath makeup",
-            "lehenga makeup ideas",
-            "gown ke liye makeup",
-            "party makeup patna",
-            "makeup artist near me",
-            "festive makeup tutorial",
-            "wedding party makeup",
-            "indo western makeup"
-          ],
-          "location": {
-            "city": "Patna",
-            "area": "Bhootnath Road",
-            "state": "Bihar",
-            "nearby": [
-              "Patna Junction",
-              "Boring Road",
-              "Gandhi Maidan",
-              "Kankarbagh"
-            ]
-          },
-          "priceRange": {
-            "min": 2000,
-            "max": 15000,
-            "currency": "INR",
-            "note": "Party makeup services in Patna"
-          },
-          "canonicalUrl": "https://yourwebsite.com/blog/party-makeup-looks-different-dress-ke-hisab-se-makeup-patna",
-          "schema": {
-            "@context": "https://schema.org",
-            "@type": "Article",
-            "headline": "Party Makeup Looks - Different Dress Ke Hisab Se Perfect Makeup Guide",
-            "description": "Complete guide on party makeup for different outfits including saree, lehenga, gown, and western wear with step-by-step tutorials and expert tips",
-            "image": "https://kritikasalonpatna.com/blog/party-makeup-looks-different-outfits.webp",
-            "author": {
-              "@type": "Person",
-              "name": "Neelam Sharma",
-              "jobTitle": "Professional Makeup Artist",
-              "worksFor": {
-                "@type": "BeautySalon",
-                "name": "Glamour Salon & Spa Patna"
-              }
-            },
-            "publisher": {
-              "@type": "LocalBusiness",
-              "@id": "https://yourwebsite.com/#organization",
-              "name": "Glamour Salon & Spa",
-              "address": {
-                "@type": "PostalAddress",
-                "streetAddress": "Bhootnath Road",
-                "addressLocality": "Patna",
-                "addressRegion": "Bihar",
-                "postalCode": "800001",
-                "addressCountry": "IN"
-              },
-              "geo": {
-                "@type": "GeoCoordinates",
-                "latitude": 25.587406341942586,
-                "longitude": 85.17572682575796
-              },
-              "logo": {
-                "@type": "ImageObject",
-                "url": "https://yourwebsite.com/logo.png"
-              }
-            },
-            "datePublished": "2025-10-18",
-            "dateModified": "2025-10-18",
-            "mainEntityOfPage": {
-              "@type": "WebPage",
-              "@id": "https://yourwebsite.com/blog/party-makeup-looks-different-dress-ke-hisab-se-makeup-patna"
-            },
-            "articleSection": "Makeup & Beauty",
-            "inLanguage": "hi-IN"
-          },
-          "videoObjectSchema": {
-            "@context": "https://schema.org",
-            "@type": "VideoObject",
-            "name": "Party Makeup Tutorial - Different Outfits",
-            "description": "Complete party makeup guide for various dress styles",
-            "thumbnailUrl": "https://yourwebsite.com/assets/video-thumbnail.jpg",
-            "uploadDate": "2025-10-18"
-          },
-          "internalLinks": [
-            {
-              "text": "Party Makeup Services",
-              "url": "/services/party-makeup",
-              "anchor": "professional party makeup packages starting ₹2,000",
-              "context": "pricing_section"
-            },
-            {
-              "text": "Bridal Makeup Portfolio",
-              "url": "/portfolio/bridal-makeup",
-              "anchor": "real client transformations और makeup looks",
-              "context": "inspiration_section"
-            },
-            {
-              "text": "Book Makeup Artist",
-              "url": "/booking/makeup-appointment",
-              "anchor": "online booking करें और instant confirmation पाएं",
-              "context": "cta_section"
-            }
-          ],
-          "faq": [
-            {
-              "question": "Saree ke sath kaunsa makeup best hota hai?",
-              "answer": "Saree के साथ traditional makeup best रहता है - defined eyes, bold lips (red/maroon), heavy bindi, और traditional jewellery के according makeup। Silk saree के लिए ज्यादा shimmer, cotton saree के लिए matte finish better है।"
-            },
-            {
-              "question": "Party makeup ki cost kitni hoti hai Patna mein?",
-              "answer": "Patna में party makeup की cost ₹2,000 से ₹15,000 तक होती है। Simple party makeup ₹2,000-4,000, glamorous look ₹5,000-8,000, aur HD/celebrity style makeup ₹10,000-15,000 में मिलता है। Bhootnath Road area में competitive rates हैं।"
-            },
-            {
-              "question": "Western dress ke liye makeup kaise kare?",
-              "answer": "Western dress के लिए modern, bold makeup करें - smokey eyes, nude/pink lips, contouring, aur dewy finish। Gown के color के according eye shadow choose करें। Minimal या no bindi, और contemporary look रखें।"
-            },
-            {
-              "question": "Lehenga ke sath makeup mein kya special rakhein?",
-              "answer": "Lehenga के साथ balance important है। Heavy lehenga = slightly subtle makeup, Simple lehenga = bold makeup कर सकते हैं। Lehenga के color को complement करें, match नहीं। Golden jewelry के साथ warm tones best हैं।"
-            },
-            {
-              "question": "Party makeup kitne ghante pehle karwana chahiye?",
-              "answer": "Party से 2-3 घंटे पहले makeup करवाना ideal है। इससे makeup set हो जाता है, touch-ups कर सकते हैं, और photos में perfect दिखता है। Rush में last minute makeup avoid करें।"
-            },
-            {
-              "question": "Kya party makeup long-lasting hota hai?",
-              "answer": "Professional party makeup 6-8 घंटे तक fresh रहता है। HD या Airbrush makeup 10-12 घंटे तक perfect रहता है। Setting spray use करने से durability और बढ़ती है। Touch-up kit ज़रूर रखें।"
-            },
-            {
-              "question": "Day party aur night party makeup mein kya difference hai?",
-              "answer": "Day party में natural, light makeup with minimal shimmer करें। Night party में bold, dramatic makeup with glitters और darker shades। Lighting का difference होता है - din में soft, raat में artificial lights।"
-            },
-            {
-              "question": "Patna ki humidity mein party makeup kaise maintain karein?",
-              "answer": "Patna की humidity में waterproof products use करें, setting spray ज़रूर लगाएं, oil-free base चुनें, और blotting papers साथ रखें। Cream products की जगह powder-based products prefer करें summer में।"
-            }
-          ],
-          "makeupLooksByOutfit": {
-            "saree": {
-              "title": "साड़ी के लिए Perfect Makeup",
-              "bestColors": [
-                "Deep red",
-                "Maroon",
-                "Gold",
-                "Bronze"
-              ],
-              "eyeMakeup": "Defined liner, kajal, false lashes",
-              "lipColor": "Bold red, maroon, deep pink",
-              "style": "Traditional, elegant",
-              "accessories": "Bindi, traditional jewelry",
-              "difficulty": "Medium"
-            },
-            "lehenga": {
-              "title": "लहंगा के लिए Glamorous Look",
-              "bestColors": [
-                "Match with lehenga color",
-                "Gold",
-                "Copper"
-              ],
-              "eyeMakeup": "Smokey eyes, dramatic lashes",
-              "lipColor": "Nude, pink, red (depends on lehenga)",
-              "style": "Bridal-inspired, festive",
-              "accessories": "Maang tikka, statement jewelry",
-              "difficulty": "Hard"
-            },
-            "gown": {
-              "title": "गाउन के लिए Elegant Makeup",
-              "bestColors": [
-                "Nudes",
-                "Browns",
-                "Burgundy"
-              ],
-              "eyeMakeup": "Cat eye, subtle shimmer",
-              "lipColor": "Nude, mauve, wine",
-              "style": "Western, sophisticated",
-              "accessories": "Minimal jewelry, sleek hair",
-              "difficulty": "Medium"
-            },
-            "indoWestern": {
-              "title": "Indo-Western Fusion Look",
-              "bestColors": [
-                "Mix of traditional and modern"
-              ],
-              "eyeMakeup": "Winged liner with traditional colors",
-              "lipColor": "Versatile - nude to bold",
-              "style": "Fusion, contemporary",
-              "accessories": "Mix traditional and modern",
-              "difficulty": "Medium"
-            },
-            "anarkali": {
-              "title": "अनारकली सूट Makeup",
-              "bestColors": [
-                "Pastels",
-                "Gold",
-                "Pink"
-              ],
-              "eyeMakeup": "Soft smokey, delicate",
-              "lipColor": "Pink, peach, coral",
-              "style": "Elegant, graceful",
-              "accessories": "Earrings, maang tikka optional",
-              "difficulty": "Easy"
-            },
-            "westernCasual": {
-              "title": "Casual Western Party Look",
-              "bestColors": [
-                "Neutrals",
-                "Pops of color"
-              ],
-              "eyeMakeup": "Natural with definition",
-              "lipColor": "Nudes, pinks, berries",
-              "style": "Chic, modern",
-              "accessories": "Minimal, trendy",
-              "difficulty": "Easy"
-            }
-          },
-          "productRecommendations": {
-            "base": [
-              {
-                "product": "HD Foundation",
-                "brands": [
-                  "MAC Studio Fix",
-                  "Huda Beauty",
-                  "Maybelline Fit Me"
-                ],
-                "priceRange": "₹500-3,500",
-                "why": "Long-lasting, camera-friendly"
-              },
-              {
-                "product": "Primer",
-                "brands": [
-                  "NYX Pore Filler",
-                  "Lakme Primer",
-                  "Faces Ultime Pro"
-                ],
-                "priceRange": "₹300-1,500",
-                "why": "Makes makeup last longer"
-              },
-              {
-                "product": "Concealer",
-                "brands": [
-                  "Maybelline Fit Me",
-                  "LA Girl",
-                  "NYX Born To Glow"
-                ],
-                "priceRange": "₹250-800",
-                "why": "Hides dark circles, blemishes"
-              }
-            ],
-            "eyes": [
-              {
-                "product": "Eyeshadow Palette",
-                "brands": [
-                  "Huda Beauty",
-                  "Makeup Revolution",
-                  "Colorbar"
-                ],
-                "priceRange": "₹600-4,000",
-                "why": "Variety of colors for different looks"
-              },
-              {
-                "product": "Eyeliner",
-                "brands": [
-                  "Lakme 9to5",
-                  "Maybelline Hyper Sharp",
-                  "NYX Epic Ink"
-                ],
-                "priceRange": "₹250-700",
-                "why": "Defines eyes perfectly"
-              },
-              {
-                "product": "Mascara",
-                "brands": [
-                  "Maybelline Lash Sensational",
-                  "Lakme Absolute",
-                  "L'Oreal Paris"
-                ],
-                "priceRange": "₹400-1,200",
-                "why": "Volumizes lashes"
-              }
-            ],
-            "lips": [
-              {
-                "product": "Lipstick (Matte)",
-                "brands": [
-                  "MAC Ruby Woo",
-                  "Maybelline Superstay",
-                  "Sugar Matte"
-                ],
-                "priceRange": "₹300-2,000",
-                "why": "Long-lasting, bold color"
-              },
-              {
-                "product": "Lip Liner",
-                "brands": [
-                  "NYX Slim Lip Pencil",
-                  "Colorbar",
-                  "Faces Ultime Pro"
-                ],
-                "priceRange": "₹200-600",
-                "why": "Defines lips, prevents bleeding"
-              }
-            ],
-            "setting": [
-              {
-                "product": "Setting Spray",
-                "brands": [
-                  "Urban Decay All Nighter",
-                  "NYX Setting Spray",
-                  "Blue Heaven"
-                ],
-                "priceRange": "₹300-2,500",
-                "why": "Locks makeup for hours"
-              },
-              {
-                "product": "Compact Powder",
-                "brands": [
-                  "Lakme 9to5",
-                  "Maybelline Fit Me",
-                  "Faces Canada"
-                ],
-                "priceRange": "₹250-800",
-                "why": "Controls oil, touch-ups"
-              }
-            ]
-          },
-          "stepByStepGuides": {
-            "saree": [
-              "Primer लगाएं और set होने दें",
-              "Foundation evenly apply करें (sponge से)",
-              "Concealer से dark circles और blemishes छुपाएं",
-              "Compact powder से set करें",
-              "Heavy contouring करें (cheekbones, nose)",
-              "Traditional eye makeup - gold/copper shades",
-              "Black eyeliner और kajal generously लगाएं",
-              "False lashes apply करें",
-              "Bold red/maroon lipstick लगाएं",
-              "Bindi perfectly place करें",
-              "Setting spray से finish करें"
-            ],
-            "gown": [
-              "Moisturizer + Primer combo",
-              "Light to medium foundation",
-              "Strategic highlighting (dewy look)",
-              "Subtle contour",
-              "Nude या brown eyeshadow",
-              "Winged eyeliner",
-              "Mascara (volumizing)",
-              "Nude या wine lips",
-              "Light blush",
-              "Dewy setting spray"
-            ],
-            "lehenga": [
-              "Heavy-duty primer",
-              "Full coverage foundation",
-              "Intense contouring और highlighting",
-              "Smokey eye makeup (lehenga color के according)",
-              "Dramatic eyeliner और kajal",
-              "Premium false lashes",
-              "Bold lips (match या contrast)",
-              "Heavy blush और highlighter",
-              "Bindi या maang tikka coordinate करें",
-              "Long-lasting setting spray"
-            ]
-          },
-          "colorCombinations": {
-            "redOutfit": {
-              "eyes": [
-                "Gold",
-                "Bronze",
-                "Brown",
-                "Black smokey"
-              ],
-              "lips": [
-                "Nude",
-                "Red",
-                "Deep maroon"
-              ],
-              "bestChoice": "Gold eyes + nude lips या Brown eyes + red lips"
-            },
-            "blueOutfit": {
-              "eyes": [
-                "Silver",
-                "Blue",
-                "Purple",
-                "Grey"
-              ],
-              "lips": [
-                "Pink",
-                "Nude",
-                "Mauve"
-              ],
-              "bestChoice": "Silver eyes + pink lips"
-            },
-            "greenOutfit": {
-              "eyes": [
-                "Gold",
-                "Brown",
-                "Purple",
-                "Copper"
-              ],
-              "lips": [
-                "Nude",
-                "Peach",
-                "Coral"
-              ],
-              "bestChoice": "Gold eyes + coral lips"
-            },
-            "pinkOutfit": {
-              "eyes": [
-                "Pink",
-                "Purple",
-                "Brown",
-                "Gold"
-              ],
-              "lips": [
-                "Pink",
-                "Nude",
-                "Mauve"
-              ],
-              "bestChoice": "Brown eyes + pink lips"
-            },
-            "blackOutfit": {
-              "eyes": [
-                "Any color works!",
-                "Smokey grey",
-                "Gold",
-                "Red"
-              ],
-              "lips": [
-                "Red",
-                "Nude",
-                "Dark berry"
-              ],
-              "bestChoice": "Smokey eyes + red lips (classic)"
-            },
-            "whiteOutfit": {
-              "eyes": [
-                "Pastels",
-                "Gold",
-                "Brown",
-                "Pink"
-              ],
-              "lips": [
-                "Pink",
-                "Red",
-                "Coral"
-              ],
-              "bestChoice": "Soft pink eyes + red lips"
-            }
-          },
-          "occasionBasedTips": {
-            "wedding": "Heavy, long-lasting, traditional, camera-ready",
-            "cocktailParty": "Glamorous, bold, western, shimmer",
-            "birthday": "Fun, colorful, trendy, Instagram-worthy",
-            "festivalCelebration": "Traditional, vibrant, cultural elements",
-            "corporateParty": "Elegant, subtle, professional yet festive",
-            "engagementParty": "Romantic, soft glam, balanced",
-            "householdParty": "Medium glam, comfortable, long-lasting"
-          },
-          "viralHooks": [
-            "🔥 Trending Party Looks 2025",
-            "💃 Dance-Proof Makeup Hacks",
-            "📸 Instagram-Worthy Party Makeup",
-            "👗 Outfit + Makeup Coordination Guide",
-            "✨ Celebrity-Inspired Party Looks",
-            "💄 Under ₹2000 Party Makeup Products",
-            "🎉 Last-Minute Party Ready in 30 Minutes"
-          ],
-          "commonMistakes": [
-            "Outfit के साथ makeup match नहीं करना",
-            "Wrong foundation shade choose करना",
-            "Contouring overdo करना",
-            "Lips और eyes दोनों heavy करना (choose one!)",
-            "Setting spray skip करना",
-            "Skin prep नहीं करना",
-            "Cheap/duplicate products use करना",
-            "Lighting में test नहीं करना"
-          ],
-          "quickTips": [
-            "हमेशा dress पहनने से पहले makeup करें",
-            "Natural lighting में makeup check करें",
-            "Touch-up kit तैयार रखें",
-            "Comfortable clothes पहन कर makeup करवाएं",
-            "Hair और makeup coordination plan करें",
-            "Jewelry के साथ coordinate करें",
-            "Photos test लें (flash के साथ)",
-            "Backup lipstick और blotting papers रखें"
-          ],
-          "localKeywords": [
-            "party makeup artist patna",
-            "best makeup salon bhootnath road",
-            "makeup services near patna junction",
-            "party makeup boring road patna",
-            "makeup artist patna cantt"
-          ],
-          "packagePricing": [
-            {
-              "name": "Simple Party Makeup",
-              "price": "₹2,000 - ₹4,000",
-              "includes": [
-                "Basic makeup",
-                "Hair setting",
-                "No false lashes"
-              ],
-              "duration": "60-90 minutes",
-              "bestFor": "Small gatherings, casual parties"
-            },
-            {
-              "name": "Glamorous Party Makeup",
-              "price": "₹5,000 - ₹8,000",
-              "includes": [
-                "HD makeup",
-                "Hair styling",
-                "False lashes",
-                "Touch-up kit"
-              ],
-              "duration": "2-3 hours",
-              "bestFor": "Weddings, big celebrations"
-            },
-            {
-              "name": "Celebrity Style Party Makeup",
-              "price": "₹10,000 - ₹15,000",
-              "includes": [
-                "Airbrush/HD makeup",
-                "Professional hair styling",
-                "Premium lashes",
-                "Draping",
-                "Complete kit"
-              ],
-              "duration": "3-4 hours",
-              "bestFor": "Special occasions, photoshoots"
-            }
-          ]
+        "readTime": 12
+      },
+      "seo": {
+        "metaTitle": "Baal Girna Kaise Roken | 15 Aasaan Gharelu Nuskhe - SALONIC Patna",
+        "metaDescription": "Baal gir rahe hain? Janiye 15 aasaan gharelu nuskhe jaise pyaaz ka ras, methi, amla aur tel massage se baal girna kaise roken. Patna ki ladies ke liye simple Hindi me tips.",
+        "keywords": [
+          "baal girna kaise roken",
+          "baal girne ka ilaj",
+          "hair fall kaise roken hindi",
+          "baal girne ka gharelu upay",
+          "hair fall treatment at home",
+          "baal badhane ke nuskhe",
+          "hair fall control tips hindi",
+          "methi se baal badhaye",
+          "pyaaz se baal ugaye",
+          "amla for hair growth",
+          "nariyal tel ke fayde",
+          "patna beauty tips",
+          "ladies hair care patna"
+        ],
+        "focusKeyword": "baal girna kaise roken",
+        "openGraph": {
+          "title": "Baal Girna Kaise Roken - 15 Aasaan Gharelu Nuskhe",
+          "description": "Pyaaz, methi, amla aur dusre gharelu nuskhe se baal girna roken. Patna ki ladies ke liye aasaan Hindi tips.",
+          "image": "/assets/blog/hair-fall-control-treatment.webp",
+          "type": "article"
+        },
+        "twitter": {
+          "card": "summary_large_image",
+          "title": "Baal Girna Kaise Roken - Aasaan Gharelu Nuskhe",
+          "description": "15 simple gharelu tarike se baal girna roken. Hindi me complete guide."
         }
       },
-      "seoConfig": [
+      "internalLinks": [
         {
-          "metaTitle": "Party Makeup Looks - Different Dress Ke Hisab Se Perfect Makeup Guide | Patna",
-          "metaDescription": "हर dress के लिए perfect party makeup कैसे करें? Saree, lehenga, gown, western wear - complete tutorial with products, tips, और Patna की best makeup artist services। Step-by-step guide हिंदी में।",
-          "ogImage": "/blog/party-makeup-og-image.webp",
-          "twitterCard": "summary_large_image",
-          "focusKeyphrase": "party makeup looks",
-          "keyphraseVariations": [
-            "different dress ke liye makeup",
-            "party makeup tutorial",
-            "saree makeup guide",
-            "lehenga makeup tips",
-            "party makeup patna"
-          ],
-          "semanticKeywords": [
-            "पार्टी मेकअप",
-            "ड्रेस के अनुसार मेकअप",
-            "साड़ी मेकअप",
-            "लहंगा मेकअप",
-            "makeup coordination",
-            "festive look",
-            "glamorous makeup"
-          ]
+          "text": "Hair Treatment Services",
+          "url": "/hair",
+          "anchor": "professional baal girna rokne ka treatment"
+        },
+        {
+          "text": "Hair Care Tips",
+          "url": "/hair",
+          "anchor": "baal ki dekhbhal ke liye expert tips"
         }
-      ]
+      ],
+      "faq": [
+        {
+          "question": "Baal girne ka sabse bada karan kya hai?",
+          "answer": "Baal girne ke main karan hain - khane me kami (vitamin aur protein ki), tension aur stress, hormonal changes, khandaani history, dandruff aur sir ki skin me infection, aur galat tarike se baal sambhalna."
+        },
+        {
+          "question": "Kitne din me baal girna rukta hai gharelu nuskhe se?",
+          "answer": "Gharelu nuskhe regular use karne se 4-6 hafte me thoda improvement dikhta hai. Complete results ke liye 3-6 mahine lagatar koshish karni padti hai. Dhairya rakhna zaroori hai."
+        },
+        {
+          "question": "Baal badhane ke liye kya khana chahiye?",
+          "answer": "Protein se bhare khane jaise ande, dal, paneer khayein. Iron ke liye palak, chukandar, anaar. Dry fruits jaise badam aur akhrot. Hari sabziyan aur mausami phal bhi zaroori hain."
+        },
+        {
+          "question": "Tel maalish kitni baar karni chahiye?",
+          "answer": "Hafte me 2-3 baar tel maalish kaafi hai. Nariyal ka tel, bhringraj ka tel ya arandi ka tel use kar sakte hain. Roz lagane ki zaroorat nahi hai warna sir bahut oily ho jayega."
+        },
+        {
+          "question": "Pyaaz ka ras kaise lagaye baalon me?",
+          "answer": "2-3 pyaaz ka ras nikaal kar sidhe sir par lagayein. 30 minute tak rakhein fir achhe shampoo se dho lein. Smell kam karne ke liye thoda nimbu ka ras mila sakte hain. Hafte me 2 baar use karein."
+        },
+        {
+          "question": "Doctor se kab milna chahiye?",
+          "answer": "Agar 3-6 mahine gharelu upay karne ke baad bhi farak na dikhe, ya achanak bahut zyada baal girne lage, sir par patches ban jaye, ya khujli aur laalima ho toh turant doctor se milna chahiye."
+        }
+      ],
+      "schema": {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "Baal Girna Kaise Roken - 15 Aasaan Gharelu Nuskhe",
+        "description": "Complete guide on how to stop hair fall using natural home remedies in simple Hindi language for Patna ladies.",
+        "image": "/assets/blog/hair-fall-control-treatment.webp",
+        "author": {
+          "@type": "Person",
+          "name": "Parvati Kumari"
+        },
+        "publisher": {
+          "@type": "LocalBusiness",
+          "@id": "https://kritikasalonpatna.com/#organization",
+          "name": "Kritika Ladies Beauty Parlour",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Bhootnath Road",
+            "addressLocality": "Patna",
+            "addressRegion": "Bihar",
+            "postalCode": "800001",
+            "addressCountry": "IN"
+          },
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 25.587406341942586,
+            "longitude": 85.17572682575796
+          },
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://kritikasalonpatna.com/logo.png"
+          }
+        },
+        "datePublished": "2025-10-08",
+        "dateModified": "2025-10-08"
+      }
     },
+    {
+  "slug": "party-makeup-looks-complete-guide-Part-I-basic-and-traditional-outfits-patna",
+  "filePath": "./src/content/posts/party-makeup-looks-complete-guide-Part-1-basic-and-traditional-outfits.md",
+  "metadata": {
+    "title": "Party Makeup Guide 2026 – Part 1: Traditional Outfits (Saree, Lehenga, Anarkali)",
+    "excerpt": "Saree, Lehenga और Anarkali के साथ कैसा makeup करें? Traditional outfits के लिए complete party makeup guide with step-by-step techniques, colour coordination, और Patna की expert tips।",
+    "date": "2026-09-06",
+    "coverImage": "/images/blog/party-makeup-looks-different-outfits.webp",
+    "category": "makeup",
+    "author": "neelamSharma",
+    "tags": [
+      "party makeup",
+      "traditional party makeup",
+      "saree makeup",
+      "lehenga makeup",
+      "anarkali makeup",
+      "indian party look",
+      "festive makeup",
+      "wedding guest makeup",
+      "makeup artist patna"
+    ],
+    "featured": true,
+    "readTime": 12
+  },
+  "seo": {
+    "metaTitle": "Party Makeup Guide 2026 – Part 1: Traditional Outfits (Saree, Lehenga, Anarkali)",
+    "metaDescription": "Traditional party makeup guide for saree, lehenga, and anarkali outfits. Step-by-step techniques, colour coordination tips, and Patna expert advice for 2026.",
+    "keywords": [
+      "party makeup guide",
+      "traditional party makeup",
+      "saree makeup tutorial",
+      "lehenga makeup ideas",
+      "anarkali makeup tips",
+      "indian party makeup",
+      "festive makeup patna",
+      "wedding guest makeup",
+      "makeup for ethnic wear",
+      "party makeup patna",
+      "traditional dress makeup",
+      "ethnic wear makeup",
+      "saree ke sath makeup",
+      "lehenga makeup guide",
+      "part 1 party makeup"
+    ],
+    "focusKeyword": "party makeup guide",
+    "openGraph": {
+      "title": "Party Makeup Guide 2026 – Part 1: Traditional Outfits",
+      "description": "Complete guide on party makeup for traditional outfits including saree, lehenga, and anarkali with step-by-step techniques and expert tips.",
+      "image": "/images/blog/party-makeup-looks-different-outfits.webp",
+      "type": "article"
+    },
+    "twitter": {
+      "card": "summary_large_image",
+      "title": "Party Makeup Guide 2026 – Part 1: Traditional Outfits",
+      "description": "Expert tips for party makeup with traditional outfits including saree, lehenga, and anarkali."
+    }
+  },
+  "internalLinks": [
+    {
+      "text": "Makeup Services",
+      "url": "/makeup",
+      "anchor": "professional party makeup packages"
+    },
+    {
+      "text": "Bridal Makeup Guide",
+      "url": "/bridal",
+      "anchor": "bridal makeup services"
+    },
+    {
+      "text": "Book Appointment",
+      "url": "/booking",
+      "anchor": "book your makeup appointment"
+    },
+    {
+      "text": "Part 2: Western & Fusion Styles",
+      "url": "/blog/party-makeup-guide-2026-part-2-western-fusion",
+      "anchor": "western and fusion party makeup"
+    },
+    {
+      "text": "Part 3: Color Coordination & Products",
+      "url": "/blog/party-makeup-guide-2026-part-3-color-products",
+      "anchor": "color coordination and products"
+    },
+    {
+      "text": "Part 4: Professional Secrets",
+      "url": "/blog/party-makeup-guide-2026-part-4-professional-secrets",
+      "anchor": "professional secrets and hacks"
+    }
+  ],
+  "faq": [
+    {
+      "question": "Saree के साथ कौन-सा makeup best रहता है?",
+      "answer": "Saree के साथ traditional makeup best रहता है - defined eyes, bold lips (red/maroon), heavy bindi, और traditional jewellery के according makeup। Silk saree के लिए ज्यादा shimmer, cotton saree के लिए matte finish better है।"
+    },
+    {
+      "question": "Lehenga के साथ makeup में क्या special रखना चाहिए?",
+      "answer": "Lehenga के साथ balance important है। Heavy lehenga = slightly subtle makeup, Simple lehenga = bold makeup कर सकते हैं। Lehenga के color को complement करें, match नहीं। Golden jewelry के साथ warm tones best हैं।"
+    },
+    {
+      "question": "Party makeup kitne ghante pehle karwana चाहिए?",
+      "answer": "Party से 2-3 घंटे पहले makeup करवाना ideal है। इससे makeup set हो जाता है, touch-ups कर सकते हैं, और photos में perfect दिखता है।"
+    },
+    {
+      "question": "Traditional outfit के लिए best lip colour कौन-सा है?",
+      "answer": "Red outfit → nude/red lips; Pink outfit → pink/mauve; Green outfit → peach/nude; Blue outfit → pink/mauve; Gold outfit → warm nude/rose lips।"
+    },
+    {
+      "question": "Saree और lehenga के makeup में क्या difference है?",
+      "answer": "Saree के साथ traditional, defined, bold lips और heavy bindi best रहता है। Lehenga के साथ more glamorous, smokey eyes, and balanced lips। Lehenga के साथ maang tikka और statement jewelry भी coordinate करते हैं।"
+    }
+  ],
+  "schema": {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Party Makeup Guide 2026 – Part 1: Traditional Outfits",
+    "description": "Complete guide on party makeup for traditional Indian outfits including saree, lehenga, and anarkali with step-by-step techniques and expert tips.",
+    "image": "https://kritikasalonpatna.com/images/blog/party-makeup-looks-different-outfits.webp",
+    "author": {
+      "@type": "Person",
+      "name": "Neelam Sharma",
+      "jobTitle": "Professional Makeup Artist",
+      "worksFor": {
+        "@type": "BeautySalon",
+        "name": "Kritika Ladies Beauty Parlour"
+      }
+    },
+    "publisher": {
+      "@type": "LocalBusiness",
+      "@id": "https://kritikasalonpatna.com/#organization",
+      "name": "Kritika Ladies Beauty Parlour",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Bhootnath Road",
+        "addressLocality": "Patna",
+        "addressRegion": "Bihar",
+        "postalCode": "800001",
+        "addressCountry": "IN"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 25.587406341942586,
+        "longitude": 85.17572682575796
+      },
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://kritikasalonpatna.com/logo.png"
+      }
+    },
+    "datePublished": "2026-09-06",
+    "dateModified": "2026-09-06",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://kritikasalonpatna.com/blog/party-makeup-guide-2026-part-1-traditional"
+    },
+    "articleSection": "Makeup & Beauty",
+    "inLanguage": "hi-IN"
+  }
+    },
+    
     {
       "slug": "bridal-makeup-complete-guide-price-styles-artist-selection-patna",
       "filePath": "./src/content/posts/bridal-makeup-complete-guide.md",
@@ -594,7 +292,7 @@
         "title": "Bridal Makeup Complete Guide 2025 - Price, Styles & Best Artist Selection | Patna",
         "excerpt": "Dulhan ka makeup kaise karaye? Complete bridal makeup guide with HD, Airbrush, Traditional styles, price list, और Patna ki best makeup artist kaise choose karein - सारी जानकारी हिंदी में।",
         "date": "2025-10-15",
-        "coverImage": "/blog/bridal-makeup-patna-glamour-salon.webp",
+        "coverImage": "/images/blog/bridal-makeup-kritika-salon-patna.webp",
         "category": "bridal",
         "author": "priyankaVerma",
         "tags": [
@@ -610,148 +308,170 @@
           "bridal package"
         ],
         "featured": true,
-        "readTime": 15,
-        "seo": {
-          "keywords": [
-            "bridal makeup patna",
-            "best bridal makeup artist patna",
-            "dulhan makeup price",
-            "wedding makeup bhootnath road",
-            "bridal makeup package patna",
-            "HD makeup cost patna",
-            "airbrush bridal makeup",
-            "pre wedding makeup",
-            "engagement makeup patna",
-            "reception makeup artist"
-          ],
-          "location": {
-            "city": "Patna",
-            "area": "Bhootnath Road",
-            "state": "Bihar",
-            "nearby": [
-              "Patna Junction",
-              "Gandhi Maidan",
-              "Boring Road",
-              "Fraser Road"
-            ]
-          },
-          "priceRange": {
-            "min": 5000,
-            "max": 50000,
-            "currency": "INR"
-          },
-          "canonicalUrl": "https://yourwebsite.com/blog/bridal-makeup-complete-guide-price-styles-artist-selection-patna",
-          "schema": {
-            "@context": "https://schema.org",
-            "@type": "Article",
-            "headline": "Bridal Makeup Complete Guide 2025 - Price, Styles & Artist Selection",
-            "description": "Complete guide on bridal makeup including HD, Airbrush, Traditional styles with price comparison and artist selection tips for Patna brides",
-            "image": "https://kritikasalonpatna.com/blog/bridal-makeup-patna-glamour-salon.webp",
-            "author": {
-              "@type": "Person",
-              "name": "Priyanka Verma",
-              "jobTitle": "Senior Bridal Makeup Artist",
-              "worksFor": {
-                "@type": "BeautySalon",
-                "name": "Glamour Salon & Spa Patna"
-              }
-            },
-            "publisher": {
-              "@type": "LocalBusiness",
-              "@id": "https://yourwebsite.com/#organization",
-              "name": "Glamour Salon & Spa",
-              "address": {
-                "@type": "PostalAddress",
-                "streetAddress": "Bhootnath Road",
-                "addressLocality": "Patna",
-                "addressRegion": "Bihar",
-                "postalCode": "800001",
-                "addressCountry": "IN"
-              },
-              "geo": {
-                "@type": "GeoCoordinates",
-                "latitude": 25.587406341942586,
-                "longitude": 85.17572682575796
-              },
-              "logo": {
-                "@type": "ImageObject",
-                "url": "https://yourwebsite.com/logo.png"
-              }
-            },
-            "datePublished": "2025-10-15",
-            "dateModified": "2025-10-15",
-            "mainEntityOfPage": {
-              "@type": "WebPage",
-              "@id": "https://yourwebsite.com/blog/bridal-makeup-complete-guide-price-styles-artist-selection-patna"
-            },
-            "articleSection": "Bridal Beauty",
-            "inLanguage": "hi-IN",
-            "about": [
-              {
-                "@type": "Thing",
-                "name": "Bridal Makeup"
-              },
-              {
-                "@type": "Thing",
-                "name": "Wedding Beauty Services"
-              }
-            ]
+        "readTime": 15
+      },
+      "seo": {
+        "metaTitle": "Bridal Makeup Guide 2025 - Price, Styles & Artist Selection | Patna Bhootnath Road",
+        "metaDescription": "Complete bridal makeup guide: HD, Airbrush, Traditional styles की सारी जानकारी। Price ₹5,000-50,000, best artist कैसे चुनें, और Patna की top rated bridal services। Expert tips हिंदी में।",
+        "keywords": [
+          "bridal makeup patna",
+          "best bridal makeup artist patna",
+          "dulhan makeup price",
+          "wedding makeup bhootnath road",
+          "bridal makeup package patna",
+          "HD makeup cost patna",
+          "airbrush bridal makeup",
+          "pre wedding makeup",
+          "engagement makeup patna",
+          "reception makeup artist",
+          "bridal makeup complete guide",
+          "wedding makeup artist patna",
+          "HD bridal makeup cost",
+          "best bridal makeup bhootnath road",
+          "शादी का मेकअप",
+          "दुल्हन की तैयारी",
+          "wedding beauty services",
+          "bridal package",
+          "makeup trial",
+          "pre-wedding beauty",
+          "engagement makeup",
+          "reception makeup"
+        ],
+        "focusKeyword": "bridal makeup patna",
+        "openGraph": {
+          "image": "/assets/blog/bridal-makeup-og-patna.webp"
+        },
+        "twitter": {
+          "card": "summary_large_image"
+        }
+      },
+      "internalLinks": [
+        {
+          "text": "Bridal Makeup Packages",
+          "url": "/bridal",
+          "anchor": "complete bridal makeup packages starting from ₹15,000",
+          "context": "pricing_section"
+        },
+        {
+          "text": "Pre-Wedding Beauty Services",
+          "url": "/bridal",
+          "anchor": "pre-wedding grooming और beauty treatments",
+          "context": "preparation_section"
+        },
+        {
+          "text": "Book Bridal Trial",
+          "url": "/booking",
+          "anchor": "free bridal makeup trial booking",
+          "context": "artist_selection_section"
+        }
+      ],
+      "faq": [
+        {
+          "question": "Bridal makeup ki cost kitni hoti hai Patna mein?",
+          "answer": "Patna mein bridal makeup ki cost ₹5,000 se ₹50,000 tak hoti hai. Basic makeup ₹5,000-10,000, HD makeup ₹15,000-25,000, aur Airbrush makeup ₹25,000-50,000 tak ho sakta hai. Bhootnath Road area mein competitive prices milte hain."
+        },
+        {
+          "question": "HD makeup aur normal makeup mein kya difference hai?",
+          "answer": "HD makeup high-definition cameras के लिए specially designed hai. Ye flawless finish देता है, long-lasting रहता है, और photos/videos में perfect दिखता है। Normal makeup से ज्यादा coverage और durability होती है।"
+        },
+        {
+          "question": "Bridal makeup trial kyu zaroori hai?",
+          "answer": "Trial se aap makeup look को पहले देख सकती हैं, artist के साथ comfortable हो सकती हैं, products test कर सकती हैं, और final look में changes कर सकती हैं। Ye आपकी wedding day को stress-free बनाता है।"
+        },
+        {
+          "question": "Best bridal makeup artist kaise choose karein Patna mein?",
+          "answer": "Portfolio देखें, reviews पढ़ें, trial लें, experience check करें, products की quality देखें, और budget discuss करें। Bhootnath Road area में experienced artists available हैं।"
+        },
+        {
+          "question": "Bridal makeup kitne ghante tikta hai?",
+          "answer": "Professional HD या Airbrush makeup 12-15 hours tak fresh रहता है। Setting spray और touch-up kit से पूरे function में perfect look maintain रहता है।"
+        },
+        {
+          "question": "Bridal makeup ke liye advance booking kitni pehle karni chahiye?",
+          "answer": "Wedding season में 3-6 महीने पहले booking करना best है। Off-season में 2-3 महीने sufficient है। Early booking से better dates और discounts मिलते हैं।"
+        },
+        {
+          "question": "Kya bridal makeup mein false lashes use hoti hain?",
+          "answer": "Haan, modern bridal makeup में false eyelashes common हैं। Ye eyes को dramatic और attractive look देती हैं। Individual lashes या strip lashes दोनों use होती हैं।"
+        },
+        {
+          "question": "Airbrush makeup traditional makeup se behtar hai kya?",
+          "answer": "Airbrush makeup ज्यादा long-lasting, lightweight, और flawless finish देता है। Photography के लिए perfect है। Traditional makeup ज्यादा affordable है aur normal functions के लिए sufficient है।"
+        }
+      ],
+      "schema": {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "Bridal Makeup Complete Guide 2025 - Price, Styles & Artist Selection",
+        "description": "Complete guide on bridal makeup including HD, Airbrush, Traditional styles with price comparison and artist selection tips for Patna brides",
+        "image": "https://kritikasalonpatna.com/assets/blog/bridal-makeup-patna-salon.webp",
+        "author": {
+          "@type": "Person",
+          "name": "Priyanka Verma",
+          "jobTitle": "Senior Bridal Makeup Artist",
+          "worksFor": {
+            "@type": "BeautySalon",
+            "name": "Kritika ladies Beauty Parlour"
           }
         },
-        "internalLinks": [
-          {
-            "text": "Bridal Makeup Packages",
-            "url": "/services/bridal-makeup",
-            "anchor": "complete bridal makeup packages starting from ₹15,000",
-            "context": "pricing_section"
+        "publisher": {
+          "@type": "LocalBusiness",
+          "@id": "https://kritikasalonpatna.com/#organization",
+          "name": "Kritika Ladies Beauty Parlour",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Bhootnath Road",
+            "addressLocality": "Patna",
+            "addressRegion": "Bihar",
+            "postalCode": "800001",
+            "addressCountry": "IN"
           },
-          {
-            "text": "Pre-Wedding Beauty Services",
-            "url": "/services/pre-wedding-packages",
-            "anchor": "pre-wedding grooming और beauty treatments",
-            "context": "preparation_section"
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 25.587406341942586,
+            "longitude": 85.17572682575796
           },
-          {
-            "text": "Book Bridal Trial",
-            "url": "/booking/bridal-trial",
-            "anchor": "free bridal makeup trial booking",
-            "context": "artist_selection_section"
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://kritikasalonpatna.com/logo.png"
           }
-        ],
-        "faq": [
+        },
+        "datePublished": "2025-10-15",
+        "dateModified": "2025-10-15",
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": "https://kritikasalonpatna.com/blog/bridal-makeup-complete-guide-price-styles-artist-selection-patna"
+        },
+        "articleSection": "Bridal Beauty",
+        "inLanguage": "hi-IN",
+        "about": [
           {
-            "question": "Bridal makeup ki cost kitni hoti hai Patna mein?",
-            "answer": "Patna mein bridal makeup ki cost ₹5,000 se ₹50,000 tak hoti hai. Basic makeup ₹5,000-10,000, HD makeup ₹15,000-25,000, aur Airbrush makeup ₹25,000-50,000 tak ho sakta hai. Bhootnath Road area mein competitive prices milte hain."
+            "@type": "Thing",
+            "name": "Bridal Makeup"
           },
           {
-            "question": "HD makeup aur normal makeup mein kya difference hai?",
-            "answer": "HD makeup high-definition cameras के लिए specially designed hai. Ye flawless finish देता है, long-lasting रहता है, और photos/videos में perfect दिखता है। Normal makeup से ज्यादा coverage और durability होती है।"
-          },
-          {
-            "question": "Bridal makeup trial kyu zaroori hai?",
-            "answer": "Trial se aap makeup look को पहले देख सकती हैं, artist के साथ comfortable हो सकती हैं, products test कर सकती हैं, और final look में changes कर सकती हैं। Ye आपकी wedding day को stress-free बनाता है।"
-          },
-          {
-            "question": "Best bridal makeup artist kaise choose karein Patna mein?",
-            "answer": "Portfolio देखें, reviews पढ़ें, trial लें, experience check करें, products की quality देखें, और budget discuss करें। Bhootnath Road area में experienced artists available हैं।"
-          },
-          {
-            "question": "Bridal makeup kitne ghante tikta hai?",
-            "answer": "Professional HD या Airbrush makeup 12-15 hours tak fresh रहता है। Setting spray और touch-up kit से पूरे function में perfect look maintain रहता है।"
-          },
-          {
-            "question": "Bridal makeup ke liye advance booking kitni pehle karni chahiye?",
-            "answer": "Wedding season में 3-6 महीने पहले booking करना best है। Off-season में 2-3 महीने sufficient है। Early booking से better dates और discounts मिलते हैं।"
-          },
-          {
-            "question": "Kya bridal makeup mein false lashes use hoti hain?",
-            "answer": "Haan, modern bridal makeup में false eyelashes common हैं। Ye eyes को dramatic और attractive look देती हैं। Individual lashes या strip lashes दोनों use होती हैं।"
-          },
-          {
-            "question": "Airbrush makeup traditional makeup se behtar hai kya?",
-            "answer": "Airbrush makeup ज्यादा long-lasting, lightweight, और flawless finish देता है। Photography के लिए perfect है। Traditional makeup ज्यादा affordable है aur normal functions के लिए sufficient है।"
+            "@type": "Thing",
+            "name": "Wedding Beauty Services"
           }
-        ],
+        ]
+      },
+      "extra": {
+        "location": {
+          "city": "Patna",
+          "area": "Bhootnath Road",
+          "state": "Bihar",
+          "nearby": [
+            "Patna Junction",
+            "Gandhi Maidan",
+            "Boring Road",
+            "Fraser Road"
+          ]
+        },
+        "priceRange": {
+          "min": 5000,
+          "max": 50000,
+          "currency": "INR"
+        },
         "relatedServices": [
           {
             "name": "Pre-Bridal Package",
@@ -859,77 +579,15 @@
           "bridal services boring road patna",
           "dulhan makeup artist patna cantt"
         ]
-      },
-      "metaTitle": "Bridal Makeup Guide 2025 - Price, Styles & Artist Selection | Patna Bhootnath Road",
-      "metaDescription": "Complete bridal makeup guide: HD, Airbrush, Traditional styles की सारी जानकारी। Price ₹5,000-50,000, best artist कैसे चुनें, और Patna की top rated bridal services। Expert tips हिंदी में।",
-      "ogImage": "/blog/bridal-makeup-og-patna.webp",
-      "twitterCard": "summary_large_image",
-      "focusKeyphrase": "bridal makeup patna",
-      "keyphraseVariations": [
-        "bridal makeup complete guide",
-        "dulhan makeup price",
-        "wedding makeup artist patna",
-        "HD bridal makeup cost",
-        "best bridal makeup bhootnath road"
-      ],
-      "semanticKeywords": [
-        "शादी का मेकअप",
-        "दुल्हन की तैयारी",
-        "wedding beauty services",
-        "bridal package",
-        "makeup trial",
-        "pre-wedding beauty",
-        "engagement makeup",
-        "reception makeup"
-      ]
-    },
-    {
-      "slug": "hair-fall-control-kaise-kare-baal-girne-se-kaise-roken",
-      "filePath": "./src/content/posts/hair-fall-control-kaise-kare.md",
-      "metadata": {
-        "title": "Hair Fall Control Kaise Kare - Baal Girne Se Kaise Roken: 15 Natural Gharelu Upay",
-        "excerpt": "Baal girna rokne ke liye best natural tips aur gharelu nuskhe. Janiye hair fall ke karan, treatment, aur proven remedies jo scientifically approved hain.",
-        "date": "2025-10-08",
-        "coverImage": "/images/blog/hair-fall-control-treatment.webp",
-        "category": "health",
-        "author": "parvatikumari",
-        "tags": [
-          "hair fall control",
-          "baal girna kaise roken",
-          "hair fall treatment",
-          "gharelu nuskhe"
-        ],
-        "featured": true,
-        "readTime": 12
-      },
-      "seo": {
-        "keywords": [
-          "hair fall kaise roken",
-          "baal girne ka ilaj",
-          "hair fall treatment at home"
-        ],
-        "canonicalUrl": "https://yourwebsite.com/blog/hair-fall-control-kaise-kare-baal-girne-se-kaise-roken"
-      },
-      "internalLinks": [
-        {
-          "text": "Hair Treatment Services",
-          "url": "/services/hair-treatment",
-          "anchor": "professional hair fall treatment packages"
-        }
-      ],
-      "faq": [
-        {
-          "question": "Baal girne ka sabse bada karan kya hai?",
-          "answer": "Hair fall ke main karano mein stress, nutritional deficiency shamil hain."
-        }
-      ]
+      }
     }
+    
   ],
   "authors": {
     "neelamSharma": {
       "id": "neelamSharma",
       "name": "Neelam Sharma",
-      "avatar": "/assets/authors/neelam-sharma.jpg",
+      "avatar": "/assets/images/all-services.webp",
       "bio": "Professional Makeup Artist with 8+ years experience. Specialized in party makeup, bridal makeup, and fashion shows. Trained from Pearl Academy Delhi.",
       "expertise": [
         "Party Makeup",
@@ -958,22 +616,29 @@
     "parvatikumari": {
       "id": "parvatikumari",
       "name": "Parvati kumari",
-      "avatar": "/assets/authors/parvati_kumari.jpg",
+      "avatar": "/images/authors/all-services.webp",
       "bio": "Lkme Delhi Trained Cosmotologist, BSc Chemistry with 5+ years experience in hair care and trichology",
       "expertise": [
         "Hair Fall Treatment",
         "Dermatology",
-        "Trichology"
+        "Trichology",
+        "Baal Girna Rokna",
+        "Scalp Care",
+        "Gharelu Nuskhe",
+        "Skin Care",
+        "Beauty Tips Hindi"
       ],
+      "location": "Patna, Bihar",
       "socialLinks": {
-        "twitter": "https://twitter.com/salonic",
-        "linkedin": "https://linkedin.com/in/salonic"
+        "twitter": "https://twitter.com/kritikasalonpatna",
+        "linkedin": "https://linkedin.com/in/kritikasalonpatna",
+        "instagram": "https://instagram.com/kritikasalonpatna"
       }
     },
     "priyankaVerma": {
       "id": "priyankaVerma",
       "name": "Priyanka Verma",
-      "avatar": "/assets/authors/priyanka-verma.jpg",
+      "avatar": "/images/authors/all-services.webp",
       "bio": "Senior Bridal Makeup Artist with 12+ years experience. Specialized in HD, Airbrush, and Traditional bridal makeup. Trained from VLCC Institute Delhi.",
       "expertise": [
         "Bridal Makeup",
@@ -998,6 +663,20 @@
         "Featured in Bihar Wedding Magazine",
         "4.9★ Rating (200+ Reviews)"
       ]
+    },
+    "kritikaSalon": {
+  "id": "kritikaSalon",
+  "name": "Kritika Ladies Beauty Parlour",
+  "avatar": "/images/authors/kritika-salon-logo.webp",
+  "bio": "Kritika Ladies Beauty Parlour is the leading beauty and wellness destination in Patna, offering expert makeup, hair, nail, and bridal services.",
+  "expertise": [
+    "Bridal Makeup",
+    "Nail Art & Extensions",
+    "Party Makeup",
+    "Hair Styling",
+    "Skin Care Treatments"
+  ],
+  "location": "Bhootnath Road, Patna, Bihar"
     }
   },
   "categories": [
@@ -1068,27 +747,59 @@
   ],
   "seoConfig": {
     "defaultMeta": {
-      "siteName": "SALONIC Beauty Hub",
+      "siteName": "kritikasalonpatna",
       "locale": "hi-IN",
       "twitterCard": "summary_large_image",
-      "ogType": "article"
+      "ogType": "article",
+      "language": "hi"
     },
     "organizationSchema": {
       "@type": "LocalBusiness",
-      "name": "Glamour Salon & Spa",
+      "name": "Kritika ladies Beauty Parlour",
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "Bhootnath Road",
         "addressLocality": "Patna",
         "addressRegion": "Bihar",
-        "postalCode": "800001",
+        "postalCode": "800026",
         "addressCountry": "IN"
       },
       "geo": {
         "@type": "GeoCoordinates",
         "latitude": 25.587406341942586,
         "longitude": 85.17572682575796
+      },
+      "breadcrumbSchema": {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://kritikasalonpatna.com"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Blog",
+            "item": "https://kritikasalonpatna.com/blog"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Baal Ki Dekhbhal",
+            "item": "https://kritikasalonpatna.com/blog/hair-care"
+          }
+        ]
       }
     }
-  }
+  },
+  "locationKeywords": [
+    "patna beauty salon",
+    "patna ladies beauty tips",
+    "bihar beauty services",
+    "patna hair treatment",
+    "bhootnath road salon"
+  ]
 }

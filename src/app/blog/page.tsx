@@ -4,6 +4,9 @@ import BlogCard from '@/components/blog/BlogCard';
 import SearchBar from '@/components/blog/SearchBar';
 //import { notFound } from 'next/navigation';
 import MobileBottomNav from '@/components/MobileBottomNav';
+import Link from 'next/link';
+
+const SITE_URL = 'https://www.kritikasalonpatna.com'; // keep in sync with sitemap.ts / robots.ts
 
 // ✅ ISR: Revalidate every 1 hour
 export const revalidate = 3600;
@@ -112,22 +115,40 @@ async function getCategories() {
   return data || [];
 }
 
+export async function generateMetadata({
+  searchParams,
+}: {
+  searchParams: Promise<{ search?: string }>;
+}) {
+  const params = await searchParams;
+  const isSearch = Boolean(params.search);
+
+  return {
+    title: 'Beauty Blog - Expert Tips & Trends | Patna Salon',
+    description:
+      "Latest beauty tips, hair care, makeup tutorials and wellness advice from Patna's favorite salon",
+    keywords: 'beauty blog patna, hair care tips, makeup tutorials, skin care, bridal beauty',
+    alternates: { canonical: `${SITE_URL}/blog` },
+    // Category browsing now has its own dedicated, indexable pages at
+    // /blog/category/[slug] — this listing no longer needs to filter by
+    // category itself. Search results (?search=) stay noindex since they're
+    // a query view of the same content, not a distinct page.
+    robots: isSearch
+      ? { index: false, follow: true }
+      : { index: true, follow: true },
+  };
+}
+
 export default async function BlogPage({
   searchParams,
 }: {
-  searchParams: Promise<{ category?: string; search?: string }>;
+  searchParams: Promise<{ search?: string }>;
 }) {
   const params = await searchParams;
   const posts = await getBlogPosts();
   const categories = await getCategories();
 
-  // Filter by category
   let filteredPosts = posts;
-  if (params.category) {
-    filteredPosts = posts.filter(
-      (post) => post.category?.slug === params.category?.toLowerCase()
-    );
-  }
 
   // Filter by search
   if (params.search) {
@@ -219,21 +240,25 @@ export default async function BlogPage({
           </div>
         </div>
 
-        {/* Categories Filter */}
+        {/* Categories — link out to the dedicated /blog/category/[slug] pages
+            instead of filtering this listing, so category browsing benefits
+            from its own indexable, linkable URL. */}
         <div className="mb-8 flex flex-wrap gap-2 justify-center">
-          <button
-            className="px-4 py-2 bg-pink-500 text-white rounded-full text-sm font-medium hover:bg-pink-600 transition-colors"
+          <Link
+            href="/blog"
+            className="px-4 py-2 rounded-full text-sm font-medium bg-pink-500 text-white transition-colors"
           >
             All
-          </button>
+          </Link>
           {categories.map((category) => (
-            <button
+            <Link
               key={category.id}
+              href={`/blog/category/${category.slug}`}
               className="px-4 py-2 bg-white border border-pink-200 rounded-full text-sm font-medium hover:bg-pink-50 transition-colors flex items-center gap-2"
             >
               <span>{category.icon}</span>
               {category.name}
-            </button>
+            </Link>
           ))}
         </div>
 
@@ -316,10 +341,3 @@ export default async function BlogPage({
     </div>
   );
 }
-
-// Metadata for SEO
-export const metadata = {
-  title: 'Beauty Blog - Expert Tips & Trends | Patna Salon',
-  description: 'Latest beauty tips, hair care, makeup tutorials and wellness advice from Patna\'s favorite salon',
-  keywords: 'beauty blog patna, hair care tips, makeup tutorials, skin care, bridal beauty',
-};
